@@ -521,68 +521,62 @@ export const GlobalReach: React.FC<GlobalReachProps> = ({ onOpenQuote, onNavigat
   const activeHubInfo = HUBS[selectedHub];
 
   return (
-    <section id="reach" className="py-24 bg-slate-950 border-t border-slate-900 relative overflow-hidden">
-      {/* Background radial spotlights */}
-      <div className="absolute top-10 left-1/4 w-[500px] h-[500px] bg-cyan-950/20 blur-[150px] rounded-full pointer-events-none"></div>
-      <div className="absolute bottom-10 right-1/4 w-[500px] h-[500px] bg-emerald-950/20 blur-[150px] rounded-full pointer-events-none"></div>
-
+    <section id="reach" className="py-20 md:py-28 bg-white border-b border-slate-200 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Header */}
-        <FadeInSection direction="up" delay={50} duration={600}>
-          <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-800/60 text-xs font-semibold text-cyan-300 shadow-inner">
-              <Globe2 className="w-3.5 h-3.5 text-cyan-400" />
-              <span>International Technology Corridor</span>
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-              Global Reach: <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-emerald-400">Dubai to Sialkot</span>
-            </h2>
-
-            <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-              Bridging 20+ years of high-concurrency enterprise IT experience in the United Arab Emirates with our modern tech center in Sialkot, Pakistan.
-            </p>
-
-            {/* View Mode Switcher */}
-            <div className="pt-3 flex flex-wrap justify-center gap-2">
-              <button
-                onClick={() => setActiveTab('map')}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-                  activeTab === 'map'
-                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-lg shadow-cyan-500/25'
-                    : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
-                }`}
-              >
-                <Radio className="w-3.5 h-3.5" />
-                <span>Interactive Geo-Bridge</span>
-              </button>
-
-              <button
-                onClick={() => setActiveTab('timeline')}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-                  activeTab === 'timeline'
-                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-lg shadow-cyan-500/25'
-                    : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
-                }`}
-              >
-                <Clock className="w-3.5 h-3.5" />
-                <span>20-Year Evolution (2004–2026)</span>
-              </button>
-
-              <button
-                onClick={() => setActiveTab('standards')}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-                  activeTab === 'standards'
-                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-lg shadow-cyan-500/25'
-                    : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
-                }`}
-              >
-                <ShieldCheck className="w-3.5 h-3.5" />
-                <span>Dubai Standard Parity</span>
-              </button>
-            </div>
+        <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-xs font-bold text-red-700">
+            <Globe2 className="w-3.5 h-3.5 text-red-600" />
+            <span>International Technology Corridor</span>
           </div>
-        </FadeInSection>
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+            Global Reach: Dubai to Sialkot
+          </h2>
+
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+            Bridging 20+ years of high-concurrency enterprise IT experience in the United Arab Emirates with our modern tech center in Sialkot, Pakistan.
+          </p>
+
+          {/* View Mode Switcher */}
+          <div className="pt-3 flex flex-wrap justify-center gap-2">
+            <button
+              onClick={() => setActiveTab('map')}
+              className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                activeTab === 'map'
+                  ? 'bg-red-600 text-white shadow-2xs font-bold'
+                  : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
+              }`}
+            >
+              <Radio className="w-3.5 h-3.5" />
+              <span>Interactive Geo-Bridge</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('timeline')}
+              className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                activeTab === 'timeline'
+                  ? 'bg-red-600 text-white shadow-2xs font-bold'
+                  : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
+              }`}
+            >
+              <Clock className="w-3.5 h-3.5" />
+              <span>20-Year Evolution (2004–2026)</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('standards')}
+              className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                activeTab === 'standards'
+                  ? 'bg-red-600 text-white shadow-2xs font-bold'
+                  : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
+              }`}
+            >
+              <ShieldCheck className="w-3.5 h-3.5" />
+              <span>Dubai Standard Parity</span>
+            </button>
+          </div>
+        </div>
 
         {/* Tab 1: Interactive D3 Geo-Bridge Map & Hub Inspection Panel */}
         {activeTab === 'map' && (

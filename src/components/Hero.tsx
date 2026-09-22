@@ -1,196 +1,305 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { COMPANY_INFO } from '../data/content';
-import { Sparkles, MapPin, ArrowRight, ShieldCheck, CheckCircle, Wrench, Globe, PhoneCall, Search } from 'lucide-react';
-import { FadeInSection } from './FadeInSection';
+import { SectionId } from '../types';
+import {
+  Sparkles,
+  ArrowRight,
+  ShieldCheck,
+  CheckCircle2,
+  Globe,
+  PhoneCall,
+  Search,
+  MessageSquare,
+  Laptop,
+  Code2,
+  ShoppingBag,
+  Wrench,
+  Cpu,
+  Layers,
+  Star,
+  Award
+} from 'lucide-react';
 
 interface HeroProps {
-  onOpenQuote: () => void;
-  onExploreServices: () => void;
+  onOpenQuote: (servicePrefill?: string) => void;
+  onNavigate: (section: SectionId) => void;
   onOpenSearch?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenQuote, onExploreServices, onOpenSearch }) => {
+export const Hero: React.FC<HeroProps> = ({
+  onOpenQuote,
+  onNavigate,
+  onOpenSearch,
+}) => {
+  const [activeTab, setActiveTab] = useState<'web' | 'software' | 'hardware'>('web');
+
+  const pillars = {
+    web: {
+      title: 'Web & Digital Graphics',
+      badge: 'High-Performance & Modern UI/UX',
+      desc: 'Next-generation web applications, bespoke e-commerce platforms, corporate branding, and lightning-fast SEO architectures engineered to international Dubai standards.',
+      features: [
+        'Next.js & React High-Speed Engineering',
+        'Custom E-Commerce & Multi-Currency Gateways',
+        'Corporate Identity, Graphics & UI/UX Design',
+        'Search Engine Optimization (SEO) & 99+ Core Vitals',
+      ],
+      ctaService: 'Website Development',
+      buttonText: 'Order Web Development',
+      color: 'border-red-200 bg-red-50/40 text-red-600',
+    },
+    software: {
+      title: 'Software & POS Development',
+      badge: 'Enterprise & Retail Automation',
+      desc: 'Robust custom Point of Sale (POS) systems, inventory management, ERP solutions, and FBR-compliant digital invoicing engineered for retail, wholesale, and export manufacturers.',
+      features: [
+        'Retail & Wholesale POS with Barcode Automation',
+        'FBR Digital Invoicing & Fiscal Tax Compliance',
+        'Multi-Warehouse & Multi-Branch Cloud Sync',
+        'Offline-First Reliability with Instant Backup',
+      ],
+      ctaService: 'Software Development & POS Systems',
+      buttonText: 'Get POS System Demo',
+      color: 'border-blue-200 bg-blue-50/40 text-blue-600',
+    },
+    hardware: {
+      title: 'Laptop, Printer & Hardware Repair',
+      badge: 'Certified Chip-Level Diagnostics',
+      desc: 'Sialkot’s premier chip-level diagnostic and repairing lab for gaming laptops, Apple MacBooks, office workstations, thermal receipt printers, and laser printers with genuine parts.',
+      features: [
+        'BGA Motherboard Chip-Level Micro-Soldering',
+        'Laser & Thermal Receipt Printer Maintenance',
+        'MacBook & Laptop Screen, Battery & Keyboard Swaps',
+        'Doorstep On-Site Business IT Support in Sialkot',
+      ],
+      ctaService: 'Computer, Laptop & Printer Repairing',
+      buttonText: 'Book Hardware Repair',
+      color: 'border-emerald-200 bg-emerald-50/40 text-emerald-600',
+    },
+  };
+
   return (
-    <section id="hero-section" className="relative min-h-[90vh] flex items-center pt-28 pb-16 overflow-hidden">
-      {/* Subtle Background Glows & Architectural Lines */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-br from-cyan-600/15 via-blue-600/10 to-indigo-950/20 blur-[120px] rounded-full"></div>
-        <div className="absolute top-10 right-10 w-72 h-72 bg-emerald-500/10 blur-[90px] rounded-full"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-25"></div>
-      </div>
+    <section id="home" className="relative pt-32 pb-20 md:pt-36 md:pb-28 overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white border-b border-slate-200">
+      {/* Soft geometric background grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Main Hero Content (Left 7 Cols) */}
-          <FadeInSection direction="up" delay={50} duration={750} className="lg:col-span-7 text-center lg:text-left space-y-6">
-            {/* Dubai to Pakistan Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-xs sm:text-sm text-slate-300 shadow-sm backdrop-blur-sm">
-              <span className="flex items-center gap-1 text-amber-400 font-semibold">
-                <Globe className="w-3.5 h-3.5" />
-                Dubai (UAE)
-              </span>
-              <span className="text-slate-500">⟶</span>
-              <span className="flex items-center gap-1 text-cyan-400 font-semibold">
-                <MapPin className="w-3.5 h-3.5" />
-                Sialkot (Pakistan)
-              </span>
-              <span className="hidden sm:inline text-slate-400">|</span>
-              <span className="hidden sm:inline text-emerald-400 font-medium">20+ Years Legacy</span>
-            </div>
+      {/* Decorative ambient accent */}
+      <div className="absolute top-12 left-1/2 -translate-x-1/2 w-96 h-96 bg-red-100/40 rounded-full blur-3xl pointer-events-none" />
 
-            {/* Exact Heading */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
-              Experience of Dubai, <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-blue-500">
-                Now in Pakistan
-              </span>
-            </h1>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Top Heritage Badge */}
+        <div className="flex flex-col items-center text-center mb-8">
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-xs text-xs sm:text-sm font-semibold text-slate-800 transition-all hover:border-red-300">
+            <span className="flex items-center gap-1.5 text-emerald-600 font-bold">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping inline-block" />
+              20+ Years Dubai Heritage
+            </span>
+            <span className="text-slate-300">•</span>
+            <span className="text-slate-600 font-medium">Now in Sialkot, Pakistan</span>
+            <span className="text-slate-300 hidden sm:inline">•</span>
+            <span className="hidden sm:inline-flex items-center gap-1 text-red-600 font-semibold">
+              <Award className="w-3.5 h-3.5" />
+              Enterprise Quality
+            </span>
+          </div>
 
-            {/* Exact Sub Heading */}
-            <p className="text-xl sm:text-2xl font-semibold text-slate-200 flex items-center justify-center lg:justify-start gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 inline-block"></span>
-              {COMPANY_INFO.hero.subHeading}
-            </p>
+          {/* Master Headline */}
+          <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 max-w-4xl leading-[1.12]">
+            Transforming Ideas into{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-rose-600 to-red-700">
+              High-Performance
+            </span>{' '}
+            Digital & Hardware Solutions
+          </h1>
 
-            {/* Exact Paragraph */}
-            <p className="text-base sm:text-lg text-slate-300/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
-              {COMPANY_INFO.hero.paragraph}
-            </p>
+          {/* Subheading */}
+          <p className="mt-5 text-base sm:text-xl text-slate-600 max-w-3xl leading-relaxed font-normal">
+            Specializing in modern custom <strong>Web Development</strong>, enterprise <strong>Software & POS Systems</strong>, and certified <strong>Laptop & Printer Repairing</strong> in Sialkot with two decades of Dubai multinational experience.
+          </p>
 
-            {/* CTA Buttons */}
-            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              {/* Exact Button: Get a Free Quote */}
-              <button
-                id="hero-get-free-quote-btn"
-                onClick={onOpenQuote}
-                className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-base transition-all shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:-translate-y-0.5 flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <Sparkles className="w-5 h-5 text-slate-950" />
-                <span>{COMPANY_INFO.hero.ctaButton}</span>
-              </button>
+          {/* Primary Action Buttons */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+            <button
+              onClick={() => onOpenQuote()}
+              className="px-6 py-3.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-sm sm:text-base shadow-sm hover:shadow-md transition-all flex items-center gap-2 cursor-pointer"
+            >
+              <Sparkles className="w-4 h-4" />
+              <span>Request Free Consultation</span>
+              <ArrowRight className="w-4 h-4 ml-1" />
+            </button>
 
-              <button
-                id="hero-explore-services-btn"
-                onClick={onExploreServices}
-                className="w-full sm:w-auto px-6 py-3.5 rounded-xl border border-slate-700 bg-slate-900/70 hover:bg-slate-800 text-slate-200 font-semibold text-base transition-all flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <span>{COMPANY_INFO.hero.secondaryCta}</span>
-                <ArrowRight className="w-4 h-4 text-cyan-400" />
-              </button>
-            </div>
+            <a
+              href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX, I would like to discuss my project requirement.')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-3.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-semibold text-sm sm:text-base border border-emerald-200 transition-all flex items-center gap-2"
+            >
+              <MessageSquare className="w-4 h-4 text-emerald-600" />
+              <span>WhatsApp Direct</span>
+            </a>
 
-            {/* Quick Interactive Search Bar */}
-            {onOpenSearch && (
-              <div className="pt-2">
+            <button
+              onClick={() => onNavigate('blogs')}
+              className="px-5 py-3.5 rounded-xl bg-white hover:bg-slate-100 text-slate-800 font-semibold text-sm sm:text-base border border-slate-200 shadow-2xs transition-all flex items-center gap-2 cursor-pointer"
+            >
+              <Layers className="w-4 h-4 text-slate-500" />
+              <span>Explore 60 Tech Guides</span>
+            </button>
+          </div>
+        </div>
+
+        {/* 3 Core Pillars - Interactive Bento Preview Tabs */}
+        <div className="mt-12 bg-white border border-slate-200 rounded-2xl shadow-sm p-4 sm:p-6 lg:p-8">
+          {/* Tab selector */}
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 pb-6 border-b border-slate-100">
+            <button
+              onClick={() => setActiveTab('web')}
+              className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 cursor-pointer ${
+                activeTab === 'web'
+                  ? 'bg-red-600 text-white shadow-sm'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              <Code2 className="w-4 h-4" />
+              <span>1. Web & Graphics</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('software')}
+              className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 cursor-pointer ${
+                activeTab === 'software'
+                  ? 'bg-red-600 text-white shadow-sm'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              <Cpu className="w-4 h-4" />
+              <span>2. Software & POS</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('hardware')}
+              className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 cursor-pointer ${
+                activeTab === 'hardware'
+                  ? 'bg-red-600 text-white shadow-sm'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              <Wrench className="w-4 h-4" />
+              <span>3. Hardware & Repairing</span>
+            </button>
+          </div>
+
+          {/* Active Pillar Card Detail */}
+          <div className="mt-6 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-7 space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-slate-100 text-slate-700">
+                {pillars[activeTab].badge}
+              </div>
+
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
+                {pillars[activeTab].title}
+              </h3>
+
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                {pillars[activeTab].desc}
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+                {pillars[activeTab].features.map((feat, idx) => (
+                  <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-slate-700 font-medium">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                    <span>{feat}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-4 flex flex-wrap items-center gap-3">
                 <button
-                  type="button"
-                  onClick={onOpenSearch}
-                  className="w-full max-w-xl flex items-center justify-between px-4 py-3 rounded-xl bg-slate-900/90 hover:bg-slate-900 border border-slate-700/80 hover:border-cyan-500/60 shadow-lg shadow-black/40 text-left transition-all group cursor-pointer"
+                  onClick={() => onOpenQuote(pillars[activeTab].ctaService)}
+                  className="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm shadow-xs transition-colors flex items-center gap-2 cursor-pointer"
                 >
-                  <div className="flex items-center gap-3 text-xs sm:text-sm text-slate-400 group-hover:text-slate-200">
-                    <Search className="w-4 h-4 text-cyan-400 group-hover:scale-110 transition-transform" />
-                    <span>Search services, POS systems, laptops & Dubai portfolio...</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <kbd className="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] font-mono text-cyan-300 bg-cyan-950/80 border border-cyan-800/60 rounded">
-                      ⌘K / Quick Access
-                    </kbd>
-                    <ArrowRight className="w-3.5 h-3.5 text-cyan-400 group-hover:translate-x-0.5 transition-transform" />
-                  </div>
+                  <Sparkles className="w-4 h-4" />
+                  <span>{pillars[activeTab].buttonText}</span>
+                </button>
+
+                <button
+                  onClick={() => onNavigate('services')}
+                  className="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs sm:text-sm transition-colors cursor-pointer"
+                >
+                  View Full Service Breakdown
                 </button>
               </div>
-            )}
-
-            {/* Quick Sialkot Service Guarantees */}
-            <div className="pt-4 border-t border-slate-800/80 grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs text-slate-300">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                <span>Doorstep Home Service</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                <span>Transparent Affordable Rates</span>
-              </div>
-              <div className="flex items-center gap-2 col-span-2 sm:col-span-1">
-                <CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                <span>100% Satisfaction Guarantee</span>
-              </div>
             </div>
-          </FadeInSection>
 
-          {/* Right Card / Interactive Showcase (Right 5 Cols) */}
-          <FadeInSection direction="left" delay={150} duration={800} className="lg:col-span-5">
-            <div className="relative rounded-2xl bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 p-6 sm:p-8 shadow-2xl shadow-black/60">
-              {/* Card Header Badge */}
-              <div className="flex items-center justify-between pb-5 border-b border-slate-800/80">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></div>
-                  <span className="text-xs font-bold tracking-wider text-slate-300 uppercase">
-                    Sialkot Operations Active
-                  </span>
-                </div>
-                <span className="text-xs px-2.5 py-1 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-800/60 font-medium">
-                  Dubai Standard
+            {/* Visual preview box */}
+            <div className="lg:col-span-5 bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 rounded-xl p-6 space-y-4">
+              <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Quality Assurance</span>
+                <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                  <ShieldCheck className="w-3.5 h-3.5" /> Certified
                 </span>
               </div>
 
-              {/* Service Highlights Box */}
-              <div className="space-y-4 py-5">
-                <div className="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/80 flex items-start gap-3.5">
-                  <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-                    <Globe className="w-5 h-5" />
+              <div className="space-y-3">
+                <div className="p-3 bg-white rounded-lg border border-slate-200 flex items-center gap-3 shadow-2xs">
+                  <div className="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center font-bold text-sm">
+                    01
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold text-white">Web & Software Engineering</h4>
-                    <p className="text-xs text-slate-400 mt-0.5">
-                      Fast, responsive websites, custom ERP, and retail POS built to international standards.
-                    </p>
+                    <h4 className="text-xs font-bold text-slate-900">Direct Dubai Engineering</h4>
+                    <p className="text-[11px] text-slate-500">20+ years of corporate UAE standards implemented locally</p>
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/80 flex items-start gap-3.5">
-                  <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                    <Wrench className="w-5 h-5" />
+                <div className="p-3 bg-white rounded-lg border border-slate-200 flex items-center gap-3 shadow-2xs">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-sm">
+                    02
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold text-white">Laptop, PC & Printer Services</h4>
-                    <p className="text-xs text-slate-400 mt-0.5">
-                      Motherboard chip diagnostics, laser/thermal printers, SSD speed upgrades & certified UAE imports.
-                    </p>
+                    <h4 className="text-xs font-bold text-slate-900">Transparent Pricing</h4>
+                    <p className="text-[11px] text-slate-500">Fixed milestones, written invoices, no hidden surcharges</p>
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/80 flex items-start gap-3.5">
-                  <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400 border border-blue-500/20">
-                    <MapPin className="w-5 h-5" />
+                <div className="p-3 bg-white rounded-lg border border-slate-200 flex items-center gap-3 shadow-2xs">
+                  <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-sm">
+                    03
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold text-white">On-Site Home & Office Visit</h4>
-                    <p className="text-xs text-slate-400 mt-0.5">
-                      Our certified technician arrives at your home or workplace in Sialkot. No lab visit required.
-                    </p>
+                    <h4 className="text-xs font-bold text-slate-900">Sialkot On-Site & Remote</h4>
+                    <p className="text-[11px] text-slate-500">Physical technicians & 24/7 remote monitoring</p>
                   </div>
                 </div>
-              </div>
-
-              {/* Card Footer with Quick Contact */}
-              <div className="pt-4 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-                <div className="text-slate-400 text-center sm:text-left">
-                  Need immediate service?
-                  <div className="text-slate-200 font-semibold">{COMPANY_INFO.contact.phoneDisplay}</div>
-                </div>
-                <a
-                  href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-3.5 py-2 rounded-lg bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 border border-emerald-500/30 font-semibold flex items-center justify-center gap-1.5 transition-colors"
-                >
-                  <PhoneCall className="w-3.5 h-3.5" />
-                  WhatsApp Direct
-                </a>
               </div>
             </div>
-          </FadeInSection>
+          </div>
+        </div>
+
+        {/* Four Key Metrics Strip */}
+        <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="bg-white border border-slate-200 rounded-xl p-4 text-center shadow-2xs">
+            <div className="text-2xl sm:text-3xl font-black text-red-600">20+</div>
+            <div className="text-xs sm:text-sm font-bold text-slate-900 mt-0.5">Years Experience</div>
+            <div className="text-[11px] text-slate-500">Dubai & International</div>
+          </div>
+
+          <div className="bg-white border border-slate-200 rounded-xl p-4 text-center shadow-2xs">
+            <div className="text-2xl sm:text-3xl font-black text-slate-900">500+</div>
+            <div className="text-xs sm:text-sm font-bold text-slate-900 mt-0.5">Projects Delivered</div>
+            <div className="text-[11px] text-slate-500">Websites, POS & IT Systems</div>
+          </div>
+
+          <div className="bg-white border border-slate-200 rounded-xl p-4 text-center shadow-2xs">
+            <div className="text-2xl sm:text-3xl font-black text-emerald-600">100%</div>
+            <div className="text-xs sm:text-sm font-bold text-slate-900 mt-0.5">Genuine Parts</div>
+            <div className="text-[11px] text-slate-500">Original Laptop & Printer Spares</div>
+          </div>
+
+          <div className="bg-white border border-slate-200 rounded-xl p-4 text-center shadow-2xs">
+            <div className="text-2xl sm:text-3xl font-black text-blue-600">24/7</div>
+            <div className="text-xs sm:text-sm font-bold text-slate-900 mt-0.5">Priority Support</div>
+            <div className="text-[11px] text-slate-500">WhatsApp & Sialkot Doorstep</div>
+          </div>
         </div>
       </div>
     </section>

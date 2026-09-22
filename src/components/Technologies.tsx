@@ -311,154 +311,115 @@ export const Technologies: React.FC<{ onExploreService?: (serviceName: string) =
     : techStack.filter(t => t.category === activeCategory);
 
   return (
-    <section id="technologies" className="py-24 bg-slate-950 border-t border-slate-900 relative overflow-hidden">
-      {/* Background Glows */}
-      <div className="absolute top-1/4 left-1/3 w-[500px] h-[350px] bg-cyan-900/10 blur-[130px] rounded-full pointer-events-none"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-[450px] h-[300px] bg-blue-900/10 blur-[130px] rounded-full pointer-events-none"></div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <section id="technologies" className="py-20 md:py-28 bg-slate-50 border-b border-slate-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <FadeInSection direction="up" delay={50} duration={600}>
-          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-800/60 text-xs font-semibold text-cyan-300 shadow-inner">
-              <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-              Engineering Excellence & Modern Tech Stack
-            </div>
+        <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-xs font-bold text-red-700">
+            <Sparkles className="w-3.5 h-3.5 text-red-600" />
+            Engineering Excellence & Modern Tech Stack
+          </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-              Technologies We Use
-            </h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+            Technologies We Master
+          </h2>
 
-            <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-              We engineer enterprise-grade solutions using industry-standard languages, modern frameworks, robust databases, and reliable hardware protocols tested in Dubai's premier corporate market.
-            </p>
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+            We engineer enterprise-grade solutions using industry-standard languages, modern frameworks, robust databases, and reliable hardware protocols tested in Dubai's premier corporate market.
+          </p>
 
-            {/* Category Filter Pills */}
-            <div className="flex flex-wrap justify-center gap-2 pt-4">
-              {categories.map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id as any)}
-                  className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-300 cursor-pointer flex items-center gap-2 ${
-                    activeCategory === cat.id
-                      ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-md shadow-cyan-500/25 font-bold'
-                      : 'bg-slate-900/80 text-slate-400 hover:text-white border border-slate-800 hover:border-slate-700'
+          {/* Category Filter Pills */}
+          <div className="flex flex-wrap justify-center gap-2 pt-4">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id as any)}
+                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 ${
+                  activeCategory === cat.id
+                    ? 'bg-red-600 text-white shadow-2xs font-bold'
+                    : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
+                }`}
+              >
+                <span>{cat.label}</span>
+                <span
+                  className={`px-1.5 py-0.5 rounded-full text-[10px] font-mono ${
+                    activeCategory === cat.id ? 'bg-red-700 text-white' : 'bg-slate-100 text-slate-500'
                   }`}
                 >
-                  <span>{cat.label}</span>
-                  <span
-                    className={`px-1.5 py-0.5 rounded-full text-[10px] font-mono ${
-                      activeCategory === cat.id ? 'bg-slate-950/30 text-slate-900' : 'bg-slate-800 text-slate-400'
-                    }`}
-                  >
-                    {cat.count}
-                  </span>
-                </button>
-              ))}
-            </div>
+                  {cat.count}
+                </span>
+              </button>
+            ))}
           </div>
-        </FadeInSection>
+        </div>
 
         {/* Animated Floating Badges Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-          {filteredTech.map((tech, idx) => {
-            // Give each badge a distinct gentle floating animation timing
-            const floatDuration = 4 + (idx % 4) * 0.8;
-            const floatDelay = (idx % 3) * 0.4;
-
-            return (
-              <motion.div
-                key={tech.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{
-                  opacity: 1,
-                  y: [0, -8, 0],
-                }}
-                transition={{
-                  opacity: { duration: 0.5, delay: idx * 0.05 },
-                  y: {
-                    duration: floatDuration,
-                    repeat: Infinity,
-                    repeatType: 'mirror',
-                    ease: 'easeInOut',
-                    delay: floatDelay,
-                  },
-                }}
-                whileHover={{
-                  scale: 1.04,
-                  y: -10,
-                  transition: { duration: 0.2 },
-                }}
-                id={`tech-badge-${tech.id}`}
-                className="relative rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950/95 border border-slate-800/90 hover:border-cyan-500/50 p-5 sm:p-6 flex flex-col justify-between transition-colors shadow-xl group overflow-hidden"
-              >
-                {/* Ambient Card Background Glow on Hover */}
-                <div
-                  className={`absolute -top-12 -right-12 w-32 h-32 bg-gradient-to-br ${tech.bgGlow} blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}
-                ></div>
-
-                <div>
-                  {/* Top Row: Icon + Experience Pill */}
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 group-hover:border-slate-700 transition-colors shadow-inner flex items-center justify-center">
-                      {tech.svgIcon}
-                    </div>
-
-                    <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold bg-slate-950 text-slate-400 border border-slate-800 group-hover:text-cyan-300 group-hover:border-cyan-800/60 transition-colors">
-                      {tech.experience}
-                    </span>
+          {filteredTech.map((tech) => (
+            <div
+              key={tech.id}
+              id={`tech-badge-${tech.id}`}
+              className="bg-white border border-slate-200 hover:border-red-300 rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all shadow-2xs hover:shadow-xs group"
+            >
+              <div>
+                {/* Top Row: Icon + Experience Pill */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 group-hover:border-red-200 transition-colors flex items-center justify-center">
+                    {tech.svgIcon}
                   </div>
 
-                  {/* Tech Name */}
-                  <h3 className="text-lg font-bold text-white tracking-tight mb-1 group-hover:text-cyan-300 transition-colors flex items-center gap-1.5">
-                    <span>{tech.name}</span>
-                  </h3>
-
-                  {/* Role / Description */}
-                  <p className="text-xs text-slate-400 font-medium leading-relaxed">
-                    {tech.role}
-                  </p>
-                </div>
-
-                {/* Bottom Tag */}
-                <div className="pt-3 mt-4 border-t border-slate-800/80 flex items-center justify-between text-[11px]">
-                  <span className="text-slate-500 capitalize">{tech.category}</span>
-                  <span className="text-cyan-400 font-medium flex items-center gap-1 opacity-80 group-hover:opacity-100">
-                    <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-                    Verified
+                  <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold bg-slate-100 text-slate-600 border border-slate-200">
+                    {tech.experience}
                   </span>
                 </div>
-              </motion.div>
-            );
-          })}
+
+                {/* Tech Name */}
+                <h3 className="text-base font-bold text-slate-900 tracking-tight mb-1 group-hover:text-red-600 transition-colors">
+                  {tech.name}
+                </h3>
+
+                {/* Role / Description */}
+                <p className="text-xs text-slate-600 font-medium leading-relaxed">
+                  {tech.role}
+                </p>
+              </div>
+
+              {/* Bottom Tag */}
+              <div className="pt-3 mt-4 border-t border-slate-100 flex items-center justify-between text-[11px]">
+                <span className="text-slate-500 capitalize">{tech.category}</span>
+                <span className="text-slate-700 font-semibold flex items-center gap-1">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  Verified
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Seamless Marquee Ribbon Showcase */}
-        <FadeInSection direction="up" delay={200} duration={650}>
-          <div className="mt-14 p-6 rounded-2xl bg-slate-900/60 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
-            <div className="flex items-center gap-3">
-              <div className="p-3 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 flex-shrink-0">
-                <Code2 className="w-6 h-6" />
-              </div>
-              <div>
-                <h4 className="text-base font-bold text-white">
-                  Need a Custom Stack or Migration in Sialkot?
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
-                  Whether upgrading an old desktop billing application to modern cloud POS or developing an e-commerce platform with automated receipt printing, we architect solutions with clean, future-proof code.
-                </p>
-              </div>
+        <div className="mt-14 p-6 rounded-2xl bg-white border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xs">
+          <div className="flex items-center gap-3">
+            <div className="p-3 rounded-xl bg-red-50 text-red-600 border border-red-200 flex-shrink-0">
+              <Code2 className="w-6 h-6" />
             </div>
-
-            <button
-              onClick={() => onExploreService && onExploreService('Website Development')}
-              className="w-full md:w-auto px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-800/60 font-semibold text-xs transition-all flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer shadow-md"
-            >
-              <span>Discuss Your Tech Stack</span>
-              <ArrowRight className="w-3.5 h-3.5 text-cyan-400" />
-            </button>
+            <div>
+              <h4 className="text-base font-bold text-slate-900">
+                Need a Custom Stack or Migration in Sialkot?
+              </h4>
+              <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
+                Whether upgrading an old desktop billing application to modern cloud POS or developing an e-commerce platform with automated receipt printing, we architect solutions with clean, future-proof code.
+              </p>
+            </div>
           </div>
-        </FadeInSection>
+
+          <button
+            onClick={() => onExploreService && onExploreService('Website Development')}
+            className="w-full md:w-auto px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-red-600 text-white font-bold text-xs transition-colors flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer shadow-2xs"
+          >
+            <span>Discuss Your Tech Stack</span>
+            <ArrowRight className="w-3.5 h-3.5 text-white" />
+          </button>
+        </div>
       </div>
     </section>
   );

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { SectionId } from './types';
+import { ScrollProgressBar } from './components/ScrollProgressBar';
 import { Navbar } from './components/Navbar';
-import { HeroSlider } from './components/HeroSlider';
+import { Hero } from './components/Hero';
 import { AboutUs } from './components/AboutUs';
 import { Services } from './components/Services';
 import { Technologies } from './components/Technologies';
@@ -99,7 +100,10 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col selection:bg-red-500/20 selection:text-red-700 dark:selection:bg-cyan-500/25 dark:selection:text-cyan-300 transition-colors duration-300 font-sans">
+    <div className="min-h-screen bg-white text-slate-900 flex flex-col selection:bg-red-500/20 selection:text-red-700 font-sans">
+      {/* Dynamic Color-Changing Scroll Progress Bar */}
+      <ScrollProgressBar />
+
       {/* 1. Header Menu & Navigation */}
       <Navbar
         activeSection={activeSection}
@@ -110,8 +114,8 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className="flex-1">
-        {/* 2. Home Page - Hero Slider Section (3 Slides, Buttons, Dubai Standard) */}
-        <HeroSlider
+        {/* 2. Home Page - Modern Light Hero Section with 3 Core Pillars */}
+        <Hero
           onOpenQuote={(service) => handleOpenQuote(service || 'Website Development')}
           onNavigate={scrollToSection}
           onOpenSearch={() => setIsSearchOpen(true)}

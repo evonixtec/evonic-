@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { PORTFOLIO_DATA } from '../data/content';
-import { ShieldAlert, Globe, MonitorCheck, ExternalLink, Lock, CheckCircle2, Building, ShoppingBag, Utensils, Smartphone, Calendar, FileText } from 'lucide-react';
-import { FadeInSection } from './FadeInSection';
+import { Globe, Building, ShoppingBag, Utensils, Smartphone, ShieldCheck, ArrowRight, Lock } from 'lucide-react';
 
 interface PortfolioProps {
   onRequestPrivateMeeting: () => void;
@@ -12,18 +11,18 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onRequestPrivateMeeting })
 
   const getIndustryIcon = (industry: string) => {
     if (industry.includes('Retail') || industry.includes('Supermarket')) {
-      return <ShoppingBag className="w-4 h-4 text-cyan-400" />;
+      return <ShoppingBag className="w-4 h-4 text-red-600" />;
     }
     if (industry.includes('Estate') || industry.includes('Trading') || industry.includes('Corporate')) {
-      return <Building className="w-4 h-4 text-blue-400" />;
+      return <Building className="w-4 h-4 text-blue-600" />;
     }
     if (industry.includes('Restaurant') || industry.includes('Dining')) {
-      return <Utensils className="w-4 h-4 text-amber-400" />;
+      return <Utensils className="w-4 h-4 text-amber-600" />;
     }
     if (industry.includes('Mobile') || industry.includes('Electronics')) {
-      return <Smartphone className="w-4 h-4 text-emerald-400" />;
+      return <Smartphone className="w-4 h-4 text-emerald-600" />;
     }
-    return <Globe className="w-4 h-4 text-cyan-400" />;
+    return <Globe className="w-4 h-4 text-red-600" />;
   };
 
   const allItems = [
@@ -36,194 +35,127 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onRequestPrivateMeeting })
     : allItems.filter((item) => item.type === activeFilter);
 
   return (
-    <section id="portfolio" className="py-20 bg-slate-900/40 border-t border-slate-800/80 relative">
+    <section id="portfolio" className="py-20 md:py-28 bg-slate-50 border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <FadeInSection direction="up" delay={50} duration={600}>
-          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-950/80 border border-cyan-800/60 text-xs font-semibold text-cyan-300">
-              <Globe className="w-3.5 h-3.5" />
-              15+ Years UAE Enterprise Track Record
-            </div>
-            {/* Exact Heading */}
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              OUR PORTFOLIO - OUR VALUABLE CLIENTS IN DUBAI & UAE
-            </h2>
-            {/* Exact Intro Line */}
-            <p className="text-slate-300 text-sm sm:text-base font-medium">
-              {PORTFOLIO_DATA.intro}
-            </p>
-
-            {/* Filter Tabs */}
-            <div className="flex flex-wrap justify-center gap-2 pt-4">
-              <button
-                onClick={() => setActiveFilter('all')}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
-                  activeFilter === 'all'
-                    ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20'
-                    : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
-                }`}
-              >
-                All Clients ({allItems.length})
-              </button>
-              <button
-                onClick={() => setActiveFilter('website')}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
-                  activeFilter === 'website'
-                    ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20'
-                    : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
-                }`}
-              >
-                <Globe className="w-3.5 h-3.5" />
-                A. Website Development Clients (Dubai)
-              </button>
-              <button
-                onClick={() => setActiveFilter('software')}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
-                  activeFilter === 'software'
-                    ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20'
-                    : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
-                }`}
-              >
-                <MonitorCheck className="w-3.5 h-3.5" />
-                B. Software Development Clients
-              </button>
-            </div>
+        <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-50 border border-red-200 text-xs font-bold text-red-700">
+            <Globe className="w-3.5 h-3.5 text-red-600" />
+            20+ Years International Track Record
           </div>
-        </FadeInSection>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+            Valuable Client Deployments
+          </h2>
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+            {PORTFOLIO_DATA.intro}
+          </p>
 
-        {/* NDA Compliance Notice Card - Prominent and Exact */}
-        <FadeInSection direction="up" delay={100} duration={650}>
-          <div className="mb-12 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-amber-950/40 via-slate-950 to-slate-900 border border-amber-800/40 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <div className="flex items-start gap-3.5">
-              <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20 flex-shrink-0 mt-0.5">
-                <Lock className="w-5 h-5" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <h3 className="text-sm font-bold text-amber-300">
-                    Client Confidentiality & NDA Compliance
-                  </h3>
-                  <span className="px-2 py-0.5 text-[10px] font-mono bg-amber-950 text-amber-400 border border-amber-800/50 rounded">
-                    Legal NDA Protected
-                  </span>
-                </div>
-                {/* Exact Note Text */}
-                <p className="text-xs sm:text-sm text-slate-300 mt-1 leading-relaxed">
-                  <strong>Note:</strong> {PORTFOLIO_DATA.ndaNote}
-                </p>
-              </div>
-            </div>
-
+          {/* Filter Tabs */}
+          <div className="flex flex-wrap justify-center gap-2 pt-4">
             <button
-              onClick={onRequestPrivateMeeting}
-              className="w-full md:w-auto px-5 py-2.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 font-semibold text-xs transition-all flex items-center justify-center gap-1.5 flex-shrink-0 cursor-pointer whitespace-nowrap"
+              onClick={() => setActiveFilter('all')}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                activeFilter === 'all'
+                  ? 'bg-red-600 text-white shadow-2xs font-bold'
+                  : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
+              }`}
             >
-              <Calendar className="w-4 h-4" />
-              Request Private Meeting / Demo
+              All Case Studies ({allItems.length})
+            </button>
+            <button
+              onClick={() => setActiveFilter('website')}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                activeFilter === 'website'
+                  ? 'bg-red-600 text-white shadow-2xs font-bold'
+                  : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
+              }`}
+            >
+              Websites & Portals ({PORTFOLIO_DATA.websiteClients.length})
+            </button>
+            <button
+              onClick={() => setActiveFilter('software')}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                activeFilter === 'software'
+                  ? 'bg-red-600 text-white shadow-2xs font-bold'
+                  : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
+              }`}
+            >
+              Software & POS ERPs ({PORTFOLIO_DATA.softwareClients.length})
             </button>
           </div>
-        </FadeInSection>
+        </div>
 
-        {/* Group A and Group B Grid */}
+        {/* Portfolio Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {displayedItems.map((item, index) => (
-            <FadeInSection
-              key={item.id}
-              direction="up"
-              delay={(index % 3) * 100}
-              duration={650}
-              className="flex"
+          {displayedItems.map((item, idx) => (
+            <div
+              key={idx}
+              className="bg-white border border-slate-200 rounded-2xl p-6 shadow-2xs hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between"
             >
-              <div
-                id={`portfolio-item-${item.id}`}
-                className="w-full rounded-2xl bg-slate-950 border border-slate-800/90 hover:border-slate-700 transition-all p-6 flex flex-col justify-between shadow-xl group"
-              >
-                <div>
-                  {/* Header Category and Dubai tag */}
-                  <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-800/80 text-xs">
-                    <span className="inline-flex items-center gap-1.5 text-cyan-400 font-semibold">
-                      {getIndustryIcon(item.industry)}
-                      {item.industry}
-                    </span>
-                    <span className="font-mono text-[11px] text-slate-400 bg-slate-900 px-2 py-0.5 rounded border border-slate-800">
-                      Dubai, UAE
-                    </span>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-cyan-300 transition-colors mb-2.5">
-                    {item.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-slate-300/90 text-xs sm:text-sm leading-relaxed mb-4">
-                    {item.description}
-                  </p>
-
-                  {/* UAE Milestone / Architecture Highlight */}
-                  <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 text-xs text-slate-400 mb-4">
-                    <span className="text-amber-400 font-semibold">Dubai Track Record: </span>
-                    {item.dubaiHighlight}
-                  </div>
-
-                  {/* Deliverables Bullet Points */}
-                  <div className="space-y-1.5 mb-4">
-                    <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">
-                      Core Modules Implemented:
-                    </span>
-                    {item.deliverables.map((deliv, idx) => (
-                      <div key={idx} className="flex items-start gap-2 text-xs text-slate-300">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0 mt-0.5" />
-                        <span>{deliv}</span>
-                      </div>
-                    ))}
-                  </div>
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700">
+                    {getIndustryIcon(item.industry)}
+                    <span>{item.industry}</span>
+                  </span>
+                  <span className="text-[11px] font-bold text-red-600">
+                    Dubai & UAE Proven
+                  </span>
                 </div>
 
-                {/* Bottom Tags and Private Demo trigger */}
-                <div className="pt-4 border-t border-slate-800/80">
-                  <div className="flex flex-wrap gap-1 mb-3">
-                    {item.tags.map((tag, idx) => (
-                      <span
-                        key={idx}
-                        className="px-2 py-0.5 rounded text-[10px] font-medium bg-slate-900 text-slate-400 border border-slate-800"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                <h3 className="text-lg font-bold text-slate-900 mt-2">
+                  {item.title}
+                </h3>
 
-                  <button
-                    onClick={onRequestPrivateMeeting}
-                    className="w-full py-2 px-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
-                  >
-                    <FileText className="w-3.5 h-3.5 text-cyan-400" />
-                    View Case Study in Private Meeting
-                  </button>
+                <p className="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">
+                  {item.description}
+                </p>
+
+                {/* Deliverables / Scope tags */}
+                <div className="mt-4 flex flex-wrap gap-1.5 border-t border-slate-100 pt-3">
+                  {item.tags.map((tag, tIdx) => (
+                    <span
+                      key={tIdx}
+                      className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-50 border border-slate-200 text-slate-600"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
-            </FadeInSection>
+
+              {/* Status pill & Dubai highlight */}
+              <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+                <span className="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-semibold border border-emerald-200">
+                  Production Verified
+                </span>
+                <span className="text-slate-500 text-[11px] font-medium">
+                  {item.type === 'website' ? 'Web Solution' : 'Software System'}
+                </span>
+              </div>
+            </div>
           ))}
         </div>
 
-        {/* Private Meeting Callout Banner */}
-        <FadeInSection direction="up" delay={150} duration={650}>
-          <div className="mt-12 text-center p-8 rounded-2xl bg-slate-950/70 border border-slate-800 max-w-2xl mx-auto">
-            <h3 className="text-lg font-bold text-white mb-2">
-              Are you a Sialkot Exporter, Shop Owner, or Restaurant Manager?
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-400 mb-5 leading-relaxed">
-              We can demonstrate live, interactive walkthroughs of our Dubai retail POS systems, inventory architectures, and high-conversion e-commerce platforms during a 1-on-1 private consultation in Sialkot or via screen share.
-            </p>
-            <button
-              onClick={onRequestPrivateMeeting}
-              className="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-xs sm:text-sm shadow-md shadow-cyan-500/25 transition-all cursor-pointer"
-            >
-              Schedule Free Consultation in Sialkot
-            </button>
+        {/* NDA & Confidentiality Note */}
+        <div className="mt-12 bg-white border border-slate-200 rounded-2xl p-6 text-center max-w-2xl mx-auto shadow-2xs">
+          <div className="w-10 h-10 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center mx-auto mb-3">
+            <Lock className="w-5 h-5 text-red-600" />
           </div>
-        </FadeInSection>
+          <h4 className="text-sm font-bold text-slate-900">
+            Enterprise Client Privacy & NDA Compliance
+          </h4>
+          <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+            Certain UAE and Pakistani enterprise software architectures, databases, and proprietary POS codes are protected under strict Non-Disclosure Agreements (NDAs). Live demonstrations can be scheduled privately.
+          </p>
+          <button
+            onClick={onRequestPrivateMeeting}
+            className="mt-4 inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 hover:bg-red-600 text-white text-xs font-bold transition-colors cursor-pointer"
+          >
+            <span>Request Private Demonstration</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
       </div>
     </section>
   );
