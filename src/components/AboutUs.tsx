@@ -2,6 +2,7 @@ import React from 'react';
 import { COMPANY_INFO } from '../data/content';
 import { Shield, Award, Target, Compass, Building2, Flag, Sparkles, MapPin, Globe, CheckCircle2, FileCheck } from 'lucide-react';
 import { FadeInSection } from './FadeInSection';
+import { EvonixLogo } from './EvonixLogo';
 import heroDubai from '../assets/images/hero_dubai_tech_1790044690065.jpg';
 
 export const AboutUs: React.FC = () => {
@@ -147,6 +148,12 @@ export const AboutUs: React.FC = () => {
 
             {/* SECP Legal Incorporation & Corporate Identity */}
             <div className="bg-slate-950/90 border border-cyan-800/50 rounded-2xl p-5 shadow-xl relative overflow-hidden ring-1 ring-cyan-500/20">
+              <div className="p-3 mb-3.5 rounded-xl bg-slate-900/90 border border-slate-800/80 flex items-center justify-between">
+                <EvonixLogo size="sm" />
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-red-950/80 text-red-400 border border-red-800/60 font-semibold">
+                  Official Trademark
+                </span>
+              </div>
               <div className="flex items-center gap-2.5 mb-2.5">
                 <div className="p-1.5 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
                   <FileCheck className="w-4 h-4" />

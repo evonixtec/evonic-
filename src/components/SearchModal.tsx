@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { SERVICES, PORTFOLIO_DATA, SHOP_PRODUCTS, COMPANY_INFO, FAQ_ITEMS } from '../data/content';
 import { TESTIMONIALS_DATA } from '../data/testimonialsData';
+import { ALL_BLOGS } from '../data/blogs';
 import { SectionId } from '../types';
 import {
   Search,
@@ -18,13 +19,14 @@ import {
   Tag,
   CornerDownLeft,
   HelpCircle,
+  BookOpen,
 } from 'lucide-react';
 
-export type SearchCategoryType = 'all' | 'services' | 'portfolio' | 'shop' | 'technologies' | 'faq';
+export type SearchCategoryType = 'all' | 'services' | 'portfolio' | 'shop' | 'technologies' | 'faq' | 'blogs';
 
 export interface SearchResultItem {
   id: string;
-  type: 'service' | 'portfolio' | 'shop' | 'technology' | 'faq';
+  type: 'service' | 'portfolio' | 'shop' | 'technology' | 'faq' | 'blog';
   title: string;
   categoryLabel: string;
   description: string;
@@ -252,6 +254,22 @@ export const SearchModal: React.FC<SearchModalProps> = ({
       });
     });
 
+    // 8. 60 SEO Technical Blogs & Guides
+    ALL_BLOGS.forEach((b) => {
+      items.push({
+        id: `blog-${b.id}`,
+        type: 'blog',
+        title: b.title,
+        categoryLabel: `Blog: ${b.categoryLabel}`,
+        description: b.excerpt,
+        tags: [...b.tags, ...b.targetKeywords, b.categoryLabel, 'Technical Guide', 'Tutorial'],
+        targetSection: 'blogs',
+        targetElementId: 'blogs',
+        priceOrHighlight: b.readTime,
+        whatsappMessage: `Hi EVONIX TECHNOLOGIES, I am reading your article: ${b.title}`,
+      });
+    });
+
     return items;
   }, []);
 
@@ -269,6 +287,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
       result = result.filter((item) => item.type === 'technology');
     } else if (selectedCategory === 'faq') {
       result = result.filter((item) => item.type === 'faq');
+    } else if (selectedCategory === 'blogs') {
+      result = result.filter((item) => item.type === 'blog');
     }
 
     const q = query.trim().toLowerCase();
@@ -352,6 +372,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         return <Sparkles className="w-4 h-4 text-blue-400" />;
       case 'faq':
         return <HelpCircle className="w-4 h-4 text-purple-400" />;
+      case 'blog':
+        return <BookOpen className="w-4 h-4 text-red-500 dark:text-rose-400" />;
     }
   };
 
@@ -367,6 +389,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         return 'bg-blue-950 text-blue-300 border-blue-800/60';
       case 'faq':
         return 'bg-purple-950 text-purple-300 border-purple-800/60';
+      case 'blog':
+        return 'bg-red-50 dark:bg-rose-950 text-red-700 dark:text-rose-300 border-red-200 dark:border-rose-800/60';
     }
   };
 
@@ -376,12 +400,12 @@ export const SearchModal: React.FC<SearchModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-3xl bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl shadow-black overflow-hidden flex flex-col max-h-[85vh]"
+        className="relative w-full max-w-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-2xl shadow-2xl shadow-black overflow-hidden flex flex-col max-h-[85vh] transition-colors"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Header Bar with Input */}
-        <div className="p-4 sm:p-5 border-b border-slate-800 bg-slate-950/90 flex items-center gap-3">
-          <Search className="w-5 h-5 text-cyan-400 flex-shrink-0" />
+        <div className="p-4 sm:p-5 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/90 flex items-center gap-3">
+          <Search className="w-5 h-5 text-red-500 dark:text-cyan-400 flex-shrink-0" />
           <input
             ref={inputRef}
             type="text"
@@ -390,8 +414,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
               setQuery(e.target.value);
               setSelectedIndex(0);
             }}
-            placeholder="Search services, POS software, portfolio, laptops, printers..."
-            className="w-full bg-transparent text-white placeholder-slate-400 text-sm sm:text-base focus:outline-none"
+            placeholder="Search services, POS software, 60 tech guides, portfolio, laptops..."
+            className="w-full bg-transparent text-slate-900 dark:text-white placeholder-slate-400 text-sm sm:text-base focus:outline-none"
           />
           {query && (
             <button
@@ -399,25 +423,25 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                 setQuery('');
                 inputRef.current?.focus();
               }}
-              className="p-1 rounded-md text-slate-400 hover:text-white hover:bg-slate-800"
+              className="p-1 rounded-md text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800"
               title="Clear search"
             >
               <X className="w-4 h-4" />
             </button>
           )}
-          <kbd className="hidden sm:inline-block px-2 py-0.5 text-[11px] font-mono font-semibold text-slate-400 bg-slate-800 border border-slate-700 rounded-md">
+          <kbd className="hidden sm:inline-block px-2 py-0.5 text-[11px] font-mono font-semibold text-slate-500 dark:text-slate-400 bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-md">
             ESC
           </kbd>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 sm:hidden"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800 sm:hidden"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Category Filter Pills */}
-        <div className="px-4 py-2.5 bg-slate-950/40 border-b border-slate-800/80 flex items-center gap-2 overflow-x-auto text-xs">
+        <div className="px-4 py-2.5 bg-slate-100/70 dark:bg-slate-950/40 border-b border-slate-200 dark:border-slate-800/80 flex items-center gap-2 overflow-x-auto text-xs">
           <button
             onClick={() => {
               setSelectedCategory('all');
@@ -425,11 +449,25 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             }}
             className={`px-3 py-1 rounded-lg font-medium transition-all whitespace-nowrap cursor-pointer ${
               selectedCategory === 'all'
-                ? 'bg-cyan-500 text-slate-950 shadow-sm font-semibold'
-                : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                ? 'bg-red-600 dark:bg-cyan-500 text-white dark:text-slate-950 shadow-sm font-semibold'
+                : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-800'
             }`}
           >
             All Results ({allSearchItems.length})
+          </button>
+          <button
+            onClick={() => {
+              setSelectedCategory('blogs');
+              setSelectedIndex(0);
+            }}
+            className={`px-3 py-1 rounded-lg font-medium transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer ${
+              selectedCategory === 'blogs'
+                ? 'bg-red-600 dark:bg-cyan-500 text-white dark:text-slate-950 shadow-sm font-semibold'
+                : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-800'
+            }`}
+          >
+            <BookOpen className="w-3.5 h-3.5" />
+            Blogs & Tech Guides (60)
           </button>
           <button
             onClick={() => {
@@ -438,8 +476,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             }}
             className={`px-3 py-1 rounded-lg font-medium transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer ${
               selectedCategory === 'services'
-                ? 'bg-cyan-500 text-slate-950 shadow-sm font-semibold'
-                : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                ? 'bg-red-600 dark:bg-cyan-500 text-white dark:text-slate-950 shadow-sm font-semibold'
+                : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-800'
             }`}
           >
             <Cpu className="w-3.5 h-3.5" />
@@ -452,8 +490,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             }}
             className={`px-3 py-1 rounded-lg font-medium transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer ${
               selectedCategory === 'portfolio'
-                ? 'bg-cyan-500 text-slate-950 shadow-sm font-semibold'
-                : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                ? 'bg-red-600 dark:bg-cyan-500 text-white dark:text-slate-950 shadow-sm font-semibold'
+                : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-800'
             }`}
           >
             <Globe className="w-3.5 h-3.5" />
@@ -466,8 +504,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             }}
             className={`px-3 py-1 rounded-lg font-medium transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer ${
               selectedCategory === 'shop'
-                ? 'bg-cyan-500 text-slate-950 shadow-sm font-semibold'
-                : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                ? 'bg-red-600 dark:bg-cyan-500 text-white dark:text-slate-950 shadow-sm font-semibold'
+                : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-800'
             }`}
           >
             <ShoppingBag className="w-3.5 h-3.5" />
@@ -480,8 +518,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             }}
             className={`px-3 py-1 rounded-lg font-medium transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer ${
               selectedCategory === 'technologies'
-                ? 'bg-cyan-500 text-slate-950 shadow-sm font-semibold'
-                : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                ? 'bg-red-600 dark:bg-cyan-500 text-white dark:text-slate-950 shadow-sm font-semibold'
+                : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-800'
             }`}
           >
             <Sparkles className="w-3.5 h-3.5" />
@@ -494,8 +532,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             }}
             className={`px-3 py-1 rounded-lg font-medium transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer ${
               selectedCategory === 'faq'
-                ? 'bg-cyan-500 text-slate-950 shadow-sm font-semibold'
-                : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                ? 'bg-red-600 dark:bg-cyan-500 text-white dark:text-slate-950 shadow-sm font-semibold'
+                : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-800'
             }`}
           >
             <HelpCircle className="w-3.5 h-3.5" />
@@ -505,8 +543,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
 
         {/* Quick Suggestions when Query is Empty */}
         {!query && (
-          <div className="px-5 py-3 bg-slate-900/60 border-b border-slate-800/60 flex items-center gap-2 flex-wrap text-xs">
-            <span className="text-slate-400 font-medium">Quick suggestions:</span>
+          <div className="px-5 py-3 bg-slate-50 dark:bg-slate-900/60 border-b border-slate-200 dark:border-slate-800/60 flex items-center gap-2 flex-wrap text-xs">
+            <span className="text-slate-600 dark:text-slate-400 font-medium">Quick suggestions:</span>
             {popularSearches.map((term, idx) => (
               <button
                 key={idx}
@@ -515,7 +553,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   setSelectedIndex(0);
                   inputRef.current?.focus();
                 }}
-                className="px-2.5 py-1 rounded-md bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-cyan-300 transition-colors cursor-pointer"
+                className="px-2.5 py-1 rounded-md bg-white dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-red-600 dark:hover:text-cyan-300 border border-slate-200 dark:border-slate-700 transition-colors cursor-pointer shadow-xs"
               >
                 {term}
               </button>
@@ -526,15 +564,15 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         {/* Results List */}
         <div
           ref={resultsContainerRef}
-          className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-2.5 divide-y divide-slate-800/40"
+          className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-2.5 divide-y divide-slate-100 dark:divide-slate-800/40"
         >
           {filteredResults.length === 0 ? (
             <div className="py-12 text-center space-y-3">
-              <Search className="w-10 h-10 text-slate-600 mx-auto" />
-              <p className="text-base font-semibold text-slate-300">
+              <Search className="w-10 h-10 text-slate-400 dark:text-slate-600 mx-auto" />
+              <p className="text-base font-semibold text-slate-800 dark:text-slate-300">
                 No matching results found for "{query}"
               </p>
-              <p className="text-xs text-slate-400 max-w-sm mx-auto">
+              <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm mx-auto">
                 Try searching for "POS", "website", "laptop", "printer", "on-site", or contact our Sialkot desk directly.
               </p>
               <button
@@ -542,7 +580,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   onClose();
                   onSelectForQuote(`Inquiry regarding: ${query}`);
                 }}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 text-xs font-semibold hover:bg-cyan-500/30 transition-colors"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-red-50 dark:bg-cyan-500/20 text-red-700 dark:text-cyan-300 border border-red-200 dark:border-cyan-500/40 text-xs font-semibold hover:bg-red-100 dark:hover:bg-cyan-500/30 transition-colors"
               >
                 <Sparkles className="w-3.5 h-3.5" />
                 Submit Custom Quote for "{query}"
@@ -558,14 +596,14 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   onMouseEnter={() => setSelectedIndex(index)}
                   className={`pt-2.5 first:pt-0 rounded-xl p-3.5 transition-all cursor-pointer ${
                     isSelected
-                      ? 'bg-slate-800/90 border border-cyan-800/60 shadow-md'
-                      : 'hover:bg-slate-800/40 border border-transparent'
+                      ? 'bg-slate-100 dark:bg-slate-800/90 border border-red-500/30 dark:border-cyan-800/60 shadow-md'
+                      : 'hover:bg-slate-50 dark:hover:bg-slate-800/40 border border-transparent'
                   }`}
                   onClick={() => handleSelectResult(item)}
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-start gap-3 flex-1 min-w-0">
-                      <div className="p-2 rounded-lg bg-slate-950 border border-slate-800 flex-shrink-0 mt-0.5">
+                      <div className="p-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex-shrink-0 mt-0.5 shadow-xs">
                         {getItemIcon(item.type)}
                       </div>
                       <div className="flex-1 min-w-0">
@@ -578,18 +616,18 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                             {item.categoryLabel}
                           </span>
                           {item.priceOrHighlight && (
-                            <span className="text-[11px] text-slate-400 font-mono flex items-center gap-1">
-                              <Tag className="w-3 h-3 text-cyan-400" />
+                            <span className="text-[11px] text-slate-500 dark:text-slate-400 font-mono flex items-center gap-1">
+                              <Tag className="w-3 h-3 text-red-500 dark:text-cyan-400" />
                               {item.priceOrHighlight}
                             </span>
                           )}
                         </div>
 
-                        <h4 className="text-sm sm:text-base font-bold text-white truncate">
+                        <h4 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white truncate">
                           {item.title}
                         </h4>
 
-                        <p className="text-xs text-slate-300 mt-1 line-clamp-2 leading-relaxed">
+                        <p className="text-xs text-slate-600 dark:text-slate-300 mt-1 line-clamp-2 leading-relaxed">
                           {item.description}
                         </p>
 
@@ -598,7 +636,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                           {item.tags.slice(0, 4).map((tag, tIdx) => (
                             <span
                               key={tIdx}
-                              className="px-2 py-0.5 rounded text-[10px] bg-slate-950/80 text-slate-400 border border-slate-800/80"
+                              className="px-2 py-0.5 rounded text-[10px] bg-slate-100 dark:bg-slate-950/80 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800/80"
                             >
                               {tag}
                             </span>
@@ -615,7 +653,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                           onClose();
                           onSelectForQuote(item.title);
                         }}
-                        className="px-2.5 py-1.5 rounded-lg bg-cyan-950 hover:bg-cyan-900 text-cyan-300 border border-cyan-800/80 text-xs font-semibold transition-colors flex items-center gap-1"
+                        className="px-2.5 py-1.5 rounded-lg bg-red-50 dark:bg-cyan-950 hover:bg-red-100 dark:hover:bg-cyan-900 text-red-700 dark:text-cyan-300 border border-red-200 dark:border-cyan-800/80 text-xs font-semibold transition-colors flex items-center gap-1"
                         title="Get Quote for this item"
                       >
                         <Sparkles className="w-3 h-3" />
@@ -629,7 +667,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="p-1.5 rounded-lg bg-emerald-950/60 hover:bg-emerald-900/60 text-emerald-400 border border-emerald-800/60 transition-colors"
+                        className="p-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/60 transition-colors"
                         title="WhatsApp Inquiry"
                       >
                         <MessageSquare className="w-3.5 h-3.5" />
@@ -640,10 +678,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                           e.stopPropagation();
                           handleSelectResult(item);
                         }}
-                        className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-700"
+                        className="p-1.5 rounded-lg text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-700"
                         title="Jump to element on page"
                       >
-                        <ArrowRight className="w-4 h-4 text-cyan-400" />
+                        <ArrowRight className="w-4 h-4 text-red-500 dark:text-cyan-400" />
                       </button>
                     </div>
                   </div>
@@ -654,33 +692,33 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         </div>
 
         {/* Modal Footer with Keyboard Navigation hints */}
-        <div className="p-3 bg-slate-950 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+        <div className="p-3 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
           <div className="flex items-center gap-4">
             <span className="hidden sm:inline-flex items-center gap-1">
-              <kbd className="px-1.5 py-0.5 rounded bg-slate-900 border border-slate-700 font-mono text-[10px]">
+              <kbd className="px-1.5 py-0.5 rounded bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-mono text-[10px]">
                 ↑
               </kbd>
-              <kbd className="px-1.5 py-0.5 rounded bg-slate-900 border border-slate-700 font-mono text-[10px]">
+              <kbd className="px-1.5 py-0.5 rounded bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-mono text-[10px]">
                 ↓
               </kbd>{' '}
               to navigate
             </span>
             <span className="hidden sm:inline-flex items-center gap-1">
-              <kbd className="px-1.5 py-0.5 rounded bg-slate-900 border border-slate-700 font-mono text-[10px]">
+              <kbd className="px-1.5 py-0.5 rounded bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-mono text-[10px]">
                 ↵
               </kbd>{' '}
               to select
             </span>
-            <span className="text-slate-400">
+            <span className="text-slate-500 dark:text-slate-400">
               Showing {filteredResults.length} of {allSearchItems.length} items
             </span>
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-[11px] text-slate-400">Sialkot Service Desk</span>
+            <span className="text-[11px] text-slate-500 dark:text-slate-400">Sialkot Service Desk</span>
             <a
               href={`mailto:${COMPANY_INFO.contact.email}`}
-              className="text-cyan-400 hover:underline text-[11px]"
+              className="text-red-600 dark:text-cyan-400 hover:underline text-[11px] font-medium"
             >
               {COMPANY_INFO.contact.email}
             </a>

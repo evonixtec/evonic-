@@ -10,6 +10,8 @@ import { WhyChooseUs } from './components/WhyChooseUs';
 import { Portfolio } from './components/Portfolio';
 import { Testimonials } from './components/Testimonials';
 import { Shop } from './components/Shop';
+import { BlogHub } from './components/BlogHub';
+import { PolicyModal, PolicyType } from './components/PolicyModal';
 import { FAQ } from './components/FAQ';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
@@ -24,6 +26,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState<SectionId>('home');
   const [isQuoteOpen, setIsQuoteOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+  const [activePolicyModal, setActivePolicyModal] = useState<PolicyType>(null);
   const [selectedServiceForQuote, setSelectedServiceForQuote] = useState<string>('Website Development');
   const [securityAlert, setSecurityAlert] = useState<string | null>(null);
 
@@ -96,7 +99,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-cyan-500/25 selection:text-cyan-300">
+    <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col selection:bg-red-500/20 selection:text-red-700 dark:selection:bg-cyan-500/25 dark:selection:text-cyan-300 transition-colors duration-300 font-sans">
       {/* 1. Header Menu & Navigation */}
       <Navbar
         activeSection={activeSection}
@@ -152,6 +155,12 @@ export default function App() {
           }
         />
 
+        {/* 6c. Technical Knowledge Base & 60 SEO Guides */}
+        <BlogHub
+          onNavigateSection={scrollToSection}
+          onOpenQuoteModal={handleOpenQuote}
+        />
+
         {/* 6b. Frequently Asked Questions (Accordion Style - Dubai Transition, Pricing, Doorstep Support) */}
         <FAQ
           onOpenQuote={handleOpenQuote}
@@ -162,10 +171,17 @@ export default function App() {
         <ContactSection onOpenQuote={handleOpenQuote} />
       </main>
 
-      {/* 7. Footer Tagline & Global Borders Info */}
+      {/* 7. Footer Tagline, Policies & Global Borders Info */}
       <Footer
         onNavigate={scrollToSection}
         onOpenQuote={() => handleOpenQuote('General Inquiry')}
+        onOpenPolicy={(type) => setActivePolicyModal(type)}
+      />
+
+      {/* Corporate Policy Modal (Privacy, Terms & Refund) */}
+      <PolicyModal
+        policyType={activePolicyModal}
+        onClose={() => setActivePolicyModal(null)}
       />
 
       {/* Anti-Copy and Security Alert Notification Toast */}
@@ -194,10 +210,10 @@ export default function App() {
         {/* Quick Search Floating Trigger */}
         <button
           onClick={() => setIsSearchOpen(true)}
-          className="p-3 rounded-full bg-slate-900/90 hover:bg-slate-800 text-cyan-400 border border-slate-700/90 shadow-xl shadow-black/50 hover:scale-105 transition-all cursor-pointer flex items-center justify-center"
+          className="p-3 rounded-full bg-white dark:bg-slate-900/90 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-cyan-400 border border-slate-200 dark:border-slate-700/90 shadow-xl shadow-black/10 hover:scale-105 transition-all cursor-pointer flex items-center justify-center"
           title="Search Services, Portfolio & Hardware (Ctrl+K)"
         >
-          <Search className="w-5 h-5" />
+          <Search className="w-5 h-5 text-red-500 dark:text-cyan-400" />
         </button>
 
         {/* WhatsApp in Sialkot */}
@@ -215,7 +231,7 @@ export default function App() {
         {/* Quick Back to Top */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="p-2.5 rounded-full bg-slate-900/80 hover:bg-slate-800 text-slate-400 hover:text-cyan-400 border border-slate-700/80 shadow-lg transition-all"
+          className="p-2.5 rounded-full bg-white dark:bg-slate-900/80 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-cyan-400 border border-slate-200 dark:border-slate-700/80 shadow-lg transition-all"
           title="Back to Top"
         >
           <ArrowUp className="w-4 h-4" />

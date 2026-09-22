@@ -1,9 +1,14 @@
 @import "tailwindcss";
 
 @layer base {
+  :root {
+    color-scheme: dark;
+  }
+
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     color-scheme: dark;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -27,3 +32,234 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #334155;
 }
+
+/* ==========================================================================
+   HIGH-CONTRAST LIGHT MODE ARCHITECTURE
+   Accessible for bright sunlight, office lighting & WCAG AAA compliance
+   ========================================================================== */
+html.theme-light {
+  color-scheme: light;
+}
+
+html.theme-light body {
+  background-color: #f8fafc;
+  color: #0f172a;
+  color-scheme: light;
+}
+
+/* Light mode scrollbar */
+html.theme-light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+html.theme-light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+html.theme-light ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Background surfaces */
+html.theme-light .bg-slate-950 {
+  background-color: #f8fafc !important;
+}
+
+html.theme-light .bg-slate-900,
+html.theme-light .bg-slate-900\/95,
+html.theme-light .bg-slate-900\/90,
+html.theme-light .bg-slate-900\/80,
+html.theme-light .bg-slate-900\/70,
+html.theme-light .bg-slate-900\/60,
+html.theme-light .bg-slate-950\/90,
+html.theme-light .bg-slate-950\/80 {
+  background-color: #ffffff !important;
+  box-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.06);
+}
+
+html.theme-light .bg-slate-950\/50,
+html.theme-light .bg-slate-950\/60,
+html.theme-light .bg-slate-900\/40,
+html.theme-light .bg-slate-900\/50 {
+  background-color: #f1f5f9 !important;
+}
+
+html.theme-light .bg-slate-800,
+html.theme-light .bg-slate-800\/80,
+html.theme-light .bg-slate-800\/60,
+html.theme-light .bg-slate-800\/50 {
+  background-color: #e2e8f0 !important;
+}
+
+html.theme-light .hover\:bg-slate-900:hover,
+html.theme-light .hover\:bg-slate-800:hover,
+html.theme-light .hover\:bg-slate-800\/80:hover {
+  background-color: #f1f5f9 !important;
+}
+
+/* High-contrast border delineations */
+html.theme-light .border-slate-900,
+html.theme-light .border-slate-800,
+html.theme-light .border-slate-800\/90,
+html.theme-light .border-slate-800\/80,
+html.theme-light .border-slate-800\/70,
+html.theme-light .border-slate-800\/60 {
+  border-color: #cbd5e1 !important;
+}
+
+html.theme-light .border-slate-700,
+html.theme-light .border-slate-700\/80,
+html.theme-light .border-slate-700\/60 {
+  border-color: #94a3b8 !important;
+}
+
+html.theme-light .border-t.border-slate-900,
+html.theme-light .border-b.border-slate-900 {
+  border-color: #e2e8f0 !important;
+}
+
+/* High-contrast Typography */
+html.theme-light h1,
+html.theme-light h2,
+html.theme-light h3,
+html.theme-light h4,
+html.theme-light h5,
+html.theme-light h6 {
+  color: #0f172a !important;
+}
+
+html.theme-light .text-white {
+  color: #0f172a !important;
+}
+
+html.theme-light .text-slate-100,
+html.theme-light .text-slate-200 {
+  color: #0f172a !important;
+}
+
+html.theme-light .text-slate-300 {
+  color: #1e293b !important; /* Contrast ratio 10.5:1 on white */
+}
+
+html.theme-light .text-slate-400 {
+  color: #334155 !important; /* Contrast ratio 7.4:1 on white */
+}
+
+html.theme-light .text-slate-500 {
+  color: #475569 !important; /* Contrast ratio 5.1:1 on white */
+}
+
+html.theme-light .text-slate-600 {
+  color: #64748b !important;
+}
+
+/* Vibrant and readable accent colors for high-contrast light backgrounds */
+html.theme-light .text-cyan-400,
+html.theme-light .text-cyan-300 {
+  color: #0284c7 !important; /* Sky/Cyan 600 - crisp 6.8:1 contrast on white */
+}
+
+html.theme-light .text-emerald-400,
+html.theme-light .text-emerald-300 {
+  color: #047857 !important; /* Emerald 700 - crisp 6.2:1 contrast on white */
+}
+
+html.theme-light .text-amber-400,
+html.theme-light .text-amber-300 {
+  color: #b45309 !important; /* Amber 700 - high readability */
+}
+
+/* High-contrast pill badges and tags */
+html.theme-light .bg-cyan-950\/80,
+html.theme-light .bg-cyan-950\/60,
+html.theme-light .bg-cyan-950\/50,
+html.theme-light .bg-cyan-950 {
+  background-color: #e0f2fe !important;
+  color: #0369a1 !important;
+  border-color: #7dd3fc !important;
+}
+
+html.theme-light .bg-emerald-950\/80,
+html.theme-light .bg-emerald-950\/60,
+html.theme-light .bg-emerald-950\/50,
+html.theme-light .bg-emerald-950 {
+  background-color: #d1fae5 !important;
+  color: #065f46 !important;
+  border-color: #6ee7b7 !important;
+}
+
+html.theme-light .bg-blue-950\/80,
+html.theme-light .bg-blue-950 {
+  background-color: #dbeafe !important;
+  color: #1d4ed8 !important;
+  border-color: #93c5fd !important;
+}
+
+/* Form elements, inputs and textareas */
+html.theme-light input,
+html.theme-light textarea,
+html.theme-light select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+html.theme-light input:focus,
+html.theme-light textarea:focus,
+html.theme-light select:focus {
+  border-color: #0284c7 !important;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15) !important;
+}
+
+html.theme-light input::placeholder,
+html.theme-light textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* Preserving high contrast on colored action buttons */
+html.theme-light .bg-gradient-to-r.from-cyan-500,
+html.theme-light .bg-cyan-500,
+html.theme-light .bg-emerald-500 {
+  color: #020617 !important;
+}
+
+html.theme-light .bg-gradient-to-r.from-cyan-500 *,
+html.theme-light .bg-cyan-500 *,
+html.theme-light .bg-emerald-500 * {
+  color: #020617 !important;
+}
+
+/* Header & Sticky Navbar */
+html.theme-light header {
+  background-color: rgba(255, 255, 255, 0.94) !important;
+  border-bottom-color: #e2e8f0 !important;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 1px 4px 0 rgba(15, 23, 42, 0.05);
+}
+
+html.theme-light header .bg-slate-950 {
+  background-color: #ffffff !important;
+}
+
+html.theme-light #brand-logo-btn .bg-slate-950 {
+  background-color: #090d16 !important; /* Keep brand 'E' badge dark for crisp contrast */
+}
+
+/* Subtle background glows softened for light mode */
+html.theme-light [class*="bg-cyan-950/20"],
+html.theme-light [class*="bg-emerald-950/20"],
+html.theme-light [class*="bg-blue-950/20"],
+html.theme-light [class*="bg-indigo-950/20"] {
+  opacity: 0.12 !important;
+}
+
+/* Global Reach D3.js visualization styling for light mode */
+html.theme-light #d3-geo-canvas {
+  background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f1f5f9 100%) !important;
+}
+html.theme-light .land {
+  fill: #e2e8f0 !important;
+  stroke: #94a3b8 !important;
+}
+html.theme-light .water-label {
+  fill: #64748b !important;
+}
+

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ShieldCheck, AlertTriangle, X, Lock } from 'lucide-react';
+import { EvonixMark } from './EvonixLogo';
 
 interface SecurityAlertToastProps {
   message: string | null;
@@ -28,8 +29,8 @@ export const SecurityAlertToast: React.FC<SecurityAlertToastProps> = ({ message,
           className="fixed bottom-6 right-4 sm:right-8 z-50 max-w-md w-full"
         >
           <div className="rounded-2xl bg-slate-900/95 border border-cyan-500/50 shadow-2xl shadow-cyan-950/80 p-4 backdrop-blur-xl flex items-start gap-3.5 ring-1 ring-cyan-500/30">
-            <div className="p-2 rounded-xl bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 flex-shrink-0 mt-0.5">
-              <Lock className="w-4 h-4" />
+            <div className="p-1.5 rounded-xl bg-red-500/10 border border-red-500/30 flex-shrink-0 mt-0.5">
+              <EvonixMark className="w-5 h-5" />
             </div>
 
             <div className="flex-1 pr-1">

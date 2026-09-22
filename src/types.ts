@@ -1,4 +1,4 @@
-export type SectionId = 'home' | 'about' | 'services' | 'reach' | 'technologies' | 'portfolio' | 'testimonials' | 'shop' | 'faq' | 'contact';
+export type SectionId = 'home' | 'about' | 'services' | 'blogs' | 'reach' | 'technologies' | 'portfolio' | 'testimonials' | 'shop' | 'faq' | 'contact';
 
 export interface TestimonialItem {
   id: string;

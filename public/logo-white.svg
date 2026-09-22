@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 110" fill="none">
+  <!-- EVONIX Official Logo - White Text Variant -->
+  <defs>
+    <linearGradient id="evonixRedW" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#EF4444" />
+      <stop offset="50%" stopColor="#DC2626" />
+      <stop offset="100%" stopColor="#B91C1C" />
+    </linearGradient>
+  </defs>
+
+  <!-- Red Emblem Mark -->
+  <g transform="translate(10, 10)">
+    <path
+      d="M 16 10 L 9 22 L 44 86 L 54 86 L 66 62 L 55 62 L 49 74 L 22 24 L 58 24 L 62 16 L 65 10 Z"
+      fill="url(#evonixRedW)"
+    />
+    <path
+      d="M 69 10 L 91 10 L 80 32 Z"
+      fill="url(#evonixRedW)"
+    />
+  </g>
+
+  <!-- Wordmark 'evonix' in White -->
+  <g transform="translate(125, 82)">
+    <text
+      x="0"
+      y="0"
+      font-family="system-ui, -apple-system, 'Plus Jakarta Sans', sans-serif"
+      font-size="78"
+      font-weight="900"
+      letter-spacing="-3"
+      fill="#FFFFFF"
+    >evon</text>
+
+    <text
+      x="172"
+      y="0"
+      font-family="system-ui, -apple-system, 'Plus Jakarta Sans', sans-serif"
+      font-size="78"
+      font-weight="900"
+      letter-spacing="-3"
+      fill="#FFFFFF"
+    >ı</text>
+
+    <circle cx="183" cy="-66" r="9.5" fill="#DC2626" />
+
+    <text
+      x="199"
+      y="0"
+      font-family="system-ui, -apple-system, 'Plus Jakarta Sans', sans-serif"
+      font-size="78"
+      font-weight="900"
+      letter-spacing="-3"
+      fill="#FFFFFF"
+    >x</text>
+
+    <polygon points="219,-28 238,-56 248,-56 226,-22" fill="#DC2626" />
+  </g>
+</svg>
