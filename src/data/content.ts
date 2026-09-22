@@ -96,6 +96,14 @@ export const COMPANY_INFO = {
     missionText: 'Our mission is to bring modern, affordable, and reliable technology solutions to every business and home.',
     heritageYearsDubai: '20+',
     internationalExperience: '15+',
+    founder: 'Raza Muhammad',
+    secpRegistration: {
+      corporateName: 'EVONIX TECHNOLOGIES',
+      entityType: 'Single Member Company (SMC)',
+      regulatoryBody: 'Securities and Exchange Commission of Pakistan (SECP)',
+      sector: 'Information Technology',
+      nameMeaning: 'EVONIX is an invented word combining EVO (Evolution) and NIX (Technology), representing innovative and evolutionary technology solutions.',
+    },
   },
   whyChooseUs: [
     {

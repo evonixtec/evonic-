@@ -1,6 +1,6 @@
 import React from 'react';
 import { COMPANY_INFO } from '../data/content';
-import { Shield, Award, Target, Compass, Building2, Flag, Sparkles, MapPin, Globe } from 'lucide-react';
+import { Shield, Award, Target, Compass, Building2, Flag, Sparkles, MapPin, Globe, CheckCircle2, FileCheck } from 'lucide-react';
 import { FadeInSection } from './FadeInSection';
 import heroDubai from '../assets/images/hero_dubai_tech_1790044690065.jpg';
 
@@ -143,6 +143,32 @@ export const AboutUs: React.FC = () => {
                   <span><strong className="text-white">Dedicated Sialkot On-Site Team:</strong> Certified technician dispatch directly to your home or commercial office in Sialkot.</span>
                 </li>
               </ul>
+            </div>
+
+            {/* SECP Legal Incorporation & Corporate Identity */}
+            <div className="bg-slate-950/90 border border-cyan-800/50 rounded-2xl p-5 shadow-xl relative overflow-hidden ring-1 ring-cyan-500/20">
+              <div className="flex items-center gap-2.5 mb-2.5">
+                <div className="p-1.5 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                  <FileCheck className="w-4 h-4" />
+                </div>
+                <div>
+                  <h4 className="text-xs font-bold text-white uppercase tracking-wider">
+                    SECP Corporate Identity
+                  </h4>
+                  <p className="text-[10px] text-cyan-400 font-mono">Single Member Company (SMC-Pvt)</p>
+                </div>
+              </div>
+              <div className="space-y-2 text-xs text-slate-300">
+                <p className="leading-relaxed">
+                  <strong className="text-white">Name Significance:</strong> <span className="text-cyan-300 font-medium">EVONIX</span> is derived from <span className="text-white font-semibold">EVO</span> (Evolution) and <span className="text-white font-semibold">NIX</span> (Technology), representing evolutionary, cutting-edge technology solutions.
+                </p>
+                <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+                  <span>Founder: <strong className="text-slate-200">Raza Muhammad</strong></span>
+                  <span className="text-emerald-400 flex items-center gap-1 font-medium font-mono text-[10px]">
+                    <CheckCircle2 className="w-3.5 h-3.5" /> SECP Verified
+                  </span>
+                </div>
+              </div>
             </div>
           </FadeInSection>
         </div>

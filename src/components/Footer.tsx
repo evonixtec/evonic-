@@ -242,11 +242,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
 
         {/* Bottom Copyright & Back to Top */}
         <div className="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <div className="flex flex-col sm:flex-row items-center gap-3">
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5">
             <p>
               © {new Date().getFullYear()} EVONIX TECHNOLOGIES. All rights reserved. Sialkot, Pakistan.
             </p>
             <span className="hidden sm:inline text-slate-700">|</span>
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-900 border border-slate-800 text-[10px] text-slate-400">
+              SECP Registered SMC (IT Sector)
+            </span>
             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-900 border border-cyan-900/60 text-[10px] text-cyan-400 font-mono">
               <ShieldCheck className="w-3 h-3 text-cyan-400" />
               Cyber-Shield Protected
