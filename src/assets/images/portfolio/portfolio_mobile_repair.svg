@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480">
+  <defs>
+    <linearGradient id="bg_portfolio_mobile_repair" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="100%" stop-color="#312e81" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="480" fill="url(#bg_portfolio_mobile_repair)" />
+
+  <!-- Ambient Glow -->
+  <circle cx="400" cy="240" r="220" fill="#7c3aed" opacity="0.12" />
+
+  <!-- Center Graphic -->
+  <rect x="200" y="140" width="400" height="260" rx="14" fill="#1e1b4b" stroke="#8b5cf6" stroke-width="2"/>
+      <rect x="220" y="165" width="360" height="40" rx="8" fill="#312e81"/>
+      <text x="240" y="190" fill="#a78bfa" font-family="sans-serif" font-size="12" font-weight="bold">JOB #EVX-8941 • MOTHERBOARD CHIP FIX</text>
+      <rect x="220" y="220" width="170" height="155" rx="8" fill="#2e1065"/>
+      <rect x="410" y="220" width="170" height="155" rx="8" fill="#2e1065"/>
+      <text x="235" y="250" fill="#ddd6fe" font-family="sans-serif" font-size="11">IMEI: 3589410928</text>
+      <text x="235" y="280" fill="#34d399" font-family="sans-serif" font-size="12" font-weight="bold">STATUS: DIAGNOSED</text>
+      <text x="425" y="250" fill="#ddd6fe" font-family="sans-serif" font-size="11">PARTS: POWER IC</text>
+      <text x="425" y="280" fill="#fbbf24" font-family="sans-serif" font-size="12" font-weight="bold">EST: READY TODAY</text>
+
+  <!-- Header Badge -->
+  <rect x="40" y="35" width="220" height="32" rx="16" fill="rgba(255,255,255,0.08)" stroke="#7c3aed" stroke-width="1.5" />
+  <circle cx="56" cy="51" r="5" fill="#7c3aed" />
+  <text x="70" y="56" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="700">SERVICE ERP</text>
+
+  <!-- Watermark Logo -->
+  <text x="760" y="56" fill="rgba(255,255,255,0.4)" font-family="sans-serif" font-size="14" font-weight="800" text-anchor="end">EVONIX TECHNOLOGIES</text>
+
+  <!-- Footer Information Strip -->
+  <rect x="0" y="405" width="800" height="75" fill="rgba(15, 23, 42, 0.85)" />
+  <line x1="0" y1="405" x2="800" y2="405" stroke="#7c3aed" stroke-width="2" opacity="0.8"/>
+  <text x="40" y="435" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="700">Electronics &amp; Repair Ticketing ERP</text>
+  <text x="40" y="458" fill="#94a3b8" font-family="sans-serif" font-size="12">IMEI Barcode Logging, Job Cards &amp; SMS Status Updates</text>
+  <text x="760" y="445" fill="#7c3aed" font-family="sans-serif" font-size="12" font-weight="700" text-anchor="end">DUBAI HERITAGE • SIALKOT</text>
+</svg>

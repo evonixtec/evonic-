@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480">
+  <defs>
+    <linearGradient id="bg_portfolio_restaurant_kds" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="480" fill="url(#bg_portfolio_restaurant_kds)" />
+
+  <!-- Ambient Glow -->
+  <circle cx="400" cy="240" r="220" fill="#0284c7" opacity="0.12" />
+
+  <!-- Center Graphic -->
+  <rect x="180" y="140" width="440" height="260" rx="14" fill="#0f172a" stroke="#0ea5e9" stroke-width="2"/>
+      <rect x="200" y="160" width="125" height="220" rx="8" fill="#1e293b" stroke="#38bdf8"/>
+      <rect x="338" y="160" width="125" height="220" rx="8" fill="#1e293b" stroke="#f59e0b"/>
+      <rect x="475" y="160" width="125" height="220" rx="8" fill="#1e293b" stroke="#10b981"/>
+      <text x="215" y="185" fill="#38bdf8" font-family="sans-serif" font-size="11" font-weight="bold">T-04 PREP</text>
+      <text x="353" y="185" fill="#f59e0b" font-family="sans-serif" font-size="11" font-weight="bold">T-12 COOK</text>
+      <text x="490" y="185" fill="#10b981" font-family="sans-serif" font-size="11" font-weight="bold">T-02 READY</text>
+
+  <!-- Header Badge -->
+  <rect x="40" y="35" width="220" height="32" rx="16" fill="rgba(255,255,255,0.08)" stroke="#0284c7" stroke-width="1.5" />
+  <circle cx="56" cy="51" r="5" fill="#0284c7" />
+  <text x="70" y="56" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="700">REAL-TIME KDS</text>
+
+  <!-- Watermark Logo -->
+  <text x="760" y="56" fill="rgba(255,255,255,0.4)" font-family="sans-serif" font-size="14" font-weight="800" text-anchor="end">EVONIX TECHNOLOGIES</text>
+
+  <!-- Footer Information Strip -->
+  <rect x="0" y="405" width="800" height="75" fill="rgba(15, 23, 42, 0.85)" />
+  <line x1="0" y1="405" x2="800" y2="405" stroke="#0284c7" stroke-width="2" opacity="0.8"/>
+  <text x="40" y="435" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="700">Kitchen Display System &amp; Order Flow</text>
+  <text x="40" y="458" fill="#94a3b8" font-family="sans-serif" font-size="12">Synchronized Chef Display, Order Queue &amp; Waiter Tablets</text>
+  <text x="760" y="445" fill="#0284c7" font-family="sans-serif" font-size="12" font-weight="700" text-anchor="end">DUBAI HERITAGE • SIALKOT</text>
+</svg>

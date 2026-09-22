@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480">
+  <defs>
+    <linearGradient id="bg_portfolio_ecommerce" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="480" fill="url(#bg_portfolio_ecommerce)" />
+
+  <!-- Ambient Glow -->
+  <circle cx="400" cy="240" r="220" fill="#dc2626" opacity="0.12" />
+
+  <!-- Center Graphic -->
+  <rect x="180" y="140" width="440" height="260" rx="16" fill="#1e293b" stroke="#334155" stroke-width="3"/>
+      <rect x="200" y="160" width="400" height="40" rx="8" fill="#334155"/>
+      <circle cx="225" cy="180" r="6" fill="#ef4444"/>
+      <circle cx="245" cy="180" r="6" fill="#f59e0b"/>
+      <circle cx="265" cy="180" r="6" fill="#10b981"/>
+      <rect x="200" y="220" width="120" height="150" rx="8" fill="#0f172a" stroke="#475569"/>
+      <rect x="340" y="220" width="120" height="150" rx="8" fill="#0f172a" stroke="#475569"/>
+      <rect x="480" y="220" width="120" height="150" rx="8" fill="#0f172a" stroke="#475569"/>
+      <text x="215" y="340" fill="#94a3b8" font-family="sans-serif" font-size="14" font-weight="bold">AED 450</text>
+      <text x="355" y="340" fill="#94a3b8" font-family="sans-serif" font-size="14" font-weight="bold">AED 890</text>
+      <text x="495" y="340" fill="#94a3b8" font-family="sans-serif" font-size="14" font-weight="bold">AED 1,200</text>
+
+  <!-- Header Badge -->
+  <rect x="40" y="35" width="220" height="32" rx="16" fill="rgba(255,255,255,0.08)" stroke="#dc2626" stroke-width="1.5" />
+  <circle cx="56" cy="51" r="5" fill="#dc2626" />
+  <text x="70" y="56" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="700">UAE RETAIL STANDARD</text>
+
+  <!-- Watermark Logo -->
+  <text x="760" y="56" fill="rgba(255,255,255,0.4)" font-family="sans-serif" font-size="14" font-weight="800" text-anchor="end">EVONIX TECHNOLOGIES</text>
+
+  <!-- Footer Information Strip -->
+  <rect x="0" y="405" width="800" height="75" fill="rgba(15, 23, 42, 0.85)" />
+  <line x1="0" y1="405" x2="800" y2="405" stroke="#dc2626" stroke-width="2" opacity="0.8"/>
+  <text x="40" y="435" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="700">Luxury Retail &amp; E-Commerce</text>
+  <text x="40" y="458" fill="#94a3b8" font-family="sans-serif" font-size="12">Multi-Currency Shopping Portal with Instant WhatsApp Checkout</text>
+  <text x="760" y="445" fill="#dc2626" font-family="sans-serif" font-size="12" font-weight="700" text-anchor="end">DUBAI HERITAGE • SIALKOT</text>
+</svg>

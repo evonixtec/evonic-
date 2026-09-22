@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480">
+  <defs>
+    <linearGradient id="bg_portfolio_corporate" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#062017" />
+      <stop offset="100%" stop-color="#064e3b" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="480" fill="url(#bg_portfolio_corporate)" />
+
+  <!-- Ambient Glow -->
+  <circle cx="400" cy="240" r="220" fill="#059669" opacity="0.12" />
+
+  <!-- Center Graphic -->
+  <rect x="180" y="140" width="440" height="260" rx="16" fill="#042f2e" stroke="#10b981" stroke-width="2"/>
+      <circle cx="400" cy="270" r="80" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="6 6"/>
+      <ellipse cx="400" cy="270" rx="80" ry="35" fill="none" stroke="#6ee7b7" stroke-width="1.5"/>
+      <line x1="320" y1="270" x2="480" y2="270" stroke="#34d399" stroke-width="2"/>
+      <line x1="400" y1="190" x2="400" y2="350" stroke="#34d399" stroke-width="2"/>
+      <circle cx="360" cy="250" r="5" fill="#ef4444"/>
+      <circle cx="440" cy="290" r="5" fill="#10b981"/>
+      <path d="M 360 250 Q 400 220 440 290" fill="none" stroke="#f59e0b" stroke-width="3" stroke-dasharray="4 4"/>
+
+  <!-- Header Badge -->
+  <rect x="40" y="35" width="220" height="32" rx="16" fill="rgba(255,255,255,0.08)" stroke="#059669" stroke-width="1.5" />
+  <circle cx="56" cy="51" r="5" fill="#059669" />
+  <text x="70" y="56" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="700">ENTERPRISE TRADE</text>
+
+  <!-- Watermark Logo -->
+  <text x="760" y="56" fill="rgba(255,255,255,0.4)" font-family="sans-serif" font-size="14" font-weight="800" text-anchor="end">EVONIX TECHNOLOGIES</text>
+
+  <!-- Footer Information Strip -->
+  <rect x="0" y="405" width="800" height="75" fill="rgba(15, 23, 42, 0.85)" />
+  <line x1="0" y1="405" x2="800" y2="405" stroke="#059669" stroke-width="2" opacity="0.8"/>
+  <text x="40" y="435" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="700">International B2B Trading Portal</text>
+  <text x="40" y="458" fill="#94a3b8" font-family="sans-serif" font-size="12">Global Supply Chain Architecture, RFQ Engines &amp; Portals</text>
+  <text x="760" y="445" fill="#059669" font-family="sans-serif" font-size="12" font-weight="700" text-anchor="end">DUBAI HERITAGE • SIALKOT</text>
+</svg>

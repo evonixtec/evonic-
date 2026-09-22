@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480">
+  <defs>
+    <linearGradient id="bg_portfolio_realestate" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="100%" stop-color="#172554" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="480" fill="url(#bg_portfolio_realestate)" />
+
+  <!-- Ambient Glow -->
+  <circle cx="400" cy="240" r="220" fill="#2563eb" opacity="0.12" />
+
+  <!-- Center Graphic -->
+  <rect x="180" y="130" width="440" height="280" rx="16" fill="#0f172a" stroke="#1d4ed8" stroke-width="2"/>
+      <path d="M 220 370 L 220 220 L 300 170 L 380 220 L 380 370 Z" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+      <path d="M 400 370 L 400 190 L 520 190 L 520 370 Z" fill="#1e293b" stroke="#60a5fa" stroke-width="2"/>
+      <rect x="250" y="240" width="20" height="25" fill="#93c5fd" opacity="0.8"/>
+      <rect x="290" y="240" width="20" height="25" fill="#93c5fd" opacity="0.8"/>
+      <rect x="250" y="280" width="20" height="25" fill="#93c5fd" opacity="0.8"/>
+      <rect x="290" y="280" width="20" height="25" fill="#93c5fd" opacity="0.8"/>
+      <rect x="430" y="220" width="25" height="25" fill="#bfdbfe" opacity="0.9"/>
+      <rect x="475" y="220" width="25" height="25" fill="#bfdbfe" opacity="0.9"/>
+      <rect x="430" y="260" width="25" height="25" fill="#bfdbfe" opacity="0.9"/>
+      <rect x="475" y="260" width="25" height="25" fill="#bfdbfe" opacity="0.9"/>
+
+  <!-- Header Badge -->
+  <rect x="40" y="35" width="220" height="32" rx="16" fill="rgba(255,255,255,0.08)" stroke="#2563eb" stroke-width="1.5" />
+  <circle cx="56" cy="51" r="5" fill="#2563eb" />
+  <text x="70" y="56" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="700">LUXURY PROPERTY SUITE</text>
+
+  <!-- Watermark Logo -->
+  <text x="760" y="56" fill="rgba(255,255,255,0.4)" font-family="sans-serif" font-size="14" font-weight="800" text-anchor="end">EVONIX TECHNOLOGIES</text>
+
+  <!-- Footer Information Strip -->
+  <rect x="0" y="405" width="800" height="75" fill="rgba(15, 23, 42, 0.85)" />
+  <line x1="0" y1="405" x2="800" y2="405" stroke="#2563eb" stroke-width="2" opacity="0.8"/>
+  <text x="40" y="435" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="700">Dubai Prime Real Estate Portal</text>
+  <text x="40" y="458" fill="#94a3b8" font-family="sans-serif" font-size="12">Off-Plan Towers, Interactive Floor Plans &amp; Direct CRM Sync</text>
+  <text x="760" y="445" fill="#2563eb" font-family="sans-serif" font-size="12" font-weight="700" text-anchor="end">DUBAI HERITAGE • SIALKOT</text>
+</svg>

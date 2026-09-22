@@ -37,6 +37,8 @@ export interface ServiceItem {
   summary: string;
   iconName: string;
   imageUrl?: string;
+  imageWebp?: string;
+  imageAlt?: string;
   features: string[];
   dubaiExperienceNote?: string;
   deliverables: string[];
@@ -52,6 +54,9 @@ export interface PortfolioCategory {
   description: string;
   tags: string[];
   dubaiHighlight: string;
+  imageUrl?: string;
+  imageWebp?: string;
+  imageAlt?: string;
 }
 
 export interface ShopProduct {
@@ -64,6 +69,9 @@ export interface ShopProduct {
   specs: string[];
   availability: 'In Stock (Sialkot)' | 'Available on Order';
   warranty: string;
+  imageUrl?: string;
+  imageWebp?: string;
+  imageAlt?: string;
 }
 
 export interface QuoteFormState {
