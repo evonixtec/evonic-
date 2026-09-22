@@ -1,66 +1,455 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Homepage -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <!-- Core Landing Page Sections -->
   <url>
     <loc>https://evonixtec.com/</loc>
     <lastmod>2026-09-22</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-  <!-- About Us (SECP Registered SMC & Dubai Heritage) -->
-  <url>
-    <loc>https://evonixtec.com/#about</loc>
-    <lastmod>2026-09-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <!-- Services (Web Development, POS, Software, Laptop & Printer Repair) -->
   <url>
     <loc>https://evonixtec.com/#services</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  <!-- Global Reach (Dubai 20+ Yrs to Sialkot Tech Corridor) -->
   <url>
-    <loc>https://evonixtec.com/#reach</loc>
+    <loc>https://evonixtec.com/#blogs</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/#about</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- Portfolio (Valuable Clients in UAE & Sialkot) -->
+  <url>
+    <loc>https://evonixtec.com/#technologies</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://evonixtec.com/#portfolio</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- Client Testimonials (Dubai & Sialkot Social Proof) -->
   <url>
     <loc>https://evonixtec.com/#testimonials</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
-  <!-- Shop (Laptops, Printers, Hardware & Point-of-Sale Machines) -->
   <url>
     <loc>https://evonixtec.com/#shop</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- FAQ (Dubai Transition, Pricing, Doorstep Support) -->
   <url>
     <loc>https://evonixtec.com/#faq</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <!-- Contact Us (Sialkot Office, WhatsApp & Free Quote) -->
   <url>
     <loc>https://evonixtec.com/#contact</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/#reach</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Legal & Trust Policies -->
+  <url>
+    <loc>https://evonixtec.com/#privacy-policy</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/#terms-and-conditions</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/#warranty-policy</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- 60 SEO Technical Guides & Architecture Articles -->
+  <url>
+    <loc>https://evonixtec.com/blog/responsive-web-design-best-practices-2025</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/modern-ui-ux-design-principles-conversion-rates</loc>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/power-of-color-psychology-in-brand-identity</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/essential-typography-rules-web-designers</loc>
+    <lastmod>2025-02-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/high-performance-landing-pages-structure-speed-seo</loc>
+    <lastmod>2025-02-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/figma-to-production-code-streamlining-handoff</loc>
+    <lastmod>2025-02-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/mobile-first-web-architecture-international-exporters</loc>
+    <lastmod>2025-02-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/modern-ecommerce-ui-patterns-high-volume-stores</loc>
+    <lastmod>2025-02-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/svg-vs-png-vs-webp-image-optimization-guide</loc>
+    <lastmod>2025-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/building-accessible-wcag-websites-without-sacrificing-aesthetics</loc>
+    <lastmod>2025-02-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/custom-web-animations-enhance-ux-without-lag</loc>
+    <lastmod>2025-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/corporate-identity-design-logos-that-stand-test-of-decades</loc>
+    <lastmod>2025-03-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/nextjs-vs-vite-react-choosing-frontend-framework-2025</loc>
+    <lastmod>2025-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/essential-elements-high-converting-b2b-portfolio-website</loc>
+    <lastmod>2025-03-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/role-of-micro-interactions-in-modern-web-usability</loc>
+    <lastmod>2025-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/dark-mode-vs-light-mode-design-dual-theme-mastery</loc>
+    <lastmod>2025-03-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/core-web-vitals-optimization-95-pagespeed-scores</loc>
+    <lastmod>2025-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/designing-engaging-social-media-ad-creatives-high-ctr</loc>
+    <lastmod>2025-03-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/saas-dashboard-ui-design-reducing-cognitive-load</loc>
+    <lastmod>2025-04-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/modern-web-security-frontend-developers-forms-data</loc>
+    <lastmod>2025-04-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/custom-erp-vs-off-the-shelf-software-comparison</loc>
+    <lastmod>2025-01-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/offline-first-pos-architecture-retail-supermarkets</loc>
+    <lastmod>2025-01-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/real-time-multi-branch-inventory-synchronization</loc>
+    <lastmod>2025-01-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/barcode-generation-thermal-docket-printing-pos</loc>
+    <lastmod>2025-02-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/integrating-secure-payment-gateways-local-banks</loc>
+    <lastmod>2025-02-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/cloud-database-migration-spreadsheets-to-sql</loc>
+    <lastmod>2025-02-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/building-high-concurrency-rest-graphql-apis</loc>
+    <lastmod>2025-02-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/restaurant-management-kds-waiter-tablets-pos</loc>
+    <lastmod>2025-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/role-based-access-control-securing-corporate-software</loc>
+    <lastmod>2025-02-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/automated-daily-cloud-backups-disaster-recovery</loc>
+    <lastmod>2025-02-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/warehouse-logistics-rfid-barcode-tracking-systems</loc>
+    <lastmod>2025-03-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/custom-crm-automating-whatsapp-lead-followups</loc>
+    <lastmod>2025-03-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/accounting-tax-compliance-secp-fbr-invoices</loc>
+    <lastmod>2025-03-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/microservices-vs-monolithic-architecture-growing-tech</loc>
+    <lastmod>2025-03-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/developing-cross-platform-mobile-apps-field-sales</loc>
+    <lastmod>2025-03-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/automated-audit-trails-preventing-employee-theft</loc>
+    <lastmod>2025-03-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/speeding-up-slow-database-queries-transactional-systems</loc>
+    <lastmod>2025-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/end-to-end-encryption-financial-transactional-software</loc>
+    <lastmod>2025-04-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/custom-pharmacy-pos-batch-tracking-expiry-alerts</loc>
+    <lastmod>2025-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/future-of-ai-in-pos-software-predictive-stocking</loc>
+    <lastmod>2025-04-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/diagnosing-laptop-motherboard-short-circuits-chip-level</loc>
+    <lastmod>2025-01-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/thermal-paste-replacement-heatsink-cleaning-prevent-throttling</loc>
+    <lastmod>2025-01-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/liquid-spill-emergency-protocol-water-damaged-laptops</loc>
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/thermal-receipt-printer-troubleshooting-jams-faded-print</loc>
+    <lastmod>2025-02-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/laser-printer-maintenance-drums-toner-fuser-rollers</loc>
+    <lastmod>2025-02-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/ssd-vs-hdd-upgrades-10x-speed-transformation-old-pcs</loc>
+    <lastmod>2025-02-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/laptop-screen-replacement-30pin-vs-40pin-edp-panels</loc>
+    <lastmod>2025-02-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/fixing-corrupted-bios-uefi-hardware-programmer-flashing</loc>
+    <lastmod>2025-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/power-ic-dc-jack-repair-laptops-wont-turn-on</loc>
+    <lastmod>2025-02-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/ram-compatibility-dual-channel-optimization-workstations</loc>
+    <lastmod>2025-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/diagnosing-laptop-battery-failure-cells-bms-calibration</loc>
+    <lastmod>2025-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/industrial-pc-cnc-controller-maintenance-factories</loc>
+    <lastmod>2025-03-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/network-printer-setup-static-ip-print-server-routing</loc>
+    <lastmod>2025-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/hard-drive-data-recovery-rescuing-inaccessible-files</loc>
+    <lastmod>2025-03-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/overcoming-blue-screen-of-death-hardware-vs-drivers</loc>
+    <lastmod>2025-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/laptop-hinge-repair-structural-plastic-reinforcement</loc>
+    <lastmod>2025-03-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/gpu-reballing-vs-reflowing-permanent-bga-repair</loc>
+    <lastmod>2025-03-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/static-electricity-esd-protection-cleanroom-repair-labs</loc>
+    <lastmod>2025-03-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/preventative-maintenance-checklist-corporate-office-it</loc>
+    <lastmod>2025-04-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/zero-charge-diagnostic-policy-why-lab-testing-must-precede-quotes</loc>
+    <lastmod>2025-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
   </url>
 </urlset>

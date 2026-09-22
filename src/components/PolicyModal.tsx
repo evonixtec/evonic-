@@ -105,7 +105,7 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ policyType, onClose })
             <div className="mt-8 pt-4 border-t border-slate-200 bg-slate-50 p-4 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-slate-600">
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-red-600" />
-                <span>Contact Legal / Support: hello@evonix.co</span>
+                <span>Contact Legal / Support: evonixtec@gmail.com</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-emerald-600" />

@@ -32,7 +32,11 @@ export const AboutUs: React.FC = () => {
               <div className="relative rounded-xl overflow-hidden aspect-[21/9] border border-slate-200 shadow-xs">
                 <img
                   src={heroDubai}
-                  alt="EVONIX Dubai to Pakistan Heritage"
+                  alt="EVONIX Dubai 20-Year Heritage - International IT Partner in Sialkot Pakistan"
+                  loading="lazy"
+                  decoding="async"
+                  width="1200"
+                  height="514"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover object-center"
                 />

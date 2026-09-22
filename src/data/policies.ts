@@ -13,7 +13,7 @@ export const PRIVACY_POLICY: PolicySection = {
   id: 'privacy-policy',
   title: 'Privacy Policy',
   lastUpdated: 'February 2025',
-  summary: 'At EVONIX (evonix.co), we take data privacy and intellectual property confidentiality with utmost seriousness. This policy outlines how we collect, process, and protect your personal and business information.',
+  summary: 'At EVONIX TECHNOLOGIES, we take data privacy and intellectual property confidentiality with utmost seriousness. This policy outlines how we collect, process, and protect your personal and business information.',
   sections: [
     {
       heading: '1. Information We Collect',
@@ -42,7 +42,7 @@ export const PRIVACY_POLICY: PolicySection = {
     {
       heading: '4. Contacting Our Data Privacy Officer',
       content: [
-        'If you have questions regarding data privacy or wish to request data deletion, email our team directly at hello@evonix.co or evonixtec@gmail.com.',
+        'If you have questions regarding data privacy or wish to request data deletion, email our team directly at evonixtec@gmail.com.',
         'Corporate Headquarters: EVONIX TECHNOLOGIES, Sialkot, Punjab, Pakistan & Akruti Avenues, Wakad, Pune 411057.',
       ],
     },
@@ -109,7 +109,7 @@ export const REFUND_POLICY: PolicySection = {
     {
       heading: '3. Requesting a Refund',
       content: [
-        'To initiate a refund review, contact hello@evonix.co with your invoice number, device serial number, or project agreement.',
+        'To initiate a refund review, contact evonixtec@gmail.com with your invoice number, device serial number, or project agreement.',
         'Our management team reviews all inquiries within 24 business hours.',
       ],
     },

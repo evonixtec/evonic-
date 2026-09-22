@@ -25,7 +25,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       // LocalStorage might be blocked in restricted iframe environments
     }
 
-    // Default to 'light' theme inspired by evonix.co as requested
+    // Default to clean modern 'light' theme
     return 'light';
   });
 

@@ -172,6 +172,12 @@ export const COMPANY_INFO = {
       'All Surrounding Localities',
     ],
     hours: 'Monday – Saturday: 9:00 AM – 8:00 PM | Sunday: Emergency On-Call Support',
+    socials: {
+      linkedin: 'https://www.linkedin.com/company/evonix-technologies',
+      facebook: 'https://www.facebook.com/evonixtechnologies',
+      instagram: 'https://www.instagram.com/evonixtechnologies',
+      whatsapp: 'https://wa.me/9232632440002',
+    },
   },
 };
 
