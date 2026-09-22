@@ -18,11 +18,11 @@ import {
   CornerDownLeft,
 } from 'lucide-react';
 
-export type SearchCategoryType = 'all' | 'services' | 'portfolio' | 'shop';
+export type SearchCategoryType = 'all' | 'services' | 'portfolio' | 'shop' | 'technologies';
 
 export interface SearchResultItem {
   id: string;
-  type: 'service' | 'portfolio' | 'shop';
+  type: 'service' | 'portfolio' | 'shop' | 'technology';
   title: string;
   categoryLabel: string;
   description: string;
@@ -132,6 +132,42 @@ export const SearchModal: React.FC<SearchModalProps> = ({
       });
     });
 
+    // 4. Technologies We Use
+    const techItems = [
+      { id: 'react', name: 'React.js', role: 'Dynamic Web Apps & Dashboards', category: 'Frontend', tags: ['React', 'JavaScript', 'JSX', 'Frontend', 'SPA'] },
+      { id: 'nextjs', name: 'Next.js', role: 'High-Speed SSR & SEO Portals', category: 'Frontend', tags: ['Next.js', 'React', 'SSR', 'Vercel', 'SEO'] },
+      { id: 'typescript', name: 'TypeScript', role: 'Enterprise Type-Safe Architecture', category: 'Frontend', tags: ['TypeScript', 'TS', 'Typed', 'JavaScript'] },
+      { id: 'tailwind', name: 'Tailwind CSS', role: 'Pixel-Perfect Responsive UI', category: 'Frontend', tags: ['Tailwind', 'CSS', 'Responsive', 'UI'] },
+      { id: 'flutter', name: 'Flutter / Dart', role: 'iOS & Android Native Mobile Apps', category: 'Frontend', tags: ['Flutter', 'Dart', 'Mobile', 'iOS', 'Android'] },
+      { id: 'nodejs', name: 'Node.js', role: 'High-Concurrency REST & WebSockets', category: 'Backend', tags: ['Node.js', 'Node', 'Backend', 'Express', 'API'] },
+      { id: 'python', name: 'Python', role: 'Data Pipelines & Automation', category: 'Backend', tags: ['Python', 'Django', 'FastAPI', 'Automation', 'AI'] },
+      { id: 'laravel', name: 'Laravel / PHP', role: 'Enterprise ERP & Back-Office Portals', category: 'Backend', tags: ['Laravel', 'PHP', 'ERP', 'Backend'] },
+      { id: 'csharp', name: 'C# / .NET', role: 'Desktop POS & Retail Cash Drawer APIs', category: 'Backend', tags: ['C#', '.NET', 'CSharp', 'Desktop', 'POS'] },
+      { id: 'postgresql', name: 'PostgreSQL / SQL', role: 'ACID Relational Enterprise Data', category: 'Database', tags: ['Postgres', 'PostgreSQL', 'SQL', 'Database', 'RDBMS'] },
+      { id: 'mysql', name: 'MySQL', role: 'Ultra-Fast Transactional Inventory', category: 'Database', tags: ['MySQL', 'SQL', 'Database', 'InnoDB'] },
+      { id: 'redis', name: 'Redis', role: 'In-Memory Cache & Session State', category: 'Database', tags: ['Redis', 'Cache', 'In-Memory', 'Sessions'] },
+      { id: 'firebase', name: 'Firebase Cloud', role: 'Real-Time Sync & Mobile Notification', category: 'Database', tags: ['Firebase', 'NoSQL', 'Google Cloud', 'Realtime'] },
+      { id: 'docker', name: 'Docker', role: 'Containerized Reliable Deployments', category: 'DevOps', tags: ['Docker', 'Containers', 'DevOps', 'CI/CD'] },
+      { id: 'linux', name: 'Linux / Ubuntu', role: 'Hardened Server & Network Security', category: 'DevOps', tags: ['Linux', 'Ubuntu', 'Server', 'Hosting'] },
+      { id: 'cloud', name: 'Cloud & Networks', role: 'AWS, Cloudflare, VPN & Wi-Fi LANs', category: 'DevOps', tags: ['AWS', 'Cloudflare', 'Cloud', 'Network', 'LAN'] },
+      { id: 'hardware-pos', name: 'ESC/POS & Thermal', role: 'Direct Hardware & Receipt Protocol', category: 'Hardware', tags: ['ESC/POS', 'Printer', 'Thermal', 'Receipt', 'Barcode'] },
+    ];
+
+    techItems.forEach((t) => {
+      items.push({
+        id: `tech-${t.id}`,
+        type: 'technology',
+        title: t.name,
+        categoryLabel: `Tech: ${t.category}`,
+        description: t.role,
+        tags: [...t.tags, 'Technologies We Use', 'Dubai Standard Tech'],
+        targetSection: 'technologies',
+        targetElementId: `tech-badge-${t.id}`,
+        priceOrHighlight: 'Enterprise Stack',
+        whatsappMessage: `Hi EVONIX TECHNOLOGIES, I would like to build a project using ${t.name}.`,
+      });
+    });
+
     return items;
   }, []);
 
@@ -145,6 +181,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
       result = result.filter((item) => item.type === 'portfolio');
     } else if (selectedCategory === 'shop') {
       result = result.filter((item) => item.type === 'shop');
+    } else if (selectedCategory === 'technologies') {
+      result = result.filter((item) => item.type === 'technology');
     }
 
     const q = query.trim().toLowerCase();
@@ -224,6 +262,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         return <Globe className="w-4 h-4 text-amber-400" />;
       case 'shop':
         return <ShoppingBag className="w-4 h-4 text-emerald-400" />;
+      case 'technology':
+        return <Sparkles className="w-4 h-4 text-blue-400" />;
     }
   };
 
@@ -235,6 +275,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         return 'bg-amber-950 text-amber-300 border-amber-800/60';
       case 'shop':
         return 'bg-emerald-950 text-emerald-300 border-emerald-800/60';
+      case 'technology':
+        return 'bg-blue-950 text-blue-300 border-blue-800/60';
     }
   };
 
@@ -340,6 +382,20 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           >
             <ShoppingBag className="w-3.5 h-3.5" />
             Hardware & Shop (8)
+          </button>
+          <button
+            onClick={() => {
+              setSelectedCategory('technologies');
+              setSelectedIndex(0);
+            }}
+            className={`px-3 py-1 rounded-lg font-medium transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer ${
+              selectedCategory === 'technologies'
+                ? 'bg-cyan-500 text-slate-950 shadow-sm font-semibold'
+                : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+            }`}
+          >
+            <Sparkles className="w-3.5 h-3.5" />
+            Tech Stack (17)
           </button>
         </div>
 
