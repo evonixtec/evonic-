@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { SERVICES, PORTFOLIO_DATA, SHOP_PRODUCTS, COMPANY_INFO, FAQ_ITEMS } from '../data/content';
+import { TESTIMONIALS_DATA } from '../data/testimonialsData';
 import { SectionId } from '../types';
 import {
   Search,
@@ -224,6 +225,32 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         whatsappMessage: 'Hi EVONIX TECHNOLOGIES, I would like to book a doorstep IT service or discuss software development in Sialkot.',
       }
     );
+
+    // 7. Client Testimonials & Social Proof
+    TESTIMONIALS_DATA.forEach((test) => {
+      items.push({
+        id: `testimonial-${test.id}`,
+        type: 'portfolio',
+        title: `${test.clientName} (${test.flag} ${test.location}) – ${test.company}`,
+        categoryLabel: `Client Review: ${test.region === 'dubai' ? 'Dubai Enterprise' : 'Sialkot Business'}`,
+        description: `"${test.quote.slice(0, 140)}..." – Scope: ${test.projectContext.serviceType}`,
+        tags: [
+          'Review',
+          'Testimonial',
+          'Client Feedback',
+          test.clientName,
+          test.company,
+          test.location,
+          test.region,
+          test.industry,
+          test.projectContext.serviceType,
+        ],
+        targetSection: 'testimonials',
+        targetElementId: 'testimonials',
+        priceOrHighlight: `${test.rating}.0 ★ Verified`,
+        whatsappMessage: `Hi EVONIX TECHNOLOGIES, I saw the client review from ${test.company} and would like to discuss a similar project.`,
+      });
+    });
 
     return items;
   }, []);

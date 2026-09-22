@@ -1,4 +1,24 @@
-export type SectionId = 'home' | 'about' | 'services' | 'reach' | 'technologies' | 'portfolio' | 'shop' | 'faq' | 'contact';
+export type SectionId = 'home' | 'about' | 'services' | 'reach' | 'technologies' | 'portfolio' | 'testimonials' | 'shop' | 'faq' | 'contact';
+
+export interface TestimonialItem {
+  id: string;
+  clientName: string;
+  role: string;
+  company: string;
+  location: string;
+  region: 'dubai' | 'sialkot';
+  flag: string;
+  projectContext: {
+    serviceType: string;
+    timeline: string;
+    keyOutcome: string;
+  };
+  quote: string;
+  rating: number;
+  verifiedBadge: string;
+  avatarBg: string;
+  industry: string;
+}
 
 export interface FaqItem {
   id: string;

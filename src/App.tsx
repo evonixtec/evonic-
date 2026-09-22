@@ -8,6 +8,7 @@ import { Technologies } from './components/Technologies';
 import { GlobalReach } from './components/GlobalReach';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { Portfolio } from './components/Portfolio';
+import { Testimonials } from './components/Testimonials';
 import { Shop } from './components/Shop';
 import { FAQ } from './components/FAQ';
 import { ContactSection } from './components/ContactSection';
@@ -136,6 +137,12 @@ export default function App() {
           onRequestPrivateMeeting={() =>
             handleOpenQuote('Confidential NDA Case Study Presentation')
           }
+        />
+
+        {/* 6a. Client Testimonials - Sliding Social Proof Carousel (Dubai & Sialkot) */}
+        <Testimonials
+          onOpenQuote={handleOpenQuote}
+          onNavigateSection={scrollToSection}
         />
 
         {/* Shop Section (Hardware, POS, Laptops & Printers) */}
