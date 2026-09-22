@@ -31,6 +31,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About Us' },
     { id: 'services', label: 'Services' },
+    { id: 'reach', label: 'Global Reach' },
     { id: 'portfolio', label: 'Portfolio' },
     { id: 'shop', label: 'Shop' },
     { id: 'faq', label: 'FAQ' },
@@ -232,18 +233,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             </span>
             <span className="text-emerald-400 font-semibold">20+ Yrs Dubai Experience</span>
           </div>
-
-          {/* Mobile Search Button in Drawer */}
-          <button
-            onClick={() => {
-              setMobileMenuOpen(false);
-              onOpenSearch();
-            }}
-            className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-left text-xs text-slate-300 flex items-center gap-2.5 hover:text-white transition-colors"
-          >
-            <Search className="w-4 h-4 text-cyan-400" />
-            <span>Search services, POS systems, laptops & portfolio...</span>
-          </button>
 
           {/* Nav Items */}
           <div className="space-y-1">

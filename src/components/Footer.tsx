@@ -135,6 +135,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
               </li>
               <li>
                 <button
+                  onClick={() => onNavigate('reach')}
+                  className="hover:text-cyan-400 transition-colors"
+                >
+                  Global Reach (Dubai ⇄ Sialkot)
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => onNavigate('portfolio')}
                   className="hover:text-cyan-400 transition-colors"
                 >

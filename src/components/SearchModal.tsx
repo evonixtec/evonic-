@@ -185,6 +185,46 @@ export const SearchModal: React.FC<SearchModalProps> = ({
       });
     });
 
+    // 6. Global Reach & Geographic Hubs
+    items.push(
+      {
+        id: 'reach-map',
+        type: 'technology',
+        title: 'Global Reach: Dubai to Sialkot Technology Corridor',
+        categoryLabel: 'Global Reach (D3.js Visualization)',
+        description: 'Interactive map visualization bridging 20+ years of Dubai enterprise experience with our modern Sialkot tech center.',
+        tags: ['Global Reach', 'Dubai', 'Sialkot', 'UAE', 'Pakistan', 'Map', 'Expansion', 'D3', 'Bridge'],
+        targetSection: 'reach',
+        targetElementId: 'reach',
+        priceOrHighlight: '20+ Yrs UAE Bridge',
+        whatsappMessage: 'Hi EVONIX TECHNOLOGIES, I am inquiring about your Dubai enterprise experience and Sialkot operations.',
+      },
+      {
+        id: 'reach-dubai',
+        type: 'technology',
+        title: 'Dubai Hub (UAE) – 20+ Years Enterprise DNA',
+        categoryLabel: 'Global Reach: UAE Operations',
+        description: '2004 foundation in Dubai delivering banking-grade portals, cloud ERPs, and high-concurrency systems across GCC.',
+        tags: ['Dubai', 'UAE', 'Gulf', 'GCC', 'Abu Dhabi', 'Sharjah', 'Cloud ERP'],
+        targetSection: 'reach',
+        targetElementId: 'reach',
+        priceOrHighlight: '2004 – 2024+',
+        whatsappMessage: 'Hi EVONIX TECHNOLOGIES, I would like to inquire about your Dubai legacy and enterprise cloud architecture.',
+      },
+      {
+        id: 'reach-sialkot',
+        type: 'technology',
+        title: 'Sialkot Tech Center – Pakistan Direct Expansion',
+        categoryLabel: 'Global Reach: Pakistan Hub',
+        description: 'SECP registered corporate tech center providing doorstep IT visits, export e-commerce for sports & surgical manufacturers, and genuine hardware lab.',
+        tags: ['Sialkot', 'Pakistan', 'Doorstep', 'SECP', 'Export ERP', 'Surgical', 'Sports Goods', 'Hardware Lab'],
+        targetSection: 'reach',
+        targetElementId: 'reach',
+        priceOrHighlight: 'Direct Expansion',
+        whatsappMessage: 'Hi EVONIX TECHNOLOGIES, I would like to book a doorstep IT service or discuss software development in Sialkot.',
+      }
+    );
+
     return items;
   }, []);
 

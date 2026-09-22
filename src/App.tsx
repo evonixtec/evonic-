@@ -5,6 +5,7 @@ import { HeroSlider } from './components/HeroSlider';
 import { AboutUs } from './components/AboutUs';
 import { Services } from './components/Services';
 import { Technologies } from './components/Technologies';
+import { GlobalReach } from './components/GlobalReach';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { Portfolio } from './components/Portfolio';
 import { Shop } from './components/Shop';
@@ -120,6 +121,12 @@ export default function App() {
 
         {/* 4b. Technologies We Use Section (Animated Floating Badges & Logos) */}
         <Technologies onExploreService={(svc) => handleOpenQuote(svc || 'Website Development')} />
+
+        {/* 4c. Global Reach - Interactive D3.js Geo-Bridge (Dubai 20+ Yrs to Sialkot Tech Center) */}
+        <GlobalReach
+          onOpenQuote={handleOpenQuote}
+          onNavigateSection={scrollToSection}
+        />
 
         {/* 5. Why Choose Us? Section */}
         <WhyChooseUs />
