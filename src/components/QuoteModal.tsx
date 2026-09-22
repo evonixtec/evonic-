@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { COMPANY_INFO } from '../data/content';
-import { X, Sparkles, Send, MessageSquare, CheckCircle, MapPin, Shield, Phone } from 'lucide-react';
+import { X, Sparkles, Send, MessageSquare, CheckCircle, MapPin, Shield, Phone, ShieldCheck } from 'lucide-react';
+import { sanitizeInput, checkRateLimit } from '../lib/security';
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -42,23 +43,38 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
+  const [spamError, setSpamError] = useState<string | null>(null);
+
   if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setSpamError(null);
+
+    const rateCheck = checkRateLimit('quote_modal', 3000);
+    if (!rateCheck.allowed) {
+      setSpamError(`Please wait ${rateCheck.remainingSecs} seconds before submitting again.`);
+      return;
+    }
+
     setSubmitted(true);
   };
 
   const getWhatsAppMessageUrl = () => {
+    const cleanName = sanitizeInput(fullName) || 'Interested Client';
+    const cleanPhone = sanitizeInput(phone) || 'Not specified';
+    const cleanEmail = sanitizeInput(email) || 'Not specified';
+    const cleanDetails = sanitizeInput(details) || 'Please contact me to discuss details.';
+
     const message = `*NEW INQUIRY - EVONIX TECHNOLOGIES*
-*Name:* ${fullName || 'Interested Client'}
-*Phone:* ${phone || 'Not specified'}
-*Email:* ${email || 'Not specified'}
+*Name:* ${cleanName}
+*Phone:* ${cleanPhone}
+*Email:* ${cleanEmail}
 *Service:* ${serviceType}
 *Sialkot Area:* ${locationArea}
 *Home Service Required:* ${isHomeService ? 'YES (Doorstep Technician in Sialkot)' : 'NO / Lab or Remote'}
 *Budget Preference:* ${budget}
-*Requirements:* ${details || 'Please contact me to discuss details.'}`;
+*Requirements:* ${cleanDetails}`;
     return `https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(message)}`;
   };
 
@@ -258,6 +274,14 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                   className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:outline-none focus:border-cyan-500 placeholder-slate-500"
                 />
               </div>
+
+              {/* Spam/Rate limit error */}
+              {spamError && (
+                <div className="p-3 rounded-xl bg-amber-950/60 border border-amber-800 text-amber-300 text-xs flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                  <span>{spamError}</span>
+                </div>
+              )}
 
               {/* Actions */}
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-end gap-3">

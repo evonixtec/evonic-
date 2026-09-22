@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { COMPANY_INFO } from '../data/content';
-import { MapPin, Mail, Phone, MessageSquare, Clock, ShieldCheck, Send, CheckCircle2, Wrench } from 'lucide-react';
+import { MapPin, Mail, Phone, MessageSquare, Clock, ShieldCheck, Send, CheckCircle2, Wrench, AlertCircle } from 'lucide-react';
 import { FadeInSection } from './FadeInSection';
+import { sanitizeInput, checkRateLimit } from '../lib/security';
 
 interface ContactSectionProps {
   onOpenQuote: (service?: string) => void;
@@ -14,18 +15,31 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
   const [formService, setFormService] = useState('Website Development');
   const [formMessage, setFormMessage] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setFormError(null);
+
+    const rateCheck = checkRateLimit('contact_section', 3000);
+    if (!rateCheck.allowed) {
+      setFormError(`Please wait ${rateCheck.remainingSecs} seconds before resubmitting.`);
+      return;
+    }
+
     setFormSubmitted(true);
   };
 
   const getWhatsAppChatUrl = () => {
+    const cleanName = sanitizeInput(formName) || 'Customer';
+    const cleanPhone = sanitizeInput(formPhone) || 'Not specified';
+    const cleanMessage = sanitizeInput(formMessage) || 'I would like to inquire about your IT services in Sialkot.';
+
     const text = `Hello EVONIX TECHNOLOGIES,
-Name: ${formName || 'Customer'}
-Phone: ${formPhone || 'Not specified'}
+Name: ${cleanName}
+Phone: ${cleanPhone}
 Service: ${formService}
-Message: ${formMessage || 'I would like to inquire about your IT services in Sialkot.'}`;
+Message: ${cleanMessage}`;
     return `https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(text)}`;
   };
 
@@ -281,6 +295,14 @@ Message: ${formMessage || 'I would like to inquire about your IT services in Sia
                       className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:outline-none focus:border-cyan-500 placeholder-slate-500"
                     />
                   </div>
+
+                  {/* Spam/Rate limit warning */}
+                  {formError && (
+                    <div className="p-3 rounded-xl bg-amber-950/60 border border-amber-800 text-amber-300 text-xs flex items-center gap-2">
+                      <AlertCircle className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                      <span>{formError}</span>
+                    </div>
+                  )}
 
                   <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <p className="text-[11px] text-slate-400 text-center sm:text-left">

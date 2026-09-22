@@ -1,4 +1,14 @@
-export type SectionId = 'home' | 'about' | 'services' | 'technologies' | 'portfolio' | 'shop' | 'contact';
+export type SectionId = 'home' | 'about' | 'services' | 'technologies' | 'portfolio' | 'shop' | 'faq' | 'contact';
+
+export interface FaqItem {
+  id: string;
+  category: 'dubai-transition' | 'pricing' | 'onsite-support' | 'software-hardware';
+  question: string;
+  answer: string;
+  highlightBadge?: string;
+  actionText?: string;
+  actionPrefill?: string;
+}
 
 export interface ServiceItem {
   id: string;

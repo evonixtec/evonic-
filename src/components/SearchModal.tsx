@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { SERVICES, PORTFOLIO_DATA, SHOP_PRODUCTS, COMPANY_INFO } from '../data/content';
+import { SERVICES, PORTFOLIO_DATA, SHOP_PRODUCTS, COMPANY_INFO, FAQ_ITEMS } from '../data/content';
 import { SectionId } from '../types';
 import {
   Search,
@@ -16,13 +16,14 @@ import {
   CheckCircle,
   Tag,
   CornerDownLeft,
+  HelpCircle,
 } from 'lucide-react';
 
-export type SearchCategoryType = 'all' | 'services' | 'portfolio' | 'shop' | 'technologies';
+export type SearchCategoryType = 'all' | 'services' | 'portfolio' | 'shop' | 'technologies' | 'faq';
 
 export interface SearchResultItem {
   id: string;
-  type: 'service' | 'portfolio' | 'shop' | 'technology';
+  type: 'service' | 'portfolio' | 'shop' | 'technology' | 'faq';
   title: string;
   categoryLabel: string;
   description: string;
@@ -168,6 +169,22 @@ export const SearchModal: React.FC<SearchModalProps> = ({
       });
     });
 
+    // 5. Frequently Asked Questions
+    FAQ_ITEMS.forEach((f) => {
+      items.push({
+        id: `faq-${f.id}`,
+        type: 'faq',
+        title: f.question,
+        categoryLabel: `FAQ: ${f.highlightBadge || 'Q&A'}`,
+        description: f.answer,
+        tags: [f.category, f.highlightBadge || 'FAQ', 'Dubai Transition', 'Doorstep', 'Pricing', 'Warranty'],
+        targetSection: 'faq',
+        targetElementId: f.id,
+        priceOrHighlight: f.highlightBadge || 'Verified Answer',
+        whatsappMessage: `Hi EVONIX TECHNOLOGIES, I have a question regarding: ${f.question}`,
+      });
+    });
+
     return items;
   }, []);
 
@@ -183,6 +200,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
       result = result.filter((item) => item.type === 'shop');
     } else if (selectedCategory === 'technologies') {
       result = result.filter((item) => item.type === 'technology');
+    } else if (selectedCategory === 'faq') {
+      result = result.filter((item) => item.type === 'faq');
     }
 
     const q = query.trim().toLowerCase();
@@ -264,6 +283,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         return <ShoppingBag className="w-4 h-4 text-emerald-400" />;
       case 'technology':
         return <Sparkles className="w-4 h-4 text-blue-400" />;
+      case 'faq':
+        return <HelpCircle className="w-4 h-4 text-purple-400" />;
     }
   };
 
@@ -277,6 +298,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         return 'bg-emerald-950 text-emerald-300 border-emerald-800/60';
       case 'technology':
         return 'bg-blue-950 text-blue-300 border-blue-800/60';
+      case 'faq':
+        return 'bg-purple-950 text-purple-300 border-purple-800/60';
     }
   };
 
@@ -396,6 +419,20 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           >
             <Sparkles className="w-3.5 h-3.5" />
             Tech Stack (17)
+          </button>
+          <button
+            onClick={() => {
+              setSelectedCategory('faq');
+              setSelectedIndex(0);
+            }}
+            className={`px-3 py-1 rounded-lg font-medium transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer ${
+              selectedCategory === 'faq'
+                ? 'bg-cyan-500 text-slate-950 shadow-sm font-semibold'
+                : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+            }`}
+          >
+            <HelpCircle className="w-3.5 h-3.5" />
+            FAQ ({FAQ_ITEMS.length})
           </button>
         </div>
 

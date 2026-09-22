@@ -151,6 +151,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
               </li>
               <li>
                 <button
+                  onClick={() => onNavigate('faq')}
+                  className="hover:text-cyan-400 transition-colors"
+                >
+                  FAQ & Transition Details
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => onNavigate('contact')}
                   className="hover:text-cyan-400 transition-colors"
                 >
@@ -234,9 +242,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
 
         {/* Bottom Copyright & Back to Top */}
         <div className="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>
-            © {new Date().getFullYear()} EVONIX TECHNOLOGIES. All rights reserved. Sialkot, Pakistan.
-          </p>
+          <div className="flex flex-col sm:flex-row items-center gap-3">
+            <p>
+              © {new Date().getFullYear()} EVONIX TECHNOLOGIES. All rights reserved. Sialkot, Pakistan.
+            </p>
+            <span className="hidden sm:inline text-slate-700">|</span>
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-900 border border-cyan-900/60 text-[10px] text-cyan-400 font-mono">
+              <ShieldCheck className="w-3 h-3 text-cyan-400" />
+              Cyber-Shield Protected
+            </span>
+          </div>
 
           <div className="flex items-center gap-4">
             <p className="flex items-center gap-1.5 text-slate-400">

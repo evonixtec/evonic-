@@ -8,11 +8,14 @@ import { Technologies } from './components/Technologies';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { Portfolio } from './components/Portfolio';
 import { Shop } from './components/Shop';
+import { FAQ } from './components/FAQ';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { QuoteModal } from './components/QuoteModal';
 import { SearchModal } from './components/SearchModal';
+import { SecurityAlertToast } from './components/SecurityAlertToast';
 import { COMPANY_INFO } from './data/content';
+import { initAntiCopyShield, initializeConsoleShield } from './lib/security';
 import { MessageSquare, Phone, ArrowUp, Search } from 'lucide-react';
 
 export default function App() {
@@ -20,6 +23,16 @@ export default function App() {
   const [isQuoteOpen, setIsQuoteOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [selectedServiceForQuote, setSelectedServiceForQuote] = useState<string>('Website Development');
+  const [securityAlert, setSecurityAlert] = useState<string | null>(null);
+
+  // Initialize Anti-Copy, Anti-Scrape, and Console Security Shield
+  useEffect(() => {
+    initializeConsoleShield();
+    const cleanupShield = initAntiCopyShield((msg) => {
+      setSecurityAlert(msg);
+    });
+    return () => cleanupShield();
+  }, []);
 
   // Global keyboard shortcut to open search modal (Ctrl+K or Cmd+K)
   useEffect(() => {
@@ -125,6 +138,12 @@ export default function App() {
           }
         />
 
+        {/* 6b. Frequently Asked Questions (Accordion Style - Dubai Transition, Pricing, Doorstep Support) */}
+        <FAQ
+          onOpenQuote={handleOpenQuote}
+          onNavigateSection={scrollToSection}
+        />
+
         {/* Contact Us Section */}
         <ContactSection onOpenQuote={handleOpenQuote} />
       </main>
@@ -133,6 +152,12 @@ export default function App() {
       <Footer
         onNavigate={scrollToSection}
         onOpenQuote={() => handleOpenQuote('General Inquiry')}
+      />
+
+      {/* Anti-Copy and Security Alert Notification Toast */}
+      <SecurityAlertToast
+        message={securityAlert}
+        onClose={() => setSecurityAlert(null)}
       />
 
       {/* Interactive Quick Search Modal (Command Palette across Services, Portfolio & Shop) */}

@@ -1,4 +1,4 @@
-import { ServiceItem, PortfolioCategory, ShopProduct } from '../types';
+import { ServiceItem, PortfolioCategory, ShopProduct, FaqItem } from '../types';
 import heroDubaiImg from '../assets/images/hero_dubai_tech_1790044690065.jpg';
 import serviceWebDevImg from '../assets/images/service_web_dev_1790044711551.jpg';
 import serviceSoftwarePosImg from '../assets/images/service_software_pos_1790044733191.jpg';
@@ -423,3 +423,115 @@ export const SIALKOT_HIGHLIGHTS = [
   'Transparent Hardware Invoicing with Zero Hidden Lab Charges',
   'Post-Deployment Software Training for Your Cashiers & Staff',
 ];
+
+export const FAQ_ITEMS: FaqItem[] = [
+  // 1. Dubai-to-Pakistan Transition
+  {
+    id: 'faq-dubai-transition-1',
+    category: 'dubai-transition',
+    question: 'Why has EVONIX TECHNOLOGIES transitioned from Dubai to Pakistan?',
+    answer: 'After serving 20+ years in the competitive Dubai and UAE enterprise IT sectors, our founders realized that businesses, exporters, and retail shops in Sialkot frequently struggle with unreliable service, amateur web developers, and counterfeit computer components. We established our full-scale tech hub in Sialkot to deliver the exact same corporate Gulf standards, authentic hardware parts, and certified engineering workflows directly to the people and businesses of Pakistan at accessible local rates.',
+    highlightBadge: '20+ Years UAE Legacy',
+    actionText: 'Read Our Story',
+    actionPrefill: 'about',
+  },
+  {
+    id: 'faq-dubai-transition-2',
+    category: 'dubai-transition',
+    question: 'Are your service standards, hardware warranties, and coding practices identical to Dubai?',
+    answer: 'Absolutely. We apply the exact same rigorous enterprise standards used in UAE corporate banking and hospitality projects. Every website is built with clean, security-audited code, fast CDN hosting, and high SEO standards. Every laptop or PC hardware repair uses genuine ICs, original thermal pastes, and ESD-safe diagnostic instruments. Furthermore, our hardware components come backed with genuine warranty coverage.',
+    highlightBadge: 'Dubai Standard Certified',
+  },
+  {
+    id: 'faq-dubai-transition-3',
+    category: 'dubai-transition',
+    question: 'Do you still support and serve international or UAE-based clients from Pakistan?',
+    answer: 'Yes, our international corporate desk remains actively functional. We continue to engineer cloud ERPs, web applications, and provide 24/7 remote infrastructure management for clients across Dubai, Abu Dhabi, Sharjah, the UK, and North America. Local Sialkot clients benefit from this exact same global-scale operational stability.',
+    highlightBadge: 'Global Infrastructure',
+  },
+
+  // 2. Service Pricing & Quotes
+  {
+    id: 'faq-pricing-1',
+    category: 'pricing',
+    question: 'How does EVONIX calculate prices for websites, software, and repair services?',
+    answer: 'We maintain a 100% transparent pricing policy with zero hidden fees. For software and web development, we provide an itemized fixed-scope proposal after a free consultation. For computer and printer repairs, we perform an initial diagnostic and communicate the exact cost before opening any hardware. You never receive unexpected technician bills or surprise lab surcharges.',
+    highlightBadge: 'Upfront Fixed Pricing',
+    actionText: 'Request Free Quote',
+    actionPrefill: 'quote',
+  },
+  {
+    id: 'faq-pricing-2',
+    category: 'pricing',
+    question: 'What is your "Zero Charge If Unresolved" policy?',
+    answer: 'If our certified technicians visit your doorstep or examine your hardware in our lab and are unable to resolve the fault or provide a viable technical solution, you are charged PKR 0 for the repair. We only bill for confirmed, verified results.',
+    highlightBadge: '100% Risk Free',
+  },
+  {
+    id: 'faq-pricing-3',
+    category: 'pricing',
+    question: 'Do you have bundled packages for new retail shops, supermarkets, and sports exporters in Sialkot?',
+    answer: 'Yes! We offer popular turnkey bundles combining Touchscreen POS terminals, thermal receipt printers, laser barcode scanners, licensed billing software, and staff cashier training at special package pricing. Exporters also enjoy comprehensive brand packages covering export e-commerce websites, corporate email setup, and product catalog design.',
+    highlightBadge: 'Turnkey Retail Bundles',
+    actionText: 'View POS Bundles',
+    actionPrefill: 'shop',
+  },
+
+  // 3. Onsite Technical Support Process in Sialkot
+  {
+    id: 'faq-onsite-1',
+    category: 'onsite-support',
+    question: 'Which areas in Sialkot are covered by your doorstep on-site IT technicians?',
+    answer: 'We provide doorstep home and office technical visits throughout Sialkot city and surrounding industrial hubs, including Sialkot Cantt, Paris Road, Defense Road, Kashmir Road, Ugoki, Sambrial, Daska Road, Hunter Pura, Commissioner Road, Model Town, Small Industrial Estate, and adjoining industrial clusters.',
+    highlightBadge: 'Sialkot-Wide Coverage',
+    actionText: 'Book Doorstep Visit',
+    actionPrefill: 'On-Site Home & Office Service',
+  },
+  {
+    id: 'faq-onsite-2',
+    category: 'onsite-support',
+    question: 'How quickly does a technician arrive after I place an on-site request?',
+    answer: 'For standard on-site requests across urban Sialkot (Cantt, Paris Rd, Defense Rd), our mobile technician is typically dispatched within 2 to 4 hours of confirmation. For urgent retail checkout breakdowns or corporate server down situations, we offer expedited priority dispatch. You can also schedule an exact appointment time that suits your business hours.',
+    highlightBadge: 'Same-Day Dispatch',
+  },
+  {
+    id: 'faq-onsite-3',
+    category: 'onsite-support',
+    question: 'What repairs can be done at my premises versus your technical lab?',
+    answer: 'Over 85% of standard technical issues are completed right at your doorstep: Windows reinstallation, virus/malware eradication, high-speed SSD upgrades with zero data loss, RAM upgrades, Wi-Fi router setup, network cable crimping, and thermal receipt printer driver configuration. For advanced chip-level micro-soldering, short-circuit diagnostics, or liquid-damaged laptop motherboards, the unit is safely booked with a formal tracking receipt into our static-safe lab and returned post-testing.',
+    highlightBadge: 'Doorstep + Lab Backup',
+  },
+  {
+    id: 'faq-onsite-4',
+    category: 'onsite-support',
+    question: 'How do I book an on-site visit or hardware diagnosis?',
+    answer: 'Booking takes under 60 seconds: simply call or WhatsApp our official support desk at +92 326 324 40002, or submit the "Get a Free Quote" form on this website specifying your location and hardware issue. Our service desk will confirm your slot immediately.',
+    highlightBadge: 'Quick WhatsApp Booking',
+    actionText: 'Call +92 326 324 40002',
+    actionPrefill: 'contact',
+  },
+
+  // 4. Software, POS & Hardware Engineering
+  {
+    id: 'faq-software-1',
+    category: 'software-hardware',
+    question: 'Does your retail POS billing software work offline during internet breakdowns?',
+    answer: 'Yes! Our custom POS software is built with an offline-first architecture. Cashiers can continue scanning barcodes, generating customer receipts, and calculating sales totals even if your internet disconnects. Once the connection is restored, all data automatically syncs with your central cloud database.',
+    highlightBadge: 'Offline-First POS',
+  },
+  {
+    id: 'faq-software-2',
+    category: 'software-hardware',
+    question: 'Do you provide training for our cashiers and staff after installing software or POS?',
+    answer: 'Every software and POS system deployment includes hands-on training for your managers, accountants, and retail cashiers. We also provide user manual documentation and direct WhatsApp priority support for any day-to-day operational queries.',
+    highlightBadge: 'Full Staff Training',
+  },
+  {
+    id: 'faq-software-3',
+    category: 'software-hardware',
+    question: 'How does EVONIX safeguard our company data during laptop or PC servicing?',
+    answer: 'We adhere to strict Dubai corporate data privacy protocols. Your private files, accounting databases, emails, and sensitive documents are never accessed, copied, or altered. We offer encrypted pre-repair drive imaging upon request and perform all software repairs under transparent observation.',
+    highlightBadge: 'Dubai Data Privacy',
+  },
+];
+
