@@ -1,0 +1,425 @@
+import { ServiceItem, PortfolioCategory, ShopProduct } from '../types';
+import heroDubaiImg from '../assets/images/hero_dubai_tech_1790044690065.jpg';
+import serviceWebDevImg from '../assets/images/service_web_dev_1790044711551.jpg';
+import serviceSoftwarePosImg from '../assets/images/service_software_pos_1790044733191.jpg';
+import serviceHardwareRepairImg from '../assets/images/service_hardware_repair_1790044752878.jpg';
+import serviceOnsiteTechImg from '../assets/images/service_onsite_tech_1790044770537.jpg';
+
+export interface HeroSlide {
+  id: string;
+  badge: string;
+  headingPrefix: string;
+  headingGradient: string;
+  subHeading: string;
+  paragraph: string;
+  primaryCta: string;
+  primaryAction: 'quote' | 'services' | 'portfolio' | 'shop';
+  secondaryCta: string;
+  secondaryAction: 'services' | 'portfolio' | 'shop' | 'whatsapp' | 'call';
+  servicePrefill?: string;
+  bgImage: string;
+  floatingBadge: string;
+  floatingText: string;
+  pills: string[];
+}
+
+export const HERO_SLIDES: HeroSlide[] = [
+  {
+    id: 'dubai-heritage',
+    badge: 'DUBAI (UAE) ⟶ SIALKOT (PAKISTAN) | 20+ YEARS LEGACY',
+    headingPrefix: 'Experience of Dubai,',
+    headingGradient: 'Now in Pakistan',
+    subHeading: 'Your Trusted IT Partner in Sialkot',
+    paragraph: 'We provide professional Website Development, Software Development, and Computer Repairing services with 15+ years of international experience.',
+    primaryCta: 'Get a Free Quote',
+    primaryAction: 'quote',
+    secondaryCta: 'Explore Services',
+    secondaryAction: 'services',
+    servicePrefill: 'Website Development',
+    bgImage: heroDubaiImg,
+    floatingBadge: 'Dubai Standard',
+    floatingText: '20+ Yrs Gulf Tech Heritage',
+    pills: ['Doorstep Home Service', 'Transparent Affordable Rates', '100% Satisfaction Guarantee'],
+  },
+  {
+    id: 'web-software-pos',
+    badge: 'ENTERPRISE WEB & POS ENGINEERING | INTERNATIONAL QUALITY',
+    headingPrefix: 'Next-Gen Websites &',
+    headingGradient: 'Smart POS Software',
+    subHeading: 'Engineered for Sialkot Exporters & Retailers',
+    paragraph: 'High-speed e-commerce stores, B2B company portfolios, barcode billing POS, and custom restaurant ERP built to Dubai corporate standards.',
+    primaryCta: 'Build Your Website / POS',
+    primaryAction: 'quote',
+    secondaryCta: 'View Dubai Portfolio',
+    secondaryAction: 'portfolio',
+    servicePrefill: 'Software & Mobile App Development',
+    bgImage: serviceWebDevImg,
+    floatingBadge: 'High Performance',
+    floatingText: 'Custom POS & Cloud ERP',
+    pills: ['Multi-currency E-Commerce', 'Barcode & Receipt Billing', 'WhatsApp Direct Checkout'],
+  },
+  {
+    id: 'hardware-repair-onsite',
+    badge: 'CERTIFIED LAB & DOORSTEP SERVICE | SIALKOT WIDE',
+    headingPrefix: 'Computer, Laptop &',
+    headingGradient: 'Printer Repair Services',
+    subHeading: 'Expert Motherboard Diagnostics & UAE Imports',
+    paragraph: 'Motherboard chip diagnostics, fast SSD speed upgrades, laser printer tuning, and certified refurbished UAE laptops delivered straight to your home or office.',
+    primaryCta: 'Book Doorstep Repair',
+    primaryAction: 'quote',
+    secondaryCta: 'Shop UAE Laptops & POS',
+    secondaryAction: 'shop',
+    servicePrefill: 'Computer, Laptop & Printer Services',
+    bgImage: serviceHardwareRepairImg,
+    floatingBadge: 'Zero Lab Visit',
+    floatingText: 'Technician Visits Your Doorstep',
+    pills: ['Chip-Level Diagnostics', 'High-Speed SSD Upgrades', 'Zero Fee If Not Fixed'],
+  },
+];
+
+export const COMPANY_INFO = {
+  name: 'EVONIX TECHNOLOGIES',
+  tagline1: 'EVONIX TECHNOLOGIES - Your Trusted IT Partner.',
+  tagline2: 'Experience of Dubai, Now in Pakistan. Crafting digital excellence across global borders.',
+  hero: {
+    heading: 'Experience of Dubai, Now in Pakistan',
+    subHeading: 'Your Trusted IT Partner in Sialkot',
+    paragraph: 'We provide professional Website Development, Software Development, and Computer Repairing services with 15+ years of international experience.',
+    ctaButton: 'Get a Free Quote',
+    secondaryCta: 'Explore Services',
+  },
+  about: {
+    title: 'About Us - EVONIX TECHNOLOGIES',
+    storyHeading: 'Our Story',
+    storyText: 'EVONIX TECHNOLOGIES is not just a new company, it is a name of 20 years of experience. We started our career in Dubai (UAE) and served in the IT field for many years. After working in a big market like Dubai, we have gained extensive international experience.\n\nNow with the same international standard and experience, we are going to launch our company in Pakistan, to provide professional and reliable service like Dubai to the people of Pakistan.',
+    missionHeading: 'Our Mission',
+    missionText: 'Our mission is to bring modern, affordable, and reliable technology solutions to every business and home.',
+    heritageYearsDubai: '20+',
+    internationalExperience: '15+',
+  },
+  whyChooseUs: [
+    {
+      id: 'dubai-exp',
+      title: '20+ Years of International Experience (Dubai)',
+      description: 'Tested and proven in one of the most technologically competitive hubs in the world—bringing Gulf-grade standards straight to Sialkot.',
+      icon: 'Globe',
+      stat: '20+ Yrs',
+      highlight: 'Dubai Heritage',
+    },
+    {
+      id: 'affordable-pricing',
+      title: 'Affordable Prices',
+      description: 'Transparent, budget-friendly pricing tailored for Pakistani businesses, shop owners, startups, and families without quality compromise.',
+      icon: 'DollarSign',
+      stat: '100%',
+      highlight: 'Honest Rates',
+    },
+    {
+      id: 'quick-service',
+      title: 'Quick & Reliable Service',
+      description: 'Fast turnaround times with rapid diagnostics, clear communication, zero hidden delays, and dependable technical backup.',
+      icon: 'Zap',
+      stat: 'Same-Day',
+      highlight: 'Fast Response',
+    },
+    {
+      id: 'home-service',
+      title: 'Home Service Available',
+      description: 'No need to disconnect your PC or drive to a shop. Our mobile IT engineer visits your doorstep in Sialkot with full toolkits.',
+      icon: 'Home',
+      stat: 'Doorstep',
+      highlight: 'Sialkot Wide',
+    },
+    {
+      id: 'satisfaction',
+      title: '100% Customer Satisfaction',
+      description: 'Dedicated post-delivery support, warranty on repairs, and ongoing software assistance that puts your peace of mind first.',
+      icon: 'ShieldCheck',
+      stat: '100%',
+      highlight: 'Guaranteed',
+    },
+  ],
+  contact: {
+    email: 'evonixtec@gmail.com',
+    phoneDisplay: '+92 326 324 40002',
+    phoneRaw: '+9232632440002',
+    whatsapp: '9232632440002',
+    whatsappDisplay: '+92 326 324 40002',
+    city: 'Sialkot',
+    region: 'Punjab, Pakistan',
+    homeServiceAreas: [
+      'Sialkot Cantt',
+      'Paris Road',
+      'Defense Road',
+      'Kashmir Road',
+      'Daska Road',
+      'Ugoki',
+      'Sambrial',
+      'Model Town',
+      'Rangpura',
+      'All Surrounding Localities',
+    ],
+    hours: 'Monday – Saturday: 9:00 AM – 8:00 PM | Sunday: Emergency On-Call Support',
+  },
+};
+
+export const SERVICES: ServiceItem[] = [
+  {
+    id: 'web-dev',
+    number: '01',
+    title: 'Website Development',
+    summary: 'We design modern, fast, responsive, and SEO-friendly websites for businesses, shops, and companies.',
+    iconName: 'Layout',
+    imageUrl: serviceWebDevImg,
+    features: [
+      'Modern, clean, mobile-first responsive architecture',
+      'Lightning-fast page load speeds and SEO optimization',
+      'E-commerce & retail product catalogs with WhatsApp checkout',
+      'Corporate portfolios for exporters, manufacturers & traders',
+      'Free SSL security, custom domain setup & hosting assistance',
+    ],
+    dubaiExperienceNote: 'Developed high-conversion websites for UAE retail, luxury real estate, and international trading houses.',
+    deliverables: ['Custom Web Design', 'E-Commerce Stores', 'Corporate Portals', 'SEO & Speed Tuning'],
+  },
+  {
+    id: 'software-dev',
+    number: '02',
+    title: 'Software & Mobile App Development',
+    summary: 'We develop custom management software, POS systems, and mobile applications tailored to your business needs.',
+    iconName: 'Cpu',
+    imageUrl: serviceSoftwarePosImg,
+    features: [
+      'Tailor-made Point of Sale (POS) for retail, grocery & boutiques',
+      'Inventory, barcode printing & warehouse stock management',
+      'Restaurant POS with Kitchen Display System (KDS) & table billing',
+      'Cross-platform iOS & Android mobile apps for your customers or staff',
+      'Offline-capable systems with secure cloud backup & sales reports',
+    ],
+    dubaiExperienceNote: 'Delivered robust enterprise software architectures across UAE supermarkets, chains, and service centers.',
+    deliverables: ['Custom POS Systems', 'Inventory Software', 'Billing & ERP', 'Mobile Applications'],
+  },
+  {
+    id: 'hardware-services',
+    number: '03',
+    title: 'Computer, Laptop & Printer Services',
+    summary: 'We provide professional repairing, servicing, and sales of all computers, laptops, and printers.',
+    iconName: 'Monitor',
+    imageUrl: serviceHardwareRepairImg,
+    features: [
+      'Motherboard chip-level repair, liquid spill diagnosis & display fix',
+      'High-speed SSD upgrade & RAM enhancement (makes slow PCs 10x faster)',
+      'Laser & Thermal receipt printer servicing, toner refilling & head cleaning',
+      'Virus removal, clean Windows installation & critical data backup',
+      'Sales of verified laptops, desktops, POS printers & genuine accessories',
+    ],
+    dubaiExperienceNote: 'Managed large corporate hardware infrastructure, lab diagnostics, and enterprise thermal printer networks in Dubai.',
+    deliverables: ['Laptop Chip Repair', 'Printer Maintenance', 'SSD / RAM Upgrades', 'Hardware & PC Sales'],
+  },
+  {
+    id: 'onsite-service',
+    number: '04',
+    title: 'On-Site Home & Office Service',
+    summary: 'No need to visit our lab. Our expert technician will come to your home or office for repair and service in Sialkot.',
+    iconName: 'Wrench',
+    imageUrl: serviceOnsiteTechImg,
+    features: [
+      'Doorstep technician visit anywhere across Sialkot city',
+      'Direct on-site diagnosis and transparent estimation before repair',
+      'Office networking, Wi-Fi router setup, LAN cabling & printer sharing',
+      'POS installation and staff training directly at your counter',
+      'Safe pickup and return for advanced lab motherboard repairs',
+    ],
+    dubaiExperienceNote: 'Modeled after Dubai rapid on-demand corporate IT dispatch standards.',
+    deliverables: ['Doorstep PC Repair', 'Office Network Setup', 'Printer On-Site Fix', 'POS Counter Setup'],
+  },
+];
+
+export const PORTFOLIO_DATA: {
+  intro: string;
+  websiteClients: PortfolioCategory[];
+  softwareClients: PortfolioCategory[];
+  ndaNote: string;
+} = {
+  intro: 'EVONIX TECHNOLOGIES has been proudly serving clients in Dubai, UAE for over 15 years.',
+  websiteClients: [
+    {
+      id: 'web-1',
+      type: 'website',
+      title: 'E-Commerce & Retail Business Websites',
+      categoryName: 'A. Website Development Clients (Dubai)',
+      industry: 'UAE Retail & Consumer Goods',
+      description: 'High-speed online shopping platforms with multi-currency payment gateways, automated inventory sync, and mobile-first shopping flows.',
+      deliverables: ['Multi-currency UAE checkout', 'Real-time stock sync', 'Arabic & English bilingual layout', 'Instant WhatsApp order link'],
+      tags: ['E-Commerce', 'Bilingual', 'Payment Gateways', 'SEO Optimized'],
+      dubaiHighlight: 'Engineered for high-volume shopping festivals and seamless delivery coordination across UAE Emirates.',
+    },
+    {
+      id: 'web-2',
+      type: 'website',
+      title: 'Real Estate & Property Dealer Websites',
+      categoryName: 'A. Website Development Clients (Dubai)',
+      industry: 'Dubai Real Estate & Brokerages',
+      description: 'Luxury property listing platforms with interactive floor plans, virtual walk-through integration, WhatsApp lead captures, and CRM synchronization.',
+      deliverables: ['Interactive Property Map', 'Instant Agent WhatsApp Routing', 'Off-Plan Launch Showcase', 'Lead Scoring CRM'],
+      tags: ['Real Estate', 'Lead Capture', 'High Visuals', 'CRM Hookup'],
+      dubaiHighlight: 'Tailored for Downtown Dubai, Dubai Marina & Palm Jumeirah property marketing campaigns.',
+    },
+    {
+      id: 'web-3',
+      type: 'website',
+      title: 'Corporate Business & Trading Company Websites',
+      categoryName: 'A. Website Development Clients (Dubai)',
+      industry: 'International Trading & Freezone Corporates',
+      description: 'Authoritative, pristine corporate web presence designed for B2B exporters, logistics providers, and multinational trading firms.',
+      deliverables: ['RFQs & Catalog Downloads', 'Multilingual Company Profile', 'Compliance & Certification Display', 'Client Portal'],
+      tags: ['Corporate B2B', 'Export/Import', 'High Security', 'Freezone Ready'],
+      dubaiHighlight: 'Positioned trading firms for international banking credibility and government procurement.',
+    },
+    {
+      id: 'web-4',
+      type: 'website',
+      title: 'Restaurant & Cafe Websites with Online Ordering',
+      categoryName: 'A. Website Development Clients (Dubai)',
+      industry: 'Hospitality & Dining',
+      description: 'Mouth-watering digital menus, direct zero-commission online food ordering, table reservation systems, and loyalty program integration.',
+      deliverables: ['Direct Table & Food Ordering', 'Automated WhatsApp Kitchen Ping', 'Digital QR Menu', 'Google Maps Business Sync'],
+      tags: ['Food & Dine', 'Online Ordering', 'QR Menus', 'Reservation Flow'],
+      dubaiHighlight: 'Empowered Dubai cafes to accept direct customer delivery orders saving steep delivery app commissions.',
+    },
+  ],
+  softwareClients: [
+    {
+      id: 'soft-1',
+      type: 'software',
+      title: 'Retail Sector: Complete POS & Inventory Management Software',
+      categoryName: 'B. Software Development Clients',
+      industry: 'Supermarkets & Garment Shops',
+      description: 'Comprehensive Point of Sale system featuring multi-counter rapid barcode scanning, purchase orders, expiry alerts, GST/VAT invoicing, and profit analysis.',
+      deliverables: ['High-speed Barcode Checkout', 'Automated Low-Stock Alerts', 'Multi-Store Inventory Sync', 'End-of-day Z-Report & Profit Margin'],
+      tags: ['Retail POS', 'Barcode Scanner', 'Inventory Control', 'Supermarkets'],
+      dubaiHighlight: 'Deployed across busy UAE convenience stores and garment boutiques with zero checkout downtime.',
+    },
+    {
+      id: 'soft-2',
+      type: 'software',
+      title: 'Restaurant Sector: Restaurant Management System',
+      categoryName: 'B. Software Development Clients',
+      industry: 'Restaurants, Cafes & Fast Food',
+      description: 'End-to-end food service management with Kitchen Display System (KDS), waiter tablets, split-bill processing, thermal order printers, and recipe cost tracking.',
+      deliverables: ['Kitchen Display System (KDS)', 'Thermal Kitchen Token Printing', 'Table & Takeaway Billing', 'Recipe & Raw Ingredient Tracking'],
+      tags: ['Restaurant ERP', 'Kitchen Display', 'Receipt Printers', 'Table Billing'],
+      dubaiHighlight: 'Streamlined order-to-table serving times from 18 minutes down to 8 minutes in high-capacity venues.',
+    },
+    {
+      id: 'soft-3',
+      type: 'software',
+      title: 'Shops & Services: Management Software',
+      categoryName: 'B. Software Development Clients',
+      industry: 'Mobile Shops, Electronics Stores & Salons',
+      description: 'Specialized workflow software tailored for IMEI tracking in mobile shops, warranty ticketing in electronics stores, and appointment booking in salons.',
+      deliverables: ['IMEI / Serial Number Tracking', 'Repair Job-Card & Customer SMS', 'Staff Commission Tracking', 'Appointment Booking Calendar'],
+      tags: ['Mobile Shops', 'Electronics Repair', 'Job Cards', 'Service Salons'],
+      dubaiHighlight: 'Handled thousands of daily repair job-cards and IMEI authentications with full customer transparency.',
+    },
+  ],
+  ndaNote: 'Due to NDA (Non-Disclosure Agreement) with our international clients, we cannot disclose their brand names publicly. We can share detailed case studies on private meeting.',
+};
+
+export const SHOP_PRODUCTS: ShopProduct[] = [
+  {
+    id: 'pos-terminal-1',
+    name: 'All-in-One Touchscreen POS Terminal System',
+    category: 'POS Hardware',
+    condition: 'Brand New',
+    priceEstimate: 'Call / WhatsApp for Best Quote',
+    description: 'Heavy-duty commercial grade touch terminal with dual display option, intel processor, fast SSD, and integrated cable management.',
+    specs: ['15.6" Capacitive Touch Display', 'Intel Core i3 / i5 Processor', '8GB RAM + 128GB High-Speed SSD', 'Multiple USB, COM, LAN Ports'],
+    availability: 'In Stock (Sialkot)',
+    warranty: '1 Year Warranty + Free Software Setup',
+  },
+  {
+    id: 'thermal-printer-1',
+    name: '80mm High-Speed Thermal Receipt Printer (USB + LAN)',
+    category: 'Printers & Scanners',
+    condition: 'Brand New',
+    priceEstimate: 'Best Market Price Guaranteed',
+    description: 'Auto-cutter thermal printer for retail shops, restaurants, and supermarkets. Compatible with all POS software and Windows/Android.',
+    specs: ['260mm/sec High-Speed Printing', 'Auto-Cutter (1.5M cuts lifespan)', 'USB + Ethernet LAN Interfaces', 'Works with standard 80mm paper rolls'],
+    availability: 'In Stock (Sialkot)',
+    warranty: '1 Year Local Warranty',
+  },
+  {
+    id: 'barcode-scanner-1',
+    name: '2D / QR & 1D Omnidirectional Hands-Free Barcode Scanner',
+    category: 'POS Hardware',
+    condition: 'Brand New',
+    priceEstimate: 'Affordable Wholesale Rate',
+    description: 'Desktop presentation scanner for fast supermarket checkout counters. Reads broken, curved, and phone screen barcodes with ease.',
+    specs: ['Automatic Sensor Trigger', 'Reads 1D & 2D QR Barcodes', 'Plug & Play USB Interface', 'Heavy-Duty Anti-Shock Base'],
+    availability: 'In Stock (Sialkot)',
+    warranty: '6 Months Replacement Warranty',
+  },
+  {
+    id: 'laptop-import-1',
+    name: 'Dell Latitude / HP EliteBook Business Series Laptop',
+    category: 'Laptops & PCs',
+    condition: 'Certified Refurbished (UAE Import)',
+    priceEstimate: 'Special Price for Sialkot Businesses',
+    description: 'Grade-A imported business laptops directly tested from Dubai corporate stock. Ideal for office work, accounting, design, and software.',
+    specs: ['Intel Core i5 8th / 10th Gen', '8GB / 16GB DDR4 RAM', '256GB / 512GB NVMe SSD', 'FHD Display + 3+ Hours Battery Health'],
+    availability: 'In Stock (Sialkot)',
+    warranty: '1 Month Checking + 1 Year Service Support',
+  },
+  {
+    id: 'desktop-workstation-1',
+    name: 'Custom Office & POS Compact Desktop PC System',
+    category: 'Laptops & PCs',
+    condition: 'Brand New',
+    priceEstimate: 'Custom Built According to Budget',
+    description: 'Durable, silent micro-tower PC built for continuous 24/7 billing counter or office accounting usage.',
+    specs: ['Fast Multi-Core Processor', 'Solid State Drive for 5-sec Booting', 'Original Power Supply with Surge Guard', 'Pre-installed Licensed Utility Tools'],
+    availability: 'In Stock (Sialkot)',
+    warranty: '1 Year Warranty',
+  },
+  {
+    id: 'laser-printer-1',
+    name: 'HP / Canon Heavy-Duty Office Laser Printer',
+    category: 'Printers & Scanners',
+    condition: 'Original Genuine',
+    priceEstimate: 'Contact for Models & Prices',
+    description: 'Low-cost per page laser printer designed for export invoices, bills of lading, and high-volume office paperwork in Sialkot.',
+    specs: ['High Yield Toner Cartridge', 'Duplex Double-Sided Printing', 'Wi-Fi & Network Printing', 'Crisp 1200 DPI Text Output'],
+    availability: 'In Stock (Sialkot)',
+    warranty: 'Complete Service & Parts Backing',
+  },
+  {
+    id: 'upgrade-ssd-1',
+    name: 'Super-Fast NVMe / SATA SSD Upgrade Kit (256GB / 512GB / 1TB)',
+    category: 'Upgrades & Accessories',
+    condition: 'Brand New',
+    priceEstimate: 'Includes Free On-Site Installation',
+    description: 'Revitalize any slow laptop or desktop. We transfer your existing data and Windows with zero data loss on-site in Sialkot.',
+    specs: ['Up to 3500 MB/s Read Speed', 'Original Brands (Samsung, Kingston, Crucial)', 'Free Windows Migration Included', 'Massive Speed Upgrade'],
+    availability: 'In Stock (Sialkot)',
+    warranty: '3 Years Warranty',
+  },
+  {
+    id: 'pos-paper-1',
+    name: 'Premium Thermal Paper Rolls (80mm & 57mm) - Box Pack',
+    category: 'Upgrades & Accessories',
+    condition: 'Brand New',
+    priceEstimate: 'Wholesale Box Rates',
+    description: 'Dark, clear printing thermal paper with long print preservation. Does not damage printer heating heads.',
+    specs: ['BPA Free High Quality Paper', 'Available in 80x70, 80x80 & 57mm', 'Clear Deep-Black Printout', 'Bulk Delivery Available in Sialkot'],
+    availability: 'In Stock (Sialkot)',
+    warranty: 'Guaranteed Quality & Meterage',
+  },
+];
+
+export const SIALKOT_HIGHLIGHTS = [
+  'Free Initial Phone Consultation & Remote Diagnosis',
+  'On-Site Technician Dispatched Across Sialkot within Hours',
+  'Direct WhatsApp Connectivity for Instant Price Quotes',
+  'Transparent Hardware Invoicing with Zero Hidden Lab Charges',
+  'Post-Deployment Software Training for Your Cashiers & Staff',
+];
