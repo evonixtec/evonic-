@@ -1,9 +1,10 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Search, BookOpen, Clock, Calendar, ArrowRight, Sparkles, Filter, CheckCircle2, ChevronRight } from 'lucide-react';
 import { ALL_BLOGS, BLOG_CATEGORIES, BlogCategory, BlogPost, searchBlogs } from '../data/blogs';
 import { SectionId } from '../types';
 import { BlogReaderModal } from './BlogReaderModal';
 import { EvonixMark } from './EvonixLogo';
+import { applyBlogPostSEO, applyPageSEO } from '../lib/seo';
 
 interface BlogHubProps {
   onNavigateSection: (sectionId: SectionId) => void;
@@ -47,6 +48,40 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onNavigateSection, onOpenQuote
 
   const displayedBlogs = filteredBlogs.slice(0, visibleCount);
 
+  // Synchronize SEO when reading a specific guide or browsing guides hub
+  useEffect(() => {
+    if (readingBlog) {
+      applyBlogPostSEO(readingBlog);
+    } else {
+      applyPageSEO('guides');
+    }
+  }, [readingBlog]);
+
+  const handleOpenBlog = (blog: BlogPost) => {
+    setReadingBlog(blog);
+    window.location.hash = `blog-${blog.id}`;
+  };
+
+  const handleCloseBlog = () => {
+    setReadingBlog(null);
+    window.location.hash = 'guides';
+  };
+
+  // Support direct hash deep-linking (e.g., #blog-1 or #guide-pos-thermal-printer)
+  useEffect(() => {
+    const checkBlogHash = () => {
+      const hash = window.location.hash.toLowerCase();
+      if (hash.startsWith('#blog-')) {
+        const idOrSlug = hash.replace('#blog-', '');
+        const target = ALL_BLOGS.find((b) => b.id.toString() === idOrSlug || b.slug === idOrSlug);
+        if (target) setReadingBlog(target);
+      }
+    };
+    checkBlogHash();
+    window.addEventListener('hashchange', checkBlogHash);
+    return () => window.removeEventListener('hashchange', checkBlogHash);
+  }, []);
+
   return (
     <section id="blogs" className="py-20 md:py-28 bg-slate-50 border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,10 +93,10 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onNavigateSection, onOpenQuote
               <span>EVONIX Technical Knowledge Base & SEO Guides</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-              60 In-Depth Tech Guides & Industry Blueprints
+              {ALL_BLOGS.length}+ Tech Guides & Sialkot Field Case Studies
             </h2>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
-              Curated by EVONIX engineers with 20+ years Dubai enterprise experience. Explore practical software architectures, chip-level laptop & printer repair protocols, and modern web development.
+              Curated by EVONIX engineers with 20+ years Dubai enterprise experience. Featuring real on-site emergency field repairs on Daska Road & Rangpura, surgical ERP deployments, offline POS systems, and chip-level motherboard labs.
             </p>
           </div>
 
@@ -190,7 +225,7 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onNavigateSection, onOpenQuote
             {displayedBlogs.map((blog) => (
               <article
                 key={blog.id}
-                onClick={() => setReadingBlog(blog)}
+                onClick={() => handleOpenBlog(blog)}
                 className="bg-white border border-slate-200 rounded-2xl p-6 shadow-2xs hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between cursor-pointer group"
               >
                 <div>
@@ -269,8 +304,8 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onNavigateSection, onOpenQuote
       {readingBlog && (
         <BlogReaderModal
           blog={readingBlog}
-          onClose={() => setReadingBlog(null)}
-          onSelectBlog={(b) => setReadingBlog(b)}
+          onClose={handleCloseBlog}
+          onSelectBlog={(b) => handleOpenBlog(b)}
           onNavigateSection={onNavigateSection}
           onOpenQuoteModal={onOpenQuoteModal}
         />

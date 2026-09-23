@@ -143,7 +143,7 @@ export const Hero: React.FC<HeroProps> = ({
               className="px-5 py-3.5 rounded-xl bg-white hover:bg-slate-100 text-slate-800 font-semibold text-sm sm:text-base border border-slate-200 shadow-2xs transition-all flex items-center gap-2 cursor-pointer"
             >
               <Layers className="w-4 h-4 text-slate-500" />
-              <span>Explore 60 Tech Guides</span>
+              <span>Explore 80+ Tech Guides</span>
             </button>
           </div>
         </div>

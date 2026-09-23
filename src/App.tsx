@@ -26,6 +26,7 @@ import { HomePortfolioPreview } from './components/home/HomePortfolioPreview';
 import { HomeShopPreview } from './components/home/HomeShopPreview';
 import { COMPANY_INFO } from './data/content';
 import { initAntiCopyShield, initializeConsoleShield } from './lib/security';
+import { applyPageSEO } from './lib/seo';
 import { MessageSquare, Phone, ArrowUp, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 export default function App() {
@@ -53,6 +54,11 @@ export default function App() {
     });
     return () => cleanupShield();
   }, []);
+
+  // Synchronize Page Title, Meta Description, Open Graph & Sialkot SEO tags per sub-page
+  useEffect(() => {
+    applyPageSEO(currentPage);
+  }, [currentPage]);
 
   // Listen for browser hash changes (e.g. back/forward button or external anchor links)
   useEffect(() => {
@@ -369,16 +375,16 @@ export default function App() {
         {currentPage === 'guides' && (
           <div className="space-y-0">
             <PageHeaderBanner
-              breadcrumbCurrent="60 Technical Guides & FAQs"
+              breadcrumbCurrent="80+ Technical Guides & Case Studies"
               badgeText="Complete Technical Knowledge Hub"
-              title="60 Tech Guides & Comprehensive FAQs"
-              subtitle="Free engineering knowledge base covering web deployment, retail POS troubleshooting, printer maintenance, chip-level laptop care, and IT operations in Sialkot."
+              title="80+ Tech Guides & Field Case Studies"
+              subtitle="Free engineering knowledge base covering web deployment, Daska Road & Rangpura field case studies, retail POS troubleshooting, chip-level laptop care, and IT operations in Sialkot."
               onNavigateHome={() => navigateToPage('home')}
               onOpenQuote={() => handleOpenQuote('Technical Consultation')}
               ctaText="Ask An Engineer"
             />
 
-            {/* Blog Hub with 60 SEO Guides */}
+            {/* Blog Hub with 80+ SEO Guides */}
             <BlogHub
               onNavigateSection={(sec) => navigateToPage(sec as NavPageId)}
               onOpenQuoteModal={handleOpenQuote}

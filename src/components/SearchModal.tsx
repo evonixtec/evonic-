@@ -414,7 +414,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
               setQuery(e.target.value);
               setSelectedIndex(0);
             }}
-            placeholder="Search services, POS software, 60 tech guides, portfolio, laptops..."
+            placeholder={`Search services, POS software, ${ALL_BLOGS.length}+ tech guides, portfolio, laptops...`}
             className="w-full bg-transparent text-slate-900 dark:text-white placeholder-slate-400 text-sm sm:text-base focus:outline-none"
           />
           {query && (
@@ -467,7 +467,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             }`}
           >
             <BookOpen className="w-3.5 h-3.5" />
-            Blogs & Tech Guides (60)
+            Blogs & Tech Guides ({ALL_BLOGS.length})
           </button>
           <button
             onClick={() => {

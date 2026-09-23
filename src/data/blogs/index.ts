@@ -2,13 +2,16 @@ import { BlogPost, BlogCategory } from './types';
 import { WEB_GRAPHICS_BLOGS } from './webGraphicsBlogs';
 import { SOFTWARE_DEV_BLOGS } from './softwareDevBlogs';
 import { HARDWARE_REPAIR_BLOGS } from './hardwareRepairBlogs';
+import { SIALKOT_FIELD_BLOGS } from './sialkotFieldBlogs';
 
 export * from './types';
 export { WEB_GRAPHICS_BLOGS } from './webGraphicsBlogs';
 export { SOFTWARE_DEV_BLOGS } from './softwareDevBlogs';
 export { HARDWARE_REPAIR_BLOGS } from './hardwareRepairBlogs';
+export { SIALKOT_FIELD_BLOGS } from './sialkotFieldBlogs';
 
 export const ALL_BLOGS: BlogPost[] = [
+  ...SIALKOT_FIELD_BLOGS,
   ...WEB_GRAPHICS_BLOGS,
   ...SOFTWARE_DEV_BLOGS,
   ...HARDWARE_REPAIR_BLOGS,
@@ -26,24 +29,24 @@ export const BLOG_CATEGORIES: BlogCategoryMeta[] = [
     id: 'all',
     label: 'All Articles',
     count: ALL_BLOGS.length,
-    description: 'Explore our complete library of 60 technical guides, architectural blueprints, and diagnostic insights.',
+    description: 'Explore our complete library of 80+ technical guides, Daska Road & Rangpura field case studies, and diagnostic insights.',
   },
   {
     id: 'web-graphics',
     label: 'Web & Graphic Design',
-    count: WEB_GRAPHICS_BLOGS.length,
+    count: ALL_BLOGS.filter((b) => b.category === 'web-graphics').length,
     description: 'Modern UI/UX design, responsive layouts, typography, brand identities, and high-conversion frontend engineering.',
   },
   {
     id: 'software-dev',
     label: 'Software & POS Development',
-    count: SOFTWARE_DEV_BLOGS.length,
+    count: ALL_BLOGS.filter((b) => b.category === 'software-dev').length,
     description: 'Custom ERPs, retail POS architectures, cloud databases, offline-first sync, and enterprise business automation.',
   },
   {
     id: 'hardware-repair',
     label: 'Laptop & Printer Repair',
-    count: HARDWARE_REPAIR_BLOGS.length,
+    count: ALL_BLOGS.filter((b) => b.category === 'hardware-repair').length,
     description: 'Motherboard chip-level diagnostics, thermal printer maintenance, laser fusers, SSD speedups, and hardware lab practices.',
   },
 ];
