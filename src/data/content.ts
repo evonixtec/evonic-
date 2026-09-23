@@ -1,9 +1,48 @@
 import { ServiceItem, PortfolioCategory, ShopProduct, FaqItem } from '../types';
 import heroDubaiImg from '../assets/images/hero_dubai_tech_1790044690065.jpg';
+import heroDubaiWebp from '../assets/images/hero_dubai_tech_1790044690065.webp';
 import serviceWebDevImg from '../assets/images/service_web_dev_1790044711551.jpg';
+import serviceWebDevWebp from '../assets/images/service_web_dev_1790044711551.webp';
 import serviceSoftwarePosImg from '../assets/images/service_software_pos_1790044733191.jpg';
+import serviceSoftwarePosWebp from '../assets/images/service_software_pos_1790044733191.webp';
 import serviceHardwareRepairImg from '../assets/images/service_hardware_repair_1790044752878.jpg';
+import serviceHardwareRepairWebp from '../assets/images/service_hardware_repair_1790044752878.webp';
 import serviceOnsiteTechImg from '../assets/images/service_onsite_tech_1790044770537.jpg';
+import serviceOnsiteTechWebp from '../assets/images/service_onsite_tech_1790044770537.webp';
+
+// Portfolio WebP & Fallbacks
+import portfolioEcommerceWebp from '../assets/images/portfolio/portfolio_ecommerce.webp';
+import portfolioEcommerceJpg from '../assets/images/portfolio/portfolio_ecommerce.jpg';
+import portfolioRealestateWebp from '../assets/images/portfolio/portfolio_realestate.webp';
+import portfolioRealestateJpg from '../assets/images/portfolio/portfolio_realestate.jpg';
+import portfolioCorporateWebp from '../assets/images/portfolio/portfolio_corporate.webp';
+import portfolioCorporateJpg from '../assets/images/portfolio/portfolio_corporate.jpg';
+import portfolioRestaurantWebp from '../assets/images/portfolio/portfolio_restaurant.webp';
+import portfolioRestaurantJpg from '../assets/images/portfolio/portfolio_restaurant.jpg';
+import portfolioPosRetailWebp from '../assets/images/portfolio/portfolio_pos_retail.webp';
+import portfolioPosRetailJpg from '../assets/images/portfolio/portfolio_pos_retail.jpg';
+import portfolioRestaurantKdsWebp from '../assets/images/portfolio/portfolio_restaurant_kds.webp';
+import portfolioRestaurantKdsJpg from '../assets/images/portfolio/portfolio_restaurant_kds.jpg';
+import portfolioMobileRepairWebp from '../assets/images/portfolio/portfolio_mobile_repair.webp';
+import portfolioMobileRepairJpg from '../assets/images/portfolio/portfolio_mobile_repair.jpg';
+
+// Shop WebP & Fallbacks
+import shopPosTouchscreenWebp from '../assets/images/shop/shop_pos_touchscreen.webp';
+import shopPosTouchscreenJpg from '../assets/images/shop/shop_pos_touchscreen.jpg';
+import shopThermalPrinterWebp from '../assets/images/shop/shop_thermal_printer.webp';
+import shopThermalPrinterJpg from '../assets/images/shop/shop_thermal_printer.jpg';
+import shopBarcodeScannerWebp from '../assets/images/shop/shop_barcode_scanner.webp';
+import shopBarcodeScannerJpg from '../assets/images/shop/shop_barcode_scanner.jpg';
+import shopBusinessLaptopWebp from '../assets/images/shop/shop_business_laptop.webp';
+import shopBusinessLaptopJpg from '../assets/images/shop/shop_business_laptop.jpg';
+import shopDesktopPcWebp from '../assets/images/shop/shop_desktop_pc.webp';
+import shopDesktopPcJpg from '../assets/images/shop/shop_desktop_pc.jpg';
+import shopLaserPrinterWebp from '../assets/images/shop/shop_laser_printer.webp';
+import shopLaserPrinterJpg from '../assets/images/shop/shop_laser_printer.jpg';
+import shopNvmeSsdWebp from '../assets/images/shop/shop_nvme_ssd.webp';
+import shopNvmeSsdJpg from '../assets/images/shop/shop_nvme_ssd.jpg';
+import shopThermalPaperWebp from '../assets/images/shop/shop_thermal_paper.webp';
+import shopThermalPaperJpg from '../assets/images/shop/shop_thermal_paper.jpg';
 
 export interface HeroSlide {
   id: string;
@@ -18,6 +57,7 @@ export interface HeroSlide {
   secondaryAction: 'services' | 'portfolio' | 'shop' | 'whatsapp' | 'call';
   servicePrefill?: string;
   bgImage: string;
+  bgImageWebp?: string;
   floatingBadge: string;
   floatingText: string;
   pills: string[];
