@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SHOP_PRODUCTS, COMPANY_INFO } from '../data/content';
 import { ShopProduct } from '../types';
+import { OptimizedImage } from './common/OptimizedImage';
 import { ShoppingBag, Laptop, Printer, HardDrive, Search, MessageSquare, Check, Shield, Tag } from 'lucide-react';
 
 interface ShopProps {
@@ -88,70 +89,92 @@ Please share current price & delivery/setup availability.`;
           {filteredProducts.map((product) => (
             <div
               key={product.id}
-              className="bg-white border border-slate-200 rounded-2xl p-6 shadow-2xs hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between"
+              className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-2xs hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between group"
             >
               <div>
-                {/* Header Tag & Condition */}
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700">
-                    {product.category}
-                  </span>
-                  <span
-                    className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${
+                {/* Product Hardware WebP Visual */}
+                {product.imageUrl && (
+                  <OptimizedImage
+                    src={product.imageUrl}
+                    webpSrc={product.imageWebp}
+                    alt={product.imageAlt || product.name}
+                    aspectRatio="aspect-[16/10]"
+                    badge={product.condition === 'Certified Refurbished (UAE Import)' ? 'UAE Import' : product.condition}
+                    badgeColor={
                       product.condition === 'Brand New'
-                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                        : 'bg-blue-50 text-blue-700 border border-blue-200'
-                    }`}
-                  >
-                    {product.condition}
-                  </span>
-                </div>
+                        ? 'emerald'
+                        : product.condition === 'Certified Refurbished (UAE Import)'
+                        ? 'blue'
+                        : 'slate'
+                    }
+                  />
+                )}
 
-                <h3 className="text-lg font-bold text-slate-900 mt-1">
-                  {product.name}
-                </h3>
+                <div className="p-6">
+                  {/* Header Tag & Condition */}
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700">
+                      {product.category}
+                    </span>
+                    <span
+                      className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${
+                        product.condition === 'Brand New'
+                          ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                          : 'bg-blue-50 text-blue-700 border border-blue-200'
+                      }`}
+                    >
+                      {product.condition}
+                    </span>
+                  </div>
 
-                <p className="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">
-                  {product.description}
-                </p>
+                  <h3 className="text-lg font-bold text-slate-900 mt-1 group-hover:text-red-600 transition-colors">
+                    {product.name}
+                  </h3>
 
-                {/* Features */}
-                <div className="mt-4 space-y-1.5 border-t border-slate-100 pt-3">
-                  {product.specs.map((spec, sIdx) => (
-                    <div key={sIdx} className="flex items-center gap-2 text-xs text-slate-600">
-                      <Check className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
-                      <span>{spec}</span>
-                    </div>
-                  ))}
+                  <p className="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">
+                    {product.description}
+                  </p>
+
+                  {/* Features */}
+                  <div className="mt-4 space-y-1.5 border-t border-slate-100 pt-3">
+                    {product.specs.map((spec, sIdx) => (
+                      <div key={sIdx} className="flex items-center gap-2 text-xs text-slate-600">
+                        <Check className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
+                        <span>{spec}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
 
               {/* Price & Action */}
-              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
-                <div>
-                  <span className="text-[10px] text-slate-400 uppercase tracking-wider block font-bold">Estimated Range</span>
-                  <span className="text-xs sm:text-sm font-bold text-slate-900">
-                    {product.priceEstimate}
-                  </span>
-                </div>
+              <div className="px-6 pb-6 pt-0">
+                <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+                  <div>
+                    <span className="text-[10px] text-slate-400 uppercase tracking-wider block font-bold">Estimated Range</span>
+                    <span className="text-xs sm:text-sm font-bold text-slate-900">
+                      {product.priceEstimate}
+                    </span>
+                  </div>
 
-                <div className="flex items-center gap-2">
-                  <a
-                    href={generateWhatsAppLink(product)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 transition-colors shadow-2xs"
-                    title="Inquire via WhatsApp"
-                  >
-                    <MessageSquare className="w-4 h-4" />
-                  </a>
+                  <div className="flex items-center gap-2">
+                    <a
+                      href={generateWhatsAppLink(product)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 transition-colors shadow-2xs"
+                      title="Inquire via WhatsApp"
+                    >
+                      <MessageSquare className="w-4 h-4" />
+                    </a>
 
-                  <button
-                    onClick={() => onInquireProduct(product.name)}
-                    className="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-red-600 text-white text-xs font-bold transition-colors cursor-pointer shadow-2xs"
-                  >
-                    Order / Inquire
-                  </button>
+                    <button
+                      onClick={() => onInquireProduct(product.name)}
+                      className="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-red-600 text-white text-xs font-bold transition-colors cursor-pointer shadow-2xs"
+                    >
+                      Order / Inquire
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

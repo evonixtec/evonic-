@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { COMPANY_INFO } from '../data/content';
-import { MapPin, Mail, Phone, MessageSquare, Clock, ShieldCheck, Send, CheckCircle2, ArrowRight } from 'lucide-react';
+import { MapPin, Mail, Phone, MessageSquare, Clock, ShieldCheck, Send, CheckCircle2, ArrowRight, Copy, Check } from 'lucide-react';
 import { sanitizeInput, checkRateLimit } from '../lib/security';
+import { SialkotLocationPicker } from './common/SialkotLocationPicker';
+import { dispatchQuoteNotification, buildWhatsAppQuoteUrl, buildMailtoQuoteUrl, QuotePayload } from '../lib/quoteService';
 
 interface ContactSectionProps {
   onOpenQuote: (service?: string) => void;
@@ -12,11 +14,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
   const [formPhone, setFormPhone] = useState('');
   const [formEmail, setFormEmail] = useState('');
   const [formService, setFormService] = useState('Website Development');
+  const [formLocation, setFormLocation] = useState('Paris Road & City Center');
+  const [gpsData, setGpsData] = useState<{ lat: number; lng: number; detected: boolean } | undefined>();
   const [formMessage, setFormMessage] = useState('');
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [submittedRecord, setSubmittedRecord] = useState<QuotePayload | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
+  const [copiedRef, setCopiedRef] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormError(null);
 
@@ -26,20 +31,33 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
       return;
     }
 
-    setFormSubmitted(true);
-  };
-
-  const getWhatsAppChatUrl = () => {
     const cleanName = sanitizeInput(formName) || 'Customer';
     const cleanPhone = sanitizeInput(formPhone) || 'Not specified';
-    const cleanMessage = sanitizeInput(formMessage) || 'I would like to inquire about your IT services in Sialkot.';
+    const cleanEmail = sanitizeInput(formEmail) || '';
+    const cleanLocation = sanitizeInput(formLocation) || 'Sialkot District';
+    const cleanMessage = sanitizeInput(formMessage) || 'General inquiry submitted via Contact form.';
 
-    const text = `Hello EVONIX,
-Name: ${cleanName}
-Phone: ${cleanPhone}
-Service: ${formService}
-Message: ${cleanMessage}`;
-    return `https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(text)}`;
+    const record = await dispatchQuoteNotification({
+      fullName: cleanName,
+      phone: cleanPhone,
+      email: cleanEmail,
+      serviceType: formService,
+      locationArea: cleanLocation,
+      gpsDetected: gpsData?.detected,
+      gpsCoords: gpsData ? { lat: gpsData.lat, lng: gpsData.lng } : undefined,
+      isHomeService: formService.toLowerCase().includes('doorstep') || formService.toLowerCase().includes('repair'),
+      details: cleanMessage,
+    });
+
+    setSubmittedRecord(record);
+  };
+
+  const handleCopyRef = () => {
+    if (submittedRecord?.referenceId) {
+      navigator.clipboard.writeText(submittedRecord.referenceId);
+      setCopiedRef(true);
+      setTimeout(() => setCopiedRef(false), 2000);
+    }
   };
 
   return (
@@ -140,33 +158,60 @@ Message: ${cleanMessage}`;
 
           {/* Right Column: Interactive Inquiry Form */}
           <div className="lg:col-span-7 bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-2xs">
-            {formSubmitted ? (
-              <div className="text-center py-12 space-y-4">
+            {submittedRecord ? (
+              <div className="text-center py-8 space-y-5">
                 <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-2xs">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
-                  Thank You, {formName}!
+
+                <h3 className="text-2xl font-black text-slate-900">
+                  Thank You, {submittedRecord.fullName}!
                 </h3>
+
                 <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-                  Your inquiry regarding <strong>{formService}</strong> has been received. Our senior engineer will connect with you via WhatsApp or phone shortly.
+                  Your inquiry regarding <strong>{submittedRecord.serviceType}</strong> in <strong>{submittedRecord.locationArea}</strong> has been received and routed to our team.
                 </p>
-                <div className="pt-4 flex flex-wrap justify-center gap-3">
+
+                {/* Reference Number Box */}
+                <div className="max-w-md mx-auto p-4 bg-white border-2 border-red-200 rounded-2xl shadow-xs space-y-2">
+                  <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block">
+                    Inquiry Reference Number
+                  </span>
+                  <div className="flex items-center justify-center gap-2">
+                    <span className="text-2xl font-mono font-black text-red-600 tracking-wider">
+                      {submittedRecord.referenceId}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={handleCopyRef}
+                      className="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer"
+                      title="Copy Reference"
+                    >
+                      {copiedRef ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+                    </button>
+                  </div>
+                  <p className="text-[11px] text-slate-500">
+                    Dispatched to <span className="font-semibold text-slate-700">evonixtec@gmail.com</span>. Please quote this ID for immediate updates.
+                  </p>
+                </div>
+
+                <div className="pt-2 flex flex-col sm:flex-row justify-center gap-3">
                   <a
-                    href={getWhatsAppChatUrl()}
+                    href={buildWhatsAppQuoteUrl(submittedRecord)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm transition-colors flex items-center gap-2"
+                    className="px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm transition-colors flex items-center justify-center gap-2 shadow-2xs"
                   >
                     <MessageSquare className="w-4 h-4" />
-                    <span>Open in WhatsApp Now</span>
+                    <span>Send Ref #{submittedRecord.referenceId} to WhatsApp</span>
                   </a>
+
                   <button
                     onClick={() => {
-                      setFormSubmitted(false);
+                      setSubmittedRecord(null);
                       setFormMessage('');
                     }}
-                    className="px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-700 text-xs font-semibold hover:bg-slate-100 transition-colors cursor-pointer"
+                    className="px-4 py-3 rounded-xl bg-white border border-slate-300 text-slate-700 text-xs font-semibold hover:bg-slate-100 transition-colors cursor-pointer"
                   >
                     Send Another Note
                   </button>
@@ -176,10 +221,10 @@ Message: ${cleanMessage}`;
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <h3 className="text-xl font-bold text-slate-900">
-                    Send a Direct Message
+                    Send a Direct Message & Get Free Consultation
                   </h3>
                   <p className="text-xs text-slate-500 mt-1">
-                    Fill out the form below or connect instantly on WhatsApp.
+                    Fill out the form below. An instant Reference Code will be generated and routed to <span className="text-slate-700 font-semibold">evonixtec@gmail.com</span>.
                   </p>
                 </div>
 
@@ -240,7 +285,7 @@ Message: ${cleanMessage}`;
                     <select
                       value={formService}
                       onChange={(e) => setFormService(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-red-500 shadow-2xs"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-red-500 shadow-2xs font-medium"
                     >
                       <option value="Website Development">Website Development & E-Commerce</option>
                       <option value="Software Development & POS Systems">Custom Software & Retail POS</option>
@@ -251,12 +296,24 @@ Message: ${cleanMessage}`;
                   </div>
                 </div>
 
+                {/* Sialkot Location Area Picker with Auto GPS Sensor */}
+                <div className="bg-white p-3.5 rounded-xl border border-slate-200">
+                  <SialkotLocationPicker
+                    value={formLocation}
+                    onChange={(area, data) => {
+                      setFormLocation(area);
+                      setGpsData(data);
+                    }}
+                    required
+                  />
+                </div>
+
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">
                     Message / Project Details *
                   </label>
                   <textarea
-                    rows={4}
+                    rows={3}
                     required
                     placeholder="Briefly describe your website needs, POS software requirements, or hardware issues..."
                     value={formMessage}
@@ -271,18 +328,12 @@ Message: ${cleanMessage}`;
                     className="w-full sm:w-auto px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm shadow-2xs transition-colors flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <Send className="w-4 h-4" />
-                    <span>Submit Message</span>
+                    <span>Submit & Get Reference Code</span>
                   </button>
 
-                  <a
-                    href={getWhatsAppChatUrl()}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full sm:w-auto px-5 py-3 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-semibold text-xs sm:text-sm border border-emerald-200 transition-colors flex items-center justify-center gap-2"
-                  >
-                    <MessageSquare className="w-4 h-4 text-emerald-600" />
-                    <span>Or Chat on WhatsApp</span>
-                  </a>
+                  <p className="text-[11px] text-slate-500">
+                    Direct notification to <span className="font-semibold text-slate-700">evonixtec@gmail.com</span>
+                  </p>
                 </div>
               </form>
             )}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PORTFOLIO_DATA } from '../data/content';
+import { OptimizedImage } from './common/OptimizedImage';
 import { Globe, Building, ShoppingBag, Utensils, Smartphone, ShieldCheck, ArrowRight, Lock } from 'lucide-react';
 
 interface PortfolioProps {
@@ -90,48 +91,64 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onRequestPrivateMeeting })
           {displayedItems.map((item, idx) => (
             <div
               key={idx}
-              className="bg-white border border-slate-200 rounded-2xl p-6 shadow-2xs hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between"
+              className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-2xs hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between group"
             >
               <div>
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700">
-                    {getIndustryIcon(item.industry)}
-                    <span>{item.industry}</span>
-                  </span>
-                  <span className="text-[11px] font-bold text-red-600">
-                    Dubai & UAE Proven
-                  </span>
-                </div>
+                {/* Visual Architecture Preview in WebP */}
+                {item.imageUrl && (
+                  <OptimizedImage
+                    src={item.imageUrl}
+                    webpSrc={item.imageWebp}
+                    alt={item.imageAlt || item.title}
+                    aspectRatio="aspect-[16/10]"
+                    badge={item.type === 'website' ? 'Web Solution' : 'POS / Software'}
+                    badgeColor={item.type === 'website' ? 'blue' : 'emerald'}
+                  />
+                )}
 
-                <h3 className="text-lg font-bold text-slate-900 mt-2">
-                  {item.title}
-                </h3>
-
-                <p className="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">
-                  {item.description}
-                </p>
-
-                {/* Deliverables / Scope tags */}
-                <div className="mt-4 flex flex-wrap gap-1.5 border-t border-slate-100 pt-3">
-                  {item.tags.map((tag, tIdx) => (
-                    <span
-                      key={tIdx}
-                      className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-50 border border-slate-200 text-slate-600"
-                    >
-                      {tag}
+                <div className="p-6">
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700">
+                      {getIndustryIcon(item.industry)}
+                      <span>{item.industry}</span>
                     </span>
-                  ))}
+                    <span className="text-[11px] font-bold text-red-600">
+                      Dubai & UAE Proven
+                    </span>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-slate-900 mt-2 group-hover:text-red-600 transition-colors">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">
+                    {item.description}
+                  </p>
+
+                  {/* Deliverables / Scope tags */}
+                  <div className="mt-4 flex flex-wrap gap-1.5 border-t border-slate-100 pt-3">
+                    {item.tags.map((tag, tIdx) => (
+                      <span
+                        key={tIdx}
+                        className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-50 border border-slate-200 text-slate-600"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
 
               {/* Status pill & Dubai highlight */}
-              <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
-                <span className="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-semibold border border-emerald-200">
-                  Production Verified
-                </span>
-                <span className="text-slate-500 text-[11px] font-medium">
-                  {item.type === 'website' ? 'Web Solution' : 'Software System'}
-                </span>
+              <div className="px-6 pb-6 pt-0">
+                <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+                  <span className="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-semibold border border-emerald-200">
+                    Production Verified
+                  </span>
+                  <span className="text-slate-500 text-[11px] font-medium">
+                    {item.dubaiHighlight.slice(0, 32)}...
+                  </span>
+                </div>
               </div>
             </div>
           ))}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { SERVICES } from '../data/content';
+import { OptimizedImage } from './common/OptimizedImage';
 import {
   Layout,
   Cpu,
@@ -92,57 +93,73 @@ export const Services: React.FC<ServicesProps> = ({ onSelectServiceForQuote }) =
           {filteredServices.map((service) => (
             <div
               key={service.id}
-              className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-xs hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between group"
+              className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xs hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between group"
             >
               <div>
-                {/* Header icon and badges */}
-                <div className="flex items-center justify-between mb-5">
-                  <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center group-hover:scale-105 transition-transform">
-                    {getIcon(service.iconName)}
-                  </div>
-                  <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
-                    Dubai Standard
-                  </span>
-                </div>
+                {/* Service Visual Preview with Lazy-loaded WebP */}
+                {service.imageUrl && (
+                  <OptimizedImage
+                    src={service.imageUrl}
+                    webpSrc={service.imageWebp}
+                    alt={service.imageAlt || service.title}
+                    aspectRatio="aspect-[16/9]"
+                    badge="Dubai Standard"
+                    badgeColor="red"
+                  />
+                )}
 
-                <h3 className="text-xl font-bold text-slate-900 group-hover:text-red-600 transition-colors">
-                  {service.title}
-                </h3>
-
-                <p className="text-slate-600 text-xs sm:text-sm mt-2.5 leading-relaxed">
-                  {service.summary}
-                </p>
-
-                {/* Features list */}
-                <div className="mt-5 space-y-2 border-t border-slate-100 pt-4">
-                  <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                    Key Deliverables
-                  </div>
-                  {service.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-slate-700">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                      <span>{feature}</span>
+                <div className="p-6 sm:p-7">
+                  {/* Header icon and badges */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center group-hover:scale-105 transition-transform">
+                      {getIcon(service.iconName)}
                     </div>
-                  ))}
+                    <span className="text-[11px] font-mono font-bold text-slate-400">
+                      SERVICE #{service.number}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-red-600 transition-colors">
+                    {service.title}
+                  </h3>
+
+                  <p className="text-slate-600 text-xs sm:text-sm mt-2.5 leading-relaxed">
+                    {service.summary}
+                  </p>
+
+                  {/* Features list */}
+                  <div className="mt-5 space-y-2 border-t border-slate-100 pt-4">
+                    <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                      Key Deliverables
+                    </div>
+                    {service.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-slate-700">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                        <span>{feature}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
 
               {/* Card Footer & Action */}
-              <div className="mt-6 pt-5 border-t border-slate-100 flex items-center justify-between">
-                <div>
-                  <span className="text-[11px] text-slate-400 block font-medium">Consultation</span>
-                  <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                    Free Assessment
-                  </span>
-                </div>
+              <div className="px-6 sm:px-7 pb-6 pt-0">
+                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                  <div>
+                    <span className="text-[11px] text-slate-400 block font-medium">Consultation</span>
+                    <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                      Free Assessment
+                    </span>
+                  </div>
 
-                <button
-                  onClick={() => onSelectServiceForQuote(service.title)}
-                  className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-red-600 text-white text-xs font-bold transition-colors flex items-center gap-1.5 cursor-pointer shadow-2xs"
-                >
-                  <span>Order / Inquire</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
+                  <button
+                    onClick={() => onSelectServiceForQuote(service.title)}
+                    className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-red-600 text-white text-xs font-bold transition-colors flex items-center gap-1.5 cursor-pointer shadow-2xs"
+                  >
+                    <span>Order / Inquire</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </div>
             </div>
           ))}

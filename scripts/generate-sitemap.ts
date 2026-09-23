@@ -8,6 +8,7 @@ const TODAY = new Date().toISOString().split('T')[0];
 const coreRoutes = [
   { loc: `${DOMAIN}/`, changefreq: 'daily', priority: '1.0' },
   { loc: `${DOMAIN}/#services`, changefreq: 'weekly', priority: '0.9' },
+  { loc: `${DOMAIN}/#guides`, changefreq: 'daily', priority: '0.9' },
   { loc: `${DOMAIN}/#blogs`, changefreq: 'daily', priority: '0.9' },
   { loc: `${DOMAIN}/#about`, changefreq: 'monthly', priority: '0.8' },
   { loc: `${DOMAIN}/#technologies`, changefreq: 'monthly', priority: '0.8' },
