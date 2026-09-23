@@ -17,12 +17,12 @@ export const FAQ: React.FC<FAQProps> = ({ onOpenQuote, onNavigateSection }) => {
     return FAQ_ITEMS.filter((item) => {
       const matchesCategory =
         activeCategory === 'all' || item.category === activeCategory;
-      const q = searchQuery.toLowerCase().trim();
+      const q = (searchQuery || '').toLowerCase().trim();
       const matchesQuery =
         !q ||
-        item.question.toLowerCase().includes(q) ||
-        item.answer.toLowerCase().includes(q) ||
-        (item.highlightBadge && item.highlightBadge.toLowerCase().includes(q));
+        (item.question || '').toLowerCase().includes(q) ||
+        (item.answer || '').toLowerCase().includes(q) ||
+        (item.highlightBadge && (item.highlightBadge || '').toLowerCase().includes(q));
       return matchesCategory && matchesQuery;
     });
   }, [activeCategory, searchQuery]);

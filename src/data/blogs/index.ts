@@ -58,18 +58,18 @@ export function getBlogBySlug(slug: string): BlogPost | undefined {
 }
 
 export function searchBlogs(query: string, category: BlogCategory | 'all' = 'all'): BlogPost[] {
-  const normalizedQuery = query.toLowerCase().trim();
+  const normalizedQuery = (query || '').toLowerCase().trim();
   const pool = getBlogsByCategory(category);
 
   if (!normalizedQuery) return pool;
 
   return pool.filter((blog) => {
     return (
-      blog.title.toLowerCase().includes(normalizedQuery) ||
-      blog.excerpt.toLowerCase().includes(normalizedQuery) ||
-      blog.tags.some((t) => t.toLowerCase().includes(normalizedQuery)) ||
-      blog.targetKeywords.some((k) => k.toLowerCase().includes(normalizedQuery)) ||
-      blog.content.toLowerCase().includes(normalizedQuery)
+      (blog.title || '').toLowerCase().includes(normalizedQuery) ||
+      (blog.excerpt || '').toLowerCase().includes(normalizedQuery) ||
+      (Array.isArray(blog.tags) && blog.tags.some((t) => (t || '').toLowerCase().includes(normalizedQuery))) ||
+      (Array.isArray(blog.targetKeywords) && blog.targetKeywords.some((k) => (k || '').toLowerCase().includes(normalizedQuery))) ||
+      (blog.content || '').toLowerCase().includes(normalizedQuery)
     );
   });
 }

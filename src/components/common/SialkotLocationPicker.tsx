@@ -105,13 +105,13 @@ export const SIALKOT_AREAS: SialkotArea[] = [
 ];
 
 interface SialkotLocationPickerProps {
-  value: string;
+  value?: string;
   onChange: (areaName: string, gpsData?: { lat: number; lng: number; detected: boolean }) => void;
   required?: boolean;
 }
 
 export const SialkotLocationPicker: React.FC<SialkotLocationPickerProps> = ({
-  value,
+  value = '',
   onChange,
   required = false,
 }) => {
@@ -265,7 +265,9 @@ export const SialkotLocationPicker: React.FC<SialkotLocationPickerProps> = ({
 
         <div className="flex flex-wrap gap-1.5">
           {SIALKOT_AREAS.slice(0, 7).map((area) => {
-            const isSelected = value.toLowerCase().includes(area.name.toLowerCase().split('&')[0].trim());
+            const safeVal = (value || '').toLowerCase();
+            const areaKeyword = (area.name || '').toLowerCase().split('&')[0].trim();
+            const isSelected = areaKeyword ? safeVal.includes(areaKeyword) : false;
             return (
               <button
                 key={area.id}

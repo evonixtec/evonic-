@@ -45,7 +45,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
       locationArea: cleanLocation,
       gpsDetected: gpsData?.detected,
       gpsCoords: gpsData ? { lat: gpsData.lat, lng: gpsData.lng } : undefined,
-      isHomeService: formService.toLowerCase().includes('doorstep') || formService.toLowerCase().includes('repair'),
+      isHomeService: (formService || '').toLowerCase().includes('doorstep') || (formService || '').toLowerCase().includes('repair'),
       details: cleanMessage,
     });
 

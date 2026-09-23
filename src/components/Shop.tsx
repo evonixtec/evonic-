@@ -22,8 +22,10 @@ export const Shop: React.FC<ShopProps> = ({ onInquireProduct }) => {
 
   const filteredProducts = SHOP_PRODUCTS.filter((product) => {
     const matchesCat = selectedCategory === 'all' || product.category === selectedCategory;
-    const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const q = (searchQuery || '').toLowerCase();
+    const matchesSearch = !q ||
+      (product.name || '').toLowerCase().includes(q) ||
+      (product.description || '').toLowerCase().includes(q);
     return matchesCat && matchesSearch;
   });
 

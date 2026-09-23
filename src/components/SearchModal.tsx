@@ -291,16 +291,16 @@ export const SearchModal: React.FC<SearchModalProps> = ({
       result = result.filter((item) => item.type === 'blog');
     }
 
-    const q = query.trim().toLowerCase();
+    const q = (query || '').trim().toLowerCase();
     if (!q) {
       return result;
     }
 
     return result.filter((item) => {
-      const matchTitle = item.title.toLowerCase().includes(q);
-      const matchDesc = item.description.toLowerCase().includes(q);
-      const matchCat = item.categoryLabel.toLowerCase().includes(q);
-      const matchTags = item.tags.some((t) => t.toLowerCase().includes(q));
+      const matchTitle = (item.title || '').toLowerCase().includes(q);
+      const matchDesc = (item.description || '').toLowerCase().includes(q);
+      const matchCat = (item.categoryLabel || '').toLowerCase().includes(q);
+      const matchTags = Array.isArray(item.tags) && item.tags.some((t) => (t || '').toLowerCase().includes(q));
       return matchTitle || matchDesc || matchCat || matchTags;
     });
   }, [allSearchItems, selectedCategory, query]);

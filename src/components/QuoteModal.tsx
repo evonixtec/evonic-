@@ -32,7 +32,8 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
   useEffect(() => {
     if (initialService) {
       setServiceType(initialService);
-      if (initialService.toLowerCase().includes('home') || initialService.toLowerCase().includes('on-site')) {
+      const safeInit = (initialService || '').toLowerCase();
+      if (safeInit.includes('home') || safeInit.includes('on-site')) {
         setIsHomeService(true);
       }
     }
