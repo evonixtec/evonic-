@@ -31,6 +31,13 @@ import { SialkotAreaCoverage } from './components/SialkotAreaCoverage';
 import { LaptopRepairEstimator } from './components/LaptopRepairEstimator';
 import { ProjectCostCalculator } from './components/ProjectCostCalculator';
 import { SialkotSeoKeywordsHub } from './components/SialkotSeoKeywordsHub';
+import { LiveRepairTracker } from './components/LiveRepairTracker';
+import { SialkotIndustrialSolutions } from './components/SialkotIndustrialSolutions';
+import { HardwareBeforeAfterGallery } from './components/HardwareBeforeAfterGallery';
+import { PCBPowerSequenceSimulator } from './components/PCBPowerSequenceSimulator';
+import { ThermalLifecyclePredictor } from './components/ThermalLifecyclePredictor';
+import { OfflineDataSyncEngine } from './components/OfflineDataSyncEngine';
+import { LiveSupportChat } from './components/LiveSupportChat';
 import { MessageSquare, Phone, ArrowUp, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 export default function App() {
@@ -228,13 +235,31 @@ export default function App() {
             {/* 1g. Sialkot Citywide Direct On-Site Coverage Explorer */}
             <SialkotAreaCoverage onOpenQuote={handleOpenQuote} />
 
-            {/* 1h. Interactive Hardware & Laptop Diagnostic Cost Estimator */}
+            {/* 1h. Live RMA Repair Ticket & Bench Diagnostics Tracker */}
+            <LiveRepairTracker onOpenQuote={handleOpenQuote} />
+
+            {/* 1i. Interactive Hardware & Laptop Diagnostic Cost Estimator */}
             <LaptopRepairEstimator onOpenQuote={handleOpenQuote} />
 
-            {/* 1i. Interactive Web & POS Software Project Cost Calculator */}
+            {/* 1j. Interactive Before & After Hardware Micro-Soldering Gallery */}
+            <HardwareBeforeAfterGallery onOpenQuote={handleOpenQuote} />
+
+            {/* 1k. Interactive Motherboard Power Sequence & PCB Voltage Simulator */}
+            <PCBPowerSequenceSimulator onOpenQuote={handleOpenQuote} />
+
+            {/* 1l. CPU / GPU Thermal Throttling & Paste Degradation Calculator */}
+            <ThermalLifecyclePredictor onOpenQuote={handleOpenQuote} />
+
+            {/* 1m. Sialkot Export Industry ERP & Custom Software Suite */}
+            <SialkotIndustrialSolutions onOpenQuote={handleOpenQuote} />
+
+            {/* 1n. Local Edge Offline LAN Sync Engine Simulator */}
+            <OfflineDataSyncEngine />
+
+            {/* 1o. Interactive Web & POS Software Project Cost Calculator */}
             <ProjectCostCalculator onOpenQuote={handleOpenQuote} />
 
-            {/* 1j. Why Choose Us (Dubai Quality & Component Diagnostics) */}
+            {/* 1m. Why Choose Us (Dubai Quality & Component Diagnostics) */}
             <WhyChooseUs />
 
             {/* 1h. Client Testimonials */}
@@ -268,8 +293,17 @@ export default function App() {
             {/* Full Detailed Services Section */}
             <Services onSelectServiceForQuote={handleOpenQuote} />
 
+            {/* Sialkot Export Industry ERP & Custom Software Suite */}
+            <SialkotIndustrialSolutions onOpenQuote={handleOpenQuote} />
+
+            {/* Live RMA Repair Ticket & Bench Diagnostics Tracker */}
+            <LiveRepairTracker onOpenQuote={handleOpenQuote} />
+
             {/* Interactive Hardware & Laptop Diagnostic Cost Estimator */}
             <LaptopRepairEstimator onOpenQuote={handleOpenQuote} />
+
+            {/* Interactive Before & After Hardware Micro-Soldering Gallery */}
+            <HardwareBeforeAfterGallery onOpenQuote={handleOpenQuote} />
 
             {/* Interactive Web & POS Software Project Cost Calculator */}
             <ProjectCostCalculator onOpenQuote={handleOpenQuote} />
@@ -477,6 +511,9 @@ export default function App() {
         onClose={() => setIsQuoteOpen(false)}
         initialService={selectedServiceForQuote}
       />
+
+      {/* Live Human Engineering Support Desk with Engr. Hamza Tariq */}
+      <LiveSupportChat onOpenQuote={handleOpenQuote} />
 
       {/* Floating Action Buttons */}
       <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2.5">

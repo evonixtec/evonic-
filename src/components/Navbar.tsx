@@ -20,6 +20,7 @@ import {
   ArrowRight,
   Printer,
   Laptop,
+  Cpu,
 } from 'lucide-react';
 
 export type NavPageId = 'home' | 'services' | 'portfolio' | 'shop' | 'about' | 'guides' | 'contact';
@@ -218,6 +219,24 @@ export const Navbar: React.FC<NavbarProps> = ({
                       </div>
                     </button>
 
+                    <button
+                      onClick={() => handlePageSelect('home', 'sialkot-industrial-solutions')}
+                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-3 group cursor-pointer border-t border-slate-100"
+                    >
+                      <div className="p-2 rounded-lg bg-purple-50 text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                        <Monitor className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-purple-600 transition-colors flex items-center gap-1.5">
+                          <span>Sialkot Export Industry ERP</span>
+                          <span className="text-[9px] bg-red-100 text-red-700 px-1.5 py-0.5 rounded-full font-bold">New</span>
+                        </div>
+                        <div className="text-[11px] text-slate-500">
+                          Surgical, Sports & Leather Export Software
+                        </div>
+                      </div>
+                    </button>
+
                     <div className="pt-1.5 border-t border-slate-100 px-2 pb-1">
                       <button
                         onClick={() => handlePageSelect('services')}
@@ -299,6 +318,33 @@ export const Navbar: React.FC<NavbarProps> = ({
                           Business Laptops & PCs
                         </div>
                         <div className="text-[11px] text-slate-500">Imported Dell, HP & Lenovo Machines</div>
+                      </div>
+                    </button>
+
+                    <button
+                      onClick={() => handlePageSelect('home', 'live-repair-tracker')}
+                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 cursor-pointer group border-t border-slate-100"
+                    >
+                      <Wrench className="w-4 h-4 text-slate-400 group-hover:text-red-600" />
+                      <div>
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-600 flex items-center gap-1.5">
+                          <span>Live RMA Repair Tracker</span>
+                          <span className="text-[9px] bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded-full font-bold">Live</span>
+                        </div>
+                        <div className="text-[11px] text-slate-500">Track bench repair & test logs</div>
+                      </div>
+                    </button>
+
+                    <button
+                      onClick={() => handlePageSelect('home', 'hardware-repair-gallery')}
+                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 cursor-pointer group"
+                    >
+                      <Cpu className="w-4 h-4 text-slate-400 group-hover:text-red-600" />
+                      <div>
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-600">
+                          Before & After Micro-Soldering
+                        </div>
+                        <div className="text-[11px] text-slate-500">Interactive bench inspection slider</div>
                       </div>
                     </button>
 
@@ -584,6 +630,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                     • Doorstep Sialkot On-Site IT Visit
                   </button>
                   <button
+                    onClick={() => handlePageSelect('home', 'sialkot-industrial-solutions')}
+                    className="w-full text-left p-2 rounded-lg text-purple-700 bg-purple-50/50 hover:bg-purple-100/50 font-bold"
+                  >
+                    • Sialkot Export Industry ERP (Surgical/Sports/Leather)
+                  </button>
+                  <button
                     onClick={() => handlePageSelect('services')}
                     className="w-full text-left p-2 text-red-600 font-bold hover:underline"
                   >
@@ -628,6 +680,18 @@ export const Navbar: React.FC<NavbarProps> = ({
                     className="w-full text-left p-2 rounded-lg text-slate-700 hover:bg-slate-50 font-medium"
                   >
                     • Imported Laptops & PC Workstations
+                  </button>
+                  <button
+                    onClick={() => handlePageSelect('home', 'live-repair-tracker')}
+                    className="w-full text-left p-2 rounded-lg text-red-700 bg-red-50/50 hover:bg-red-100/50 font-bold"
+                  >
+                    • Live RMA Repair & Bench Tracker
+                  </button>
+                  <button
+                    onClick={() => handlePageSelect('home', 'hardware-repair-gallery')}
+                    className="w-full text-left p-2 rounded-lg text-slate-700 hover:bg-slate-50 font-medium"
+                  >
+                    • Before & After Micro-Soldering Gallery
                   </button>
                   <button
                     onClick={() => handlePageSelect('shop')}
