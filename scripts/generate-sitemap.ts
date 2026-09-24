@@ -18,6 +18,10 @@ const coreRoutes = [
   { loc: `${DOMAIN}/#faq`, changefreq: 'monthly', priority: '0.7' },
   { loc: `${DOMAIN}/#contact`, changefreq: 'monthly', priority: '0.8' },
   { loc: `${DOMAIN}/#reach`, changefreq: 'monthly', priority: '0.7' },
+  { loc: `${DOMAIN}/#sialkot-areas`, changefreq: 'weekly', priority: '0.9' },
+  { loc: `${DOMAIN}/#laptop-repair-estimator`, changefreq: 'weekly', priority: '0.85' },
+  { loc: `${DOMAIN}/#project-calculator`, changefreq: 'weekly', priority: '0.85' },
+  { loc: `${DOMAIN}/#sialkot-seo-hub`, changefreq: 'weekly', priority: '0.9' },
 ];
 
 const policyRoutes = [

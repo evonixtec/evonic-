@@ -27,6 +27,10 @@ import { HomeShopPreview } from './components/home/HomeShopPreview';
 import { COMPANY_INFO } from './data/content';
 import { initAntiCopyShield, initializeConsoleShield } from './lib/security';
 import { applyPageSEO } from './lib/seo';
+import { SialkotAreaCoverage } from './components/SialkotAreaCoverage';
+import { LaptopRepairEstimator } from './components/LaptopRepairEstimator';
+import { ProjectCostCalculator } from './components/ProjectCostCalculator';
+import { SialkotSeoKeywordsHub } from './components/SialkotSeoKeywordsHub';
 import { MessageSquare, Phone, ArrowUp, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 export default function App() {
@@ -221,7 +225,16 @@ export default function App() {
               </div>
             </section>
 
-            {/* 1g. Why Choose Us (Dubai Quality & Component Diagnostics) */}
+            {/* 1g. Sialkot Citywide Direct On-Site Coverage Explorer */}
+            <SialkotAreaCoverage onOpenQuote={handleOpenQuote} />
+
+            {/* 1h. Interactive Hardware & Laptop Diagnostic Cost Estimator */}
+            <LaptopRepairEstimator onOpenQuote={handleOpenQuote} />
+
+            {/* 1i. Interactive Web & POS Software Project Cost Calculator */}
+            <ProjectCostCalculator onOpenQuote={handleOpenQuote} />
+
+            {/* 1j. Why Choose Us (Dubai Quality & Component Diagnostics) */}
             <WhyChooseUs />
 
             {/* 1h. Client Testimonials */}
@@ -254,6 +267,12 @@ export default function App() {
 
             {/* Full Detailed Services Section */}
             <Services onSelectServiceForQuote={handleOpenQuote} />
+
+            {/* Interactive Hardware & Laptop Diagnostic Cost Estimator */}
+            <LaptopRepairEstimator onOpenQuote={handleOpenQuote} />
+
+            {/* Interactive Web & POS Software Project Cost Calculator */}
+            <ProjectCostCalculator onOpenQuote={handleOpenQuote} />
 
             {/* Technologies We Use (Tech Stack Badges) */}
             <Technologies onExploreService={(svc) => handleOpenQuote(svc || 'Website Development')} />
@@ -389,6 +408,12 @@ export default function App() {
               onNavigateSection={(sec) => navigateToPage(sec as NavPageId)}
               onOpenQuoteModal={handleOpenQuote}
             />
+
+            {/* Sialkot Citywide Direct On-Site Coverage Hub */}
+            <SialkotAreaCoverage onOpenQuote={handleOpenQuote} />
+
+            {/* High-Value Sialkot Ranking Keywords & Local SEO Strategy Hub */}
+            <SialkotSeoKeywordsHub onNavigatePage={navigateToPage} />
 
             {/* Full FAQ Accordion */}
             <FAQ
