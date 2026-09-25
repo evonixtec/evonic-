@@ -12,3 +12,12 @@ createRoot(document.getElementById('root')!).render(
   </StrictMode>,
 );
 
+// Register service worker for fast mobile caching & offline support
+if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {
+      // Non-blocking registration
+    });
+  });
+}
+

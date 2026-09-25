@@ -122,6 +122,8 @@ export const HERO_SLIDES: HeroSlide[] = [
 
 export const COMPANY_INFO = {
   name: 'EVONIX TECHNOLOGIES',
+  nanoTagline: 'Dubai Precision Engineering • Sialkot Tech Hub',
+  nanoTaglineUrdu: 'دبئی معیار کی ٹیکنالوجی اب سیالکوٹ میں',
   tagline1: 'EVONIX TECHNOLOGIES - Your Trusted IT Partner.',
   tagline2: 'Experience of Dubai, Now in Pakistan. Crafting digital excellence across global borders.',
   hero: {

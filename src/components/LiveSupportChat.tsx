@@ -314,6 +314,17 @@ export const LiveSupportChat: React.FC<LiveSupportChatProps> = ({ onOpenQuote })
     };
   }, []);
 
+  // Listen for global open chat events (from MobileBottomNav or quick action buttons)
+  useEffect(() => {
+    const handleOpenChatEvent = () => {
+      setIsOpen(true);
+      setShowToastBanner(false);
+      setUnreadCount(0);
+    };
+    window.addEventListener('open-evonix-chat', handleOpenChatEvent);
+    return () => window.removeEventListener('open-evonix-chat', handleOpenChatEvent);
+  }, []);
+
   // Show friendly proactive popup after 4.5 seconds of browsing website
   useEffect(() => {
     if (!hasPromptedToast) {
@@ -817,9 +828,9 @@ export const LiveSupportChat: React.FC<LiveSupportChatProps> = ({ onOpenQuote })
         </div>
       )}
 
-      {/* 2. Floating Chat Trigger Button with Engineer Photo */}
+      {/* 2. Floating Chat Trigger Button with Engineer Photo (Desktop) */}
       {!isOpen && (
-        <div className="fixed bottom-6 left-6 z-40 flex items-center gap-3">
+        <div className="hidden lg:flex fixed bottom-6 left-6 z-40 items-center gap-3">
           <button
             onClick={handleOpen}
             className="group flex items-center gap-3 px-3.5 py-2.5 rounded-full bg-slate-900 hover:bg-black text-white shadow-2xl shadow-slate-900/40 border border-slate-700/80 hover:scale-105 transition-all cursor-pointer"
@@ -854,9 +865,9 @@ export const LiveSupportChat: React.FC<LiveSupportChatProps> = ({ onOpenQuote })
         </div>
       )}
 
-      {/* 3. Floating Chat Window */}
+      {/* 3. Floating Chat Window / Mobile Bottom Sheet */}
       {isOpen && (
-        <div className="fixed bottom-3 sm:bottom-6 left-3 sm:left-6 z-50 w-[calc(100vw-1.5rem)] sm:w-[430px] max-h-[90vh] h-[610px] bg-white rounded-3xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200">
+        <div className="fixed bottom-0 sm:bottom-6 left-0 sm:left-6 z-50 w-full sm:w-[430px] h-[92vh] sm:h-[610px] sm:max-h-[90vh] bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200">
           {/* Header with Human Photo & 4-Hour Shift Badge */}
           <div className="bg-slate-950 text-white p-4 flex items-center justify-between border-b border-slate-800">
             <div className="flex items-center gap-3">

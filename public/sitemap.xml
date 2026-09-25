@@ -76,6 +76,18 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://evonixtec.com/export-barcode-studio</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/printer-troubleshooter</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
 
   <!-- Legal & Trust Policies -->
   <url>
@@ -215,6 +227,54 @@
   <url>
     <loc>https://evonixtec.com/blog/annual-it-maintenance-contract-amc-sialkot-factories</loc>
     <lastmod>2025-06-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/sialkot-surgical-instruments-mdr-udi-barcode-software-guide</loc>
+    <lastmod>2025-07-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/dell-latitude-hp-elitebook-type-c-charging-repair-sialkot</loc>
+    <lastmod>2025-07-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/xprinter-black-copper-thermal-receipt-printer-cutter-repair-guide</loc>
+    <lastmod>2025-08-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/sambrial-dry-port-edi-ransomware-proof-nas-backup-sialkot</loc>
+    <lastmod>2025-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/sialkot-export-barcode-shipping-label-compliance-tsc-zebra</loc>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/hp-laserjet-thermal-printer-repeating-defect-distance-repair-sialkot</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/sialkot-export-factory-erp-customs-weboc-power-surge-protection</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://evonixtec.com/blog/modern-react-vite-web-development-sialkot-b2b-export-manufacturers</loc>
+    <lastmod>2026-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>

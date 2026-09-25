@@ -42,14 +42,31 @@ import { HardwareBlinkBeepIdentifier } from './components/HardwareBlinkBeepIdent
 import { ThermalHotspotInspector } from './components/ThermalHotspotInspector';
 import { FactoryNetworkLatencyTester } from './components/FactoryNetworkLatencyTester';
 import { BenchIntakePass } from './components/BenchIntakePass';
-import { MessageSquare, Phone, ArrowUp, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2, FileText } from 'lucide-react';
+import { ExportBarcodeLabelGenerator } from './components/ExportBarcodeLabelGenerator';
+import { PrinterDiagnosticTroubleshooter } from './components/PrinterDiagnosticTroubleshooter';
+import { MobileBottomNav } from './components/MobileBottomNav';
+import { PWAInstallBanner } from './components/PWAInstallBanner';
+import { MessageSquare, Phone, ArrowUp, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2, FileText, Barcode, Printer } from 'lucide-react';
 
 export default function App() {
-  // Read initial page from hash if present
+  // Read initial page from clean URL pathname (with hash backward compatibility)
   const getInitialPage = (): NavPageId => {
-    const hash = window.location.hash.replace('#', '').toLowerCase();
-    if (['services', 'portfolio', 'shop', 'about', 'guides', 'blogs', 'contact'].includes(hash)) {
-      return (hash === 'blogs' ? 'guides' : hash) as NavPageId;
+    if (typeof window !== 'undefined') {
+      const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+      if (['services', 'portfolio', 'shop', 'about', 'guides', 'contact'].includes(path)) {
+        return path as NavPageId;
+      }
+      if (path === 'blogs') {
+        return 'guides';
+      }
+      // Check legacy hash if someone arrives with bookmark
+      const hash = window.location.hash.replace('#', '').toLowerCase();
+      if (['services', 'portfolio', 'shop', 'about', 'guides', 'contact'].includes(hash)) {
+        return hash as NavPageId;
+      }
+      if (hash === 'blogs') {
+        return 'guides';
+      }
     }
     return 'home';
   };
@@ -76,16 +93,44 @@ export default function App() {
     applyPageSEO(currentPage);
   }, [currentPage]);
 
-  // Listen for browser hash changes (e.g. back/forward button or external anchor links)
+  // Clean URL synchronization: listen to browser back/forward buttons (popstate) and legacy hash
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '').toLowerCase();
-      if (['services', 'portfolio', 'shop', 'about', 'guides', 'blogs', 'contact', 'home'].includes(hash)) {
-        setCurrentPage((hash === 'blogs' ? 'guides' : hash === '' ? 'home' : hash) as NavPageId);
+    const syncRouteFromLocation = () => {
+      const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+      if (['services', 'portfolio', 'shop', 'about', 'guides', 'contact'].includes(path)) {
+        setCurrentPage(path as NavPageId);
+      } else if (path === 'blogs') {
+        setCurrentPage('guides');
+      } else {
+        const hash = window.location.hash.replace('#', '').toLowerCase();
+        if (['services', 'portfolio', 'shop', 'about', 'guides', 'contact'].includes(hash)) {
+          setCurrentPage(hash as NavPageId);
+        } else if (hash === 'blogs') {
+          setCurrentPage('guides');
+        } else if (hash) {
+          // If hash points to an element id on home page, scroll to it
+          setCurrentPage('home');
+          setTimeout(() => {
+            const el = document.getElementById(hash);
+            if (el) {
+              const navOffset = 80;
+              const elementPosition = el.getBoundingClientRect().top;
+              const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+              window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+            }
+          }, 150);
+        } else {
+          setCurrentPage('home');
+        }
       }
     };
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+
+    window.addEventListener('popstate', syncRouteFromLocation);
+    window.addEventListener('hashchange', syncRouteFromLocation);
+    return () => {
+      window.removeEventListener('popstate', syncRouteFromLocation);
+      window.removeEventListener('hashchange', syncRouteFromLocation);
+    };
   }, []);
 
   // Global keyboard shortcut to open search modal (Ctrl+K or Cmd+K)
@@ -100,10 +145,21 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Navigate to dedicated page and update hash
+  // Navigate to dedicated page with clean URL path (e.g. /services, /portfolio, /shop)
   const navigateToPage = (page: NavPageId, subTarget?: string) => {
     setCurrentPage(page);
-    window.location.hash = page === 'home' ? '' : page;
+
+    // Clean Path Format: /services, /portfolio, /shop, /about, /guides, /contact, or /
+    const cleanPath = page === 'home' ? '/' : `/${page}`;
+
+    // Update browser URL bar cleanly using HTML5 pushState (no hash '#')
+    if (window.location.pathname !== cleanPath) {
+      window.history.pushState({ page, subTarget }, '', cleanPath);
+    } else if (window.location.hash) {
+      // Clear out outdated hash if present
+      window.history.replaceState({ page, subTarget }, '', cleanPath);
+    }
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     if (subTarget) {
@@ -142,6 +198,9 @@ export default function App() {
       {/* Dynamic Scroll Progress Bar */}
       <ScrollProgressBar />
 
+      {/* Mobile App Install Notification Banner */}
+      <PWAInstallBanner />
+
       {/* 1. Header Menu & Navigation (Compact, Customized with Sub-Categories) */}
       <Navbar
         currentPage={currentPage}
@@ -150,8 +209,8 @@ export default function App() {
         onOpenSearch={() => setIsSearchOpen(true)}
       />
 
-      {/* Main Content Area: Renders Dedicated Page View */}
-      <main className="flex-1">
+      {/* Main Content Area: Renders Dedicated Page View (with mobile dock clearance) */}
+      <main className="flex-1 pb-16 lg:pb-0">
         {/* ========================================================
             PAGE 1: HOME PAGE (Concise, Curated & Beautiful)
            ======================================================== */}
@@ -255,6 +314,9 @@ export default function App() {
             {/* 1l. FLIR Infrared Thermal Hotspot Short-Circuit Inspector */}
             <ThermalHotspotInspector />
 
+            {/* 1l-2. LaserJet & Thermal Printer Troubleshooter */}
+            <PrinterDiagnosticTroubleshooter onOpenQuote={handleOpenQuote} />
+
             {/* 1m. Interactive Motherboard Power Sequence & PCB Voltage Simulator */}
             <PCBPowerSequenceSimulator onOpenQuote={handleOpenQuote} />
 
@@ -266,6 +328,9 @@ export default function App() {
 
             {/* 1p. Sialkot Export Factory ERP & Network Latency Benchmark */}
             <FactoryNetworkLatencyTester />
+
+            {/* 1p-2. Sialkot Export Barcode & Thermal Shipping Label Studio */}
+            <ExportBarcodeLabelGenerator onOpenQuote={handleOpenQuote} />
 
             {/* 1q. Local Edge Offline LAN Sync Engine Simulator */}
             <OfflineDataSyncEngine />
@@ -325,8 +390,14 @@ export default function App() {
             {/* FLIR Infrared Thermal Hotspot Short-Circuit Inspector */}
             <ThermalHotspotInspector />
 
+            {/* LaserJet & Thermal Printer Troubleshooter */}
+            <PrinterDiagnosticTroubleshooter onOpenQuote={handleOpenQuote} />
+
             {/* Sialkot Export Factory ERP & Network Latency Benchmark */}
             <FactoryNetworkLatencyTester />
+
+            {/* Sialkot Export Barcode & Thermal Shipping Label Studio */}
+            <ExportBarcodeLabelGenerator onOpenQuote={handleOpenQuote} />
 
             {/* Interactive Web & POS Software Project Cost Calculator */}
             <ProjectCostCalculator onOpenQuote={handleOpenQuote} />
@@ -544,8 +615,16 @@ export default function App() {
         onClose={() => setIsIntakePassOpen(false)}
       />
 
-      {/* Floating Action Buttons */}
-      <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2.5">
+      {/* Native App-Style Mobile Bottom Navigation Dock (Thumb Reach) */}
+      <MobileBottomNav
+        currentPage={currentPage}
+        onNavigate={navigateToPage}
+        onOpenChat={() => window.dispatchEvent(new CustomEvent('open-evonix-chat'))}
+        onOpenQuote={() => handleOpenQuote('Mobile General Inquiry')}
+      />
+
+      {/* Desktop Floating Action Buttons (Hidden on mobile to keep screen clean) */}
+      <div className="hidden lg:flex fixed bottom-6 right-6 z-40 flex-col items-end gap-2.5">
         {/* Free Bench Pass Trigger */}
         <button
           onClick={() => setIsIntakePassOpen(true)}
@@ -586,6 +665,16 @@ export default function App() {
           <ArrowUp className="w-4 h-4" />
         </button>
       </div>
+
+      {/* Discrete Mobile-Only Back to Top Floating Button */}
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        className="lg:hidden fixed bottom-18 right-3 z-30 p-2 rounded-full bg-white/95 backdrop-blur-xs text-slate-700 hover:text-red-600 border border-slate-200 shadow-md transition-all active:scale-95 cursor-pointer"
+        title="Back to Top"
+        aria-label="Scroll back to top"
+      >
+        <ArrowUp className="w-4 h-4" />
+      </button>
     </div>
   );
 }

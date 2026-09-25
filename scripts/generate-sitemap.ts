@@ -18,6 +18,8 @@ const coreRoutes = [
   { loc: `${DOMAIN}/laptop-repairing-sialkot`, changefreq: 'weekly', priority: '0.85' },
   { loc: `${DOMAIN}/pos-software-sialkot`, changefreq: 'weekly', priority: '0.85' },
   { loc: `${DOMAIN}/sialkot-export-erp`, changefreq: 'weekly', priority: '0.9' },
+  { loc: `${DOMAIN}/export-barcode-studio`, changefreq: 'weekly', priority: '0.9' },
+  { loc: `${DOMAIN}/printer-troubleshooter`, changefreq: 'weekly', priority: '0.9' },
 ];
 
 const policyRoutes = [

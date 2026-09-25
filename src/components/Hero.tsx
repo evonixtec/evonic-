@@ -87,19 +87,21 @@ export const Hero: React.FC<HeroProps> = ({
       <div className="absolute top-12 left-1/2 -translate-x-1/2 w-96 h-96 bg-red-100/40 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Top Heritage Badge */}
+        {/* Top Heritage Badge & Official Nano Tagline */}
         <div className="flex flex-col items-center text-center mb-8">
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-xs text-xs sm:text-sm font-semibold text-slate-800 transition-all hover:border-red-300">
+          <div className="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-xs text-xs sm:text-sm font-semibold text-slate-800 transition-all hover:border-red-300">
             <span className="flex items-center gap-1.5 text-emerald-600 font-bold">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping inline-block" />
               20+ Years Dubai Heritage
             </span>
             <span className="text-slate-300">•</span>
-            <span className="text-slate-600 font-medium">Now in Sialkot, Pakistan</span>
-            <span className="text-slate-300 hidden sm:inline">•</span>
-            <span className="hidden sm:inline-flex items-center gap-1 text-red-600 font-semibold">
-              <Award className="w-3.5 h-3.5" />
-              Enterprise Quality
+            <span className="text-red-600 font-extrabold uppercase tracking-wider text-[11px] bg-red-50 px-2.5 py-0.5 rounded-full border border-red-100">
+              Dubai Precision Engineering • Sialkot Tech Hub
+            </span>
+            <span className="text-slate-300 hidden md:inline">•</span>
+            <span className="hidden md:inline-flex items-center gap-1 text-slate-700 font-semibold">
+              <Award className="w-3.5 h-3.5 text-red-600" />
+              ISO & Dubai Standards
             </span>
           </div>
 

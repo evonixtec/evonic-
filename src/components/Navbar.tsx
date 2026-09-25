@@ -21,6 +21,7 @@ import {
   Printer,
   Laptop,
   Cpu,
+  Barcode,
 } from 'lucide-react';
 
 export type NavPageId = 'home' | 'services' | 'portfolio' | 'shop' | 'about' | 'guides' | 'contact';
@@ -92,13 +93,22 @@ export const Navbar: React.FC<NavbarProps> = ({
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-2">
-          {/* Brand Logo - Compact and Crisp */}
+          {/* Brand Logo with Nano Tagline */}
           <button
             onClick={() => handlePageSelect('home')}
-            className="flex items-center group cursor-pointer transition-transform hover:scale-[1.01] flex-shrink-0"
+            className="flex items-center gap-2 group cursor-pointer transition-transform hover:scale-[1.01] flex-shrink-0"
             aria-label="EVONIX Home"
           >
             <EvonixLogo size="md" forceTheme="light" />
+            <div className="hidden sm:flex flex-col text-left pl-2.5 border-l border-slate-200">
+              <span className="text-[10px] font-black uppercase tracking-wider text-red-600 leading-tight flex items-center gap-1">
+                <span>Dubai Heritage</span>
+                <span className="w-1 h-1 rounded-full bg-emerald-500" />
+              </span>
+              <span className="text-[9px] font-extrabold text-slate-500 uppercase tracking-widest leading-tight">
+                Sialkot Tech Hub
+              </span>
+            </div>
           </button>
 
           {/* Desktop Navigation Links with Dropdown Sub-categories */}
@@ -255,6 +265,24 @@ export const Navbar: React.FC<NavbarProps> = ({
                       </div>
                     </button>
 
+                    <button
+                      onClick={() => handlePageSelect('home', 'export-barcode-studio')}
+                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-3 group cursor-pointer"
+                    >
+                      <div className="p-2 rounded-lg bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                        <Barcode className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-emerald-600 transition-colors flex items-center gap-1.5">
+                          <span>Export Barcode & Label Studio</span>
+                          <span className="text-[9px] bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded-full font-bold">Tool</span>
+                        </div>
+                        <div className="text-[11px] text-slate-500">
+                          GS1, Code 128 & 203 DPI Carton Formatter
+                        </div>
+                      </div>
+                    </button>
+
                     <div className="pt-1.5 border-t border-slate-100 px-2 pb-1">
                       <button
                         onClick={() => handlePageSelect('services')}
@@ -391,6 +419,20 @@ export const Navbar: React.FC<NavbarProps> = ({
                           <span className="text-[9px] bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded-full font-bold">FLIR</span>
                         </div>
                         <div className="text-[11px] text-slate-500">Short circuit infrared detection</div>
+                      </div>
+                    </button>
+
+                    <button
+                      onClick={() => handlePageSelect('home', 'printer-diagnostics')}
+                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 cursor-pointer group"
+                    >
+                      <Printer className="w-4 h-4 text-slate-400 group-hover:text-red-600" />
+                      <div>
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-600 flex items-center gap-1.5">
+                          <span>LaserJet & Thermal Troubleshooter</span>
+                          <span className="text-[9px] bg-red-100 text-red-700 px-1.5 py-0.5 rounded-full font-bold">Ruler</span>
+                        </div>
+                        <div className="text-[11px] text-slate-500">Defect distance ruler & error codes</div>
                       </div>
                     </button>
 
