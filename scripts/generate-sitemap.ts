@@ -7,27 +7,23 @@ const TODAY = new Date().toISOString().split('T')[0];
 
 const coreRoutes = [
   { loc: `${DOMAIN}/`, changefreq: 'daily', priority: '1.0' },
-  { loc: `${DOMAIN}/#services`, changefreq: 'weekly', priority: '0.9' },
-  { loc: `${DOMAIN}/#guides`, changefreq: 'daily', priority: '0.9' },
-  { loc: `${DOMAIN}/#blogs`, changefreq: 'daily', priority: '0.9' },
-  { loc: `${DOMAIN}/#about`, changefreq: 'monthly', priority: '0.8' },
-  { loc: `${DOMAIN}/#technologies`, changefreq: 'monthly', priority: '0.8' },
-  { loc: `${DOMAIN}/#portfolio`, changefreq: 'monthly', priority: '0.8' },
-  { loc: `${DOMAIN}/#testimonials`, changefreq: 'weekly', priority: '0.85' },
-  { loc: `${DOMAIN}/#shop`, changefreq: 'weekly', priority: '0.8' },
-  { loc: `${DOMAIN}/#faq`, changefreq: 'monthly', priority: '0.7' },
-  { loc: `${DOMAIN}/#contact`, changefreq: 'monthly', priority: '0.8' },
-  { loc: `${DOMAIN}/#reach`, changefreq: 'monthly', priority: '0.7' },
-  { loc: `${DOMAIN}/#sialkot-areas`, changefreq: 'weekly', priority: '0.9' },
-  { loc: `${DOMAIN}/#laptop-repair-estimator`, changefreq: 'weekly', priority: '0.85' },
-  { loc: `${DOMAIN}/#project-calculator`, changefreq: 'weekly', priority: '0.85' },
-  { loc: `${DOMAIN}/#sialkot-seo-hub`, changefreq: 'weekly', priority: '0.9' },
+  { loc: `${DOMAIN}/services`, changefreq: 'weekly', priority: '0.9' },
+  { loc: `${DOMAIN}/guides`, changefreq: 'daily', priority: '0.9' },
+  { loc: `${DOMAIN}/blogs`, changefreq: 'daily', priority: '0.9' },
+  { loc: `${DOMAIN}/about`, changefreq: 'monthly', priority: '0.8' },
+  { loc: `${DOMAIN}/portfolio`, changefreq: 'monthly', priority: '0.8' },
+  { loc: `${DOMAIN}/shop`, changefreq: 'weekly', priority: '0.85' },
+  { loc: `${DOMAIN}/contact`, changefreq: 'monthly', priority: '0.85' },
+  { loc: `${DOMAIN}/sialkot-it-services`, changefreq: 'weekly', priority: '0.9' },
+  { loc: `${DOMAIN}/laptop-repairing-sialkot`, changefreq: 'weekly', priority: '0.85' },
+  { loc: `${DOMAIN}/pos-software-sialkot`, changefreq: 'weekly', priority: '0.85' },
+  { loc: `${DOMAIN}/sialkot-export-erp`, changefreq: 'weekly', priority: '0.9' },
 ];
 
 const policyRoutes = [
-  { loc: `${DOMAIN}/#privacy-policy`, changefreq: 'monthly', priority: '0.5' },
-  { loc: `${DOMAIN}/#terms-and-conditions`, changefreq: 'monthly', priority: '0.5' },
-  { loc: `${DOMAIN}/#warranty-policy`, changefreq: 'monthly', priority: '0.5' },
+  { loc: `${DOMAIN}/privacy-policy`, changefreq: 'monthly', priority: '0.5' },
+  { loc: `${DOMAIN}/terms-and-conditions`, changefreq: 'monthly', priority: '0.5' },
+  { loc: `${DOMAIN}/warranty-policy`, changefreq: 'monthly', priority: '0.5' },
 ];
 
 const blogRoutes = ALL_BLOGS.map((blog) => ({

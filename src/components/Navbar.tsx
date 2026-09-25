@@ -237,6 +237,24 @@ export const Navbar: React.FC<NavbarProps> = ({
                       </div>
                     </button>
 
+                    <button
+                      onClick={() => handlePageSelect('home', 'factory-network-tester')}
+                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-3 group cursor-pointer"
+                    >
+                      <div className="p-2 rounded-lg bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                        <Globe className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors flex items-center gap-1.5">
+                          <span>Factory Network Latency Benchmark</span>
+                          <span className="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full font-bold">Live</span>
+                        </div>
+                        <div className="text-[11px] text-slate-500">
+                          ERP & Sambrial Dry Port Ping & Packet Diagnostics
+                        </div>
+                      </div>
+                    </button>
+
                     <div className="pt-1.5 border-t border-slate-100 px-2 pb-1">
                       <button
                         onClick={() => handlePageSelect('services')}
@@ -345,6 +363,34 @@ export const Navbar: React.FC<NavbarProps> = ({
                           Before & After Micro-Soldering
                         </div>
                         <div className="text-[11px] text-slate-500">Interactive bench inspection slider</div>
+                      </div>
+                    </button>
+
+                    <button
+                      onClick={() => handlePageSelect('home', 'blink-beep-identifier')}
+                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 cursor-pointer group"
+                    >
+                      <Wrench className="w-4 h-4 text-slate-400 group-hover:text-red-600" />
+                      <div>
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-600 flex items-center gap-1.5">
+                          <span>Blink & Beep Code Decoder</span>
+                          <span className="text-[9px] bg-red-100 text-red-700 px-1.5 py-0.5 rounded-full font-bold">Tool</span>
+                        </div>
+                        <div className="text-[11px] text-slate-500">Dell, HP & Lenovo BIOS diagnostic tones</div>
+                      </div>
+                    </button>
+
+                    <button
+                      onClick={() => handlePageSelect('home', 'thermal-inspector')}
+                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 cursor-pointer group"
+                    >
+                      <Sparkles className="w-4 h-4 text-slate-400 group-hover:text-red-600" />
+                      <div>
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-600 flex items-center gap-1.5">
+                          <span>FLIR Thermal Hotspot Inspector</span>
+                          <span className="text-[9px] bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded-full font-bold">FLIR</span>
+                        </div>
+                        <div className="text-[11px] text-slate-500">Short circuit infrared detection</div>
                       </div>
                     </button>
 

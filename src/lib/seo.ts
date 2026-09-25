@@ -14,7 +14,7 @@ export interface PageMetadata {
 }
 
 const BASE_URL = 'https://evonixtec.com';
-const DEFAULT_OG_IMAGE = `${BASE_URL}/logo.svg`;
+const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.jpg`;
 
 export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   home: {
@@ -78,7 +78,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription: 'Full-suite Sialkot IT services: responsive web development, inventory POS software, and motherboard repair with 20+ years Dubai technical excellence.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
-    canonicalUrl: `${BASE_URL}/#services`,
+    canonicalUrl: `${BASE_URL}/services`,
     keywords: [
       'IT services in Sialkot',
       'web development Sialkot',
@@ -154,7 +154,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription: 'High-volume e-commerce systems, custom export ERP portals, and POS deployments delivered for UAE and Sialkot enterprise clients.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
-    canonicalUrl: `${BASE_URL}/#portfolio`,
+    canonicalUrl: `${BASE_URL}/portfolio`,
     keywords: [
       'IT portfolio Sialkot',
       'software projects Sialkot',
@@ -185,7 +185,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription: 'Imported commercial laptops, touch POS machines, thermal receipt printers, and barcode scanners available in Sialkot with local technical warranty.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
-    canonicalUrl: `${BASE_URL}/#shop`,
+    canonicalUrl: `${BASE_URL}/shop`,
     keywords: [
       'buy laptop in Sialkot',
       'business laptop Sialkot',
@@ -221,7 +221,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription: '20+ years of Dubai enterprise IT engineering now operating in Sialkot. Learn about our leadership, diagnostic lab, and commitment to international standards.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
-    canonicalUrl: `${BASE_URL}/#about`,
+    canonicalUrl: `${BASE_URL}/about`,
     keywords: [
       'about EVONIX Technologies',
       'IT company in Sialkot profile',
@@ -259,7 +259,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription: 'Free engineering tutorials, Daska Road & Rangpura on-site field reports, laptop motherboard repair, and POS solutions written for Sialkot business owners.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
-    canonicalUrl: `${BASE_URL}/#guides`,
+    canonicalUrl: `${BASE_URL}/guides`,
     keywords: [
       'IT troubleshooting guides Sialkot',
       'computer repair guide Sialkot',
@@ -293,7 +293,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription: 'Get in touch with our certified engineers on Paris Road, Sialkot. Rapid on-site technician dispatch across Cantt, Sambrial, Daska Road, and Industrial Estates.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
-    canonicalUrl: `${BASE_URL}/#contact`,
+    canonicalUrl: `${BASE_URL}/contact`,
     keywords: [
       'contact IT company Sialkot',
       'computer technician home service Sialkot',

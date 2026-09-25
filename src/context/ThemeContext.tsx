@@ -31,45 +31,20 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   const applyThemeToDOM = (mode: ThemeMode) => {
     const root = document.documentElement;
-    if (mode === 'light') {
-      root.classList.add('theme-light');
-      root.classList.remove('theme-dark');
-      root.setAttribute('data-theme', 'light');
-      root.style.colorScheme = 'light';
-    } else {
-      root.classList.remove('theme-light');
-      root.classList.add('theme-dark');
-      root.setAttribute('data-theme', 'dark');
-      root.style.colorScheme = 'dark';
-    }
+    root.classList.add('theme-light');
+    root.classList.remove('theme-dark');
+    root.setAttribute('data-theme', 'light');
+    root.style.colorScheme = 'light';
   };
 
   useEffect(() => {
     applyThemeToDOM(theme);
     try {
-      localStorage.setItem(THEME_STORAGE_KEY, theme);
+      localStorage.setItem(THEME_STORAGE_KEY, 'light');
     } catch {
       // ignore
     }
   }, [theme]);
-
-  // Listen to OS preference changes only if the user hasn't explicitly set a preference
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: light)');
-    const handleChange = (e: MediaQueryListEvent) => {
-      try {
-        const saved = localStorage.getItem(THEME_STORAGE_KEY);
-        if (!saved) {
-          setThemeState(e.matches ? 'light' : 'dark');
-        }
-      } catch {
-        // ignore
-      }
-    };
-
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
-  }, []);
 
   const toggleTheme = () => {
     setThemeState((prev) => (prev === 'dark' ? 'light' : 'dark'));

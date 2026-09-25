@@ -38,7 +38,11 @@ import { PCBPowerSequenceSimulator } from './components/PCBPowerSequenceSimulato
 import { ThermalLifecyclePredictor } from './components/ThermalLifecyclePredictor';
 import { OfflineDataSyncEngine } from './components/OfflineDataSyncEngine';
 import { LiveSupportChat } from './components/LiveSupportChat';
-import { MessageSquare, Phone, ArrowUp, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { HardwareBlinkBeepIdentifier } from './components/HardwareBlinkBeepIdentifier';
+import { ThermalHotspotInspector } from './components/ThermalHotspotInspector';
+import { FactoryNetworkLatencyTester } from './components/FactoryNetworkLatencyTester';
+import { BenchIntakePass } from './components/BenchIntakePass';
+import { MessageSquare, Phone, ArrowUp, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2, FileText } from 'lucide-react';
 
 export default function App() {
   // Read initial page from hash if present
@@ -53,6 +57,7 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<NavPageId>(getInitialPage);
   const [isQuoteOpen, setIsQuoteOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+  const [isIntakePassOpen, setIsIntakePassOpen] = useState<boolean>(false);
   const [activePolicyModal, setActivePolicyModal] = useState<PolicyType>(null);
   const [selectedServiceForQuote, setSelectedServiceForQuote] = useState<string>('Website Development');
   const [securityAlert, setSecurityAlert] = useState<string | null>(null);
@@ -244,16 +249,25 @@ export default function App() {
             {/* 1j. Interactive Before & After Hardware Micro-Soldering Gallery */}
             <HardwareBeforeAfterGallery onOpenQuote={handleOpenQuote} />
 
-            {/* 1k. Interactive Motherboard Power Sequence & PCB Voltage Simulator */}
+            {/* 1k. Laptop BIOS Blink & Beep Code Decoder Tool */}
+            <HardwareBlinkBeepIdentifier />
+
+            {/* 1l. FLIR Infrared Thermal Hotspot Short-Circuit Inspector */}
+            <ThermalHotspotInspector />
+
+            {/* 1m. Interactive Motherboard Power Sequence & PCB Voltage Simulator */}
             <PCBPowerSequenceSimulator onOpenQuote={handleOpenQuote} />
 
-            {/* 1l. CPU / GPU Thermal Throttling & Paste Degradation Calculator */}
+            {/* 1n. CPU / GPU Thermal Throttling & Paste Degradation Calculator */}
             <ThermalLifecyclePredictor onOpenQuote={handleOpenQuote} />
 
-            {/* 1m. Sialkot Export Industry ERP & Custom Software Suite */}
+            {/* 1o. Sialkot Export Industry ERP & Custom Software Suite */}
             <SialkotIndustrialSolutions onOpenQuote={handleOpenQuote} />
 
-            {/* 1n. Local Edge Offline LAN Sync Engine Simulator */}
+            {/* 1p. Sialkot Export Factory ERP & Network Latency Benchmark */}
+            <FactoryNetworkLatencyTester />
+
+            {/* 1q. Local Edge Offline LAN Sync Engine Simulator */}
             <OfflineDataSyncEngine />
 
             {/* 1o. Interactive Web & POS Software Project Cost Calculator */}
@@ -304,6 +318,15 @@ export default function App() {
 
             {/* Interactive Before & After Hardware Micro-Soldering Gallery */}
             <HardwareBeforeAfterGallery onOpenQuote={handleOpenQuote} />
+
+            {/* Laptop BIOS Blink & Beep Code Decoder Tool */}
+            <HardwareBlinkBeepIdentifier />
+
+            {/* FLIR Infrared Thermal Hotspot Short-Circuit Inspector */}
+            <ThermalHotspotInspector />
+
+            {/* Sialkot Export Factory ERP & Network Latency Benchmark */}
+            <FactoryNetworkLatencyTester />
 
             {/* Interactive Web & POS Software Project Cost Calculator */}
             <ProjectCostCalculator onOpenQuote={handleOpenQuote} />
@@ -515,8 +538,24 @@ export default function App() {
       {/* Live Human Engineering Support Desk with Engr. Hamza Tariq */}
       <LiveSupportChat onOpenQuote={handleOpenQuote} />
 
+      {/* Official Free Bench Intake Pass Generator Dialog */}
+      <BenchIntakePass
+        isOpen={isIntakePassOpen}
+        onClose={() => setIsIntakePassOpen(false)}
+      />
+
       {/* Floating Action Buttons */}
       <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2.5">
+        {/* Free Bench Pass Trigger */}
+        <button
+          onClick={() => setIsIntakePassOpen(true)}
+          className="group flex items-center gap-2 px-3.5 py-2.5 rounded-full bg-red-600 hover:bg-red-700 text-white font-semibold text-xs shadow-xl shadow-red-600/30 hover:shadow-red-600/50 hover:scale-105 transition-all cursor-pointer"
+          title="Print Free Bench Intake Pass"
+        >
+          <FileText className="w-4 h-4" />
+          <span className="hidden sm:inline">Free Bench Pass</span>
+        </button>
+
         {/* Quick Search Floating Trigger */}
         <button
           onClick={() => setIsSearchOpen(true)}
