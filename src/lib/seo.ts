@@ -62,8 +62,17 @@ export const LOCAL_BUSINESS_SCHEMA = {
     { '@type': 'Country', name: 'Pakistan' },
     { '@type': 'Country', name: 'United Arab Emirates' },
   ],
+  knowsAbout: [
+    'IT Consultancy',
+    'Hardware Maintenance Services',
+    'Industrial Factory IT Systems',
+    'Chip-Level Motherboard Repair',
+    'Retail POS Systems',
+    'Custom Web Development',
+    'Industrial Network Engineering',
+  ],
   description:
-    'Premier IT engineering hub in Sialkot providing enterprise website development, custom retail POS systems, and chip-level motherboard & printer repair backed by 20+ years Dubai international experience.',
+    'Premier IT consultancy and industrial hardware maintenance services in Sialkot, delivering enterprise website engineering, custom retail POS systems, and chip-level motherboard & printer repair backed by 20+ years Dubai international experience.',
 };
 
 /**
@@ -191,6 +200,63 @@ export const INDIVIDUAL_SERVICES_SCHEMAS = [
     offers: {
       '@type': 'Offer',
       price: '65000',
+      priceCurrency: 'PKR',
+      priceValidUntil: '2026-12-31',
+      availability: 'https://schema.org/InStock',
+    },
+  },
+  {
+    '@type': 'Service',
+    '@id': `${BASE_URL}/services#it-consultancy`,
+    name: 'Industrial IT Consultancy & Enterprise Systems Architecture Sialkot',
+    serviceType: 'IT Consultancy & Strategic Infrastructure Planning',
+    category: 'IT Consulting',
+    description:
+      'Executive IT consultancy for Sialkot export manufacturing factories (surgical, sports goods, leather). Strategic enterprise architecture, WeBOC customs network hardening, high-availability SD-WAN dual-fiber failover, and digital automation built to Dubai standards.',
+    provider: { '@id': `${BASE_URL}/#business` },
+    areaServed: [
+      { '@type': 'City', name: 'Sialkot' },
+      { '@type': 'AdministrativeArea', name: 'Daska Road' },
+      { '@type': 'AdministrativeArea', name: 'Small Industrial Estate' },
+      { '@type': 'AdministrativeArea', name: 'Sambrial' },
+    ],
+    termsOfService: `${BASE_URL}/terms-and-conditions`,
+    offers: {
+      '@type': 'Offer',
+      price: '50000',
+      priceCurrency: 'PKR',
+      priceValidUntil: '2026-12-31',
+      availability: 'https://schema.org/InStock',
+    },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'IT Consultancy Solutions',
+      itemListElement: [
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Sialkot Export Factory IT Infrastructure Audit' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Disaster Recovery & Immutable NAS Backup Planning' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'FBR POS & ERP Integration Consultancy' } },
+      ],
+    },
+  },
+  {
+    '@type': 'Service',
+    '@id': `${BASE_URL}/services#hardware-maintenance`,
+    name: 'Industrial Hardware Maintenance Services & Factory AMC Sialkot',
+    serviceType: 'Hardware Maintenance & Industrial Preventative Servicing',
+    category: 'Hardware Maintenance Services',
+    description:
+      'Preventative hardware maintenance services and Annual Maintenance Contracts (AMC) for Sialkot industrial sectors. Multi-user workstations, accounts servers, 80mm POS thermal printers, barcode scanners, and chip-level PCB diagnostics with rapid 60-minute doorstep field dispatch.',
+    provider: { '@id': `${BASE_URL}/#business` },
+    areaServed: [
+      { '@type': 'City', name: 'Sialkot' },
+      { '@type': 'AdministrativeArea', name: 'Paris Road Sialkot' },
+      { '@type': 'AdministrativeArea', name: 'Sialkot Cantt' },
+      { '@type': 'AdministrativeArea', name: 'Small Industrial Estate' },
+    ],
+    termsOfService: `${BASE_URL}/warranty-policy`,
+    offers: {
+      '@type': 'Offer',
+      price: '15000',
       priceCurrency: 'PKR',
       priceValidUntil: '2026-12-31',
       availability: 'https://schema.org/InStock',
@@ -326,17 +392,22 @@ export const INDIVIDUAL_PRODUCTS_SCHEMAS = [
  */
 export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   home: {
-    title: 'EVONIX TECHNOLOGIES – Best IT Company & Software House in Sialkot',
+    title: 'EVONIX TECHNOLOGIES – IT Consultancy & Hardware Maintenance Services in Sialkot',
     description:
-      'Leading IT company in Sialkot. Get custom website development, retail POS software, and doorstep laptop repair backed by 20+ years Dubai expertise. Call now.',
-    ogTitle: 'EVONIX TECHNOLOGIES – Best IT Company & Software House in Sialkot',
+      'Leading IT consultancy and industrial hardware maintenance services in Sialkot. Enterprise website engineering, retail POS systems, and factory IT support backed by 20+ years Dubai expertise.',
+    ogTitle: 'EVONIX TECHNOLOGIES – IT Consultancy & Hardware Maintenance Services in Sialkot',
     ogDescription:
-      'Custom website development, retail POS software, and computer repair in Sialkot with 20+ years Dubai engineering expertise now in Pakistan.',
+      'Industrial IT consultancy, hardware maintenance services, custom software, and chip-level computer repairs in Sialkot backed by 20+ years Dubai engineering excellence.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalUrl: `${BASE_URL}/`,
     keywords: [
+      'IT consultancy Sialkot',
+      'hardware maintenance services Sialkot',
+      'industrial hardware maintenance Sialkot',
       'IT company in Sialkot',
+      'factory IT infrastructure Sialkot',
+      'IT maintenance contract Sialkot',
       'best software house in Sialkot',
       'website development Sialkot',
       'custom software development Sialkot',
@@ -349,16 +420,21 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   services: {
-    title: 'IT Services in Sialkot – Web, POS & Computer Repair | EVONIX',
+    title: 'IT Consultancy & Hardware Maintenance Services Sialkot | EVONIX',
     description:
-      'Professional IT services in Sialkot: custom website development, retail POS systems, and chip-level laptop & printer repair. Book certified tech support today.',
-    ogTitle: 'IT Services in Sialkot – Web Development, POS & Laptop Repair',
+      'Premier IT consultancy & industrial hardware maintenance services in Sialkot: enterprise factory networks, AMC server support, custom POS, and motherboard repair.',
+    ogTitle: 'IT Consultancy & Hardware Maintenance Services in Sialkot – EVONIX',
     ogDescription:
-      'Full-suite Sialkot IT services: responsive web development, inventory POS software, and motherboard repair with 20+ years Dubai technical excellence.',
+      'Full-suite industrial IT consultancy, hardware maintenance contracts, POS software, and motherboard repair with 20+ years Dubai technical excellence.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalUrl: `${BASE_URL}/services`,
     keywords: [
+      'IT consultancy Sialkot',
+      'hardware maintenance services Sialkot',
+      'industrial hardware maintenance Sialkot',
+      'IT maintenance contract AMC Sialkot',
+      'factory IT support Sialkot',
       'IT services in Sialkot',
       'web development Sialkot',
       'website design company Sialkot',
@@ -416,10 +492,10 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   about: {
-    title: 'About EVONIX – Dubai IT Engineering Heritage in Sialkot',
+    title: 'About EVONIX – IT Consultancy & Engineering Heritage in Sialkot',
     description:
-      'Discover how EVONIX brings 20+ years of high-availability Dubai IT infrastructure engineering to Sialkot, powering local exporters, retailers, and businesses.',
-    ogTitle: 'About EVONIX – Dubai IT Engineering Heritage in Sialkot',
+      'Discover how EVONIX brings 20+ years of high-availability Dubai IT consultancy and industrial hardware maintenance to Sialkot manufacturers and businesses.',
+    ogTitle: 'About EVONIX – IT Consultancy & Engineering Heritage in Sialkot',
     ogDescription:
       '20+ years of Dubai enterprise IT engineering now operating in Sialkot. Learn about our leadership, diagnostic lab, and commitment to international standards.',
     ogType: 'website',
@@ -427,6 +503,8 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     canonicalUrl: `${BASE_URL}/about`,
     keywords: [
       'about EVONIX Technologies',
+      'IT consultancy Sialkot',
+      'industrial hardware maintenance Sialkot',
       'IT company in Sialkot profile',
       'Dubai IT experience in Pakistan',
       'IT leadership Sialkot',
@@ -461,16 +539,19 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   contact: {
-    title: 'Contact IT Company Sialkot – On-Site Tech Support | EVONIX',
+    title: 'Contact IT Consultants Sialkot – Hardware Maintenance & Tech Support | EVONIX',
     description:
-      'Need urgent IT support or on-site laptop repair in Sialkot? Contact our Paris Road lab or book certified doorstep field technicians across Sialkot Cantt.',
-    ogTitle: 'Contact EVONIX – On-Site IT Support & Computer Repair Sialkot',
+      'Need urgent IT consultancy or industrial hardware maintenance in Sialkot? Contact our Paris Road lab or book certified doorstep field technicians across Sialkot Cantt.',
+    ogTitle: 'Contact EVONIX – IT Consultancy & Hardware Maintenance Sialkot',
     ogDescription:
       'Get in touch with our certified engineers on Paris Road, Sialkot. Rapid on-site technician dispatch across Cantt, Sambrial, Daska Road, and Industrial Estates.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalUrl: `${BASE_URL}/contact`,
     keywords: [
+      'contact IT consultant Sialkot',
+      'hardware maintenance services contact Sialkot',
+      'industrial IT support Sialkot',
       'contact IT company Sialkot',
       'computer technician home service Sialkot',
       'on-site IT support Sialkot',
@@ -478,6 +559,30 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'IT support WhatsApp Sialkot',
       'urgent computer repair Sialkot Cantt',
       'IT engineer visit Sialkot',
+    ],
+  },
+
+  locations: {
+    title: 'Local IT Services Hub – Daska, Sambrial & Wazirabad | EVONIX TECHNOLOGIES',
+    description:
+      'Doorstep industrial IT consultancy, hardware maintenance, retail POS systems, and chip-level motherboard repair across Daska, Sambrial, and Wazirabad with 25-45 min field dispatch.',
+    ogTitle: 'EVONIX Local Hubs – Daska, Sambrial & Wazirabad On-Site IT Support',
+    ogDescription:
+      'High-priority industrial IT engineering, WeBOC server maintenance, and laptop repair across the Sialkot-Daska-Sambrial-Wazirabad industrial corridor.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    canonicalUrl: `${BASE_URL}/locations`,
+    keywords: [
+      'IT company Daska',
+      'laptop repairing Daska Road Sialkot',
+      'hardware maintenance Sambrial',
+      'IT support Sambrial Dry Port',
+      'computer repair Wazirabad',
+      'cutlery website developer Wazirabad',
+      'POS software Daska',
+      'retail billing software Wazirabad',
+      'on-site IT support Sambrial',
+      'Sialkot industrial IT triangle',
     ],
   },
 };
@@ -582,6 +687,10 @@ function generateRouteStructuredData(pageId: NavPageId): object {
     // Add top featured service references to home
     graph.push(INDIVIDUAL_SERVICES_SCHEMAS[0]);
     graph.push(INDIVIDUAL_SERVICES_SCHEMAS[2]);
+    const itConsultancy = INDIVIDUAL_SERVICES_SCHEMAS.find((s) => s['@id'].includes('it-consultancy'));
+    const hwMaintenance = INDIVIDUAL_SERVICES_SCHEMAS.find((s) => s['@id'].includes('hardware-maintenance'));
+    if (itConsultancy) graph.push(itConsultancy);
+    if (hwMaintenance) graph.push(hwMaintenance);
   } else if (pageId === 'services') {
     // WebPage descriptor
     graph.push({
@@ -682,6 +791,16 @@ function generateRouteStructuredData(pageId: NavPageId): object {
       description: meta.description,
       breadcrumb: { '@id': `${BASE_URL}/contact#breadcrumb` },
       mainEntity: { '@id': `${BASE_URL}/#business` },
+    });
+  } else if (pageId === 'locations') {
+    graph.push({
+      '@type': 'CollectionPage',
+      '@id': `${BASE_URL}/locations#webpage`,
+      url: `${BASE_URL}/locations`,
+      name: meta.title,
+      description: meta.description,
+      breadcrumb: { '@id': `${BASE_URL}/locations#breadcrumb` },
+      publisher: { '@id': `${BASE_URL}/#business` },
     });
   }
 

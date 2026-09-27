@@ -22,10 +22,11 @@ import {
   Laptop,
   Cpu,
   Barcode,
+  MapPin,
 } from 'lucide-react';
 import { ThemeSwitcher } from './ThemeSwitcher';
 
-export type NavPageId = 'home' | 'services' | 'portfolio' | 'shop' | 'about' | 'guides' | 'contact';
+export type NavPageId = 'home' | 'services' | 'portfolio' | 'shop' | 'about' | 'guides' | 'contact' | 'locations';
 
 interface NavbarProps {
   currentPage: NavPageId;
@@ -597,7 +598,21 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </div>
 
-            {/* 6. Contact Link */}
+            {/* 6. Local Industrial Hubs (Daska, Sambrial, Wazirabad) */}
+            <button
+              onClick={() => handlePageSelect('locations')}
+              className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                currentPage === 'locations'
+                  ? 'text-red-600 bg-red-50/80 font-bold'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+              }`}
+            >
+              <MapPin className="w-3.5 h-3.5 text-red-500" />
+              <span>Hubs</span>
+              <span className="hidden xl:inline text-[10px] font-bold px-1.5 py-0.2 rounded bg-red-100 text-red-700">Daska • Sambrial</span>
+            </button>
+
+            {/* 7. Contact Link */}
             <button
               onClick={() => handlePageSelect('contact')}
               className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
@@ -853,6 +868,20 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <span>60 Tech Guides & FAQs</span>
               <span className="px-1.5 py-0.2 bg-red-100 text-red-700 text-[10px] rounded font-bold">SEO</span>
+            </button>
+
+            {/* Local Industrial Hubs (Daska, Sambrial, Wazirabad) */}
+            <button
+              onClick={() => handlePageSelect('locations')}
+              className={`w-full text-left px-3.5 py-2 rounded-xl text-sm font-bold flex items-center justify-between ${
+                currentPage === 'locations' ? 'bg-red-50 text-red-600' : 'text-slate-800 hover:bg-slate-100'
+              }`}
+            >
+              <span className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-red-600" />
+                <span>Daska, Sambrial & Wazirabad Hubs</span>
+              </span>
+              <span className="px-1.5 py-0.2 bg-red-100 text-red-700 text-[10px] rounded font-bold">Local SEO</span>
             </button>
 
             {/* Contact */}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { MapPin, Clock, ShieldCheck, Wrench, MessageSquare, Phone, CheckCircle2, ArrowRight, Building2, Users } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
 import { EvonixMark } from './EvonixLogo';
+import { NavPageId } from './Navbar';
 
 interface AreaHub {
   id: string;
@@ -126,9 +127,10 @@ const SIALKOT_HUBS: AreaHub[] = [
 
 interface SialkotAreaCoverageProps {
   onOpenQuote?: (serviceTitle?: string) => void;
+  onNavigatePage?: (page: NavPageId) => void;
 }
 
-export const SialkotAreaCoverage: React.FC<SialkotAreaCoverageProps> = ({ onOpenQuote }) => {
+export const SialkotAreaCoverage: React.FC<SialkotAreaCoverageProps> = ({ onOpenQuote, onNavigatePage }) => {
   const [selectedHub, setSelectedHub] = useState<AreaHub>(SIALKOT_HUBS[0]);
 
   const handleBookArea = (areaName: string) => {
@@ -309,6 +311,16 @@ export const SialkotAreaCoverage: React.FC<SialkotAreaCoverageProps> = ({ onOpen
                     <MessageSquare className="w-4 h-4" />
                     <span>WhatsApp Urgent Dispatch ({selectedHub.dispatchEta})</span>
                   </a>
+
+                  {onNavigatePage && (
+                    <button
+                      onClick={() => onNavigatePage('locations')}
+                      className="w-full py-2.5 px-4 rounded-xl bg-red-800/90 hover:bg-red-950 text-white font-bold text-xs shadow-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer border border-red-400/30"
+                    >
+                      <MapPin className="w-3.5 h-3.5 text-red-200" />
+                      <span>Open Daska, Sambrial & Wazirabad Hub Pages →</span>
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

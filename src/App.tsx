@@ -48,22 +48,44 @@ import { ExportBarcodeLabelGenerator } from './components/ExportBarcodeLabelGene
 import { PrinterDiagnosticTroubleshooter } from './components/PrinterDiagnosticTroubleshooter';
 import { MobileBottomNav } from './components/MobileBottomNav';
 import { PWAInstallBanner } from './components/PWAInstallBanner';
+import { LocalClusterLandingPage } from './components/LocalClusterLandingPage';
+import { AiHardwareDiagnosticBoard } from './components/AiHardwareDiagnosticBoard';
+import { LocalCity, ClusterService, LOCAL_CITIES, CLUSTER_SERVICES } from './data/localClusters';
 import { MessageSquare, Phone, ArrowUp, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2, FileText, Barcode, Printer } from 'lucide-react';
 
 export default function App() {
+  // Helper to extract city and service cluster from URL path
+  const parseLocationFromPath = (): { city: LocalCity['slug']; service: ClusterService['slug'] } => {
+    if (typeof window !== 'undefined') {
+      const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+      const parts = path.split('/');
+      if (parts[0] === 'location' || parts[0] === 'locations') {
+        const cityCandidate = parts[1] as LocalCity['slug'];
+        const serviceCandidate = parts[2] as ClusterService['slug'];
+        const validCity = cityCandidate && LOCAL_CITIES[cityCandidate] ? cityCandidate : 'daska';
+        const validService = serviceCandidate && CLUSTER_SERVICES[serviceCandidate] ? serviceCandidate : 'it-consultancy';
+        return { city: validCity, service: validService };
+      }
+    }
+    return { city: 'daska', service: 'it-consultancy' };
+  };
+
   // Read initial page from clean URL pathname (with hash backward compatibility)
   const getInitialPage = (): NavPageId => {
     if (typeof window !== 'undefined') {
       const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
-      if (['services', 'portfolio', 'shop', 'about', 'guides', 'contact'].includes(path)) {
+      if (['services', 'portfolio', 'shop', 'about', 'guides', 'contact', 'locations'].includes(path)) {
         return path as NavPageId;
+      }
+      if (path === 'locations' || path.startsWith('location')) {
+        return 'locations';
       }
       if (path === 'blogs' || path.startsWith('blog/')) {
         return 'guides';
       }
       // Check legacy hash if someone arrives with bookmark
       const hash = window.location.hash.replace('#', '').toLowerCase();
-      if (['services', 'portfolio', 'shop', 'about', 'guides', 'contact'].includes(hash)) {
+      if (['services', 'portfolio', 'shop', 'about', 'guides', 'contact', 'locations'].includes(hash)) {
         return hash as NavPageId;
       }
       if (hash === 'blogs') {
@@ -74,6 +96,7 @@ export default function App() {
   };
 
   const [currentPage, setCurrentPage] = useState<NavPageId>(getInitialPage);
+  const [clusterParams, setClusterParams] = useState(parseLocationFromPath);
   const [isQuoteOpen, setIsQuoteOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [isIntakePassOpen, setIsIntakePassOpen] = useState<boolean>(false);
@@ -99,13 +122,16 @@ export default function App() {
   useEffect(() => {
     const syncRouteFromLocation = () => {
       const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
-      if (['services', 'portfolio', 'shop', 'about', 'guides', 'contact'].includes(path)) {
+      if (['services', 'portfolio', 'shop', 'about', 'guides', 'contact', 'locations'].includes(path)) {
         setCurrentPage(path as NavPageId);
+      } else if (path === 'locations' || path.startsWith('location')) {
+        setClusterParams(parseLocationFromPath());
+        setCurrentPage('locations');
       } else if (path === 'blogs' || path.startsWith('blog/')) {
         setCurrentPage('guides');
       } else {
         const hash = window.location.hash.replace('#', '').toLowerCase();
-        if (['services', 'portfolio', 'shop', 'about', 'guides', 'contact'].includes(hash)) {
+        if (['services', 'portfolio', 'shop', 'about', 'guides', 'contact', 'locations'].includes(hash)) {
           setCurrentPage(hash as NavPageId);
         } else if (hash === 'blogs') {
           setCurrentPage('guides');
@@ -325,7 +351,10 @@ export default function App() {
             </section>
 
             {/* 1g. Sialkot Citywide Direct On-Site Coverage Explorer */}
-            <SialkotAreaCoverage onOpenQuote={handleOpenQuote} />
+            <SialkotAreaCoverage
+              onOpenQuote={handleOpenQuote}
+              onNavigatePage={navigateToPage}
+            />
 
             {/* 1h. Live RMA Repair Ticket & Bench Diagnostics Tracker */}
             <LiveRepairTracker onOpenQuote={handleOpenQuote} />
@@ -347,6 +376,15 @@ export default function App() {
 
             {/* 1m. Interactive Motherboard Power Sequence & PCB Voltage Simulator */}
             <PCBPowerSequenceSimulator onOpenQuote={handleOpenQuote} />
+
+            {/* 1m-2. EVONIX AI Hardware Diagnostics & Multimeter Test Point Simulator */}
+            <AiHardwareDiagnosticBoard
+              onOpenIntakePass={(fault) => {
+                setSelectedServiceForQuote(fault || 'Component-Level Motherboard Repair');
+                setIsIntakePassOpen(true);
+              }}
+              onOpenQuote={handleOpenQuote}
+            />
 
             {/* 1n. CPU / GPU Thermal Throttling & Paste Degradation Calculator */}
             <ThermalLifecyclePredictor onOpenQuote={handleOpenQuote} />
@@ -569,7 +607,10 @@ export default function App() {
             />
 
             {/* Sialkot Citywide Direct On-Site Coverage Hub */}
-            <SialkotAreaCoverage onOpenQuote={handleOpenQuote} />
+            <SialkotAreaCoverage
+              onOpenQuote={handleOpenQuote}
+              onNavigatePage={navigateToPage}
+            />
 
             {/* High-Value Sialkot Ranking Keywords & Local SEO Strategy Hub */}
             <SialkotSeoKeywordsHub onNavigatePage={navigateToPage} />
@@ -599,6 +640,21 @@ export default function App() {
 
             {/* Full Contact Section with GPS Sensor & Reference Code */}
             <ContactSection onOpenQuote={handleOpenQuote} />
+          </div>
+        )}
+
+        {/* ========================================================
+            PAGE 8: DEDICATED LOCAL SEO SERVICE CLUSTER LANDING PAGES
+            (Daska, Sambrial, Wazirabad Service Matrices)
+           ======================================================== */}
+        {currentPage === 'locations' && (
+          <div className="space-y-0">
+            <LocalClusterLandingPage
+              initialCity={clusterParams.city}
+              initialService={clusterParams.service}
+              onOpenQuote={handleOpenQuote}
+              onNavigatePage={navigateToPage}
+            />
           </div>
         )}
           </motion.div>
@@ -646,6 +702,7 @@ export default function App() {
       <BenchIntakePass
         isOpen={isIntakePassOpen}
         onClose={() => setIsIntakePassOpen(false)}
+        defaultDevice={selectedServiceForQuote}
       />
 
       {/* Native App-Style Mobile Bottom Navigation Dock (Thumb Reach) */}

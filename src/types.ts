@@ -1,5 +1,5 @@
 export type SectionId = 'home' | 'about' | 'services' | 'blogs' | 'reach' | 'technologies' | 'portfolio' | 'testimonials' | 'shop' | 'faq' | 'contact';
-export type PageId = 'home' | 'services' | 'portfolio' | 'shop' | 'about' | 'guides' | 'contact';
+export type PageId = 'home' | 'services' | 'portfolio' | 'shop' | 'about' | 'guides' | 'contact' | 'locations';
 
 export interface TestimonialItem {
   id: string;
