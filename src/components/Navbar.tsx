@@ -23,6 +23,7 @@ import {
   Cpu,
   Barcode,
 } from 'lucide-react';
+import { ThemeSwitcher } from './ThemeSwitcher';
 
 export type NavPageId = 'home' | 'services' | 'portfolio' | 'shop' | 'about' | 'guides' | 'contact';
 
@@ -624,6 +625,9 @@ export const Navbar: React.FC<NavbarProps> = ({
               </kbd>
             </button>
 
+            {/* Light / Dark Mode Theme Switcher */}
+            <ThemeSwitcher variant="icon" />
+
             {/* Free Quote Button */}
             <button
               onClick={() => onOpenQuote()}
@@ -861,8 +865,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span>Contact & Sialkot Office</span>
             </button>
 
-            {/* Direct Quick WhatsApp */}
+            {/* Mobile Theme Switcher */}
             <div className="pt-2">
+              <ThemeSwitcher variant="expanded" />
+            </div>
+
+            {/* Direct Quick WhatsApp */}
+            <div className="pt-1">
               <a
                 href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX, I am contacting you from the mobile website.')}`}
                 target="_blank"

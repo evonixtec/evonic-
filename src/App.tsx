@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { PageId, SectionId } from './types';
 import { ScrollProgressBar } from './components/ScrollProgressBar';
 import { Navbar, NavPageId } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { HeroSlider } from './components/HeroSlider';
 import { AboutUs } from './components/AboutUs';
 import { Services } from './components/Services';
 import { Technologies } from './components/Technologies';
@@ -56,7 +58,7 @@ export default function App() {
       if (['services', 'portfolio', 'shop', 'about', 'guides', 'contact'].includes(path)) {
         return path as NavPageId;
       }
-      if (path === 'blogs') {
+      if (path === 'blogs' || path.startsWith('blog/')) {
         return 'guides';
       }
       // Check legacy hash if someone arrives with bookmark
@@ -99,7 +101,7 @@ export default function App() {
       const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
       if (['services', 'portfolio', 'shop', 'about', 'guides', 'contact'].includes(path)) {
         setCurrentPage(path as NavPageId);
-      } else if (path === 'blogs') {
+      } else if (path === 'blogs' || path.startsWith('blog/')) {
         setCurrentPage('guides');
       } else {
         const hash = window.location.hash.replace('#', '').toLowerCase();
@@ -209,14 +211,40 @@ export default function App() {
         onOpenSearch={() => setIsSearchOpen(true)}
       />
 
-      {/* Main Content Area: Renders Dedicated Page View (with mobile dock clearance) */}
-      <main className="flex-1 pb-16 lg:pb-0">
-        {/* ========================================================
-            PAGE 1: HOME PAGE (Concise, Curated & Beautiful)
-           ======================================================== */}
+      {/* Main Content Area: Renders Dedicated Page View (with mobile dock clearance & Framer Motion entrance) */}
+      <main className="flex-1 pb-16 lg:pb-0 overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentPage}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{
+              duration: 0.3,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="w-full"
+          >
+            {/* ========================================================
+                PAGE 1: HOME PAGE (Concise, Curated & Beautiful)
+               ======================================================== */}
         {currentPage === 'home' && (
           <div className="space-y-0">
-            {/* 1a. Hero Section with 3 Core Pillars */}
+            {/* 1a. Flagship Interactive Hero Slider with Touch-Swipe & Cross-Fade Visuals */}
+            <HeroSlider
+              onOpenQuote={(service) => handleOpenQuote(service || 'Website Development')}
+              onNavigate={(section) => {
+                if (section === 'services') navigateToPage('services');
+                else if (section === 'portfolio') navigateToPage('portfolio');
+                else if (section === 'contact') navigateToPage('contact');
+                else if (section === 'about') navigateToPage('about');
+                else if (section === 'shop') navigateToPage('shop');
+                else navigateToPage('home');
+              }}
+              onOpenSearch={() => setIsSearchOpen(true)}
+            />
+
+            {/* 1b. Hero 3-Pillar Interactive Capabilities Matrix */}
             <Hero
               onOpenQuote={(service) => handleOpenQuote(service || 'Website Development')}
               onNavigate={(section) => {
@@ -352,6 +380,9 @@ export default function App() {
               onOpenQuote={handleOpenQuote}
               onNavigateSection={(sec) => navigateToPage(sec as NavPageId)}
             />
+
+            {/* 1j. Sialkot High-Value SEO Keywords & Search Intent Authority Hub */}
+            <SialkotSeoKeywordsHub onNavigatePage={navigateToPage} />
           </div>
         )}
 
@@ -570,6 +601,8 @@ export default function App() {
             <ContactSection onOpenQuote={handleOpenQuote} />
           </div>
         )}
+          </motion.div>
+        </AnimatePresence>
       </main>
 
       {/* 7. Footer Tagline, Policies & Navigation */}

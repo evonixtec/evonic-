@@ -59,17 +59,32 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onNavigateSection, onOpenQuote
 
   const handleOpenBlog = (blog: BlogPost) => {
     setReadingBlog(blog);
-    window.location.hash = `blog-${blog.id}`;
+    const cleanUrl = `/blog/${blog.slug}`;
+    if (window.location.pathname !== cleanUrl) {
+      window.history.pushState({ blogSlug: blog.slug }, '', cleanUrl);
+    }
   };
 
   const handleCloseBlog = () => {
     setReadingBlog(null);
-    window.location.hash = 'guides';
+    if (window.location.pathname.startsWith('/blog/')) {
+      window.history.pushState({}, '', '/guides');
+    }
   };
 
-  // Support direct hash deep-linking (e.g., #blog-1 or #guide-pos-thermal-printer)
+  // Support direct clean URL path (/blog/some-slug) and legacy hash (#blog-1)
   useEffect(() => {
-    const checkBlogHash = () => {
+    const checkBlogRoute = () => {
+      const path = window.location.pathname.toLowerCase();
+      if (path.startsWith('/blog/')) {
+        const slug = path.replace(/^\/blog\//, '').replace(/\/$/, '');
+        const target = ALL_BLOGS.find((b) => b.slug.toLowerCase() === slug || b.id.toString() === slug);
+        if (target) {
+          setReadingBlog(target);
+          return;
+        }
+      }
+
       const hash = window.location.hash.toLowerCase();
       if (hash.startsWith('#blog-')) {
         const idOrSlug = hash.replace('#blog-', '');
@@ -77,9 +92,14 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onNavigateSection, onOpenQuote
         if (target) setReadingBlog(target);
       }
     };
-    checkBlogHash();
-    window.addEventListener('hashchange', checkBlogHash);
-    return () => window.removeEventListener('hashchange', checkBlogHash);
+
+    checkBlogRoute();
+    window.addEventListener('popstate', checkBlogRoute);
+    window.addEventListener('hashchange', checkBlogRoute);
+    return () => {
+      window.removeEventListener('popstate', checkBlogRoute);
+      window.removeEventListener('hashchange', checkBlogRoute);
+    };
   }, []);
 
   return (
