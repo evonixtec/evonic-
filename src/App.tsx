@@ -33,6 +33,8 @@ import { SialkotAreaCoverage } from './components/SialkotAreaCoverage';
 import { LaptopRepairEstimator } from './components/LaptopRepairEstimator';
 import { ProjectCostCalculator } from './components/ProjectCostCalculator';
 import { SialkotSeoKeywordsHub } from './components/SialkotSeoKeywordsHub';
+import { KeywordMappingHub } from './components/KeywordMappingHub';
+import { CentralizedSeoDashboard } from './components/CentralizedSeoDashboard';
 import { LiveRepairTracker } from './components/LiveRepairTracker';
 import { SialkotIndustrialSolutions } from './components/SialkotIndustrialSolutions';
 import { HardwareBeforeAfterGallery } from './components/HardwareBeforeAfterGallery';
@@ -474,6 +476,9 @@ export default function App() {
             {/* Technologies We Use (Tech Stack Badges) */}
             <Technologies onExploreService={(svc) => handleOpenQuote(svc || 'Website Development')} />
 
+            {/* Centralized SEO Dashboard: Keyword Mapping & Health Tracking */}
+            <CentralizedSeoDashboard onNavigatePage={navigateToPage} />
+
             {/* Doorstep On-Site Callout */}
             <div className="bg-slate-50 py-12 border-t border-slate-200">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
@@ -614,6 +619,12 @@ export default function App() {
 
             {/* High-Value Sialkot Ranking Keywords & Local SEO Strategy Hub */}
             <SialkotSeoKeywordsHub onNavigatePage={navigateToPage} />
+
+            {/* Google Per-Page Keyword Mapping & Search Intent Matrix */}
+            <KeywordMappingHub onNavigatePage={navigateToPage} />
+
+            {/* Centralized SEO Dashboard: Keyword Mapping & Intent Health */}
+            <CentralizedSeoDashboard onNavigatePage={navigateToPage} />
 
             {/* Full FAQ Accordion */}
             <FAQ

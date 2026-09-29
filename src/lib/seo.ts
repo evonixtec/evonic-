@@ -539,17 +539,20 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   contact: {
-    title: 'Contact IT Consultants Sialkot – Hardware Maintenance & Tech Support | EVONIX',
+    title: 'Contact IT Consultants Sialkot – Kotli Behram & Paris Road | EVONIX',
     description:
-      'Need urgent IT consultancy or industrial hardware maintenance in Sialkot? Contact our Paris Road lab or book certified doorstep field technicians across Sialkot Cantt.',
-    ogTitle: 'Contact EVONIX – IT Consultancy & Hardware Maintenance Sialkot',
+      'Got a question? Call us. We reply in 2 hours. Doorstep IT support in Kotli Behram, Paris Road, and Sialkot Cantt. Free bench diagnosis.',
+    ogTitle: 'Contact EVONIX – IT Support in Kotli Behram & Paris Road Sialkot',
     ogDescription:
-      'Get in touch with our certified engineers on Paris Road, Sialkot. Rapid on-site technician dispatch across Cantt, Sambrial, Daska Road, and Industrial Estates.',
+      'Got a question? Call us. We reply in 2 hours. Rapid doorstep dispatch across Kotli Behram, Cantt, Sambrial, and Daska Road.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalUrl: `${BASE_URL}/contact`,
     keywords: [
       'contact IT consultant Sialkot',
+      'computer repair Kotli Behram Sialkot',
+      'laptop repairing Kotli Behram Sialkot',
+      'doorstep IT technician Kotli Behram Sialkot',
       'hardware maintenance services contact Sialkot',
       'industrial IT support Sialkot',
       'contact IT company Sialkot',

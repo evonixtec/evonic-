@@ -72,8 +72,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
             Contact Us & Sialkot Office
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-            Ready to elevate your business with international Dubai standards? Reach out today for websites, POS software, laptop repair, or doorstep on-site visits in Sialkot.
+          <p className="text-slate-800 text-base sm:text-lg font-bold">
+            Got a question? Call us. We reply in 2 hours.
           </p>
         </div>
 
@@ -150,7 +150,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                   <p className="text-sm font-bold text-slate-900 mt-0.5">
                     {COMPANY_INFO.contact.address}
                   </p>
-                  <p className="text-xs text-slate-500 mt-0.5">Doorstep pickup & on-site IT available</p>
+                  <p className="text-xs text-emerald-700 font-bold mt-1 flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>Doorstep field visit in Kotli Behram, Cantt & Paris Road</span>
+                  </p>
                 </div>
               </div>
             </div>

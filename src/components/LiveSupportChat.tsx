@@ -325,6 +325,17 @@ export const LiveSupportChat: React.FC<LiveSupportChatProps> = ({ onOpenQuote })
     return () => window.removeEventListener('open-evonix-chat', handleOpenChatEvent);
   }, []);
 
+  // Close chat on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
+
   // Show friendly proactive popup after 4.5 seconds of browsing website
   useEffect(() => {
     if (!hasPromptedToast) {
@@ -865,45 +876,71 @@ export const LiveSupportChat: React.FC<LiveSupportChatProps> = ({ onOpenQuote })
         </div>
       )}
 
-      {/* 3. Floating Chat Window / Mobile Bottom Sheet */}
+      {/* 3. Backdrop Overlay for mobile & desktop easy dismissal */}
       {isOpen && (
-        <div className="fixed bottom-0 sm:bottom-6 left-0 sm:left-6 z-50 w-full sm:w-[430px] h-[92vh] sm:h-[610px] sm:max-h-[90vh] bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200">
-          {/* Header with Human Photo & 4-Hour Shift Badge */}
-          <div className="bg-slate-950 text-white p-4 flex items-center justify-between border-b border-slate-800">
-            <div className="flex items-center gap-3">
+        <div
+          className="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-50 transition-opacity animate-in fade-in duration-200"
+          onClick={() => setIsOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* 4. Floating Chat Window / Responsive Bottom Sheet */}
+      {isOpen && (
+        <div
+          role="dialog"
+          aria-label="Live Technical Support Chat"
+          className="fixed bottom-0 sm:bottom-6 left-0 sm:left-6 z-50 w-full sm:w-[440px] h-[85vh] sm:h-[620px] max-h-[calc(100dvh-1rem)] sm:max-h-[90vh] bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200"
+        >
+          {/* Mobile Top Close Handle */}
+          <div className="sm:hidden bg-slate-950 pt-2 pb-1 flex justify-center items-center border-b border-slate-900">
+            <button
+              onClick={() => setIsOpen(false)}
+              className="w-12 h-1.5 rounded-full bg-slate-600 hover:bg-slate-400 cursor-pointer"
+              title="Close Chat"
+              aria-label="Close Chat"
+            />
+          </div>
+
+          {/* Sticky Header with Human Photo & Prominent High-Contrast Close Button */}
+          <div className="sticky top-0 z-20 bg-slate-950 text-white p-3.5 sm:p-4 flex items-center justify-between border-b border-slate-800 shadow-sm">
+            <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
               <div className="relative flex-shrink-0">
                 <img
                   src={activeEngineer.avatar}
                   alt={activeEngineer.name}
-                  className="w-12 h-12 rounded-full object-cover border-2 border-red-500"
+                  className="w-11 h-11 sm:w-12 sm:h-12 rounded-full object-cover border-2 border-red-500 shadow-sm"
                 />
                 <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 ring-2 ring-slate-900 animate-pulse" />
               </div>
 
-              <div>
-                <div className="flex items-center gap-2">
-                  <h4 className="text-sm font-bold text-white">{activeEngineer.name}</h4>
-                  <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-red-950 text-red-300 border border-red-800">
-                    Active Desk
+              <div className="min-w-0">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <h4 className="text-xs sm:text-sm font-bold text-white truncate">{activeEngineer.name}</h4>
+                  <span className="text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800 flex-shrink-0">
+                    Online
                   </span>
                 </div>
-                <div className="text-[11px] text-slate-300">
+                <div className="text-[10px] sm:text-[11px] text-slate-300 truncate">
                   {activeEngineer.title}
                 </div>
-                <div className="text-[10px] text-slate-400 flex items-center gap-1 mt-0.5">
-                  <MapPin className="w-3 h-3 text-red-400" />
-                  <span>Daska Road & Paris Road, Sialkot</span>
+                <div className="text-[9px] sm:text-[10px] text-slate-400 flex items-center gap-1 mt-0.5">
+                  <MapPin className="w-2.5 h-2.5 text-red-400 flex-shrink-0" />
+                  <span className="truncate">Kotli Behram, Paris Road & Cantt Hub</span>
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center gap-1">
+            {/* High-Contrast, Prominent Close Button */}
+            <div className="flex items-center gap-1.5 flex-shrink-0">
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-1.5 rounded-xl hover:bg-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer"
-                title="Minimize Chat"
+                className="px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-xl bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-extrabold text-xs shadow-md transition-all cursor-pointer flex items-center gap-1 ring-1 ring-white/20 hover:scale-105"
+                title="Close chat window"
+                aria-label="Close Chat"
               >
-                <X className="w-4 h-4" />
+                <X className="w-4 h-4 stroke-[2.5]" />
+                <span className="text-[11px] sm:text-xs">Close / بند کریں</span>
               </button>
             </div>
           </div>

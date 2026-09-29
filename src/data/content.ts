@@ -201,10 +201,11 @@ export const COMPANY_INFO = {
     phoneRaw: '+9232632440002',
     whatsapp: '9232632440002',
     whatsappDisplay: '+92 326 324 40002',
-    address: 'Paris Road & Cantt Commercial Hub, Sialkot, Punjab, Pakistan',
+    address: 'Kotli Behram, Paris Road & Cantt Commercial Hub, Sialkot, Punjab, Pakistan',
     city: 'Sialkot',
     region: 'Punjab, Pakistan',
     homeServiceAreas: [
+      'Kotli Behram',
       'Sialkot Cantt',
       'Paris Road',
       'Defense Road',
