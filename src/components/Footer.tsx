@@ -342,16 +342,20 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             </h4>
             <div className="space-y-2.5 text-slate-400">
               {/* Styled Kotli Behram Card */}
-              <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 leading-snug space-y-1">
-                <span className="text-red-400 font-extrabold block text-[11px] uppercase tracking-wide">
-                  📍 Kotli Behram Desk:
-                </span>
-                <p className="text-[11px] text-slate-300">
+              <div className="p-3 rounded-xl bg-slate-900 border border-slate-700/80 text-slate-200 leading-snug space-y-1.5 shadow-sm">
+                <div className="flex items-center justify-between">
+                  <span className="text-red-400 font-extrabold text-[11px] uppercase tracking-wider flex items-center gap-1">
+                    <MapPin className="w-3 h-3 text-red-500" />
+                    <span>Kotli Behram Lab Desk</span>
+                  </span>
+                  <span className="text-[10px] text-slate-400 font-mono">Sialkot</span>
+                </div>
+                <p className="text-[11px] text-slate-300 font-medium leading-relaxed">
                   {COMPANY_INFO.contact.address}
                 </p>
-                <div className="inline-flex items-center gap-1 text-[10px] text-emerald-400 font-bold bg-emerald-950/80 border border-emerald-800/80 px-1.5 py-0.5 rounded">
+                <div className="inline-flex items-center gap-1 text-[10px] text-emerald-400 font-bold bg-emerald-950/80 border border-emerald-800/80 px-2 py-0.5 rounded">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>15-Min Doorstep Dispatch</span>
+                  <span>15-Min Doorstep Dispatch Available</span>
                 </div>
               </div>
 
@@ -386,161 +390,42 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
           </div>
         </div>
 
-        {/* 3. Special Google SEO Keyword Directory & Search Clusters */}
-        <div className="py-8 my-8 border-y border-slate-800/80 space-y-6">
+        {/* 3. Refined & Authentic Services and Coverage Directory (Organic, Non-Spammy) */}
+        <div className="py-6 my-6 border-y border-slate-800/80 space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div className="flex items-center gap-2">
               <Tag className="w-4 h-4 text-red-500 flex-shrink-0" />
-              <h4 className="text-xs font-bold uppercase tracking-wider text-white">
-                Sialkot IT & Hardware Google Ranking Keywords
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200">
+                Core IT Services & Sialkot Service Hubs
               </h4>
             </div>
             <span className="text-[11px] text-slate-400">
-              Quick search links for Sialkot, Kotli Behram, Daska, Sambrial & Wazirabad
+              Serving Kotli Behram, Paris Road, Cantt, Daska, Sambrial & Wazirabad
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-xs">
-            {/* Cluster 1: IT Consultancy & Factory AMC */}
-            <div className="space-y-2.5">
-              <span className="text-[11px] font-bold text-slate-300 uppercase tracking-wider block border-b border-slate-800 pb-1">
-                IT Consultancy & Factory AMC
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                {[
-                  { text: 'IT consultancy Sialkot', target: 'services' },
-                  { text: 'Hardware maintenance services Sialkot', target: 'services' },
-                  { text: 'Best IT company in Sialkot', target: 'about' },
-                  { text: 'Factory computer AMC contract Sialkot', target: 'services' },
-                  { text: 'WeBOC customs network setup Sialkot', target: 'services' },
-                  { text: 'Synology NAS backup Sialkot', target: 'services' },
-                  { text: 'Dual WAN fiber failover router Sialkot', target: 'services' },
-                ].map((item, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => onNavigate(item.target)}
-                    className="px-2 py-1 rounded-md bg-slate-900 hover:bg-slate-800 hover:text-white text-slate-400 border border-slate-800 hover:border-red-600 text-[11px] transition-all cursor-pointer text-left"
-                  >
-                    {item.text}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Cluster 2: Motherboard & Laptop Repair */}
-            <div className="space-y-2.5">
-              <span className="text-[11px] font-bold text-slate-300 uppercase tracking-wider block border-b border-slate-800 pb-1">
-                Motherboard & Laptop Repair
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                {[
-                  { text: 'Laptop motherboard repair Sialkot', target: 'services' },
-                  { text: 'Computer repair Kotli Behram', target: 'contact' },
-                  { text: 'Doorstep computer technician Sialkot', target: 'contact' },
-                  { text: 'Laptop repair Paris Road Sialkot', target: 'contact' },
-                  { text: '19V short circuit micro soldering', target: 'services' },
-                  { text: 'MacBook logic board repair Sialkot', target: 'services' },
-                  { text: 'Free bench laptop diagnosis Sialkot', target: 'contact' },
-                ].map((item, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => onNavigate(item.target)}
-                    className="px-2 py-1 rounded-md bg-slate-900 hover:bg-slate-800 hover:text-white text-slate-400 border border-slate-800 hover:border-red-600 text-[11px] transition-all cursor-pointer text-left"
-                  >
-                    {item.text}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Cluster 3: POS Software & Hardware Machines */}
-            <div className="space-y-2.5">
-              <span className="text-[11px] font-bold text-slate-300 uppercase tracking-wider block border-b border-slate-800 pb-1">
-                POS Software & Hardware Machines
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                {[
-                  { text: 'Buy POS machine Sialkot', target: 'shop' },
-                  { text: 'Thermal receipt printer price Sialkot', target: 'shop' },
-                  { text: '80mm auto cutter bill printer', target: 'shop' },
-                  { text: 'FBR digital invoicing software Sialkot', target: 'services' },
-                  { text: '2D barcode scanner price Sialkot', target: 'shop' },
-                  { text: 'Touchscreen billing machine Sialkot', target: 'shop' },
-                  { text: 'Refurbished Core i7 laptop Sialkot', target: 'shop' },
-                ].map((item, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => onNavigate(item.target)}
-                    className="px-2 py-1 rounded-md bg-slate-900 hover:bg-slate-800 hover:text-white text-slate-400 border border-slate-800 hover:border-red-600 text-[11px] transition-all cursor-pointer text-left"
-                  >
-                    {item.text}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Cluster 4: Local Sialkot Geo Corridors */}
-            <div className="space-y-2.5">
-              <span className="text-[11px] font-bold text-slate-300 uppercase tracking-wider block border-b border-slate-800 pb-1">
-                Local Sialkot Geo Corridors
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                {[
-                  { text: 'IT support Kotli Behram Sialkot', target: 'contact' },
-                  { text: 'Computer repair Paris Road', target: 'contact' },
-                  { text: 'IT company Daska Road Sialkot', target: 'locations' },
-                  { text: 'Hardware AMC Sambrial Dry Port', target: 'locations' },
-                  { text: 'Cutlery website design Wazirabad', target: 'locations' },
-                  { text: 'Doorstep technician Sialkot Cantt', target: 'contact' },
-                  { text: 'IT service Small Industrial Estate', target: 'services' },
-                ].map((item, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => onNavigate(item.target)}
-                    className="px-2 py-1 rounded-md bg-slate-900 hover:bg-slate-800 hover:text-white text-slate-400 border border-slate-800 hover:border-red-600 text-[11px] transition-all cursor-pointer text-left"
-                  >
-                    {item.text}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* 4. Regional Industrial Corridor Strip */}
-        <div className="py-4 px-5 rounded-2xl bg-slate-900/90 border border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-3 text-xs mb-8">
-          <div className="flex items-center gap-2 text-slate-300 font-semibold">
-            <span className="w-2 h-2 rounded-full bg-red-500" />
-            <span>Sialkot Industrial Triangle On-Site Dispatch:</span>
-          </div>
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[11px]">
-            <button
-              onClick={() => onNavigate('contact')}
-              className="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors cursor-pointer"
-            >
-              Kotli Behram & Paris Road
-            </button>
-            <span className="text-slate-600">⇄</span>
-            <button
-              onClick={() => onNavigate('locations')}
-              className="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors cursor-pointer"
-            >
-              Daska Road Belt (35m)
-            </button>
-            <span className="text-slate-600">⇄</span>
-            <button
-              onClick={() => onNavigate('locations')}
-              className="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors cursor-pointer"
-            >
-              Sambrial Dry Port (25m)
-            </button>
-            <span className="text-slate-600">⇄</span>
-            <button
-              onClick={() => onNavigate('locations')}
-              className="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors cursor-pointer"
-            >
-              Wazirabad Cutlery (40m)
-            </button>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 text-xs">
+            {[
+              { label: 'IT Consultancy', sub: 'Factory AMC Contracts', target: 'services' },
+              { label: 'Laptop & Chip Repair', sub: 'Kotli Behram Lab', target: 'services' },
+              { label: 'Custom Web & Portals', sub: 'E-Commerce Solutions', target: 'services' },
+              { label: 'Retail POS & Hardware', sub: 'Printers & Terminals', target: 'shop' },
+              { label: 'Sialkot Doorstep IT', sub: '15-Min Rapid Dispatch', target: 'contact' },
+              { label: 'Technical Guides Hub', sub: '80+ Field Tutorials', target: 'guides' },
+            ].map((item, idx) => (
+              <button
+                key={idx}
+                onClick={() => onNavigate(item.target)}
+                className="p-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-red-600/60 text-left transition-all cursor-pointer group"
+              >
+                <span className="text-slate-200 font-bold text-xs block group-hover:text-red-400 transition-colors">
+                  {item.label}
+                </span>
+                <span className="text-[10px] text-slate-400 block mt-0.5">
+                  {item.sub}
+                </span>
+              </button>
+            ))}
           </div>
         </div>
 
