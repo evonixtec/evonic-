@@ -205,7 +205,7 @@ export const AiHardwareDiagnosticBoard: React.FC<AiHardwareDiagnosticBoardProps>
                     >
                       <div className="flex items-center justify-between text-[11px] mb-1">
                         <span className="font-mono font-bold text-cyan-400">{preset.affectedRail}</span>
-                        <span className="px-1.5 py-0.2 rounded-full bg-slate-800 text-[10px] text-slate-300 uppercase">
+                        <span className="px-1.5 py-0.5 rounded-full bg-slate-800 text-[10px] text-slate-300 uppercase">
                           {preset.category}
                         </span>
                       </div>
