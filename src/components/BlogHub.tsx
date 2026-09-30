@@ -298,7 +298,7 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onNavigateSection, onOpenQuote
                     {blog.publishedDate}
                   </span>
                   <span className="inline-flex items-center gap-1 font-bold text-red-600 group-hover:translate-x-0.5 transition-transform">
-                    Read Guide
+                    Read Blog Post
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
@@ -314,7 +314,7 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onNavigateSection, onOpenQuote
               onClick={() => setVisibleCount((prev) => prev + 9)}
               className="px-6 py-3 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 text-xs sm:text-sm font-bold shadow-2xs transition-colors cursor-pointer"
             >
-              Load More Technical Guides ({filteredBlogs.length - visibleCount} remaining)
+              Load More Tech Blogs & Guides ({filteredBlogs.length - visibleCount} remaining)
             </button>
           </div>
         )}

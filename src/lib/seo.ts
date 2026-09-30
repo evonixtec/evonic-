@@ -26,14 +26,15 @@ export const LOCAL_BUSINESS_SCHEMA = {
   alternateName: 'Evonix IT & Laptop Diagnostics Lab',
   image: DEFAULT_OG_IMAGE,
   url: `${BASE_URL}/`,
-  telephone: '+92 326 3244002',
+  telephone: '+92 326 324 4002',
   email: 'evonixtec@gmail.com',
-  priceRange: 'PKR',
+  priceRange: 'PKR 1500 - PKR 85000',
   currenciesAccepted: 'PKR, USD, AED, EUR',
   paymentAccepted: 'Cash, Bank Transfer, EasyPaisa, JazzCash, Raast',
+  hasMap: 'https://maps.google.com/?q=Kotli+Behram+Paris+Road+Sialkot',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Paris Road & Cantt Hub',
+    streetAddress: 'Kotli Behram, Paris Road & Cantt Hub',
     addressLocality: 'Sialkot',
     addressRegion: 'Punjab',
     postalCode: '51310',
@@ -43,6 +44,11 @@ export const LOCAL_BUSINESS_SCHEMA = {
     '@type': 'GeoCoordinates',
     latitude: 32.4945,
     longitude: 74.5229,
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.9',
+    reviewCount: '128',
   },
   openingHoursSpecification: [
     {
@@ -54,11 +60,13 @@ export const LOCAL_BUSINESS_SCHEMA = {
   ],
   areaServed: [
     { '@type': 'City', name: 'Sialkot' },
+    { '@type': 'AdministrativeArea', name: 'Kotli Behram Sialkot' },
     { '@type': 'AdministrativeArea', name: 'Sialkot Cantt' },
     { '@type': 'AdministrativeArea', name: 'Paris Road Sialkot' },
     { '@type': 'AdministrativeArea', name: 'Daska Road Sialkot' },
     { '@type': 'AdministrativeArea', name: 'Sambrial' },
     { '@type': 'AdministrativeArea', name: 'Small Industrial Estate Sialkot' },
+    { '@type': 'AdministrativeArea', name: 'Wazirabad' },
     { '@type': 'Country', name: 'Pakistan' },
     { '@type': 'Country', name: 'United Arab Emirates' },
   ],
@@ -263,6 +271,56 @@ export const INDIVIDUAL_SERVICES_SCHEMAS = [
     },
   },
 ];
+
+/**
+ * Question and Answer Schema for Google Search Console FAQ Rich Results
+ */
+export const FAQ_PAGE_SCHEMA = {
+  '@type': 'FAQPage',
+  '@id': `${BASE_URL}/#faq`,
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What IT consultancy and hardware maintenance services does EVONIX provide in Sialkot?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'EVONIX provides enterprise web engineering, custom retail POS software, factory IT infrastructure AMC contracts, WeBOC customs networking, and chip-level motherboard, laptop, and thermal printer repair backed by 20+ years of Dubai international experience.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Where is EVONIX located in Sialkot, and do you offer doorstep on-site visits?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Our diagnostic lab desk is located at Kotli Behram, Paris Road and Cantt Hub, Sialkot. We offer 15-minute to 60-minute doorstep dispatch across Sialkot City, Daska Road, Small Industrial Estate, Sambrial Dry Port, and Wazirabad.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can EVONIX repair laptop motherboards and thermal receipt printers at the chip level?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, our certified hardware laboratory features stereo microscopes, DC bench power supplies, thermal infrared cameras, and precision SMD micro-soldering stations for component-level repair of blown MOSFETs, shorted capacitors, charging ICs, thermal printheads, and auto-cutters.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does EVONIX develop custom export ERP and retail POS software?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, EVONIX engineers custom offline-first POS systems, multilingual export trade portals, barcode inventory engines, and automated billing software tailored for Sialkot surgical, sportswear, leather, and retail businesses.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How can I request a free quote or book a technical consultation with EVONIX?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'You can request a free consultation directly through our website with GPS area detection, generate a tracking reference number, or message our engineering desk via WhatsApp at +92 326 324 4002.',
+      },
+    },
+  ],
+};
 
 /**
  * Individual Schema.org Product objects for /shop and Google Merchant / Product snippets
@@ -515,16 +573,20 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   guides: {
-    title: '80+ Sialkot IT Guides & Field Case Studies – Web, POS & Laptop Repair | EVONIX',
+    title: 'Tech Blogs, IT Guides & Field Case Studies Sialkot | EVONIX',
     description:
-      'Free technical knowledge base for Sialkot businesses: 80+ step-by-step guides on web development, Daska Road & Rangpura field case studies, retail POS, and chip-level laptop care.',
-    ogTitle: '80+ Technical IT Guides & Field Case Studies in Sialkot – EVONIX Hub',
+      'Official EVONIX engineering blog & technical knowledge base for Sialkot: 85+ practical guides on printer repair, laptop overheating, retail POS, and chip-level restoration.',
+    ogTitle: 'Tech Blogs, IT Guides & Field Case Studies in Sialkot – EVONIX',
     ogDescription:
-      'Free engineering tutorials, Daska Road & Rangpura on-site field reports, laptop motherboard repair, and POS solutions written for Sialkot business owners.',
+      'Official engineering blogs, practical troubleshooting tutorials, and Daska Road & Rangpura on-site field case studies by EVONIX technicians.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalUrl: `${BASE_URL}/guides`,
     keywords: [
+      'IT blogs Sialkot',
+      'tech blog Sialkot',
+      'laptop repair blog',
+      'thermal printer troubleshooting Sialkot',
       'IT troubleshooting guides Sialkot',
       'computer repair guide Sialkot',
       'laptop repairing Daska Road Sialkot',
@@ -662,7 +724,7 @@ function generateRouteStructuredData(pageId: NavPageId): object {
   } else if (pageId === 'about') {
     breadcrumbItems.push({ name: 'About EVONIX & Dubai Heritage', url: `${BASE_URL}/about` });
   } else if (pageId === 'guides') {
-    breadcrumbItems.push({ name: '80+ Technical Guides', url: `${BASE_URL}/guides` });
+    breadcrumbItems.push({ name: 'Tech Blogs & Guides', url: `${BASE_URL}/guides` });
   } else if (pageId === 'contact') {
     breadcrumbItems.push({ name: 'Contact & On-Site Support', url: `${BASE_URL}/contact` });
   }
@@ -694,6 +756,8 @@ function generateRouteStructuredData(pageId: NavPageId): object {
     const hwMaintenance = INDIVIDUAL_SERVICES_SCHEMAS.find((s) => s['@id'].includes('hardware-maintenance'));
     if (itConsultancy) graph.push(itConsultancy);
     if (hwMaintenance) graph.push(hwMaintenance);
+    // Add Google Rich Result FAQ schema to home
+    graph.push(FAQ_PAGE_SCHEMA);
   } else if (pageId === 'services') {
     // WebPage descriptor
     graph.push({
@@ -785,6 +849,8 @@ function generateRouteStructuredData(pageId: NavPageId): object {
       breadcrumb: { '@id': `${BASE_URL}/guides#breadcrumb` },
       publisher: { '@id': `${BASE_URL}/#business` },
     });
+    // Add Google Rich Result FAQ schema to guides
+    graph.push(FAQ_PAGE_SCHEMA);
   } else if (pageId === 'contact') {
     graph.push({
       '@type': 'ContactPage',

@@ -15,6 +15,7 @@ import {
   ArrowRight,
   ShieldAlert
 } from 'lucide-react';
+import { COMPANY_INFO } from '../data/content';
 
 interface DefectMeasurement {
   distanceMm: number;
@@ -138,33 +139,39 @@ interface LaserJetCode {
 
 const LASER_CODES: LaserJetCode[] = [
   {
-    code: '50.1 / 50.4 Fuser Error',
-    meaning: 'Low Fuser Temperature or Mains Power Surge',
-    printer: 'HP LaserJet P2035, P2055, M402, M404',
-    sialkotFix: 'Caused by factory generator voltage drop or burnt ceramic heating element. Disconnect from UPS, check 220V wall socket, or replace ceramic heating rod in our Sialkot lab.',
+    code: '50.1 / 50.2 / 50.3',
+    meaning: 'Fuser Error (Low Temp / Warm-up Failure)',
+    printer: 'HP LaserJet M402, M404, P2055, P3015',
+    sialkotFix: 'Test ceramic heater resistance with multimeter (should be 40-70 ohms). Replace thermistor or sub-thermistor ceramic plate.',
   },
   {
-    code: '59.F0 Motor Error',
-    meaning: 'Transfer Alienation / Main Drive Cam Failure',
-    printer: 'HP Color LaserJet Pro M477, M452, M254',
-    sialkotFix: 'Sticky solenoid sponge damper holds alienation gear. We strip and replace the rubber solenoid buffer with teflon tape in our Paris Road workshop.',
+    code: '59.F0',
+    meaning: 'Transfer Alienation Drive Motor Jam',
+    printer: 'HP Color LaserJet Enterprise M553, M577',
+    sialkotFix: 'Sticky solenoid foam pad causing clutch lockup. Clean adhesive foam residue on solenoid mechanism and replace gear assembly.',
   },
   {
-    code: '13.00.00 Paper Jam',
-    meaning: 'Pickup Roller Slip or Sensor Flag Stuck',
-    printer: 'HP LaserJet Enterprise / Pro Series',
-    sialkotFix: 'Smooth, glazed D-roller rubber unable to grip paper. Clean with rubber rejuvenator or install new OEM pickup roller & separation pad.',
+    code: '13.00 / 13.01',
+    meaning: 'Paper Jam in Tray 2 Feed Area',
+    printer: 'HP LaserJet P2035, M402, P1102 / Canon 2900',
+    sialkotFix: 'Worn or glazed rubber paper pick-up roller (D-roller) and separation pad. Clean with rubber rejuvenator or swap new OEM roller.',
   },
   {
-    code: '10.1000 Supply Memory',
-    meaning: 'Toner Cartridge Chip Communication Error',
-    printer: 'HP LaserJet Pro M404, M428 / Canon LBP',
-    sialkotFix: 'Dirty contact pins in cartridge cavity or blocked chip firmware. Clean brass spring contacts; replace cartridge smart chip.',
+    code: '52.00',
+    meaning: 'Laser Scanner Polygon Mirror Motor Error',
+    printer: 'HP LaserJet Pro M402, M203, P1102',
+    sialkotFix: 'Polygon mirror motor seized with factory grease oxidation. Apply 1 drop synthetic clock oil to spindle bearing and clean optical prisms.',
+  },
+  {
+    code: '79.00',
+    meaning: 'Corrupted PostScript Firmware or Network Queue Hang',
+    printer: 'HP Network LaserJet Enterprise',
+    sialkotFix: 'Disconnect LAN cable, clear corrupted spooler queue on Windows server, and perform cold NVRAM reset from front panel.',
   },
 ];
 
 interface PrinterDiagnosticTroubleshooterProps {
-  onOpenQuote?: (service: string) => void;
+  onOpenQuote?: (faultDetails?: string) => void;
 }
 
 export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubleshooterProps> = ({
@@ -175,7 +182,7 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
   const [selectedThermal, setSelectedThermal] = useState<ThermalFault>(THERMAL_FAULTS[0]);
   const [searchCode, setSearchCode] = useState<string>('');
 
-  // Find matching defect from input distance
+  // Find roller match within tolerance
   const matchedDefect = ROLLER_DEFECTS.find(
     (d) => Math.abs(d.distanceMm - inputDistance) <= d.tolerance
   );
@@ -184,40 +191,37 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
     (c) =>
       c.code.toLowerCase().includes(searchCode.toLowerCase()) ||
       c.meaning.toLowerCase().includes(searchCode.toLowerCase()) ||
-      c.printer.toLowerCase().includes(searchCode.toLowerCase())
+      c.sialkotFix.toLowerCase().includes(searchCode.toLowerCase())
   );
 
   return (
-    <section
-      id="printer-diagnostics"
-      className="py-16 bg-slate-950 text-white relative overflow-hidden border-t border-slate-800"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-bold uppercase tracking-wider mb-4">
-            <Printer className="w-4 h-4 text-red-400" />
+    <section className="py-20 md:py-28 bg-white text-slate-900 border-b border-slate-200" id="printer-diagnostics">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 text-red-700 text-xs font-bold uppercase tracking-wider">
+            <Printer className="w-4 h-4 text-red-600" />
             <span>Hardware Bench Diagnostic Tool</span>
             <span className="bg-red-600 text-white text-[10px] px-2 py-0.2 rounded-full font-black">
               EVONIX Lab
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
             LaserJet & Thermal Printer Diagnostic Troubleshooter
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
+          <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
             Diagnose repetitive print defects, HP LaserJet error codes, and retail thermal POS receipt printer malfunctions with millimeter precision.
           </p>
 
           {/* Navigation Tabs */}
-          <div className="mt-8 inline-flex p-1.5 bg-slate-900 border border-slate-800 rounded-2xl gap-1">
+          <div className="mt-8 inline-flex p-1.5 bg-slate-100 border border-slate-200 rounded-2xl gap-1">
             <button
               onClick={() => setActiveTab('ruler')}
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition-all cursor-pointer ${
                 activeTab === 'ruler'
-                  ? 'bg-red-600 text-white shadow-md'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                  ? 'bg-red-600 text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200'
               }`}
             >
               <Ruler className="w-4 h-4" />
@@ -228,8 +232,8 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
               onClick={() => setActiveTab('thermal')}
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition-all cursor-pointer ${
                 activeTab === 'thermal'
-                  ? 'bg-red-600 text-white shadow-md'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                  ? 'bg-red-600 text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200'
               }`}
             >
               <Flame className="w-4 h-4" />
@@ -240,8 +244,8 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
               onClick={() => setActiveTab('laser-codes')}
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition-all cursor-pointer ${
                 activeTab === 'laser-codes'
-                  ? 'bg-red-600 text-white shadow-md'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                  ? 'bg-red-600 text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200'
               }`}
             >
               <Zap className="w-4 h-4" />
@@ -253,14 +257,14 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
         {/* TAB 1: ROLLER DEFECT RULER CALCULATOR */}
         {activeTab === 'ruler' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <div className="lg:col-span-6 bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
+            <div className="lg:col-span-6 bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xs">
               <div className="flex items-start justify-between">
                 <div>
-                  <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                    <Ruler className="w-5 h-5 text-red-500" />
+                  <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <Ruler className="w-5 h-5 text-red-600" />
                     <span>Repeating Defect Distance Calculator</span>
                   </h3>
-                  <p className="text-xs text-slate-400 mt-1">
+                  <p className="text-xs text-slate-500 mt-1">
                     Measure the exact distance between two identical repeating black spots or marks down the printed page with a physical ruler.
                   </p>
                 </div>
@@ -269,10 +273,10 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
               {/* Slider Input */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-600">
                     Measured Distance (Millimeters)
                   </span>
-                  <span className="text-xl font-extrabold text-red-400 font-mono">
+                  <span className="text-xl font-extrabold text-red-600 font-mono">
                     {inputDistance} mm
                   </span>
                 </div>
@@ -283,7 +287,7 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
                   step="1"
                   value={inputDistance}
                   onChange={(e) => setInputDistance(Number(e.target.value))}
-                  className="w-full accent-red-600 h-2 bg-slate-800 rounded-lg cursor-pointer"
+                  className="w-full accent-red-600 h-2 bg-slate-200 rounded-lg cursor-pointer"
                 />
                 <div className="flex justify-between text-[10px] text-slate-500 font-mono">
                   <span>25mm</span>
@@ -297,7 +301,7 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
 
               {/* Quick Preset Buttons */}
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">
                   Common Distance Benchmarks:
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -307,14 +311,14 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
                       onClick={() => setInputDistance(Math.round(defect.distanceMm))}
                       className={`p-2.5 rounded-xl text-center border text-xs font-semibold transition-all cursor-pointer ${
                         Math.abs(defect.distanceMm - inputDistance) <= defect.tolerance
-                          ? 'bg-red-600/20 border-red-500 text-white'
-                          : 'bg-slate-800/60 border-slate-700/60 text-slate-300 hover:bg-slate-800'
+                          ? 'bg-red-50 border-red-500 text-red-900 font-bold shadow-2xs'
+                          : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-100'
                       }`}
                     >
-                      <div className="font-mono font-bold text-red-400">
+                      <div className="font-mono font-bold text-red-600">
                         {defect.distanceMm}mm
                       </div>
-                      <div className="text-[10px] text-slate-400 truncate mt-0.5">
+                      <div className="text-[10px] text-slate-500 truncate mt-0.5">
                         {defect.component.split(' ')[0]}
                       </div>
                     </button>
@@ -323,35 +327,35 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
               </div>
 
               {/* Physics Rationale Explanation */}
-              <div className="p-4 rounded-xl bg-slate-800/50 border border-slate-700/60 text-xs text-slate-300 space-y-1.5">
-                <div className="font-bold text-white flex items-center gap-1.5">
-                  <HelpCircle className="w-4 h-4 text-red-400" />
+              <div className="p-4 rounded-xl bg-white border border-slate-200 text-xs text-slate-700 space-y-1.5 shadow-2xs">
+                <div className="font-bold text-slate-900 flex items-center gap-1.5">
+                  <HelpCircle className="w-4 h-4 text-red-600" />
                   <span>The Engineering Math (Circumference = π × Diameter)</span>
                 </div>
-                <p className="text-[11px] leading-relaxed text-slate-400">
-                  Because printer rollers rotate in a continuous cycle, any scratch on a 24mm diameter OPC drum will make contact with the paper sheet every <span className="font-mono text-white">π × 24mm ≈ 75.3mm</span>. Measuring this distance reveals the exact failing internal roller without dismantling the machine!
+                <p className="text-[11px] leading-relaxed text-slate-600">
+                  Because printer rollers rotate in a continuous cycle, any scratch on a 24mm diameter OPC drum will make contact with the paper sheet every <span className="font-mono font-bold text-slate-900">π × 24mm ≈ 75.3mm</span>. Measuring this distance reveals the exact failing internal roller without dismantling the machine!
                 </p>
               </div>
             </div>
 
             {/* Diagnostic Output Card */}
-            <div className="lg:col-span-6 bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-5">
+            <div className="lg:col-span-6 bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xs">
               {matchedDefect ? (
                 <>
-                  <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+                  <div className="flex items-center justify-between border-b border-slate-200 pb-4">
                     <div>
-                      <div className="text-[10px] font-bold uppercase tracking-wider text-red-400">
+                      <div className="text-[10px] font-bold uppercase tracking-wider text-red-600">
                         Identified Faulty Sub-Assembly
                       </div>
-                      <h4 className="text-xl font-extrabold text-white mt-0.5">
+                      <h4 className="text-xl font-extrabold text-slate-900 mt-0.5">
                         {matchedDefect.component}
                       </h4>
                     </div>
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-bold uppercase ${
                         matchedDefect.severity === 'high'
-                          ? 'bg-red-500/20 text-red-400 border border-red-500/30'
-                          : 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
+                          ? 'bg-red-100 text-red-700 border border-red-200'
+                          : 'bg-amber-100 text-amber-800 border border-amber-200'
                       }`}
                     >
                       {matchedDefect.severity} Priority
@@ -360,38 +364,38 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
 
                   <div className="space-y-3 text-xs">
                     <div>
-                      <span className="font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                      <span className="font-bold text-slate-500 uppercase tracking-wider block mb-1">
                         Affected Printer Series:
                       </span>
-                      <p className="text-slate-200 font-mono bg-slate-800/80 p-2.5 rounded-lg border border-slate-700">
+                      <p className="text-slate-800 font-mono bg-white p-2.5 rounded-lg border border-slate-200">
                         {matchedDefect.laserJetModel}
                       </p>
                     </div>
 
                     <div>
-                      <span className="font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                      <span className="font-bold text-slate-500 uppercase tracking-wider block mb-1">
                         Visual Symptom on Page:
                       </span>
-                      <p className="text-slate-300 leading-relaxed">
+                      <p className="text-slate-700 leading-relaxed font-medium">
                         {matchedDefect.visualDefect}
                       </p>
                     </div>
 
                     <div>
-                      <span className="font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                      <span className="font-bold text-slate-500 uppercase tracking-wider block mb-1">
                         Root Mechanical Cause:
                       </span>
-                      <p className="text-slate-300 leading-relaxed">
+                      <p className="text-slate-700 leading-relaxed font-medium">
                         {matchedDefect.cause}
                       </p>
                     </div>
 
-                    <div className="p-3.5 rounded-xl bg-emerald-950/40 border border-emerald-800/50 text-emerald-200">
-                      <span className="font-bold uppercase tracking-wider block mb-1 flex items-center gap-1.5 text-emerald-400">
-                        <CheckCircle className="w-4 h-4" />
+                    <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900">
+                      <span className="font-bold uppercase tracking-wider block mb-1 flex items-center gap-1.5 text-emerald-800">
+                        <CheckCircle className="w-4 h-4 text-emerald-600" />
                         <span>EVONIX Lab Recommended Resolution:</span>
                       </span>
-                      <p className="text-[11px] leading-relaxed">
+                      <p className="text-[11px] leading-relaxed text-emerald-800 font-medium">
                         {matchedDefect.solution}
                       </p>
                     </div>
@@ -404,29 +408,31 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
                           ? onOpenQuote(`Printer Repair: ${matchedDefect.component} (${matchedDefect.distanceMm}mm)`)
                           : null
                       }
-                      className="flex-1 py-3 px-4 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer transition-all shadow-md"
+                      className="flex-1 py-3 px-4 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer transition-all shadow-xs"
                     >
                       <Wrench className="w-4 h-4" />
                       <span>Book Sialkot Lab Repair</span>
                     </button>
                     <a
-                      href="https://wa.me/923000000000?text=Hello%20EVONIX%2C%20I%20have%20a%20printer%20defect%20with%20repeating%20distance%20issue."
+                      href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(
+                        `Hello EVONIX, I have a printer defect with repeating ${inputDistance}mm mark on ${matchedDefect.component}.`
+                      )}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs flex items-center justify-center gap-1.5 transition-all"
+                      className="py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs flex items-center justify-center gap-1.5 transition-all shadow-xs"
                     >
-                      <Phone className="w-4 h-4 text-emerald-400" />
+                      <Phone className="w-4 h-4" />
                       <span>WhatsApp Engineer</span>
                     </a>
                   </div>
                 </>
               ) : (
                 <div className="py-12 text-center space-y-3">
-                  <AlertTriangle className="w-10 h-10 text-amber-400 mx-auto" />
-                  <h4 className="text-base font-bold text-white">
+                  <AlertTriangle className="w-10 h-10 text-amber-500 mx-auto" />
+                  <h4 className="text-base font-bold text-slate-900">
                     No Exact Standard Roller Matches {inputDistance}mm
                   </h4>
-                  <p className="text-xs text-slate-400 max-w-sm mx-auto">
+                  <p className="text-xs text-slate-500 max-w-sm mx-auto">
                     Try adjusting the ruler slider closer to 38mm (PCR), 56mm (Mag Roller), 75mm (Drum), or 78mm (Fuser). For custom color laser transfer belts, contact our Sialkot lab directly.
                   </p>
                 </div>
@@ -439,7 +445,7 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
         {activeTab === 'thermal' && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-5 space-y-3">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1">
                 Select Common Thermal Printer Symptom:
               </span>
               {THERMAL_FAULTS.map((fault) => (
@@ -448,57 +454,57 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
                   onClick={() => setSelectedThermal(fault)}
                   className={`w-full p-4 rounded-2xl text-left border transition-all cursor-pointer ${
                     selectedThermal.id === fault.id
-                      ? 'bg-red-600/20 border-red-500 text-white shadow-xs'
-                      : 'bg-slate-900 border-slate-800 text-slate-300 hover:bg-slate-800'
+                      ? 'bg-red-50 border-red-500 text-red-900 font-bold shadow-2xs'
+                      : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
                   }`}
                 >
-                  <div className="text-sm font-bold text-white">{fault.title}</div>
-                  <div className="text-xs text-slate-400 mt-1 line-clamp-2">
+                  <div className="text-sm font-bold text-slate-900">{fault.title}</div>
+                  <div className="text-xs text-slate-500 mt-1 line-clamp-2">
                     {fault.symptoms}
                   </div>
                 </button>
               ))}
             </div>
 
-            <div className="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-5">
-              <div className="border-b border-slate-800 pb-3">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-red-400">
+            <div className="lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xs">
+              <div className="border-b border-slate-100 pb-3">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-red-600">
                   Thermal POS Troubleshooting Guide
                 </span>
-                <h3 className="text-xl font-extrabold text-white mt-1">
+                <h3 className="text-xl font-extrabold text-slate-900 mt-1">
                   {selectedThermal.title}
                 </h3>
               </div>
 
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1">
                   Observed Symptoms:
                 </span>
-                <p className="text-xs text-slate-300 bg-slate-800/60 p-3 rounded-xl border border-slate-700/60">
+                <p className="text-xs text-slate-800 bg-slate-50 p-3 rounded-xl border border-slate-200 font-medium">
                   {selectedThermal.symptoms}
                 </p>
               </div>
 
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1">
                   Root Causes:
                 </span>
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-700 leading-relaxed font-medium">
                   {selectedThermal.rootCause}
                 </p>
               </div>
 
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-2">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-2">
                   Bench Troubleshooting Steps:
                 </span>
                 <div className="space-y-2">
                   {selectedThermal.steps.map((st, idx) => (
                     <div
                       key={idx}
-                      className="flex items-start gap-2.5 text-xs text-slate-300 bg-slate-800/40 p-2.5 rounded-lg border border-slate-800"
+                      className="flex items-start gap-2.5 text-xs text-slate-800 bg-slate-50 p-2.5 rounded-lg border border-slate-200 font-medium"
                     >
-                      <span className="w-5 h-5 rounded-full bg-red-600/30 text-red-400 font-bold flex items-center justify-center flex-shrink-0 text-[10px]">
+                      <span className="w-5 h-5 rounded-full bg-red-100 text-red-700 font-bold flex items-center justify-center flex-shrink-0 text-[10px]">
                         {idx + 1}
                       </span>
                       <span>{st}</span>
@@ -507,12 +513,12 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-slate-800 border border-slate-700 text-xs flex items-center justify-between">
+              <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs flex items-center justify-between">
                 <div>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                  <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">
                     Available Spare Parts in Sialkot:
                   </span>
-                  <span className="font-bold text-white">{selectedThermal.partsNeeded}</span>
+                  <span className="font-bold text-slate-900">{selectedThermal.partsNeeded}</span>
                 </div>
                 <button
                   onClick={() =>
@@ -520,7 +526,7 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
                       ? onOpenQuote(`Thermal Printer Part: ${selectedThermal.partsNeeded}`)
                       : null
                   }
-                  className="px-3.5 py-1.5 rounded-lg bg-red-600 hover:bg-red-500 text-white font-bold text-xs cursor-pointer transition-colors"
+                  className="px-3.5 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-xs cursor-pointer transition-colors shadow-2xs"
                 >
                   Inquire Parts
                 </button>
@@ -540,7 +546,7 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
                   value={searchCode}
                   onChange={(e) => setSearchCode(e.target.value)}
                   placeholder="Search error code e.g. 50.1, 59.F0, 13.00..."
-                  className="w-full bg-slate-900 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-red-500"
+                  className="w-full bg-slate-50 border border-slate-300 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-red-500 focus:bg-white"
                 />
               </div>
             </div>
@@ -549,24 +555,24 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
               {filteredCodes.map((code) => (
                 <div
                   key={code.code}
-                  className="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3 hover:border-slate-700 transition-colors"
+                  className="bg-white border border-slate-200 rounded-2xl p-5 space-y-3 hover:border-slate-300 transition-colors shadow-2xs"
                 >
                   <div className="flex items-start justify-between">
                     <div>
-                      <span className="font-mono text-base font-extrabold text-red-400">
+                      <span className="font-mono text-base font-extrabold text-red-600">
                         {code.code}
                       </span>
-                      <h4 className="text-sm font-bold text-white mt-0.5">
+                      <h4 className="text-sm font-bold text-slate-900 mt-0.5">
                         {code.meaning}
                       </h4>
                     </div>
-                    <span className="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded font-mono">
+                    <span className="text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-mono font-medium">
                       {code.printer.split(',')[0]}
                     </span>
                   </div>
 
-                  <div className="text-xs text-slate-300 leading-relaxed bg-slate-950/60 p-3 rounded-xl border border-slate-800/80">
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                  <div className="text-xs text-slate-700 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-200 font-medium">
+                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
                       EVONIX Sialkot Engineering Remedy:
                     </span>
                     {code.sialkotFix}

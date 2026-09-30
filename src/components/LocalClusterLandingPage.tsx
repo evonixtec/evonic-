@@ -503,19 +503,19 @@ export const LocalClusterLandingPage: React.FC<LocalClusterLandingPageProps> = (
               </div>
 
               {/* Industrial Hardware & Diagnostic Equipment */}
-              <div className="p-4 rounded-2xl bg-slate-900 text-white space-y-3">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="font-extrabold text-cyan-400 uppercase tracking-wider flex items-center gap-1.5">
-                    <Cpu className="w-4 h-4" />
+              <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 text-slate-900 space-y-3">
+                <div className="flex items-center justify-between text-xs flex-wrap gap-1">
+                  <span className="font-extrabold text-red-700 uppercase tracking-wider flex items-center gap-1.5">
+                    <Cpu className="w-4 h-4 text-red-600" />
                     Laboratory & Mobile Tooling Station:
                   </span>
-                  <span className="text-slate-400">Dubai Standard Certified</span>
+                  <span className="text-slate-500 text-[11px] font-semibold">Dubai Standard Certified</span>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {currentService.equipmentUsed.map((equip, idx) => (
                     <span
                       key={idx}
-                      className="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-200 text-xs font-mono border border-slate-700"
+                      className="px-2.5 py-1 rounded-lg bg-white text-slate-800 text-xs font-mono font-medium border border-slate-200 shadow-2xs"
                     >
                       ✓ {equip}
                     </span>
@@ -746,38 +746,38 @@ export const LocalClusterLandingPage: React.FC<LocalClusterLandingPageProps> = (
                 </form>
               ) : (
                 /* Generated Dispatch Pass Confirmation View */
-                <div className="p-4 rounded-2xl bg-slate-950 text-white space-y-4">
-                  <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-                    <div className="flex items-center gap-1.5 text-emerald-400 text-xs font-bold">
-                      <CheckCircle2 className="w-4 h-4" />
+                <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 text-slate-900 space-y-4 shadow-sm">
+                  <div className="flex items-center justify-between border-b border-slate-200 pb-2.5">
+                    <div className="flex items-center gap-1.5 text-emerald-700 text-xs font-bold">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                       <span>Van Dispatch Token Active</span>
                     </div>
                     <button
                       onClick={handleCopyDispatchToken}
-                      className="text-[11px] font-mono text-cyan-400 hover:text-cyan-300 flex items-center gap-1 cursor-pointer"
+                      className="text-[11px] font-mono text-slate-700 hover:text-red-600 flex items-center gap-1 cursor-pointer bg-white px-2 py-0.5 rounded border border-slate-200 shadow-2xs font-bold"
                     >
-                      {copiedDispatchToken ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                      {copiedDispatchToken ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3 text-slate-500" />}
                       <span>{copiedDispatchToken ? 'Copied' : 'Copy'}</span>
                     </button>
                   </div>
 
-                  <div className="space-y-1">
-                    <span className="text-[10px] text-slate-400 uppercase tracking-wider block">Official Tracking Code:</span>
-                    <div className="font-mono text-lg font-black text-white tracking-wider">
+                  <div className="space-y-1.5 bg-white p-3.5 rounded-xl border border-slate-200">
+                    <span className="text-[10px] text-slate-500 uppercase tracking-wider block font-bold">Official Tracking Code:</span>
+                    <div className="font-mono text-lg font-black text-red-700 tracking-wider">
                       {generatedDispatchToken}
                     </div>
-                    <div className="text-xs text-slate-300">
-                      Destination: <strong className="text-white">{dispatchZone}</strong>, {currentCity.name}
+                    <div className="text-xs text-slate-700">
+                      Destination: <strong className="text-slate-900 font-bold">{dispatchZone}</strong>, {currentCity.name}
                     </div>
-                    <div className="text-xs text-emerald-400 font-bold flex items-center gap-1 mt-1">
-                      <Clock className="w-3.5 h-3.5" />
+                    <div className="text-xs text-emerald-700 font-bold flex items-center gap-1 mt-1">
+                      <Clock className="w-3.5 h-3.5 text-emerald-600" />
                       <span>Estimated Van Arrival: {currentCity.dispatchEtaMinutes}</span>
                     </div>
                   </div>
 
                   <button
                     onClick={handleSendDispatchWhatsApp}
-                    className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <MessageSquare className="w-4 h-4 fill-white/20" />
                     <span>Send Token to Technician WhatsApp</span>
@@ -785,7 +785,7 @@ export const LocalClusterLandingPage: React.FC<LocalClusterLandingPageProps> = (
 
                   <button
                     onClick={() => setGeneratedDispatchToken(null)}
-                    className="w-full text-center text-[11px] text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
+                    className="w-full text-center text-[11px] text-slate-600 hover:text-red-700 font-medium transition-colors cursor-pointer"
                   >
                     ← Edit Details / Create Another Dispatch Pass
                   </button>

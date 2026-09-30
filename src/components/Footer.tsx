@@ -312,7 +312,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                   onClick={() => onNavigate('guides')}
                   className="hover:text-red-400 transition-colors text-left cursor-pointer"
                 >
-                  80+ Field Tech Guides
+                  80+ Tech Blogs & Guides
                 </button>
               </li>
               <li>
@@ -411,7 +411,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               { label: 'Custom Web & Portals', sub: 'E-Commerce Solutions', target: 'services' },
               { label: 'Retail POS & Hardware', sub: 'Printers & Terminals', target: 'shop' },
               { label: 'Sialkot Doorstep IT', sub: '15-Min Rapid Dispatch', target: 'contact' },
-              { label: 'Technical Guides Hub', sub: '80+ Field Tutorials', target: 'guides' },
+              { label: 'Tech Blogs & Guides', sub: '80+ Field Tutorials', target: 'guides' },
             ].map((item, idx) => (
               <button
                 key={idx}

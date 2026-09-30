@@ -99,60 +99,17 @@ const TEMPLATES: LabelTemplate[] = [
   },
 ];
 
-// Helper to convert an alphanumeric text into a visual Code 128 style bar sequence
-function generatePseudoCode128(text: string): { width: number; isBar: boolean }[] {
-  const bars: { width: number; isBar: boolean }[] = [];
-  // Quiet zone
-  bars.push({ width: 10, isBar: false });
-  // Start pattern
-  bars.push({ width: 2, isBar: true });
-  bars.push({ width: 1, isBar: false });
-  bars.push({ width: 1, isBar: true });
-  bars.push({ width: 2, isBar: false });
-
-  for (let i = 0; i < text.length; i++) {
-    const charCode = text.charCodeAt(i);
-    // Simple deterministic pattern based on charCode
-    const pattern = [
-      (charCode % 3) + 1,
-      ((charCode >> 1) % 2) + 1,
-      ((charCode >> 2) % 3) + 1,
-      ((charCode >> 3) % 2) + 1,
-    ];
-    let isBar = true;
-    for (const w of pattern) {
-      bars.push({ width: w, isBar });
-      isBar = !isBar;
-    }
-  }
-
-  // Stop pattern
-  bars.push({ width: 2, isBar: true });
-  bars.push({ width: 3, isBar: false });
-  bars.push({ width: 1, isBar: true });
-  bars.push({ width: 1, isBar: false });
-  bars.push({ width: 2, isBar: true });
-  // Quiet zone
-  bars.push({ width: 10, isBar: false });
-
-  return bars;
+interface BarcodeStudioProps {
+  onOpenQuote?: (inquiryDetails?: string) => void;
 }
 
-interface ExportBarcodeLabelGeneratorProps {
-  onOpenQuote?: (service: string) => void;
-}
-
-export const ExportBarcodeLabelGenerator: React.FC<ExportBarcodeLabelGeneratorProps> = ({
-  onOpenQuote,
-}) => {
+export const ExportBarcodeLabelGenerator: React.FC<BarcodeStudioProps> = ({ onOpenQuote }) => {
   const [selectedTemplateId, setSelectedTemplateId] = useState<string>('surgical-export');
-  const [barcodeText, setBarcodeText] = useState<string>('PK-SIAL-SURG-9018-042');
-  const [labelTitle, setLabelTitle] = useState<string>('TITANIUM MICRO-SURGICAL FORCEPS 14CM');
+  const [barcodeText, setBarcodeText] = useState<string>(TEMPLATES[0].defaultBarcode);
+  const [labelTitle, setLabelTitle] = useState<string>(TEMPLATES[0].defaultTitle);
+  const [labelFields, setLabelFields] = useState<Record<string, string>>(TEMPLATES[0].defaultData);
   const [printerDpi, setPrinterDpi] = useState<'203' | '300'>('203');
   const [copiedNotification, setCopiedNotification] = useState<boolean>(false);
-  const [labelFields, setLabelFields] = useState<Record<string, string>>(
-    TEMPLATES[0].defaultData
-  );
 
   const currentTemplate =
     TEMPLATES.find((t) => t.id === selectedTemplateId) || TEMPLATES[0];
@@ -161,11 +118,40 @@ export const ExportBarcodeLabelGenerator: React.FC<ExportBarcodeLabelGeneratorPr
     setSelectedTemplateId(template.id);
     setBarcodeText(template.defaultBarcode);
     setLabelTitle(template.defaultTitle);
-    setLabelFields(template.defaultData);
+    setLabelFields({ ...template.defaultData });
   };
 
   const handleFieldChange = (key: string, val: string) => {
     setLabelFields((prev) => ({ ...prev, [key]: val }));
+  };
+
+  // Pseudo-Code 128 barcode bar generator for realistic thermal output
+  const generatePseudoCode128 = (text: string) => {
+    const bars: { isBar: boolean; width: number }[] = [];
+    // Start quiet zone
+    bars.push({ isBar: false, width: 10 });
+    // Start sentinel (Code B: 11010010000 style)
+    [2, 1, 1, 2, 1, 4].forEach((w, i) => bars.push({ isBar: i % 2 === 0, width: w }));
+
+    // Encode text characters into alternating bar-space widths
+    for (let i = 0; i < text.length; i++) {
+      const code = text.charCodeAt(i);
+      const w1 = ((code * 3) % 4) + 1;
+      const w2 = ((code * 7) % 3) + 1;
+      const w3 = ((code * 5) % 4) + 1;
+      const w4 = 11 - (w1 + w2 + w3);
+      bars.push({ isBar: true, width: Math.max(1, w1) });
+      bars.push({ isBar: false, width: Math.max(1, w2) });
+      bars.push({ isBar: true, width: Math.max(1, w3) });
+      bars.push({ isBar: false, width: Math.max(1, Math.min(4, w4)) });
+    }
+
+    // Stop sentinel (2331112)
+    [2, 3, 3, 1, 1, 1, 2].forEach((w, i) => bars.push({ isBar: i % 2 === 0, width: w }));
+    // End quiet zone
+    bars.push({ isBar: false, width: 10 });
+
+    return bars;
   };
 
   const handlePrint = () => {
@@ -183,27 +169,23 @@ export const ExportBarcodeLabelGenerator: React.FC<ExportBarcodeLabelGeneratorPr
   return (
     <section
       id="export-barcode-studio"
-      className="py-16 bg-slate-900 text-white relative overflow-hidden border-t border-slate-800"
+      className="py-16 bg-slate-50 text-slate-900 relative overflow-hidden border-t border-slate-200"
     >
-      {/* Background glow effects */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-bold uppercase tracking-wider mb-4">
-            <Barcode className="w-4 h-4 text-red-400" />
+        <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 text-red-700 text-xs font-bold uppercase tracking-wider">
+            <Barcode className="w-4 h-4 text-red-600" />
             <span>Sialkot Export Industry Tool</span>
             <span className="bg-red-600 text-white text-[10px] px-2 py-0.2 rounded-full font-black">
               2026 Ready
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
             Export Barcode & Shipping Label Studio
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
+          <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
             Free online barcode format studio for Sialkot surgical, leather, sports, and e-commerce exporters.
             Generate certified Code 128, GS1, FNSKU, and Master Carton shipping labels calibrated for 203 DPI and 300 DPI thermal printers.
           </p>
@@ -212,9 +194,9 @@ export const ExportBarcodeLabelGenerator: React.FC<ExportBarcodeLabelGeneratorPr
         {/* Studio Grid: Config on Left, Live Thermal Preview on Right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Controls Panel (5 cols) */}
-          <div className="lg:col-span-5 bg-slate-800/80 backdrop-blur-md rounded-2xl border border-slate-700 p-6 space-y-6">
+          <div className="lg:col-span-5 bg-white rounded-2xl border border-slate-200 p-6 space-y-6 shadow-2xs">
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+              <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
                 1. Select Industry Export Preset
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -224,13 +206,13 @@ export const ExportBarcodeLabelGenerator: React.FC<ExportBarcodeLabelGeneratorPr
                     onClick={() => handleSelectTemplate(tmpl)}
                     className={`p-3 rounded-xl text-left border transition-all cursor-pointer ${
                       selectedTemplateId === tmpl.id
-                        ? 'bg-red-600/20 border-red-500 text-white shadow-xs'
-                        : 'bg-slate-900/50 border-slate-700/80 text-slate-300 hover:bg-slate-700/50 hover:text-white'
+                        ? 'bg-red-50 border-red-500 text-red-950 font-bold shadow-2xs'
+                        : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
                     }`}
                   >
                     <div className="text-xs font-bold leading-snug">{tmpl.name}</div>
-                    <div className="text-[10px] text-slate-400 mt-1 flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    <div className="text-[10px] text-slate-500 mt-1 flex items-center gap-1 font-medium">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
                       <span>{tmpl.dimensions}</span>
                     </div>
                   </button>
@@ -239,9 +221,9 @@ export const ExportBarcodeLabelGenerator: React.FC<ExportBarcodeLabelGeneratorPr
             </div>
 
             {/* Barcode & Label Title Inputs */}
-            <div className="space-y-4 pt-2 border-t border-slate-700">
+            <div className="space-y-4 pt-2 border-t border-slate-100">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
                   Master Barcode / SKU / Tracking ID
                 </label>
                 <div className="relative">
@@ -249,12 +231,12 @@ export const ExportBarcodeLabelGenerator: React.FC<ExportBarcodeLabelGeneratorPr
                     type="text"
                     value={barcodeText}
                     onChange={(e) => setBarcodeText(e.target.value)}
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm font-mono text-white focus:outline-none focus:border-red-500 transition-colors"
+                    className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm font-mono text-slate-900 focus:outline-none focus:border-red-500 focus:bg-white transition-colors"
                     placeholder="Enter Barcode or Item Code"
                   />
                   <button
                     onClick={handleCopyBarcode}
-                    className="absolute right-2 top-2 p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors cursor-pointer text-xs flex items-center gap-1"
+                    className="absolute right-2 top-2 p-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-700 transition-colors cursor-pointer text-xs flex items-center gap-1"
                     title="Copy Barcode Value"
                   >
                     <Copy className="w-3.5 h-3.5" />
@@ -264,36 +246,34 @@ export const ExportBarcodeLabelGenerator: React.FC<ExportBarcodeLabelGeneratorPr
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
-                  Label Main Description / Product Title
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
+                  Carton Product Headline
                 </label>
                 <input
                   type="text"
                   value={labelTitle}
                   onChange={(e) => setLabelTitle(e.target.value)}
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-white focus:outline-none focus:border-red-500 transition-colors"
+                  className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-red-500 focus:bg-white font-semibold transition-colors"
+                  placeholder="e.g. TITANIUM SURGICAL FORCEPS"
                 />
               </div>
 
               {/* Dynamic Field Inputs */}
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                    Label Details & Export Manifest
-                  </label>
-                  <span className="text-[10px] text-slate-400">Click to edit</span>
-                </div>
-                <div className="space-y-2 max-h-56 overflow-y-auto pr-1">
-                  {Object.entries(labelFields).map(([key, val]) => (
-                    <div key={key} className="flex items-center gap-2 text-xs">
-                      <span className="w-28 text-slate-400 truncate capitalize font-medium">
-                        {key.replace(/([A-Z])/g, ' $1')}:
+              <div className="space-y-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500">
+                  Customs & Manifest Parameters:
+                </label>
+                <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
+                  {Object.entries(labelFields).map(([k, v]) => (
+                    <div key={k} className="flex items-center gap-2">
+                      <span className="w-28 text-[11px] font-bold text-slate-600 uppercase truncate">
+                        {k.replace(/([A-Z])/g, ' $1')}:
                       </span>
                       <input
                         type="text"
-                        value={val}
-                        onChange={(e) => handleFieldChange(key, e.target.value)}
-                        className="flex-1 bg-slate-900 border border-slate-700/80 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-red-500 font-mono"
+                        value={v}
+                        onChange={(e) => handleFieldChange(k, e.target.value)}
+                        className="flex-1 bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 focus:outline-none focus:border-red-500 focus:bg-white"
                       />
                     </div>
                   ))}
@@ -301,12 +281,12 @@ export const ExportBarcodeLabelGenerator: React.FC<ExportBarcodeLabelGeneratorPr
               </div>
 
               {/* Printer Hardware DPI Selector */}
-              <div className="flex items-center justify-between p-3 rounded-xl bg-slate-900/60 border border-slate-700">
+              <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-200">
                 <div className="flex items-center gap-2">
-                  <Printer className="w-4 h-4 text-red-400" />
+                  <Printer className="w-4 h-4 text-red-600" />
                   <div>
-                    <div className="text-xs font-bold text-white">Thermal Printer Head DPI</div>
-                    <div className="text-[10px] text-slate-400">
+                    <div className="text-xs font-bold text-slate-900">Thermal Printer Head DPI</div>
+                    <div className="text-[10px] text-slate-500">
                       TSC / Zebra / Xprinter calibration
                     </div>
                   </div>
@@ -316,8 +296,8 @@ export const ExportBarcodeLabelGenerator: React.FC<ExportBarcodeLabelGeneratorPr
                     onClick={() => setPrinterDpi('203')}
                     className={`px-2.5 py-1 rounded-lg text-xs font-bold cursor-pointer transition-colors ${
                       printerDpi === '203'
-                        ? 'bg-red-600 text-white'
-                        : 'bg-slate-800 text-slate-400 hover:text-white'
+                        ? 'bg-red-600 text-white shadow-2xs'
+                        : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-100'
                     }`}
                   >
                     203 DPI (Standard)
@@ -326,8 +306,8 @@ export const ExportBarcodeLabelGenerator: React.FC<ExportBarcodeLabelGeneratorPr
                     onClick={() => setPrinterDpi('300')}
                     className={`px-2.5 py-1 rounded-lg text-xs font-bold cursor-pointer transition-colors ${
                       printerDpi === '300'
-                        ? 'bg-red-600 text-white'
-                        : 'bg-slate-800 text-slate-400 hover:text-white'
+                        ? 'bg-red-600 text-white shadow-2xs'
+                        : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-100'
                     }`}
                   >
                     300 DPI (High-Res)
@@ -340,7 +320,7 @@ export const ExportBarcodeLabelGenerator: React.FC<ExportBarcodeLabelGeneratorPr
             <div className="pt-2 flex flex-col sm:flex-row gap-2">
               <button
                 onClick={handlePrint}
-                className="flex-1 py-2.5 px-4 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-md transition-all"
+                className="flex-1 py-2.5 px-4 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-xs transition-all"
               >
                 <Printer className="w-4 h-4" />
                 <span>Print Thermal Label</span>
@@ -359,7 +339,7 @@ export const ExportBarcodeLabelGenerator: React.FC<ExportBarcodeLabelGeneratorPr
                   a.click();
                   URL.revokeObjectURL(url);
                 }}
-                className="py-2.5 px-3 rounded-xl bg-slate-700 hover:bg-slate-600 text-white font-semibold text-xs flex items-center justify-center gap-1.5 cursor-pointer transition-all"
+                className="py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs flex items-center justify-center gap-1.5 cursor-pointer border border-slate-300 transition-all"
                 title="Download Vector SVG"
               >
                 <Download className="w-4 h-4" />
@@ -370,21 +350,21 @@ export const ExportBarcodeLabelGenerator: React.FC<ExportBarcodeLabelGeneratorPr
 
           {/* Live Thermal Label Preview (7 cols) */}
           <div className="lg:col-span-7 space-y-4">
-            <div className="flex items-center justify-between text-xs text-slate-400">
+            <div className="flex items-center justify-between text-xs text-slate-600">
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="font-bold text-slate-200">1:1 Thermal Output Render</span>
-                <span className="text-[11px] bg-slate-800 px-2 py-0.5 rounded text-slate-400 border border-slate-700">
+                <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
+                <span className="font-bold text-slate-900">1:1 Thermal Output Render</span>
+                <span className="text-[11px] bg-white px-2 py-0.5 rounded text-slate-700 border border-slate-200 font-medium">
                   {currentTemplate.dimensions} @ {printerDpi} DPI
                 </span>
               </div>
-              <span className="text-[11px] text-slate-500">
+              <span className="text-[11px] text-slate-500 font-medium">
                 Calibrated for TSC TE244, Zebra ZD888, Xprinter
               </span>
             </div>
 
             {/* Thermal Label White Canvas Simulation */}
-            <div className="bg-white text-black p-6 sm:p-8 rounded-2xl shadow-2xl border-4 border-slate-300 font-sans relative select-all transition-all">
+            <div className="bg-white text-black p-6 sm:p-8 rounded-2xl shadow-md border-4 border-slate-300 font-sans relative select-all transition-all">
               {/* Printable Wrapper */}
               <div id="printable-thermal-label" className="space-y-4">
                 {/* Header Section */}
@@ -452,10 +432,10 @@ export const ExportBarcodeLabelGenerator: React.FC<ExportBarcodeLabelGeneratorPr
             </div>
 
             {/* Advice & Service Callout */}
-            <div className="p-4 rounded-xl bg-slate-800/70 border border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-              <div className="flex items-center gap-2.5 text-slate-300">
-                <Info className="w-5 h-5 text-red-400 flex-shrink-0" />
-                <span>
+            <div className="p-4 rounded-xl bg-white border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs shadow-2xs">
+              <div className="flex items-center gap-2.5 text-slate-700">
+                <Info className="w-5 h-5 text-red-600 flex-shrink-0" />
+                <span className="font-medium">
                   Need commercial TSC/Zebra thermal label printers, wax-resin ribbons, or automated packing station software for your Sialkot factory?
                 </span>
               </div>
@@ -465,7 +445,7 @@ export const ExportBarcodeLabelGenerator: React.FC<ExportBarcodeLabelGeneratorPr
                     ? onOpenQuote('Thermal Barcode Label Automation for Sialkot Factory')
                     : null
                 }
-                className="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-500 text-white font-bold whitespace-nowrap cursor-pointer transition-colors"
+                className="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold whitespace-nowrap cursor-pointer transition-colors shadow-2xs"
               >
                 Inquire Factory Hardware
               </button>

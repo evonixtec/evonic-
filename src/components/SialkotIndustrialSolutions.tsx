@@ -303,36 +303,36 @@ export const SialkotIndustrialSolutions: React.FC<SialkotIndustrialSolutionsProp
           {/* Technical Specs & Verified Client Review */}
           <div className="mt-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* Tech Specs */}
-            <div className="lg:col-span-6 bg-slate-900 text-white rounded-2xl p-6 space-y-4">
-              <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div className="lg:col-span-6 bg-white text-slate-900 rounded-2xl p-6 space-y-4 border border-slate-200/90 shadow-2xs">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
                 <div className="flex items-center gap-2">
-                  <Server className="w-4 h-4 text-red-400" />
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-200">
+                  <Server className="w-4 h-4 text-red-600" />
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-900">
                     Local Sialkot Architecture & Hardware
                   </span>
                 </div>
-                <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800">
+                <span className="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
                   100% Offline Capable
                 </span>
               </div>
 
               <div className="space-y-3 text-xs">
                 <div>
-                  <span className="text-slate-400 font-semibold block text-[11px]">Factory Internet Drops?</span>
-                  <p className="text-slate-200 text-xs mt-0.5">{currentVertical.offlineResilience}</p>
+                  <span className="text-slate-500 font-bold block text-[11px]">Factory Internet Drops?</span>
+                  <p className="text-slate-800 text-xs mt-0.5 font-medium">{currentVertical.offlineResilience}</p>
                 </div>
 
                 <div>
-                  <span className="text-slate-400 font-semibold block text-[11px]">Deployment & Go-Live Window:</span>
-                  <p className="text-slate-200 text-xs mt-0.5">{currentVertical.typicalDeployment}</p>
+                  <span className="text-slate-500 font-bold block text-[11px]">Deployment & Go-Live Window:</span>
+                  <p className="text-slate-800 text-xs mt-0.5 font-medium">{currentVertical.typicalDeployment}</p>
                 </div>
 
                 <div>
-                  <span className="text-slate-400 font-semibold block text-[11px]">Export & Customs Integrations:</span>
-                  <ul className="mt-1 space-y-1 text-slate-300">
+                  <span className="text-slate-500 font-bold block text-[11px]">Export & Customs Integrations:</span>
+                  <ul className="mt-1 space-y-1 text-slate-700">
                     {currentVertical.exportFeatures.map((feat, idx) => (
                       <li key={idx} className="flex items-start gap-1.5">
-                        <span className="text-red-400">•</span>
+                        <span className="text-red-600 font-bold">•</span>
                         <span>{feat}</span>
                       </li>
                     ))}
