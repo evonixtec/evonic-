@@ -26,6 +26,11 @@
     letter-spacing: -0.02em;
   }
 
+  /* Ensure interactive controls inherit global typography */
+  button, input, textarea, select {
+    font-family: inherit;
+  }
+
   /* Prevent browser or OS dark-mode from rendering white text on light input backgrounds */
   input, textarea, select {
     color: #0f172a !important;

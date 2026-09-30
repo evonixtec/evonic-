@@ -596,10 +596,10 @@ export default function App() {
         {currentPage === 'guides' && (
           <div className="space-y-0">
             <PageHeaderBanner
-              breadcrumbCurrent="80+ Technical Guides & Case Studies"
-              badgeText="Complete Technical Knowledge Hub"
-              title="80+ Tech Guides & Field Case Studies"
-              subtitle="Free engineering knowledge base covering web deployment, Daska Road & Rangpura field case studies, retail POS troubleshooting, chip-level laptop care, and IT operations in Sialkot."
+              breadcrumbCurrent="Tech Blogs & Case Studies"
+              badgeText="EVONIX Engineering Blogs & Knowledge Hub"
+              title="Official Tech Blogs, Hardware Guides & Field Case Studies"
+              subtitle="Practical, ground-level engineering blogs written by EVONIX technicians. Covers retail thermal printer troubleshooting, laptop overheating fixes, factory network sync, and chip-level motherboard restoration in Sialkot."
               onNavigateHome={() => navigateToPage('home')}
               onOpenQuote={() => handleOpenQuote('Technical Consultation')}
               ctaText="Ask An Engineer"

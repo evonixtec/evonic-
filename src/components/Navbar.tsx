@@ -23,6 +23,7 @@ import {
   Cpu,
   Barcode,
   MapPin,
+  BookOpen,
 } from 'lucide-react';
 import { ThemeSwitcher } from './ThemeSwitcher';
 
@@ -523,7 +524,21 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </div>
 
-            {/* 5. Company / About Us Dropdown */}
+            {/* 5. Blogs Link (Directly Prominent as requested by user) */}
+            <button
+              onClick={() => handlePageSelect('guides')}
+              className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                currentPage === 'guides'
+                  ? 'text-red-600 bg-red-50/80 font-bold'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+              }`}
+            >
+              <BookOpen className="w-3.5 h-3.5 text-red-500" />
+              <span>Blogs</span>
+              <span className="text-[10px] font-bold px-1.5 py-0.2 rounded-full bg-red-100 text-red-700">New</span>
+            </button>
+
+            {/* 6. Company / About Us Dropdown */}
             <div
               className="relative"
               onMouseEnter={() => setActiveDropdown('company')}
@@ -532,7 +547,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 onClick={() => handlePageSelect('about')}
                 className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1 cursor-pointer ${
-                  currentPage === 'about' || currentPage === 'guides'
+                  currentPage === 'about'
                     ? 'text-red-600 bg-red-50/80 font-bold'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
                 }`}
@@ -571,11 +586,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                       onClick={() => handlePageSelect('guides')}
                       className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 cursor-pointer group"
                     >
-                      <FileText className="w-4 h-4 text-slate-400 group-hover:text-red-600" />
+                      <BookOpen className="w-4 h-4 text-slate-400 group-hover:text-red-600" />
                       <div>
                         <div className="text-xs font-bold text-slate-900 group-hover:text-red-600 flex items-center gap-1.5">
-                          <span>60 Technical Guides</span>
-                          <span className="px-1.5 py-0.2 bg-red-100 text-red-700 text-[9px] rounded font-bold">SEO</span>
+                          <span>Tech Blogs & Case Studies</span>
+                          <span className="px-1.5 py-0.2 bg-red-100 text-red-700 text-[9px] rounded font-bold">BLOGS</span>
                         </div>
                         <div className="text-[11px] text-slate-500">Deep Technical Knowledge Hub</div>
                       </div>
@@ -866,8 +881,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                 currentPage === 'guides' ? 'bg-red-50 text-red-600' : 'text-slate-800 hover:bg-slate-100'
               }`}
             >
-              <span>60 Tech Guides & FAQs</span>
-              <span className="px-1.5 py-0.2 bg-red-100 text-red-700 text-[10px] rounded font-bold">SEO</span>
+              <div className="flex items-center gap-2">
+                <BookOpen className="w-4 h-4 text-red-600" />
+                <span>Tech Blogs & Field Case Studies</span>
+              </div>
+              <span className="px-1.5 py-0.2 bg-red-100 text-red-700 text-[10px] rounded font-bold">BLOGS</span>
             </button>
 
             {/* Local Industrial Hubs (Daska, Sambrial, Wazirabad) */}

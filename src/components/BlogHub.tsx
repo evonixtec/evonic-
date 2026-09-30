@@ -110,13 +110,13 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onNavigateSection, onOpenQuote
           <div className="max-w-2xl space-y-3">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-red-700 text-xs font-bold uppercase tracking-wider">
               <EvonixMark className="w-3.5 h-3.5" />
-              <span>EVONIX Technical Knowledge Base & SEO Guides</span>
+              <span>Official EVONIX Tech Blogs & Engineering Knowledge Hub</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-              {ALL_BLOGS.length}+ Tech Guides & Sialkot Field Case Studies
+              {ALL_BLOGS.length}+ Tech Blogs, Hardware Guides & Case Studies
             </h2>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
-              Curated by EVONIX engineers with 20+ years Dubai enterprise experience. Featuring real on-site emergency field repairs on Daska Road & Rangpura, surgical ERP deployments, offline POS systems, and chip-level motherboard labs.
+              Written by EVONIX engineers with 20+ years Dubai enterprise experience. Featuring real on-site emergency field repairs on Daska Road & Rangpura, printer servicing, laptop maintenance, offline POS architecture, and chip-level motherboard restoration.
             </p>
           </div>
 
@@ -125,7 +125,7 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onNavigateSection, onOpenQuote
               <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
-                placeholder={`Search ${ALL_BLOGS.length}+ technical articles & field studies...`}
+                placeholder={`Search ${ALL_BLOGS.length}+ tech blogs & guides...`}
                 value={searchQuery}
                 onChange={(e) => {
                   setSearchQuery(e.target.value);
