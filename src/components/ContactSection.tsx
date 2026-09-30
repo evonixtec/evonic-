@@ -61,285 +61,336 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
   };
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-white border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="relative py-20 md:py-28 overflow-hidden bg-gradient-to-b from-slate-50 via-red-50/20 to-slate-50 border-b border-slate-200">
+      {/* Colorful Atmospheric Tech Grid Background */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] [mask-image:radial-gradient(ellipse_75%_55%_at_50%_40%,#000_70%,transparent_100%)] opacity-70 pointer-events-none" />
+      
+      {/* Radiant Colorful Ambient Light Spheres */}
+      <div className="absolute top-10 left-10 w-96 h-96 bg-red-400/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 right-10 w-96 h-96 bg-blue-400/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 left-1/3 w-96 h-96 bg-emerald-400/15 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-xs font-bold text-red-700">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-red-50 to-rose-100/70 border border-red-200 text-xs font-bold text-red-700 shadow-2xs">
             <Mail className="w-3.5 h-3.5 text-red-600" />
-            Get in Touch With Our Team
+            <span>Direct Sialkot Engineering Desk</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
             Contact Us & Sialkot Office
           </h2>
-          <p className="text-slate-800 text-base sm:text-lg font-bold">
-            Got a question? Call us. We reply in 2 hours.
+          <p className="text-slate-700 text-base sm:text-lg font-bold">
+            Got a question? Call us. We reply in 2 hours with direct technician dispatch.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: Direct Contact Info Cards */}
+          {/* Left Column: Direct Colorful Contact Info Cards */}
           <div className="lg:col-span-5 space-y-4">
-            {/* Phone */}
-            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-2xs hover:shadow-xs transition-shadow">
+            {/* 1. Direct Hotline Card (Colorful Crimson/Rose) */}
+            <div className="bg-gradient-to-br from-rose-50/90 via-white to-red-50/70 border-2 border-red-200 rounded-3xl p-5 sm:p-6 shadow-[0_8px_25px_rgba(220,38,38,0.06)] hover:shadow-[0_12px_32px_rgba(220,38,38,0.12)] transition-all">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-red-600 flex-shrink-0 shadow-2xs">
-                  <Phone className="w-5 h-5" />
+                <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-red-600 via-rose-600 to-red-700 text-white flex items-center justify-center flex-shrink-0 shadow-lg shadow-red-500/30">
+                  <Phone className="w-6 h-6 animate-pulse" />
                 </div>
-                <div>
-                  <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">Direct Hotline</h3>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="text-xs font-bold text-red-700 uppercase tracking-wider">Direct Hotline</h3>
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-red-100 text-red-800">
+                      Live Call
+                    </span>
+                  </div>
                   <a
                     href={`tel:${COMPANY_INFO.contact.phoneRaw}`}
-                    className="text-base sm:text-lg font-bold text-slate-900 hover:text-red-600 transition-colors block mt-0.5"
+                    className="text-lg sm:text-xl font-black text-slate-900 hover:text-red-600 transition-colors block mt-1"
                   >
                     {COMPANY_INFO.contact.phoneDisplay}
                   </a>
-                  <p className="text-xs text-slate-500 mt-0.5">Mon - Sat: 9:00 AM - 8:00 PM</p>
+                  <p className="text-xs text-slate-600 mt-1 font-medium">Mon - Sat: 9:00 AM - 8:00 PM • Kotli Behram</p>
                 </div>
               </div>
             </div>
 
-            {/* WhatsApp */}
-            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-2xs hover:shadow-xs transition-shadow">
+            {/* 2. WhatsApp Card (Colorful Emerald/Teal) */}
+            <div className="bg-gradient-to-br from-emerald-50/90 via-white to-teal-50/70 border-2 border-emerald-200 rounded-3xl p-5 sm:p-6 shadow-[0_8px_25px_rgba(16,185,129,0.06)] hover:shadow-[0_12px_32px_rgba(16,185,129,0.12)] transition-all">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 flex-shrink-0 shadow-2xs">
-                  <MessageSquare className="w-5 h-5" />
+                <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-emerald-500 via-emerald-600 to-teal-700 text-white flex items-center justify-center flex-shrink-0 shadow-lg shadow-emerald-500/30">
+                  <MessageSquare className="w-6 h-6 fill-white/20" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">Instant WhatsApp Chat</h3>
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="text-xs font-bold text-emerald-800 uppercase tracking-wider">Instant WhatsApp Chat</h3>
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+                      5-15 Min Reply
+                    </span>
+                  </div>
                   <a
                     href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX, I want to discuss a requirement in Sialkot.')}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-base sm:text-lg font-bold text-emerald-700 hover:text-emerald-800 transition-colors block mt-0.5"
+                    className="text-lg sm:text-xl font-black text-emerald-800 hover:text-emerald-900 transition-colors block mt-1"
                   >
                     +{COMPANY_INFO.contact.whatsappDisplay}
                   </a>
-                  <p className="text-xs text-slate-500 mt-0.5">Rapid response within 5-15 minutes</p>
+                  <div className="mt-2.5">
+                    <a
+                      href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX, I want to discuss a requirement in Sialkot.')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-xs font-bold shadow-md shadow-emerald-600/25 transition-all"
+                    >
+                      <MessageSquare className="w-3.5 h-3.5" />
+                      <span>Start WhatsApp Conversation →</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Email */}
-            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-2xs hover:shadow-xs transition-shadow">
+            {/* 3. Official Email Card (Colorful Sapphire/Blue) */}
+            <div className="bg-gradient-to-br from-blue-50/90 via-white to-indigo-50/70 border-2 border-blue-200 rounded-3xl p-5 sm:p-6 shadow-[0_8px_25px_rgba(59,130,246,0.06)] hover:shadow-[0_12px_32px_rgba(59,130,246,0.12)] transition-all">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-blue-600 flex-shrink-0 shadow-2xs">
-                  <Mail className="w-5 h-5" />
+                <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-blue-600 via-indigo-600 to-blue-800 text-white flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-500/30">
+                  <Mail className="w-6 h-6" />
                 </div>
-                <div>
-                  <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">Official Email</h3>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="text-xs font-bold text-blue-800 uppercase tracking-wider">Official Email</h3>
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">
+                      Corporate RFQ
+                    </span>
+                  </div>
                   <a
                     href={`mailto:${COMPANY_INFO.contact.email}`}
-                    className="text-base sm:text-lg font-bold text-slate-900 hover:text-blue-600 transition-colors block mt-0.5"
+                    className="text-base sm:text-lg font-bold text-blue-900 hover:text-blue-700 transition-colors block mt-1"
                   >
                     {COMPANY_INFO.contact.email}
                   </a>
-                  <p className="text-xs text-slate-500 mt-0.5">For formal proposals & corporate inquiries</p>
+                  <p className="text-xs text-slate-600 mt-1 font-medium">For formal tenders, export proposals & AMC agreements</p>
                 </div>
               </div>
             </div>
 
-            {/* Office Address */}
-            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-2xs hover:shadow-xs transition-shadow">
+            {/* 4. Office Address Card (Colorful Amber/Gold) */}
+            <div className="bg-gradient-to-br from-amber-50/90 via-white to-orange-50/70 border-2 border-amber-200 rounded-3xl p-5 sm:p-6 shadow-[0_8px_25px_rgba(245,158,11,0.06)] hover:shadow-[0_12px_32px_rgba(245,158,11,0.12)] transition-all">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-amber-600 flex-shrink-0 shadow-2xs">
-                  <MapPin className="w-5 h-5" />
+                <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-amber-500 via-amber-600 to-orange-600 text-white flex items-center justify-center flex-shrink-0 shadow-lg shadow-amber-500/30">
+                  <MapPin className="w-6 h-6" />
                 </div>
-                <div>
-                  <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">Service Lab & Office</h3>
-                  <p className="text-sm font-bold text-slate-900 mt-0.5">
+                <div className="flex-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="text-xs font-bold text-amber-800 uppercase tracking-wider">Service Lab & Office</h3>
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-900">
+                      Walk-Ins Welcome
+                    </span>
+                  </div>
+                  <p className="text-sm font-bold text-slate-900 mt-1">
                     {COMPANY_INFO.contact.address}
                   </p>
-                  <p className="text-xs text-emerald-700 font-bold mt-1 flex items-center gap-1">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>Doorstep field visit in Kotli Behram, Cantt & Paris Road</span>
+                  <p className="text-xs text-emerald-800 font-bold mt-1.5 flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
+                    <span>Doorstep on-site technician dispatch across Sialkot</span>
                   </p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Interactive Inquiry Form */}
-          <div className="lg:col-span-7 bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-2xs">
-            {submittedRecord ? (
-              <div className="text-center py-8 space-y-5">
-                <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-2xs">
-                  <CheckCircle2 className="w-8 h-8" />
-                </div>
+          {/* Right Column: Colorful Interactive Inquiry Form */}
+          <div className="lg:col-span-7 bg-white border-2 border-slate-200/90 rounded-3xl shadow-xl overflow-hidden relative">
+            {/* Colorful Multi-Gradient Top Ribbon */}
+            <div className="h-2 w-full bg-gradient-to-r from-red-600 via-amber-500 via-emerald-500 to-blue-600" />
 
-                <h3 className="text-2xl font-black text-slate-900">
-                  Thank You, {submittedRecord.fullName}!
-                </h3>
+            <div className="p-6 sm:p-8">
+              {submittedRecord ? (
+                <div className="text-center py-8 space-y-5">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 text-white flex items-center justify-center mx-auto shadow-lg shadow-emerald-500/30">
+                    <CheckCircle2 className="w-8 h-8" />
+                  </div>
 
-                <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-                  Your inquiry regarding <strong>{submittedRecord.serviceType}</strong> in <strong>{submittedRecord.locationArea}</strong> has been received and routed to our team.
-                </p>
+                  <h3 className="text-2xl font-black text-slate-900">
+                    Thank You, {submittedRecord.fullName}!
+                  </h3>
 
-                {/* Reference Number Box */}
-                <div className="max-w-md mx-auto p-4 bg-white border-2 border-red-200 rounded-2xl shadow-xs space-y-2">
-                  <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block">
-                    Inquiry Reference Number
-                  </span>
-                  <div className="flex items-center justify-center gap-2">
-                    <span className="text-2xl font-mono font-black text-red-600 tracking-wider">
-                      {submittedRecord.referenceId}
+                  <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed font-medium">
+                    Your inquiry regarding <strong>{submittedRecord.serviceType}</strong> in <strong>{submittedRecord.locationArea}</strong> has been logged and routed to our technical team.
+                  </p>
+
+                  {/* Reference Number Box */}
+                  <div className="max-w-md mx-auto p-5 bg-gradient-to-br from-red-50/80 via-white to-rose-50/50 border-2 border-red-200 rounded-2xl shadow-sm space-y-2">
+                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block">
+                      Inquiry Reference Number
                     </span>
-                    <button
-                      type="button"
-                      onClick={handleCopyRef}
-                      className="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors cursor-pointer"
-                      title="Copy Reference"
+                    <div className="flex items-center justify-center gap-2">
+                      <span className="text-2xl sm:text-3xl font-mono font-black text-red-600 tracking-wider">
+                        {submittedRecord.referenceId}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={handleCopyRef}
+                        className="p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 transition-colors cursor-pointer shadow-2xs"
+                        title="Copy Reference"
+                      >
+                        {copiedRef ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+                      </button>
+                    </div>
+                    <p className="text-[11px] text-slate-500">
+                      Dispatched to <span className="font-semibold text-slate-700">evonixtec@gmail.com</span>. Please quote this ID for immediate updates.
+                    </p>
+                  </div>
+
+                  <div className="pt-2 flex flex-col sm:flex-row justify-center gap-3">
+                    <a
+                      href={buildWhatsAppQuoteUrl(submittedRecord)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-extrabold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 shadow-md shadow-emerald-600/30"
                     >
-                      {copiedRef ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+                      <MessageSquare className="w-4 h-4" />
+                      <span>Send Ref #{submittedRecord.referenceId} to WhatsApp</span>
+                    </a>
+
+                    <button
+                      onClick={() => {
+                        setSubmittedRecord(null);
+                        setFormMessage('');
+                      }}
+                      className="px-5 py-3.5 rounded-xl bg-slate-100 border border-slate-300 text-slate-700 text-xs font-bold hover:bg-slate-200 transition-colors cursor-pointer"
+                    >
+                      Send Another Note
                     </button>
                   </div>
-                  <p className="text-[11px] text-slate-500">
-                    Dispatched to <span className="font-semibold text-slate-700">evonixtec@gmail.com</span>. Please quote this ID for immediate updates.
-                  </p>
                 </div>
-
-                <div className="pt-2 flex flex-col sm:flex-row justify-center gap-3">
-                  <a
-                    href={buildWhatsAppQuoteUrl(submittedRecord)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm transition-colors flex items-center justify-center gap-2 shadow-2xs"
-                  >
-                    <MessageSquare className="w-4 h-4" />
-                    <span>Send Ref #{submittedRecord.referenceId} to WhatsApp</span>
-                  </a>
-
-                  <button
-                    onClick={() => {
-                      setSubmittedRecord(null);
-                      setFormMessage('');
-                    }}
-                    className="px-4 py-3 rounded-xl bg-white border border-slate-300 text-slate-700 text-xs font-semibold hover:bg-slate-100 transition-colors cursor-pointer"
-                  >
-                    Send Another Note
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <h3 className="text-xl font-bold text-slate-900">
-                    Send a Direct Message & Get Free Consultation
-                  </h3>
-                  <p className="text-xs text-slate-500 mt-1">
-                    Fill out the form below. An instant Reference Code will be generated and routed to <span className="text-slate-700 font-semibold">evonixtec@gmail.com</span>.
-                  </p>
-                </div>
-
-                {formError && (
-                  <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-semibold">
-                    {formError}
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="border-b border-slate-100 pb-3">
+                    <span className="text-[11px] font-bold text-red-600 uppercase tracking-wider block">
+                      Rapid Response Consultation
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 mt-0.5">
+                      Send a Direct Message & Get Free Quotation
+                    </h3>
+                    <p className="text-xs text-slate-500 mt-1">
+                      Fill out the form below. An instant Reference Code will be generated and routed directly to <span className="text-slate-800 font-bold">evonixtec@gmail.com</span>.
+                    </p>
                   </div>
-                )}
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
-                      Your Full Name *
-                    </label>
-                    <input
-                      type="text"
+                  {formError && (
+                    <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-semibold">
+                      {formError}
+                    </div>
+                  )}
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-red-500" />
+                        <span>Your Full Name *</span>
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="e.g. Usman Ali"
+                        value={formName}
+                        onChange={(e) => setFormName(e.target.value)}
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/70 border border-slate-300 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 transition-all shadow-2xs font-semibold"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                        <span>Phone / WhatsApp *</span>
+                      </label>
+                      <input
+                        type="tel"
+                        required
+                        placeholder="e.g. 0326 3244002"
+                        value={formPhone}
+                        onChange={(e) => setFormPhone(e.target.value)}
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/70 border border-slate-300 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 transition-all shadow-2xs font-semibold"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-blue-500" />
+                        <span>Email Address (Optional)</span>
+                      </label>
+                      <input
+                        type="email"
+                        placeholder="e.g. name@company.com"
+                        value={formEmail}
+                        onChange={(e) => setFormEmail(e.target.value)}
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/70 border border-slate-300 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all shadow-2xs"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-purple-500" />
+                        <span>Service Required *</span>
+                      </label>
+                      <select
+                        value={formService}
+                        onChange={(e) => setFormService(e.target.value)}
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/70 border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-purple-500 focus:bg-white focus:ring-4 focus:ring-purple-500/10 transition-all shadow-2xs font-semibold"
+                      >
+                        <option value="Website Development">Website Development & E-Commerce</option>
+                        <option value="Software Development & POS Systems">Custom Software & Retail POS</option>
+                        <option value="Computer, Laptop & Printer Repairing">Laptop & Printer Repairing</option>
+                        <option value="Doorstep Sialkot On-Site IT Visit">Doorstep On-Site Visit in Sialkot</option>
+                        <option value="General Consultation">General Inquiry / Consultation</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Sialkot Location Area Picker with Auto GPS Sensor */}
+                  <div className="bg-slate-50/70 p-3.5 rounded-xl border border-slate-200">
+                    <SialkotLocationPicker
+                      value={formLocation}
+                      onChange={(area, data) => {
+                        setFormLocation(area);
+                        setGpsData(data);
+                      }}
                       required
-                      placeholder="e.g. Usman Ali"
-                      value={formName}
-                      onChange={(e) => setFormName(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-300 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-red-500 shadow-2xs"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
-                      Phone / WhatsApp Number *
+                    <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-rose-500" />
+                      <span>Message / Project Details *</span>
                     </label>
-                    <input
-                      type="tel"
+                    <textarea
+                      rows={3}
                       required
-                      placeholder="e.g. 0326 3244002"
-                      value={formPhone}
-                      onChange={(e) => setFormPhone(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-300 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-red-500 shadow-2xs"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
-                      Email Address (Optional)
-                    </label>
-                    <input
-                      type="email"
-                      placeholder="e.g. name@company.com"
-                      value={formEmail}
-                      onChange={(e) => setFormEmail(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-300 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-red-500 shadow-2xs"
+                      placeholder="Briefly describe your website needs, POS software requirements, or hardware issues..."
+                      value={formMessage}
+                      onChange={(e) => setFormMessage(e.target.value)}
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/70 border border-slate-300 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 transition-all shadow-2xs"
                     />
                   </div>
 
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
-                      Service Required *
-                    </label>
-                    <select
-                      value={formService}
-                      onChange={(e) => setFormService(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-red-500 shadow-2xs font-medium"
+                  <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <button
+                      type="submit"
+                      className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-700 hover:to-rose-700 active:from-red-800 text-white font-black text-xs sm:text-sm shadow-md shadow-red-600/30 hover:shadow-lg hover:shadow-red-600/40 transition-all flex items-center justify-center gap-2 cursor-pointer hover:-translate-y-0.5 active:translate-y-0"
                     >
-                      <option value="Website Development">Website Development & E-Commerce</option>
-                      <option value="Software Development & POS Systems">Custom Software & Retail POS</option>
-                      <option value="Computer, Laptop & Printer Repairing">Laptop & Printer Repairing</option>
-                      <option value="Doorstep Sialkot On-Site IT Visit">Doorstep On-Site Visit in Sialkot</option>
-                      <option value="General Consultation">General Inquiry / Consultation</option>
-                    </select>
+                      <Send className="w-4 h-4" />
+                      <span>Submit & Generate Official Reference Pass</span>
+                    </button>
+
+                    <p className="text-[11px] text-slate-500 font-medium">
+                      Immediate routing to <span className="font-bold text-slate-800">evonixtec@gmail.com</span>
+                    </p>
                   </div>
-                </div>
-
-                {/* Sialkot Location Area Picker with Auto GPS Sensor */}
-                <div className="bg-white p-3.5 rounded-xl border border-slate-200">
-                  <SialkotLocationPicker
-                    value={formLocation}
-                    onChange={(area, data) => {
-                      setFormLocation(area);
-                      setGpsData(data);
-                    }}
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Message / Project Details *
-                  </label>
-                  <textarea
-                    rows={3}
-                    required
-                    placeholder="Briefly describe your website needs, POS software requirements, or hardware issues..."
-                    value={formMessage}
-                    onChange={(e) => setFormMessage(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-300 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-red-500 shadow-2xs"
-                  />
-                </div>
-
-                <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
-                  <button
-                    type="submit"
-                    className="w-full sm:w-auto px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm shadow-2xs transition-colors flex items-center justify-center gap-2 cursor-pointer"
-                  >
-                    <Send className="w-4 h-4" />
-                    <span>Submit & Get Reference Code</span>
-                  </button>
-
-                  <p className="text-[11px] text-slate-500">
-                    Direct notification to <span className="font-semibold text-slate-700">evonixtec@gmail.com</span>
-                  </p>
-                </div>
-              </form>
-            )}
+                </form>
+              )}
+            </div>
           </div>
         </div>
       </div>

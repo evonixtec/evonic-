@@ -97,27 +97,30 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-2xl bg-white border border-slate-200 rounded-2xl shadow-2xl overflow-hidden my-8"
+        className="relative w-full max-w-2xl bg-white border border-slate-200/90 rounded-3xl shadow-2xl overflow-hidden my-8"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Multi-Gradient Top Ribbon */}
+        <div className="h-2 w-full bg-gradient-to-r from-red-600 via-amber-500 via-emerald-500 to-blue-600" />
+
         {/* Header */}
-        <div className="bg-slate-50 p-5 sm:p-6 border-b border-slate-200 flex items-center justify-between">
+        <div className="bg-gradient-to-b from-slate-50 to-white p-5 sm:p-6 border-b border-slate-200 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-red-50 text-red-600 border border-red-200">
-              <Sparkles className="w-5 h-5" />
+            <div className="p-2.5 rounded-2xl bg-gradient-to-br from-red-500 to-rose-600 text-white shadow-md shadow-red-500/25">
+              <Sparkles className="w-5 h-5 text-amber-200 animate-pulse" />
             </div>
             <div>
-              <h3 className="text-lg sm:text-xl font-bold text-slate-900">
+              <h3 className="text-lg sm:text-xl font-black text-slate-900">
                 Get a Free Quote & Consultation
               </h3>
-              <p className="text-xs text-red-600 font-semibold">
+              <p className="text-xs text-red-600 font-bold">
                 EVONIX • 20+ Years Dubai Experience • Sialkot Tech Center
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+            className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
             aria-label="Close dialog"
           >
             <X className="w-5 h-5" />

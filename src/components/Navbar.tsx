@@ -88,33 +88,38 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header
       id="main-navbar"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 py-1.5'
-          : 'bg-white/90 backdrop-blur-sm border-b border-slate-100 py-2'
+          ? 'bg-white/95 backdrop-blur-xl shadow-[0_12px_32px_-4px_rgba(0,0,0,0.08),0_4px_6px_-2px_rgba(0,0,0,0.03)] border-b border-slate-200/90 py-2'
+          : 'bg-white/92 backdrop-blur-lg shadow-[0_4px_24px_-4px_rgba(0,0,0,0.05)] border-b border-slate-200/70 py-2.5'
       }`}
     >
+      {/* 3D Top Metallic / Radiant Shimmer Line */}
+      <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-red-600 via-rose-500 via-amber-500 to-red-600 shadow-[0_1px_8px_rgba(220,38,38,0.4)] pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-2">
-          {/* Brand Logo with Nano Tagline */}
+        <div className="flex items-center justify-between gap-3">
+          {/* Brand Logo with 3D Nano Tagline */}
           <button
             onClick={() => handlePageSelect('home')}
-            className="flex items-center gap-2 group cursor-pointer transition-transform hover:scale-[1.01] flex-shrink-0"
+            className="flex items-center gap-2.5 group cursor-pointer transition-all duration-200 hover:scale-[1.02] flex-shrink-0"
             aria-label="EVONIX Home"
           >
-            <EvonixLogo size="md" forceTheme="light" />
-            <div className="hidden sm:flex flex-col text-left pl-2.5 border-l border-slate-200">
-              <span className="text-[10px] font-black uppercase tracking-wider text-red-600 leading-tight flex items-center gap-1">
+            <div className="relative p-1 rounded-xl transition-all duration-300 group-hover:drop-shadow-[0_4px_12px_rgba(220,38,38,0.3)]">
+              <EvonixLogo size="md" forceTheme="light" />
+            </div>
+            <div className="hidden sm:flex flex-col text-left pl-2.5 border-l border-slate-200/90">
+              <span className="text-[10px] font-black uppercase tracking-wider text-red-600 leading-tight flex items-center gap-1.5">
                 <span>Dubai Heritage</span>
-                <span className="w-1 h-1 rounded-full bg-emerald-500" />
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
               </span>
-              <span className="text-[9px] font-extrabold text-slate-500 uppercase tracking-widest leading-tight">
+              <span className="text-[9px] font-extrabold text-slate-500 uppercase tracking-widest leading-tight mt-0.5">
                 Sialkot Tech Hub
               </span>
             </div>
           </button>
 
-          {/* Desktop Navigation Links with Dropdown Sub-categories */}
+          {/* Desktop Navigation Links with Clean Professional Grouping */}
           <nav
             ref={dropdownRef}
             className="hidden lg:flex items-center gap-1 xl:gap-1.5"
@@ -125,14 +130,14 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={() => handlePageSelect('home')}
               className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
                 currentPage === 'home'
-                  ? 'text-red-600 bg-red-50/80 font-bold'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+                  ? 'text-red-700 bg-red-50/90 font-bold shadow-2xs border border-red-200/60'
+                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
               }`}
             >
               Home
             </button>
 
-            {/* 2. Services Dropdown */}
+            {/* 2. Services Dropdown (2-Column Clean Mega-Menu) */}
             <div
               className="relative"
               onMouseEnter={() => setActiveDropdown('services')}
@@ -142,8 +147,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => handlePageSelect('services')}
                 className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1 cursor-pointer ${
                   currentPage === 'services'
-                    ? 'text-red-600 bg-red-50/80 font-bold'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+                    ? 'text-red-700 bg-gradient-to-b from-red-50 to-rose-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(220,38,38,0.12)] border border-red-200/80'
+                    : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
                 }`}
                 aria-expanded={activeDropdown === 'services'}
               >
@@ -155,152 +160,165 @@ export const Navbar: React.FC<NavbarProps> = ({
                 />
               </button>
 
-              {/* Services Sub-Category Dropdown Card */}
+              {/* Services 2-Column Mega-Menu Card */}
               {activeDropdown === 'services' && (
-                <div className="absolute top-full left-0 w-80 pt-1.5 z-50">
-                  <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-2 space-y-1">
-                    <div className="px-3 py-1.5 border-b border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                      <span>Our 4 Core Services</span>
-                      <span className="text-[10px] text-red-600 font-semibold">Dubai Standards</span>
-                    </div>
+                <div className="absolute top-full left-0 w-[540px] pt-1.5 z-50">
+                  <div className="bg-white/98 backdrop-blur-2xl rounded-2xl shadow-[0_20px_45px_-10px_rgba(0,0,0,0.14),0_0_0_1px_rgba(0,0,0,0.06)] border border-slate-200 p-3">
+                    <div className="grid grid-cols-2 gap-3">
+                      {/* Left Column: Core Engineering Services */}
+                      <div className="space-y-1">
+                        <div className="px-2.5 py-1 text-[10px] font-black text-slate-500 uppercase tracking-wider flex items-center justify-between border-b border-slate-100 pb-1.5 mb-1">
+                          <span>Core Services</span>
+                          <span className="text-red-600 font-bold">Dubai Stds</span>
+                        </div>
 
-                    <button
-                      onClick={() => handlePageSelect('services', 'web-development')}
-                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-3 group cursor-pointer"
-                    >
-                      <div className="p-2 rounded-lg bg-red-50 text-red-600 group-hover:bg-red-600 group-hover:text-white transition-colors">
-                        <Globe className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors">
-                          Website Development
-                        </div>
-                        <div className="text-[11px] text-slate-500">
-                          E-Commerce & High-Speed Next.js/React Portals
-                        </div>
-                      </div>
-                    </button>
+                        <button
+                          onClick={() => handlePageSelect('services', 'web-development')}
+                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
+                        >
+                          <div className="p-1.5 rounded-lg bg-red-50 text-red-600 group-hover:bg-red-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+                            <Globe className="w-3.5 h-3.5" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors">
+                              Website Development
+                            </div>
+                            <div className="text-[10px] text-slate-500 line-clamp-1">
+                              E-Commerce & High-Speed Next.js Portals
+                            </div>
+                          </div>
+                        </button>
 
-                    <button
-                      onClick={() => handlePageSelect('services', 'software-pos')}
-                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-3 group cursor-pointer"
-                    >
-                      <div className="p-2 rounded-lg bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                        <Monitor className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
-                          Software & POS Systems
-                        </div>
-                        <div className="text-[11px] text-slate-500">
-                          Retail ERP, Invoicing & Inventory Control
-                        </div>
-                      </div>
-                    </button>
+                        <button
+                          onClick={() => handlePageSelect('services', 'software-pos')}
+                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
+                        >
+                          <div className="p-1.5 rounded-lg bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+                            <Monitor className="w-3.5 h-3.5" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                              Software & POS Systems
+                            </div>
+                            <div className="text-[10px] text-slate-500 line-clamp-1">
+                              Retail ERP, Invoicing & Inventory Control
+                            </div>
+                          </div>
+                        </button>
 
-                    <button
-                      onClick={() => handlePageSelect('services', 'hardware-repair')}
-                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-3 group cursor-pointer"
-                    >
-                      <div className="p-2 rounded-lg bg-amber-50 text-amber-600 group-hover:bg-amber-600 group-hover:text-white transition-colors">
-                        <Wrench className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
-                          Hardware & Printer Repairing
-                        </div>
-                        <div className="text-[11px] text-slate-500">
-                          Chip-Level Micro-Soldering & Diagnostics Lab
-                        </div>
-                      </div>
-                    </button>
+                        <button
+                          onClick={() => handlePageSelect('services', 'hardware-repair')}
+                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
+                        >
+                          <div className="p-1.5 rounded-lg bg-amber-50 text-amber-600 group-hover:bg-amber-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+                            <Wrench className="w-3.5 h-3.5" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                              Hardware & Printer Repairing
+                            </div>
+                            <div className="text-[10px] text-slate-500 line-clamp-1">
+                              Chip-Level Diagnostics & Motherboard Lab
+                            </div>
+                          </div>
+                        </button>
 
-                    <button
-                      onClick={() => handlePageSelect('services', 'doorstep-support')}
-                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-3 group cursor-pointer"
-                    >
-                      <div className="p-2 rounded-lg bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                        <Clock className="w-4 h-4" />
+                        <button
+                          onClick={() => handlePageSelect('services', 'doorstep-support')}
+                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
+                        >
+                          <div className="p-1.5 rounded-lg bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+                            <Clock className="w-3.5 h-3.5" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                              Doorstep Sialkot On-Site IT
+                            </div>
+                            <div className="text-[10px] text-slate-500 line-clamp-1">
+                              Office, Factory & Home Visits
+                            </div>
+                          </div>
+                        </button>
                       </div>
-                      <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
-                          Doorstep Sialkot On-Site IT
-                        </div>
-                        <div className="text-[11px] text-slate-500">
-                          Office, Factory & Home Engineer Visits
-                        </div>
-                      </div>
-                    </button>
 
-                    <button
-                      onClick={() => handlePageSelect('home', 'sialkot-industrial-solutions')}
-                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-3 group cursor-pointer border-t border-slate-100"
-                    >
-                      <div className="p-2 rounded-lg bg-purple-50 text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors">
-                        <Monitor className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-purple-600 transition-colors flex items-center gap-1.5">
-                          <span>Sialkot Export Industry ERP</span>
-                          <span className="text-[9px] bg-red-100 text-red-700 px-1.5 py-0.5 rounded-full font-bold">New</span>
+                      {/* Right Column: Industrial Suite & Tools */}
+                      <div className="space-y-1 border-l border-slate-100 pl-3">
+                        <div className="px-2.5 py-1 text-[10px] font-black text-slate-500 uppercase tracking-wider flex items-center justify-between border-b border-slate-100 pb-1.5 mb-1">
+                          <span>Sialkot Industry Suite</span>
+                          <span className="text-emerald-600 font-bold">Specialized</span>
                         </div>
-                        <div className="text-[11px] text-slate-500">
-                          Surgical, Sports & Leather Export Software
-                        </div>
-                      </div>
-                    </button>
 
-                    <button
-                      onClick={() => handlePageSelect('home', 'factory-network-tester')}
-                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-3 group cursor-pointer"
-                    >
-                      <div className="p-2 rounded-lg bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                        <Globe className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors flex items-center gap-1.5">
-                          <span>Factory Network Latency Benchmark</span>
-                          <span className="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full font-bold">Live</span>
-                        </div>
-                        <div className="text-[11px] text-slate-500">
-                          ERP & Sambrial Dry Port Ping & Packet Diagnostics
-                        </div>
-                      </div>
-                    </button>
+                        <button
+                          onClick={() => handlePageSelect('home', 'sialkot-industrial-solutions')}
+                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
+                        >
+                          <div className="p-1.5 rounded-lg bg-purple-50 text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+                            <Monitor className="w-3.5 h-3.5" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-slate-900 group-hover:text-purple-600 transition-colors flex items-center gap-1.5">
+                              <span>Export Industry ERP</span>
+                              <span className="text-[8px] bg-red-100 text-red-700 px-1 py-0.2 rounded font-bold">New</span>
+                            </div>
+                            <div className="text-[10px] text-slate-500 line-clamp-1">
+                              Surgical, Sports & Leather Software
+                            </div>
+                          </div>
+                        </button>
 
-                    <button
-                      onClick={() => handlePageSelect('home', 'export-barcode-studio')}
-                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-3 group cursor-pointer"
-                    >
-                      <div className="p-2 rounded-lg bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                        <Barcode className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-emerald-600 transition-colors flex items-center gap-1.5">
-                          <span>Export Barcode & Label Studio</span>
-                          <span className="text-[9px] bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded-full font-bold">Tool</span>
-                        </div>
-                        <div className="text-[11px] text-slate-500">
-                          GS1, Code 128 & 203 DPI Carton Formatter
-                        </div>
-                      </div>
-                    </button>
+                        <button
+                          onClick={() => handlePageSelect('home', 'factory-network-tester')}
+                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
+                        >
+                          <div className="p-1.5 rounded-lg bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+                            <Globe className="w-3.5 h-3.5" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors flex items-center gap-1.5">
+                              <span>Network Latency Benchmark</span>
+                              <span className="text-[8px] bg-blue-100 text-blue-700 px-1 py-0.2 rounded font-bold">Live</span>
+                            </div>
+                            <div className="text-[10px] text-slate-500 line-clamp-1">
+                              Dry Port & Cloud Diagnostic Ping
+                            </div>
+                          </div>
+                        </button>
 
-                    <div className="pt-1.5 border-t border-slate-100 px-2 pb-1">
-                      <button
-                        onClick={() => handlePageSelect('services')}
-                        className="w-full py-1.5 text-center text-xs font-bold text-red-600 hover:text-red-700 flex items-center justify-center gap-1 cursor-pointer"
-                      >
-                        <span>Open Full Services Page</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
+                        <button
+                          onClick={() => handlePageSelect('home', 'export-barcode-studio')}
+                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
+                        >
+                          <div className="p-1.5 rounded-lg bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+                            <Barcode className="w-3.5 h-3.5" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-slate-900 group-hover:text-emerald-600 transition-colors flex items-center gap-1.5">
+                              <span>Export Barcode Studio</span>
+                              <span className="text-[8px] bg-emerald-100 text-emerald-700 px-1 py-0.2 rounded font-bold">Tool</span>
+                            </div>
+                            <div className="text-[10px] text-slate-500 line-clamp-1">
+                              GS1 & Code 128 Carton Labels
+                            </div>
+                          </div>
+                        </button>
+
+                        <div className="pt-2">
+                          <button
+                            onClick={() => handlePageSelect('services')}
+                            className="w-full py-1.5 px-3 rounded-lg bg-slate-50 hover:bg-red-50 text-center text-[11px] font-bold text-red-600 hover:text-red-700 flex items-center justify-center gap-1 cursor-pointer transition-colors border border-slate-200"
+                          >
+                            <span>Open Full Services Directory</span>
+                            <ArrowRight className="w-3 h-3" />
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               )}
             </div>
 
-            {/* 3. Hardware & Shop Dropdown */}
+            {/* 3. Hardware & Shop Dropdown (2-Column Clean Mega-Menu) */}
             <div
               className="relative"
               onMouseEnter={() => setActiveDropdown('shop')}
@@ -310,8 +328,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => handlePageSelect('shop')}
                 className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1 cursor-pointer ${
                   currentPage === 'shop'
-                    ? 'text-red-600 bg-red-50/80 font-bold'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+                    ? 'text-red-700 bg-gradient-to-b from-red-50 to-rose-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(220,38,38,0.12)] border border-red-200/80'
+                    : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
                 }`}
                 aria-expanded={activeDropdown === 'shop'}
               >
@@ -324,129 +342,141 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
 
               {activeDropdown === 'shop' && (
-                <div className="absolute top-full left-0 w-76 pt-1.5 z-50">
-                  <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-2 space-y-1">
-                    <div className="px-3 py-1.5 border-b border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                      <span>Equipment Categories</span>
-                      <span className="text-[10px] text-emerald-600 font-semibold">With Warranty</span>
-                    </div>
-
-                    <button
-                      onClick={() => handlePageSelect('shop', 'pos-terminals')}
-                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 cursor-pointer group"
-                    >
-                      <ShoppingBag className="w-4 h-4 text-slate-400 group-hover:text-red-600" />
-                      <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-600">
-                          POS Touch Terminals
+                <div className="absolute top-full left-0 w-[540px] pt-1.5 z-50">
+                  <div className="bg-white/98 backdrop-blur-2xl rounded-2xl shadow-[0_20px_45px_-10px_rgba(0,0,0,0.14),0_0_0_1px_rgba(0,0,0,0.06)] border border-slate-200 p-3">
+                    <div className="grid grid-cols-2 gap-3">
+                      {/* Left: Hardware Catalog */}
+                      <div className="space-y-1">
+                        <div className="px-2.5 py-1 text-[10px] font-black text-slate-500 uppercase tracking-wider flex items-center justify-between border-b border-slate-100 pb-1.5 mb-1">
+                          <span>Equipment Catalog</span>
+                          <span className="text-emerald-600 font-bold">With Warranty</span>
                         </div>
-                        <div className="text-[11px] text-slate-500">Retail, Restaurant & Grocery Units</div>
-                      </div>
-                    </button>
 
-                    <button
-                      onClick={() => handlePageSelect('shop', 'printers')}
-                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 cursor-pointer group"
-                    >
-                      <Printer className="w-4 h-4 text-slate-400 group-hover:text-red-600" />
-                      <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-600">
-                          Thermal Printers & Scanners
+                        <button
+                          onClick={() => handlePageSelect('shop', 'pos-terminals')}
+                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-2.5 cursor-pointer group"
+                        >
+                          <div className="p-1.5 rounded-lg bg-slate-100 text-slate-600 group-hover:bg-red-50 group-hover:text-red-600 transition-colors">
+                            <ShoppingBag className="w-3.5 h-3.5" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-slate-900 group-hover:text-red-600">
+                              POS Touch Terminals
+                            </div>
+                            <div className="text-[10px] text-slate-500">Retail, Restaurant & Grocery</div>
+                          </div>
+                        </button>
+
+                        <button
+                          onClick={() => handlePageSelect('shop', 'printers')}
+                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-2.5 cursor-pointer group"
+                        >
+                          <div className="p-1.5 rounded-lg bg-slate-100 text-slate-600 group-hover:bg-red-50 group-hover:text-red-600 transition-colors">
+                            <Printer className="w-3.5 h-3.5" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-slate-900 group-hover:text-red-600">
+                              Thermal Printers & Scanners
+                            </div>
+                            <div className="text-[10px] text-slate-500">80mm Receipts & 2D Readers</div>
+                          </div>
+                        </button>
+
+                        <button
+                          onClick={() => handlePageSelect('shop', 'laptops')}
+                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-2.5 cursor-pointer group"
+                        >
+                          <div className="p-1.5 rounded-lg bg-slate-100 text-slate-600 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                            <Laptop className="w-3.5 h-3.5" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-slate-900 group-hover:text-red-600">
+                              Business Laptops & PCs
+                            </div>
+                            <div className="text-[10px] text-slate-500">Imported Dell, HP & Lenovo</div>
+                          </div>
+                        </button>
+
+                        <div className="pt-2">
+                          <button
+                            onClick={() => handlePageSelect('shop')}
+                            className="w-full py-1.5 px-3 rounded-lg bg-slate-50 hover:bg-red-50 text-center text-[11px] font-bold text-red-600 hover:text-red-700 flex items-center justify-center gap-1 cursor-pointer transition-colors border border-slate-200"
+                          >
+                            <span>Browse All Hardware</span>
+                            <ArrowRight className="w-3 h-3" />
+                          </button>
                         </div>
-                        <div className="text-[11px] text-slate-500">80mm Receipts & 2D Barcode Readers</div>
                       </div>
-                    </button>
 
-                    <button
-                      onClick={() => handlePageSelect('shop', 'laptops')}
-                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 cursor-pointer group"
-                    >
-                      <Laptop className="w-4 h-4 text-slate-400 group-hover:text-red-600" />
-                      <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-600">
-                          Business Laptops & PCs
+                      {/* Right: Diagnostic Lab Tools */}
+                      <div className="space-y-1 border-l border-slate-100 pl-3">
+                        <div className="px-2.5 py-1 text-[10px] font-black text-slate-500 uppercase tracking-wider flex items-center justify-between border-b border-slate-100 pb-1.5 mb-1">
+                          <span>Diagnostic Lab Bench</span>
+                          <span className="text-red-600 font-bold">Interactive</span>
                         </div>
-                        <div className="text-[11px] text-slate-500">Imported Dell, HP & Lenovo Machines</div>
-                      </div>
-                    </button>
 
-                    <button
-                      onClick={() => handlePageSelect('home', 'live-repair-tracker')}
-                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 cursor-pointer group border-t border-slate-100"
-                    >
-                      <Wrench className="w-4 h-4 text-slate-400 group-hover:text-red-600" />
-                      <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-600 flex items-center gap-1.5">
-                          <span>Live RMA Repair Tracker</span>
-                          <span className="text-[9px] bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded-full font-bold">Live</span>
-                        </div>
-                        <div className="text-[11px] text-slate-500">Track bench repair & test logs</div>
-                      </div>
-                    </button>
+                        <button
+                          onClick={() => handlePageSelect('home', 'live-repair-tracker')}
+                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-2.5 cursor-pointer group"
+                        >
+                          <div className="p-1.5 rounded-lg bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                            <Wrench className="w-3.5 h-3.5" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-slate-900 group-hover:text-emerald-700 flex items-center gap-1.5">
+                              <span>Live RMA Repair Tracker</span>
+                              <span className="text-[8px] bg-emerald-100 text-emerald-800 px-1 py-0.2 rounded font-bold">Live</span>
+                            </div>
+                            <div className="text-[10px] text-slate-500">Track bench test logs & status</div>
+                          </div>
+                        </button>
 
-                    <button
-                      onClick={() => handlePageSelect('home', 'hardware-repair-gallery')}
-                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 cursor-pointer group"
-                    >
-                      <Cpu className="w-4 h-4 text-slate-400 group-hover:text-red-600" />
-                      <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-600">
-                          Before & After Micro-Soldering
-                        </div>
-                        <div className="text-[11px] text-slate-500">Interactive bench inspection slider</div>
-                      </div>
-                    </button>
+                        <button
+                          onClick={() => handlePageSelect('home', 'hardware-repair-gallery')}
+                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-2.5 cursor-pointer group"
+                        >
+                          <div className="p-1.5 rounded-lg bg-amber-50 text-amber-600 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+                            <Cpu className="w-3.5 h-3.5" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-slate-900 group-hover:text-amber-700">
+                              Micro-Soldering Slider
+                            </div>
+                            <div className="text-[10px] text-slate-500">Before & After bench inspection</div>
+                          </div>
+                        </button>
 
-                    <button
-                      onClick={() => handlePageSelect('home', 'blink-beep-identifier')}
-                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 cursor-pointer group"
-                    >
-                      <Wrench className="w-4 h-4 text-slate-400 group-hover:text-red-600" />
-                      <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-600 flex items-center gap-1.5">
-                          <span>Blink & Beep Code Decoder</span>
-                          <span className="text-[9px] bg-red-100 text-red-700 px-1.5 py-0.5 rounded-full font-bold">Tool</span>
-                        </div>
-                        <div className="text-[11px] text-slate-500">Dell, HP & Lenovo BIOS diagnostic tones</div>
-                      </div>
-                    </button>
+                        <button
+                          onClick={() => handlePageSelect('home', 'blink-beep-identifier')}
+                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-2.5 cursor-pointer group"
+                        >
+                          <div className="p-1.5 rounded-lg bg-red-50 text-red-600 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                            <Wrench className="w-3.5 h-3.5" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-slate-900 group-hover:text-red-700 flex items-center gap-1.5">
+                              <span>Blink & Beep Decoder</span>
+                              <span className="text-[8px] bg-red-100 text-red-700 px-1 py-0.2 rounded font-bold">Tool</span>
+                            </div>
+                            <div className="text-[10px] text-slate-500">Dell, HP & Lenovo BIOS tones</div>
+                          </div>
+                        </button>
 
-                    <button
-                      onClick={() => handlePageSelect('home', 'thermal-inspector')}
-                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 cursor-pointer group"
-                    >
-                      <Sparkles className="w-4 h-4 text-slate-400 group-hover:text-red-600" />
-                      <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-600 flex items-center gap-1.5">
-                          <span>FLIR Thermal Hotspot Inspector</span>
-                          <span className="text-[9px] bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded-full font-bold">FLIR</span>
-                        </div>
-                        <div className="text-[11px] text-slate-500">Short circuit infrared detection</div>
+                        <button
+                          onClick={() => handlePageSelect('home', 'thermal-inspector')}
+                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-2.5 cursor-pointer group"
+                        >
+                          <div className="p-1.5 rounded-lg bg-purple-50 text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                            <Sparkles className="w-3.5 h-3.5" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-slate-900 group-hover:text-purple-700">
+                              FLIR Thermal Hotspot
+                            </div>
+                            <div className="text-[10px] text-slate-500">Infrared short-circuit view</div>
+                          </div>
+                        </button>
                       </div>
-                    </button>
-
-                    <button
-                      onClick={() => handlePageSelect('home', 'printer-diagnostics')}
-                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 cursor-pointer group"
-                    >
-                      <Printer className="w-4 h-4 text-slate-400 group-hover:text-red-600" />
-                      <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-600 flex items-center gap-1.5">
-                          <span>LaserJet & Thermal Troubleshooter</span>
-                          <span className="text-[9px] bg-red-100 text-red-700 px-1.5 py-0.5 rounded-full font-bold">Ruler</span>
-                        </div>
-                        <div className="text-[11px] text-slate-500">Defect distance ruler & error codes</div>
-                      </div>
-                    </button>
-
-                    <div className="pt-1.5 border-t border-slate-100 px-2 pb-1">
-                      <button
-                        onClick={() => handlePageSelect('shop')}
-                        className="w-full py-1.5 text-center text-xs font-bold text-red-600 hover:text-red-700 flex items-center justify-center gap-1 cursor-pointer"
-                      >
-                        <span>Open Equipment Catalog</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
                     </div>
                   </div>
                 </div>
@@ -463,8 +493,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => handlePageSelect('portfolio')}
                 className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1 cursor-pointer ${
                   currentPage === 'portfolio'
-                    ? 'text-red-600 bg-red-50/80 font-bold'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+                    ? 'text-red-700 bg-gradient-to-b from-red-50 to-rose-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(220,38,38,0.12)] border border-red-200/80'
+                    : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
                 }`}
                 aria-expanded={activeDropdown === 'portfolio'}
               >
@@ -477,8 +507,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
 
               {activeDropdown === 'portfolio' && (
-                <div className="absolute top-full left-0 w-76 pt-1.5 z-50">
-                  <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-2 space-y-1">
+                <div className="absolute top-full left-0 w-72 pt-1.5 z-50">
+                  <div className="bg-white/98 backdrop-blur-2xl rounded-2xl shadow-[0_20px_45px_-10px_rgba(0,0,0,0.14),0_0_0_1px_rgba(0,0,0,0.06)] border border-slate-200 p-2 space-y-1">
                     <div className="px-3 py-1.5 border-b border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-500 uppercase tracking-wider">
                       <span>Client Case Studies</span>
                       <span className="text-[10px] text-red-600 font-semibold">Dubai & UAE</span>
@@ -529,16 +559,16 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={() => handlePageSelect('guides')}
               className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
                 currentPage === 'guides'
-                  ? 'text-red-600 bg-red-50/80 font-bold'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+                  ? 'text-red-700 bg-gradient-to-b from-red-50 to-rose-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(220,38,38,0.12)] border border-red-200/80'
+                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
               }`}
             >
-              <BookOpen className="w-3.5 h-3.5 text-red-500" />
+              <BookOpen className="w-3.5 h-3.5 text-red-600" />
               <span>Blogs</span>
-              <span className="text-[10px] font-bold px-1.5 py-0.2 rounded-full bg-red-100 text-red-700">New</span>
+              <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-red-100 text-red-700">New</span>
             </button>
 
-            {/* 6. Company / About Us Dropdown */}
+            {/* 6. Company Dropdown (Consolidated with About, Sialkot Lab & Regional Hubs) */}
             <div
               className="relative"
               onMouseEnter={() => setActiveDropdown('company')}
@@ -547,9 +577,9 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 onClick={() => handlePageSelect('about')}
                 className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1 cursor-pointer ${
-                  currentPage === 'about'
-                    ? 'text-red-600 bg-red-50/80 font-bold'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+                  currentPage === 'about' || currentPage === 'locations'
+                    ? 'text-red-700 bg-gradient-to-b from-red-50 to-rose-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(220,38,38,0.12)] border border-red-200/80'
+                    : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
                 }`}
                 aria-expanded={activeDropdown === 'company'}
               >
@@ -562,18 +592,20 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
 
               {activeDropdown === 'company' && (
-                <div className="absolute top-full left-0 w-80 pt-1.5 z-50">
-                  <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-2 space-y-1">
+                <div className="absolute top-full right-0 lg:left-0 w-80 pt-1.5 z-50">
+                  <div className="bg-white/98 backdrop-blur-2xl rounded-2xl shadow-[0_20px_45px_-10px_rgba(0,0,0,0.14),0_0_0_1px_rgba(0,0,0,0.06)] border border-slate-200 p-2 space-y-1">
                     <div className="px-3 py-1.5 border-b border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                      <span>EVONIX Organization</span>
-                      <span className="text-[10px] text-red-600 font-semibold">20+ Yrs UAE</span>
+                      <span>EVONIX Heritage & Hubs</span>
+                      <span className="text-[10px] text-red-600 font-bold">20+ Yrs UAE</span>
                     </div>
 
                     <button
                       onClick={() => handlePageSelect('about')}
                       className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 cursor-pointer group"
                     >
-                      <ShieldCheck className="w-4 h-4 text-slate-400 group-hover:text-red-600" />
+                      <div className="p-2 rounded-lg bg-red-50 text-red-600 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                        <ShieldCheck className="w-4 h-4" />
+                      </div>
                       <div>
                         <div className="text-xs font-bold text-slate-900 group-hover:text-red-600">
                           About Us & Dubai Heritage
@@ -583,16 +615,18 @@ export const Navbar: React.FC<NavbarProps> = ({
                     </button>
 
                     <button
-                      onClick={() => handlePageSelect('guides')}
+                      onClick={() => handlePageSelect('locations')}
                       className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 cursor-pointer group"
                     >
-                      <BookOpen className="w-4 h-4 text-slate-400 group-hover:text-red-600" />
+                      <div className="p-2 rounded-lg bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                        <MapPin className="w-4 h-4" />
+                      </div>
                       <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-600 flex items-center gap-1.5">
-                          <span>Tech Blogs & Case Studies</span>
-                          <span className="px-1.5 py-0.2 bg-red-100 text-red-700 text-[9px] rounded font-bold">BLOGS</span>
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-emerald-700 flex items-center gap-1.5">
+                          <span>Regional Industrial Hubs</span>
+                          <span className="text-[9px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.2 rounded-full">Daska • Sambrial</span>
                         </div>
-                        <div className="text-[11px] text-slate-500">Deep Technical Knowledge Hub</div>
+                        <div className="text-[11px] text-slate-500">Field Stations Across Sialkot Division</div>
                       </div>
                     </button>
 
@@ -600,12 +634,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                       onClick={() => handlePageSelect('contact')}
                       className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 cursor-pointer group"
                     >
-                      <Users className="w-4 h-4 text-slate-400 group-hover:text-red-600" />
+                      <div className="p-2 rounded-lg bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                        <Users className="w-4 h-4" />
+                      </div>
                       <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-600">
-                          Sialkot Engineering Lab & Team
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-700">
+                          Kotli Behram Lab & Team
                         </div>
-                        <div className="text-[11px] text-slate-500">Paris Road & Cantt Hub</div>
+                        <div className="text-[11px] text-slate-500">Paris Road & Cantt Technical Hub</div>
                       </div>
                     </button>
                   </div>
@@ -613,27 +649,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </div>
 
-            {/* 6. Local Industrial Hubs (Daska, Sambrial, Wazirabad) */}
-            <button
-              onClick={() => handlePageSelect('locations')}
-              className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
-                currentPage === 'locations'
-                  ? 'text-red-600 bg-red-50/80 font-bold'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
-              }`}
-            >
-              <MapPin className="w-3.5 h-3.5 text-red-500" />
-              <span>Hubs</span>
-              <span className="hidden xl:inline text-[10px] font-bold px-1.5 py-0.2 rounded bg-red-100 text-red-700">Daska • Sambrial</span>
-            </button>
-
             {/* 7. Contact Link */}
             <button
               onClick={() => handlePageSelect('contact')}
               className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
                 currentPage === 'contact'
-                  ? 'text-red-600 bg-red-50/80 font-bold'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+                  ? 'text-red-700 bg-gradient-to-b from-red-50 to-rose-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(220,38,38,0.12)] border border-red-200/80'
+                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
               }`}
             >
               Contact
@@ -642,15 +664,41 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Right Action CTAs */}
           <div className="flex items-center gap-2">
-            {/* Search Trigger */}
+            {/* Colorful Direct Hotline Button (Header Quick Access) */}
+            <a
+              href={`tel:${COMPANY_INFO.contact.phoneRaw}`}
+              className="hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-rose-50 via-white to-red-50/80 hover:from-rose-100/80 hover:to-red-100 text-red-700 text-xs font-black border border-red-200/90 shadow-2xs hover:shadow-xs transition-all hover:scale-102 flex-shrink-0 cursor-pointer"
+              title={`Call Hotline: ${COMPANY_INFO.contact.phoneDisplay}`}
+            >
+              <div className="w-5 h-5 rounded-lg bg-gradient-to-br from-red-600 to-rose-600 text-white flex items-center justify-center shadow-xs">
+                <Phone className="w-3 h-3 animate-pulse" />
+              </div>
+              <span className="tracking-tight font-extrabold">{COMPANY_INFO.contact.phoneDisplay}</span>
+            </a>
+
+            {/* Colorful Direct WhatsApp Button (Header Quick Access) */}
+            <a
+              href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX, I want to discuss a requirement.')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden 2xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-50 via-white to-teal-50/80 hover:from-emerald-100/80 hover:to-teal-100 text-emerald-800 text-xs font-black border border-emerald-200/90 shadow-2xs hover:shadow-xs transition-all hover:scale-102 flex-shrink-0 cursor-pointer"
+              title="Chat on WhatsApp"
+            >
+              <div className="w-5 h-5 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center shadow-xs">
+                <MessageSquare className="w-3 h-3" />
+              </div>
+              <span className="tracking-tight font-extrabold">WhatsApp</span>
+            </a>
+
+            {/* Search Trigger with 3D tactile finish */}
             <button
               onClick={onOpenSearch}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium border border-slate-200 transition-colors cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100/90 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-200 shadow-2xs transition-all cursor-pointer"
               title="Search Services, Portfolio & Shop (Ctrl+K)"
             >
               <Search className="w-3.5 h-3.5 text-slate-500" />
               <span className="hidden xl:inline">Search</span>
-              <kbd className="hidden sm:inline-block px-1 py-0.2 text-[10px] font-mono text-slate-500 bg-white border border-slate-200 rounded">
+              <kbd className="hidden sm:inline-block px-1.5 py-0.2 text-[10px] font-mono text-slate-500 bg-white border border-slate-200 rounded shadow-2xs">
                 ⌘K
               </kbd>
             </button>
@@ -658,12 +706,12 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Light / Dark Mode Theme Switcher */}
             <ThemeSwitcher variant="icon" />
 
-            {/* Free Quote Button */}
+            {/* 3D Radiant Specular Free Quote Button */}
             <button
               onClick={() => onOpenQuote()}
-              className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm transition-all shadow-xs hover:shadow-md cursor-pointer flex items-center gap-1.5 flex-shrink-0"
+              className="px-3.5 sm:px-4.5 py-1.5 sm:py-2 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-600 active:from-red-700 active:to-rose-700 text-white font-extrabold text-xs sm:text-sm transition-all shadow-[inset_0_1.5px_0_rgba(255,255,255,0.4),0_6px_20px_rgba(220,38,38,0.4)] hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.5),0_8px_25px_rgba(220,38,38,0.5)] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer flex items-center gap-1.5 flex-shrink-0 border-t border-white/30"
             >
-              <Sparkles className="w-3.5 h-3.5" />
+              <Sparkles className="w-3.5 h-3.5 text-amber-200 animate-pulse" />
               <span>Free Quote</span>
             </button>
 
@@ -917,16 +965,23 @@ export const Navbar: React.FC<NavbarProps> = ({
               <ThemeSwitcher variant="expanded" />
             </div>
 
-            {/* Direct Quick WhatsApp */}
-            <div className="pt-1">
+            {/* Direct Quick Hotline & WhatsApp on Mobile */}
+            <div className="pt-2 grid grid-cols-2 gap-2">
+              <a
+                href={`tel:${COMPANY_INFO.contact.phoneRaw}`}
+                className="py-2.5 px-3 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 text-white font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-sm active:scale-98 transition-all"
+              >
+                <Phone className="w-3.5 h-3.5" />
+                <span>Call Hotline</span>
+              </a>
               <a
                 href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX, I am contacting you from the mobile website.')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-2 transition-colors"
+                className="py-2.5 px-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-sm active:scale-98 transition-all"
               >
-                <MessageSquare className="w-4 h-4" />
-                <span>WhatsApp Instant Help (+{COMPANY_INFO.contact.whatsappDisplay})</span>
+                <MessageSquare className="w-3.5 h-3.5" />
+                <span>WhatsApp</span>
               </a>
             </div>
           </div>
