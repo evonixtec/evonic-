@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EVONIX TECHNOLOGIES</title>
+    <script>
+      // Single Page App redirect for static hosts (GitHub Pages, S3, Firebase)
+      (function() {
+        var path = window.location.pathname;
+        var search = window.location.search;
+        var hash = window.location.hash;
+        if (path && path !== '/') {
+          sessionStorage.redirect = path + search + hash;
+          window.location.replace('/');
+        }
+      })();
+    </script>
+  </head>
+  <body style="font-family: sans-serif; text-align: center; padding-top: 50px;">
+    <h2>Loading EVONIX Technologies...</h2>
+    <p>Please wait, redirecting to page...</p>
+  </body>
+</html>

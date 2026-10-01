@@ -90,8 +90,8 @@ export const Navbar: React.FC<NavbarProps> = ({
       id="main-navbar"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-xl shadow-[0_12px_32px_-4px_rgba(0,0,0,0.08),0_4px_6px_-2px_rgba(0,0,0,0.03)] border-b border-slate-200/90 py-2'
-          : 'bg-white/92 backdrop-blur-lg shadow-[0_4px_24px_-4px_rgba(0,0,0,0.05)] border-b border-slate-200/70 py-2.5'
+          ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-[12px] shadow-[0_12px_32px_-4px_rgba(0,0,0,0.08),0_4px_6px_-2px_rgba(0,0,0,0.03)] border-b border-slate-200/80 dark:border-slate-800/80 py-2'
+          : 'bg-white/75 dark:bg-slate-900/75 backdrop-blur-[12px] shadow-[0_8px_24px_-4px_rgba(0,0,0,0.05)] border-b border-slate-200/60 dark:border-slate-800/60 py-2.5'
       }`}
     >
       {/* 3D Top Metallic / Radiant Shimmer Line */}

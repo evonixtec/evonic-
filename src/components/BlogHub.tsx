@@ -76,12 +76,15 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onNavigateSection, onOpenQuote
   useEffect(() => {
     const checkBlogRoute = () => {
       const path = window.location.pathname.toLowerCase();
-      if (path.startsWith('/blog/')) {
-        const slug = path.replace(/^\/blog\//, '').replace(/\/$/, '');
-        const target = ALL_BLOGS.find((b) => b.slug.toLowerCase() === slug || b.id.toString() === slug);
-        if (target) {
-          setReadingBlog(target);
-          return;
+      const blogPrefixes = ['/blog/', '/blogs/', '/guides/', '/guidelines/', '/guide/'];
+      for (const prefix of blogPrefixes) {
+        if (path.startsWith(prefix)) {
+          const slug = path.replace(prefix, '').replace(/\/$/, '');
+          const target = ALL_BLOGS.find((b) => b.slug.toLowerCase() === slug || b.id.toString() === slug);
+          if (target) {
+            setReadingBlog(target);
+            return;
+          }
         }
       }
 

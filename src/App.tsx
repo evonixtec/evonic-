@@ -72,26 +72,67 @@ export default function App() {
     return { city: 'daska', service: 'it-consultancy' };
   };
 
+  // Universal page resolver for clean URLs, aliases, and legacy hashes
+  const resolvePageFromPath = (rawPath: string): NavPageId => {
+    const path = rawPath.replace(/^\/+|\/+$/g, '').toLowerCase();
+    if (!path) return 'home';
+
+    if (
+      path === 'guides' ||
+      path === 'guide' ||
+      path === 'blogs' ||
+      path === 'blog' ||
+      path === 'guidelines' ||
+      path === 'guideline' ||
+      path === 'tech-guides' ||
+      path === 'articles' ||
+      path.startsWith('blog/') ||
+      path.startsWith('blogs/') ||
+      path.startsWith('guide/') ||
+      path.startsWith('guides/') ||
+      path.startsWith('guideline/') ||
+      path.startsWith('guidelines/')
+    ) {
+      return 'guides';
+    }
+
+    if (path === 'services' || path.startsWith('services/') || path === 'service') {
+      return 'services';
+    }
+
+    if (path === 'portfolio' || path.startsWith('portfolio/') || path === 'projects' || path === 'case-studies') {
+      return 'portfolio';
+    }
+
+    if (path === 'shop' || path.startsWith('shop/') || path === 'store' || path === 'products' || path === 'hardware') {
+      return 'shop';
+    }
+
+    if (path === 'about' || path.startsWith('about/') || path === 'about-us' || path === 'company') {
+      return 'about';
+    }
+
+    if (path === 'contact' || path.startsWith('contact/') || path === 'contact-us' || path === 'support') {
+      return 'contact';
+    }
+
+    if (path === 'locations' || path === 'location' || path.startsWith('location/') || path.startsWith('locations/')) {
+      return 'locations';
+    }
+
+    return 'home';
+  };
+
   // Read initial page from clean URL pathname (with hash backward compatibility)
   const getInitialPage = (): NavPageId => {
     if (typeof window !== 'undefined') {
       const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
-      if (['services', 'portfolio', 'shop', 'about', 'guides', 'contact', 'locations'].includes(path)) {
-        return path as NavPageId;
+      if (path) {
+        return resolvePageFromPath(path);
       }
-      if (path === 'locations' || path.startsWith('location')) {
-        return 'locations';
-      }
-      if (path === 'blogs' || path.startsWith('blog/')) {
-        return 'guides';
-      }
-      // Check legacy hash if someone arrives with bookmark
       const hash = window.location.hash.replace('#', '').toLowerCase();
-      if (['services', 'portfolio', 'shop', 'about', 'guides', 'contact', 'locations'].includes(hash)) {
-        return hash as NavPageId;
-      }
-      if (hash === 'blogs') {
-        return 'guides';
+      if (hash) {
+        return resolvePageFromPath(hash);
       }
     }
     return 'home';
@@ -124,20 +165,18 @@ export default function App() {
   useEffect(() => {
     const syncRouteFromLocation = () => {
       const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
-      if (['services', 'portfolio', 'shop', 'about', 'guides', 'contact', 'locations'].includes(path)) {
-        setCurrentPage(path as NavPageId);
-      } else if (path === 'locations' || path.startsWith('location')) {
-        setClusterParams(parseLocationFromPath());
-        setCurrentPage('locations');
-      } else if (path === 'blogs' || path.startsWith('blog/')) {
-        setCurrentPage('guides');
-      } else {
-        const hash = window.location.hash.replace('#', '').toLowerCase();
-        if (['services', 'portfolio', 'shop', 'about', 'guides', 'contact', 'locations'].includes(hash)) {
-          setCurrentPage(hash as NavPageId);
-        } else if (hash === 'blogs') {
-          setCurrentPage('guides');
-        } else if (hash) {
+      const hash = window.location.hash.replace('#', '').toLowerCase();
+
+      if (path) {
+        if (path === 'locations' || path.startsWith('location')) {
+          setClusterParams(parseLocationFromPath());
+        }
+        setCurrentPage(resolvePageFromPath(path));
+      } else if (hash) {
+        const resolved = resolvePageFromPath(hash);
+        if (resolved !== 'home') {
+          setCurrentPage(resolved);
+        } else {
           // If hash points to an element id on home page, scroll to it
           setCurrentPage('home');
           setTimeout(() => {
@@ -149,9 +188,9 @@ export default function App() {
               window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
             }
           }, 150);
-        } else {
-          setCurrentPage('home');
         }
+      } else {
+        setCurrentPage('home');
       }
     };
 

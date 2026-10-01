@@ -4,6 +4,13 @@ import App from './App.tsx';
 import { ThemeProvider } from './context/ThemeContext';
 import './index.css';
 
+// Restore redirected path from static 404 fallback if applicable
+if (typeof window !== 'undefined' && sessionStorage.redirect) {
+  const redirect = sessionStorage.redirect;
+  delete sessionStorage.redirect;
+  window.history.replaceState(null, '', redirect);
+}
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ThemeProvider>
