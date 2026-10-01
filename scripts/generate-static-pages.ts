@@ -61,6 +61,12 @@ const pagesToPreRender: StaticPageMeta[] = [
     canonical: `${DOMAIN}/services`,
   },
   {
+    route: 'service',
+    title: 'IT Services, Website Development & POS Software | EVONIX Sialkot',
+    description: 'Premier IT services in Sialkot. Custom website development, retail & export POS systems, chip-level laptop repairs, and doorstep IT support.',
+    canonical: `${DOMAIN}/services`,
+  },
+  {
     route: 'portfolio',
     title: 'Client Deployments & Case Studies (Dubai & Pakistan) | EVONIX',
     description: 'Review our proven track record of e-commerce platforms, corporate portals, and retail software deployed for clients across Dubai and Sialkot.',

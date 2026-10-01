@@ -27,6 +27,40 @@ export const FAQ: React.FC<FAQProps> = ({ onOpenQuote, onNavigateSection }) => {
     });
   }, [activeCategory, searchQuery]);
 
+  // Google Rich Snippet FAQPage Schema JSON-LD
+  const faqSchema = useMemo(() => {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      '@id': 'https://evonixtec.com/#faq-schema',
+      mainEntity: FAQ_ITEMS.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.answer,
+        },
+      })),
+    };
+  }, []);
+
+  React.useEffect(() => {
+    // Inject or update in document head for maximum crawler and Googlebot compatibility
+    let scriptTag = document.getElementById('faq-rich-snippet-schema') as HTMLScriptElement;
+    if (!scriptTag) {
+      scriptTag = document.createElement('script');
+      scriptTag.id = 'faq-rich-snippet-schema';
+      scriptTag.type = 'application/ld+json';
+      document.head.appendChild(scriptTag);
+    }
+    scriptTag.textContent = JSON.stringify(faqSchema);
+
+    return () => {
+      const existing = document.getElementById('faq-rich-snippet-schema');
+      if (existing) existing.remove();
+    };
+  }, [faqSchema]);
+
   const toggleAccordion = (id: string) => {
     setExpandedId((prev) => (prev === id ? null : id));
   };
@@ -102,21 +136,32 @@ export const FAQ: React.FC<FAQProps> = ({ onOpenQuote, onNavigateSection }) => {
           </div>
         </div>
 
-        {/* FAQ Accordion List */}
-        <div className="space-y-3">
+        {/* Dedicated FAQ Schema Markup Block for Google Rich Snippets */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+
+        {/* FAQ Accordion List with Microdata Integration */}
+        <div className="space-y-3" itemScope itemType="https://schema.org/FAQPage">
           {filteredFaqs.map((faq) => {
             const isOpen = expandedId === faq.id;
             return (
               <div
                 key={faq.id}
+                id={faq.id}
+                itemScope
+                itemProp="mainEntity"
+                itemType="https://schema.org/Question"
                 className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-2xs transition-all"
               >
                 <button
                   onClick={() => toggleAccordion(faq.id)}
                   className="w-full px-5 sm:px-6 py-4.5 text-left flex items-center justify-between gap-4 cursor-pointer hover:bg-slate-50/80 transition-colors"
+                  aria-expanded={isOpen}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-sm sm:text-base font-bold text-slate-900">
+                    <span itemProp="name" className="text-sm sm:text-base font-bold text-slate-900">
                       {faq.question}
                     </span>
                     {faq.highlightBadge && (
@@ -133,8 +178,13 @@ export const FAQ: React.FC<FAQProps> = ({ onOpenQuote, onNavigateSection }) => {
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 sm:px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100">
-                    <p>{faq.answer}</p>
+                  <div
+                    itemScope
+                    itemProp="acceptedAnswer"
+                    itemType="https://schema.org/Answer"
+                    className="px-5 sm:px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100"
+                  >
+                    <p itemProp="text">{faq.answer}</p>
                   </div>
                 )}
               </div>
