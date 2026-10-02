@@ -96,6 +96,18 @@ const pagesToPreRender: StaticPageMeta[] = [
     description: 'Direct on-site IT dispatch and hardware repair support across Daska, Sambrial Dry Port, and Wazirabad industrial zones.',
     canonical: `${DOMAIN}/locations`,
   },
+  {
+    route: 'invoice',
+    title: 'Global Zero-Database Enterprise Invoice Hub | EVONIX Technologies',
+    description: '100% free client-side invoice generator. Multi-country tax calculation, Code128 barcode engine, amount in words, and local privacy persistence for global freelancers.',
+    canonical: `${DOMAIN}/invoice`,
+  },
+  {
+    route: 'invoice-generator',
+    title: 'Global Zero-Database Enterprise Invoice Hub | EVONIX Technologies',
+    description: '100% free client-side invoice generator. Multi-country tax calculation, Code128 barcode engine, amount in words, and local privacy persistence for global freelancers.',
+    canonical: `${DOMAIN}/invoice-generator`,
+  },
 
   // 2b. Sub-Category Direct Landing Pages
   {

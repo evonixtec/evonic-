@@ -27,7 +27,7 @@ import {
 } from 'lucide-react';
 import { ThemeSwitcher } from './ThemeSwitcher';
 
-export type NavPageId = 'home' | 'services' | 'portfolio' | 'shop' | 'about' | 'guides' | 'contact' | 'locations';
+export type NavPageId = 'home' | 'services' | 'portfolio' | 'shop' | 'about' | 'guides' | 'contact' | 'locations' | 'invoice';
 
 interface NavbarProps {
   currentPage: NavPageId;
@@ -554,7 +554,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </div>
 
-            {/* 5. Blogs Link (Directly Prominent as requested by user) */}
+            {/* 5. Blogs Link */}
             <button
               onClick={() => handlePageSelect('guides')}
               className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
@@ -566,6 +566,21 @@ export const Navbar: React.FC<NavbarProps> = ({
               <BookOpen className="w-3.5 h-3.5 text-red-600" />
               <span>Blogs</span>
               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-red-100 text-red-700">New</span>
+            </button>
+
+            {/* 6. Global Zero-Database Invoice Hub (Free Tool) */}
+            <button
+              onClick={() => handlePageSelect('invoice')}
+              className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                currentPage === 'invoice'
+                  ? 'text-red-700 bg-gradient-to-b from-red-50 to-rose-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(220,38,38,0.12)] border border-red-200/80'
+                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
+              }`}
+              title="Global Zero-Database Enterprise Invoice Hub"
+            >
+              <FileText className="w-3.5 h-3.5 text-red-600" />
+              <span>Invoice Hub</span>
+              <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-emerald-100 text-emerald-700">Free</span>
             </button>
 
             {/* 6. Company Dropdown (Consolidated with About, Sialkot Lab & Regional Hubs) */}
@@ -934,6 +949,20 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <span>Tech Blogs & Field Case Studies</span>
               </div>
               <span className="px-1.5 py-0.2 bg-red-100 text-red-700 text-[10px] rounded font-bold">BLOGS</span>
+            </button>
+
+            {/* Zero-Database Enterprise Invoice Hub (Free Tool) */}
+            <button
+              onClick={() => handlePageSelect('invoice')}
+              className={`w-full text-left px-3.5 py-2 rounded-xl text-sm font-bold flex items-center justify-between ${
+                currentPage === 'invoice' ? 'bg-red-50 text-red-600' : 'text-slate-800 hover:bg-slate-100'
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                <FileText className="w-4 h-4 text-red-600" />
+                <span>Enterprise Invoice Hub</span>
+              </div>
+              <span className="px-1.5 py-0.2 bg-emerald-100 text-emerald-700 text-[10px] rounded font-bold">FREE TOOL</span>
             </button>
 
             {/* Local Industrial Hubs (Daska, Sambrial, Wazirabad) */}

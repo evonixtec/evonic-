@@ -22,6 +22,7 @@ import { QuoteModal } from './components/QuoteModal';
 import { SearchModal } from './components/SearchModal';
 import { SecurityAlertToast } from './components/SecurityAlertToast';
 import { PageHeaderBanner } from './components/common/PageHeaderBanner';
+import { GlobalInvoiceHub } from './components/GlobalInvoiceHub';
 import { HomeServicesPreview } from './components/home/HomeServicesPreview';
 import { HomeAboutPreview } from './components/home/HomeAboutPreview';
 import { HomePortfolioPreview } from './components/home/HomePortfolioPreview';
@@ -118,6 +119,18 @@ export default function App() {
 
     if (path === 'locations' || path === 'location' || path.startsWith('location/') || path.startsWith('locations/')) {
       return 'locations';
+    }
+
+    if (
+      path === 'invoice' ||
+      path === 'invoice-generator' ||
+      path === 'invoice-hub' ||
+      path === 'invoicing' ||
+      path === 'invoices' ||
+      path.startsWith('invoice/') ||
+      path.startsWith('invoice-generator/')
+    ) {
+      return 'invoice';
     }
 
     return 'home';
@@ -744,6 +757,15 @@ export default function App() {
               onOpenQuote={handleOpenQuote}
               onNavigatePage={navigateToPage}
             />
+          </div>
+        )}
+
+        {/* ========================================================
+            PAGE 9: DEDICATED GLOBAL ZERO-DATABASE ENTERPRISE INVOICE HUB
+           ======================================================== */}
+        {currentPage === 'invoice' && (
+          <div className="space-y-0">
+            <GlobalInvoiceHub />
           </div>
         )}
           </motion.div>

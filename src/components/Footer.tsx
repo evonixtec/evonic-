@@ -325,6 +325,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               </li>
               <li>
                 <button
+                  onClick={() => onNavigate('invoice')}
+                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-amber-300 font-bold flex items-center gap-1"
+                >
+                  <span>Free Enterprise Invoice Hub</span>
+                  <span className="text-[9px] bg-red-600 text-white px-1.5 py-0.2 rounded font-black">NEW</span>
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => onNavigate('portfolio')}
                   className="hover:text-red-400 transition-colors text-left cursor-pointer text-slate-300 font-medium"
                 >

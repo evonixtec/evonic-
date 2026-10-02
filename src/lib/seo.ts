@@ -650,6 +650,30 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'Sialkot industrial IT triangle',
     ],
   },
+
+  invoice: {
+    title: 'Global Zero-Database Enterprise Invoice Hub | EVONIX Technologies',
+    description:
+      '100% free client-side invoice generator. Multi-country tax calculation, Code128 barcode engine, amount in words, and local privacy persistence for global freelancers.',
+    ogTitle: 'Global Zero-Database Enterprise Invoice Hub | EVONIX Technologies',
+    ogDescription:
+      'Zero remote database. 100+ countries tax engine, dynamic currency words, scannable Code128 barcode, and printable A4 commercial invoice sheets.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    canonicalUrl: `${BASE_URL}/invoice`,
+    keywords: [
+      'free invoice generator',
+      'zero database invoice hub',
+      'client side invoice generator',
+      'privacy invoice generator',
+      'multi currency invoice generator',
+      'tax inclusive invoice calculator',
+      'code128 barcode invoice generator',
+      'freelance commercial invoice maker',
+      'print ready A4 invoice template',
+      'amount in words invoice generator',
+    ],
+  },
 };
 
 /**
