@@ -24,10 +24,11 @@ import {
   Barcode,
   MapPin,
   BookOpen,
+  Calculator,
 } from 'lucide-react';
 import { ThemeSwitcher } from './ThemeSwitcher';
 
-export type NavPageId = 'home' | 'services' | 'portfolio' | 'shop' | 'about' | 'guides' | 'contact' | 'locations' | 'invoice';
+export type NavPageId = 'home' | 'services' | 'portfolio' | 'shop' | 'about' | 'guides' | 'contact' | 'locations' | 'invoice' | 'ecommerce-calculator';
 
 interface NavbarProps {
   currentPage: NavPageId;
@@ -583,6 +584,21 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-emerald-100 text-emerald-700">Free</span>
             </button>
 
+            {/* 7. E-Commerce Margin Calculator (Free Tool) */}
+            <button
+              onClick={() => handlePageSelect('ecommerce-calculator')}
+              className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                currentPage === 'ecommerce-calculator'
+                  ? 'text-red-700 bg-gradient-to-b from-red-50 to-rose-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(220,38,38,0.12)] border border-red-200/80'
+                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
+              }`}
+              title="E-Commerce Profit & Courier Shipping Margin Calculator"
+            >
+              <Calculator className="w-3.5 h-3.5 text-red-600" />
+              <span>Margin Calc</span>
+              <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-blue-100 text-blue-700">New</span>
+            </button>
+
             {/* 6. Company Dropdown (Consolidated with About, Sialkot Lab & Regional Hubs) */}
             <div
               className="relative"
@@ -967,6 +983,20 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <span>Enterprise Invoice Hub</span>
               </div>
               <span className="px-1.5 py-0.2 bg-emerald-100 text-emerald-700 text-[10px] rounded font-bold">FREE TOOL</span>
+            </button>
+
+            {/* E-Commerce Profit & Margin Calculator (Free Tool) */}
+            <button
+              onClick={() => handlePageSelect('ecommerce-calculator')}
+              className={`w-full text-left px-3.5 py-2 rounded-xl text-sm font-bold flex items-center justify-between ${
+                currentPage === 'ecommerce-calculator' ? 'bg-red-50 text-red-600' : 'text-slate-800 hover:bg-slate-100'
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                <Calculator className="w-4 h-4 text-red-600" />
+                <span>E-Commerce Margin Calculator</span>
+              </div>
+              <span className="px-1.5 py-0.2 bg-blue-100 text-blue-700 text-[10px] rounded font-bold">NEW TOOL</span>
             </button>
 
             {/* Local Industrial Hubs (Daska, Sambrial, Wazirabad) */}

@@ -74,8 +74,8 @@ A national startup checker that checks your business name against SECP and chamb
 **8. Zero-Database Client Testimonial & Review Card Builder**
 A quick graphic tool that turns customer reviews and WhatsApp messages into attractive marketing cards ready to post online without touching Photoshop.
 
-**9. E-Commerce Profit & Courier Shipping Margin Calculator**
-A cash-flow calculator for online sellers. It runs unit profit checks by calculating product buying price, sales margin, courier delivery fees, and cash-on-delivery deductions.
+**9. E-Commerce Profit & Courier Shipping Margin Calculator (Production Ready)**
+A dedicated cash-flow utility designed for independent digital sellers to run comprehensive unit-economics checks, factoring in product cost prices, target sales margins, courier shipping fees, and COD management deductions in real-time. Live now on evonix technologies under Margin Calc.
 
 ---
 

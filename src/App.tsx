@@ -23,6 +23,7 @@ import { SearchModal } from './components/SearchModal';
 import { SecurityAlertToast } from './components/SecurityAlertToast';
 import { PageHeaderBanner } from './components/common/PageHeaderBanner';
 import { GlobalInvoiceHub } from './components/GlobalInvoiceHub';
+import EcommerceCalculator from './components/EcommerceCalculator';
 import { HomeServicesPreview } from './components/home/HomeServicesPreview';
 import { HomeAboutPreview } from './components/home/HomeAboutPreview';
 import { HomePortfolioPreview } from './components/home/HomePortfolioPreview';
@@ -131,6 +132,19 @@ export default function App() {
       path.startsWith('invoice-generator/')
     ) {
       return 'invoice';
+    }
+
+    if (
+      path === 'ecommerce-calculator' ||
+      path === 'ecom-calculator' ||
+      path === 'margin-calculator' ||
+      path === 'calculator' ||
+      path === 'shipping-calculator' ||
+      path === 'courier-calculator' ||
+      path.startsWith('ecommerce-calculator/') ||
+      path.startsWith('margin-calculator/')
+    ) {
+      return 'ecommerce-calculator';
     }
 
     return 'home';
@@ -297,6 +311,15 @@ export default function App() {
   };
 
   const handleNavigateFromSearch = (sectionId: SectionId, elementId?: string) => {
+    if (elementId === 'ecommerce-calculator') {
+      navigateToPage('ecommerce-calculator');
+      return;
+    }
+    if (elementId === 'invoice-hub') {
+      navigateToPage('invoice');
+      return;
+    }
+
     // Map sectionId to PageId
     let targetPage: NavPageId = 'home';
     if (sectionId === 'services') targetPage = 'services';
@@ -766,6 +789,15 @@ export default function App() {
         {currentPage === 'invoice' && (
           <div className="space-y-0">
             <GlobalInvoiceHub />
+          </div>
+        )}
+
+        {/* ========================================================
+            PAGE 10: E-COMMERCE PROFIT & COURIER SHIPPING MARGIN CALCULATOR
+           ======================================================== */}
+        {currentPage === 'ecommerce-calculator' && (
+          <div className="space-y-0">
+            <EcommerceCalculator />
           </div>
         )}
           </motion.div>

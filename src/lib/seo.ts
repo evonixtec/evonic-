@@ -674,6 +674,31 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'amount in words invoice generator',
     ],
   },
+
+  'ecommerce-calculator': {
+    title: 'E-Commerce Profit & Courier Shipping Margin Calculator | EVONIX Technologies',
+    description:
+      'Free zero-database e-commerce margin calculator. Real-time Leopards, TCS, Trax, PostEx courier tariffs, COD handling charges, marketing CAC, and RTO return loss simulator.',
+    ogTitle: 'E-Commerce Margin & Courier Tariff Calculator | EVONIX Technologies',
+    ogDescription:
+      'Calculate unit economics, multi-courier rates, COD handling fees, break-even targets, and Pakistani return rate risk cushions with zero remote database tracking.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    canonicalUrl: `${BASE_URL}/ecommerce-calculator`,
+    keywords: [
+      'ecommerce profit calculator pakistan',
+      'courier shipping margin calculator',
+      'leopards courier rates calculator',
+      'tcs cod tariff calculator',
+      'trax shipping cost calculator',
+      'postex cod fee calculator',
+      'ecommerce unit economics calculator',
+      'cash on delivery margin calculator',
+      'shopify pakistan profit calculator',
+      'daraz margin calculator',
+      'rto return rate loss calculator',
+    ],
+  },
 };
 
 /**

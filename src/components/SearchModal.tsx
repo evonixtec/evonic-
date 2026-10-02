@@ -261,6 +261,30 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         targetElementId: 'sialkot-industrial-solutions',
         priceOrHighlight: 'Export Grade',
         whatsappMessage: 'Assalam-o-Alaikum EVONIX, I would like to request an industrial ERP demo for my factory in Sialkot.',
+      },
+      {
+        id: 'ecommerce-margin-calculator',
+        type: 'service',
+        title: 'E-Commerce Profit & Multi-Courier Shipping Margin Calculator',
+        categoryLabel: 'Free Serverless Tool',
+        description: 'Instant unit economics, Leopards, TCS, Trax, PostEx rates, COD handling fees, break-even simulation, and RTO return loss analysis.',
+        tags: ['Ecommerce', 'Margin Calculator', 'Profit', 'Leopards', 'TCS', 'Trax', 'PostEx', 'COD', 'Courier', 'Shipping', 'Returns', 'Shopify', 'Daraz', 'Calculator'],
+        targetSection: 'services',
+        targetElementId: 'ecommerce-calculator',
+        priceOrHighlight: '100% Free Tool',
+        whatsappMessage: 'Hello EVONIX, I am using your E-Commerce Margin Calculator and would like to consult on our online business.',
+      },
+      {
+        id: 'zero-database-invoice-hub',
+        type: 'service',
+        title: 'Global Zero-Database Enterprise Invoice Hub',
+        categoryLabel: 'Free Serverless Tool',
+        description: '100% client-side commercial invoice generator with 100+ countries tax engine, CODE128 barcode generator, and PDF download.',
+        tags: ['Invoice', 'Invoice Hub', 'Billing', 'Generator', 'Tax', 'Barcode', 'PDF', 'Free Tool'],
+        targetSection: 'services',
+        targetElementId: 'invoice-hub',
+        priceOrHighlight: '100% Free Tool',
+        whatsappMessage: 'Hello EVONIX, I am using your Invoice Hub for my international business billing.',
       }
     );
 
