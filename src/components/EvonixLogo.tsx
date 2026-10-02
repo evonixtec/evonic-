@@ -3,7 +3,7 @@ import { useTheme } from '../context/ThemeContext';
 
 export interface EvonixLogoProps {
   /**
-   * 'full': Emblem mark + 'evonix' wordmark
+   * 'full': Emblem mark + 'evonix technologies' wordmark
    * 'mark': Just the official red geometric emblem mark
    */
   variant?: 'full' | 'mark';
@@ -15,6 +15,10 @@ export interface EvonixLogoProps {
    * Force theme mode or allow auto detection
    */
   forceTheme?: 'dark' | 'light';
+  /**
+   * Display 'technologies' subtitle under 'evonix' (default: true)
+   */
+  showTechnologies?: boolean;
   /**
    * Additional classes for wrapper
    */
@@ -77,18 +81,19 @@ export const EvonixMark: React.FC<{
 };
 
 /**
- * Full Official EVONIX Brand Logo (.svg)
- * Pure logo representation as requested by the user:
+ * Full Official EVONIX TECHNOLOGIES Brand Logo (.svg)
+ * Features:
  * - Red faceted emblem
  * - Bold lowercase 'evonix' wordmark
  * - Signature red dot on 'i'
  * - Signature red top-right diagonal arm on 'x'
- * - Absolutely NO 'TECHNOLOGIES' word attached
+ * - Clean tracked 'technologies' subtitle
  */
 export const EvonixLogo: React.FC<EvonixLogoProps> = ({
   variant = 'full',
   size = 'md',
   forceTheme,
+  showTechnologies = true,
   className = '',
 }) => {
   const { theme } = useTheme();
@@ -116,7 +121,7 @@ export const EvonixLogo: React.FC<EvonixLogoProps> = ({
   };
 
   const wordmarkSizes = {
-    sm: 'text-2xl sm:text-2xl',
+    sm: 'text-xl sm:text-2xl',
     md: 'text-2xl sm:text-3xl',
     lg: 'text-3xl sm:text-4xl',
     xl: 'text-4xl sm:text-5xl',
@@ -129,38 +134,58 @@ export const EvonixLogo: React.FC<EvonixLogoProps> = ({
         <EvonixMark className={markSizeClasses[size]} />
       </div>
 
-      {/* Pure 'evonix' Wordmark (No 'Technologies' text) */}
-      <span
-        className={`font-sans font-black tracking-tight ${wordmarkSizes[size]} ${textColor} inline-flex items-center`}
-        style={{ letterSpacing: '-0.04em' }}
-      >
-        <span>evon</span>
-        {/* The 'i' with signature red circular dot */}
-        <span className="relative inline-block mx-[0.5px]">
-          <span className="text-inherit">ı</span>
+      {/* Official 'evonix technologies' Wordmark */}
+      <div className="flex flex-col justify-center text-left">
+        <div className="flex items-center">
           <span
-            className="absolute -top-[0.28em] left-1/2 -translate-x-1/2 w-[0.28em] h-[0.28em] rounded-full bg-[#C81D25] shadow-sm shadow-red-500/50"
-            aria-hidden="true"
-          />
-        </span>
-        {/* The 'x' with signature red top-right arm */}
-        <span className="relative inline-block ml-[0.5px]">
-          {/* Base 'x' */}
-          <span className="text-inherit">x</span>
-          {/* Red top-right wing accent overlay */}
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            className="absolute inset-0 w-full h-full pointer-events-none"
-            aria-hidden="true"
+            className={`font-sans font-black tracking-tight ${wordmarkSizes[size]} ${textColor} inline-flex items-center`}
+            style={{ letterSpacing: '-0.04em' }}
           >
-            <path
-              d="M12 12 L20 4 L22 4 L22 6 L14 14 Z"
-              fill="#C81D25"
-            />
-          </svg>
-        </span>
-      </span>
+            <span>evon</span>
+            {/* The 'i' with signature red circular dot */}
+            <span className="relative inline-block mx-[0.5px]">
+              <span className="text-inherit">ı</span>
+              <span
+                className="absolute -top-[0.28em] left-1/2 -translate-x-1/2 w-[0.28em] h-[0.28em] rounded-full bg-[#C81D25] shadow-sm shadow-red-500/50"
+                aria-hidden="true"
+              />
+            </span>
+            {/* The 'x' with signature red top-right arm */}
+            <span className="relative inline-block ml-[0.5px]">
+              {/* Base 'x' */}
+              <span className="text-inherit">x</span>
+              {/* Red top-right wing accent overlay */}
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                className="absolute inset-0 w-full h-full pointer-events-none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 12 L20 4 L22 4 L22 6 L14 14 Z"
+                  fill="#C81D25"
+                />
+              </svg>
+            </span>
+          </span>
+        </div>
+
+        {showTechnologies && (
+          <span
+            className={`font-black uppercase tracking-[0.28em] leading-none ${
+              size === 'sm'
+                ? 'text-[7px] sm:text-[8px] -mt-0.5'
+                : size === 'md'
+                ? 'text-[8px] sm:text-[9px] -mt-0.5'
+                : size === 'lg'
+                ? 'text-[10px] sm:text-[11px] -mt-1'
+                : 'text-[12px] sm:text-[14px] -mt-1'
+            } ${isLight ? 'text-slate-600' : 'text-slate-400'}`}
+          >
+            technologies
+          </span>
+        )}
+      </div>
     </div>
   );
 };

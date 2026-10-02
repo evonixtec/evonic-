@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { toPng } from 'html-to-image';
+import { jsPDF } from 'jspdf';
 import {
   FileText,
   Plus,
   Trash2,
   Printer,
+  Download,
   Save,
   RotateCcw,
   Upload,
@@ -18,7 +21,8 @@ import {
   HelpCircle,
   ChevronDown,
   Sparkles,
-  Info
+  Info,
+  Loader2
 } from 'lucide-react';
 
 export interface InvoiceItem {
@@ -337,19 +341,41 @@ export const GlobalInvoiceHub: React.FC = () => {
     'Thank you for partnering with EVONIX. Payment is due within 14 days of invoice receipt.'
   );
 
-  // 9. UI / Mobile View State
+  // 9. Document Title & Headings (Commercial Invoice, Tax Invoice, Proforma, etc.)
+  const [invoiceTitle, setInvoiceTitle] = useState<string>(() => {
+    try {
+      return localStorage.getItem('evonix_invoice_title') || 'Commercial Invoice';
+    } catch {
+      return 'Commercial Invoice';
+    }
+  });
+
+  // 10. UI / Mobile View State & PDF Export Progress
   const [mobileTab, setMobileTab] = useState<'editor' | 'preview'>('editor');
   const [savedNotification, setSavedNotification] = useState<string | null>(null);
+  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
 
   const previewSheetRef = useRef<HTMLDivElement>(null);
 
-  // Restore serial from localStorage on initial render
+  // Update & persist custom invoice title
+  const handleTitleChange = (newTitle: string) => {
+    setInvoiceTitle(newTitle);
+    try {
+      localStorage.setItem('evonix_invoice_title', newTitle);
+    } catch {
+      // localStorage fallback
+    }
+  };
+
+  // Restore serial & title from localStorage on initial render
   useEffect(() => {
     try {
       const savedPrefix = localStorage.getItem('evonix_invoice_prefix');
       const savedCounter = localStorage.getItem('evonix_invoice_counter');
+      const savedTitle = localStorage.getItem('evonix_invoice_title');
       if (savedPrefix) setPrefix(savedPrefix);
       if (savedCounter) setSerialCounter(parseInt(savedCounter, 10));
+      if (savedTitle) setInvoiceTitle(savedTitle);
     } catch {
       // localStorage fallback
     }
@@ -448,13 +474,89 @@ export const GlobalInvoiceHub: React.FC = () => {
     setTimeout(() => setSavedNotification(null), 4000);
   };
 
+  // Direct High-Resolution PDF Download Action (Native Browser Engine, supports Tailwind v4 OKLCH)
+  const handleDownloadPdf = async () => {
+    if (!previewSheetRef.current) return;
+    setIsGeneratingPdf(true);
+    try {
+      const element = previewSheetRef.current;
+
+      // Render high-DPI image of the invoice document via native browser SVG foreignObject rasterization
+      const dataUrl = await toPng(element, {
+        pixelRatio: 2.5,
+        backgroundColor: '#ffffff',
+        cacheBust: true,
+      });
+
+      // Measure dimensions
+      const img = new Image();
+      await new Promise<void>((resolve, reject) => {
+        img.onload = () => resolve();
+        img.onerror = reject;
+        img.src = dataUrl;
+      });
+
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4',
+      });
+
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      const imgWidth = pdfWidth;
+      const imgHeight = (img.height * pdfWidth) / img.width;
+
+      if (imgHeight <= pdfHeight) {
+        pdf.addImage(dataUrl, 'PNG', 0, 0, imgWidth, imgHeight);
+      } else {
+        let heightLeft = imgHeight;
+        let position = 0;
+        pdf.addImage(dataUrl, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pdfHeight;
+
+        while (heightLeft > 0) {
+          position = heightLeft - imgHeight;
+          pdf.addPage();
+          pdf.addImage(dataUrl, 'PNG', 0, position, imgWidth, imgHeight);
+          heightLeft -= pdfHeight;
+        }
+      }
+
+      const cleanDocTitle = (invoiceTitle || 'Invoice').replace(/[^a-zA-Z0-9]/g, '_');
+      const cleanSerial = invoiceNumberString.replace(/[^a-zA-Z0-9]/g, '_');
+      const cleanBrand = (issuerName || 'EVONIX').replace(/[^a-zA-Z0-9]/g, '_');
+      const filename = `${cleanBrand}_${cleanDocTitle}_${cleanSerial}.pdf`;
+
+      pdf.save(filename);
+      setSavedNotification(`✅ PDF Downloaded: ${filename}`);
+      setTimeout(() => setSavedNotification(null), 4000);
+    } catch (err) {
+      console.error('PDF Generation Error:', err);
+      // Fallback: trigger native browser print
+      window.print();
+    } finally {
+      setIsGeneratingPdf(false);
+    }
+  };
+
   // Print Action
   const handlePrint = () => {
-    window.print();
+    try {
+      window.print();
+    } catch {
+      handleDownloadPdf();
+    }
   };
 
   // Sample Preset Loader
   const handleLoadSample = () => {
+    setInvoiceTitle('Commercial Invoice');
+    try {
+      localStorage.setItem('evonix_invoice_title', 'Commercial Invoice');
+    } catch {
+      // Local storage fallback
+    }
     setIssuerName('EVONIX TECHNOLOGIES');
     setIssuerAddress('Kotli Behram, Paris Road, Sialkot, Pakistan');
     setIssuerContact('Direct Line: +92 326 324 4002 | Email: billing@evonixtec.com');
@@ -520,18 +622,35 @@ export const GlobalInvoiceHub: React.FC = () => {
 
             <button
               onClick={handleSaveAndNext}
-              className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition-all cursor-pointer"
+              className="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5 transition-colors border border-slate-700 cursor-pointer"
             >
-              <Save className="w-3.5 h-3.5" />
+              <Save className="w-3.5 h-3.5 text-emerald-400" />
               <span>Save & Next (+1)</span>
             </button>
 
+            {/* Direct High-Resolution PDF File Download */}
+            <button
+              onClick={handleDownloadPdf}
+              disabled={isGeneratingPdf}
+              className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition-all cursor-pointer"
+              title="Generate and download .pdf file directly"
+            >
+              {isGeneratingPdf ? (
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              ) : (
+                <Download className="w-3.5 h-3.5" />
+              )}
+              <span>{isGeneratingPdf ? 'Downloading PDF...' : 'Download PDF'}</span>
+            </button>
+
+            {/* Print Document */}
             <button
               onClick={handlePrint}
               className="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition-all cursor-pointer"
+              title="Print document or open browser print dialog"
             >
               <Printer className="w-3.5 h-3.5" />
-              <span>Print / Save PDF</span>
+              <span>Print</span>
             </button>
           </div>
         </div>
@@ -593,6 +712,49 @@ export const GlobalInvoiceHub: React.FC = () => {
                 <span className="text-[10px] font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded">
                   Memory Active
                 </span>
+              </div>
+
+              {/* Document Title / Heading (Editable: Commercial Invoice, Tax Invoice, etc.) */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center justify-between">
+                  <span>Document Title / Heading</span>
+                  <span className="text-[10px] font-medium text-slate-500">Fully Customizable</span>
+                </label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={invoiceTitle}
+                    onChange={(e) => handleTitleChange(e.target.value)}
+                    placeholder="e.g. Commercial Invoice, Tax Invoice..."
+                    className="w-full pl-3 pr-8 py-2 rounded-xl border border-slate-300 text-xs font-black text-slate-900 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 uppercase tracking-wide"
+                  />
+                  <Edit3 className="w-3.5 h-3.5 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                </div>
+
+                {/* Quick Preset Pills */}
+                <div className="flex flex-wrap gap-1.5 mt-2">
+                  {[
+                    'Commercial Invoice',
+                    'Tax Invoice',
+                    'Proforma Invoice',
+                    'Sales Invoice',
+                    'Official Receipt',
+                    'Service Invoice',
+                  ].map((preset) => (
+                    <button
+                      key={preset}
+                      type="button"
+                      onClick={() => handleTitleChange(preset)}
+                      className={`text-[10px] px-2.5 py-1 rounded-lg font-bold transition-all cursor-pointer ${
+                        invoiceTitle === preset
+                          ? 'bg-red-600 text-white shadow-2xs'
+                          : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                      }`}
+                    >
+                      {preset}
+                    </button>
+                  ))}
+                </div>
               </div>
 
               {/* Country Jurisdiction Selector */}
@@ -1109,11 +1271,26 @@ export const GlobalInvoiceHub: React.FC = () => {
               </div>
               <div className="flex items-center gap-2">
                 <button
+                  onClick={handleDownloadPdf}
+                  disabled={isGeneratingPdf}
+                  className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white text-xs font-bold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                  title="Directly download high-resolution PDF file"
+                >
+                  {isGeneratingPdf ? (
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  ) : (
+                    <Download className="w-3.5 h-3.5" />
+                  )}
+                  <span>{isGeneratingPdf ? 'Downloading...' : 'Download PDF'}</span>
+                </button>
+
+                <button
                   onClick={handlePrint}
                   className="px-3.5 py-1.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer"
+                  title="Print Document or open browser print dialog (Ctrl+P)"
                 >
                   <Printer className="w-3.5 h-3.5" />
-                  <span>Print / PDF (Ctrl+P)</span>
+                  <span>Print Document</span>
                 </button>
               </div>
             </div>
@@ -1163,7 +1340,7 @@ export const GlobalInvoiceHub: React.FC = () => {
 
                   <div className="pt-1">
                     <h2 className="text-2xl font-black text-slate-900 tracking-tight uppercase">
-                      Commercial Invoice
+                      {invoiceTitle || 'Commercial Invoice'}
                     </h2>
                     <div className="text-xs font-bold font-mono text-red-600">
                       Invoice No: {invoiceNumberString}
@@ -1411,7 +1588,7 @@ export const GlobalInvoiceHub: React.FC = () => {
               {/* Micro-Footer Print Notice */}
               <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-[9px] text-slate-400 font-mono">
                 <span>Generated via EVONIX Zero-Database Enterprise Hub</span>
-                <span>ISO 9001 Compliant Electronic Commercial Invoice</span>
+                <span>ISO 9001 Compliant Electronic {invoiceTitle || 'Commercial Invoice'}</span>
               </div>
             </div>
           </div>
@@ -1523,30 +1700,47 @@ export const GlobalInvoiceHub: React.FC = () => {
       </section>
 
       {/* Floating Mobile Action Bar (Sticky at bottom for seamless thumb control) */}
-      <div className="lg:hidden print:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-950/95 backdrop-blur-md border-t border-slate-800 p-3 flex items-center justify-around gap-2 shadow-2xl">
+      <div className="lg:hidden print:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-950/95 backdrop-blur-md border-t border-slate-800 p-2.5 flex items-center justify-between gap-1.5 shadow-2xl">
         <button
           onClick={() => setMobileTab(mobileTab === 'editor' ? 'preview' : 'editor')}
-          className="min-h-[44px] flex-1 py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs flex items-center justify-center gap-2 border border-slate-700 cursor-pointer"
+          className="min-h-[42px] px-2.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-[11px] flex items-center justify-center gap-1.5 border border-slate-700 cursor-pointer flex-shrink-0"
         >
           {mobileTab === 'editor' ? (
             <>
-              <Eye className="w-4 h-4 text-amber-400" />
-              <span>👁️ View Live Invoice</span>
+              <Eye className="w-3.5 h-3.5 text-amber-400" />
+              <span>Preview</span>
             </>
           ) : (
             <>
-              <Edit3 className="w-4 h-4 text-emerald-400" />
-              <span>✏️ Edit Details</span>
+              <Edit3 className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Edit</span>
             </>
           )}
         </button>
 
+        {/* Mobile Download PDF File */}
+        <button
+          onClick={handleDownloadPdf}
+          disabled={isGeneratingPdf}
+          className="min-h-[42px] flex-1 py-2 px-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white font-bold text-[11px] flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+          title="Download PDF File"
+        >
+          {isGeneratingPdf ? (
+            <Loader2 className="w-3.5 h-3.5 animate-spin" />
+          ) : (
+            <Download className="w-3.5 h-3.5" />
+          )}
+          <span>{isGeneratingPdf ? 'Saving...' : 'Download PDF'}</span>
+        </button>
+
+        {/* Mobile Print Document */}
         <button
           onClick={handlePrint}
-          className="min-h-[44px] flex-1 py-2.5 px-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-sm cursor-pointer"
+          className="min-h-[42px] px-3 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-[11px] flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+          title="Print Document"
         >
-          <Printer className="w-4 h-4" />
-          <span>Print / PDF</span>
+          <Printer className="w-3.5 h-3.5" />
+          <span>Print</span>
         </button>
       </div>
     </div>

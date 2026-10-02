@@ -691,32 +691,36 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="tracking-tight font-extrabold">{COMPANY_INFO.contact.phoneDisplay}</span>
             </a>
 
-            {/* Colorful Direct WhatsApp Button (Header Quick Access) */}
-            <a
-              href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX, I want to discuss a requirement.')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden 2xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-50 via-white to-teal-50/80 hover:from-emerald-100/80 hover:to-teal-100 text-emerald-800 text-xs font-black border border-emerald-200/90 shadow-2xs hover:shadow-xs transition-all hover:scale-102 flex-shrink-0 cursor-pointer"
-              title="Chat on WhatsApp"
-            >
-              <div className="w-5 h-5 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center shadow-xs">
-                <MessageSquare className="w-3 h-3" />
-              </div>
-              <span className="tracking-tight font-extrabold">WhatsApp</span>
-            </a>
+            {/* Colorful Direct WhatsApp Button (Header Quick Access - Hidden on Invoice Page) */}
+            {currentPage !== 'invoice' && (
+              <a
+                href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX, I want to discuss a requirement.')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden 2xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-50 via-white to-teal-50/80 hover:from-emerald-100/80 hover:to-teal-100 text-emerald-800 text-xs font-black border border-emerald-200/90 shadow-2xs hover:shadow-xs transition-all hover:scale-102 flex-shrink-0 cursor-pointer"
+                title="Chat on WhatsApp"
+              >
+                <div className="w-5 h-5 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center shadow-xs">
+                  <MessageSquare className="w-3 h-3" />
+                </div>
+                <span className="tracking-tight font-extrabold">WhatsApp</span>
+              </a>
+            )}
 
-            {/* Search Trigger with 3D tactile finish */}
-            <button
-              onClick={onOpenSearch}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100/90 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-200 shadow-2xs transition-all cursor-pointer"
-              title="Search Services, Portfolio & Shop (Ctrl+K)"
-            >
-              <Search className="w-3.5 h-3.5 text-slate-500" />
-              <span className="hidden xl:inline">Search</span>
-              <kbd className="hidden sm:inline-block px-1.5 py-0.2 text-[10px] font-mono text-slate-500 bg-white border border-slate-200 rounded shadow-2xs">
-                ⌘K
-              </kbd>
-            </button>
+            {/* Search Trigger with 3D tactile finish (Hidden on invoice page) */}
+            {currentPage !== 'invoice' && (
+              <button
+                onClick={onOpenSearch}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100/90 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-200 shadow-2xs transition-all cursor-pointer"
+                title="Search Services, Portfolio & Shop (Ctrl+K)"
+              >
+                <Search className="w-3.5 h-3.5 text-slate-500" />
+                <span className="hidden xl:inline">Search</span>
+                <kbd className="hidden sm:inline-block px-1.5 py-0.2 text-[10px] font-mono text-slate-500 bg-white border border-slate-200 rounded shadow-2xs">
+                  ⌘K
+                </kbd>
+              </button>
+            )}
 
             {/* Light / Dark Mode Theme Switcher */}
             <ThemeSwitcher variant="icon" />
@@ -994,8 +998,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               <ThemeSwitcher variant="expanded" />
             </div>
 
-            {/* Direct Quick Hotline & WhatsApp on Mobile */}
-            <div className="pt-2 grid grid-cols-2 gap-2">
+            {/* Direct Quick Hotline & WhatsApp on Mobile (WhatsApp hidden on invoice page) */}
+            <div className={`pt-2 grid gap-2 ${currentPage === 'invoice' ? 'grid-cols-1' : 'grid-cols-2'}`}>
               <a
                 href={`tel:${COMPANY_INFO.contact.phoneRaw}`}
                 className="py-2.5 px-3 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 text-white font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-sm active:scale-98 transition-all"
@@ -1003,15 +1007,17 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <Phone className="w-3.5 h-3.5" />
                 <span>Call Hotline</span>
               </a>
-              <a
-                href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX, I am contacting you from the mobile website.')}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="py-2.5 px-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-sm active:scale-98 transition-all"
-              >
-                <MessageSquare className="w-3.5 h-3.5" />
-                <span>WhatsApp</span>
-              </a>
+              {currentPage !== 'invoice' && (
+                <a
+                  href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX, I am contacting you from the mobile website.')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="py-2.5 px-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-sm active:scale-98 transition-all"
+                >
+                  <MessageSquare className="w-3.5 h-3.5" />
+                  <span>WhatsApp</span>
+                </a>
+              )}
             </div>
           </div>
         )}

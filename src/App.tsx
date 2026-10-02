@@ -806,8 +806,8 @@ export default function App() {
         initialService={selectedServiceForQuote}
       />
 
-      {/* Live Human Engineering Support Desk with Engr. Hamza Tariq */}
-      <LiveSupportChat onOpenQuote={handleOpenQuote} />
+      {/* Live Human Engineering Support Desk with Engr. Hamza Tariq (Hidden on Invoice Hub) */}
+      {currentPage !== 'invoice' && <LiveSupportChat onOpenQuote={handleOpenQuote} />}
 
       {/* Official Free Bench Intake Pass Generator Dialog */}
       <BenchIntakePass
@@ -816,66 +816,72 @@ export default function App() {
         defaultDevice={selectedServiceForQuote}
       />
 
-      {/* Native App-Style Mobile Bottom Navigation Dock (Thumb Reach) */}
-      <MobileBottomNav
-        currentPage={currentPage}
-        onNavigate={navigateToPage}
-        onOpenChat={() => window.dispatchEvent(new CustomEvent('open-evonix-chat'))}
-        onOpenQuote={() => handleOpenQuote('Mobile General Inquiry')}
-      />
+      {/* Native App-Style Mobile Bottom Navigation Dock (Thumb Reach) - Hidden on Invoice Hub */}
+      {currentPage !== 'invoice' && (
+        <MobileBottomNav
+          currentPage={currentPage}
+          onNavigate={navigateToPage}
+          onOpenChat={() => window.dispatchEvent(new CustomEvent('open-evonix-chat'))}
+          onOpenQuote={() => handleOpenQuote('Mobile General Inquiry')}
+        />
+      )}
 
-      {/* Desktop Floating Action Buttons (Hidden on mobile to keep screen clean) */}
-      <div className="hidden lg:flex fixed bottom-6 right-6 z-40 flex-col items-end gap-2.5">
-        {/* Free Bench Pass Trigger */}
-        <button
-          onClick={() => setIsIntakePassOpen(true)}
-          className="group flex items-center gap-2 px-3.5 py-2.5 rounded-full bg-red-600 hover:bg-red-700 text-white font-semibold text-xs shadow-xl shadow-red-600/30 hover:shadow-red-600/50 hover:scale-105 transition-all cursor-pointer"
-          title="Print Free Bench Intake Pass"
-        >
-          <FileText className="w-4 h-4" />
-          <span className="hidden sm:inline">Free Bench Pass</span>
-        </button>
+      {/* Desktop Floating Action Buttons (Hidden on invoice page to keep focus clean) */}
+      {currentPage !== 'invoice' && (
+        <div className="hidden lg:flex fixed bottom-6 right-6 z-40 flex-col items-end gap-2.5">
+          {/* Free Bench Pass Trigger */}
+          <button
+            onClick={() => setIsIntakePassOpen(true)}
+            className="group flex items-center gap-2 px-3.5 py-2.5 rounded-full bg-red-600 hover:bg-red-700 text-white font-semibold text-xs shadow-xl shadow-red-600/30 hover:shadow-red-600/50 hover:scale-105 transition-all cursor-pointer"
+            title="Print Free Bench Intake Pass"
+          >
+            <FileText className="w-4 h-4" />
+            <span className="hidden sm:inline">Free Bench Pass</span>
+          </button>
 
-        {/* Quick Search Floating Trigger */}
-        <button
-          onClick={() => setIsSearchOpen(true)}
-          className="p-3 rounded-full bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-xl shadow-black/10 hover:scale-105 transition-all cursor-pointer flex items-center justify-center"
-          title="Search Services, Portfolio & Hardware (Ctrl+K)"
-        >
-          <Search className="w-5 h-5 text-red-500" />
-        </button>
+          {/* Quick Search Floating Trigger */}
+          <button
+            onClick={() => setIsSearchOpen(true)}
+            className="p-3 rounded-full bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-xl shadow-black/10 hover:scale-105 transition-all cursor-pointer flex items-center justify-center"
+            title="Search Services, Portfolio & Hardware (Ctrl+K)"
+          >
+            <Search className="w-5 h-5 text-red-500" />
+          </button>
 
-        {/* WhatsApp in Sialkot */}
-        <a
-          href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX TECHNOLOGIES, I would like to get a free quote for IT services in Sialkot.')}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex items-center gap-2 px-3.5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shadow-xl shadow-emerald-600/30 hover:shadow-emerald-600/50 hover:scale-105 transition-all cursor-pointer"
-          title="Direct WhatsApp Support in Sialkot"
-        >
-          <MessageSquare className="w-5 h-5 fill-white/20" />
-          <span className="hidden sm:inline">WhatsApp Fast Support</span>
-        </a>
+          {/* WhatsApp in Sialkot */}
+          <a
+            href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX TECHNOLOGIES, I would like to get a free quote for IT services in Sialkot.')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-2 px-3.5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shadow-xl shadow-emerald-600/30 hover:shadow-emerald-600/50 hover:scale-105 transition-all cursor-pointer"
+            title="Direct WhatsApp Support in Sialkot"
+          >
+            <MessageSquare className="w-5 h-5 fill-white/20" />
+            <span className="hidden sm:inline">WhatsApp Fast Support</span>
+          </a>
 
-        {/* Quick Back to Top */}
+          {/* Quick Back to Top */}
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="p-2.5 rounded-full bg-white hover:bg-slate-100 text-slate-600 hover:text-red-600 border border-slate-200 shadow-lg transition-all cursor-pointer"
+            title="Back to Top"
+          >
+            <ArrowUp className="w-4 h-4" />
+          </button>
+        </div>
+      )}
+
+      {/* Discrete Mobile-Only Back to Top Floating Button (Hidden on invoice page) */}
+      {currentPage !== 'invoice' && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="p-2.5 rounded-full bg-white hover:bg-slate-100 text-slate-600 hover:text-red-600 border border-slate-200 shadow-lg transition-all cursor-pointer"
+          className="lg:hidden fixed bottom-18 right-3 z-30 p-2 rounded-full bg-white/95 backdrop-blur-xs text-slate-700 hover:text-red-600 border border-slate-200 shadow-md transition-all active:scale-95 cursor-pointer"
           title="Back to Top"
+          aria-label="Scroll back to top"
         >
           <ArrowUp className="w-4 h-4" />
         </button>
-      </div>
-
-      {/* Discrete Mobile-Only Back to Top Floating Button */}
-      <button
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className="lg:hidden fixed bottom-18 right-3 z-30 p-2 rounded-full bg-white/95 backdrop-blur-xs text-slate-700 hover:text-red-600 border border-slate-200 shadow-md transition-all active:scale-95 cursor-pointer"
-        title="Back to Top"
-        aria-label="Scroll back to top"
-      >
-        <ArrowUp className="w-4 h-4" />
-      </button>
+      )}
     </div>
   );
 }
