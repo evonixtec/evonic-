@@ -108,6 +108,18 @@ const pagesToPreRender: StaticPageMeta[] = [
     description: '100% free client-side invoice generator. Multi-country tax calculation, Code128 barcode engine, amount in words, and local privacy persistence for global freelancers.',
     canonical: `${DOMAIN}/invoice-generator`,
   },
+  {
+    route: 'ecommerce-calculator',
+    title: 'E-Commerce Profit & Courier Shipping Margin Calculator | EVONIX Technologies',
+    description: 'Calculate unit economics, multi-courier rates (Leopards, TCS, Trax, PostEx), COD handling fees, break-even targets, and Pakistani return rate risk cushions with zero remote database tracking.',
+    canonical: `${DOMAIN}/ecommerce-calculator`,
+  },
+  {
+    route: 'margin-calculator',
+    title: 'E-Commerce Profit & Courier Shipping Margin Calculator | EVONIX Technologies',
+    description: 'Calculate unit economics, multi-courier rates (Leopards, TCS, Trax, PostEx), COD handling fees, break-even targets, and Pakistani return rate risk cushions with zero remote database tracking.',
+    canonical: `${DOMAIN}/margin-calculator`,
+  },
 
   // 2b. Sub-Category Direct Landing Pages
   {

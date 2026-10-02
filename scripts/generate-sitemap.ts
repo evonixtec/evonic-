@@ -20,6 +20,8 @@ const coreRoutes = [
   { loc: `${DOMAIN}/locations`, changefreq: 'daily', priority: '0.95' },
   { loc: `${DOMAIN}/invoice`, changefreq: 'daily', priority: '0.95' },
   { loc: `${DOMAIN}/invoice-generator`, changefreq: 'daily', priority: '0.90' },
+  { loc: `${DOMAIN}/ecommerce-calculator`, changefreq: 'daily', priority: '0.95' },
+  { loc: `${DOMAIN}/margin-calculator`, changefreq: 'daily', priority: '0.90' },
 ];
 
 // 2. Sub-Category & Direct Landing Pages

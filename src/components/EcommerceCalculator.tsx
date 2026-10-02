@@ -313,29 +313,52 @@ export default function EcommerceCalculator() {
   const packagingShare = salePrice > 0 ? Math.max(0, (packagingCost / salePrice) * 100) : 0;
   const profitShare = salePrice > 0 ? Math.max(0, (netProfit / salePrice) * 100) : 0;
 
-  // Copy summary to clipboard
+  // 1. "Copy Summary" Button Logic (Clipboard Action)
   const handleCopySummary = () => {
-    const activeCourierObj = COURIER_DIRECTORY.find((c) => c.id === selectedCourier);
-    const summaryText = `📊 EVONIX TECHNOLOGIES — E-COMMERCE MARGIN BREAKDOWN
-============================================
-🏷️ Retail Sale Price:      PKR ${salePrice.toLocaleString()}
-📦 Product Cost Price:    PKR ${productCost.toLocaleString()}
-🚚 Courier (${activeCourierObj?.name || selectedCourier}): PKR ${baseCourierRate}
-💰 COD Handling Tariff:    PKR ${codHandlingFee}
-📦 Packaging Wrapper:      PKR ${packagingCost}
-📣 Marketing (CAC):        PKR ${marketingCost}
---------------------------------------------
-💸 Total Expenses:         PKR ${totalVariableCost.toLocaleString()}
-✨ NET PROFIT (Per Unit):  PKR ${netProfit.toLocaleString()}
-📈 Net Profit Margin:      ${profitMargin.toFixed(1)}%
-🎯 ROI on Product:         ${roiPercentage.toFixed(1)}%
-🔄 RTO-Adjusted Net Profit: PKR ${rtoAdjustedNetProfit.toLocaleString()} (at ${returnRatePercent}% returns)
-============================================
-Generated via evonix technologies Serverless Tools Matrix`;
+    const summaryText = `--- evonix Technologies E-Commerce Margin Report ---
+Retail Sale Price: PKR ${salePrice.toFixed(2)}
+Product Cost Price: PKR ${productCost.toFixed(2)}
+Marketing (CAC): PKR ${marketingCost.toFixed(2)}
+Shipping & Courier Fee: PKR ${baseCourierRate.toFixed(2)}
+COD Handling Tariff: PKR ${codHandlingFee.toFixed(2)}
+--------------------------------------------------
+Net Profit Yield: PKR ${netProfit.toFixed(2)}
+Net Profit Margin: ${profitMargin.toFixed(1)}%
+Return on Investment (ROI): ${roiPercentage.toFixed(1)}%
+Status: ${netProfit > 0 ? 'PROFITABLE' : 'UNPROFITABLE'}`;
 
-    navigator.clipboard.writeText(summaryText);
-    setCopiedNotification('Summary copied to clipboard!');
-    setTimeout(() => setCopiedNotification(null), 3000);
+    if (navigator?.clipboard?.writeText) {
+      navigator.clipboard
+        .writeText(summaryText)
+        .then(() => {
+          setCopiedNotification('Summary copied to clipboard successfully!');
+          setTimeout(() => setCopiedNotification(null), 3000);
+        })
+        .catch(() => {
+          setCopiedNotification('Failed to copy summary. Please try again.');
+          setTimeout(() => setCopiedNotification(null), 3000);
+        });
+    } else {
+      try {
+        const textarea = document.createElement('textarea');
+        textarea.value = summaryText;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        setCopiedNotification('Summary copied to clipboard successfully!');
+      } catch {
+        setCopiedNotification('Failed to copy summary. Please try again.');
+      }
+      setTimeout(() => setCopiedNotification(null), 3000);
+    }
+  };
+
+  // 2. "Print Sheet" Button Logic (System Call)
+  const handlePrintSheet = () => {
+    window.print();
   };
 
   // Reset to default standard state
@@ -355,7 +378,7 @@ Generated via evonix technologies Serverless Tools Matrix`;
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 pb-16">
       {/* Top Banner Toolbar */}
-      <div className="bg-slate-900 text-white border-b border-slate-800 sticky top-16 z-30 shadow-md">
+      <div className="bg-slate-900 text-white border-b border-slate-800 sticky top-16 z-30 shadow-md print:hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center text-white shadow-sm font-bold">
@@ -394,7 +417,7 @@ Generated via evonix technologies Serverless Tools Matrix`;
             </button>
 
             <button
-              onClick={() => window.print()}
+              onClick={handlePrintSheet}
               className="px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm cursor-pointer"
               title="Print financial sheet"
             >
@@ -1003,6 +1026,31 @@ Generated via evonix technologies Serverless Tools Matrix`;
                   </tr>
                 </tbody>
               </table>
+            </div>
+
+            {/* Quick Action Footer on Ledger */}
+            <div className="p-3.5 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 print:hidden">
+              <div className="text-xs text-slate-500 font-medium">
+                Calculations update in real-time based on your input parameters.
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={handleCopySummary}
+                  className="px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-700 text-xs font-semibold flex items-center gap-1.5 transition-colors border border-slate-300 shadow-xs cursor-pointer"
+                >
+                  <Copy className="w-3.5 h-3.5 text-amber-500" />
+                  <span>Copy Summary</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={handlePrintSheet}
+                  className="px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white text-xs font-bold flex items-center gap-1.5 transition-colors shadow-xs cursor-pointer"
+                >
+                  <Printer className="w-3.5 h-3.5" />
+                  <span>Print Sheet</span>
+                </button>
+              </div>
             </div>
           </div>
 
