@@ -413,8 +413,27 @@ Generated via evonix technologies Serverless Tools Matrix`;
         </div>
       )}
 
+      {/* Strategic Unit Economics Executive Banner */}
+      <div className="max-w-7xl mx-auto pt-6 px-4">
+        <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white rounded-2xl p-6 sm:p-7 border border-slate-700/80 shadow-md relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-red-600/10 rounded-full blur-3xl pointer-events-none -mr-16 -mt-16" />
+          <div className="relative z-10 max-w-4xl space-y-2.5">
+            <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-red-400">
+              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+              <span>evonix technologies • Commercial E-Commerce Architecture</span>
+            </div>
+            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+              Strategic Unit Economics for Scalable E-Commerce Brands
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+              Operating a successful digital retail storefront requires sharp control over product unit economics and hidden delivery overheads. Independent Shopify store owners, Amazon FBA suppliers, and local drop-shippers often focus solely on the visual product cost and customer acquisition layout, overlooking continuous logistics pricing metrics. The evonix Technologies E-Commerce Margin Calculator removes structural accounting guesswork by instantly breaking down your target item cost structures. It factors in packaging costs, dynamic multi-courier shipping rates, and cash-on-delivery (COD) service fees directly inside your browser layout, helping you protect your margins and verify product profitability in a single dashboard view.
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Main Two-Column Responsive Workspace */}
-      <div className="max-w-7xl mx-auto py-8 px-4 grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto py-6 px-4 grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* ========================================================
             LEFT COLUMN (1 Col on Desktop): INPUT CONTROLS WRAPPER
            ======================================================== */}
