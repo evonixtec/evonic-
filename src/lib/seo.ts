@@ -13,7 +13,7 @@ export interface PageMetadata {
   structuredData?: object;
 }
 
-const BASE_URL = 'https://evonixtec.com';
+const BASE_URL = 'https://www.evonixtec.com';
 const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.jpg`;
 
 /**

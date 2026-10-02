@@ -167,6 +167,42 @@ export default function App() {
       const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
       const hash = window.location.hash.replace('#', '').toLowerCase();
 
+      // Check direct policy modal routes
+      if (path === 'privacy-policy' || path === 'privacy') {
+        setActivePolicyModal('privacy');
+      } else if (path === 'terms-and-conditions' || path === 'terms') {
+        setActivePolicyModal('terms');
+      } else if (path === 'warranty-policy' || path === 'warranty' || path === 'refund') {
+        setActivePolicyModal('refund');
+      }
+
+      // Check specialized industrial solutions / tools direct routes
+      const SPECIALIZED_SECTION_MAP: Record<string, string> = {
+        'sialkot-it-services': 'services',
+        'laptop-repairing-sialkot': 'laptop-repair-estimator',
+        'pos-software-sialkot': 'sialkot-industrial-solutions',
+        'sialkot-export-erp': 'sialkot-industrial-solutions',
+        'export-barcode-studio': 'export-barcode-studio',
+        'printer-troubleshooter': 'printer-diagnostics',
+        'factory-network-tester': 'factory-network-tester',
+        'live-repair-tracker': 'live-repair-tracker',
+        'thermal-hotspot-inspector': 'thermal-inspector',
+      };
+
+      if (SPECIALIZED_SECTION_MAP[path]) {
+        setCurrentPage('home');
+        setTimeout(() => {
+          const el = document.getElementById(SPECIALIZED_SECTION_MAP[path]);
+          if (el) {
+            const navOffset = 80;
+            const elementPosition = el.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+          }
+        }, 150);
+        return;
+      }
+
       if (path) {
         if (path === 'locations' || path.startsWith('location')) {
           setClusterParams(parseLocationFromPath());
@@ -193,6 +229,9 @@ export default function App() {
         setCurrentPage('home');
       }
     };
+
+    // Run on initial load
+    syncRouteFromLocation();
 
     window.addEventListener('popstate', syncRouteFromLocation);
     window.addEventListener('hashchange', syncRouteFromLocation);

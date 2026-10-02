@@ -466,7 +466,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-red-400 transition-colors inline-flex items-center gap-1 cursor-pointer"
-              title="Official XML Sitemap (74 indexed URLs)"
+              title="Official XML Sitemap (142 verified URLs)"
             >
               <span>XML Sitemap</span>
               <ExternalLink className="w-3 h-3 text-slate-500" />

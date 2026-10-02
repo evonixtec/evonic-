@@ -12,7 +12,7 @@ interface StaticPageMeta {
   canonical: string;
 }
 
-const DOMAIN = 'https://evonixtec.com';
+const DOMAIN = 'https://www.evonixtec.com';
 
 const pagesToPreRender: StaticPageMeta[] = [
   // 1. Guides & Blogs Hubs (Directly solves Google Search Console 404)
@@ -97,7 +97,63 @@ const pagesToPreRender: StaticPageMeta[] = [
     canonical: `${DOMAIN}/locations`,
   },
 
-  // 3. Specialized Solutions
+  // 2b. Sub-Category Direct Landing Pages
+  {
+    route: 'services/web-development',
+    title: 'Custom Website & Web Application Engineering | EVONIX Sialkot',
+    description: 'High-conversion B2B export websites, React + Vite web applications, and multi-currency export trade portals in Sialkot.',
+    canonical: `${DOMAIN}/services/web-development`,
+  },
+  {
+    route: 'services/software-pos',
+    title: 'Retail & Export POS Software Solutions | EVONIX Sialkot',
+    description: 'Offline-first POS billing systems, barcode inventory tracking, and custom manufacturing ERP software for Sialkot.',
+    canonical: `${DOMAIN}/services/software-pos`,
+  },
+  {
+    route: 'services/hardware-repair',
+    title: 'Chip-Level Motherboard & Hardware Repair Lab | EVONIX Sialkot',
+    description: 'BGA rework, micro-soldering, blown MOSFET repair, and thermal servicing for business laptops and industrial workstations.',
+    canonical: `${DOMAIN}/services/hardware-repair`,
+  },
+  {
+    route: 'services/doorstep-support',
+    title: 'Doorstep IT Support & Emergency Field Dispatch | EVONIX Sialkot',
+    description: '15-to-60 minute on-site corporate technician dispatch across Sialkot City, Cantt, Paris Road, and industrial zones.',
+    canonical: `${DOMAIN}/services/doorstep-support`,
+  },
+  {
+    route: 'shop/pos-terminals',
+    title: 'All-In-One Touchscreen POS Terminals | EVONIX Hardware Sialkot',
+    description: 'Commercial capacitive touch POS terminals with Intel Core processors and local warranty support in Sialkot.',
+    canonical: `${DOMAIN}/shop/pos-terminals`,
+  },
+  {
+    route: 'shop/printers',
+    title: '80mm Thermal Receipt & Barcode Printers | EVONIX Sialkot',
+    description: 'High-speed 260mm/s auto-cutter thermal receipt printers and heavy-duty industrial shipping label printers.',
+    canonical: `${DOMAIN}/shop/printers`,
+  },
+  {
+    route: 'shop/laptops',
+    title: 'Business Laptops & High-Performance Workstations | EVONIX Sialkot',
+    description: 'Tested Grade-A Dell Latitude and HP EliteBook corporate laptops configured for business and export accounting.',
+    canonical: `${DOMAIN}/shop/laptops`,
+  },
+  {
+    route: 'portfolio/websites',
+    title: 'Corporate & Export Website Case Studies | EVONIX Sialkot',
+    description: 'Review our completed web development deployments for export manufacturers and multinational clients.',
+    canonical: `${DOMAIN}/portfolio/websites`,
+  },
+  {
+    route: 'portfolio/software',
+    title: 'Custom POS & ERP Software Case Studies | EVONIX Sialkot',
+    description: 'Explore live enterprise retail and factory ERP deployments engineered with offline-first synchronization.',
+    canonical: `${DOMAIN}/portfolio/software`,
+  },
+
+  // 3. Specialized Solutions & Interactive Utilities
   {
     route: 'sialkot-it-services',
     title: 'Sialkot IT Services & Industrial Hardware Maintenance | EVONIX',
@@ -133,6 +189,24 @@ const pagesToPreRender: StaticPageMeta[] = [
     title: 'LaserJet & Thermal Receipt Printer Diagnostic Studio | EVONIX',
     description: 'Interactive defect ruler, error code decoder, and repair guide for HP LaserJet and 80mm thermal receipt printers.',
     canonical: `${DOMAIN}/printer-troubleshooter`,
+  },
+  {
+    route: 'factory-network-tester',
+    title: 'Export Factory Network Latency & Bandwidth Benchmark | EVONIX',
+    description: 'Interactive industrial network latency tester for export factories and ERP database synchronization across Sialkot.',
+    canonical: `${DOMAIN}/factory-network-tester`,
+  },
+  {
+    route: 'live-repair-tracker',
+    title: 'Live RMA Repair Ticket & Bench Diagnostics Tracker | EVONIX',
+    description: 'Check real-time hardware repair diagnostics, component sourcing, and testing progress for your lab tickets in Sialkot.',
+    canonical: `${DOMAIN}/live-repair-tracker`,
+  },
+  {
+    route: 'thermal-hotspot-inspector',
+    title: 'FLIR Thermal Infrared Motherboard Short-Circuit Inspector | EVONIX',
+    description: 'High-resolution thermal imaging simulation detecting shorted capacitors, hot ICs, and PCB thermal runaway.',
+    canonical: `${DOMAIN}/thermal-hotspot-inspector`,
   },
 
   // 4. Policy Pages
@@ -180,7 +254,7 @@ citySlugs.forEach((city) => {
   });
 });
 
-// Add all 93 blog posts
+// Add all 93 blog posts with blog/, blogs/, guides/, and guidelines/ paths
 ALL_BLOGS.forEach((blog) => {
   pagesToPreRender.push({
     route: `blog/${blog.slug}`,
@@ -191,6 +265,20 @@ ALL_BLOGS.forEach((blog) => {
   // Also create blogs/slug alias for search engines
   pagesToPreRender.push({
     route: `blogs/${blog.slug}`,
+    title: `${blog.title} | EVONIX Tech Guide`,
+    description: blog.excerpt || blog.title,
+    canonical: `${DOMAIN}/blog/${blog.slug}`,
+  });
+  // Also create guides/slug alias for search engines
+  pagesToPreRender.push({
+    route: `guides/${blog.slug}`,
+    title: `${blog.title} | EVONIX Tech Guide`,
+    description: blog.excerpt || blog.title,
+    canonical: `${DOMAIN}/blog/${blog.slug}`,
+  });
+  // Also create guidelines/slug alias for search engines
+  pagesToPreRender.push({
+    route: `guidelines/${blog.slug}`,
     title: `${blog.title} | EVONIX Tech Guide`,
     description: blog.excerpt || blog.title,
     canonical: `${DOMAIN}/blog/${blog.slug}`,

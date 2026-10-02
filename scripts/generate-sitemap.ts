@@ -3,8 +3,8 @@ import path from 'path';
 import { ALL_BLOGS } from '../src/data/blogs';
 import { LOCAL_CITIES, CLUSTER_SERVICES } from '../src/data/localClusters';
 
-const DOMAIN = 'https://evonixtec.com';
-const TODAY = '2026-10-01';
+const DOMAIN = 'https://www.evonixtec.com';
+const TODAY = new Date().toISOString().split('T')[0];
 
 // 1. Primary Core Landing Pages & Hubs
 const coreRoutes = [
