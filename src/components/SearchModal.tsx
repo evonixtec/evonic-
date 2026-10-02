@@ -409,7 +409,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
       case 'faq':
         return <HelpCircle className="w-4 h-4 text-purple-400" />;
       case 'blog':
-        return <BookOpen className="w-4 h-4 text-red-500 dark:text-rose-400" />;
+        return <BookOpen className="w-4 h-4 text-rose-400" />;
     }
   };
 
@@ -426,7 +426,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
       case 'faq':
         return 'bg-purple-950 text-purple-300 border-purple-800/60';
       case 'blog':
-        return 'bg-red-50 dark:bg-rose-950 text-red-700 dark:text-rose-300 border-red-200 dark:border-rose-800/60';
+        return 'bg-rose-950 text-rose-300 border-rose-800/60';
     }
   };
 

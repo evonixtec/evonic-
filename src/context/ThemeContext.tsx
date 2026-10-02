@@ -15,17 +15,7 @@ const THEME_STORAGE_KEY = 'evonix_theme_preference';
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setThemeState] = useState<ThemeMode>(() => {
-    // 1. Check local storage first
-    try {
-      const saved = localStorage.getItem(THEME_STORAGE_KEY);
-      if (saved === 'light' || saved === 'dark') {
-        return saved;
-      }
-    } catch {
-      // LocalStorage might be blocked in restricted iframe environments
-    }
-
-    // Default to clean modern 'light' theme
+    // Standardize to clean modern 'light' theme
     return 'light';
   });
 

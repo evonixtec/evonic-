@@ -9,7 +9,8 @@ import {
   X,
   Share2,
   Sparkles,
-  Wrench
+  Wrench,
+  FileText
 } from 'lucide-react';
 import { NavPageId } from './Navbar';
 import { COMPANY_INFO } from '../data/content';
@@ -100,14 +101,23 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             <span className="text-[10px] leading-tight">Shop</span>
           </button>
 
-          {/* 5. Live Desk Chat */}
+          {/* 5. Global Zero-Database Invoice Hub */}
           <button
-            onClick={onOpenChat}
-            className="flex flex-col items-center justify-center py-1 px-2.5 rounded-xl text-slate-500 hover:text-red-600 transition-all cursor-pointer relative"
+            onClick={() => onNavigate('invoice')}
+            className={`flex flex-col items-center justify-center py-1 px-2.5 rounded-xl transition-all cursor-pointer relative ${
+              currentPage === 'invoice'
+                ? 'text-red-600 font-bold scale-105'
+                : 'text-slate-500 hover:text-red-600'
+            }`}
+            title="Global Zero-Database Enterprise Invoice Hub"
           >
-            <Wrench className="w-5 h-5 mb-0.5" />
-            <span className="text-[10px] leading-tight">Live Desk</span>
-            <span className="absolute top-1 right-2 w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <div className="relative">
+              <FileText className="w-5 h-5 mb-0.5" />
+              <span className="absolute -top-1 -right-2 text-[7.5px] bg-red-600 text-white font-black px-1 py-0.2 rounded-full leading-tight shadow-xs">
+                Free
+              </span>
+            </div>
+            <span className="text-[10px] leading-tight">Invoice</span>
           </button>
 
           {/* 6. In-App Mobile Install Option (shown if installable or iOS) */}

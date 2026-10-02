@@ -32,159 +32,46 @@ export interface InvoiceItem {
   unitPrice: number;
 }
 
-export interface CountryTaxConfig {
+export interface GlobalTaxEntry {
   code: string;
   name: string;
-  currencyCode: string;
-  currencySymbol: string;
-  currencySuffix: string;
   taxLabel: string;
-  defaultTaxRate: number;
+  defaultRate: number;
+  currency: string;
+  currencySymbol: string;
   flag: string;
 }
 
-export const GLOBAL_COUNTRIES: CountryTaxConfig[] = [
-  {
-    code: 'US',
-    name: 'United States',
-    currencyCode: 'USD',
-    currencySymbol: '$',
-    currencySuffix: 'US Dollars Only',
-    taxLabel: 'Sales Tax',
-    defaultTaxRate: 8.25,
-    flag: '🇺🇸',
-  },
-  {
-    code: 'PK',
-    name: 'Pakistan',
-    currencyCode: 'PKR',
-    currencySymbol: 'Rs.',
-    currencySuffix: 'Pakistani Rupees Only',
-    taxLabel: 'GST',
-    defaultTaxRate: 18.0,
-    flag: '🇵🇰',
-  },
-  {
-    code: 'IN',
-    name: 'India',
-    currencyCode: 'INR',
-    currencySymbol: '₹',
-    currencySuffix: 'Indian Rupees Only',
-    taxLabel: 'GST',
-    defaultTaxRate: 18.0,
-    flag: '🇮🇳',
-  },
-  {
-    code: 'AE',
-    name: 'United Arab Emirates',
-    currencyCode: 'AED',
-    currencySymbol: 'AED',
-    currencySuffix: 'UAE Dirhams Only',
-    taxLabel: 'VAT',
-    defaultTaxRate: 5.0,
-    flag: '🇦🇪',
-  },
-  {
-    code: 'GB',
-    name: 'United Kingdom',
-    currencyCode: 'GBP',
-    currencySymbol: '£',
-    currencySuffix: 'British Pounds Only',
-    taxLabel: 'VAT',
-    defaultTaxRate: 20.0,
-    flag: '🇬🇧',
-  },
-  {
-    code: 'SA',
-    name: 'Saudi Arabia',
-    currencyCode: 'SAR',
-    currencySymbol: 'SAR',
-    currencySuffix: 'Saudi Riyals Only',
-    taxLabel: 'VAT',
-    defaultTaxRate: 15.0,
-    flag: '🇸🇦',
-  },
-  {
-    code: 'PH',
-    name: 'Philippines',
-    currencyCode: 'PHP',
-    currencySymbol: '₱',
-    currencySuffix: 'Philippine Pesos Only',
-    taxLabel: 'VAT',
-    defaultTaxRate: 12.0,
-    flag: '🇵🇭',
-  },
-  {
-    code: 'BD',
-    name: 'Bangladesh',
-    currencyCode: 'BDT',
-    currencySymbol: '৳',
-    currencySuffix: 'Bangladeshi Taka Only',
-    taxLabel: 'VAT',
-    defaultTaxRate: 15.0,
-    flag: '🇧🇩',
-  },
-  {
-    code: 'CA',
-    name: 'Canada',
-    currencyCode: 'CAD',
-    currencySymbol: '$',
-    currencySuffix: 'Canadian Dollars Only',
-    taxLabel: 'GST / HST',
-    defaultTaxRate: 13.0,
-    flag: '🇨🇦',
-  },
-  {
-    code: 'AU',
-    name: 'Australia',
-    currencyCode: 'AUD',
-    currencySymbol: '$',
-    currencySuffix: 'Australian Dollars Only',
-    taxLabel: 'GST',
-    defaultTaxRate: 10.0,
-    flag: '🇦🇺',
-  },
-  {
-    code: 'BR',
-    name: 'Brazil',
-    currencyCode: 'BRL',
-    currencySymbol: 'R$',
-    currencySuffix: 'Brazilian Reais Only',
-    taxLabel: 'ISS / ICMS',
-    defaultTaxRate: 5.0,
-    flag: '🇧🇷',
-  },
-  {
-    code: 'DE',
-    name: 'Germany (EU)',
-    currencyCode: 'EUR',
-    currencySymbol: '€',
-    currencySuffix: 'Euros Only',
-    taxLabel: 'VAT / MwSt',
-    defaultTaxRate: 19.0,
-    flag: '🇩🇪',
-  },
-  {
-    code: 'SG',
-    name: 'Singapore',
-    currencyCode: 'SGD',
-    currencySymbol: 'S$',
-    currencySuffix: 'Singapore Dollars Only',
-    taxLabel: 'GST',
-    defaultTaxRate: 9.0,
-    flag: '🇸🇬',
-  },
-  {
-    code: 'MY',
-    name: 'Malaysia',
-    currencyCode: 'MYR',
-    currencySymbol: 'RM',
-    currencySuffix: 'Malaysian Ringgit Only',
-    taxLabel: 'SST',
-    defaultTaxRate: 8.0,
-    flag: '🇲🇾',
-  },
+// Place this static data array at the top level of src/components/GlobalInvoiceHub.tsx
+export const GLOBAL_TAX_MATRIX: GlobalTaxEntry[] = [
+  { code: "PK", name: "Pakistan", taxLabel: "GST", defaultRate: 18, currency: "Rupees", currencySymbol: "Rs.", flag: "🇵🇰" },
+  { code: "AE", name: "United Arab Emirates", taxLabel: "VAT", defaultRate: 5, currency: "AED", currencySymbol: "AED", flag: "🇦🇪" },
+  { code: "US", name: "United States", taxLabel: "Sales Tax", defaultRate: 8.5, currency: "Dollars", currencySymbol: "$", flag: "🇺🇸" },
+  { code: "GB", name: "United Kingdom", taxLabel: "VAT", defaultRate: 20, currency: "Pounds", currencySymbol: "£", flag: "🇬🇧" },
+  { code: "SA", name: "Saudi Arabia", taxLabel: "VAT", defaultRate: 15, currency: "Riyals", currencySymbol: "SAR", flag: "🇸🇦" },
+  { code: "IN", name: "India", taxLabel: "GST", defaultRate: 18, currency: "Rupees", currencySymbol: "₹", flag: "🇮🇳" },
+  { code: "PH", name: "Philippines", taxLabel: "VAT", defaultRate: 12, currency: "Pesos", currencySymbol: "₱", flag: "🇵🇭" },
+  { code: "BD", name: "Bangladesh", taxLabel: "VAT", defaultRate: 15, currency: "Taka", currencySymbol: "৳", flag: "🇧🇩" },
+  { code: "CA", name: "Canada", taxLabel: "HST", defaultRate: 13, currency: "Dollars", currencySymbol: "$", flag: "🇨🇦" },
+  { code: "AU", name: "Australia", taxLabel: "GST", defaultRate: 10, currency: "Dollars", currencySymbol: "$", flag: "🇦🇺" },
+  { code: "BR", name: "Brazil", taxLabel: "ISS", defaultRate: 5, currency: "Reais", currencySymbol: "R$", flag: "🇧🇷" },
+  { code: "DE", name: "Germany", taxLabel: "MwSt", defaultRate: 19, currency: "Euros", currencySymbol: "€", flag: "🇩🇪" },
+  { code: "FR", name: "France", taxLabel: "TVA", defaultRate: 20, currency: "Euros", currencySymbol: "€", flag: "🇫🇷" },
+  { code: "IT", name: "Italy", taxLabel: "IVA", defaultRate: 22, currency: "Euros", currencySymbol: "€", flag: "🇮🇹" },
+  { code: "ES", name: "Spain", taxLabel: "IVA", defaultRate: 21, currency: "Euros", currencySymbol: "€", flag: "🇪🇸" },
+  { code: "NL", name: "Netherlands", taxLabel: "BTW", defaultRate: 21, currency: "Euros", currencySymbol: "€", flag: "🇳🇱" },
+  { code: "SG", name: "Singapore", taxLabel: "GST", defaultRate: 9, currency: "Dollars", currencySymbol: "S$", flag: "🇸🇬" },
+  { code: "MY", name: "Malaysia", taxLabel: "SST", defaultRate: 6, currency: "Ringgit", currencySymbol: "RM", flag: "🇲🇾" },
+  { code: "ID", name: "Indonesia", taxLabel: "PPN", defaultRate: 11, currency: "Rupiah", currencySymbol: "Rp", flag: "🇮🇩" },
+  { code: "TH", name: "Thailand", taxLabel: "VAT", defaultRate: 7, currency: "Baht", currencySymbol: "฿", flag: "🇹🇭" },
+  { code: "ZA", name: "South Africa", taxLabel: "VAT", defaultRate: 15, currency: "Rand", currencySymbol: "R", flag: "🇿🇦" },
+  { code: "MX", name: "Mexico", taxLabel: "IVA", defaultRate: 16, currency: "Pesos", currencySymbol: "$", flag: "🇲🇽" },
+  { code: "AR", name: "Argentina", taxLabel: "IVA", defaultRate: 21, currency: "Pesos", currencySymbol: "$", flag: "🇦🇷" },
+  { code: "TR", name: "Turkey", taxLabel: "KDV", defaultRate: 20, currency: "Liras", currencySymbol: "₺", flag: "🇹🇷" },
+  { code: "EG", name: "Egypt", taxLabel: "VAT", defaultRate: 14, currency: "Pounds", currencySymbol: "E£", flag: "🇪🇬" }
 ];
+
+export const GLOBAL_COUNTRIES = GLOBAL_TAX_MATRIX;
 
 // Helper: Convert positive number to English Words
 function numberToEnglishWords(num: number): string {
@@ -300,10 +187,12 @@ export const GlobalInvoiceHub: React.FC = () => {
   const [poNumber, setPoNumber] = useState('PO-99420');
   const [salesmanCode, setSalesmanCode] = useState('SLS-HAMZA-01');
 
-  // 5. Country Tax Engine
-  const [selectedCountryCode, setSelectedCountryCode] = useState('US');
-  const [customTaxRate, setCustomTaxRate] = useState<number>(8.25);
-  const [customTaxLabel, setCustomTaxLabel] = useState('Sales Tax');
+  // 5. Country Tax & Currency Engine
+  const [selectedCountry, setSelectedCountry] = useState('PK');
+  const [taxName, setTaxName] = useState('GST');
+  const [taxRate, setTaxRate] = useState<number>(18);
+  const [currencyName, setCurrencyName] = useState('Rupees');
+  const [currencySymbol, setCurrencySymbol] = useState('Rs.');
   const [taxMode, setTaxMode] = useState<'exclusive' | 'inclusive' | 'disabled'>('exclusive');
 
   // 6. Interactive Ledger Items
@@ -382,15 +271,17 @@ export const GlobalInvoiceHub: React.FC = () => {
   }, []);
 
   const activeCountry =
-    GLOBAL_COUNTRIES.find((c) => c.code === selectedCountryCode) || GLOBAL_COUNTRIES[0];
+    GLOBAL_TAX_MATRIX.find((c) => c.code === selectedCountry) || GLOBAL_TAX_MATRIX[0];
 
-  // Handle Country Change
-  const handleCountryChange = (code: string) => {
-    setSelectedCountryCode(code);
-    const country = GLOBAL_COUNTRIES.find((c) => c.code === code);
-    if (country) {
-      setCustomTaxLabel(country.taxLabel);
-      setCustomTaxRate(country.defaultTaxRate);
+  // Dynamic Country Selection Handler with Instant Value Remapping
+  const handleCountryChange = (selectedCode: string) => {
+    setSelectedCountry(selectedCode);
+    const match = GLOBAL_TAX_MATRIX.find((c) => c.code === selectedCode);
+    if (match) {
+      setTaxName(match.taxLabel);
+      setTaxRate(match.defaultRate);
+      setCurrencyName(match.currency);
+      setCurrencySymbol(match.currencySymbol);
     }
   };
 
@@ -432,17 +323,17 @@ export const GlobalInvoiceHub: React.FC = () => {
     calculatedTaxAmount = 0;
     netTotalPayable = grossSubtotal;
   } else if (taxMode === 'exclusive') {
-    calculatedTaxAmount = grossSubtotal * (customTaxRate / 100);
+    calculatedTaxAmount = grossSubtotal * (taxRate / 100);
     netTotalPayable = grossSubtotal + calculatedTaxAmount;
   } else if (taxMode === 'inclusive') {
     // Standard accounting reverse formula for tax inclusive pricing
-    const basePrice = grossSubtotal / (1 + customTaxRate / 100);
+    const basePrice = grossSubtotal / (1 + taxRate / 100);
     calculatedTaxAmount = grossSubtotal - basePrice;
     netTotalPayable = grossSubtotal;
   }
 
   const invoiceNumberString = `${prefix}${serialCounter}`;
-  const amountInWords = `${numberToEnglishWords(netTotalPayable)} ${activeCountry.currencySuffix}`;
+  const amountInWords = `${numberToEnglishWords(netTotalPayable)} ${currencyName} Only`;
 
   // Image upload handler (Base64 Zero-Database)
   const handleImageUpload = (
@@ -757,21 +648,20 @@ export const GlobalInvoiceHub: React.FC = () => {
                 </div>
               </div>
 
-              {/* Country Jurisdiction Selector */}
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">
-                  100+ Regulatory Jurisdiction & Tax Code
+              {/* Dynamic Country Regulations Dropdown Component */}
+              <div className="space-y-1">
+                <label className="block text-xs font-medium text-slate-700">
+                  Select Country Regulations
                 </label>
                 <div className="relative">
                   <select
-                    value={selectedCountryCode}
+                    value={selectedCountry}
                     onChange={(e) => handleCountryChange(e.target.value)}
-                    className="w-full pl-3 pr-8 py-2.5 rounded-xl border border-slate-300 bg-white text-xs font-semibold text-slate-900 appearance-none focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500"
+                    className="w-full pl-3 pr-8 py-2.5 rounded-xl border border-slate-300 bg-white text-xs font-semibold text-slate-900 appearance-none focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 cursor-pointer"
                   >
-                    {GLOBAL_COUNTRIES.map((country) => (
+                    {GLOBAL_TAX_MATRIX.map((country) => (
                       <option key={country.code} value={country.code}>
-                        {country.flag} {country.name} ({country.currencyCode} - {country.taxLabel}{' '}
-                        {country.defaultTaxRate}%)
+                        {country.flag} {country.name} ({country.defaultRate}% {country.taxLabel})
                       </option>
                     ))}
                   </select>
@@ -840,7 +730,7 @@ export const GlobalInvoiceHub: React.FC = () => {
                     <span>Tax Calculation Rules</span>
                   </span>
                   <span className="text-[11px] font-semibold text-slate-500">
-                    Label: {customTaxLabel} ({customTaxRate}%)
+                    Label: {taxName} ({taxRate}%)
                   </span>
                 </div>
 
@@ -893,8 +783,8 @@ export const GlobalInvoiceHub: React.FC = () => {
                       </label>
                       <input
                         type="text"
-                        value={customTaxLabel}
-                        onChange={(e) => setCustomTaxLabel(e.target.value)}
+                        value={taxName}
+                        onChange={(e) => setTaxName(e.target.value)}
                         className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs text-slate-900"
                       />
                     </div>
@@ -905,8 +795,8 @@ export const GlobalInvoiceHub: React.FC = () => {
                       <input
                         type="number"
                         step="0.01"
-                        value={customTaxRate}
-                        onChange={(e) => setCustomTaxRate(parseFloat(e.target.value) || 0)}
+                        value={taxRate}
+                        onChange={(e) => setTaxRate(parseFloat(e.target.value) || 0)}
                         className="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs text-slate-900"
                       />
                     </div>
@@ -1097,7 +987,7 @@ export const GlobalInvoiceHub: React.FC = () => {
                         </div>
                         <div>
                           <label className="block text-[10px] text-slate-500 font-semibold mb-0.5">
-                            Unit Price ({activeCountry.currencySymbol})
+                            Unit Price ({currencySymbol})
                           </label>
                           <input
                             type="number"
@@ -1114,7 +1004,7 @@ export const GlobalInvoiceHub: React.FC = () => {
                             Line Total
                           </label>
                           <div className="px-2.5 py-1.5 rounded-lg bg-slate-200/80 text-xs font-mono font-bold text-slate-900 truncate">
-                            {activeCountry.currencySymbol} {lineTotal.toFixed(2)}
+                            {currencySymbol} {lineTotal.toFixed(2)}
                           </div>
                         </div>
                       </div>
@@ -1368,7 +1258,7 @@ export const GlobalInvoiceHub: React.FC = () => {
                     Jurisdiction
                   </span>
                   <span className="font-bold text-slate-900">
-                    {activeCountry.flag} {activeCountry.name}
+                    {activeCountry.flag} {activeCountry.name} ({taxRate}% {taxName})
                   </span>
                 </div>
                 <div>
@@ -1376,7 +1266,7 @@ export const GlobalInvoiceHub: React.FC = () => {
                     Currency
                   </span>
                   <span className="font-bold text-slate-900">
-                    {activeCountry.currencyCode} ({activeCountry.currencySymbol})
+                    {currencyName} ({currencySymbol})
                   </span>
                 </div>
               </div>
@@ -1466,10 +1356,10 @@ export const GlobalInvoiceHub: React.FC = () => {
                             {item.quantity}
                           </td>
                           <td className="py-2.5 px-3 text-right text-slate-700 font-mono">
-                            {activeCountry.currencySymbol} {Number(item.unitPrice).toFixed(2)}
+                            {currencySymbol} {Number(item.unitPrice).toFixed(2)}
                           </td>
                           <td className="py-2.5 px-3 text-right font-mono font-bold text-slate-900">
-                            {activeCountry.currencySymbol} {lineTotal.toFixed(2)}
+                            {currencySymbol} {lineTotal.toFixed(2)}
                           </td>
                         </tr>
                       );
@@ -1520,18 +1410,18 @@ export const GlobalInvoiceHub: React.FC = () => {
                   <div className="p-2.5 flex justify-between border-b border-slate-200 text-slate-700">
                     <span>Gross Subtotal:</span>
                     <span className="font-mono font-bold">
-                      {activeCountry.currencySymbol} {grossSubtotal.toFixed(2)}
+                      {currencySymbol} {grossSubtotal.toFixed(2)}
                     </span>
                   </div>
 
                   {taxMode !== 'disabled' && (
                     <div className="p-2.5 flex justify-between border-b border-slate-200 text-slate-700">
                       <span>
-                        {customTaxLabel} ({customTaxRate}%{' '}
+                        {taxName} ({taxRate}%{' '}
                         {taxMode === 'inclusive' ? 'Incl.' : 'Excl.'}):
                       </span>
                       <span className="font-mono font-bold">
-                        {activeCountry.currencySymbol} {calculatedTaxAmount.toFixed(2)}
+                        {currencySymbol} {calculatedTaxAmount.toFixed(2)}
                       </span>
                     </div>
                   )}
@@ -1539,7 +1429,7 @@ export const GlobalInvoiceHub: React.FC = () => {
                   <div className="p-3 bg-slate-900 text-white flex justify-between items-center text-sm font-black">
                     <span>Net Total Payable:</span>
                     <span className="font-mono text-base text-amber-400">
-                      {activeCountry.currencySymbol} {netTotalPayable.toFixed(2)}
+                      {currencySymbol} {netTotalPayable.toFixed(2)}
                     </span>
                   </div>
                 </div>
