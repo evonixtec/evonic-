@@ -101,6 +101,12 @@ export const Navbar: React.FC<NavbarProps> = ({
     setMobileMenuOpen(false);
   };
 
+  const isToolsActive =
+    currentPage === 'invoice' ||
+    currentPage === 'ecommerce-calculator' ||
+    currentPage === 'cbm-calculator' ||
+    currentPage === 'chamber-domain-checker';
+
   return (
     <header
       id="main-navbar"
@@ -584,65 +590,119 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-red-100 text-red-700">New</span>
             </button>
 
-            {/* 6. Global Zero-Database Invoice Hub (Free Tool) */}
-            <button
-              onClick={() => handlePageSelect('invoice')}
-              className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
-                currentPage === 'invoice'
-                  ? 'text-red-700 bg-gradient-to-b from-red-50 to-rose-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(220,38,38,0.12)] border border-red-200/80'
-                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
-              }`}
-              title="Global Zero-Database Enterprise Invoice Hub"
+            {/* 6. UNIFIED DYNAMIC DROPDOWN MENU ENGINE: WEB TOOLS PORTFOLIO */}
+            <div
+              className="relative"
+              onMouseEnter={() => setActiveDropdown('tools')}
+              onMouseLeave={() => setActiveDropdown(null)}
             >
-              <FileText className="w-3.5 h-3.5 text-red-600" />
-              <span>Invoice Hub</span>
-              <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-emerald-100 text-emerald-700">Free</span>
-            </button>
+              <button
+                onClick={() => setActiveDropdown(activeDropdown === 'tools' ? null : 'tools')}
+                className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
+                  isToolsActive
+                    ? 'text-blue-700 bg-gradient-to-b from-blue-50 to-indigo-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(37,99,235,0.12)] border border-blue-200/80'
+                    : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
+                }`}
+                aria-expanded={activeDropdown === 'tools'}
+              >
+                <span>⚙️ Web Tools Portfolio</span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                    activeDropdown === 'tools' ? 'rotate-180 text-blue-600' : 'text-slate-400'
+                  }`}
+                />
+              </button>
 
-            {/* 7. E-Commerce Margin Calculator (Free Tool) */}
-            <button
-              onClick={() => handlePageSelect('ecommerce-calculator')}
-              className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
-                currentPage === 'ecommerce-calculator'
-                  ? 'text-red-700 bg-gradient-to-b from-red-50 to-rose-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(220,38,38,0.12)] border border-red-200/80'
-                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
-              }`}
-              title="E-Commerce Profit & Courier Shipping Margin Calculator"
-            >
-              <Calculator className="w-3.5 h-3.5 text-red-600" />
-              <span>Margin Calc</span>
-              <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-blue-100 text-blue-700">New</span>
-            </button>
+              {activeDropdown === 'tools' && (
+                <div className="absolute top-full left-0 w-80 pt-1.5 z-50 animate-in fade-in slide-in-from-top-1 duration-200">
+                  <div className="bg-white/98 backdrop-blur-2xl rounded-2xl shadow-[0_20px_45px_-10px_rgba(0,0,0,0.14),0_0_0_1px_rgba(0,0,0,0.06)] border border-slate-200 p-2 space-y-1">
+                    <span className="block px-3 py-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100 pb-1 mb-1">
+                      Production Hub
+                    </span>
 
-            {/* 8. Export CBM Engine (Free Tool) */}
-            <button
-              onClick={() => handlePageSelect('cbm-calculator')}
-              className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
-                currentPage === 'cbm-calculator'
-                  ? 'text-blue-700 bg-gradient-to-b from-blue-50 to-indigo-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(37,99,235,0.12)] border border-blue-200/80'
-                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
-              }`}
-              title="Export CBM & Volumetric Cargo Calculator"
-            >
-              <Boxes className="w-3.5 h-3.5 text-blue-600" />
-              <span>CBM Calc</span>
-              <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-amber-100 text-amber-700">Export</span>
-            </button>
+                    <button
+                      onClick={() => handlePageSelect('invoice')}
+                      className={`w-full text-left p-2.5 rounded-xl transition-colors flex items-center gap-3 cursor-pointer group ${
+                        currentPage === 'invoice' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-base flex items-center justify-center flex-shrink-0">
+                        🗂️
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
+                          Global Micro-Invoice Generator
+                        </div>
+                        <div className="text-[10px] text-slate-500">100+ countries tax engine & barcode</div>
+                      </div>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">Free</span>
+                    </button>
 
-            {/* 9. SECP & All-Pakistan Chamber Name Dual-Checker (Free Tool) */}
-            <button
-              onClick={() => handlePageSelect('chamber-domain-checker')}
-              className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
-                currentPage === 'chamber-domain-checker'
-                  ? 'text-emerald-700 bg-gradient-to-b from-emerald-50 to-teal-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(5,150,105,0.12)] border border-emerald-200/80'
-                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
-              }`}
-              title="SECP & All-Pakistan Chamber Name Dual-Checker"
-            >
-              <Landmark className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Chamber Check</span>
-              <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-emerald-100 text-emerald-700">SECP</span>
-            </button>
+                    <button
+                      onClick={() => handlePageSelect('ecommerce-calculator')}
+                      className={`w-full text-left p-2.5 rounded-xl transition-colors flex items-center gap-3 cursor-pointer group ${
+                        currentPage === 'ecommerce-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-base flex items-center justify-center flex-shrink-0">
+                        📊
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
+                          E-Commerce Margin Calculator
+                        </div>
+                        <div className="text-[10px] text-slate-500">Multi-courier COD & RTO simulator</div>
+                      </div>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-700">Live</span>
+                    </button>
+
+                    <button
+                      onClick={() => handlePageSelect('cbm-calculator')}
+                      className={`w-full text-left p-2.5 rounded-xl transition-colors flex items-center gap-3 cursor-pointer group ${
+                        currentPage === 'cbm-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-base flex items-center justify-center flex-shrink-0">
+                        📦
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
+                          B2B Industrial CBM Engine
+                        </div>
+                        <div className="text-[10px] text-slate-500">Volumetric mass & container capacity</div>
+                      </div>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-700">Export</span>
+                    </button>
+
+                    <button
+                      onClick={() => handlePageSelect('chamber-domain-checker')}
+                      className={`w-full text-left p-2.5 rounded-xl transition-colors flex items-center gap-3 cursor-pointer group ${
+                        currentPage === 'chamber-domain-checker' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-base flex items-center justify-center flex-shrink-0">
+                        🏛️
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
+                          SECP & Pakistan Chamber Checker
+                        </div>
+                        <div className="text-[10px] text-slate-500">12 chambers & .pk domain vacancy</div>
+                      </div>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">SECP</span>
+                    </button>
+
+                    <span className="block px-3 py-1 text-[10px] font-bold text-amber-600 uppercase tracking-wider border-t border-slate-100 mt-2 pt-2 pb-1 mb-0.5 bg-amber-50/60 rounded-md">
+                      Next Releases Grid
+                    </span>
+                    <div className="px-3 py-1.5 text-[11px] italic text-slate-500 flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                      <span>Multi-Router WiFi Setup Wizard</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
 
             {/* 6. Company Dropdown (Consolidated with About, Sialkot Lab & Regional Hubs) */}
             <div
@@ -1016,61 +1076,83 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="px-1.5 py-0.2 bg-red-100 text-red-700 text-[10px] rounded font-bold">BLOGS</span>
             </button>
 
-            {/* Zero-Database Enterprise Invoice Hub (Free Tool) */}
-            <button
-              onClick={() => handlePageSelect('invoice')}
-              className={`w-full text-left px-3.5 py-2 rounded-xl text-sm font-bold flex items-center justify-between ${
-                currentPage === 'invoice' ? 'bg-red-50 text-red-600' : 'text-slate-800 hover:bg-slate-100'
-              }`}
-            >
-              <div className="flex items-center gap-2">
-                <FileText className="w-4 h-4 text-red-600" />
-                <span>Enterprise Invoice Hub</span>
-              </div>
-              <span className="px-1.5 py-0.2 bg-emerald-100 text-emerald-700 text-[10px] rounded font-bold">FREE TOOL</span>
-            </button>
+            {/* UNIFIED WEB TOOLS PORTFOLIO ACCORDION FOR MOBILE */}
+            <div className="border border-slate-200/80 rounded-2xl overflow-hidden bg-slate-50/50">
+              <button
+                onClick={() => setMobileExpandedSection(mobileExpandedSection === 'tools' ? null : 'tools')}
+                className={`w-full text-left px-3.5 py-2.5 text-sm font-bold flex items-center justify-between cursor-pointer ${
+                  isToolsActive ? 'bg-blue-50 text-blue-700' : 'text-slate-800 hover:bg-slate-100'
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <span>⚙️ Web Tools Portfolio</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="px-1.5 py-0.2 bg-blue-100 text-blue-700 text-[10px] rounded font-bold">4 TOOLS</span>
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform duration-200 ${
+                      mobileExpandedSection === 'tools' ? 'rotate-180 text-blue-600' : 'text-slate-400'
+                    }`}
+                  />
+                </div>
+              </button>
 
-            {/* E-Commerce Profit & Margin Calculator (Free Tool) */}
-            <button
-              onClick={() => handlePageSelect('ecommerce-calculator')}
-              className={`w-full text-left px-3.5 py-2 rounded-xl text-sm font-bold flex items-center justify-between ${
-                currentPage === 'ecommerce-calculator' ? 'bg-red-50 text-red-600' : 'text-slate-800 hover:bg-slate-100'
-              }`}
-            >
-              <div className="flex items-center gap-2">
-                <Calculator className="w-4 h-4 text-red-600" />
-                <span>E-Commerce Margin Calculator</span>
-              </div>
-              <span className="px-1.5 py-0.2 bg-blue-100 text-blue-700 text-[10px] rounded font-bold">TOOL</span>
-            </button>
+              {mobileExpandedSection === 'tools' && (
+                <div className="p-2 space-y-1 bg-white border-t border-slate-200/80 text-xs">
+                  <button
+                    onClick={() => handlePageSelect('invoice')}
+                    className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
+                      currentPage === 'invoice' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span>🗂️ Global Micro-Invoice Generator</span>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">Free</span>
+                  </button>
 
-            {/* Export CBM & Volumetric Cargo Calculator (Free Tool) */}
-            <button
-              onClick={() => handlePageSelect('cbm-calculator')}
-              className={`w-full text-left px-3.5 py-2 rounded-xl text-sm font-bold flex items-center justify-between ${
-                currentPage === 'cbm-calculator' ? 'bg-blue-50 text-blue-600' : 'text-slate-800 hover:bg-slate-100'
-              }`}
-            >
-              <div className="flex items-center gap-2">
-                <Boxes className="w-4 h-4 text-blue-600" />
-                <span>Export CBM Cargo Calculator</span>
-              </div>
-              <span className="px-1.5 py-0.2 bg-amber-100 text-amber-700 text-[10px] rounded font-bold">EXPORT</span>
-            </button>
+                  <button
+                    onClick={() => handlePageSelect('ecommerce-calculator')}
+                    className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
+                      currentPage === 'ecommerce-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span>📊 E-Commerce Margin Calculator</span>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-700">Live</span>
+                  </button>
 
-            {/* SECP & All-Pakistan Chamber Name Dual-Checker (Free Tool) */}
-            <button
-              onClick={() => handlePageSelect('chamber-domain-checker')}
-              className={`w-full text-left px-3.5 py-2 rounded-xl text-sm font-bold flex items-center justify-between ${
-                currentPage === 'chamber-domain-checker' ? 'bg-emerald-50 text-emerald-600' : 'text-slate-800 hover:bg-slate-100'
-              }`}
-            >
-              <div className="flex items-center gap-2">
-                <Landmark className="w-4 h-4 text-emerald-600" />
-                <span>SECP Chamber & Domain Engine</span>
-              </div>
-              <span className="px-1.5 py-0.2 bg-emerald-100 text-emerald-700 text-[10px] rounded font-bold">SECP</span>
-            </button>
+                  <button
+                    onClick={() => handlePageSelect('cbm-calculator')}
+                    className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
+                      currentPage === 'cbm-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span>📦 B2B Industrial CBM Engine</span>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-700">Export</span>
+                  </button>
+
+                  <button
+                    onClick={() => handlePageSelect('chamber-domain-checker')}
+                    className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
+                      currentPage === 'chamber-domain-checker' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span>🏛️ SECP & Pakistan Chamber Checker</span>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">SECP</span>
+                  </button>
+
+                  <div className="pt-1.5 border-t border-slate-100 px-2 py-1 text-[11px] italic text-slate-400">
+                    Next: Multi-Router WiFi Setup Wizard
+                  </div>
+                </div>
+              )}
+            </div>
 
             {/* Local Industrial Hubs (Daska, Sambrial, Wazirabad) */}
             <button
