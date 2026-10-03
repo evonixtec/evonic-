@@ -285,6 +285,18 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         targetElementId: 'invoice-hub',
         priceOrHighlight: '100% Free Tool',
         whatsappMessage: 'Hello EVONIX, I am using your Invoice Hub for my international business billing.',
+      },
+      {
+        id: 'export-cbm-cargo-calculator',
+        type: 'service',
+        title: 'B2B Export CBM & Volumetric Shipping Cargo Calculator',
+        categoryLabel: 'Free Serverless Tool',
+        description: 'Instant Cubic Meters (CBM), air cargo dimensional weights (DHL/IATA 5000/6000), and 20ft/40ft ocean container space estimator.',
+        tags: ['CBM', 'Export', 'Shipping', 'Cargo', 'Freight', 'Container', 'Volumetric', 'DHL', 'Air Freight', 'Sea Freight', 'Carton', 'Calculator'],
+        targetSection: 'services',
+        targetElementId: 'cbm-calculator',
+        priceOrHighlight: '100% Free Tool',
+        whatsappMessage: 'Hello EVONIX, I am using your Export CBM Calculator for our factory freight planning.',
       }
     );
 

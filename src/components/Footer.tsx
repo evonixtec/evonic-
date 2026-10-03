@@ -343,6 +343,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               </li>
               <li>
                 <button
+                  onClick={() => onNavigate('cbm-calculator')}
+                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-blue-300 font-bold flex items-center gap-1"
+                >
+                  <span>Export CBM Cargo Engine</span>
+                  <span className="text-[9px] bg-amber-500 text-slate-900 px-1.5 py-0.2 rounded font-black">EXPORT</span>
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => onNavigate('portfolio')}
                   className="hover:text-red-400 transition-colors text-left cursor-pointer text-slate-300 font-medium"
                 >

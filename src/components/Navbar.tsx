@@ -25,10 +25,23 @@ import {
   MapPin,
   BookOpen,
   Calculator,
+  Boxes,
 } from 'lucide-react';
 import { ThemeSwitcher } from './ThemeSwitcher';
+import { isToolPage } from '../lib/toolUtils';
 
-export type NavPageId = 'home' | 'services' | 'portfolio' | 'shop' | 'about' | 'guides' | 'contact' | 'locations' | 'invoice' | 'ecommerce-calculator';
+export type NavPageId =
+  | 'home'
+  | 'services'
+  | 'portfolio'
+  | 'shop'
+  | 'about'
+  | 'guides'
+  | 'contact'
+  | 'locations'
+  | 'invoice'
+  | 'ecommerce-calculator'
+  | 'cbm-calculator';
 
 interface NavbarProps {
   currentPage: NavPageId;
@@ -599,6 +612,21 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-blue-100 text-blue-700">New</span>
             </button>
 
+            {/* 8. Export CBM Engine (Free Tool) */}
+            <button
+              onClick={() => handlePageSelect('cbm-calculator')}
+              className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                currentPage === 'cbm-calculator'
+                  ? 'text-blue-700 bg-gradient-to-b from-blue-50 to-indigo-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(37,99,235,0.12)] border border-blue-200/80'
+                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
+              }`}
+              title="Export CBM & Volumetric Cargo Calculator"
+            >
+              <Boxes className="w-3.5 h-3.5 text-blue-600" />
+              <span>CBM Calc</span>
+              <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-amber-100 text-amber-700">Export</span>
+            </button>
+
             {/* 6. Company Dropdown (Consolidated with About, Sialkot Lab & Regional Hubs) */}
             <div
               className="relative"
@@ -707,8 +735,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="tracking-tight font-extrabold">{COMPANY_INFO.contact.phoneDisplay}</span>
             </a>
 
-            {/* Colorful Direct WhatsApp Button (Header Quick Access - Hidden on Invoice Page) */}
-            {currentPage !== 'invoice' && (
+            {/* Colorful Direct WhatsApp Button (Header Quick Access - Hidden on all Tool Pages) */}
+            {!isToolPage(currentPage) && (
               <a
                 href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX, I want to discuss a requirement.')}`}
                 target="_blank"
@@ -723,8 +751,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               </a>
             )}
 
-            {/* Search Trigger with 3D tactile finish (Hidden on invoice page) */}
-            {currentPage !== 'invoice' && (
+            {/* Search Trigger with 3D tactile finish (Hidden on all Tool Pages) */}
+            {!isToolPage(currentPage) && (
               <button
                 onClick={onOpenSearch}
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100/90 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-200 shadow-2xs transition-all cursor-pointer"
@@ -996,7 +1024,21 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <Calculator className="w-4 h-4 text-red-600" />
                 <span>E-Commerce Margin Calculator</span>
               </div>
-              <span className="px-1.5 py-0.2 bg-blue-100 text-blue-700 text-[10px] rounded font-bold">NEW TOOL</span>
+              <span className="px-1.5 py-0.2 bg-blue-100 text-blue-700 text-[10px] rounded font-bold">TOOL</span>
+            </button>
+
+            {/* Export CBM & Volumetric Cargo Calculator (Free Tool) */}
+            <button
+              onClick={() => handlePageSelect('cbm-calculator')}
+              className={`w-full text-left px-3.5 py-2 rounded-xl text-sm font-bold flex items-center justify-between ${
+                currentPage === 'cbm-calculator' ? 'bg-blue-50 text-blue-600' : 'text-slate-800 hover:bg-slate-100'
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                <Boxes className="w-4 h-4 text-blue-600" />
+                <span>Export CBM Cargo Calculator</span>
+              </div>
+              <span className="px-1.5 py-0.2 bg-amber-100 text-amber-700 text-[10px] rounded font-bold">EXPORT</span>
             </button>
 
             {/* Local Industrial Hubs (Daska, Sambrial, Wazirabad) */}
@@ -1028,8 +1070,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               <ThemeSwitcher variant="expanded" />
             </div>
 
-            {/* Direct Quick Hotline & WhatsApp on Mobile (WhatsApp hidden on invoice page) */}
-            <div className={`pt-2 grid gap-2 ${currentPage === 'invoice' ? 'grid-cols-1' : 'grid-cols-2'}`}>
+            {/* Direct Quick Hotline & WhatsApp on Mobile (WhatsApp hidden on all Tool Pages) */}
+            <div className={`pt-2 grid gap-2 ${isToolPage(currentPage) ? 'grid-cols-1' : 'grid-cols-2'}`}>
               <a
                 href={`tel:${COMPANY_INFO.contact.phoneRaw}`}
                 className="py-2.5 px-3 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 text-white font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-sm active:scale-98 transition-all"
@@ -1037,7 +1079,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <Phone className="w-3.5 h-3.5" />
                 <span>Call Hotline</span>
               </a>
-              {currentPage !== 'invoice' && (
+              {!isToolPage(currentPage) && (
                 <a
                   href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX, I am contacting you from the mobile website.')}`}
                   target="_blank"

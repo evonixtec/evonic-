@@ -699,6 +699,30 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'rto return rate loss calculator',
     ],
   },
+
+  'cbm-calculator': {
+    title: 'Export CBM & Volumetric Shipping Cargo Calculator | EVONIX Technologies',
+    description:
+      'Free B2B export CBM calculator. Instant Cubic Meters computations, DHL/FedEx and air cargo volumetric weights, and 20ft/40ft ocean container space utilization.',
+    ogTitle: 'Export CBM & Freight Volumetric Weight Engine | EVONIX Technologies',
+    ogDescription:
+      'Compute carton volume in CBM, air cargo dimensional weights, and container packing capacity instantly with zero remote database tracking.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    canonicalUrl: `${BASE_URL}/cbm-calculator`,
+    keywords: [
+      'cbm calculator',
+      'export cbm calculator',
+      'cubic meter calculator shipping',
+      'air freight volumetric weight calculator',
+      'dhl dimensional weight calculator',
+      '20ft container cbm capacity',
+      '40ft container cbm calculator',
+      'sialkot export shipping calculator',
+      'freight forwarder cbm tool',
+      'chargeable weight calculator',
+    ],
+  },
 };
 
 /**

@@ -24,6 +24,7 @@ import { SecurityAlertToast } from './components/SecurityAlertToast';
 import { PageHeaderBanner } from './components/common/PageHeaderBanner';
 import { GlobalInvoiceHub } from './components/GlobalInvoiceHub';
 import EcommerceCalculator from './components/EcommerceCalculator';
+import CbmCalculator from './components/CbmCalculator';
 import { HomeServicesPreview } from './components/home/HomeServicesPreview';
 import { HomeAboutPreview } from './components/home/HomeAboutPreview';
 import { HomePortfolioPreview } from './components/home/HomePortfolioPreview';
@@ -56,6 +57,7 @@ import { LocalClusterLandingPage } from './components/LocalClusterLandingPage';
 import { AiHardwareDiagnosticBoard } from './components/AiHardwareDiagnosticBoard';
 import { LocalCity, ClusterService, LOCAL_CITIES, CLUSTER_SERVICES } from './data/localClusters';
 import { MessageSquare, Phone, ArrowUp, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2, FileText, Barcode, Printer } from 'lucide-react';
+import { isToolPage } from './lib/toolUtils';
 
 export default function App() {
   // Helper to extract city and service cluster from URL path
@@ -145,6 +147,18 @@ export default function App() {
       path.startsWith('margin-calculator/')
     ) {
       return 'ecommerce-calculator';
+    }
+
+    if (
+      path === 'cbm-calculator' ||
+      path === 'cbm' ||
+      path === 'cbm-engine' ||
+      path === 'export-cbm-calculator' ||
+      path === 'volumetric-calculator' ||
+      path.startsWith('cbm-calculator/') ||
+      path.startsWith('cbm/')
+    ) {
+      return 'cbm-calculator';
     }
 
     return 'home';
@@ -313,6 +327,10 @@ export default function App() {
   const handleNavigateFromSearch = (sectionId: SectionId, elementId?: string) => {
     if (elementId === 'ecommerce-calculator') {
       navigateToPage('ecommerce-calculator');
+      return;
+    }
+    if (elementId === 'cbm-calculator' || elementId === 'export-cbm-calculator') {
+      navigateToPage('cbm-calculator');
       return;
     }
     if (elementId === 'invoice-hub') {
@@ -800,6 +818,15 @@ export default function App() {
             <EcommerceCalculator />
           </div>
         )}
+
+        {/* ========================================================
+            PAGE 11: EXPORT CBM & VOLUMETRIC CARGO ENGINE
+           ======================================================== */}
+        {currentPage === 'cbm-calculator' && (
+          <div className="space-y-0">
+            <CbmCalculator />
+          </div>
+        )}
           </motion.div>
         </AnimatePresence>
       </main>
@@ -838,8 +865,8 @@ export default function App() {
         initialService={selectedServiceForQuote}
       />
 
-      {/* Live Human Engineering Support Desk with Engr. Hamza Tariq (Hidden on Invoice Hub) */}
-      {currentPage !== 'invoice' && <LiveSupportChat onOpenQuote={handleOpenQuote} />}
+      {/* Live Human Engineering Support Desk with Engr. Hamza Tariq (Hidden on all Tool Pages) */}
+      {!isToolPage(currentPage) && <LiveSupportChat onOpenQuote={handleOpenQuote} />}
 
       {/* Official Free Bench Intake Pass Generator Dialog */}
       <BenchIntakePass
@@ -848,8 +875,8 @@ export default function App() {
         defaultDevice={selectedServiceForQuote}
       />
 
-      {/* Native App-Style Mobile Bottom Navigation Dock (Thumb Reach) - Hidden on Invoice Hub */}
-      {currentPage !== 'invoice' && (
+      {/* Native App-Style Mobile Bottom Navigation Dock (Thumb Reach) - Hidden on all Tool Pages */}
+      {!isToolPage(currentPage) && (
         <MobileBottomNav
           currentPage={currentPage}
           onNavigate={navigateToPage}
@@ -858,8 +885,8 @@ export default function App() {
         />
       )}
 
-      {/* Desktop Floating Action Buttons (Hidden on invoice page to keep focus clean) */}
-      {currentPage !== 'invoice' && (
+      {/* Desktop Floating Action Buttons (Hidden on all Tool Pages to keep workspace 100% focused) */}
+      {!isToolPage(currentPage) && (
         <div className="hidden lg:flex fixed bottom-6 right-6 z-40 flex-col items-end gap-2.5">
           {/* Free Bench Pass Trigger */}
           <button
@@ -903,8 +930,8 @@ export default function App() {
         </div>
       )}
 
-      {/* Discrete Mobile-Only Back to Top Floating Button (Hidden on invoice page) */}
-      {currentPage !== 'invoice' && (
+      {/* Discrete Mobile-Only Back to Top Floating Button (Hidden on all Tool Pages) */}
+      {!isToolPage(currentPage) && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="lg:hidden fixed bottom-18 right-3 z-30 p-2 rounded-full bg-white/95 backdrop-blur-xs text-slate-700 hover:text-red-600 border border-slate-200 shadow-md transition-all active:scale-95 cursor-pointer"
