@@ -509,7 +509,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   portfolio: {
     title: 'IT Portfolio Sialkot – Web & Enterprise Deployments | EVONIX',
     description:
-      'Explore proven software and web development case studies for exporters and retail brands in Sialkot and Dubai. View our high-volume ERP and e-commerce work.',
+      'Proven software and web development case studies for exporters and retail brands in Sialkot and Dubai. View our high-volume ERP and e-commerce work.',
     ogTitle: 'IT Portfolio Sialkot – Software & Web Projects by EVONIX',
     ogDescription:
       'High-volume e-commerce systems, custom export ERP portals, and POS deployments delivered for UAE and Sialkot enterprise clients.',
@@ -552,7 +552,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   about: {
     title: 'About EVONIX – IT Consultancy & Engineering Heritage in Sialkot',
     description:
-      'Discover how EVONIX brings 20+ years of high-availability Dubai IT consultancy and industrial hardware maintenance to Sialkot manufacturers and businesses.',
+      'EVONIX brings 20+ years of high-availability Dubai IT consultancy and industrial hardware maintenance to Sialkot manufacturers and businesses.',
     ogTitle: 'About EVONIX – IT Consultancy & Engineering Heritage in Sialkot',
     ogDescription:
       '20+ years of Dubai enterprise IT engineering now operating in Sialkot. Learn about our leadership, diagnostic lab, and commitment to international standards.',
@@ -652,22 +652,32 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   invoice: {
-    title: 'Global Zero-Database Enterprise Invoice Hub | EVONIX Technologies',
+    title: 'Free Online Invoice Generator & Maker Pakistan | EVONIX',
     description:
-      '100% free client-side invoice generator. Multi-country tax calculation, Code128 barcode engine, amount in words, and local privacy persistence for global freelancers.',
-    ogTitle: 'Global Zero-Database Enterprise Invoice Hub | EVONIX Technologies',
+      'Free online invoice maker and editor for Pakistan and global businesses. 100% free client-side billing with FBR tax rates, Code128 barcodes, and A4 PDF export.',
+    ogTitle: 'Online Invoice Maker & Generator Pakistan | EVONIX',
     ogDescription:
-      'Zero remote database. 100+ countries tax engine, dynamic currency words, scannable Code128 barcode, and printable A4 commercial invoice sheets.',
+      'Create professional online invoices free with our zero-database invoice editor. Instant Pakistan GST calculations, barcodes, and print-ready sheets.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalUrl: `${BASE_URL}/invoice`,
     keywords: [
-      'free invoice generator',
-      'zero database invoice hub',
+      'online invoice maker free',
+      'online invoice generator pakistan',
+      'online invoice editor',
+      'online invoice free',
+      'online invoice maker',
+      'online invoice',
+      'free online invoice generator',
+      'online invoice generator',
+      'free invoice maker online',
+      'free invoice generator pakistan',
+      'instant online invoice generator',
+      'pdf invoice generator free',
+      'free commercial invoice generator',
+      'zero database invoice generator',
       'client side invoice generator',
-      'privacy invoice generator',
-      'multi currency invoice generator',
-      'tax inclusive invoice calculator',
+      'free invoice generator with tax',
       'code128 barcode invoice generator',
       'freelance commercial invoice maker',
       'print ready A4 invoice template',
@@ -966,6 +976,32 @@ function generateRouteStructuredData(pageId: NavPageId): object {
       name: meta.title,
       description: meta.description,
       breadcrumb: { '@id': `${BASE_URL}/locations#breadcrumb` },
+      publisher: { '@id': `${BASE_URL}/#business` },
+    });
+  } else if (pageId === 'invoice') {
+    graph.push({
+      '@type': 'WebApplication',
+      '@id': `${BASE_URL}/invoice#app`,
+      name: 'Free Online Invoice Generator',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'All',
+      browserRequirements: 'Requires JavaScript. Requires HTML5.',
+      description: meta.description,
+      url: `${BASE_URL}/invoice`,
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+      featureList: [
+        '100% Free online invoice generator',
+        'Zero database client-side privacy',
+        'Multi-currency and global tax calculation',
+        'Instant Code128 barcode generation',
+        'Dynamic amount in words converter',
+        'Print ready A4 commercial invoice sheet',
+      ],
+      breadcrumb: { '@id': `${BASE_URL}/invoice#breadcrumb` },
       publisher: { '@id': `${BASE_URL}/#business` },
     });
   }

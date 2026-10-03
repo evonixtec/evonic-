@@ -490,13 +490,13 @@ export const GlobalInvoiceHub: React.FC = () => {
             </div>
             <div>
               <h1 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
-                <span>Global Zero-Database Enterprise Invoice Hub</span>
+                <span>Free Online Invoice Generator</span>
                 <span className="text-[10px] bg-red-600/90 text-white px-2 py-0.5 rounded font-black tracking-wider uppercase">
-                  100% Client-Side
+                  100% Free • Zero DB
                 </span>
               </h1>
               <p className="text-[11px] text-slate-400 hidden sm:block">
-                No database accounts. Zero remote tracking. 100+ tax jurisdictions with auto-words total.
+                Free online invoice generator. Zero remote tracking. 100+ tax countries, Code128 barcodes & instant A4 PDF.
               </p>
             </div>
           </div>
@@ -1496,16 +1496,20 @@ export const GlobalInvoiceHub: React.FC = () => {
               Knowledge Hub & Strategic Architecture
             </span>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-              Global Invoicing for Modern Freelancers & Virtual Agencies
+              Free Online Invoice Generator for Global Freelancers, Exporters & Businesses
             </h2>
           </div>
 
           <p className="text-sm sm:text-base text-slate-700">
-            Managing cross-border client transactions can be an administrative challenge for independent software engineers, remote digital agencies, virtual assistants, and creative consultants worldwide. Traditional invoicing tools often lock basic utilities behind mandatory sign-up screens, collect personal client analytics, or bundle rigid subscriptions that eat into small business margins.
+            Managing client bills should not be complicated or expensive. The EVONIX online invoice maker gives you a 100% free, zero-database workspace to create and print professional commercial invoices in seconds.
           </p>
 
           <p className="text-sm sm:text-base text-slate-700">
-            The Evonixtec Global Micro-Invoice Generator addresses this operational friction by providing a 100% free, zero-database billing workspace. Built directly upon privacy-first front-end protocols, this utility empowers modern contractors to compile professional, print-ready trade logs directly within their browser cache.
+            Whether you need an online invoice maker free for freelance billing or an online invoice generator pakistan with GST and NTN tax compliance, this online invoice editor runs entirely in your browser.
+          </p>
+
+          <p className="text-sm sm:text-base text-slate-700">
+            No accounts required. No monthly subscriptions. Create clean online invoice free documents with custom logos, digital signatures, Code128 barcodes, and instant A4 PDF export.
           </p>
 
           <h3 className="text-xl font-bold text-slate-900 pt-2">
@@ -1589,7 +1593,7 @@ export const GlobalInvoiceHub: React.FC = () => {
         </div>
       </section>
 
-      {/* Floating Mobile Action Bar (Sticky at bottom for seamless thumb control) */}
+      {/* Floating Mobile Action Bar (Sticky at bottom for quick thumb control) */}
       <div className="lg:hidden print:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-950/95 backdrop-blur-md border-t border-slate-800 p-2.5 flex items-center justify-between gap-1.5 shadow-2xl">
         <button
           onClick={() => setMobileTab(mobileTab === 'editor' ? 'preview' : 'editor')}
