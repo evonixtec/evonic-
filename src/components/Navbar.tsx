@@ -10,7 +10,6 @@ import {
   Monitor,
   Wrench,
   Clock,
-  Briefcase,
   ShoppingBag,
   HelpCircle,
   FileText,
@@ -23,7 +22,6 @@ import {
   Cpu,
   Barcode,
   MapPin,
-  BookOpen,
   Calculator,
   Boxes,
   Landmark,
@@ -505,92 +503,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </div>
 
-            {/* 4. Portfolio Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => setActiveDropdown('portfolio')}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <button
-                onClick={() => handlePageSelect('portfolio')}
-                className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1 cursor-pointer ${
-                  currentPage === 'portfolio'
-                    ? 'text-red-700 bg-gradient-to-b from-red-50 to-rose-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(220,38,38,0.12)] border border-red-200/80'
-                    : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
-                }`}
-                aria-expanded={activeDropdown === 'portfolio'}
-              >
-                <span>Portfolio</span>
-                <ChevronDown
-                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    activeDropdown === 'portfolio' ? 'rotate-180 text-red-600' : 'text-slate-400'
-                  }`}
-                />
-              </button>
-
-              {activeDropdown === 'portfolio' && (
-                <div className="absolute top-full left-0 w-72 pt-1.5 z-50">
-                  <div className="bg-white/98 backdrop-blur-2xl rounded-2xl shadow-[0_20px_45px_-10px_rgba(0,0,0,0.14),0_0_0_1px_rgba(0,0,0,0.06)] border border-slate-200 p-2 space-y-1">
-                    <div className="px-3 py-1.5 border-b border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                      <span>Client Case Studies</span>
-                      <span className="text-[10px] text-red-600 font-semibold">Dubai & UAE</span>
-                    </div>
-
-                    <button
-                      onClick={() => handlePageSelect('portfolio', 'websites')}
-                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 cursor-pointer group"
-                    >
-                      <Globe className="w-4 h-4 text-slate-400 group-hover:text-red-600" />
-                      <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-600">
-                          Web Development Clients
-                        </div>
-                        <div className="text-[11px] text-slate-500">Corporate UAE Portals & Brands</div>
-                      </div>
-                    </button>
-
-                    <button
-                      onClick={() => handlePageSelect('portfolio', 'software')}
-                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 cursor-pointer group"
-                    >
-                      <Briefcase className="w-4 h-4 text-slate-400 group-hover:text-red-600" />
-                      <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-600">
-                          Software & POS Clients
-                        </div>
-                        <div className="text-[11px] text-slate-500">ERP & Retail Store Systems</div>
-                      </div>
-                    </button>
-
-                    <div className="pt-1.5 border-t border-slate-100 px-2 pb-1">
-                      <button
-                        onClick={() => handlePageSelect('portfolio')}
-                        className="w-full py-1.5 text-center text-xs font-bold text-red-600 hover:text-red-700 flex items-center justify-center gap-1 cursor-pointer"
-                      >
-                        <span>View All Projects</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* 5. Blogs Link */}
-            <button
-              onClick={() => handlePageSelect('guides')}
-              className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
-                currentPage === 'guides'
-                  ? 'text-red-700 bg-gradient-to-b from-red-50 to-rose-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(220,38,38,0.12)] border border-red-200/80'
-                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
-              }`}
-            >
-              <BookOpen className="w-3.5 h-3.5 text-red-600" />
-              <span>Blogs</span>
-              <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-red-100 text-red-700">New</span>
-            </button>
-
-            {/* 6. UNIFIED DYNAMIC DROPDOWN MENU ENGINE: WEB TOOLS PORTFOLIO */}
+            {/* 4. UNIFIED DYNAMIC DROPDOWN MENU ENGINE: WEB TOOLS PORTFOLIO */}
             <div
               className="relative"
               onMouseEnter={() => setActiveDropdown('tools')}
@@ -1013,47 +926,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </div>
 
-            {/* Portfolio with expandable sub-items */}
-            <div className="rounded-xl border border-slate-200 overflow-hidden bg-white">
-              <button
-                onClick={() =>
-                  setMobileExpandedSection(mobileExpandedSection === 'portfolio' ? null : 'portfolio')
-                }
-                className="w-full text-left px-3.5 py-2.5 text-sm font-bold text-slate-800 flex items-center justify-between bg-slate-50"
-              >
-                <span>Portfolio</span>
-                <ChevronDown
-                  className={`w-4 h-4 transition-transform ${
-                    mobileExpandedSection === 'portfolio' ? 'rotate-180 text-red-600' : ''
-                  }`}
-                />
-              </button>
-
-              {mobileExpandedSection === 'portfolio' && (
-                <div className="p-2 space-y-1 bg-white border-t border-slate-100 text-xs">
-                  <button
-                    onClick={() => handlePageSelect('portfolio', 'websites')}
-                    className="w-full text-left p-2 rounded-lg text-slate-700 hover:bg-slate-50 font-medium"
-                  >
-                    • Dubai Web Client Deployments
-                  </button>
-                  <button
-                    onClick={() => handlePageSelect('portfolio', 'software')}
-                    className="w-full text-left p-2 rounded-lg text-slate-700 hover:bg-slate-50 font-medium"
-                  >
-                    • Software & ERP Deployments
-                  </button>
-                  <button
-                    onClick={() => handlePageSelect('portfolio')}
-                    className="w-full text-left p-2 text-red-600 font-bold hover:underline"
-                  >
-                    → Open Full Portfolio Page
-                  </button>
-                </div>
-              )}
-            </div>
-
-            {/* About Us & Guides */}
+            {/* About Us */}
             <button
               onClick={() => handlePageSelect('about')}
               className={`w-full text-left px-3.5 py-2 rounded-xl text-sm font-bold flex items-center justify-between ${
@@ -1061,19 +934,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               }`}
             >
               <span>About Us (Dubai Heritage)</span>
-            </button>
-
-            <button
-              onClick={() => handlePageSelect('guides')}
-              className={`w-full text-left px-3.5 py-2 rounded-xl text-sm font-bold flex items-center justify-between ${
-                currentPage === 'guides' ? 'bg-red-50 text-red-600' : 'text-slate-800 hover:bg-slate-100'
-              }`}
-            >
-              <div className="flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-red-600" />
-                <span>Tech Blogs & Field Case Studies</span>
-              </div>
-              <span className="px-1.5 py-0.2 bg-red-100 text-red-700 text-[10px] rounded font-bold">BLOGS</span>
             </button>
 
             {/* UNIFIED WEB TOOLS PORTFOLIO ACCORDION FOR MOBILE */}

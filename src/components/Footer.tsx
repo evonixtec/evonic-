@@ -21,6 +21,8 @@ import {
   Building2,
   ChevronRight,
   Tag,
+  BookOpen,
+  Briefcase,
 } from 'lucide-react';
 
 interface FooterProps {
@@ -218,133 +220,35 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             </ul>
           </div>
 
-          {/* Column 3: Local Coverage Hubs (2 cols on lg) */}
-          <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-red-500" />
-              <span>Coverage Zones</span>
-            </h4>
-            <ul className="space-y-2 text-slate-400">
-              <li>
-                <button
-                  onClick={() => onNavigate('contact')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer font-medium text-slate-200"
-                >
-                  Kotli Behram IT Desk
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('contact')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer"
-                >
-                  Paris Road & Cantt Hub
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('locations')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer"
-                >
-                  Daska Industrial Belt
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('locations')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer"
-                >
-                  Sambrial Dry Port & SIAL
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('locations')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer"
-                >
-                  Wazirabad Cutlery Zone
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('locations')}
-                  className="text-red-400 font-bold hover:underline transition-colors flex items-center gap-1 mt-1 cursor-pointer"
-                >
-                  <span>Regional Hub Pages →</span>
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 4: Interactive Tools & SEO (2 cols on lg) */}
+          {/* Column 3: Web Tools Suite (2 cols on lg) */}
           <div className="lg:col-span-2 space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
               <Cpu className="w-3.5 h-3.5 text-red-500" />
-              <span>Tools & Hubs</span>
+              <span>Web Tools Hub</span>
             </h4>
             <ul className="space-y-2 text-slate-400">
               <li>
                 <button
-                  onClick={() => onNavigate('home')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer"
-                >
-                  AI Multimeter Board
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('home')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer"
-                >
-                  Live RMA Ticket Tracker
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('home')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer"
-                >
-                  Cost Diagnostic Estimator
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('guides')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer"
-                >
-                  80+ Tech Blogs & Guides
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('guides')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer"
-                >
-                  Google Keyword Matrix
-                </button>
-              </li>
-              <li>
-                <button
                   onClick={() => onNavigate('invoice')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-amber-300 font-bold flex items-center gap-1"
+                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-amber-300 font-bold flex items-center gap-1.5"
                 >
-                  <span>Free Enterprise Invoice Hub</span>
-                  <span className="text-[9px] bg-red-600 text-white px-1.5 py-0.2 rounded font-black">NEW</span>
+                  <span>Micro-Invoice Generator</span>
+                  <span className="text-[9px] bg-red-600 text-white px-1.5 py-0.2 rounded font-black">FREE</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => onNavigate('ecommerce-calculator')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-emerald-400 font-bold flex items-center gap-1"
+                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-blue-300 font-bold flex items-center gap-1.5"
                 >
-                  <span>E-Commerce Margin Calculator</span>
+                  <span>E-Commerce Margin Calc</span>
                   <span className="text-[9px] bg-blue-600 text-white px-1.5 py-0.2 rounded font-black">TOOL</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => onNavigate('cbm-calculator')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-blue-300 font-bold flex items-center gap-1"
+                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-amber-300 font-bold flex items-center gap-1.5"
                 >
                   <span>Export CBM Cargo Engine</span>
                   <span className="text-[9px] bg-amber-500 text-slate-900 px-1.5 py-0.2 rounded font-black">EXPORT</span>
@@ -353,21 +257,108 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               <li>
                 <button
                   onClick={() => onNavigate('chamber-domain-checker')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-emerald-300 font-bold flex items-center gap-1"
+                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-emerald-300 font-bold flex items-center gap-1.5"
                 >
-                  <span>SECP & Chamber Dual-Checker</span>
+                  <span>SECP & Chamber Checker</span>
                   <span className="text-[9px] bg-emerald-600 text-white px-1.5 py-0.2 rounded font-black">SECP</span>
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('portfolio')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-slate-300 font-medium"
+                  onClick={() => onNavigate('home')}
+                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-slate-300 flex items-center gap-1"
                 >
-                  Client Case Studies
+                  <span>Live RMA Repair Tracker</span>
                 </button>
               </li>
             </ul>
+          </div>
+
+          {/* Column 4: Client Portfolio & Tech Blogs (3 cols on lg) */}
+          <div className="lg:col-span-3 space-y-4">
+            {/* Client Portfolio Sub-block */}
+            <div className="space-y-2">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
+                <Briefcase className="w-3.5 h-3.5 text-red-500" />
+                <span>Client Portfolio</span>
+              </h4>
+              <ul className="space-y-1.5 text-slate-400">
+                <li>
+                  <button
+                    onClick={() => onNavigate('portfolio')}
+                    className="hover:text-red-400 transition-colors text-left cursor-pointer block"
+                  >
+                    Dubai Web Client Deployments
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => onNavigate('portfolio')}
+                    className="hover:text-red-400 transition-colors text-left cursor-pointer block"
+                  >
+                    Custom Software & POS Case Studies
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => onNavigate('portfolio')}
+                    className="hover:text-red-400 transition-colors text-left cursor-pointer block"
+                  >
+                    Sialkot Export Industry ERP
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => onNavigate('portfolio')}
+                    className="text-red-400 font-bold hover:underline transition-colors flex items-center gap-1 pt-0.5 cursor-pointer"
+                  >
+                    <span>View Full Portfolio Page →</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            {/* Tech Blogs Sub-block */}
+            <div className="space-y-2 pt-2 border-t border-slate-800/80">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
+                <BookOpen className="w-3.5 h-3.5 text-red-500" />
+                <span>Tech Blogs & Case Studies</span>
+              </h4>
+              <ul className="space-y-1.5 text-slate-400">
+                <li>
+                  <button
+                    onClick={() => onNavigate('guides')}
+                    className="hover:text-red-400 transition-colors text-left cursor-pointer block"
+                  >
+                    80+ Engineering & Repair Guides
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => onNavigate('guides')}
+                    className="hover:text-red-400 transition-colors text-left cursor-pointer block"
+                  >
+                    Sialkot Field Repair Case Studies
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => onNavigate('guides')}
+                    className="hover:text-red-400 transition-colors text-left cursor-pointer block"
+                  >
+                    Hardware Micro-Soldering Tutorials
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => onNavigate('guides')}
+                    className="text-red-400 font-bold hover:underline transition-colors flex items-center gap-1 pt-0.5 cursor-pointer"
+                  >
+                    <span>Open Tech Blogs & Guides →</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
 
           {/* Column 5: Lab Address & Contact Desk (2 cols on lg) */}
@@ -391,7 +382,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                 </p>
                 <div className="inline-flex items-center gap-1 text-[10px] text-emerald-400 font-bold bg-emerald-950/80 border border-emerald-800/80 px-2 py-0.5 rounded">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>15-Min Doorstep Dispatch Available</span>
+                  <span>15-Min Doorstep Dispatch</span>
                 </div>
               </div>
 
@@ -417,22 +408,27 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                 </a>
               </div>
 
-              {/* Hours */}
-              <div className="flex items-start gap-2 text-[11px] text-slate-500">
-                <Clock className="w-3.5 h-3.5 text-slate-500 flex-shrink-0 mt-0.5" />
-                <span>Mon - Sat: 9:00 AM - 8:00 PM</span>
+              {/* Regional Hubs Link */}
+              <div className="pt-1">
+                <button
+                  onClick={() => onNavigate('locations')}
+                  className="text-[11px] text-slate-400 hover:text-red-400 transition-colors flex items-center gap-1 cursor-pointer"
+                >
+                  <MapPin className="w-3 h-3 text-red-500" />
+                  <span>Paris Road, Cantt & Regional Hubs →</span>
+                </button>
               </div>
             </div>
           </div>
         </div>
 
-        {/* 3. Refined & Authentic Services and Coverage Directory (Organic, Non-Spammy) */}
+        {/* 3. Refined Quick Directory Row */}
         <div className="py-6 my-6 border-y border-slate-800/80 space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div className="flex items-center gap-2">
               <Tag className="w-4 h-4 text-red-500 flex-shrink-0" />
               <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200">
-                Core IT Services & Sialkot Service Hubs
+                Quick Directory & Hub Links
               </h4>
             </div>
             <span className="text-[11px] text-slate-400">
@@ -442,21 +438,28 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 text-xs">
             {[
-              { label: 'IT Consultancy', sub: 'Factory AMC Contracts', target: 'services' },
-              { label: 'Laptop & Chip Repair', sub: 'Kotli Behram Lab', target: 'services' },
-              { label: 'Custom Web & Portals', sub: 'E-Commerce Solutions', target: 'services' },
-              { label: 'Retail POS & Hardware', sub: 'Printers & Terminals', target: 'shop' },
-              { label: 'Sialkot Doorstep IT', sub: '15-Min Rapid Dispatch', target: 'contact' },
-              { label: 'Tech Blogs & Guides', sub: '80+ Field Tutorials', target: 'guides' },
+              { label: 'Client Portfolio', sub: 'UAE & Sialkot Case Studies', target: 'portfolio', badge: 'PORTFOLIO' },
+              { label: 'Tech Blogs & Guides', sub: '80+ Field Tutorials', target: 'guides', badge: 'BLOGS' },
+              { label: 'Web Tools Hub', sub: 'Invoice, CBM & Margin Calc', target: 'invoice', badge: 'TOOLS' },
+              { label: 'Core Services', sub: 'Factory AMC Contracts', target: 'services', badge: null },
+              { label: 'Hardware Store', sub: 'Printers & Terminals', target: 'shop', badge: null },
+              { label: 'Kotli Behram Lab', sub: '15-Min Rapid Dispatch', target: 'contact', badge: null },
             ].map((item, idx) => (
               <button
                 key={idx}
                 onClick={() => onNavigate(item.target)}
                 className="p-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-red-600/60 text-left transition-all cursor-pointer group"
               >
-                <span className="text-slate-200 font-bold text-xs block group-hover:text-red-400 transition-colors">
-                  {item.label}
-                </span>
+                <div className="flex items-center justify-between gap-1">
+                  <span className="text-slate-200 font-bold text-xs group-hover:text-red-400 transition-colors">
+                    {item.label}
+                  </span>
+                  {item.badge && (
+                    <span className="text-[8px] font-black px-1 py-0.2 rounded bg-red-950 text-red-400 border border-red-800/60">
+                      {item.badge}
+                    </span>
+                  )}
+                </div>
                 <span className="text-[10px] text-slate-400 block mt-0.5">
                   {item.sub}
                 </span>
@@ -472,6 +475,20 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
           </div>
 
           <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+            <button
+              onClick={() => onNavigate('portfolio')}
+              className="hover:text-red-400 transition-colors cursor-pointer text-slate-400 font-semibold"
+            >
+              Portfolio
+            </button>
+            <span>•</span>
+            <button
+              onClick={() => onNavigate('guides')}
+              className="hover:text-red-400 transition-colors cursor-pointer text-slate-400 font-semibold"
+            >
+              Blogs
+            </button>
+            <span>•</span>
             {onOpenPolicy && (
               <>
                 <button
