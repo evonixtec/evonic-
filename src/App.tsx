@@ -25,6 +25,7 @@ import { PageHeaderBanner } from './components/common/PageHeaderBanner';
 import { GlobalInvoiceHub } from './components/GlobalInvoiceHub';
 import EcommerceCalculator from './components/EcommerceCalculator';
 import CbmCalculator from './components/CbmCalculator';
+import ChamberDomainChecker from './components/ChamberDomainChecker';
 import { HomeServicesPreview } from './components/home/HomeServicesPreview';
 import { HomeAboutPreview } from './components/home/HomeAboutPreview';
 import { HomePortfolioPreview } from './components/home/HomePortfolioPreview';
@@ -159,6 +160,19 @@ export default function App() {
       path.startsWith('cbm/')
     ) {
       return 'cbm-calculator';
+    }
+
+    if (
+      path === 'chamber-domain-checker' ||
+      path === 'chamber' ||
+      path === 'chamber-checker' ||
+      path === 'secp-checker' ||
+      path === 'domain-checker' ||
+      path === 'name-checker' ||
+      path.startsWith('chamber-domain-checker/') ||
+      path.startsWith('chamber/')
+    ) {
+      return 'chamber-domain-checker';
     }
 
     return 'home';
@@ -331,6 +345,10 @@ export default function App() {
     }
     if (elementId === 'cbm-calculator' || elementId === 'export-cbm-calculator') {
       navigateToPage('cbm-calculator');
+      return;
+    }
+    if (elementId === 'chamber-domain-checker' || elementId === 'secp-chamber-checker') {
+      navigateToPage('chamber-domain-checker');
       return;
     }
     if (elementId === 'invoice-hub') {
@@ -825,6 +843,15 @@ export default function App() {
         {currentPage === 'cbm-calculator' && (
           <div className="space-y-0">
             <CbmCalculator />
+          </div>
+        )}
+
+        {/* ========================================================
+            PAGE 12: SECP & ALL-PAKISTAN CHAMBERS NAME DUAL-CHECKER
+           ======================================================== */}
+        {currentPage === 'chamber-domain-checker' && (
+          <div className="space-y-0">
+            <ChamberDomainChecker />
           </div>
         )}
           </motion.div>

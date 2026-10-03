@@ -26,6 +26,7 @@ import {
   BookOpen,
   Calculator,
   Boxes,
+  Landmark,
 } from 'lucide-react';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { isToolPage } from '../lib/toolUtils';
@@ -41,7 +42,8 @@ export type NavPageId =
   | 'locations'
   | 'invoice'
   | 'ecommerce-calculator'
-  | 'cbm-calculator';
+  | 'cbm-calculator'
+  | 'chamber-domain-checker';
 
 interface NavbarProps {
   currentPage: NavPageId;
@@ -627,6 +629,21 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-amber-100 text-amber-700">Export</span>
             </button>
 
+            {/* 9. SECP & All-Pakistan Chamber Name Dual-Checker (Free Tool) */}
+            <button
+              onClick={() => handlePageSelect('chamber-domain-checker')}
+              className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                currentPage === 'chamber-domain-checker'
+                  ? 'text-emerald-700 bg-gradient-to-b from-emerald-50 to-teal-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(5,150,105,0.12)] border border-emerald-200/80'
+                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
+              }`}
+              title="SECP & All-Pakistan Chamber Name Dual-Checker"
+            >
+              <Landmark className="w-3.5 h-3.5 text-emerald-600" />
+              <span>Chamber Check</span>
+              <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-emerald-100 text-emerald-700">SECP</span>
+            </button>
+
             {/* 6. Company Dropdown (Consolidated with About, Sialkot Lab & Regional Hubs) */}
             <div
               className="relative"
@@ -1039,6 +1056,20 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <span>Export CBM Cargo Calculator</span>
               </div>
               <span className="px-1.5 py-0.2 bg-amber-100 text-amber-700 text-[10px] rounded font-bold">EXPORT</span>
+            </button>
+
+            {/* SECP & All-Pakistan Chamber Name Dual-Checker (Free Tool) */}
+            <button
+              onClick={() => handlePageSelect('chamber-domain-checker')}
+              className={`w-full text-left px-3.5 py-2 rounded-xl text-sm font-bold flex items-center justify-between ${
+                currentPage === 'chamber-domain-checker' ? 'bg-emerald-50 text-emerald-600' : 'text-slate-800 hover:bg-slate-100'
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                <Landmark className="w-4 h-4 text-emerald-600" />
+                <span>SECP Chamber & Domain Engine</span>
+              </div>
+              <span className="px-1.5 py-0.2 bg-emerald-100 text-emerald-700 text-[10px] rounded font-bold">SECP</span>
             </button>
 
             {/* Local Industrial Hubs (Daska, Sambrial, Wazirabad) */}

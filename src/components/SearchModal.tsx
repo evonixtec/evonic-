@@ -297,6 +297,18 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         targetElementId: 'cbm-calculator',
         priceOrHighlight: '100% Free Tool',
         whatsappMessage: 'Hello EVONIX, I am using your Export CBM Calculator for our factory freight planning.',
+      },
+      {
+        id: 'secp-chamber-domain-checker',
+        type: 'service',
+        title: 'SECP & All-Pakistan Chambers Name Dual-Checker',
+        categoryLabel: 'Free Serverless Tool',
+        description: 'Instant corporate company name compliance under SECP Companies Act 2017, all 12 regional chambers registry, and .com / .pk web domain vacancy lookup.',
+        tags: ['SECP', 'Chamber', 'SCCI', 'LCCI', 'KCCI', 'ICCI', 'Company Name', 'Domain Checker', 'PK Domain', 'Startup', 'Corporate Registry', 'Brand Name'],
+        targetSection: 'services',
+        targetElementId: 'chamber-domain-checker',
+        priceOrHighlight: '100% Free Tool',
+        whatsappMessage: 'Hello EVONIX, I am checking company brand name compliance using your SECP Chamber Engine.',
       }
     );
 

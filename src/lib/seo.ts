@@ -723,6 +723,30 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'chargeable weight calculator',
     ],
   },
+
+  'chamber-domain-checker': {
+    title: 'SECP & All-Pakistan Chambers Name Dual-Checker | EVONIX Technologies',
+    description:
+      'Free brand name validator for Pakistani startups. Instant SECP corporate guidelines compliance, 12 regional chambers registry rules, and .com / .pk domain vacancy checks.',
+    ogTitle: 'SECP & All-Pakistan Chamber Name Dual-Checker | EVONIX Technologies',
+    ogDescription:
+      'Validate company names under SECP Companies Act 2017, regional chamber rules (SCCI, LCCI, KCCI, ICCI), and check .com / .pk web domain vacancy in real time.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    canonicalUrl: `${BASE_URL}/chamber-domain-checker`,
+    keywords: [
+      'secp company name checker',
+      'pakistan chamber name search',
+      'sialkot chamber of commerce name rules',
+      'lcci company registration guidelines',
+      'kcci company name validation',
+      'secp restricted words list',
+      'pakistan domain name availability checker',
+      'pk domain vacancy lookup',
+      'startup name compliance pakistan',
+      'secp corporate registry checker',
+    ],
+  },
 };
 
 /**
