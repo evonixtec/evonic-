@@ -26,6 +26,7 @@ import { GlobalInvoiceHub } from './components/GlobalInvoiceHub';
 import EcommerceCalculator from './components/EcommerceCalculator';
 import CbmCalculator from './components/CbmCalculator';
 import { DeveloperCostCalculator } from './components/DeveloperCostCalculator';
+import { AiVisibilityChecker } from './components/AiVisibilityChecker';
 import { HomeServicesPreview } from './components/home/HomeServicesPreview';
 import { HomeAboutPreview } from './components/home/HomeAboutPreview';
 import { HomePortfolioPreview } from './components/home/HomePortfolioPreview';
@@ -174,6 +175,17 @@ export default function App() {
       path.startsWith('developer-cost-calculator')
     ) {
       return 'developer-cost-calculator';
+    }
+
+    if (
+      path === 'ai-visibility-checker' ||
+      path === 'ai-visibility' ||
+      path === 'geo-checker' ||
+      path === 'eeat-checker' ||
+      path === 'website-eeat-ai-visibility-checker' ||
+      path.startsWith('ai-visibility')
+    ) {
+      return 'ai-visibility-checker';
     }
 
     return 'home';
@@ -555,7 +567,10 @@ export default function App() {
             <OfflineDataSyncEngine />
 
             {/* 1o. Interactive Web & POS Software Project Cost Calculator */}
-            <ProjectCostCalculator onOpenQuote={handleOpenQuote} />
+            <ProjectCostCalculator
+              onOpenQuote={handleOpenQuote}
+              onNavigatePage={(page) => navigateToPage(page as NavPageId)}
+            />
 
             {/* 1m. Why Choose Us (Dubai Quality & Component Diagnostics) */}
             <WhyChooseUs />
@@ -625,7 +640,10 @@ export default function App() {
             <ExportBarcodeLabelGenerator onOpenQuote={handleOpenQuote} />
 
             {/* Interactive Web & POS Software Project Cost Calculator */}
-            <ProjectCostCalculator onOpenQuote={handleOpenQuote} />
+            <ProjectCostCalculator
+              onOpenQuote={handleOpenQuote}
+              onNavigatePage={(page) => navigateToPage(page as NavPageId)}
+            />
 
             {/* Technologies We Use (Tech Stack Badges) */}
             <Technologies onExploreService={(svc) => handleOpenQuote(svc || 'Website Development')} />
@@ -861,6 +879,17 @@ export default function App() {
             />
           </div>
         )}
+
+        {/* ========================================================
+            PAGE 13: WEBSITE E-E-A-T & AI VISIBILITY CHECKER
+           ======================================================== */}
+        {currentPage === 'ai-visibility-checker' && (
+          <div className="space-y-0">
+            <AiVisibilityChecker
+              onOpenQuote={handleOpenQuote}
+            />
+          </div>
+        )}
           </motion.div>
         </AnimatePresence>
       </main>
@@ -897,6 +926,7 @@ export default function App() {
         isOpen={isQuoteOpen}
         onClose={() => setIsQuoteOpen(false)}
         initialService={selectedServiceForQuote}
+        onNavigatePage={(page) => navigateToPage(page as NavPageId)}
       />
 
       {/* Live Human Engineering Support Desk with Engr. Hamza Tariq (Hidden on all Tool Pages) */}

@@ -41,7 +41,8 @@ export type NavPageId =
   | 'invoice'
   | 'ecommerce-calculator'
   | 'cbm-calculator'
-  | 'developer-cost-calculator';
+  | 'developer-cost-calculator'
+  | 'ai-visibility-checker';
 
 interface NavbarProps {
   currentPage: NavPageId;
@@ -103,7 +104,8 @@ export const Navbar: React.FC<NavbarProps> = ({
     currentPage === 'invoice' ||
     currentPage === 'ecommerce-calculator' ||
     currentPage === 'cbm-calculator' ||
-    currentPage === 'developer-cost-calculator';
+    currentPage === 'developer-cost-calculator' ||
+    currentPage === 'ai-visibility-checker';
 
   return (
     <header
@@ -605,6 +607,24 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">Save 72%</span>
                     </button>
 
+                    <button
+                      onClick={() => handlePageSelect('ai-visibility-checker')}
+                      className={`w-full text-left p-2.5 rounded-xl transition-colors flex items-center gap-3 cursor-pointer group ${
+                        currentPage === 'ai-visibility-checker' ? 'bg-purple-50 text-purple-700 font-bold' : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-base flex items-center justify-center flex-shrink-0">
+                        🔍
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-purple-600 truncate">
+                          AI Visibility & E-E-A-T Checker
+                        </div>
+                        <div className="text-[10px] text-slate-500">ChatGPT, Claude & Google AI Overview Audit</div>
+                      </div>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-purple-100 text-purple-700">AI / GEO</span>
+                    </button>
+
                     <span className="block px-3 py-1 text-[10px] font-bold text-amber-600 uppercase tracking-wider border-t border-slate-100 mt-2 pt-2 pb-1 mb-0.5 bg-amber-50/60 rounded-md">
                       Next Releases Grid
                     </span>
@@ -1005,6 +1025,18 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <span>💻 Dedicated Developer Cost Calculator</span>
                     </div>
                     <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">72% Save</span>
+                  </button>
+
+                  <button
+                    onClick={() => handlePageSelect('ai-visibility-checker')}
+                    className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
+                      currentPage === 'ai-visibility-checker' ? 'bg-purple-50 text-purple-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span>🔍 AI Visibility & E-E-A-T Checker</span>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-purple-100 text-purple-700">AI / GEO</span>
                   </button>
 
                   <div className="pt-1.5 border-t border-slate-100 px-2 py-1 text-[11px] italic text-slate-400">

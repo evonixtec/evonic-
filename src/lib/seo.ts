@@ -756,6 +756,30 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'evonix technologies developer rates',
     ],
   },
+
+  'ai-visibility-checker': {
+    title: 'Website E-E-A-T & AI Visibility Checker | evonix Technologies',
+    description:
+      'Free client-side Google E-E-A-T & Generative Engine Optimization (GEO) checker. Audit your domain readiness for ChatGPT, Claude, and Google AI Overviews.',
+    ogTitle: 'Website E-E-A-T & AI Visibility Checker | evonix Technologies',
+    ogDescription:
+      'Free client-side Google E-E-A-T & Generative Engine Optimization (GEO) checker. Audit your domain readiness for ChatGPT, Claude, and Google AI Overviews.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    canonicalUrl: `${BASE_URL}/ai-visibility-checker`,
+    keywords: [
+      'ai visibility checker',
+      'website eeat checker',
+      'generative engine optimization tool',
+      'geo audit tool',
+      'chatgpt website visibility',
+      'google ai overview audit',
+      'claude citation readiness',
+      'llm citation probability',
+      'brand entity node optimization',
+      'evonix technologies seo tools',
+    ],
+  },
 };
 
 /**
@@ -1025,6 +1049,29 @@ function generateRouteStructuredData(pageId: NavPageId): object {
         },
       },
       breadcrumb: { '@id': `${BASE_URL}/hire-dedicated-developer-cost-calculator-pune-india#breadcrumb` },
+    });
+  } else if (pageId === 'ai-visibility-checker') {
+    graph.push({
+      '@type': 'SoftwareApplication',
+      '@id': `${BASE_URL}/ai-visibility-checker#app`,
+      name: 'Website E-E-A-T & AI Visibility Checker - evonix Technologies',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'All',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+      provider: {
+        '@type': 'Organization',
+        name: 'evonix Technologies',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Sialkot',
+          addressCountry: 'PK',
+        },
+      },
+      breadcrumb: { '@id': `${BASE_URL}/ai-visibility-checker#breadcrumb` },
     });
   }
 

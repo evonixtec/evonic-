@@ -1,25 +1,43 @@
 import React, { useState } from 'react';
 import { COMPANY_INFO } from '../data/content';
-import { MapPin, Mail, Phone, MessageSquare, Clock, ShieldCheck, Send, CheckCircle2, ArrowRight, Copy, Check } from 'lucide-react';
+import { MapPin, Mail, Phone, MessageSquare, Clock, ShieldCheck, Send, CheckCircle2, ArrowRight, Copy, Check, Globe } from 'lucide-react';
 import { sanitizeInput, checkRateLimit } from '../lib/security';
 import { SialkotLocationPicker } from './common/SialkotLocationPicker';
 import { dispatchQuoteNotification, buildWhatsAppQuoteUrl, buildMailtoQuoteUrl, QuotePayload } from '../lib/quoteService';
+import { QuotationSuccessModal } from './QuotationSuccessModal';
+
+const COUNTRIES = [
+  { code: 'AE', name: 'United Arab Emirates', dialCode: '+971', flag: '🇦🇪', placeholder: '50 123 4567' },
+  { code: 'US', name: 'United States', dialCode: '+1', flag: '🇺🇸', placeholder: '(555) 234-5678' },
+  { code: 'GB', name: 'United Kingdom', dialCode: '+44', flag: '🇬🇧', placeholder: '7911 123456' },
+  { code: 'SA', name: 'Saudi Arabia', dialCode: '+966', flag: '🇸🇦', placeholder: '50 123 4567' },
+  { code: 'CA', name: 'Canada', dialCode: '+1', flag: '🇨🇦', placeholder: '(416) 555-0199' },
+  { code: 'DE', name: 'Germany / Europe', dialCode: '+49', flag: '🇩🇪', placeholder: '151 12345678' },
+  { code: 'AU', name: 'Australia', dialCode: '+61', flag: '🇦🇺', placeholder: '412 345 678' },
+  { code: 'PK', name: 'Pakistan', dialCode: '+92', flag: '🇵🇰', placeholder: '326 3244002' },
+  { code: 'OTHER', name: 'Other International', dialCode: '+', flag: '🌐', placeholder: 'Phone number' },
+];
 
 interface ContactSectionProps {
   onOpenQuote: (service?: string) => void;
 }
 
 export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) => {
+  const [selectedCountryCode, setSelectedCountryCode] = useState('AE');
   const [formName, setFormName] = useState('');
   const [formPhone, setFormPhone] = useState('');
   const [formEmail, setFormEmail] = useState('');
-  const [formService, setFormService] = useState('Website Development');
+  const [formService, setFormService] = useState('Website Development & Enterprise Portals');
   const [formLocation, setFormLocation] = useState('Paris Road & City Center');
+  const [internationalCity, setInternationalCity] = useState('Dubai, UAE');
   const [gpsData, setGpsData] = useState<{ lat: number; lng: number; detected: boolean } | undefined>();
   const [formMessage, setFormMessage] = useState('');
   const [submittedRecord, setSubmittedRecord] = useState<QuotePayload | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
   const [copiedRef, setCopiedRef] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const selectedCountry = COUNTRIES.find((c) => c.code === selectedCountryCode) || COUNTRIES[0];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,25 +49,37 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
       return;
     }
 
-    const cleanName = sanitizeInput(formName) || 'Customer';
-    const cleanPhone = sanitizeInput(formPhone) || 'Not specified';
-    const cleanEmail = sanitizeInput(formEmail) || '';
-    const cleanLocation = sanitizeInput(formLocation) || 'Sialkot District';
-    const cleanMessage = sanitizeInput(formMessage) || 'General inquiry submitted via Contact form.';
+    setIsSubmitting(true);
+    try {
+      const cleanName = sanitizeInput(formName) || 'Customer';
+      const cleanPhone = sanitizeInput(formPhone) || 'Not specified';
+      const cleanEmail = sanitizeInput(formEmail) || '';
+      const cleanLocation = sanitizeInput(formLocation) || 'Sialkot District';
+      const cleanInternationalCity = sanitizeInput(internationalCity) || selectedCountry.name;
+      const cleanMessage = sanitizeInput(formMessage) || 'General inquiry submitted via Contact form.';
 
-    const record = await dispatchQuoteNotification({
-      fullName: cleanName,
-      phone: cleanPhone,
-      email: cleanEmail,
-      serviceType: formService,
-      locationArea: cleanLocation,
-      gpsDetected: gpsData?.detected,
-      gpsCoords: gpsData ? { lat: gpsData.lat, lng: gpsData.lng } : undefined,
-      isHomeService: (formService || '').toLowerCase().includes('doorstep') || (formService || '').toLowerCase().includes('repair'),
-      details: cleanMessage,
-    });
+      const finalLocation = selectedCountryCode === 'PK' ? cleanLocation : cleanInternationalCity;
 
-    setSubmittedRecord(record);
+      const record = await dispatchQuoteNotification({
+        fullName: cleanName,
+        phone: cleanPhone,
+        countryCode: selectedCountry.dialCode,
+        country: selectedCountry.name,
+        email: cleanEmail,
+        serviceType: formService,
+        locationArea: finalLocation,
+        gpsDetected: selectedCountryCode === 'PK' ? gpsData?.detected : false,
+        gpsCoords: selectedCountryCode === 'PK' && gpsData ? { lat: gpsData.lat, lng: gpsData.lng } : undefined,
+        isHomeService: selectedCountryCode === 'PK' && ((formService || '').toLowerCase().includes('doorstep') || (formService || '').toLowerCase().includes('repair')),
+        details: cleanMessage,
+      });
+
+      setSubmittedRecord(record);
+    } catch (err) {
+      console.error('Error submitting contact form:', err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleCopyRef = () => {
@@ -282,7 +312,32 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                     </div>
                   )}
 
+                  {/* Country & Name */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-blue-500" />
+                        <span>Your Country / Region *</span>
+                      </label>
+                      <select
+                        value={selectedCountryCode}
+                        onChange={(e) => {
+                          setSelectedCountryCode(e.target.value);
+                          const c = COUNTRIES.find((co) => co.code === e.target.value);
+                          if (c && e.target.value !== 'PK') {
+                            setInternationalCity(c.name === 'United Arab Emirates' ? 'Dubai, UAE' : c.name);
+                          }
+                        }}
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/70 border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-blue-500 font-bold shadow-2xs"
+                      >
+                        {COUNTRIES.map((c) => (
+                          <option key={c.code} value={c.code}>
+                            {c.flag} {c.name} ({c.dialCode})
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
                     <div>
                       <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
                         <span className="w-2 h-2 rounded-full bg-red-500" />
@@ -291,30 +346,36 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                       <input
                         type="text"
                         required
-                        placeholder="e.g. Usman Ali"
+                        placeholder="e.g. Tariq Mehmood / John Miller"
                         value={formName}
                         onChange={(e) => setFormName(e.target.value)}
                         className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/70 border border-slate-300 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 transition-all shadow-2xs font-semibold"
                       />
                     </div>
+                  </div>
 
+                  {/* Phone & Email */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
                         <span className="w-2 h-2 rounded-full bg-emerald-500" />
                         <span>Phone / WhatsApp *</span>
                       </label>
-                      <input
-                        type="tel"
-                        required
-                        placeholder="e.g. 0326 3244002"
-                        value={formPhone}
-                        onChange={(e) => setFormPhone(e.target.value)}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/70 border border-slate-300 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 transition-all shadow-2xs font-semibold"
-                      />
+                      <div className="flex rounded-xl shadow-2xs overflow-hidden border border-slate-300 focus-within:border-emerald-500">
+                        <span className="inline-flex items-center px-3 bg-slate-100 text-slate-700 text-xs font-bold border-r border-slate-300 select-none">
+                          {selectedCountry.flag} {selectedCountry.dialCode}
+                        </span>
+                        <input
+                          type="tel"
+                          required
+                          placeholder={`e.g. ${selectedCountry.placeholder}`}
+                          value={formPhone}
+                          onChange={(e) => setFormPhone(e.target.value)}
+                          className="w-full px-3 py-2.5 bg-slate-50/70 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white font-semibold"
+                        />
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
                         <span className="w-2 h-2 rounded-full bg-blue-500" />
@@ -322,13 +383,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                       </label>
                       <input
                         type="email"
-                        placeholder="e.g. name@company.com"
+                        placeholder="name@company.com"
                         value={formEmail}
                         onChange={(e) => setFormEmail(e.target.value)}
                         className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/70 border border-slate-300 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all shadow-2xs"
                       />
                     </div>
+                  </div>
 
+                  {/* Service & Location */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
                         <span className="w-2 h-2 rounded-full bg-purple-500" />
@@ -339,25 +403,43 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                         onChange={(e) => setFormService(e.target.value)}
                         className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/70 border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-purple-500 focus:bg-white focus:ring-4 focus:ring-purple-500/10 transition-all shadow-2xs font-semibold"
                       >
-                        <option value="Website Development">Website Development & E-Commerce</option>
-                        <option value="Software Development & POS Systems">Custom Software & Retail POS</option>
+                        <option value="Website Development & Enterprise Portals">Website Development & Enterprise Portals</option>
+                        <option value="Dedicated Developer Hiring & Remote Teams">💻 Dedicated Remote Developer (Save 72%)</option>
+                        <option value="Software Development & Retail POS Systems">Custom Software & Retail POS</option>
+                        <option value="Global Multi-Currency E-Commerce Stores">Global E-Commerce Stores (Stripe/Multi-Currency)</option>
                         <option value="Computer, Laptop & Printer Repairing">Laptop & Printer Repairing</option>
                         <option value="Doorstep Sialkot On-Site IT Visit">Doorstep On-Site Visit in Sialkot</option>
-                        <option value="General Consultation">General Inquiry / Consultation</option>
+                        <option value="General Consultation">General International Inquiry</option>
                       </select>
                     </div>
-                  </div>
 
-                  {/* Sialkot Location Area Picker with Auto GPS Sensor */}
-                  <div className="bg-slate-50/70 p-3.5 rounded-xl border border-slate-200">
-                    <SialkotLocationPicker
-                      value={formLocation}
-                      onChange={(area, data) => {
-                        setFormLocation(area);
-                        setGpsData(data);
-                      }}
-                      required
-                    />
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-amber-500" />
+                        <span>City / District *</span>
+                      </label>
+                      {selectedCountryCode === 'PK' ? (
+                        <div className="bg-slate-50/70 rounded-xl border border-slate-300 overflow-hidden">
+                          <SialkotLocationPicker
+                            value={formLocation}
+                            onChange={(area, data) => {
+                              setFormLocation(area);
+                              setGpsData(data);
+                            }}
+                            required
+                          />
+                        </div>
+                      ) : (
+                        <input
+                          type="text"
+                          required
+                          placeholder="e.g. Dubai, UAE / London, UK / New York, USA"
+                          value={internationalCity}
+                          onChange={(e) => setInternationalCity(e.target.value)}
+                          className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/70 border border-slate-300 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-amber-500 focus:bg-white focus:ring-4 focus:ring-amber-500/10 transition-all shadow-2xs font-semibold"
+                        />
+                      )}
+                    </div>
                   </div>
 
                   <div>
@@ -378,10 +460,20 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                   <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <button
                       type="submit"
-                      className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-700 hover:to-rose-700 active:from-red-800 text-white font-black text-xs sm:text-sm shadow-md shadow-red-600/30 hover:shadow-lg hover:shadow-red-600/40 transition-all flex items-center justify-center gap-2 cursor-pointer hover:-translate-y-0.5 active:translate-y-0"
+                      disabled={isSubmitting}
+                      className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-700 hover:to-rose-700 active:from-red-800 disabled:opacity-75 text-white font-black text-xs sm:text-sm shadow-md shadow-red-600/30 hover:shadow-lg hover:shadow-red-600/40 transition-all flex items-center justify-center gap-2 cursor-pointer hover:-translate-y-0.5 active:translate-y-0"
                     >
-                      <Send className="w-4 h-4" />
-                      <span>Submit & Generate Official Reference Pass</span>
+                      {isSubmitting ? (
+                        <>
+                          <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                          <span>Routing to evonixtec@gmail.com...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4" />
+                          <span>Submit & Generate Official Reference Pass</span>
+                        </>
+                      )}
                     </button>
 
                     <p className="text-[11px] text-slate-500 font-medium">
@@ -394,6 +486,15 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
           </div>
         </div>
       </div>
+
+      {/* Floating Centered Pop-up Modal for Customer with Reference Number & Email Notification */}
+      <QuotationSuccessModal
+        quote={submittedRecord}
+        onClose={() => {
+          setSubmittedRecord(null);
+          setFormMessage('');
+        }}
+      />
     </section>
   );
 };
