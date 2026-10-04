@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SERVICES } from '../data/content';
 import { OptimizedImage } from './common/OptimizedImage';
+import { GoogleBusinessProfileGallery } from './GoogleBusinessProfileGallery';
 import {
   Layout,
   Cpu,
@@ -17,9 +18,13 @@ import {
 
 interface ServicesProps {
   onSelectServiceForQuote: (serviceTitle: string) => void;
+  onNavigatePage?: (page: string) => void;
 }
 
-export const Services: React.FC<ServicesProps> = ({ onSelectServiceForQuote }) => {
+export const Services: React.FC<ServicesProps> = ({
+  onSelectServiceForQuote,
+  onNavigatePage,
+}) => {
   const [activeTab, setActiveTab] = useState<string>('all');
 
   const getIcon = (name: string) => {
@@ -160,9 +165,32 @@ export const Services: React.FC<ServicesProps> = ({ onSelectServiceForQuote }) =
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
+
+                {/* Internal Linking for SEO Juice */}
+                {(service.id === 'web-dev' || service.id === 'software-dev') && onNavigatePage && (
+                  <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-blue-700 bg-blue-50/70 p-2.5 rounded-xl">
+                    <span>Confused about pricing?</span>
+                    <button
+                      type="button"
+                      onClick={() => onNavigatePage('developer-cost-calculator')}
+                      className="font-bold text-blue-800 hover:text-red-600 cursor-pointer flex items-center gap-1 transition-colors"
+                    >
+                      <span>Use Developer Cost Calculator</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Google Business Profile Verified Photo Gallery */}
+        <div className="mt-16">
+          <GoogleBusinessProfileGallery
+            onOpenQuote={(prefill) => onSelectServiceForQuote(prefill || 'General Services Inquiry')}
+            className="border-none py-0"
+          />
         </div>
 
         {/* Bottom banner for on-site visits in Sialkot */}

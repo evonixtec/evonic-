@@ -64,8 +64,8 @@ A carton size calculator built especially for exporters in Sialkot. Shipping tea
 **6. Multi-Router Local Network Optimization & Configuration Generator**
 A network utility providing clear step-by-step setup guides, fast troubleshooting steps, and strong admin passwords for Tenda, D-Link, and TP-Link routers across office setups.
 
-**7. SECP & All-Pakistan Chambers Name + Domain Dual-Availability Engine**
-A national startup checker that checks your business name against SECP and chamber rules across Pakistan. It checks .pk, .com.pk, and .com domain availability at the same time.
+**7. Barcode Label & Thermal Printing Studio**
+A thermal printing and barcode generator engineered for Sialkot export packing and retail stores, creating clean EAN-13, Code 128, and shipping labels.
 
 ---
 

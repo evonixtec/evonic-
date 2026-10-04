@@ -25,7 +25,7 @@ import { PageHeaderBanner } from './components/common/PageHeaderBanner';
 import { GlobalInvoiceHub } from './components/GlobalInvoiceHub';
 import EcommerceCalculator from './components/EcommerceCalculator';
 import CbmCalculator from './components/CbmCalculator';
-import ChamberDomainChecker from './components/ChamberDomainChecker';
+import { DeveloperCostCalculator } from './components/DeveloperCostCalculator';
 import { HomeServicesPreview } from './components/home/HomeServicesPreview';
 import { HomeAboutPreview } from './components/home/HomeAboutPreview';
 import { HomePortfolioPreview } from './components/home/HomePortfolioPreview';
@@ -163,16 +163,17 @@ export default function App() {
     }
 
     if (
-      path === 'chamber-domain-checker' ||
-      path === 'chamber' ||
-      path === 'chamber-checker' ||
-      path === 'secp-checker' ||
-      path === 'domain-checker' ||
-      path === 'name-checker' ||
-      path.startsWith('chamber-domain-checker/') ||
-      path.startsWith('chamber/')
+      path === 'hire-dedicated-developer-cost-calculator-pune-india' ||
+      path === 'hire-dedicated-developer-cost-calculator' ||
+      path === 'developer-cost-calculator' ||
+      path === 'developer-cost' ||
+      path === 'hire-developer-cost-calculator' ||
+      path === 'developer-calculator' ||
+      path === 'hire-developer' ||
+      path.startsWith('hire-dedicated-developer-cost-calculator') ||
+      path.startsWith('developer-cost-calculator')
     ) {
-      return 'chamber-domain-checker';
+      return 'developer-cost-calculator';
     }
 
     return 'home';
@@ -347,8 +348,8 @@ export default function App() {
       navigateToPage('cbm-calculator');
       return;
     }
-    if (elementId === 'chamber-domain-checker' || elementId === 'secp-chamber-checker') {
-      navigateToPage('chamber-domain-checker');
+    if (elementId === 'developer-cost-calculator' || elementId === 'developer-calculator') {
+      navigateToPage('developer-cost-calculator');
       return;
     }
     if (elementId === 'invoice-hub') {
@@ -591,7 +592,10 @@ export default function App() {
             />
 
             {/* Full Detailed Services Section */}
-            <Services onSelectServiceForQuote={handleOpenQuote} />
+            <Services
+              onSelectServiceForQuote={handleOpenQuote}
+              onNavigatePage={(page) => navigateToPage(page as NavPageId)}
+            />
 
             {/* Sialkot Export Industry ERP & Custom Software Suite */}
             <SialkotIndustrialSolutions onOpenQuote={handleOpenQuote} />
@@ -666,7 +670,7 @@ export default function App() {
               breadcrumbCurrent="Portfolio"
               badgeText="Proven UAE & Dubai Track Record"
               title="Valuable Client Deployments & Case Studies"
-              subtitle="Explore high-volume e-commerce platforms, multi-currency trade portals, and enterprise retail POS systems delivered for leading corporations in Dubai, UAE and now Sialkot."
+              subtitle="Review high-volume e-commerce platforms, multi-currency trade portals, and enterprise retail POS systems delivered for leading corporations in Dubai, UAE and now Sialkot."
               onNavigateHome={() => navigateToPage('home')}
               onOpenQuote={() => handleOpenQuote('Confidential NDA Case Study Presentation')}
               ctaText="Request NDA Case Studies"
@@ -847,11 +851,14 @@ export default function App() {
         )}
 
         {/* ========================================================
-            PAGE 12: SECP & ALL-PAKISTAN CHAMBERS NAME DUAL-CHECKER
+            PAGE 12: DEDICATED DEVELOPER COST CALCULATOR (SEO CLUSTER)
            ======================================================== */}
-        {currentPage === 'chamber-domain-checker' && (
+        {currentPage === 'developer-cost-calculator' && (
           <div className="space-y-0">
-            <ChamberDomainChecker />
+            <DeveloperCostCalculator
+              onOpenQuote={handleOpenQuote}
+              onNavigatePage={(page) => navigateToPage(page as NavPageId)}
+            />
           </div>
         )}
           </motion.div>

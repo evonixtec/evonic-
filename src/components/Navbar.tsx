@@ -41,7 +41,7 @@ export type NavPageId =
   | 'invoice'
   | 'ecommerce-calculator'
   | 'cbm-calculator'
-  | 'chamber-domain-checker';
+  | 'developer-cost-calculator';
 
 interface NavbarProps {
   currentPage: NavPageId;
@@ -103,7 +103,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     currentPage === 'invoice' ||
     currentPage === 'ecommerce-calculator' ||
     currentPage === 'cbm-calculator' ||
-    currentPage === 'chamber-domain-checker';
+    currentPage === 'developer-cost-calculator';
 
   return (
     <header
@@ -588,21 +588,21 @@ export const Navbar: React.FC<NavbarProps> = ({
                     </button>
 
                     <button
-                      onClick={() => handlePageSelect('chamber-domain-checker')}
+                      onClick={() => handlePageSelect('developer-cost-calculator')}
                       className={`w-full text-left p-2.5 rounded-xl transition-colors flex items-center gap-3 cursor-pointer group ${
-                        currentPage === 'chamber-domain-checker' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
+                        currentPage === 'developer-cost-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
                       }`}
                     >
                       <span className="text-base flex items-center justify-center flex-shrink-0">
-                        🏛️
+                        💻
                       </span>
                       <div className="flex-1 min-w-0">
                         <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
-                          SECP & Pakistan Chamber Checker
+                          Developer Cost Calculator
                         </div>
-                        <div className="text-[10px] text-slate-500">12 chambers & .pk domain vacancy</div>
+                        <div className="text-[10px] text-slate-500">Compare USA vs Offshore rates & savings</div>
                       </div>
-                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">SECP</span>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">Save 72%</span>
                     </button>
 
                     <span className="block px-3 py-1 text-[10px] font-bold text-amber-600 uppercase tracking-wider border-t border-slate-100 mt-2 pt-2 pb-1 mb-0.5 bg-amber-50/60 rounded-md">
@@ -996,15 +996,15 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </button>
 
                   <button
-                    onClick={() => handlePageSelect('chamber-domain-checker')}
+                    onClick={() => handlePageSelect('developer-cost-calculator')}
                     className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
-                      currentPage === 'chamber-domain-checker' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                      currentPage === 'developer-cost-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
                     }`}
                   >
                     <div className="flex items-center gap-2">
-                      <span>🏛️ SECP & Pakistan Chamber Checker</span>
+                      <span>💻 Dedicated Developer Cost Calculator</span>
                     </div>
-                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">SECP</span>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">72% Save</span>
                   </button>
 
                   <div className="pt-1.5 border-t border-slate-100 px-2 py-1 text-[11px] italic text-slate-400">

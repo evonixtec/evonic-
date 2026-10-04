@@ -44,6 +44,100 @@ import shopNvmeSsdJpg from '../assets/images/shop/shop_nvme_ssd.jpg';
 import shopThermalPaperWebp from '../assets/images/shop/shop_thermal_paper.webp';
 import shopThermalPaperJpg from '../assets/images/shop/shop_thermal_paper.jpg';
 
+// Certified Human Technician Workshop & Field Services Images (SEO & Google Business Profile)
+import hpPaperJamJpg from '../assets/images/services/hp-paper-jam.jpg';
+import hpPaperJamWebp from '../assets/images/services/hp-paper-jam.webp';
+import canonInkLeakageJpg from '../assets/images/services/canon-ink-leakage.jpg';
+import canonInkLeakageWebp from '../assets/images/services/canon-ink-leakage.webp';
+import motherboardRepairHumanJpg from '../assets/images/services/laptop-motherboard-repair.jpg';
+import motherboardRepairHumanWebp from '../assets/images/services/laptop-motherboard-repair.webp';
+import posThermalPrinterJpg from '../assets/images/services/pos-thermal-printer-setup.jpg';
+import posThermalPrinterWebp from '../assets/images/services/pos-thermal-printer-setup.webp';
+import onsiteItSupportJpg from '../assets/images/services/onsite-it-support.jpg';
+import onsiteItSupportWebp from '../assets/images/services/onsite-it-support.webp';
+
+export interface ServiceGalleryItem {
+  id: string;
+  title: string;
+  category: string;
+  alt: string;
+  imageJpg: string;
+  imageWebp: string;
+  description: string;
+  tags: string[];
+  servicePrefill: string;
+  technician: string;
+  badge: string;
+}
+
+export const VERIFIED_SERVICE_GALLERY: ServiceGalleryItem[] = [
+  {
+    id: 'hp-paper-jam',
+    title: 'HP Paper Jam Repair',
+    category: 'HP LaserJet Printer Workshop',
+    alt: 'hp laserjet paper jam repair sialkot',
+    imageJpg: hpPaperJamJpg,
+    imageWebp: hpPaperJamWebp,
+    description: 'Hands-on diagnosis and replacement of pickup rollers, separation pads, and torn Teflon fuser sleeves on HP LaserJet printers.',
+    tags: ['HP LaserJet', 'Paper Jam', 'Roller Fix', 'Fuser Film'],
+    servicePrefill: 'HP Paper Jam Repair',
+    technician: 'Senior Printer Specialist (Hamza Tariq)',
+    badge: 'Hardware Lab Workshop'
+  },
+  {
+    id: 'canon-ink-leakage',
+    title: 'Canon Ink Leakage & Printhead Repair',
+    category: 'Canon Ink Tank & Color Printer Workshop',
+    alt: 'canon ink leakage printhead repair sialkot',
+    imageJpg: canonInkLeakageJpg,
+    imageWebp: canonInkLeakageWebp,
+    description: 'Precision CISS tubing de-aeration, waste ink absorber reset, printhead recovery, and leak elimination for Canon PIXMA and MegaTank series.',
+    tags: ['Canon PIXMA', 'Ink Leakage', 'Printhead Clean', 'Waste Ink Reset'],
+    servicePrefill: 'Canon Ink Leakage Repair',
+    technician: 'Printer Restoration Engineer (Bilal Ashraf)',
+    badge: 'Cleanroom Workbench'
+  },
+  {
+    id: 'laptop-motherboard-repair',
+    title: 'Laptop Motherboard Chip-Level Repair',
+    category: 'Electronics Diagnostic & Micro-Soldering',
+    alt: 'laptop motherboard chip level repair sialkot',
+    imageJpg: motherboardRepairHumanJpg,
+    imageWebp: motherboardRepairHumanWebp,
+    description: 'High-precision stereo microscope micro-soldering, blown 19.5V MOSFET replacement, power rail short circuit diagnosis, and BGA rework.',
+    tags: ['Motherboard Chip Repair', 'BGA Rework', 'Short Circuit', 'Stereo Microscope'],
+    servicePrefill: 'Laptop Motherboard Chip-Level Repair',
+    technician: 'Chief Electronics Engineer (Engr. Hamza)',
+    badge: 'Micro-Soldering Station'
+  },
+  {
+    id: 'pos-thermal-printer-setup',
+    title: 'POS Machine & Thermal Receipt Printer Setup',
+    category: 'Commercial Retail POS Counter',
+    alt: 'pos thermal printer barcode setup sialkot',
+    imageJpg: posThermalPrinterJpg,
+    imageWebp: posThermalPrinterWebp,
+    description: 'Installation and testing of 80mm high-speed thermal receipt printers, auto-cutter replacement, 2D barcode scanner pairing, and touch POS terminals.',
+    tags: ['80mm Thermal Printer', 'POS Touch Screen', 'Barcode Scanner', 'Retail Counter'],
+    servicePrefill: 'POS Thermal Printer Setup',
+    technician: 'Retail Systems Technician (Sufyan Butt)',
+    badge: 'Retail Counter Deployment'
+  },
+  {
+    id: 'onsite-it-support',
+    title: 'On-Site Field IT Support & Network Cabling',
+    category: 'Doorstep Corporate IT Dispatch',
+    alt: 'onsite it support network technician sialkot',
+    imageJpg: onsiteItSupportJpg,
+    imageWebp: onsiteItSupportWebp,
+    description: 'Rapid doorstep technician dispatch across Sialkot for corporate Cat6 LAN cabling, server rack setup, Wi-Fi router bridges, and printer sharing.',
+    tags: ['Doorstep Visit', 'LAN Cabling', 'Wi-Fi Setup', 'Sialkot Cantt & Paris Rd'],
+    servicePrefill: 'On-Site IT Support',
+    technician: 'Field Dispatch Lead (Usman Dar)',
+    badge: 'Doorstep Mobile Unit'
+  }
+];
+
 export interface HeroSlide {
   id: string;
   badge: string;
@@ -272,18 +366,18 @@ export const SERVICES: ServiceItem[] = [
     title: 'Computer, Laptop & Printer Services',
     summary: 'We provide professional repairing, servicing, and sales of all computers, laptops, and printers.',
     iconName: 'Monitor',
-    imageUrl: serviceHardwareRepairImg,
-    imageWebp: serviceHardwareRepairWebp,
-    imageAlt: 'Computer Motherboard Chip-Level Repair, SSD Upgrades & Printer Services - EVONIX TECHNOLOGIES',
+    imageUrl: motherboardRepairHumanJpg,
+    imageWebp: motherboardRepairHumanWebp,
+    imageAlt: 'hp laserjet paper jam repair sialkot & laptop motherboard chip level repair',
     features: [
+      'HP & Canon printer servicing, roller replacement & paper jam fixes',
       'Motherboard chip-level repair, liquid spill diagnosis & display fix',
       'High-speed SSD upgrade & RAM enhancement (makes slow PCs 10x faster)',
       'Laser & Thermal receipt printer servicing, toner refilling & head cleaning',
-      'Virus removal, clean Windows installation & critical data backup',
       'Sales of verified laptops, desktops, POS printers & genuine accessories',
     ],
     dubaiExperienceNote: 'Managed large corporate hardware infrastructure, lab diagnostics, and enterprise thermal printer networks in Dubai.',
-    deliverables: ['Laptop Chip Repair', 'Printer Maintenance', 'SSD / RAM Upgrades', 'Hardware & PC Sales'],
+    deliverables: ['HP Paper Jam Fix', 'Laptop Chip Repair', 'Printer Maintenance', 'Hardware & PC Sales'],
   },
   {
     id: 'onsite-service',
@@ -291,9 +385,9 @@ export const SERVICES: ServiceItem[] = [
     title: 'On-Site Home & Office Service',
     summary: 'No need to visit our lab. Our expert technician will come to your home or office for repair and service in Sialkot.',
     iconName: 'Wrench',
-    imageUrl: serviceOnsiteTechImg,
-    imageWebp: serviceOnsiteTechWebp,
-    imageAlt: 'On-Site Doorstep IT Support and Network Cabling Service in Sialkot - EVONIX TECHNOLOGIES',
+    imageUrl: onsiteItSupportJpg,
+    imageWebp: onsiteItSupportWebp,
+    imageAlt: 'onsite it support network technician sialkot',
     features: [
       'Doorstep technician visit anywhere across Sialkot city',
       'Direct on-site diagnosis and transparent estimation before repair',

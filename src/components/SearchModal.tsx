@@ -299,16 +299,16 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         whatsappMessage: 'Hello EVONIX, I am using your Export CBM Calculator for our factory freight planning.',
       },
       {
-        id: 'secp-chamber-domain-checker',
+        id: 'dedicated-developer-cost-calculator',
         type: 'service',
-        title: 'SECP & All-Pakistan Chambers Name Dual-Checker',
+        title: 'Dedicated Developer Cost Calculator (USA vs Offshore Savings)',
         categoryLabel: 'Free Serverless Tool',
-        description: 'Instant corporate company name compliance under SECP Companies Act 2017, all 12 regional chambers registry, and .com / .pk web domain vacancy lookup.',
-        tags: ['SECP', 'Chamber', 'SCCI', 'LCCI', 'KCCI', 'ICCI', 'Company Name', 'Domain Checker', 'PK Domain', 'Startup', 'Corporate Registry', 'Brand Name'],
+        description: 'Instant software developer rate calculator. Compare senior engineer rates in USA ($80/hr) vs evonix ($22/hr), saving up to 72% with zero recruiter fees and strict NDAs.',
+        tags: ['Developer Cost', 'Hire Developer', 'Cost to Hire Developer in India', 'Pune', 'Offshore', 'Software Engineer', 'Savings', 'Calculator', 'Remote Team'],
         targetSection: 'services',
-        targetElementId: 'chamber-domain-checker',
+        targetElementId: 'developer-cost-calculator',
         priceOrHighlight: '100% Free Tool',
-        whatsappMessage: 'Hello EVONIX, I am checking company brand name compliance using your SECP Chamber Engine.',
+        whatsappMessage: 'Hello EVONIX, I am estimating dedicated software developer hiring costs using your calculator.',
       }
     );
 

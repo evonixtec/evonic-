@@ -734,27 +734,26 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ],
   },
 
-  'chamber-domain-checker': {
-    title: 'SECP & All-Pakistan Chambers Name Dual-Checker | EVONIX Technologies',
+  'developer-cost-calculator': {
+    title: 'Dedicated Developer Cost Calculator - Save 70% | evonix',
     description:
-      'Free brand name validator for Pakistani startups. Instant SECP corporate guidelines compliance, 12 regional chambers registry rules, and .com / .pk domain vacancy checks.',
-    ogTitle: 'SECP & All-Pakistan Chamber Name Dual-Checker | EVONIX Technologies',
+      'Calculate cost to hire dedicated developers via evonix Technologies Sialkot. Senior dev at $22/hr vs $80/hr in USA. Save $111k/year. Get CVs in 24h.',
+    ogTitle: 'Dedicated Developer Cost Calculator - Save 70% | evonix',
     ogDescription:
-      'Validate company names under SECP Companies Act 2017, regional chamber rules (SCCI, LCCI, KCCI, ICCI), and check .com / .pk web domain vacancy in real time.',
+      'Calculate cost to hire dedicated developers via evonix Technologies Sialkot. Senior dev at $22/hr vs $80/hr in USA. Save $111k/year. Get CVs in 24h.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
-    canonicalUrl: `${BASE_URL}/chamber-domain-checker`,
+    canonicalUrl: `${BASE_URL}/hire-dedicated-developer-cost-calculator-pune-india`,
     keywords: [
-      'secp company name checker',
-      'pakistan chamber name search',
-      'sialkot chamber of commerce name rules',
-      'lcci company registration guidelines',
-      'kcci company name validation',
-      'secp restricted words list',
-      'pakistan domain name availability checker',
-      'pk domain vacancy lookup',
-      'startup name compliance pakistan',
-      'secp corporate registry checker',
+      'hire dedicated developer cost calculator pakistan',
+      'hire dedicated developer cost calculator',
+      'cost to hire developer in india',
+      'hire dedicated developer cost',
+      'hire developer in pune cost',
+      'cost to hire dedicated developer from pakistan',
+      'cost to hire software engineer',
+      'offshore developer hourly rate',
+      'evonix technologies developer rates',
     ],
   },
 };
@@ -1003,6 +1002,29 @@ function generateRouteStructuredData(pageId: NavPageId): object {
       ],
       breadcrumb: { '@id': `${BASE_URL}/invoice#breadcrumb` },
       publisher: { '@id': `${BASE_URL}/#business` },
+    });
+  } else if (pageId === 'developer-cost-calculator') {
+    graph.push({
+      '@type': 'SoftwareApplication',
+      '@id': `${BASE_URL}/hire-dedicated-developer-cost-calculator-pune-india#app`,
+      name: 'Dedicated Developer Cost Calculator - evonix Technologies',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'All',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+      provider: {
+        '@type': 'Organization',
+        name: 'evonix Technologies',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Sialkot',
+          addressCountry: 'PK',
+        },
+      },
+      breadcrumb: { '@id': `${BASE_URL}/hire-dedicated-developer-cost-calculator-pune-india#breadcrumb` },
     });
   }
 

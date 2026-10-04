@@ -256,11 +256,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('chamber-domain-checker')}
+                  onClick={() => onNavigate('developer-cost-calculator')}
                   className="hover:text-red-400 transition-colors text-left cursor-pointer text-emerald-300 font-bold flex items-center gap-1.5"
                 >
-                  <span>SECP & Chamber Checker</span>
-                  <span className="text-[9px] bg-emerald-600 text-white px-1.5 py-0.2 rounded font-black">SECP</span>
+                  <span>Developer Cost Calculator</span>
+                  <span className="text-[9px] bg-emerald-600 text-white px-1.5 py-0.2 rounded font-black">72% OFF</span>
                 </button>
               </li>
               <li>
