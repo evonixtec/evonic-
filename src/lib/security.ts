@@ -1,5 +1,5 @@
 /**
- * EVONIX TECHNOLOGIES - Advanced Client-Side Security & Anti-Copy Protection Suite
+ * evonix technologies - Advanced Client-Side Security & Anti-Copy Protection Suite
  * Implements anti-scraping, anti-tampering, input sanitization, and asset protection.
  */
 
@@ -50,7 +50,7 @@ export function initializeConsoleShield(): void {
     const warningStyle = 'color: #f87171; font-size: 14px; font-weight: bold; margin-top: 8px;';
     const infoStyle = 'color: #94a3b8; font-size: 12px; margin-top: 4px;';
 
-    console.log('%c🛡️ EVONIX TECHNOLOGIES — SECURITY SHIELD ACTIVE', titleStyle);
+    console.log('%c🛡️ evonix technologies — SECURITY SHIELD ACTIVE', titleStyle);
     console.log('%cSTOP! This application is protected under intellectual property & international cybersecurity protocols.', warningStyle);
     console.log(
       '%cUnauthorized code decompilation, automated scraping, content duplication, or malicious payload injection is strictly prohibited.\nCommercial inquiries: evonixtec@gmail.com | WhatsApp: +92 326 324 40002',
@@ -74,7 +74,7 @@ export function initAntiCopyShield(
     }
     e.preventDefault();
     if (onSecurityAlert) {
-      onSecurityAlert('EVONIX Protection: Right-click inspection is restricted to safeguard proprietary designs.');
+      onSecurityAlert('evonix Protection: Right-click inspection is restricted to safeguard proprietary designs.');
     }
   };
 
@@ -107,7 +107,7 @@ export function initAntiCopyShield(
     // Block Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C (DevTools inspect shortcuts)
     if (isCtrlOrMeta && e.shiftKey && (key === 'i' || key === 'j' || key === 'c')) {
       e.preventDefault();
-      if (onSecurityAlert) onSecurityAlert('DOM inspection shortcuts are locked under EVONIX security policy.');
+      if (onSecurityAlert) onSecurityAlert('DOM inspection shortcuts are locked under evonix security policy.');
       return;
     }
   };

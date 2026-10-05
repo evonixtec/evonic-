@@ -152,7 +152,7 @@ export const SialkotAreaCoverage: React.FC<SialkotAreaCoverageProps> = ({ onOpen
             Direct On-Site Engineering Across All Sialkot Hubs
           </h2>
           <p className="text-base text-slate-600 leading-relaxed font-sans">
-            From surgical manufacturing plants on Daska Road and leather workshops in Rangpura to commercial offices on Paris Road and logistics units at Sambrial Dry Port. Certified EVONIX engineers arrive at your facility with professional diagnostic equipment.
+            From surgical manufacturing plants on Daska Road and leather workshops in Rangpura to commercial offices on Paris Road and logistics units at Sambrial Dry Port. Certified evonix engineers arrive at your facility with professional diagnostic equipment.
           </p>
         </div>
 
@@ -303,7 +303,7 @@ export const SialkotAreaCoverage: React.FC<SialkotAreaCoverageProps> = ({ onOpen
                   </button>
 
                   <a
-                    href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(`Hello EVONIX, I need an urgent on-site technician visit in ${selectedHub.name}, Sialkot.`)}`}
+                    href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(`Hello evonix, I need an urgent on-site technician visit in ${selectedHub.name}, Sialkot.`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-sm transition-all flex items-center justify-center gap-2 text-center"

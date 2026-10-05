@@ -167,7 +167,7 @@ export const OfflineDataSyncEngine: React.FC = () => {
                 </div>
                 <p className="text-xs text-slate-400 mt-1">
                   {isSimulatedOnline
-                    ? 'Connected to Evonix Central Cloud. Changes synchronize bidirectionally.'
+                    ? 'Connected to evonix Central Cloud. Changes synchronize bidirectionally.'
                     : 'Internet disconnected. All barcode scans, piece-rate wages, and job cards save to local mini-server memory.'}
                 </p>
               </div>
@@ -305,7 +305,7 @@ export const OfflineDataSyncEngine: React.FC = () => {
             </div>
 
             <div className="mt-4 pt-3 border-t border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
-              <span>Standard feature on all Evonix Industrial Factory Deployments</span>
+              <span>Standard feature on all evonix Industrial Factory Deployments</span>
               <span className="text-emerald-400 font-mono font-bold">100% Data Protection Guarantee</span>
             </div>
           </div>

@@ -4,8 +4,10 @@ export type BlogCategory = 'web-graphics' | 'software-dev' | 'hardware-repair';
 
 export interface BlogInternalLink {
   label: string;
-  targetSection: SectionId;
+  targetSection: SectionId | string;
   anchorText: string;
+  toolPage?: string;
+  description?: string;
 }
 
 export interface BlogPost {
@@ -26,5 +28,7 @@ export interface BlogPost {
   metaDescription: string;
   targetKeywords: string[];
   internalLinks: BlogInternalLink[];
+  imageUrl?: string;
+  imageAlt?: string;
   content: string;
 }

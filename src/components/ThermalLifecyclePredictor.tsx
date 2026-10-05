@@ -107,7 +107,7 @@ export const ThermalLifecyclePredictor: React.FC<ThermalLifecyclePredictorProps>
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-950/80 text-orange-400 text-xs font-bold uppercase tracking-wider mb-4 border border-orange-800">
             <Thermometer className="w-3.5 h-3.5 text-orange-400" />
-            <span>Evonix Thermal Engineering Lab</span>
+            <span>evonix thermal engineering lab</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
             CPU/GPU Thermal Throttling & Paste Degradation Calculator
@@ -248,7 +248,7 @@ export const ThermalLifecyclePredictor: React.FC<ThermalLifecyclePredictorProps>
                 </div>
 
                 <div className="p-3 rounded-xl bg-emerald-950/40 border border-emerald-800">
-                  <span className="text-[10px] text-emerald-400 uppercase tracking-wide block">After Evonix Overhaul:</span>
+                  <span className="text-[10px] text-emerald-400 uppercase tracking-wide block">After evonix Overhaul:</span>
                   <span className="font-mono text-2xl font-black text-emerald-300">
                     {currentProfile.evonixRepasteTemp}°C
                   </span>
@@ -275,7 +275,7 @@ export const ThermalLifecyclePredictor: React.FC<ThermalLifecyclePredictorProps>
             <div className="bg-slate-900 rounded-2xl p-5 border border-slate-800 space-y-3">
               <div className="flex items-center gap-2 text-xs font-bold text-slate-200">
                 <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span>Evonix Pure Cold Bench Package (PKR 2,500)</span>
+                <span>evonix Pure Cold Bench Package (PKR 2,500)</span>
               </div>
               <ul className="text-xs text-slate-400 space-y-1.5">
                 <li className="flex items-center gap-1.5">

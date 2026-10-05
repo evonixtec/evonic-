@@ -1,4 +1,4 @@
-// EVONIX TECHNOLOGIES – Enterprise SEO Keyword Mapping & Health Matrix
+// evonix technologies – Enterprise SEO Keyword Mapping & Health Matrix
 // Dedicated per-page optimization mapping with non-overlapping search intent
 
 export interface SeoAuditCheck {
@@ -41,7 +41,7 @@ export const SEO_KEYWORD_MAPPING_MATRIX: KeywordMapEntry[] = [
     keywordDifficulty: 'Medium',
     secondaryKeywords: [
       'hardware maintenance services Sialkot',
-      'EVONIX TECHNOLOGIES Sialkot',
+      'evonix technologies Sialkot',
       'best IT company in Sialkot',
       'Dubai IT experience Pakistan',
       'top software house Sialkot',
@@ -53,7 +53,7 @@ export const SEO_KEYWORD_MAPPING_MATRIX: KeywordMapEntry[] = [
       'reliable IT company Paris Road Sialkot',
       'doorstep computer repair service in Sialkot',
     ],
-    pageTitle: 'EVONIX TECHNOLOGIES – IT Consultancy & Hardware Maintenance Services in Sialkot',
+    pageTitle: 'evonix technologies – IT Consultancy & Hardware Maintenance Services in Sialkot',
     metaDescription:
       'Leading IT consultancy and industrial hardware maintenance services in Sialkot. Enterprise website engineering, retail POS systems, and factory IT support backed by 20+ years Dubai expertise.',
     schemaType: 'LocalBusiness, WebSite',
@@ -92,7 +92,7 @@ export const SEO_KEYWORD_MAPPING_MATRIX: KeywordMapEntry[] = [
       'Synology NAS on-site backup installation Sialkot',
       'doorstep laptop repairing technician Sialkot Cantt',
     ],
-    pageTitle: 'IT Consultancy & Hardware Maintenance Services Sialkot | EVONIX',
+    pageTitle: 'IT Consultancy & Hardware Maintenance Services Sialkot | evonix',
     metaDescription:
       'Industrial IT consultancy, hardware maintenance AMC, B2B export web development, POS systems, and chip-level motherboard repair in Sialkot. 20+ years Dubai engineering standard.',
     schemaType: 'ServiceCatalog, ProfessionalService',
@@ -126,7 +126,7 @@ export const SEO_KEYWORD_MAPPING_MATRIX: KeywordMapEntry[] = [
       'how to setup dual fiber internet failover for export factory in Sialkot',
       'ransomware proof on premise NAS backup for surgical manufacturers',
     ],
-    pageTitle: 'Industrial IT Consultancy & Enterprise Networks Sialkot | EVONIX',
+    pageTitle: 'Industrial IT Consultancy & Enterprise Networks Sialkot | evonix',
     metaDescription:
       'Enterprise network architecture, dual-fiber WAN failover, Synology NAS on-site backup, and IT infrastructure consulting for Sialkot export manufacturing factories.',
     schemaType: 'Service, ITConsulting',
@@ -160,9 +160,9 @@ export const SEO_KEYWORD_MAPPING_MATRIX: KeywordMapEntry[] = [
       'reliable annual maintenance contract for 50 computers in Sialkot',
       'quarterly preventive maintenance for factory computers Sialkot',
     ],
-    pageTitle: 'Hardware Maintenance Services & Annual AMC Sialkot | EVONIX',
+    pageTitle: 'Hardware Maintenance Services & Annual AMC Sialkot | evonix',
     metaDescription:
-      'Keep factory computers, thermal barcode printers, and servers running with EVONIX Hardware Maintenance AMC in Sialkot. 2-hour emergency arrival guarantee.',
+      'Keep factory computers, thermal barcode printers, and servers running with evonix Hardware Maintenance AMC in Sialkot. 2-hour emergency arrival guarantee.',
     schemaType: 'Service, MaintenanceContract',
     healthScore: 99,
     priorityScore: 0.95,
@@ -194,7 +194,7 @@ export const SEO_KEYWORD_MAPPING_MATRIX: KeywordMapEntry[] = [
       'best web developer for surgical instruments export catalog',
       'high speed custom React website for international buyers',
     ],
-    pageTitle: 'B2B Export Web Development & Digital Platforms Sialkot | EVONIX',
+    pageTitle: 'B2B Export Web Development & Digital Platforms Sialkot | evonix',
     metaDescription:
       'Fast React websites and digital product catalogs for Sialkot exporters. Built for European and US buyers with international speed scores and modern security.',
     schemaType: 'Service, WebDevelopment',
@@ -228,7 +228,7 @@ export const SEO_KEYWORD_MAPPING_MATRIX: KeywordMapEntry[] = [
       'complete POS system with 80mm printer and scanner Sialkot',
       'FBR POS integrated cash software for pharmacy and supermarkets',
     ],
-    pageTitle: 'Retail POS Software & FBR Billing Systems Sialkot | EVONIX',
+    pageTitle: 'Retail POS Software & FBR Billing Systems Sialkot | evonix',
     metaDescription:
       'Zero-lag retail and wholesale POS software in Sialkot. Works 100% offline during internet cuts. Full FBR digital invoicing and thermal receipt printing.',
     schemaType: 'Service, POSSoftware',
@@ -263,7 +263,7 @@ export const SEO_KEYWORD_MAPPING_MATRIX: KeywordMapEntry[] = [
       'where to repair shorted Dell laptop motherboard in Sialkot',
       'expert doorstep laptop repairing technician in Sialkot',
     ],
-    pageTitle: 'Laptop Motherboard Repair & Chip-Level Lab Sialkot | EVONIX',
+    pageTitle: 'Laptop Motherboard Repair & Chip-Level Lab Sialkot | evonix',
     metaDescription:
       'Professional laptop repairing in Sialkot. Micro-soldering, 19V short circuit diagnosis, screen replacements, and hinge repairs with 90-day written warranty.',
     schemaType: 'Service, ComputerRepair',
@@ -297,7 +297,7 @@ export const SEO_KEYWORD_MAPPING_MATRIX: KeywordMapEntry[] = [
       'best website portfolio for surgical exporters Sialkot',
       'case studies of IT projects completed in Sialkot and Dubai',
     ],
-    pageTitle: 'Portfolio & Software Case Studies Sialkot | EVONIX TECHNOLOGIES',
+    pageTitle: 'Portfolio & Software Case Studies Sialkot | evonix technologies',
     metaDescription:
       'Inspect our portfolio of custom export web platforms, ERP software, 3D teamwear configurators, and retail POS implementations across Sialkot and Dubai.',
     schemaType: 'CollectionPage, CreativeWork',
@@ -332,7 +332,7 @@ export const SEO_KEYWORD_MAPPING_MATRIX: KeywordMapEntry[] = [
       'touchscreen POS terminal with receipt printer Sialkot',
       'heavy duty cash drawer with bill printer Sialkot',
     ],
-    pageTitle: 'POS Hardware & IT Equipment Store Sialkot | EVONIX TECHNOLOGIES',
+    pageTitle: 'POS Hardware & IT Equipment Store Sialkot | evonix technologies',
     metaDescription:
       'Buy verified POS machines, 80mm thermal receipt printers, handheld barcode scanners, business laptops, and fast NVMe SSDs in Sialkot with written replacement warranty.',
     schemaType: 'Store, OfferCatalog',
@@ -353,22 +353,22 @@ export const SEO_KEYWORD_MAPPING_MATRIX: KeywordMapEntry[] = [
     pageName: 'About Us & Dubai Heritage',
     canonicalUrl: 'https://evonixtec.com/about',
     searchIntent: 'Brand Authority',
-    primaryTargetKeyword: 'Evonix Technologies Sialkot background',
+    primaryTargetKeyword: 'evonix technologies Sialkot background',
     monthlySearchVolume: '620 / mo',
     keywordDifficulty: 'Low',
     secondaryKeywords: [
       'Dubai IT experience Pakistan',
       'SECP registered IT company Sialkot',
       'Raza Muhammad Dubai IT engineer',
-      'about Evonix Technologies Paris Road',
+      'about evonix technologies Paris Road',
     ],
     longTailQueries: [
       'IT company with 20 years Dubai UAE experience in Sialkot',
       'verified SECP registered software firm Sialkot',
     ],
-    pageTitle: 'About EVONIX – 20+ Years Dubai IT Expertise Now in Sialkot',
+    pageTitle: 'About evonix – 20+ Years Dubai IT Expertise Now in Sialkot',
     metaDescription:
-      'Learn about EVONIX TECHNOLOGIES: our 20+ years of enterprise IT engineering in Dubai, UAE, SECP registration in Pakistan, and mission to support Sialkot businesses.',
+      'Learn about evonix technologies: our 20+ years of enterprise IT engineering in Dubai, UAE, SECP registration in Pakistan, and mission to support Sialkot businesses.',
     schemaType: 'AboutPage, Organization',
     healthScore: 97,
     priorityScore: 0.8,
@@ -400,7 +400,7 @@ export const SEO_KEYWORD_MAPPING_MATRIX: KeywordMapEntry[] = [
       'how to fix laptop motherboard short circuit with multimeter',
       'step by step WeBOC customs connectivity diagnostic guide',
     ],
-    pageTitle: '80+ IT Technical Guides & Diagnostic Knowledge Base | EVONIX',
+    pageTitle: '80+ IT Technical Guides & Diagnostic Knowledge Base | evonix',
     metaDescription:
       'Comprehensive library of technical troubleshooting guides covering laptop motherboard micro-soldering, POS printer repairs, Synology NAS backup, and factory network setups.',
     schemaType: 'CollectionPage, TechArticle',
@@ -434,7 +434,7 @@ export const SEO_KEYWORD_MAPPING_MATRIX: KeywordMapEntry[] = [
       'computer repair home service Kotli Behram Sialkot',
       'free laptop diagnosis lab address in Sialkot',
     ],
-    pageTitle: 'Contact IT Consultants Sialkot – Kotli Behram & Paris Road | EVONIX',
+    pageTitle: 'Contact IT Consultants Sialkot – Kotli Behram & Paris Road | evonix',
     metaDescription:
       'Got a question? Call us. We reply in 2 hours. Doorstep IT support in Kotli Behram, Paris Road, and Sialkot Cantt. Free bench diagnosis.',
     schemaType: 'ContactPage, PostalAddress',
@@ -468,7 +468,7 @@ export const SEO_KEYWORD_MAPPING_MATRIX: KeywordMapEntry[] = [
       'on-site IT support for surgical factories in Daska',
       'emergency computer technician Sambrial Dry Port Trust',
     ],
-    pageTitle: 'Local IT Services Hub – Daska, Sambrial & Wazirabad | EVONIX TECHNOLOGIES',
+    pageTitle: 'Local IT Services Hub – Daska, Sambrial & Wazirabad | evonix technologies',
     metaDescription:
       'Doorstep industrial IT consultancy, hardware maintenance, retail POS systems, and chip-level motherboard repair across Daska, Sambrial, and Wazirabad with 25-45 min field dispatch.',
     schemaType: 'CollectionPage, AdministrativeArea',
@@ -502,7 +502,7 @@ export const SEO_KEYWORD_MAPPING_MATRIX: KeywordMapEntry[] = [
       '35 min doorstep computer technician dispatch Daska',
       'surgical factory computer maintenance AMC in Daska',
     ],
-    pageTitle: 'IT Services & Computer Repair in Daska | EVONIX TECHNOLOGIES',
+    pageTitle: 'IT Services & Computer Repair in Daska | evonix technologies',
     metaDescription:
       'Doorstep IT consultancy, hardware maintenance AMC, POS software, and laptop repair in Daska, Sialkot. Rapid 35-45 min technician dispatch from Paris Road lab.',
     schemaType: 'LocalBusiness, Service',
@@ -536,7 +536,7 @@ export const SEO_KEYWORD_MAPPING_MATRIX: KeywordMapEntry[] = [
       '24/7 WeBOC customs server uptime support Sambrial',
       '25 min emergency field dispatch to Sialkot Dry Port',
     ],
-    pageTitle: 'IT Services & WeBOC Support Sambrial Dry Port | EVONIX',
+    pageTitle: 'IT Services & WeBOC Support Sambrial Dry Port | evonix',
     metaDescription:
       'Specialized IT support for Sambrial Dry Port Trust (SDPT), freight clearing agents, and SIAL Airport cargo offices. Guaranteed 25-35 min field arrival.',
     schemaType: 'LocalBusiness, Service',
@@ -570,7 +570,7 @@ export const SEO_KEYWORD_MAPPING_MATRIX: KeywordMapEntry[] = [
       'metal dust protected computer maintenance for cutlery units',
       '40 min on-site IT support engineer visit Wazirabad',
     ],
-    pageTitle: 'IT Services & Cutlery Industry Tech Support Wazirabad | EVONIX',
+    pageTitle: 'IT Services & Cutlery Industry Tech Support Wazirabad | evonix',
     metaDescription:
       'Doorstep IT consultancy, dust-resistant hardware maintenance AMC, cutlery export web development, and laptop repair in Wazirabad with 40-50 min dispatch.',
     schemaType: 'LocalBusiness, Service',
@@ -614,7 +614,7 @@ export const SEO_KEYWORD_MAPPING_MATRIX: KeywordMapEntry[] = [
       'client side private online invoice editor for freelancers',
       'how to use online invoice maker free without login',
     ],
-    pageTitle: 'Free Online Invoice Generator & Maker Pakistan | EVONIX',
+    pageTitle: 'Free Online Invoice Generator & Maker Pakistan | evonix',
     metaDescription:
       'Free online invoice maker and editor for Pakistan and global businesses. 100% free client-side billing with FBR tax rates, Code128 barcodes, and A4 PDF export.',
     schemaType: 'WebApplication, SoftwareApplication',

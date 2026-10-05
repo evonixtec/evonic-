@@ -74,7 +74,7 @@ export async function dispatchQuoteNotification(
     const timeoutId = setTimeout(() => controller.abort(), 6500);
 
     const emailFormData: Record<string, string> = {
-      _subject: `[EVONIX Quotation ${referenceId}] ${payload.country ? `[${payload.country}] ` : ''}${payload.serviceType} - ${payload.fullName}`,
+      _subject: `[evonix Quotation ${referenceId}] ${payload.country ? `[${payload.country}] ` : ''}${payload.serviceType} - ${payload.fullName}`,
       _template: 'table',
       _captcha: 'false',
       _replyto: payload.email || recipientEmail,
@@ -127,7 +127,7 @@ export async function dispatchQuoteNotification(
   }
 
   // Console audit confirmation
-  console.log(`[EVONIX QUOTE DISPATCH] Reference: ${fullPayload.referenceId} -> Country: ${fullPayload.country} -> Notified: ${fullPayload.recipientEmail}`);
+  console.log(`[evonix QUOTE DISPATCH] Reference: ${fullPayload.referenceId} -> Country: ${fullPayload.country} -> Notified: ${fullPayload.recipientEmail}`);
 
   return fullPayload;
 }
@@ -155,7 +155,7 @@ _Dispatch routed to evonixtec@gmail.com_`;
  */
 export function buildMailtoQuoteUrl(quote: QuotePayload): string {
   const subject = `[Quote ${quote.referenceId}] [${quote.country || 'Global'}] Inquiry for ${quote.serviceType} - ${quote.fullName}`;
-  const body = `EVONIX TECHNOLOGIES INTERNATIONAL QUOTATION SUBMISSION
+  const body = `evonix technologies INTERNATIONAL QUOTATION SUBMISSION
 Reference Number: ${quote.referenceId}
 Date: ${new Date(quote.submittedAt).toLocaleString()}
 

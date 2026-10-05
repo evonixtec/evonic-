@@ -61,7 +61,7 @@ const SAMPLE_REPAIRS: RepairJob[] = [
     estimatedCompletion: '24 Sep 2026, 05:30 PM',
     currentStatus: 'stress_test',
     primaryTechnician: 'Engr. Hamza Tariq (Chief Hardware Specialist)',
-    labLocation: 'Evonix Micro-electronics Lab, Daska Road & Paris Road, Sialkot',
+    labLocation: 'evonix Micro-electronics Lab, Daska Road & Paris Road, Sialkot',
     reportedFault: 'Complete power failure following 380V generator phase fluctuation in factory.',
     technicianNotes: 'Identified dead short on 19.5V main power rail. Replaced blown high-side Vishay MOSFET (PQ201) and adjacent decoupling ceramic capacitor. 3.3V and 5V power rails restored. Motherboard ultrasonic cleaned and dried.',
     benchReadings: {
@@ -121,7 +121,7 @@ const SAMPLE_REPAIRS: RepairJob[] = [
     estimatedCompletion: '24 Sep 2026, 04:00 PM',
     currentStatus: 'ready',
     primaryTechnician: 'Bilal Ashraf (Senior PCB & Logic Board Engineer)',
-    labLocation: 'Evonix Paris Road Lab, Sialkot',
+    labLocation: 'evonix Paris Road Lab, Sialkot',
     reportedFault: 'Green tea spill on trackpad and keyboard area. System shutting down after 3 minutes.',
     technicianNotes: 'Corrosion spotted near PMIC power management IC and keyboard backlight circuit. Ultrasonic cleaning performed. Three corroded 0201 pull-up resistors replaced and one trace jumpered with 0.02mm enameled wire.',
     benchReadings: {
@@ -180,7 +180,7 @@ const SAMPLE_REPAIRS: RepairJob[] = [
     estimatedCompletion: '25 Sep 2026, 12:00 PM',
     currentStatus: 'repairing',
     primaryTechnician: 'Engr. Hamza Tariq',
-    labLocation: 'Evonix Industrial Field Workshop, Sialkot',
+    labLocation: 'evonix Industrial Field Workshop, Sialkot',
     reportedFault: 'Paper jam error 13.00.00 and heavy black lines on export shipping invoices.',
     technicianNotes: 'Fuser film sleeve torn due to paper clip staple damage. Lower pressure roller melted and pickup rollers worn out. Replaced OEM fuser film, pressure roller, and cleaned laser scanner mirror.',
     benchReadings: {
@@ -217,7 +217,7 @@ const SAMPLE_REPAIRS: RepairJob[] = [
       },
       {
         title: 'Packaging & Return Dispatch to Small Industrial Estate',
-        description: 'Technician on-site return scheduled via Evonix dispatch van.',
+        description: 'Technician on-site return scheduled via evonix dispatch van.',
         timestamp: 'Pending Final Run',
         completed: false
       }
@@ -287,7 +287,7 @@ export const LiveRepairTracker: React.FC<LiveRepairTrackerProps> = ({ onOpenQuot
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-100 text-red-700 text-xs font-bold uppercase tracking-wider mb-4 border border-red-200">
             <Wrench className="w-3.5 h-3.5" />
-            <span>Evonix Hardware Lab RMA Portal</span>
+            <span>evonix hardware lab rma portal</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
             Live Repair Ticket & Bench Diagnostics Tracker
@@ -523,7 +523,7 @@ export const LiveRepairTracker: React.FC<LiveRepairTrackerProps> = ({ onOpenQuot
               <div className="bg-slate-50 rounded-2xl p-5 border border-slate-200 space-y-3">
                 <div className="flex items-center gap-2 text-xs font-bold text-slate-900 uppercase tracking-wide">
                   <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                  <span>Evonix Lab Quality Guarantee</span>
+                  <span>evonix lab quality guarantee</span>
                 </div>
                 <ul className="text-xs text-slate-600 space-y-2">
                   <li className="flex items-start gap-2">

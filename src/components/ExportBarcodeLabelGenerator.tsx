@@ -35,7 +35,7 @@ const TEMPLATES: LabelTemplate[] = [
     defaultTitle: 'TITANIUM MICRO-SURGICAL FORCEPS 14CM',
     defaultBarcode: 'PK-SIAL-SURG-9018-042',
     defaultData: {
-      exporter: 'EVONIX Medical Devices - Sialkot, Pakistan',
+      exporter: 'evonix medical devices - Sialkot, Pakistan',
       consignee: 'Klinikum Medical GmbH - Hamburg, Germany',
       poNumber: 'PO-DE-2026-8841',
       batchLot: 'LOT-2603-AUTOCLAVE',
@@ -73,7 +73,7 @@ const TEMPLATES: LabelTemplate[] = [
     defaultTitle: 'AMAZON FBA SHIPMENT - CARTON 1 OF 12',
     defaultBarcode: 'X003A4B9YZ',
     defaultData: {
-      shipFrom: 'EVONIX Logistics Center, Paris Road, Sialkot',
+      shipFrom: 'evonix logistics center, Paris Road, Sialkot',
       shipTo: 'Amazon FBA Warehouse #LTN1, Dunstable, UK',
       shipmentId: 'FBA15K893XZ7',
       courierTracking: 'DHL Express AWB: 984 1029 481',
@@ -93,7 +93,7 @@ const TEMPLATES: LabelTemplate[] = [
       pricePkr: 'PKR 2,450 (Incl. 18% GST)',
       itemSku: 'SKU: PER-LOG-B170-GRY',
       warranty: '1 Year Sialkot Replacement Warranty',
-      storeName: 'EVONIX Tech Retail Hub - Sialkot Cantt',
+      storeName: 'evonix tech retail hub - Sialkot Cantt',
     },
     dimensions: '2" × 1" (50.8mm × 25.4mm)',
   },
@@ -426,7 +426,7 @@ export const ExportBarcodeLabelGenerator: React.FC<BarcodeStudioProps> = ({ onOp
                 {/* Bottom Footer & Regulatory Warning */}
                 <div className="pt-2 border-t-2 border-black flex items-center justify-between text-[9px] text-slate-700 font-bold uppercase">
                   <span>SIALKOT CHAMBER OF COMMERCE (SCCI) ACCREDITED</span>
-                  <span>EVONIX INDUSTRIAL SYSTEMS • PAKISTAN</span>
+                  <span>evonix industrial systems • pakistan</span>
                 </div>
               </div>
             </div>

@@ -5,6 +5,8 @@ import { SOFTWARE_DEV_BLOGS } from './softwareDevBlogs';
 import { HARDWARE_REPAIR_BLOGS } from './hardwareRepairBlogs';
 import { SIALKOT_FIELD_BLOGS } from './sialkotFieldBlogs';
 
+import { enrichBlogPost } from '../../lib/blogImages';
+
 export * from './types';
 export { FRESH_HUMAN_BLOGS } from './freshHumanBlogs';
 export { WEB_GRAPHICS_BLOGS } from './webGraphicsBlogs';
@@ -12,13 +14,15 @@ export { SOFTWARE_DEV_BLOGS } from './softwareDevBlogs';
 export { HARDWARE_REPAIR_BLOGS } from './hardwareRepairBlogs';
 export { SIALKOT_FIELD_BLOGS } from './sialkotFieldBlogs';
 
-export const ALL_BLOGS: BlogPost[] = [
+const RAW_BLOGS: BlogPost[] = [
   ...FRESH_HUMAN_BLOGS,
   ...SIALKOT_FIELD_BLOGS,
   ...WEB_GRAPHICS_BLOGS,
   ...SOFTWARE_DEV_BLOGS,
   ...HARDWARE_REPAIR_BLOGS,
 ];
+
+export const ALL_BLOGS: BlogPost[] = RAW_BLOGS.map(enrichBlogPost);
 
 export interface BlogCategoryMeta {
   id: BlogCategory | 'all';

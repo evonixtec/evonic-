@@ -444,7 +444,7 @@ export const HardwareBlinkBeepIdentifier: React.FC = () => {
                 <div className="p-4 rounded-2xl bg-emerald-950/30 border border-emerald-500/40">
                   <div className="flex items-center gap-2 text-emerald-400 font-bold text-xs uppercase mb-1">
                     <Wrench className="w-3.5 h-3.5" />
-                    <span>Evonix Bench Repair Procedure</span>
+                    <span>evonix bench repair procedure</span>
                   </div>
                   <p className="text-emerald-200 leading-relaxed">{activeCode.benchSolution}</p>
                 </div>
@@ -465,7 +465,7 @@ export const HardwareBlinkBeepIdentifier: React.FC = () => {
 
               <a
                 href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(
-                  `Assalam-o-Alaikum Evonix Lab, my ${activeCode.brand} laptop shows blink code: ${activeCode.patternDisplay} (${activeCode.faultName}). I would like to bring it for free bench diagnostic.`
+                  `Assalam-o-Alaikum evonix lab, my ${activeCode.brand} laptop shows blink code: ${activeCode.patternDisplay} (${activeCode.faultName}). I would like to bring it for free bench diagnostic.`
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"

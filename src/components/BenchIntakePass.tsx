@@ -129,7 +129,7 @@ export const BenchIntakePass: React.FC<BenchIntakePassProps> = ({
   };
 
   const handleWhatsAppDispatch = () => {
-    const text = `*EVONIX LAB OFFICIAL RMA PASS*\n` +
+    const text = `*evonix LAB OFFICIAL RMA PASS*\n` +
       `Job Token: *${intakeId}*\n` +
       `Client: ${clientName} (${phone || 'No phone'})\n` +
       `Area: ${area} (${serviceMode === 'doorstep' ? 'Doorstep Van Pickup' : 'Lab Walk-in'})\n` +

@@ -357,7 +357,7 @@ export const SialkotSeoKeywordsHub: React.FC<SialkotSeoKeywordsHubProps> = ({ on
             High-Value Sialkot Ranking Keywords & Local SEO Strategy
           </h2>
           <p className="text-base text-slate-600 leading-relaxed font-sans">
-            Curated roadmap of high-intent search queries across Daska Road, Rangpura, Paris Road, and Sialkot Cantt. Every page and blog on EVONIX is semantically structured to rank #1 on Google for these exact queries.
+            Curated roadmap of high-intent search queries across Daska Road, Rangpura, Paris Road, and Sialkot Cantt. Every page and blog on evonix is semantically structured to rank #1 on Google for these exact queries.
           </p>
         </div>
 
@@ -471,13 +471,13 @@ export const SialkotSeoKeywordsHub: React.FC<SialkotSeoKeywordsHubProps> = ({ on
         <div className="bg-slate-900 text-white rounded-3xl p-6 sm:p-10 border border-slate-800 shadow-xl space-y-8">
           <div className="space-y-2">
             <span className="text-xs font-bold text-red-400 uppercase tracking-wider block">
-              EVONIX Local SEO Master Plan
+              evonix Local SEO Master Plan
             </span>
             <h3 className="text-2xl sm:text-3xl font-black tracking-tight">
               5-Step Blueprint to Rank #1 on Google in Sialkot
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-              Based on Google local ranking algorithm updates (proximity, relevance, prominence). Here is how EVONIX ensures continuous top rankings for technology and hardware repair in Sialkot.
+              Based on Google local ranking algorithm updates (proximity, relevance, prominence). Here is how evonix ensures continuous top rankings for technology and hardware repair in Sialkot.
             </p>
           </div>
 
@@ -537,7 +537,7 @@ export const SialkotSeoKeywordsHub: React.FC<SialkotSeoKeywordsHubProps> = ({ on
                 <span className="text-[10px] font-bold uppercase tracking-wider text-red-200">
                   Ready to Grow Your Sialkot Ranking?
                 </span>
-                <h4 className="text-base font-bold mt-1">Want EVONIX To Build Your SEO Platform?</h4>
+                <h4 className="text-base font-bold mt-1">Want evonix To Build Your SEO Platform?</h4>
                 <p className="text-xs text-red-100 mt-1 leading-relaxed">
                   We engineer B2B export portals that rank at the top of Google in the USA, Germany, and the UK.
                 </p>

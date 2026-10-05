@@ -12,7 +12,7 @@ export const SOFTWARE_DEV_BLOGS: BlogPost[] = [
     publishedDate: '2025-01-16',
     author: { name: 'Raza Muhammad', role: 'Principal Software Architect' },
     tags: ['Custom ERP', 'Software Architecture', 'Business Automation', 'POS'],
-    metaTitle: 'Custom ERP vs Off-the-Shelf Software Guide | EVONIX',
+    metaTitle: 'Custom ERP vs Off-the-Shelf Software Guide | evonix',
     metaDescription: 'Unbiased ROI comparison: Should your manufacturing or retail business build custom software or subscribe to generic off-the-shelf SaaS?',
     targetKeywords: ['custom ERP software', 'off the shelf vs custom', 'bespoke business software', 'software developer Sialkot'],
     internalLinks: [
@@ -40,7 +40,7 @@ Where Custom ERP Dominates
     publishedDate: '2025-01-22',
     author: { name: 'Farhan Ali', role: 'POS & Database Specialist' },
     tags: ['POS Systems', 'Offline First', 'Retail Tech', 'Supermarket POS'],
-    metaTitle: 'Designing Offline-First POS Systems | EVONIX',
+    metaTitle: 'Designing Offline-First POS Systems | evonix',
     metaDescription: 'Technical blueprint for retail POS software that processes barcode sales instantly during internet blackouts and syncs seamlessly once reconnected.',
     targetKeywords: ['offline POS system', 'supermarket point of sale', 'retail billing software', 'barcode POS Sialkot'],
     internalLinks: [
@@ -67,7 +67,7 @@ Deterministic Conflict Resolution: Server-side reconciliation handles stock allo
     publishedDate: '2025-01-30',
     author: { name: 'Raza Muhammad', role: 'Principal Software Architect' },
     tags: ['Inventory Sync', 'Multi-Branch', 'WebSockets', 'Cloud ERP'],
-    metaTitle: 'Multi-Branch Real-Time Inventory Sync | EVONIX',
+    metaTitle: 'Multi-Branch Real-Time Inventory Sync | evonix',
     metaDescription: 'How multi-store retail chains and international trading companies keep warehouse stock and branch counters synchronized in real time.',
     targetKeywords: ['multi branch inventory software', 'real time stock sync', 'centralized ERP', 'chain store POS'],
     internalLinks: [
@@ -78,7 +78,7 @@ The Challenge of Real-Time Multi-Branch Inventory Sync
 When a Sialkot manufacturer or retail brand expands across multiple outlets or warehouses (for example, between Sialkot Cantt, Lahore, and Karachi, or international fulfillment centers in Dubai), inventory discrepancies quickly spiral into lost sales and double-sold stock. If branch connectivity relies on naive synchronous remote database calls, every cashier transaction halts whenever internet bandwidth experiences jitter.
 
 Our Distributed Event-Driven Sync Architecture
-At EVONIX, we architect multi-branch inventory using a robust event-driven conflict-free replicated data type (CRDT) model. Each retail terminal logs stock deductions locally to its embedded SQLite database, generating a cryptographic transaction sequence vector. A lightweight background worker pushes batched delta changes to our high-availability PostgreSQL cloud cluster via encrypted WebSockets.
+At evonix, we architect multi-branch inventory using a robust event-driven conflict-free replicated data type (CRDT) model. Each retail terminal logs stock deductions locally to its embedded SQLite database, generating a cryptographic transaction sequence vector. A lightweight background worker pushes batched delta changes to our high-availability PostgreSQL cloud cluster via encrypted WebSockets.
 
 Automatic Split-Brain Resolution
 If an entire city branch loses fiber internet connectivity for six hours, the local terminal continues processing sales seamlessly in offline mode. When connection restores, our synchronization engine compares vector clocks, validates physical stock reservations, and reconciles inventory levels across all branches within 1.2 seconds, dispatching an automated discrepancy digest to company directors via WhatsApp.
@@ -95,7 +95,7 @@ If an entire city branch loses fiber internet connectivity for six hours, the lo
     publishedDate: '2025-02-04',
     author: { name: 'Farhan Ali', role: 'POS & Database Specialist' },
     tags: ['Thermal Printing', 'Barcodes', 'ESC/POS', 'Hardware Integration'],
-    metaTitle: 'Barcode Generation & Thermal Docket Printing | EVONIX',
+    metaTitle: 'Barcode Generation & Thermal Docket Printing | evonix',
     metaDescription: 'Comprehensive guide to ESC/POS thermal receipt printing, barcode standards, and automatic cash drawer interfaces in point of sale systems.',
     targetKeywords: ['thermal receipt printing', 'barcode billing software', 'ESC POS commands', 'hardware POS integration'],
     internalLinks: [
@@ -106,7 +106,7 @@ Sub-Second Barcode Generation and High-Speed Thermal Docket Printing
 In high-volume retail environments like Sialkot garment bazaars, footwear stores, and surgical dispatch rooms, checkout speed directly determines customer satisfaction. Waiting five seconds for a Windows print spooler dialog to render a receipt creates long counter queues and cashier frustration.
 
 Direct ESC/POS Raw Socket Protocol
-Instead of routing print jobs through standard bloated operating system print spoolers, EVONIX POS software communicates directly with thermal printer firmware via raw ESC/POS byte commands over local USB or static TCP/IP port 9100. This eliminates graphical rendering overhead completely:
+Instead of routing print jobs through standard bloated operating system print spoolers, evonix POS software communicates directly with thermal printer firmware via raw ESC/POS byte commands over local USB or static TCP/IP port 9100. This eliminates graphical rendering overhead completely:
 - 80mm thermal receipts print and auto-cut in under 0.8 seconds.
 - Embedded high-density 2D QR codes and GS1-128 barcodes print with zero jagged pixel blurring.
 - Cash drawers trigger instant solenoid kick pulses on cash tender without delay.
@@ -124,7 +124,7 @@ Instead of routing print jobs through standard bloated operating system print sp
     publishedDate: '2025-02-08',
     author: { name: 'Raza Muhammad', role: 'Principal Software Architect' },
     tags: ['Payment Gateways', 'FinTech', 'E-Commerce', 'Security'],
-    metaTitle: 'Integrating Secure Payment Gateways | EVONIX',
+    metaTitle: 'Integrating Secure Payment Gateways | evonix',
     metaDescription: 'Step-by-step technical guide to integrating online payment solutions with zero chargeback risk, 3D Secure verification, and automated webhook verification.',
     targetKeywords: ['payment gateway integration', 'online payment Pakistan', 'Stripe UAE integration', 'secure checkout developer'],
     internalLinks: [
@@ -152,7 +152,7 @@ We architect payment portals using a unified abstraction layer that dynamically 
     publishedDate: '2025-02-12',
     author: { name: 'Farhan Ali', role: 'POS & Database Specialist' },
     tags: ['Database Migration', 'SQL', 'PostgreSQL', 'Cloud Infrastructure'],
-    metaTitle: 'Migrating Excel Spreadsheets to Cloud SQL | EVONIX',
+    metaTitle: 'Migrating Excel Spreadsheets to Cloud SQL | evonix',
     metaDescription: 'Why relying on Excel leads to data corruption, duplicate records, and security leaks - and how to migrate cleanly to a relational database.',
     targetKeywords: ['database migration', 'Excel to SQL', 'PostgreSQL business database', 'data cleanup service'],
     internalLinks: [
@@ -179,7 +179,7 @@ Our Zero-Downtime Data Migration Methodology
     publishedDate: '2025-02-16',
     author: { name: 'Raza Muhammad', role: 'Principal Software Architect' },
     tags: ['APIs', 'REST', 'GraphQL', 'Backend Architecture'],
-    metaTitle: 'Building Scalable High-Concurrency APIs | EVONIX',
+    metaTitle: 'Building Scalable High-Concurrency APIs | evonix',
     metaDescription: 'Architecting fast, secure, and resilient APIs that scale under heavy holiday shopping surges and enterprise mobile sync traffic.',
     targetKeywords: ['scalable backend API', 'REST vs GraphQL', 'Redis caching', 'backend software engineering'],
     internalLinks: [
@@ -187,7 +187,7 @@ Our Zero-Downtime Data Migration Methodology
     ],
     content: `
 Building Resilient REST & GraphQL APIs for Enterprise Workflows
-As enterprise software expands across web apps, mobile inventory scanners, and third-party courier APIs, a brittle backend architecture creates endless maintenance bottlenecks. EVONIX builds high-concurrency micro-services using TypeScript, Node.js, and Golang capable of handling thousands of simultaneous requests.
+As enterprise software expands across web apps, mobile inventory scanners, and third-party courier APIs, a brittle backend architecture creates endless maintenance bottlenecks. evonix builds high-concurrency micro-services using TypeScript, Node.js, and Golang capable of handling thousands of simultaneous requests.
 
 Enterprise Architectural Highlights
 - GraphQL Schema Stitching: Allows frontend dashboards to query exactly the data fields required, reducing mobile cellular data consumption by 65%.
@@ -206,7 +206,7 @@ Enterprise Architectural Highlights
     publishedDate: '2025-02-20',
     author: { name: 'Farhan Ali', role: 'POS & Database Specialist' },
     tags: ['Restaurant POS', 'KDS', 'Hospitality Tech', 'Tablet Ordering'],
-    metaTitle: 'Modern Restaurant Management & KDS POS | EVONIX',
+    metaTitle: 'Modern Restaurant Management & KDS POS | evonix',
     metaDescription: 'How modern cafes, fine dining, and fast-food franchises eliminate kitchen errors and cut order prep time using integrated digital KDS systems.',
     targetKeywords: ['restaurant POS system', 'kitchen display system KDS', 'waiter tablet ordering', 'food billing software'],
     internalLinks: [
@@ -216,7 +216,7 @@ Enterprise Architectural Highlights
 Touch POS and Kitchen Display Systems (KDS) for Restaurants
 Modern restaurants, bakeries, and cafes in Sialkot require instant synchronization between order-taking waitstaff, cashiers, and kitchen prep lines. Paper kitchen tickets get stained, misplaced, or delayed, resulting in incorrect food prep and customer complaints.
 
-EVONIX Real-Time KDS Architecture
+evonix Real-Time KDS Architecture
 Our restaurant POS integrates lightweight capacitive waiter tablets with dynamic Kitchen Display System (KDS) wall monitors over a local private Wi-Fi network. When a waiter submits an order table-side, the kitchen screen chimes instantly with color-coded prep timers. Items ready for serving alert waitstaff with a vibration buzz on their handheld devices.
     `,
   },
@@ -231,7 +231,7 @@ Our restaurant POS integrates lightweight capacitive waiter tablets with dynamic
     publishedDate: '2025-02-24',
     author: { name: 'Raza Muhammad', role: 'Principal Software Architect' },
     tags: ['RBAC', 'Cybersecurity', 'Enterprise Security', 'POS Permissions'],
-    metaTitle: 'Role-Based Access Control (RBAC) in Enterprise Software | EVONIX',
+    metaTitle: 'Role-Based Access Control (RBAC) in Enterprise Software | evonix',
     metaDescription: 'Protect confidential financial figures and audit trails by enforcing fine-grained user roles and permission policies across your software.',
     targetKeywords: ['role based access control', 'RBAC software architecture', 'enterprise security', 'secure internal software'],
     internalLinks: [
@@ -259,7 +259,7 @@ We implement military-grade Role-Based Access Control (RBAC) with JSON Web Token
     publishedDate: '2025-02-28',
     author: { name: 'Farhan Ali', role: 'POS & Database Specialist' },
     tags: ['Cloud Backups', 'Disaster Recovery', 'Database Security', 'PITR'],
-    metaTitle: 'Automated Cloud Backups & Disaster Recovery | EVONIX',
+    metaTitle: 'Automated Cloud Backups & Disaster Recovery | evonix',
     metaDescription: 'Protect your enterprise data against accidental deletion, hardware failure, and ransomware with multi-region automated database backups.',
     targetKeywords: ['database disaster recovery', 'automated cloud backup', 'prevent data loss', 'ransomware protection business'],
     internalLinks: [
@@ -270,7 +270,7 @@ Automated Disaster Recovery and Cloud Backup Pipelines
 Hard drive mechanical failure, ransomware cyberattacks, or accidental database dropping can destroy years of critical accounting and export records in seconds. Relying on an office clerk to manually copy database files to an external hard drive every Friday is a recipe for disaster.
 
 Our Continuous Backup Protocol
-EVONIX configures automated database backup daemons that execute continuous point-in-time recovery (PITR) with write-ahead log (WAL) archiving. Compressed, AES-256 encrypted database snapshots are automatically dispatched to multi-region cloud storage (Frankfurt and Dubai) every night at 2:00 AM, with automated integrity restoration drills executed monthly.
+evonix configures automated database backup daemons that execute continuous point-in-time recovery (PITR) with write-ahead log (WAL) archiving. Compressed, AES-256 encrypted database snapshots are automatically dispatched to multi-region cloud storage (Frankfurt and Dubai) every night at 2:00 AM, with automated integrity restoration drills executed monthly.
     `,
   },
   {
@@ -284,7 +284,7 @@ EVONIX configures automated database backup daemons that execute continuous poin
     publishedDate: '2025-03-04',
     author: { name: 'Raza Muhammad', role: 'Principal Software Architect' },
     tags: ['Warehouse Management', 'Logistics', 'RFID', 'Barcode Tracking'],
-    metaTitle: 'Warehouse Logistics & RFID Barcode Systems | EVONIX',
+    metaTitle: 'Warehouse Logistics & RFID Barcode Systems | evonix',
     metaDescription: 'Streamline pick-and-pack operations, reduce inventory counting from 3 days to 30 minutes, and eliminate dispatch shipping errors.',
     targetKeywords: ['warehouse management software', 'RFID inventory tracking', 'handheld barcode scanners', 'Sialkot industrial software'],
     internalLinks: [
@@ -309,7 +309,7 @@ We implement modern Warehouse Management Systems (WMS) utilizing ruggedized Andr
     publishedDate: '2025-03-08',
     author: { name: 'Farhan Ali', role: 'POS & Database Specialist' },
     tags: ['CRM', 'WhatsApp API', 'Automation', 'Sales Funnels'],
-    metaTitle: 'Custom CRM with WhatsApp API Automation | EVONIX',
+    metaTitle: 'Custom CRM with WhatsApp API Automation | evonix',
     metaDescription: 'Double your lead close rates by automating instant WhatsApp quotes, order delivery alerts, and automated customer satisfaction check-ins.',
     targetKeywords: ['custom CRM software', 'WhatsApp Cloud API integration', 'automated lead follow up', 'sales automation'],
     internalLinks: [
@@ -334,7 +334,7 @@ We build centralized corporate CRM systems integrated directly with the official
     publishedDate: '2025-03-12',
     author: { name: 'Raza Muhammad', role: 'Principal Software Architect' },
     tags: ['Accounting Software', 'Tax Compliance', 'SECP', 'Invoicing'],
-    metaTitle: 'Accounting & Tax Compliance POS Software | EVONIX',
+    metaTitle: 'Accounting & Tax Compliance POS Software | evonix',
     metaDescription: 'How retail and corporate software automates regional tax reporting, digital QR fiscal invoices, and double-entry accounting ledgers.',
     targetKeywords: ['tax compliant POS', 'SECP accounting software', 'FBR digital invoice', 'business ledger software'],
     internalLinks: [
@@ -345,7 +345,7 @@ Tax Compliance and FBR Digital Invoicing Integration
 Pakistani commercial enterprises and retailers must comply with ongoing FBR Point of Sale digital integration rules to avoid administrative penalties and counter seals. Integrating fiscalization requires tamper-proof digital signing and reliable real-time reporting.
 
 Seamless Fiscal API Integration
-Our software developers embed compliant fiscal cryptographic signature modules into EVONIX POS. Invoices generate an official FBR verifiable QR code with invoice tracking number (FBR-INV-NO) directly on the 80mm thermal slip within 400 milliseconds, with automatic offline buffering during tax portal server downtime.
+Our software developers embed compliant fiscal cryptographic signature modules into evonix POS. Invoices generate an official FBR verifiable QR code with invoice tracking number (FBR-INV-NO) directly on the 80mm thermal slip within 400 milliseconds, with automatic offline buffering during tax portal server downtime.
     `,
   },
   {
@@ -359,7 +359,7 @@ Our software developers embed compliant fiscal cryptographic signature modules i
     publishedDate: '2025-03-16',
     author: { name: 'Raza Muhammad', role: 'Principal Software Architect' },
     tags: ['Microservices', 'Monolith', 'Software Architecture', 'DevOps'],
-    metaTitle: 'Microservices vs Monolithic Architecture Guide | EVONIX',
+    metaTitle: 'Microservices vs Monolithic Architecture Guide | evonix',
     metaDescription: 'Avoid the common trap of distributed microservice complexity. Discover when to stick to a modular monolith and when to decouple.',
     targetKeywords: ['microservices vs monolith', 'software engineering architecture', 'modular backend design'],
     internalLinks: [
@@ -384,7 +384,7 @@ For 90% of mid-size enterprises in Sialkot with under 100,000 daily transactions
     publishedDate: '2025-03-20',
     author: { name: 'Farhan Ali', role: 'POS & Database Specialist' },
     tags: ['Mobile Apps', 'Field Sales', 'Flutter', 'React Native'],
-    metaTitle: 'Field Sales Mobile App Development | EVONIX',
+    metaTitle: 'Field Sales Mobile App Development | evonix',
     metaDescription: 'Equip your sales team with mobile applications that book client orders on the road, track delivery routes, and sync with central ERPs.',
     targetKeywords: ['field sales mobile app', 'order booking app', 'cross platform app development', 'business mobile app'],
     internalLinks: [
@@ -409,7 +409,7 @@ We develop cross-platform iOS and Android mobile apps with full offline synchron
     publishedDate: '2025-03-24',
     author: { name: 'Farhan Ali', role: 'POS & Database Specialist' },
     tags: ['Audit Trails', 'Loss Prevention', 'POS Security', 'Retail Management'],
-    metaTitle: 'Automated Audit Trails in POS Software | EVONIX',
+    metaTitle: 'Automated Audit Trails in POS Software | evonix',
     metaDescription: 'How retail store owners detect billing manipulation, voided transaction tricks, and cash discrepancies with automated forensic logs.',
     targetKeywords: ['POS audit trail', 'prevent cashier theft', 'retail fraud detection', 'point of sale security'],
     internalLinks: [
@@ -420,7 +420,7 @@ Automated Audit Trails: Eliminating Cash Register Discrepancies
 Cash counter leakage and unauthorized discount overrides are persistent headaches for retail owners. When cash drawer totals fail to reconcile at closing time, identifying whether the error stemmed from cashier theft or honest mistake requires forensic audit logs.
 
 Cryptographic Event Ledger
-EVONIX POS records every single user interaction in an append-only, immutable audit ledger. Every drawer opening event, item deletion, receipt void, and price modification is permanently stamped with user ID, precise millisecond timestamp, and CCTV camera frame reference, completely eliminating mystery cash drawer variances.
+evonix POS records every single user interaction in an append-only, immutable audit ledger. Every drawer opening event, item deletion, receipt void, and price modification is permanently stamped with user ID, precise millisecond timestamp, and CCTV camera frame reference, completely eliminating mystery cash drawer variances.
     `,
   },
   {
@@ -434,7 +434,7 @@ EVONIX POS records every single user interaction in an append-only, immutable au
     publishedDate: '2025-03-28',
     author: { name: 'Raza Muhammad', role: 'Principal Software Architect' },
     tags: ['SQL Optimization', 'Database Performance', 'PostgreSQL', 'Query Tuning'],
-    metaTitle: 'Optimizing Slow SQL Queries in High-Volume Systems | EVONIX',
+    metaTitle: 'Optimizing Slow SQL Queries in High-Volume Systems | evonix',
     metaDescription: 'Step-by-step techniques to troubleshoot slow SQL queries, optimize database indexing, and reduce checkout response times from 3 seconds to 40ms.',
     targetKeywords: ['SQL query optimization', 'database index performance', 'PostgreSQL tuning', 'database speedup'],
     internalLinks: [
@@ -459,11 +459,11 @@ Our senior database specialists analyze slow query logs (pg_stat_statements) to 
     publishedDate: '2025-04-01',
     author: { name: 'Raza Muhammad', role: 'Principal Software Architect' },
     tags: ['Cryptography', 'Data Security', 'FinTech', 'Encryption'],
-    metaTitle: 'End-to-End Encryption in Financial Software | EVONIX',
+    metaTitle: 'End-to-End Encryption in Financial Software | evonix',
     metaDescription: 'How modern fintech applications and enterprise ledgers protect transaction payloads using cryptographic hashing, HMAC signatures, and secure key vaults.',
     targetKeywords: ['financial software encryption', 'AES 256 database', 'secure transactional architecture'],
     internalLinks: [
-      { label: 'Security & Compliance Audits', targetSection: 'about', anchorText: 'EVONIX Security Protocols' },
+      { label: 'Security & Compliance Audits', targetSection: 'about', anchorText: 'evonix Security Protocols' },
     ],
     content: `
 End-to-End Encryption in Financial and Export Software
@@ -484,7 +484,7 @@ We implement AES-GCM-256 encryption for data at rest and enforce TLS 1.3 with Pe
     publishedDate: '2025-04-05',
     author: { name: 'Farhan Ali', role: 'POS & Database Specialist' },
     tags: ['Pharmacy POS', 'Batch Tracking', 'Healthcare Software', 'Expiry Management'],
-    metaTitle: 'Custom Pharmacy POS & Expiry Tracking Software | EVONIX',
+    metaTitle: 'Custom Pharmacy POS & Expiry Tracking Software | evonix',
     metaDescription: 'Eliminate expired medicine losses and comply with health regulations using specialized pharmacy point of sale software with batch-level tracking.',
     targetKeywords: ['pharmacy POS software', 'medicine expiry tracking', 'batch inventory software', 'medical store POS'],
     internalLinks: [
@@ -494,7 +494,7 @@ We implement AES-GCM-256 encryption for data at rest and enforce TLS 1.3 with Pe
 Custom Pharmacy POS Systems: Expiry Tracking & Prescription Logs
 Pharmacies and medical distributors operate under stringent drug regulatory requirements. Selling expired medications or dispensing restricted antibiotics without physician records can trigger severe legal liabilities and license cancellations.
 
-EVONIX Medical POS Architecture
+evonix Medical POS Architecture
 Our dedicated healthcare POS tracks medicines down to manufacturer batch number and physical expiration date using First-Expired, First-Out (FEFO) automated picking logic. Cashiers are blocked from scanning medications within 30 days of expiration, with automated supplier return debit notes generated automatically.
     `,
   },
@@ -509,7 +509,7 @@ Our dedicated healthcare POS tracks medicines down to manufacturer batch number 
     publishedDate: '2025-04-09',
     author: { name: 'Raza Muhammad', role: 'Principal Software Architect' },
     tags: ['AI in POS', 'Machine Learning', 'Predictive Analytics', 'Retail AI'],
-    metaTitle: 'AI in POS Software: Predictive Stocking & Reordering | EVONIX',
+    metaTitle: 'AI in POS Software: Predictive Stocking & Reordering | evonix',
     metaDescription: 'Discover how artificial intelligence and machine learning help retail stores forecast demand, optimize stock levels, and automate purchase orders.',
     targetKeywords: ['AI in retail POS', 'predictive inventory AI', 'smart point of sale', 'AI business software'],
     internalLinks: [
@@ -520,7 +520,7 @@ The Future of AI in POS Software: Predictive Stocking & Automated Reordering
 Modern artificial intelligence is transforming retail point-of-sale software from a passive cash register into an active profit-maximizing engine. Traditional retail managers frequently overstock slow-moving seasonal garments while running out of high-velocity basic inventory during peak festival weeks.
 
 Predictive Machine Learning Algorithms
-EVONIX integrates predictive time-series forecasting models into enterprise POS dashboards. The system analyzes historical sales velocities, local weather forecasts, wedding season dates, and supplier lead times to generate automated supplier purchase orders, reducing dead capital tied up in inventory by up to 28%.
+evonix integrates predictive time-series forecasting models into enterprise POS dashboards. The system analyzes historical sales velocities, local weather forecasts, wedding season dates, and supplier lead times to generate automated supplier purchase orders, reducing dead capital tied up in inventory by up to 28%.
     `,
   },
 ];

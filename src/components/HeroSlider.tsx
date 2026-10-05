@@ -111,7 +111,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
     } else if (slide.secondaryAction === 'whatsapp') {
       window.open(
         `https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(
-          `Hello EVONIX TECHNOLOGIES, I saw slide "${slide.headingPrefix}" on your website and would like details.`
+          `Hello evonix technologies, I saw slide "${slide.headingPrefix}" on your website and would like details.`
         )}`,
         '_blank'
       );

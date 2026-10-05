@@ -62,7 +62,7 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ policyType, onClose })
                   {getIcon()}
                 </div>
                 <p className="text-xs text-slate-500 font-mono mt-0.5">
-                  Last Updated: {data.lastUpdated} • EVONIX Sialkot
+                  Last Updated: {data.lastUpdated} • evonix Sialkot
                 </p>
               </div>
             </div>

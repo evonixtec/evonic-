@@ -83,7 +83,7 @@ const VERTICALS: IndustrialVertical[] = [
     verifiedClientQuote: {
       client: 'Chaudhry Nadeem Akhtar (Managing Partner)',
       company: 'Al-Madina Precision Surgical, Daska Road Sialkot',
-      quote: 'Before Evonix built our local ERP, we had major issues tracing micro-forged batches for our German dental buyers. Now, every single needle holder has a laser-mapped barcode and our export audit took just 35 minutes.'
+      quote: 'Before evonix built our local ERP, we had major issues tracing micro-forged batches for our German dental buyers. Now, every single needle holder has a laser-mapped barcode and our export audit took just 35 minutes.'
     }
   },
   {
@@ -127,7 +127,7 @@ const VERTICALS: IndustrialVertical[] = [
     verifiedClientQuote: {
       client: 'Mian Tariq Mehmood (Production Director)',
       company: 'Apex Sports Manufacturing, Ugoki Industrial Area Sialkot',
-      quote: 'We ship over 45,000 thermo-bonded match soccer balls monthly to the UAE and UK. Evonix gave us an inventory system that reduced cut-piece leather wastage by 14% in the very first quarter.'
+      quote: 'We ship over 45,000 thermo-bonded match soccer balls monthly to the UAE and UK. evonix gave us an inventory system that reduced cut-piece leather wastage by 14% in the very first quarter.'
     }
   },
   {
@@ -171,7 +171,7 @@ const VERTICALS: IndustrialVertical[] = [
     verifiedClientQuote: {
       client: 'Haji Asif Raza (CEO)',
       company: 'Raza Leathercraft & Biker Apparel, Kashmir Road Sialkot',
-      quote: 'Managing chemical drum mixtures and grading raw hide lots used to take hours of manual ledger work. Evonix built an automated recipe and cutting yield system that paid for itself within two months.'
+      quote: 'Managing chemical drum mixtures and grading raw hide lots used to take hours of manual ledger work. evonix built an automated recipe and cutting yield system that paid for itself within two months.'
     }
   }
 ];
@@ -254,7 +254,7 @@ export const SialkotIndustrialSolutions: React.FC<SialkotIndustrialSolutionsProp
               </button>
 
               <a
-                href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(`Assalam-o-Alaikum EVONIX, I want to discuss ERP software for my ${currentVertical.name} in Sialkot.`)}`}
+                href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(`Assalam-o-Alaikum evonix, I want to discuss ERP software for my ${currentVertical.name} in Sialkot.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-sm transition-all flex items-center justify-center gap-2"

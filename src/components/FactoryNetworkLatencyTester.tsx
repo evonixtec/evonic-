@@ -116,7 +116,7 @@ export const FactoryNetworkLatencyTester: React.FC = () => {
           </h2>
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
             Diagnose latency bottlenecks, packet drops, and SQL database slowdowns across your factory premises.
-            Evonix provides high-reliability dual-fiber failover, VLAN segmentation, and enterprise firewall routing across Sialkot.
+            evonix provides high-reliability dual-fiber failover, VLAN segmentation, and enterprise firewall routing across Sialkot.
           </p>
         </div>
 
@@ -267,7 +267,7 @@ export const FactoryNetworkLatencyTester: React.FC = () => {
               {/* Evonix Industrial Recommendation */}
               <div className="p-4 bg-blue-50/70 border border-blue-200/80 rounded-2xl text-xs space-y-1">
                 <span className="font-bold text-blue-900 block">
-                  Evonix Sialkot Industrial Network Standard:
+                  evonix Sialkot Industrial Network Standard:
                 </span>
                 <p className="text-slate-700 leading-relaxed font-medium">
                   For uninterrupted export shipments, our field team configures Mikrotik & Cisco SD-WAN with dual-line failover (Optic Fiber + 4G SIM Backup). If your primary link trips, your ERP and customs shipping lines switch over in under 300 milliseconds.
@@ -283,7 +283,7 @@ export const FactoryNetworkLatencyTester: React.FC = () => {
               </span>
               <a
                 href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(
-                  `Assalam-o-Alaikum Evonix Team, we need an industrial network audit and ERP latency optimization for our factory in Sialkot.`
+                  `Assalam-o-Alaikum evonix Team, we need an industrial network audit and ERP latency optimization for our factory in Sialkot.`
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"

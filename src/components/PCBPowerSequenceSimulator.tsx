@@ -131,7 +131,7 @@ export const PCBPowerSequenceSimulator: React.FC<PCBPowerSequenceSimulatorProps>
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-950/80 text-red-400 text-xs font-bold uppercase tracking-wider mb-4 border border-red-800">
             <Zap className="w-3.5 h-3.5 text-amber-400" />
-            <span>Evonix Micro-Electronics Bench Interactive Spec</span>
+            <span>evonix micro-electronics bench interactive spec</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
             Motherboard Power Sequence & Rail Diagnostics
@@ -243,7 +243,7 @@ export const PCBPowerSequenceSimulator: React.FC<PCBPowerSequenceSimulatorProps>
                 <div className="pt-2 border-t border-red-900/40 text-xs text-emerald-300 flex items-start gap-2">
                   <Wrench className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
                   <div>
-                    <strong className="text-white block mb-0.5">Evonix Bench Repair Method:</strong>
+                    <strong className="text-white block mb-0.5">evonix bench repair method:</strong>
                     <span>{currentRail.microSolderingFix}</span>
                   </div>
                 </div>

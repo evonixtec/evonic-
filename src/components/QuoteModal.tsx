@@ -267,7 +267,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                 </span>
               </div>
               <p className="text-xs text-slate-500 font-medium mt-0.5">
-                EVONIX • 20+ Years UAE Corporate Heritage • Global Delivery & Sialkot Lab
+                evonix • 20+ Years UAE Corporate Heritage • Global Delivery & Sialkot Lab
               </p>
             </div>
           </div>

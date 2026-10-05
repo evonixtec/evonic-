@@ -156,7 +156,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                     </span>
                   </div>
                   <a
-                    href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX, I want to discuss a requirement in Sialkot.')}`}
+                    href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello evonix, I want to discuss a requirement in Sialkot.')}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-lg sm:text-xl font-black text-emerald-800 hover:text-emerald-900 transition-colors block mt-1"
@@ -165,7 +165,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                   </a>
                   <div className="mt-2.5">
                     <a
-                      href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX, I want to discuss a requirement in Sialkot.')}`}
+                      href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello evonix, I want to discuss a requirement in Sialkot.')}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-xs font-bold shadow-md shadow-emerald-600/25 transition-all"

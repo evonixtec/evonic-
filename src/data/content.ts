@@ -215,10 +215,10 @@ export const HERO_SLIDES: HeroSlide[] = [
 ];
 
 export const COMPANY_INFO = {
-  name: 'EVONIX TECHNOLOGIES',
+  name: 'evonix technologies',
   nanoTagline: 'Dubai Precision Engineering • Sialkot Tech Hub',
   nanoTaglineUrdu: 'دبئی معیار کی ٹیکنالوجی اب سیالکوٹ میں',
-  tagline1: 'EVONIX TECHNOLOGIES - Your Trusted IT Partner.',
+  tagline1: 'evonix technologies - Your Trusted IT Partner.',
   tagline2: 'Experience of Dubai, Now in Pakistan. Crafting digital excellence across global borders.',
   hero: {
     heading: 'Experience of Dubai, Now in Pakistan',
@@ -228,10 +228,10 @@ export const COMPANY_INFO = {
     secondaryCta: 'Explore Services',
   },
   about: {
-    title: 'About Us - EVONIX TECHNOLOGIES',
+    title: 'About Us - evonix technologies',
     storyHeading: 'Our Story',
-    storyText: 'EVONIX TECHNOLOGIES is not just a new company, it is a name of 20 years of experience. We started our career in Dubai (UAE) and served in the IT field for many years. After working in a big market like Dubai, we have gained extensive international experience.\n\nNow with the same international standard and experience, we are going to launch our company in Pakistan, to provide professional and reliable service like Dubai to the people of Pakistan.',
-    story: 'EVONIX TECHNOLOGIES is not just a new company, it is a name of 20 years of experience. We started our career in Dubai (UAE) and served in the IT field for many years. After working in a big market like Dubai, we have gained extensive international experience. Now with the same international standard and experience, we provide professional and reliable service like Dubai to the people of Pakistan.',
+    storyText: 'evonix technologies is not just a new company, it is a name of 20 years of experience. We started our career in Dubai (UAE) and served in the IT field for many years. After working in a big market like Dubai, we have gained extensive international experience.\n\nNow with the same international standard and experience, we are going to launch our company in Pakistan, to provide professional and reliable service like Dubai to the people of Pakistan.',
+    story: 'evonix technologies is not just a new company, it is a name of 20 years of experience. We started our career in Dubai (UAE) and served in the IT field for many years. After working in a big market like Dubai, we have gained extensive international experience. Now with the same international standard and experience, we provide professional and reliable service like Dubai to the people of Pakistan.',
     missionHeading: 'Our Mission',
     missionText: 'Our mission is to bring modern, affordable, and reliable technology solutions to every business and home.',
     mission: 'Our mission is to bring modern, affordable, and reliable technology solutions to every business and home.',
@@ -240,11 +240,11 @@ export const COMPANY_INFO = {
     internationalExperience: '15+',
     founder: 'Raza Muhammad',
     secpRegistration: {
-      corporateName: 'EVONIX TECHNOLOGIES',
+      corporateName: 'evonix technologies',
       entityType: 'Single Member Company (SMC)',
       regulatoryBody: 'Securities and Exchange Commission of Pakistan (SECP)',
       sector: 'Information Technology',
-      nameMeaning: 'EVONIX is an invented word combining EVO (Evolution) and NIX (Technology), representing innovative and evolutionary technology solutions.',
+      nameMeaning: 'evonix is an invented word combining EVO (Evolution) and NIX (Technology), representing innovative and evolutionary technology solutions.',
     },
   },
   whyChooseUs: [
@@ -330,7 +330,7 @@ export const SERVICES: ServiceItem[] = [
     iconName: 'Layout',
     imageUrl: serviceWebDevImg,
     imageWebp: serviceWebDevWebp,
-    imageAlt: 'Modern Responsive Website Development and E-Commerce Architecture in Sialkot - EVONIX TECHNOLOGIES',
+    imageAlt: 'Modern Responsive Website Development and E-Commerce Architecture in Sialkot - evonix technologies',
     features: [
       'Modern, clean, mobile-first responsive architecture',
       'Lightning-fast page load speeds and SEO optimization',
@@ -349,7 +349,7 @@ export const SERVICES: ServiceItem[] = [
     iconName: 'Cpu',
     imageUrl: serviceSoftwarePosImg,
     imageWebp: serviceSoftwarePosWebp,
-    imageAlt: 'Custom Point of Sale POS Billing Software & Cloud ERP Development in Sialkot - EVONIX TECHNOLOGIES',
+    imageAlt: 'Custom Point of Sale POS Billing Software & Cloud ERP Development in Sialkot - evonix technologies',
     features: [
       'Tailor-made Point of Sale (POS) for retail, grocery & boutiques',
       'Inventory, barcode printing & warehouse stock management',
@@ -406,7 +406,7 @@ export const PORTFOLIO_DATA: {
   softwareClients: PortfolioCategory[];
   ndaNote: string;
 } = {
-  intro: 'EVONIX TECHNOLOGIES has been proudly serving clients in Dubai, UAE for over 15 years.',
+  intro: 'evonix technologies has been proudly serving clients in Dubai, UAE for over 15 years.',
   websiteClients: [
     {
       id: 'web-1',
@@ -640,7 +640,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     id: 'faq-dubai-transition-1',
     category: 'dubai-transition',
-    question: 'Why has EVONIX TECHNOLOGIES transitioned from Dubai to Pakistan?',
+    question: 'Why has evonix technologies transitioned from Dubai to Pakistan?',
     answer: 'After serving 20+ years in the competitive Dubai and UAE enterprise IT sectors, our founders realized that businesses, exporters, and retail shops in Sialkot frequently struggle with unreliable service, amateur web developers, and counterfeit computer components. We established our full-scale tech hub in Sialkot to deliver the exact same corporate Gulf standards, authentic hardware parts, and certified engineering workflows directly to the people and businesses of Pakistan at accessible local rates.',
     highlightBadge: '20+ Years UAE Legacy',
     actionText: 'Read Our Story',
@@ -665,7 +665,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     id: 'faq-pricing-1',
     category: 'pricing',
-    question: 'How does EVONIX calculate prices for websites, software, and repair services?',
+    question: 'How does evonix calculate prices for websites, software, and repair services?',
     answer: 'We maintain a 100% transparent pricing policy with zero hidden fees. For software and web development, we provide an itemized fixed-scope proposal after a free consultation. For computer and printer repairs, we perform an initial diagnostic and communicate the exact cost before opening any hardware. You never receive unexpected technician bills or surprise lab surcharges.',
     highlightBadge: 'Upfront Fixed Pricing',
     actionText: 'Request Free Quote',
@@ -740,7 +740,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     id: 'faq-software-3',
     category: 'software-hardware',
-    question: 'How does EVONIX safeguard our company data during laptop or PC servicing?',
+    question: 'How does evonix safeguard our company data during laptop or PC servicing?',
     answer: 'We adhere to strict Dubai corporate data privacy protocols. Your private files, accounting databases, emails, and sensitive documents are never accessed, copied, or altered. We offer encrypted pre-repair drive imaging upon request and perform all software repairs under transparent observation.',
     highlightBadge: 'Dubai Data Privacy',
   },

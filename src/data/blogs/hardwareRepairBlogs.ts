@@ -12,7 +12,7 @@ export const HARDWARE_REPAIR_BLOGS: BlogPost[] = [
     publishedDate: '2025-01-18',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['Motherboard Repair', 'Chip Level', 'Micro Soldering', 'Short Circuit'],
-    metaTitle: 'Laptop Motherboard Short Circuit Diagnostics Guide | EVONIX',
+    metaTitle: 'Laptop Motherboard Short Circuit Diagnostics Guide | evonix',
     metaDescription: 'Detailed technical guide to troubleshooting dead laptop motherboards: identifying 19V rail shorts, checking 3.3V/5V standby rails, and replacing SMD capacitors.',
     targetKeywords: ['laptop motherboard repair', 'chip level laptop repair Sialkot', 'fix dead laptop', 'micro soldering technician'],
     internalLinks: [
@@ -42,7 +42,7 @@ The 5-Step Diagnostic Protocol
     publishedDate: '2025-01-24',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['Thermal Paste', 'Laptop Overheating', 'Cooling System', 'Preventative Care'],
-    metaTitle: 'Thermal Paste Replacement & Laptop Overheating Fix | EVONIX',
+    metaTitle: 'Thermal Paste Replacement & Laptop Overheating Fix | evonix',
     metaDescription: 'Learn why laptops overheat after 18 months, which high-viscosity thermal compounds to use, and how to safely deep clean copper heat pipes.',
     targetKeywords: ['laptop overheating fix', 'thermal paste replacement Sialkot', 'clean laptop fan', 'computer servicing'],
     internalLinks: [
@@ -58,7 +58,7 @@ Observable Symptoms in the Field
 - Keyboard surface near the F-keys and palmrest becomes uncomfortably hot to touch.
 - Sudden system shutdowns during export video calls, Photoshop renderings, or batch PDF exports.
 
-EVONIX Certified Lab Servicing Protocol
+evonix Certified Lab Servicing Protocol
 Our technicians disassemble the chassis, remove the copper thermal module, and safely dissolve dried crust using medical-grade pure isopropyl alcohol and lint-free microfiber swabs. We clean the dual copper fin stacks with compressed dry nitrogen to remove compacted lint carpets that standard vacuuming cannot dislodge. Finally, we apply non-conductive, high-viscosity Arctic MX-6 thermal compound with a guaranteed 8-year stability rating before torque-tightening screws in diagonal star order to ensure completely uniform die pressure.
     `,
   },
@@ -73,7 +73,7 @@ Our technicians disassemble the chassis, remove the copper thermal module, and s
     publishedDate: '2025-01-29',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['Liquid Spill', 'Water Damage Repair', 'Ultrasonic Cleaning', 'Emergency Protocol'],
-    metaTitle: 'Liquid Spill Emergency Protocol for Laptops | EVONIX',
+    metaTitle: 'Liquid Spill Emergency Protocol for Laptops | evonix',
     metaDescription: 'Immediate steps to take when liquid spills on your laptop: disconnecting battery, avoiding the rice myth, and professional ultrasonic bath restoration.',
     targetKeywords: ['water damaged laptop repair', 'spilled coffee on laptop', 'liquid spill repair Sialkot', 'emergency laptop repair'],
     internalLinks: [
@@ -105,7 +105,7 @@ We extract the bare motherboard, remove CMOS coin batteries, and immerse the boa
     publishedDate: '2025-02-03',
     author: { name: 'Shahbaz Hussain', role: 'Printer & Peripheral Technician' },
     tags: ['Thermal Printers', 'POS Hardware', 'Paper Jams', 'Printhead Cleaning'],
-    metaTitle: 'Thermal Receipt Printer Troubleshooting & Repair | EVONIX',
+    metaTitle: 'Thermal Receipt Printer Troubleshooting & Repair | evonix',
     metaDescription: 'How to fix faded text, jammed paper rolls, and broken auto-cutters on Epson, Xprinter, and Bixolon thermal POS printers.',
     targetKeywords: ['thermal printer repair', 'POS printer troubleshooting', 'faded receipt fix', 'thermal printer repair Sialkot'],
     internalLinks: [
@@ -133,7 +133,7 @@ Common Thermal Printer Faults Solved On-Site
     publishedDate: '2025-02-07',
     author: { name: 'Shahbaz Hussain', role: 'Printer & Peripheral Technician' },
     tags: ['Laser Printers', 'HP LaserJet', 'Toner Troubleshooting', 'Fuser Repair'],
-    metaTitle: 'Laser Printer Maintenance & Troubleshooting Guide | EVONIX',
+    metaTitle: 'Laser Printer Maintenance & Troubleshooting Guide | evonix',
     metaDescription: 'Complete guide to fixing paper jams, repeating smudge lines, wrinkled pages, and toner melting issues on commercial laser printers.',
     targetKeywords: ['laser printer repair', 'HP printer technician', 'fuser roller replacement', 'printer repair Sialkot'],
     internalLinks: [
@@ -161,7 +161,7 @@ Diagnosing Common Laser Print Defects
     publishedDate: '2025-02-11',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['SSD Upgrade', 'PC Speedup', 'Hardware Upgrade', 'Data Migration'],
-    metaTitle: 'SSD vs HDD Upgrade Guide for 10x PC Speed | EVONIX',
+    metaTitle: 'SSD vs HDD Upgrade Guide for 10x PC Speed | evonix',
     metaDescription: 'Transform sluggish office computers and laptops into high-speed workstations with SATA or NVMe solid state drives and seamless OS cloning.',
     targetKeywords: ['SSD upgrade laptop', 'speed up slow computer', 'HDD to SSD migration', 'computer upgrade Sialkot'],
     internalLinks: [
@@ -179,7 +179,7 @@ Upgrading to a modern PCIe NVMe M.2 Solid State Drive delivers sequential speeds
 - Battery runtime extends by 20 to 30 minutes due to zero moving parts.
 
 Lossless Sector-by-Sector OS Cloning
-At EVONIX, our data technicians clone your entire operating system, installed accounting packages, license keys, and desktop files directly to the new high-speed SSD using hardware cloning bays. You receive your laptop back in under 45 minutes with every single file, bookmark, and password exactly where you left it, just running 10 times faster.
+At evonix, our data technicians clone your entire operating system, installed accounting packages, license keys, and desktop files directly to the new high-speed SSD using hardware cloning bays. You receive your laptop back in under 45 minutes with every single file, bookmark, and password exactly where you left it, just running 10 times faster.
     `,
   },
   {
@@ -193,7 +193,7 @@ At EVONIX, our data technicians clone your entire operating system, installed ac
     publishedDate: '2025-02-15',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['Screen Replacement', 'LCD Display', 'eDP Cable', 'Laptop Repair'],
-    metaTitle: 'Laptop Screen Replacement Guide (30-Pin vs 40-Pin) | EVONIX',
+    metaTitle: 'Laptop Screen Replacement Guide (30-Pin vs 40-Pin) | evonix',
     metaDescription: 'Step-by-step guide to replacing cracked laptop LCD and LED screens, avoiding backlight fuse blowouts, and upgrading to crisp 1080p IPS panels.',
     targetKeywords: ['laptop screen replacement', 'fix cracked laptop screen', '30 pin eDP screen', 'laptop repair Sialkot'],
     internalLinks: [
@@ -220,7 +220,7 @@ Key Diagnostic Checks Before Screen Swaps
     publishedDate: '2025-02-19',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['BIOS Flashing', 'CH341A Programmer', 'Firmware Repair', 'ME Region'],
-    metaTitle: 'Fixing Corrupted BIOS Firmware with Hardware Programmers | EVONIX',
+    metaTitle: 'Fixing Corrupted BIOS Firmware with Hardware Programmers | evonix',
     metaDescription: 'How professional technicians revive laptops with black screens, spinning fans, and bricked BIOS using external EEPROM SPI hardware flashers.',
     targetKeywords: ['laptop BIOS repair', 'corrupted BIOS fix', 'CH341A BIOS flashing', 'firmware chip replacement'],
     internalLinks: [
@@ -245,7 +245,7 @@ In our Sialkot lab, we locate the 8-pin SOIC SPI flash memory chip (Winbond, Mac
     publishedDate: '2025-02-23',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['Power IC', 'DC Jack Repair', 'Charging Port', 'Micro Soldering'],
-    metaTitle: 'Power IC Replacement & DC Jack Repair Guide | EVONIX',
+    metaTitle: 'Power IC Replacement & DC Jack Repair Guide | evonix',
     metaDescription: 'Troubleshoot and fix laptops with loose charging ports, blinking charging LEDs, and blown BQ-series power management IC chips.',
     targetKeywords: ['laptop charging port repair', 'replace DC jack', 'power IC repair', 'laptop wont turn on fix'],
     internalLinks: [
@@ -270,7 +270,7 @@ Rather than using temporary hot glue or cheap replacement cables, we desolder th
     publishedDate: '2025-02-27',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['RAM Upgrade', 'Dual Channel', 'Workstation Tuning', 'Hardware Optimization'],
-    metaTitle: 'RAM Compatibility & Dual-Channel Optimization | EVONIX',
+    metaTitle: 'RAM Compatibility & Dual-Channel Optimization | evonix',
     metaDescription: 'How to choose compatible RAM modules, avoid system instability, and configure dual-channel memory for graphic design and engineering PCs.',
     targetKeywords: ['RAM upgrade laptop', 'dual channel RAM speed', 'DDR4 vs DDR5 compatibility', 'computer memory upgrade'],
     internalLinks: [
@@ -283,7 +283,7 @@ Many laptop buyers believe that having a single 16GB RAM module is equal to havi
 Real-World Performance Differences
 - Dual-Channel Memory: Delivers 35% to 50% higher memory bandwidth, directly boosting integrated Intel Iris Xe and AMD Radeon graphics performance.
 - Seamless Multitasking: Eliminates micro-stutters when running heavy ERP databases alongside Google Chrome tabs and Adobe Illustrator vector files.
-- EVONIX Matching Protocol: We pair identical memory chips with matching CAS latency (CL) and operating voltages (1.2V DDR4 / 1.1V DDR5) to prevent blue screen memory parity errors.
+- evonix Matching Protocol: We pair identical memory chips with matching CAS latency (CL) and operating voltages (1.2V DDR4 / 1.1V DDR5) to prevent blue screen memory parity errors.
     `,
   },
   {
@@ -297,7 +297,7 @@ Real-World Performance Differences
     publishedDate: '2025-03-03',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['Laptop Battery', 'BMS Board', 'Swollen Battery', 'Power Safety'],
-    metaTitle: 'Laptop Battery Diagnostics & Replacement Guide | EVONIX',
+    metaTitle: 'Laptop Battery Diagnostics & Replacement Guide | evonix',
     metaDescription: 'How to detect swollen battery dangers, analyze Windows battery reports, and replace failing laptop batteries with genuine OEM cells.',
     targetKeywords: ['laptop battery replacement', 'swollen battery danger', 'laptop battery report', 'battery repair Sialkot'],
     internalLinks: [
@@ -322,7 +322,7 @@ Never puncture or press down on a swollen battery. The trapped electrolyte gas i
     publishedDate: '2025-03-07',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['Industrial PC', 'CNC Maintenance', 'Factory IT', 'Hardware Reliability'],
-    metaTitle: 'Industrial PC & CNC Controller Maintenance | EVONIX',
+    metaTitle: 'Industrial PC & CNC Controller Maintenance | evonix',
     metaDescription: 'Prevent factory line downtime by protecting CNC controllers, industrial touchscreens, and industrial PCs from conductive metallic dust and power surges.',
     targetKeywords: ['industrial PC repair', 'CNC machine computer maintenance', 'factory IT support Sialkot', 'industrial hardware repair'],
     internalLinks: [
@@ -347,7 +347,7 @@ We deep-clean factory desktop workstations using anti-static ionizing blowers, a
     publishedDate: '2025-03-11',
     author: { name: 'Shahbaz Hussain', role: 'Printer & Peripheral Technician' },
     tags: ['Network Printing', 'Static IP', 'Print Server', 'Office IT'],
-    metaTitle: 'Network Printer Setup & Static IP Routing Guide | EVONIX',
+    metaTitle: 'Network Printer Setup & Static IP Routing Guide | evonix',
     metaDescription: 'Permanently solve printer offline errors by switching from buggy WSD ports to dedicated static TCP/IP printing in office networks.',
     targetKeywords: ['network printer setup', 'printer offline fix', 'TCP IP port printer', 'office printer setup'],
     internalLinks: [
@@ -372,7 +372,7 @@ We assign a permanent static IP address outside the router DHCP pool directly on
     publishedDate: '2025-03-15',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['Data Recovery', 'Hard Drive Failure', 'File Rescue', 'Backup Systems'],
-    metaTitle: 'Professional Hard Drive Data Recovery Guide | EVONIX',
+    metaTitle: 'Professional Hard Drive Data Recovery Guide | evonix',
     metaDescription: 'Learn how cleanroom technicians recover corrupted partitions, deleted databases, and failing hard drives without risking permanent platter damage.',
     targetKeywords: ['data recovery Sialkot', 'recover deleted files', 'clicking hard drive fix', 'hard drive data rescue'],
     internalLinks: [
@@ -397,7 +397,7 @@ In our cleanroom workstation, we connect failing drives to a hardware write-bloc
     publishedDate: '2025-03-19',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['BSOD', 'Blue Screen Fix', 'WinDbg', 'System Stability'],
-    metaTitle: 'Troubleshooting Blue Screen of Death (BSOD) | EVONIX',
+    metaTitle: 'Troubleshooting Blue Screen of Death (BSOD) | evonix',
     metaDescription: 'Step-by-step methodology to diagnose crash dump files, identify faulty hardware components, and restore complete Windows operating stability.',
     targetKeywords: ['blue screen of death fix', 'BSOD troubleshooting', 'computer crashing Windows 11', 'fix PC freezing'],
     internalLinks: [
@@ -422,7 +422,7 @@ Using Microsoft WinDbg debugging tools, we analyze the crashed kernel thread and
     publishedDate: '2025-03-23',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['Laptop Hinge Repair', 'Body Repair', 'Chassis Rebuilding', 'Hardware Fix'],
-    metaTitle: 'Laptop Hinge Repair & Chassis Reinforcement | EVONIX',
+    metaTitle: 'Laptop Hinge Repair & Chassis Reinforcement | evonix',
     metaDescription: 'Save your laptop from cracked casing and broken screens with permanent brass standoff rebuilding and hinge tension calibration.',
     targetKeywords: ['laptop hinge repair', 'broken laptop casing', 'fix laptop body', 'laptop hinge repair Sialkot'],
     internalLinks: [
@@ -447,7 +447,7 @@ We adjust the hinge hinge friction nut by 15% to achieve a smooth, butter-soft o
     publishedDate: '2025-03-27',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['GPU Repair', 'BGA Reballing', 'Reflow vs Reball', 'Micro Soldering'],
-    metaTitle: 'GPU Reballing vs Reflowing Guide | EVONIX',
+    metaTitle: 'GPU Reballing vs Reflowing Guide | evonix',
     metaDescription: 'Detailed technical explanation of BGA solder ball cracking, thermal stress cycles, and why professional infrared rework stations are required for permanent GPU repair.',
     targetKeywords: ['GPU reballing', 'laptop graphics repair', 'BGA rework station', 'GPU repair Sialkot'],
     internalLinks: [
@@ -472,17 +472,17 @@ True component-level GPU repair requires a computerized optical infrared BGA rew
     publishedDate: '2025-03-31',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['ESD Protection', 'Cleanroom Standards', 'Hardware Safety', 'Professional Lab'],
-    metaTitle: 'ESD Protection Standards in Computer Repair Labs | EVONIX',
+    metaTitle: 'ESD Protection Standards in Computer Repair Labs | evonix',
     metaDescription: 'Learn how professional computer repair laboratories prevent microscopic electrostatic component destruction during delicate micro-soldering.',
     targetKeywords: ['ESD protection computer repair', 'anti static lab', 'cleanroom hardware repair', 'Dubai standard repair lab'],
     internalLinks: [
-      { label: 'About EVONIX Dubai Standard Lab', targetSection: 'about', anchorText: 'Our International Lab Standards' },
+      { label: 'About evonix Dubai Standard Lab', targetSection: 'about', anchorText: 'Our International Lab Standards' },
     ],
     content: `
 Humans Can Generate 15,000 Volts of Static Electricity
 Walking across a synthetic carpet in Sialkot dry winter weather can generate an electrostatic charge exceeding 15,000 volts on your body. While you only feel a mild shock, modern computer chips operate at voltages as low as 1.05 volts. A static discharge imperceptible to humans instantly punches microscopic craters through delicate MOSFET gate oxide layers.
 
-EVONIX ESD-Safe Lab Standards
+evonix ESD-Safe Lab Standards
 Every technician in our Sialkot diagnostic lab wears grounded conductive wristbands connected to verified copper earth ground points. All diagnostic work surfaces are covered with static-dissipative rubber mats (10^6 to 10^9 ohms per square), ensuring sensitive customer hardware is never exposed to destructive ESD surges.
     `,
   },
@@ -497,7 +497,7 @@ Every technician in our Sialkot diagnostic lab wears grounded conductive wristba
     publishedDate: '2025-04-04',
     author: { name: 'Shahbaz Hussain', role: 'Printer & Peripheral Technician' },
     tags: ['Preventative Maintenance', 'Corporate IT', 'Office Hardware', 'Annual Maintenance'],
-    metaTitle: 'Preventative IT Maintenance Checklist for Offices | EVONIX',
+    metaTitle: 'Preventative IT Maintenance Checklist for Offices | evonix',
     metaDescription: 'A comprehensive quarterly preventative maintenance guide that prevents server downtime, extends laptop lifespan, and cuts repair expenses by 60%.',
     targetKeywords: ['office IT maintenance checklist', 'preventative computer care', 'corporate IT contract Sialkot', 'AMC IT services'],
     internalLinks: [
@@ -517,21 +517,21 @@ During regular maintenance visits, our field technicians check thermal paste ela
     title: 'The Zero-Charge Diagnostic Policy: Why Professional Lab Testing Must Precede Quotes',
     category: 'hardware-repair',
     categoryLabel: 'Laptop & Printer Repair',
-    excerpt: 'Why EVONIX never charges a single rupee if a device cannot be repaired, and why guesswork over the phone has no place in professional engineering.',
+    excerpt: 'Why evonix never charges a single rupee if a device cannot be repaired, and why guesswork over the phone has no place in professional engineering.',
     readTime: '6 min read',
     publishedDate: '2025-04-07',
     author: { name: 'Raza Muhammad', role: 'Founder & Technical Director' },
-    tags: ['Zero Charge Diagnostics', 'Customer Trust', 'Transparency', 'EVONIX Policy'],
-    metaTitle: 'EVONIX Zero-Charge Diagnostic Policy Explained | EVONIX',
+    tags: ['Zero Charge Diagnostics', 'Customer Trust', 'Transparency', 'evonix Policy'],
+    metaTitle: 'evonix Zero-Charge Diagnostic Policy Explained | evonix',
     metaDescription: 'Discover our customer promise: Thorough bench diagnostics at zero fee, transparent parts quotation before work begins, and zero charge if not repaired.',
-    targetKeywords: ['zero charge laptop diagnostic', 'free computer inspection Sialkot', 'honest IT repair', 'EVONIX guarantee'],
+    targetKeywords: ['zero charge laptop diagnostic', 'free computer inspection Sialkot', 'honest IT repair', 'evonix guarantee'],
     internalLinks: [
-      { label: 'Review Our Customer Guarantee', targetSection: 'about', anchorText: 'EVONIX Customer Guarantee' },
+      { label: 'Review Our Customer Guarantee', targetSection: 'about', anchorText: 'evonix Customer Guarantee' },
       { label: 'Book Zero-Charge Inspection', targetSection: 'contact', anchorText: 'Book Free Diagnostic Inspection' },
     ],
     content: `
 Our Sacred Customer Service Promises in Sialkot
-Choosing an IT repair partner requires complete trust. At EVONIX TECHNOLOGIES, we operate our Sialkot lab with the exact same strict corporate ethics, transparency, and high-availability standards we developed over 20 years in Dubai, UAE.
+Choosing an IT repair partner requires complete trust. At evonix technologies, we operate our Sialkot lab with the exact same strict corporate ethics, transparency, and high-availability standards we developed over 20 years in Dubai, UAE.
 
 Our Transparent Guarantees
 - Zero Diagnostic Fees: If we cannot repair your hardware or if you decline our formal written quote, you pay nothing.

@@ -85,7 +85,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         targetSection: 'services',
         targetElementId: `service-card-${s.id}`,
         priceOrHighlight: s.id === 'onsite-service' ? 'Doorstep in Sialkot' : 'Custom Quote',
-        whatsappMessage: `Hi EVONIX TECHNOLOGIES, I am inquiring about your service: ${s.title}`,
+        whatsappMessage: `Hi evonix technologies, I am inquiring about your service: ${s.title}`,
       });
     });
 
@@ -101,7 +101,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         targetSection: 'portfolio',
         targetElementId: `portfolio-item-${p.id}`,
         priceOrHighlight: '15+ Yrs Dubai Track Record',
-        whatsappMessage: `Hi EVONIX TECHNOLOGIES, I would like to learn more about your portfolio case study: ${p.title}`,
+        whatsappMessage: `Hi evonix technologies, I would like to learn more about your portfolio case study: ${p.title}`,
       });
     });
 
@@ -116,7 +116,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         targetSection: 'portfolio',
         targetElementId: `portfolio-item-${p.id}`,
         priceOrHighlight: 'Dubai Enterprise Proven',
-        whatsappMessage: `Hi EVONIX TECHNOLOGIES, I would like to book a private case study demo for: ${p.title}`,
+        whatsappMessage: `Hi evonix technologies, I would like to book a private case study demo for: ${p.title}`,
       });
     });
 
@@ -132,7 +132,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         targetSection: 'shop',
         targetElementId: `shop-product-${p.id}`,
         priceOrHighlight: p.priceEstimate,
-        whatsappMessage: `Hi EVONIX TECHNOLOGIES, I would like to inquire about purchasing: ${p.name} (${p.category})`,
+        whatsappMessage: `Hi evonix technologies, I would like to inquire about purchasing: ${p.name} (${p.category})`,
       });
     });
 
@@ -168,7 +168,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         targetSection: 'technologies',
         targetElementId: `tech-badge-${t.id}`,
         priceOrHighlight: 'Enterprise Stack',
-        whatsappMessage: `Hi EVONIX TECHNOLOGIES, I would like to build a project using ${t.name}.`,
+        whatsappMessage: `Hi evonix technologies, I would like to build a project using ${t.name}.`,
       });
     });
 
@@ -184,7 +184,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         targetSection: 'faq',
         targetElementId: f.id,
         priceOrHighlight: f.highlightBadge || 'Verified Answer',
-        whatsappMessage: `Hi EVONIX TECHNOLOGIES, I have a question regarding: ${f.question}`,
+        whatsappMessage: `Hi evonix technologies, I have a question regarding: ${f.question}`,
       });
     });
 
@@ -200,7 +200,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         targetSection: 'reach',
         targetElementId: 'reach',
         priceOrHighlight: '20+ Yrs UAE Bridge',
-        whatsappMessage: 'Hi EVONIX TECHNOLOGIES, I am inquiring about your Dubai enterprise experience and Sialkot operations.',
+        whatsappMessage: 'Hi evonix technologies, I am inquiring about your Dubai enterprise experience and Sialkot operations.',
       },
       {
         id: 'reach-dubai',
@@ -212,7 +212,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         targetSection: 'reach',
         targetElementId: 'reach',
         priceOrHighlight: '2004 – 2024+',
-        whatsappMessage: 'Hi EVONIX TECHNOLOGIES, I would like to inquire about your Dubai legacy and enterprise cloud architecture.',
+        whatsappMessage: 'Hi evonix technologies, I would like to inquire about your Dubai legacy and enterprise cloud architecture.',
       },
       {
         id: 'reach-sialkot',
@@ -224,7 +224,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         targetSection: 'reach',
         targetElementId: 'reach',
         priceOrHighlight: 'Direct Expansion',
-        whatsappMessage: 'Hi EVONIX TECHNOLOGIES, I would like to book a doorstep IT service or discuss software development in Sialkot.',
+        whatsappMessage: 'Hi evonix technologies, I would like to book a doorstep IT service or discuss software development in Sialkot.',
       },
       {
         id: 'rma-tracker',
@@ -236,7 +236,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         targetSection: 'services',
         targetElementId: 'live-repair-tracker',
         priceOrHighlight: 'Live Tracking',
-        whatsappMessage: 'Assalam-o-Alaikum EVONIX, I want to track my repair ticket status or submit a laptop.',
+        whatsappMessage: 'Assalam-o-Alaikum evonix, I want to track my repair ticket status or submit a laptop.',
       },
       {
         id: 'hardware-gallery',
@@ -248,7 +248,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         targetSection: 'services',
         targetElementId: 'hardware-repair-gallery',
         priceOrHighlight: 'Interactive Slider',
-        whatsappMessage: 'Assalam-o-Alaikum EVONIX, I saw your before/after micro-soldering gallery and have a hardware repair inquiry.',
+        whatsappMessage: 'Assalam-o-Alaikum evonix, I saw your before/after micro-soldering gallery and have a hardware repair inquiry.',
       },
       {
         id: 'industrial-erp',
@@ -260,7 +260,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         targetSection: 'services',
         targetElementId: 'sialkot-industrial-solutions',
         priceOrHighlight: 'Export Grade',
-        whatsappMessage: 'Assalam-o-Alaikum EVONIX, I would like to request an industrial ERP demo for my factory in Sialkot.',
+        whatsappMessage: 'Assalam-o-Alaikum evonix, I would like to request an industrial ERP demo for my factory in Sialkot.',
       },
       {
         id: 'ecommerce-margin-calculator',
@@ -272,7 +272,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         targetSection: 'services',
         targetElementId: 'ecommerce-calculator',
         priceOrHighlight: '100% Free Tool',
-        whatsappMessage: 'Hello EVONIX, I am using your E-Commerce Margin Calculator and would like to consult on our online business.',
+        whatsappMessage: 'Hello evonix, I am using your E-Commerce Margin Calculator and would like to consult on our online business.',
       },
       {
         id: 'zero-database-invoice-hub',
@@ -284,7 +284,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         targetSection: 'services',
         targetElementId: 'invoice-hub',
         priceOrHighlight: '100% Free Tool',
-        whatsappMessage: 'Hello EVONIX, I am using your Invoice Hub for my international business billing.',
+        whatsappMessage: 'Hello evonix, I am using your Invoice Hub for my international business billing.',
       },
       {
         id: 'export-cbm-cargo-calculator',
@@ -296,7 +296,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         targetSection: 'services',
         targetElementId: 'cbm-calculator',
         priceOrHighlight: '100% Free Tool',
-        whatsappMessage: 'Hello EVONIX, I am using your Export CBM Calculator for our factory freight planning.',
+        whatsappMessage: 'Hello evonix, I am using your Export CBM Calculator for our factory freight planning.',
       },
       {
         id: 'dedicated-developer-cost-calculator',
@@ -308,7 +308,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         targetSection: 'services',
         targetElementId: 'developer-cost-calculator',
         priceOrHighlight: '100% Free Tool',
-        whatsappMessage: 'Hello EVONIX, I am estimating dedicated software developer hiring costs using your calculator.',
+        whatsappMessage: 'Hello evonix, I am estimating dedicated software developer hiring costs using your calculator.',
       }
     );
 
@@ -334,7 +334,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         targetSection: 'testimonials',
         targetElementId: 'testimonials',
         priceOrHighlight: `${test.rating}.0 ★ Verified`,
-        whatsappMessage: `Hi EVONIX TECHNOLOGIES, I saw the client review from ${test.company} and would like to discuss a similar project.`,
+        whatsappMessage: `Hi evonix technologies, I saw the client review from ${test.company} and would like to discuss a similar project.`,
       });
     });
 
@@ -350,7 +350,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         targetSection: 'blogs',
         targetElementId: 'blogs',
         priceOrHighlight: b.readTime,
-        whatsappMessage: `Hi EVONIX TECHNOLOGIES, I am reading your article: ${b.title}`,
+        whatsappMessage: `Hi evonix technologies, I am reading your article: ${b.title}`,
       });
     });
 
@@ -746,7 +746,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
 
                       <a
                         href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(
-                          item.whatsappMessage || `Hi EVONIX TECHNOLOGIES, inquiring about: ${item.title}`
+                          item.whatsappMessage || `Hi evonix technologies, inquiring about: ${item.title}`
                         )}`}
                         target="_blank"
                         rel="noopener noreferrer"

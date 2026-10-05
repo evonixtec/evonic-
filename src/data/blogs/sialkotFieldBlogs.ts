@@ -8,12 +8,12 @@ export const SIALKOT_FIELD_BLOGS: BlogPost[] = [
     title: 'Emergency On-Site Laptop Motherboard Repair on Daska Road, Sialkot: Surgical Exporter Case Study',
     category: 'hardware-repair',
     categoryLabel: 'Laptop & Printer Repair',
-    excerpt: 'How EVONIX field engineers revived a dead Core i7 Dell Latitude laptop with 19V rail short at a Daska Road surgical factory within 75 minutes, saving urgent export clearance documents.',
+    excerpt: 'How evonix field engineers revived a dead Core i7 Dell Latitude laptop with 19V rail short at a Daska Road surgical factory within 75 minutes, saving urgent export clearance documents.',
     readTime: '7 min read',
     publishedDate: '2025-02-05',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['Daska Road Sialkot', 'Doorstep Laptop Repair', 'Motherboard Short Circuit', 'Surgical Industry IT'],
-    metaTitle: 'Doorstep Laptop Repair Daska Road Sialkot | EVONIX Case Study',
+    metaTitle: 'Doorstep Laptop Repair Daska Road Sialkot | evonix Case Study',
     metaDescription: 'Emergency on-site laptop repair on Daska Road, Sialkot. Certified technicians fix motherboard 19V rail shorts, broken DC jacks, and dead screens at your factory door.',
     targetKeywords: [
       'laptop repairing Daska Road Sialkot',
@@ -48,7 +48,7 @@ On-Site Resolution & Client Testimonial
 Using our mobile micro-soldering station, our certified technician extracted the fractured capacitor under a 20x inspection loupe, cleaned the copper pads with leaded solder, installed an original Samsung 25V dielectric replacement, and refreshed Arctic MX-6 thermal paste on the Intel CPU. The workstation booted cleanly within 75 minutes of technician arrival without any data loss.
 
 Verified Client Testimonial (Daska Road, Sialkot)
-"EVONIX team saved our European surgical consignment from missing the air freight cutoff. Having an engineer arrive at our Daska Road facility with real chip-level soldering gear instead of telling us to wait 4 days for a replacement motherboard was unbelievable. Exceptional Dubai-standard service right here in Sialkot."
+"evonix team saved our European surgical consignment from missing the air freight cutoff. Having an engineer arrive at our Daska Road facility with real chip-level soldering gear instead of telling us to wait 4 days for a replacement motherboard was unbelievable. Exceptional Dubai-standard service right here in Sialkot."
 Client: M. Arshad Cheema, Managing Director, Al-Madina Surgical Instruments, Daska Road, Sialkot (★★★★★ 5.0)
     `,
   },
@@ -65,7 +65,7 @@ Client: M. Arshad Cheema, Managing Director, Al-Madina Surgical Instruments, Das
     publishedDate: '2025-02-12',
     author: { name: 'Engr. Haroon Rasheed', role: 'Principal Web Architect' },
     tags: ['Rangpura Sialkot', 'Leather Industry Website', 'B2B Export Web Design', 'SEO Sialkot'],
-    metaTitle: 'Leather Export Website Development Rangpura Sialkot | EVONIX',
+    metaTitle: 'Leather Export Website Development Rangpura Sialkot | evonix',
     metaDescription: 'Custom website development for leather apparel exporters in Rangpura, Sialkot. Fast React & Next.js architectures, wholesale catalog engines, and global SEO.',
     targetKeywords: [
       'website development Rangpura Sialkot',
@@ -93,7 +93,7 @@ Key Architectural Highlights
 4. Targeted Technical SEO: Targeted ranking keywords for "leather motorbike apparel OEM Sialkot" and "custom leather gloves manufacturer Pakistan".
 
 Verified Client Testimonial (Rangpura, Sialkot)
-"Before EVONIX rebuilt our platform, our Rangpura factory relied entirely on trade exhibitions. Within 90 days of launching the new website, we closed two direct OEM contracts with German distributors. The international design aesthetic reflects Dubai-level corporate maturity."
+"Before evonix rebuilt our platform, our Rangpura factory relied entirely on trade exhibitions. Within 90 days of launching the new website, we closed two direct OEM contracts with German distributors. The international design aesthetic reflects Dubai-level corporate maturity."
 Client: Chaudhry Bilal Farooq, CEO, Crown Leather Craft, Rangpura Road, Sialkot (★★★★★ 5.0)
     `,
   },
@@ -105,12 +105,12 @@ Client: Chaudhry Bilal Farooq, CEO, Crown Leather Craft, Rangpura Road, Sialkot 
     title: 'Deploying High-Speed Retail POS Software in Rangpura Bazar, Sialkot: Offline-First Case Study',
     category: 'software-dev',
     categoryLabel: 'Software & POS Development',
-    excerpt: 'How a busy 3-story retail fashion outlet in Rangpura Bazar eliminated checkout queues and inventory discrepancies during peak Eid season using EVONIX Retail POS.',
+    excerpt: 'How a busy 3-story retail fashion outlet in Rangpura Bazar eliminated checkout queues and inventory discrepancies during peak Eid season using evonix Retail POS.',
     readTime: '8 min read',
     publishedDate: '2025-02-18',
     author: { name: 'Shahzaib Akhtar', role: 'Lead Enterprise Solutions Architect' },
     tags: ['Rangpura Bazar', 'Retail POS Sialkot', 'Inventory Software', 'Barcode Billing'],
-    metaTitle: 'Retail POS Software Rangpura Bazar Sialkot | EVONIX Systems',
+    metaTitle: 'Retail POS Software Rangpura Bazar Sialkot | evonix Systems',
     metaDescription: 'Fast touch POS billing and multi-store inventory software for Rangpura retail shops in Sialkot. 100% offline billing with automatic cloud sync and thermal printing.',
     targetKeywords: [
       'retail POS software Rangpura Sialkot',
@@ -132,13 +132,13 @@ Case Study: Royal Heritage Garments (Rangpura Chowk, Sialkot)
 Outlets: 3 checkout counters across 2 floors with 14,000+ active SKUs (sizes, colors, fabric blends).
 Previous System: Laggy desktop database that crashed whenever internet connectivity dropped, forcing manual handwritten cash receipts.
 
-EVONIX POS Implementation Architecture
+evonix POS Implementation Architecture
 1. Zero-Latency Offline SQLite Engine: Cashiers can scan and print 80mm thermal receipts in under 1.8 seconds even if external fiber cables are completely severed.
 2. Instant Background Sync: Once Wi-Fi reconnects, transactions auto-synchronize to cloud analytics without locking registers.
 3. Integrated 2D Barcode & WhatsApp Digital Receipts: Customers receive instant itemized receipts on WhatsApp while the thermal printer cuts the paper slip.
 
 Verified Client Testimonial (Rangpura Bazar, Sialkot)
-"During last Chand Raat, we handled over 1,200 transactions across our Rangpura store without a single freeze or receipt printer jam. EVONIX hardware and software combo is the fastest billing system in Sialkot."
+"During last Chand Raat, we handled over 1,200 transactions across our Rangpura store without a single freeze or receipt printer jam. evonix hardware and software combo is the fastest billing system in Sialkot."
 Client: Sheikh Daniyal, Managing Partner, Royal Heritage Garments, Rangpura, Sialkot (★★★★★ 5.0)
     `,
   },
@@ -155,7 +155,7 @@ Client: Sheikh Daniyal, Managing Partner, Royal Heritage Garments, Rangpura, Sia
     publishedDate: '2025-02-25',
     author: { name: 'Shahzaib Akhtar', role: 'Lead Enterprise Solutions Architect' },
     tags: ['Daska Road Sialkot', 'Surgical ERP Software', 'Export Manufacturing', 'Production Tracking'],
-    metaTitle: 'Custom Surgical ERP Software Daska Road Sialkot | EVONIX',
+    metaTitle: 'Custom Surgical ERP Software Daska Road Sialkot | evonix',
     metaDescription: 'Custom ERP software built for surgical instrument manufacturers on Daska Road, Sialkot. Track raw steel forging, grinding, ultrasonic cleaning, and CE/FDA compliance.',
     targetKeywords: [
       'surgical ERP software Daska Road Sialkot',
@@ -173,14 +173,14 @@ Client: Sheikh Daniyal, Managing Partner, Royal Heritage Garments, Rangpura, Sia
 Why Generic Accounting Software Fails Sialkot Surgical Factories
 On Daska Road, Sialkot, surgical instrument production involves complex multi-stage subcontractors: drop-hammer forging, annealing, filing, heat treatment, ultrasonic passivation, laser marking, and sterile packaging. Generic commercial software cannot track weight wastage or outsourced subcontractor batch numbers.
 
-The EVONIX Solution: Precision Surgical Production ERP
+The evonix Solution: Precision Surgical Production ERP
 Engineered for Zenith Medico International (Daska Road Industrial Belt):
 Batch Lot Traceability: Every stainless steel batch is assigned a unique QR code tracking raw material heat numbers down to individual forceps and scissors.
 Subcontractor Gatepass System: Digital dispatch slips track exact grams of metal issued to filing and polishing artisans across Sialkot workshops with automated tolerance alerts.
 MDR & FDA Audit-Ready Documentation: Automated generation of technical batch records required by European medical device regulations.
 
 Verified Client Testimonial (Daska Road, Sialkot)
-"EVONIX designed our software by actually walking our Daska Road factory floor. We recovered over 18% in subcontractor metal scrap accountability in the very first quarter. They understand industrial engineering."
+"evonix designed our software by actually walking our Daska Road factory floor. We recovered over 18% in subcontractor metal scrap accountability in the very first quarter. They understand industrial engineering."
 Client: Khawaja Salman, Director of Operations, Zenith Medico International, Daska Road, Sialkot (★★★★★ 5.0)
     `,
   },
@@ -197,7 +197,7 @@ Client: Khawaja Salman, Director of Operations, Zenith Medico International, Das
     publishedDate: '2025-03-02',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['Rangpura Sialkot', 'Thermal Printer Repair', 'POS Printer Service', 'Cash Register Fix'],
-    metaTitle: 'Thermal Receipt Printer Repair Rangpura Sialkot | EVONIX',
+    metaTitle: 'Thermal Receipt Printer Repair Rangpura Sialkot | evonix',
     metaDescription: 'Same-day on-site thermal receipt printer repair in Rangpura and Paris Road, Sialkot. Replacement print heads, cutter motors, and driver installation.',
     targetKeywords: [
       'thermal printer repair Rangpura Sialkot',
@@ -221,7 +221,7 @@ Common Issues Solved On-Site in Rangpura
 3. USB Virtual COM Port Errors: Corrupted Windows spooler drivers reconfigured with permanent static port assignment.
 
 Verified Client Testimonial (Rangpura, Sialkot)
-"Both our billing counters were halted on Sunday afternoon due to cutter blade lock. EVONIX field technician reached Rangpura in 35 minutes, serviced both printers on-site, and provided high-quality thermal paper rolls. Highly recommended!"
+"Both our billing counters were halted on Sunday afternoon due to cutter blade lock. evonix field technician reached Rangpura in 35 minutes, serviced both printers on-site, and provided high-quality thermal paper rolls. Highly recommended!"
 Client: Usman Dar, Manager, Sialkot Super Store, Rangpura Road, Sialkot (★★★★★ 5.0)
     `,
   },
@@ -238,7 +238,7 @@ Client: Usman Dar, Manager, Sialkot Super Store, Rangpura Road, Sialkot (★★�
     publishedDate: '2025-03-08',
     author: { name: 'Engr. Haroon Rasheed', role: 'Principal Web Architect' },
     tags: ['Daska Road Sialkot', 'Sports Goods Web Design', '3D Uniform Configurator', 'Export Web Portal'],
-    metaTitle: 'Sports Goods Web Development Daska Road Sialkot | EVONIX',
+    metaTitle: 'Sports Goods Web Development Daska Road Sialkot | evonix',
     metaDescription: 'Custom web development for sports goods manufacturers on Daska Road, Sialkot. 3D uniform builders, B2B wholesale portals, and global SEO for US and UK sports clubs.',
     targetKeywords: [
       'sports goods web development Sialkot',
@@ -262,7 +262,7 @@ Interactive 3D Configurator: Clients preview sublimation prints on rotating 3D j
 Result: Reduced sampling revision cycles from 14 days down to 48 hours.
 
 Verified Client Testimonial (Daska Road, Sialkot)
-"EVONIX gave our Daska Road factory the same digital capabilities as top American sportswear brands. Overseas buyers design their club kit online, approve the 3D proof, and send payment directly. Our export sales jumped significantly."
+"evonix gave our Daska Road factory the same digital capabilities as top American sportswear brands. Overseas buyers design their club kit online, approve the 3D proof, and send payment directly. Our export sales jumped significantly."
 Client: Imran Nazir, Executive Director, Apex Combat & Teamwear, Daska Road, Sialkot (★★★★★ 5.0)
     `,
   },
@@ -279,7 +279,7 @@ Client: Imran Nazir, Executive Director, Apex Combat & Teamwear, Daska Road, Sia
     publishedDate: '2025-03-14',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['Rangpura Sialkot', 'Laptop Hinge Repair', 'Screen Casing Fix', 'Hardware Restoration'],
-    metaTitle: 'Laptop Broken Hinge Repair Rangpura Sialkot | EVONIX Lab',
+    metaTitle: 'Laptop Broken Hinge Repair Rangpura Sialkot | evonix Lab',
     metaDescription: 'Fast, permanent laptop hinge and broken casing repair in Rangpura and Paris Road, Sialkot. Structural reinforcement for HP, Dell, Lenovo, and Acer laptops.',
     targetKeywords: [
       'laptop hinge repair Rangpura Sialkot',
@@ -297,13 +297,13 @@ Client: Imran Nazir, Executive Director, Apex Combat & Teamwear, Daska Road, Sia
 Why Laptop Hinges Break in Pakistan's Climate
 Modern laptops feature ultra-slim plastic bezels holding stiff steel display hinges. In Sialkot's dusty climate, factory hinge grease oxidizes and hardens. As users open the screen lid with one hand, excessive torque rips the brass threaded nuts straight out of the plastic palmrest.
 
-EVONIX Permanent Structural Reinforcement Method
+evonix Permanent Structural Reinforcement Method
 1. Chemical Degreasing & Ultrasonic Hinge Loosening: Steel hinge friction nuts are adjusted to deliver 25% lower opening resistance while sustaining firm angles.
 2. Industrial Metal-Filled Epoxy Anchoring: Instead of fragile superglue, we use two-part industrial cold-weld compound to bond brass anchors deeply into reinforced chassis webbing.
 3. Bezel Re-alignment: Prevents costly display panel cracking or LVDS display cable pinching.
 
 Verified Client Testimonial (Rangpura, Sialkot)
-"The hinge on my HP Core i5 laptop was completely shattered, and the screen was separating. Local shops said I needed to replace the entire body for 12,000 PKR. EVONIX restored it with lifetime internal reinforcement for a fraction of that cost. Still rock-solid!"
+"The hinge on my HP Core i5 laptop was completely shattered, and the screen was separating. Local shops said I needed to replace the entire body for 12,000 PKR. evonix restored it with lifetime internal reinforcement for a fraction of that cost. Still rock-solid!"
 Client: Dr. Hamza Qureshi, Rangpura Clinic, Sialkot (★★★★★ 5.0)
     `,
   },
@@ -315,12 +315,12 @@ Client: Dr. Hamza Qureshi, Rangpura Clinic, Sialkot (★★★★★ 5.0)
     title: 'Industrial Gigabit Networking & CCTV Deployment on Daska Road, Sialkot: Eliminating Factory Dead Zones',
     category: 'software-dev',
     categoryLabel: 'Software & POS Development',
-    excerpt: 'How EVONIX engineered a heavy-duty Cat6 optical fiber backbone and cloud-managed Wi-Fi access points across a 45,000 sq ft manufacturing compound on Daska Road.',
+    excerpt: 'How evonix engineered a heavy-duty Cat6 optical fiber backbone and cloud-managed Wi-Fi access points across a 45,000 sq ft manufacturing compound on Daska Road.',
     readTime: '8 min read',
     publishedDate: '2025-03-20',
     author: { name: 'Shahzaib Akhtar', role: 'Lead Enterprise Solutions Architect' },
     tags: ['Daska Road Sialkot', 'Industrial Networking', 'Factory Wi-Fi', 'CCTV Installation'],
-    metaTitle: 'Industrial Networking & CCTV Daska Road Sialkot | EVONIX',
+    metaTitle: 'Industrial Networking & CCTV Daska Road Sialkot | evonix',
     metaDescription: 'Industrial fiber optic LAN cabling, long-range outdoor Wi-Fi, and 4K IP security surveillance engineered for factories on Daska Road and Small Industrial Estate, Sialkot.',
     targetKeywords: [
       'networking company Daska Road Sialkot',
@@ -344,7 +344,7 @@ Shielded SFTP Cat6 Runs: Grounded patch panels to eliminate induction spikes fro
 Ubiquiti UniFi Outdoor Mesh: 100% seamless roaming Wi-Fi for warehouse barcode scanners across 45,000 sq ft.
 
 Verified Client Testimonial (Daska Road, Sialkot)
-"Our production managers had constant Wi-Fi drops when updating dispatch manifests. EVONIX rewired our entire Daska Road plant with fiber and industrial access points. The network has been running without a second of downtime for 8 months."
+"Our production managers had constant Wi-Fi drops when updating dispatch manifests. evonix rewired our entire Daska Road plant with fiber and industrial access points. The network has been running without a second of downtime for 8 months."
 Client: Engr. Faisal Mehmood, General Manager, Al-Zubair Surgical Complex, Daska Road, Sialkot (★★★★★ 5.0)
     `,
   },
@@ -361,7 +361,7 @@ Client: Engr. Faisal Mehmood, General Manager, Al-Zubair Surgical Complex, Daska
     publishedDate: '2025-03-27',
     author: { name: 'Engr. Haroon Rasheed', role: 'Principal Web Architect' },
     tags: ['Rangpura Sialkot', 'Export Catalog Design', 'Brand Identity', 'Product Photography'],
-    metaTitle: 'Export Catalog Design Rangpura Sialkot | EVONIX Studio',
+    metaTitle: 'Export Catalog Design Rangpura Sialkot | evonix Studio',
     metaDescription: 'Professional export PDF catalogs, high-resolution vector logos, and brand identity design for Sialkot exporters in Rangpura and Paris Road. International trade standards.',
     targetKeywords: [
       'graphic design company in Sialkot',
@@ -385,7 +385,7 @@ Essential Elements of High-Converting Export Catalogs
 3. Interactive Click-to-Inquire Links: Embedded WhatsApp and web inquiry links directly from PDF pages.
 
 Verified Client Testimonial (Rangpura, Sialkot)
-"EVONIX designed our complete 64-page 2025 leather motorbike suit catalog. At the Cologne trade show, European buyers praised the professional layout and clear technical sizing tables. It elevated our company image tenfold."
+"evonix designed our complete 64-page 2025 leather motorbike suit catalog. At the Cologne trade show, European buyers praised the professional layout and clear technical sizing tables. It elevated our company image tenfold."
 Client: M. Waqas Butt, Partner, Prime Rider Leather, Rangpura, Sialkot (★★★★★ 5.0)
     `,
   },
@@ -402,7 +402,7 @@ Client: M. Waqas Butt, Partner, Prime Rider Leather, Rangpura, Sialkot (★★�
     publishedDate: '2025-04-03',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['Daska Road Sialkot', 'MacBook Screen Replacement', 'Retina Display', 'Clean Room Repair'],
-    metaTitle: 'MacBook Screen Replacement Daska Road Sialkot | EVONIX Lab',
+    metaTitle: 'MacBook Screen Replacement Daska Road Sialkot | evonix Lab',
     metaDescription: 'Original Apple MacBook Pro, Air, and Dell XPS screen replacement in Sialkot. On-site clean-room service on Daska Road and Cantt with genuine true-tone retention.',
     targetKeywords: [
       'MacBook screen replacement Sialkot',
@@ -420,13 +420,13 @@ Client: M. Waqas Butt, Partner, Prime Rider Leather, Rangpura, Sialkot (★★�
 Fragile Ultra-Thin Displays in Heavy Industrial Environments
 Factory owners and export directors on Daska Road, Sialkot frequently travel with MacBook Pro M-series and Dell XPS ultrabooks. Accidental drops or closing the lid over a stray paperclip causes vertical colored lines, shattered liquid crystal, or total black-screen failure.
 
-EVONIX Professional Screen Replacement Standard
+evonix Professional Screen Replacement Standard
 Genuine Grade-A Panels: High-color-gamut OEM IPS and Retina displays with true-tone calibration retention.
 Anti-Static & HEPA Air Purifier Prep: Prevents fine airborne dust particles from settling between the backlight diffuser and front bezel.
 Torque-Calibrated Fastening: Ensures smooth hinge action without stressing display glass corners.
 
 Verified Client Testimonial (Daska Road, Sialkot)
-"My MacBook Pro M2 screen was shattered after slipping off my desk at our Daska Road unit. EVONIX replaced the complete display assembly within 24 hours with authentic Apple TrueTone calibration. Flawless workmanship."
+"My MacBook Pro M2 screen was shattered after slipping off my desk at our Daska Road unit. evonix replaced the complete display assembly within 24 hours with authentic Apple TrueTone calibration. Flawless workmanship."
 Client: Khawaja Daniyal, Director, MedTech Surgical, Daska Road, Sialkot (★★★★★ 5.0)
     `,
   },
@@ -443,7 +443,7 @@ Client: Khawaja Daniyal, Director, MedTech Surgical, Daska Road, Sialkot (★★
     publishedDate: '2025-04-10',
     author: { name: 'Shahzaib Akhtar', role: 'Lead Enterprise Solutions Architect' },
     tags: ['Rangpura Sialkot', 'Wholesale POS', 'Barcode Scanner Setup', 'Inventory Software'],
-    metaTitle: 'Wholesale POS Barcode Setup Rangpura Sialkot | EVONIX',
+    metaTitle: 'Wholesale POS Barcode Setup Rangpura Sialkot | evonix',
     metaDescription: 'Wholesale inventory and barcode POS systems in Rangpura, Sialkot. Track leather hides, zippers, hardware accessories, and automated customer ledger billing.',
     targetKeywords: [
       'wholesale POS system Rangpura Sialkot',
@@ -461,13 +461,13 @@ Client: Khawaja Daniyal, Director, MedTech Surgical, Daska Road, Sialkot (★★
 The Chaos of Unmetered Raw Materials in Rangpura Wholesale Hubs
 In Rangpura, Sialkot, raw material traders supply leather hides, YKK zippers, metallic rivets, and foam padding to hundreds of stitching factories daily. Managing manual paper khata ledgers causes billing disputes, misplaced inventory, and delayed dispatches.
 
-Automated Solution Engineered by EVONIX
+Automated Solution Engineered by evonix
 Square-Footage & Meterage Matrix: Barcode labels encode hide grade, color lot, and exact square-footage to two decimal places.
 Customer Balance & Credit Limits: Built-in payment ledger with SMS and WhatsApp auto-reminders for outstanding market credit.
 Rugged 2.4GHz Wireless Scanners: Staff scan heavy rolls up to 50 meters away from the billing desk.
 
 Verified Client Testimonial (Rangpura, Sialkot)
-"Our wholesale accessories shop in Rangpura was suffering from constant stock mismatches. EVONIX installed barcode printers and touch POS billing. Now my counter dispatches orders 4 times faster with zero calculation errors."
+"Our wholesale accessories shop in Rangpura was suffering from constant stock mismatches. evonix installed barcode printers and touch POS billing. Now my counter dispatches orders 4 times faster with zero calculation errors."
 Client: Sheikh Zubair, Owner, Zubair Leather Accessories, Rangpura, Sialkot (★★★★★ 5.0)
     `,
   },
@@ -484,7 +484,7 @@ Client: Sheikh Zubair, Owner, Zubair Leather Accessories, Rangpura, Sialkot (★
     publishedDate: '2025-04-16',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['Daska Road Sialkot', 'SSD Upgrade', 'Laptop Speedup', 'Office IT Maintenance'],
-    metaTitle: 'Laptop SSD & RAM Upgrade Daska Road Sialkot | EVONIX',
+    metaTitle: 'Laptop SSD & RAM Upgrade Daska Road Sialkot | evonix',
     metaDescription: 'On-site laptop speedup and NVMe SSD upgrades in Sialkot. 10x faster boot times, Windows optimization, and zero data loss on Daska Road and Paris Road.',
     targetKeywords: [
       'laptop SSD upgrade Daska Road Sialkot',
@@ -508,7 +508,7 @@ On-Site Migration Protocol (35 Units Completed in 2 Days)
 3. RAM Expansion to 16GB Dual-Channel: Seamless multitasking across Adobe Illustrator, CorelDraw, and QuickBooks.
 
 Verified Client Testimonial (Daska Road, Sialkot)
-"Our accounts and export staff were constantly complaining about freezing laptops. EVONIX upgraded our entire fleet of 35 Dell laptops over a weekend on Daska Road. Everything opens instantaneously now, saving us over 2 million PKR compared to buying new laptops."
+"Our accounts and export staff were constantly complaining about freezing laptops. evonix upgraded our entire fleet of 35 Dell laptops over a weekend on Daska Road. Everything opens instantaneously now, saving us over 2 million PKR compared to buying new laptops."
 Client: Asif Javed, IT Director, Forward Trend Exports, Daska Road, Sialkot (★★★★★ 5.0)
     `,
   },
@@ -525,7 +525,7 @@ Client: Asif Javed, IT Director, Forward Trend Exports, Daska Road, Sialkot (★
     publishedDate: '2025-04-22',
     author: { name: 'Engr. Haroon Rasheed', role: 'Principal Web Architect' },
     tags: ['Rangpura Sialkot', 'Multilingual Web Design', 'European Export SEO', 'i18n Next.js'],
-    metaTitle: 'Multilingual Export Web Design Rangpura Sialkot | EVONIX',
+    metaTitle: 'Multilingual Export Web Design Rangpura Sialkot | evonix',
     metaDescription: 'Custom multilingual website development for Sialkot exporters. Native German, French, and Spanish localization with localized European SEO for global orders.',
     targetKeywords: [
       'multilingual website design Sialkot',
@@ -543,13 +543,13 @@ Client: Asif Javed, IT Director, Forward Trend Exports, Daska Road, Sialkot (★
 Breaking the English-Only Barrier for Sialkot Exporters
 Over 70% of high-volume industrial buyers in Germany, Austria, France, and Italy prefer reviewing technical manufacturing capabilities in their native language. Rangpura exporters who present German (Deutsch) and French technical catalogs establish instant trust and win tenders over competitors relying on basic machine translation.
 
-Technical Architecture Implemented by EVONIX
+Technical Architecture Implemented by evonix
 - Subpath SEO Routing (/de/, /fr/, /es/) with valid hreflang metadata tags preventing duplicate content penalties.
 - Domain-Specific Technical Dictionaries: Surgical instruments and leather tanning terms translated accurately (such as Chirurgische Scheren, Motorrad Lederkombis).
 - Localized Regional Hosting: Fast response times across Frankfurt, Paris, and London data centers.
 
 Verified Client Testimonial (Rangpura, Sialkot)
-"Translating our website into German and French with EVONIX was the smartest marketing investment we ever made. Our Rangpura factory now receives direct inquiries from medical distributors in Munich and Lyon who previously ignored our emails."
+"Translating our website into German and French with evonix was the smartest marketing investment we ever made. Our Rangpura factory now receives direct inquiries from medical distributors in Munich and Lyon who previously ignored our emails."
 Client: M. Rizwan Ghani, Partner, Ghani Surgical & Leather, Rangpura, Sialkot (★★★★★ 5.0)
     `,
   },
@@ -566,7 +566,7 @@ Client: M. Rizwan Ghani, Partner, Ghani Surgical & Leather, Rangpura, Sialkot (�
     publishedDate: '2025-04-29',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['Daska Road Sialkot', 'Laser Printer Repair', 'Fuser Film Replacement', 'HP Printer Service'],
-    metaTitle: 'Laser Printer Repair Daska Road Sialkot | EVONIX Service',
+    metaTitle: 'Laser Printer Repair Daska Road Sialkot | evonix Service',
     metaDescription: 'Expert on-site HP, Canon, and Brother laser printer repair on Daska Road and Paris Road, Sialkot. Teflon fuser sleeve replacement, roller cleaning, and toner diagnostics.',
     targetKeywords: [
       'laser printer repair Daska Road Sialkot',
@@ -590,7 +590,7 @@ On-Site Diagnostic Checklist (HP LaserJet Pro M404 / Canon LBP6030)
 3. Laser Scanner Mirror Cleaning: Removes microscopic haze to restore sharp 1200 DPI barcode print quality.
 
 Verified Client Testimonial (Daska Road, Sialkot)
-"Our customs export documentation was getting rejected at Sialkot Dry Port because barcodes printed from our main laser printer were faint and smudged. EVONIX technician came to Daska Road within an hour, overhauled the fuser unit, and saved our container dispatch."
+"Our customs export documentation was getting rejected at Sialkot Dry Port because barcodes printed from our main laser printer were faint and smudged. evonix technician came to Daska Road within an hour, overhauled the fuser unit, and saved our container dispatch."
 Client: Naveed Anwar, Shipping Manager, Silverline Exporters, Daska Road, Sialkot (★★★★★ 5.0)
     `,
   },
@@ -607,7 +607,7 @@ Client: Naveed Anwar, Shipping Manager, Silverline Exporters, Daska Road, Sialko
     publishedDate: '2025-05-05',
     author: { name: 'Shahzaib Akhtar', role: 'Lead Enterprise Solutions Architect' },
     tags: ['Rangpura Sialkot', 'Ransomware Protection', 'Cloud Backup', 'Data Security'],
-    metaTitle: 'Cloud Backup & Ransomware Protection Rangpura Sialkot | EVONIX',
+    metaTitle: 'Cloud Backup & Ransomware Protection Rangpura Sialkot | evonix',
     metaDescription: 'Bulletproof 3-2-1 automated cloud backup and cybersecurity defense for Sialkot businesses in Rangpura and Cantt. Protect CAD designs and accounting data.',
     targetKeywords: [
       'data backup service Rangpura Sialkot',
@@ -625,13 +625,13 @@ Client: Naveed Anwar, Shipping Manager, Silverline Exporters, Daska Road, Sialko
 The Terrifying Reality of Ransomware in Sialkot Business Hubs
 In recent months, multiple industrial units in Rangpura and Small Industrial Estate, Sialkot were crippled by phishing emails with infected ZIP attachments that encrypted their complete QuickBooks accounting and CorelDraw design archives, demanding thousands of dollars in Bitcoin ransom.
 
-The EVONIX 3-2-1 Immutable Backup Architecture
+The evonix 3-2-1 Immutable Backup Architecture
 1. 3 Copies of Data: Primary live database, on-premises local NAS snapshot, and secure off-site cloud vault.
 2. 2 Different Media Types: NVMe enterprise server drives and air-gapped immutable storage.
 3. 1 Air-Gapped Off-Site Vault: Encrypted with AES-256 keys, completely inaccessible to ransomware even if the local office network is compromised.
 
 Verified Client Testimonial (Rangpura, Sialkot)
-"When a crypto-virus encrypted our Rangpura office server last winter, other local IT guys told us our 10 years of export records were gone forever. Fortunately, EVONIX had configured an automated encrypted cloud mirror. They wiped the infected PCs and restored every single file in 3 hours."
+"When a crypto-virus encrypted our Rangpura office server last winter, other local IT guys told us our 10 years of export records were gone forever. Fortunately, evonix had configured an automated encrypted cloud mirror. They wiped the infected PCs and restored every single file in 3 hours."
 Client: Mirza Kamran Baig, Director, Baig Leather Garments, Rangpura, Sialkot (★★★★★ 5.0)
     `,
   },
@@ -648,7 +648,7 @@ Client: Mirza Kamran Baig, Director, Baig Leather Garments, Rangpura, Sialkot (�
     publishedDate: '2025-05-12',
     author: { name: 'Engr. Haroon Rasheed', role: 'Principal Web Architect' },
     tags: ['Daska Road Sialkot', 'Export SEO Sialkot', 'Google Ranking', 'B2B Search Marketing'],
-    metaTitle: 'Export SEO Services Daska Road Sialkot | EVONIX Digital',
+    metaTitle: 'Export SEO Services Daska Road Sialkot | evonix Digital',
     metaDescription: 'Rank #1 on Google for high-value overseas export buyers. Advanced technical SEO, schema markup, and content marketing for Sialkot exporters on Daska Road.',
     targetKeywords: [
       'SEO company in Sialkot',
@@ -673,7 +673,7 @@ Many Sialkot web developers still believe that stuffing keywords into WordPress 
 4. Authoritative Backlink Architecture: Mentions across verified international trade directories and manufacturing publications.
 
 Verified Client Testimonial (Daska Road, Sialkot)
-"Our boxing equipment website was buried on page 6 of Google. EVONIX redesigned our platform with proper B2B technical SEO. Today, we rank in the top 3 on Google USA for our most profitable wholesale keywords, generating 15+ verified buyer inquiries every week."
+"Our boxing equipment website was buried on page 6 of Google. evonix redesigned our platform with proper B2B technical SEO. Today, we rank in the top 3 on Google USA for our most profitable wholesale keywords, generating 15+ verified buyer inquiries every week."
 Client: Zeeshan Afzal, CEO, Combat Pro Sports, Daska Road, Sialkot (★★★★★ 5.0)
     `,
   },
@@ -690,7 +690,7 @@ Client: Zeeshan Afzal, CEO, Combat Pro Sports, Daska Road, Sialkot (★★★★
     publishedDate: '2025-05-18',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['Rangpura Sialkot', 'Liquid Damage Laptop', 'Ultrasonic Bath', 'Motherboard Corrosion'],
-    metaTitle: 'Water Damaged Laptop Repair Rangpura Sialkot | EVONIX Lab',
+    metaTitle: 'Water Damaged Laptop Repair Rangpura Sialkot | evonix Lab',
     metaDescription: 'Emergency liquid spill and water damaged laptop repair in Rangpura and Paris Road, Sialkot. Ultrasonic chemical cleaning, circuit desoldering, and 95% data recovery.',
     targetKeywords: [
       'water damaged laptop repair Rangpura Sialkot',
@@ -708,7 +708,7 @@ Client: Zeeshan Afzal, CEO, Combat Pro Sports, Daska Road, Sialkot (★★★★
 The Chemistry of Pakistani Chai Spills on Electronics
 When hot tea with milk and sugar spills across a running laptop in a Rangpura office, the liquid rapidly flows through keyboard drainage vents onto the motherboard. Milk fats and sugar cause rapid galvanic corrosion under 19V current, eating away microscopic copper traces and solder balls under BGA chips within hours.
 
-The EVONIX 6-Step Chemical Neutralization Protocol
+The evonix 6-Step Chemical Neutralization Protocol
 1. Immediate Battery Disconnect: Cuts off all electrical rails before electrochemical copper dissolution occurs.
 2. Heated Industrial Ultrasonic Bath: Submerged in specialized electronics-grade PCB cleaning solvent to dissolve sugar and flux deposits under dense BGA packages.
 3. High-Temperature Dehydration Oven: Baked at 65°C for 4 hours to eliminate microscopic residual moisture.
@@ -717,7 +717,7 @@ The EVONIX 6-Step Chemical Neutralization Protocol
 6. Stress Testing: 24-hour FurMark and AIDA64 burn-in testing.
 
 Verified Client Testimonial (Rangpura, Sialkot)
-"I accidentally spilled an entire cup of hot tea directly over my Lenovo ThinkPad containing our primary factory design patterns in Rangpura. EVONIX picked up the laptop in 20 minutes, performed ultrasonic cleaning, and returned it working perfectly with 100% of my data intact."
+"I accidentally spilled an entire cup of hot tea directly over my Lenovo ThinkPad containing our primary factory design patterns in Rangpura. evonix picked up the laptop in 20 minutes, performed ultrasonic cleaning, and returned it working perfectly with 100% of my data intact."
 Client: Atif Raza, Head Designer, Sialkot Fashion Wear, Rangpura, Sialkot (★★★★★ 5.0)
     `,
   },
@@ -734,7 +734,7 @@ Client: Atif Raza, Head Designer, Sialkot Fashion Wear, Rangpura, Sialkot (★�
     publishedDate: '2025-05-24',
     author: { name: 'Shahzaib Akhtar', role: 'Lead Enterprise Solutions Architect' },
     tags: ['Daska Road Sialkot', 'Multi-Branch POS', 'Inventory Sync', 'Enterprise Software'],
-    metaTitle: 'Multi-Branch POS & Factory Inventory Sync Sialkot | EVONIX',
+    metaTitle: 'Multi-Branch POS & Factory Inventory Sync Sialkot | evonix',
     metaDescription: 'Connect manufacturing plants on Daska Road with city retail showrooms in Sialkot Cantt and Paris Road. Real-time cloud sync, automated transfer gatepasses, and live audits.',
     targetKeywords: [
       'multi-branch POS software Sialkot',
@@ -752,13 +752,13 @@ Client: Atif Raza, Head Designer, Sialkot Fashion Wear, Rangpura, Sialkot (★�
 The Disconnect Between Factory Warehouses and City Outlets
 Many prominent Sialkot manufacturing brands maintain their primary stitching and production compounds along Daska Road, while operating flagship consumer retail showrooms in Sialkot Cantt, Paris Road, and Mall of Sialkot. Without real-time cloud inventory synchronization, retail sales staff frequently sell items that are already out of stock or waiting on production lines.
 
-Key Features of the EVONIX Multi-Branch Architecture
+Key Features of the evonix Multi-Branch Architecture
 Real-Time WebSockets Sync: When an item sells in the Cantt showroom, inventory balances across the Daska Road central warehouse update instantly in 200 milliseconds.
 Automated Stock Transfer Gatepasses: Digital QR-coded delivery challans prevent stock theft during transport between Daska Road and city outlets.
 Executive Mobile Dashboard: Company owners monitor live sales, margin analysis, and stock levels from their smartphones anywhere in the world.
 
 Verified Client Testimonial (Daska Road to Cantt, Sialkot)
-"Managing stock between our Daska Road manufacturing factory and our two retail outlets in Sialkot Cantt was a daily headache of phone calls and Excel sheets. EVONIX connected everything into one live cloud dashboard. We now have 100% stock accuracy."
+"Managing stock between our Daska Road manufacturing factory and our two retail outlets in Sialkot Cantt was a daily headache of phone calls and Excel sheets. evonix connected everything into one live cloud dashboard. We now have 100% stock accuracy."
 Client: Qasim Munir, Managing Partner, Velocity Sports & Apparel, Sialkot (★★★★★ 5.0)
     `,
   },
@@ -775,7 +775,7 @@ Client: Qasim Munir, Managing Partner, Velocity Sports & Apparel, Sialkot (★�
     publishedDate: '2025-05-30',
     author: { name: 'Engr. Haroon Rasheed', role: 'Principal Web Architect' },
     tags: ['Rangpura Sialkot', 'UI/UX Design', 'B2B User Experience', 'Web Design Sialkot'],
-    metaTitle: 'UI/UX Design for Export Portals Rangpura Sialkot | EVONIX',
+    metaTitle: 'UI/UX Design for Export Portals Rangpura Sialkot | evonix',
     metaDescription: 'Award-winning UI/UX interface design for Sialkot exporters in Rangpura and Cantt. User-tested buyer journeys, responsive layouts, and frictionless RFQ funnels.',
     targetKeywords: [
       'UI UX design company in Sialkot',
@@ -793,13 +793,13 @@ Client: Qasim Munir, Managing Partner, Velocity Sports & Apparel, Sialkot (★�
 Why International Buyers Abandon 85% of Sialkot Websites
 When a procurement manager in London or New York lands on an export website, they make a subconscious credibility assessment within 3.5 seconds. Cluttered navigation menus, low-contrast typography, broken mobile responsiveness, and complex multi-page inquiry forms force prospective buyers back to Google search results immediately.
 
-Core UX Innovations Introduced by EVONIX
+Core UX Innovations Introduced by evonix
 1. One-Click Quick RFQ Drawer: Buyers can add products to an inquiry drawer while continuing to browse, submitting a comprehensive quote request in under 30 seconds.
 2. High-Density Technical Product Grids: Displays critical specifications (gauges, finishes, leather weights, certifications) without requiring endless subpage clicks.
 3. Mobile-First Responsive Layouts: Flawless touch interaction on iPhones, iPads, and Android tablets used by international buyers at trade exhibitions.
 
 Verified Client Testimonial (Rangpura, Sialkot)
-"Our inquiry conversion rate doubled within 6 weeks of EVONIX launching our redesigned export portal in Rangpura. International clients specifically comment on how easy it is to navigate our catalog and build custom sample orders."
+"Our inquiry conversion rate doubled within 6 weeks of evonix launching our redesigned export portal in Rangpura. International clients specifically comment on how easy it is to navigate our catalog and build custom sample orders."
 Client: Taimur Cheema, Director of Business Development, Cheema Leather & Textiles, Rangpura, Sialkot (★★★★★ 5.0)
     `,
   },
@@ -816,7 +816,7 @@ Client: Taimur Cheema, Director of Business Development, Cheema Leather & Textil
     publishedDate: '2025-06-05',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['Daska Road Sialkot', 'Rangpura Sialkot', 'IT Maintenance AMC', 'Factory IT Support'],
-    metaTitle: 'Annual IT Maintenance Contract (AMC) Sialkot | EVONIX IT',
+    metaTitle: 'Annual IT Maintenance Contract (AMC) Sialkot | evonix IT',
     metaDescription: 'Comprehensive Annual IT Maintenance Contracts (AMC) for factories on Daska Road, Rangpura, and Small Industrial Estate, Sialkot. 60-minute response guarantee.',
     targetKeywords: [
       'IT maintenance contract Sialkot',
@@ -834,14 +834,14 @@ Client: Taimur Cheema, Director of Business Development, Cheema Leather & Textil
 Moving from "Reactive Firefighting" to "Guaranteed Zero-Downtime"
 In traditional Sialkot industrial facilities across Daska Road and Rangpura, IT issues are handled reactively: computers are ignored until a hard drive crashes, a network switch burns out, or a key printer fails during an urgent shipment dispatch. This uncoordinated approach leads to panicked delays and inflated repair costs.
 
-What EVONIX Corporate AMC Delivers
+What evonix Corporate AMC Delivers
 Monthly Preventive Maintenance: Physical dust cleanout of servers, thermal paste refreshment on workstations, and UPS battery load testing.
 Guaranteed 60-Minute Rapid Response: Dedicated field engineer dispatched immediately for any critical production line or billing stoppage.
 Automated Off-Site Backups & Patching: Verified nightly backups with enterprise anti-ransomware endpoint protection.
 Hardware Standby Units: Immediate replacement laptops and thermal printers provided while client hardware undergoes bench repair.
 
 Verified Client Testimonial (Daska Road Industrial Area, Sialkot)
-"Signing an Annual IT Support Contract with EVONIX was one of the best decisions our board made. We haven't had a single hour of IT downtime across our Daska Road factory in over a year. Their team operates with true multinational Dubai professionalism."
+"Signing an Annual IT Support Contract with evonix was one of the best decisions our board made. We haven't had a single hour of IT downtime across our Daska Road factory in over a year. Their team operates with true multinational Dubai professionalism."
 Client: Haji Iftikhar Ahmad, Chairman, Global Medico Corp, Daska Road, Sialkot (★★★★★ 5.0)
     `,
   },
@@ -858,7 +858,7 @@ Client: Haji Iftikhar Ahmad, Chairman, Global Medico Corp, Daska Road, Sialkot (
     publishedDate: '2025-07-10',
     author: { name: 'Faraz Raza', role: 'Principal Systems & Enterprise Software Lead' },
     tags: ['Sialkot Surgical Industry', 'EU MDR 2017/745', 'UDI Barcode Software', 'Laser Marking Traceability', 'ISO 13485'],
-    metaTitle: 'Sialkot Surgical UDI Barcode & EU MDR Software Guide | EVONIX',
+    metaTitle: 'Sialkot Surgical UDI Barcode & EU MDR Software Guide | evonix',
     metaDescription: 'Step-by-step EU MDR 2017/745 UDI compliance guide for Sialkot surgical instrument manufacturers. Laser marking 2D DataMatrix integration & batch ERP software.',
     targetKeywords: [
       'surgical instruments software sialkot',
@@ -877,7 +877,7 @@ Client: Haji Iftikhar Ahmad, Chairman, Global Medico Corp, Daska Road, Sialkot (
 The Regulatory Challenge Facing Sialkot's $400M Surgical Sector
 Under the European Medical Device Regulation (EU MDR 2017/745), every surgical instrument entering the EU single market must bear an indelible, laser-etched Unique Device Identifier (UDI) in 2D DataMatrix GS1 format. Hand-stamped serials and manual paper ledgers are now completely rejected at European customs ports (Hamburg, Rotterdam, and Heathrow).
 
-EVONIX Automated UDI & Laser Annealing Integration
+evonix Automated UDI & Laser Annealing Integration
 1. Fiber Laser Direct Part Marking (DPM): Software integration directly communicating with fiber laser marking machines (EzCad2 & EzCad3 API) to engrave Grade-A GS1 DataMatrix codes without damaging passivated surgical stainless steel (AISI 410, 420, 316L).
 2. Cleanroom Batch Validation: Barcode verification scanners (Cognex & Keyence DPM verifiers) integrated into the inspection line to guarantee an ISO 15415 Grade B or higher readability before packaging.
 3. Automated EUDAMED & GUDID Registration: Instant generation of Basic UDI-DI, Production Identifiers (PI including Lot Number, Expiration Date, and Serial Number) mapped directly to your internal ERP database.
@@ -900,7 +900,7 @@ Outcome: Transitioned 4,200 surgical instrument SKUs to automated UDI laser mark
     publishedDate: '2025-07-25',
     author: { name: 'Engr. Hamza Tariq', role: 'Lead Hardware & Micro-Soldering Specialist' },
     tags: ['Laptop Type-C Repair', 'Dell Latitude 5420', 'HP EliteBook G8', 'Micro-Soldering Sialkot', 'Generator Surge'],
-    metaTitle: 'Dell & HP Type-C Charging Port & IC Repair Sialkot | EVONIX Lab',
+    metaTitle: 'Dell & HP Type-C Charging Port & IC Repair Sialkot | evonix Lab',
     metaDescription: 'Expert Type-C PD controller IC replacement for Dell Latitude, HP EliteBook, and MacBooks in Sialkot. Fix 5V 0.02A amp meter loop with 90-day written warranty.',
     targetKeywords: [
       'laptop type c not charging repair sialkot',
@@ -919,7 +919,7 @@ Outcome: Transitioned 4,200 surgical instrument SKUs to automated UDI laser mark
 Why Sialkot Factory Generators Destroy Type-C Laptop Charging Controllers
 In industrial zones across Daska Road and Paris Road, frequent load shedding causes factory generators to switch over under heavy electrical load. The resulting inductive voltage spike surges through generic aftermarket Type-C adapters, sending 40V+ spikes directly into the Configuration Channel (CC1/CC2) communication pins of the laptop's Power Delivery (PD) controller.
 
-Bench Diagnostic Protocol at EVONIX Sialkot Lab
+Bench Diagnostic Protocol at evonix Sialkot Lab
 1. USB-C Digital Power Meter Analysis:
 - Reading: 5.12V @ 0.02A (Fixed 5V loop, unable to negotiate 20V high-voltage profile).
 - Diagnostic Indication: High-voltage negotiation handshake failed; PD Controller IC dead or CC line shorted to ground.
@@ -974,11 +974,11 @@ The 4 Common Thermal Printer Failures & Field Fixes
 - 2 Blinks: Paper out or optical paper-feed sensor blocked by thermal coating dust.
 - 3 Blinks: Thermal printhead temperature sensor (Thermistor) reporting abnormal heat (>65°C) due to continuous bulk receipt printing without cooling pauses.
 3. Windows USB "Unknown Device" Driver Conflict:
-- Caused by Windows 11 updates overriding the standard POS-80 Virtual COM driver with a generic USB composite device driver. EVONIX technicians install signed native ESC/POS spooler drivers with direct baud rate matching.
+- Caused by Windows 11 updates overriding the standard POS-80 Virtual COM driver with a generic USB composite device driver. evonix technicians install signed native ESC/POS spooler drivers with direct baud rate matching.
 4. Faint or Faded Receipt Printing:
 - Clean the ceramic printhead heating array with 99% anhydrous isopropyl alcohol (IPA) to eliminate baked-on thermal dust.
 
-EVONIX Sialkot On-Site Printer Service:
+evonix Sialkot On-Site Printer Service:
 We stock replacement cutter assemblies, 24V power adapters, and motherboard mainboards for Xprinter, Black Copper, Epson TM-T88, and Rongta printers for same-day on-site restoration across Sialkot.
     `,
   },
@@ -995,7 +995,7 @@ We stock replacement cutter assemblies, 24V power adapters, and motherboard main
     publishedDate: '2025-08-28',
     author: { name: 'Faraz Raza', role: 'Principal Systems & Enterprise Infrastructure Lead' },
     tags: ['Sambrial Dry Port', 'WeBOC Customs EDI', 'Synology NAS Backup', 'Ransomware Protection', 'Sialkot Exporters'],
-    metaTitle: 'Ransomware-Proof Factory Backup & Customs EDI Sialkot | EVONIX',
+    metaTitle: 'Ransomware-Proof Factory Backup & Customs EDI Sialkot | evonix',
     metaDescription: 'Secure Synology NAS backup and cyber protection for Sialkot export factories. Protect WeBOC customs data, CAD leather/surgical patterns, and accounting databases.',
     targetKeywords: [
       'factory server backup sialkot',
@@ -1014,7 +1014,7 @@ We stock replacement cutter assemblies, 24V power adapters, and motherboard main
 The Growing Threat to Sialkot's Export Infrastructure
 Over the past 12 months, multiple export manufacturing facilities on Sambrial Road, Daska Road, and Wazirabad Road suffered severe ransomware attacks (Phobos, LockBit 3.0, and Medusa). Attackers breached open RDP ports, encrypted Quickbooks accounting files, Optitex/Gerber CAD patterns, and WeBOC customs export documentation, demanding hundreds of thousands of dollars in Bitcoin.
 
-The EVONIX 3-2-1 Immutable Air-Gapped Defense Blueprint
+The evonix 3-2-1 Immutable Air-Gapped Defense Blueprint
 1. Synology Btrfs Immutable Snapshots:
 - Local NAS snapshots configured with Write-Once-Read-Many (WORM) policy. Even if a domain administrator account is compromised, the snapshot data cannot be modified, encrypted, or deleted for a set retention window (90 days).
 2. Fiber-Isolated Local Backup:
@@ -1041,7 +1041,7 @@ Every Sialkot manufacturing client deployed with our Synology enterprise archite
     publishedDate: '2026-01-14',
     author: { name: 'Faraz Raza', role: 'Principal Systems & Enterprise Infrastructure Lead' },
     tags: ['GS1 Barcode Sialkot', 'Amazon FBA Shipping', 'Thermal Printer 203 DPI', 'Sialkot Exporters', 'Surgical Barcode'],
-    metaTitle: 'Sialkot Export Barcode & Thermal Shipping Label Guide | EVONIX',
+    metaTitle: 'Sialkot Export Barcode & Thermal Shipping Label Guide | evonix',
     metaDescription: 'Complete guide for Sialkot export manufacturers to create certified Code 128, GS1, and Amazon FBA carton labels. Calibrated for TSC, Zebra, and Xprinter thermal units.',
     targetKeywords: [
       'export carton barcode generator Sialkot',
@@ -1058,12 +1058,12 @@ Every Sialkot manufacturing client deployed with our Synology enterprise archite
     ],
     content: `
 Why Sialkot Exporters Face Barcode Rejection at Foreign Ports
-Every week, consignments arriving from Sialkot at logistics hubs in Hamburg, Rotterdam, London Heathrow, and Chicago O'Hare face clearance delays because warehouse laser scanners cannot read blurry, low-resolution carton barcodes. The root causes identified by EVONIX industrial audits across Daska Road and Small Industrial Estate:
+Every week, consignments arriving from Sialkot at logistics hubs in Hamburg, Rotterdam, London Heathrow, and Chicago O'Hare face clearance delays because warehouse laser scanners cannot read blurry, low-resolution carton barcodes. The root causes identified by evonix industrial audits across Daska Road and Small Industrial Estate:
 1. Printing at non-native DPI: Generating 96 DPI screen-rendered barcodes on 203 DPI thermal heads causes severe bar aliasing and unreadable widths.
 2. Wrong ribbon chemistry: Using cheap full-wax ribbons on glossy polypropylene synthetic labels instead of resin-enhanced ribbons, causing smudging during ocean freight transit.
 3. Incorrect GS1 application identifiers (AI): Missing mandatory parentheses around AI (01) Global Trade Item Number, (10) Batch/Lot, or (21) Serial Number.
 
-The EVONIX Standard for 100% Scannability
+The evonix Standard for 100% Scannability
 - Native Vector Generation: We utilize pure SVG mathematical bar definitions where every dark bar matches exact dot-multiples of the thermal printhead (e.g. 8 dots/mm on 203 DPI).
 - Barcode Verification Grades: All cartons must meet ISO/IEC 15416 Grade A or B verification before leaving the Sialkot factory loading dock.
 - Dual 2D QR Redundancy: Including a high-eccentricity QR code alongside Code 128 ensures logistics scanners can recover 30% corrupted data if shipping labels suffer tears.
@@ -1082,7 +1082,7 @@ The EVONIX Standard for 100% Scannability
     publishedDate: '2026-01-28',
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['HP LaserJet Repair Sialkot', 'Thermal Printer Repair', 'Defect Distance Ruler', 'Fuser Error 50.4', 'Printer Service Paris Road'],
-    metaTitle: 'HP LaserJet & Thermal Printer Repair Sialkot | EVONIX Diagnostics',
+    metaTitle: 'HP LaserJet & Thermal Printer Repair Sialkot | evonix Diagnostics',
     metaDescription: 'Expert printer repair in Sialkot: diagnose repeating marks at 75mm (OPC Drum) or 78mm (Fuser), solve 50.4 fuser power errors, and fix jammed thermal receipt cutters.',
     targetKeywords: [
       'printer repair in Sialkot',
@@ -1107,7 +1107,7 @@ When an HP LaserJet or Canon laser printer deposits repetitive black smudges, do
 - 25mm Fuser Roller Diameter = 78.5mm Distance (Torn Teflon fuser sleeve or burnt ceramic grease).
 
 Resolving 50.4 Fuser Errors Caused by Industrial Sialkot Power Surges
-HP LaserJet M402 and P2055 printers frequently flash 50.4 Fuser Error during factory diesel generator transitions. This error signifies a phase fluctuation or voltage drop below 190V AC. EVONIX engineers test the ceramic thermistor, install transient surge suppressors, and replace burnt halogen/ceramic elements to OEM specifications.
+HP LaserJet M402 and P2055 printers frequently flash 50.4 Fuser Error during factory diesel generator transitions. This error signifies a phase fluctuation or voltage drop below 190V AC. evonix engineers test the ceramic thermistor, install transient surge suppressors, and replace burnt halogen/ceramic elements to OEM specifications.
     `,
   },
 
@@ -1123,7 +1123,7 @@ HP LaserJet M402 and P2055 printers frequently flash 50.4 Fuser Error during fac
     publishedDate: '2026-02-12',
     author: { name: 'Faraz Raza', role: 'Principal Systems & Enterprise Infrastructure Lead' },
     tags: ['WeBOC Customs Sialkot', 'Factory IT Infrastructure', 'Daska Road Industry', 'Power Surge Protection', 'Industrial NVR CCTV'],
-    metaTitle: 'Sialkot Factory IT & Customs WeBOC Network Guide | EVONIX',
+    metaTitle: 'Sialkot Factory IT & Customs WeBOC Network Guide | evonix',
     metaDescription: 'Engineering blueprint for Sialkot export manufacturers: prevent WeBOC customs filing freezes, protect servers from generator phase shifts, and stabilize shop-floor networks.',
     targetKeywords: [
       'sialkot export factory IT company',
@@ -1144,7 +1144,7 @@ Operating mission-critical IT infrastructure inside Sialkot's export industrial 
 2. Generator transfer transients: Switching from GEPCO mains to 150kVA diesel generators causes brief 400V phase surges that blow unshielded server power supplies and switchboards.
 3. High humidity and fine buffing dust: Surgical polishing and leather buffing generate micro-airborne conductive dust that clogs server fans and shorts motherboard PCB traces.
 
-The EVONIX 4-Layer Factory Hardening Standard
+The evonix 4-Layer Factory Hardening Standard
 - Dedicated Isolated Ground: We install separate isolated copper grounding plates for server rooms (sub-1.0 Ohm earth resistance).
 - Online Double-Conversion Isolation UPS: Zero-millisecond transfer time with internal galvanic isolation transformers.
 - Sealed Positive-Pressure Server Enclosures: Rittal / Toten IP54 server racks with filtered positive pressure airflow.
@@ -1164,7 +1164,7 @@ The EVONIX 4-Layer Factory Hardening Standard
     publishedDate: '2026-02-20',
     author: { name: 'M. Ali Raza', role: 'Head of Creative Engineering & UI/UX' },
     tags: ['Export Website Design Sialkot', 'React Vite B2B Website', 'Sialkot Surgical Web', 'Schema SEO Export', 'Dubai Standards'],
-    metaTitle: 'React Web Development for Sialkot B2B Exporters | EVONIX',
+    metaTitle: 'React Web Development for Sialkot B2B Exporters | evonix',
     metaDescription: 'Why Sialkot export companies need modern React + Vite web architecture instead of slow, bloated WordPress templates to win high-ticket B2B contracts in US, UK, and Germany.',
     targetKeywords: [
       'website development company in Sialkot',

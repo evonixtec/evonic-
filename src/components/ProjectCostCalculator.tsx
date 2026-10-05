@@ -221,7 +221,7 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
   };
 
   const whatsappMessage = encodeURIComponent(
-    `Hello EVONIX, I used your project calculator. Sector: ${currentSector.name}. Package: ${currentTier.title}. Add-ons: ${
+    `Hello evonix, I used your project calculator. Sector: ${currentSector.name}. Package: ${currentTier.title}. Add-ons: ${
       addMultilingual ? 'Multilingual (DE/FR), ' : ''
     }${addConfigurator ? '3D Configurator' : 'Standard'}. Estimated: Rs. ${totalPkr.toLocaleString()} (approx. ${totalAed} AED). Please send formal proposal.`
   );
@@ -817,7 +817,7 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                   <div className="flex flex-col sm:flex-row items-center gap-2">
                     <a
                       href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(
-                        `Hello EVONIX, I used your Developer Cost Calculator: ${devTeamSize}x ${devTier.toUpperCase()} (${devTechStack}) for ${devMonths} months. Hourly: $${devOffshoreRate}/hr. Net Savings: $${devNetSavings.toLocaleString()}. Please share available developer profiles.`
+                        `Hello evonix, I used your Developer Cost Calculator: ${devTeamSize}x ${devTier.toUpperCase()} (${devTechStack}) for ${devMonths} months. Hourly: $${devOffshoreRate}/hr. Net Savings: $${devNetSavings.toLocaleString()}. Please share available developer profiles.`
                       )}`}
                       target="_blank"
                       rel="noopener noreferrer"

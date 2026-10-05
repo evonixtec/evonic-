@@ -128,7 +128,7 @@ export const ThermalHotspotInspector: React.FC = () => {
           </h2>
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
             Unskilled repair shops randomly blast motherboards with destructive heat guns, causing permanent multi-layer PCB warping.
-            At Evonix Sialkot, we locate dead short circuits safely using <strong>regulated low-voltage injection & high-resolution infrared thermal imaging</strong>.
+            At evonix Sialkot, we locate dead short circuits safely using <strong>regulated low-voltage injection & high-resolution infrared thermal imaging</strong>.
           </p>
           <div className="mt-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-400 text-xs font-semibold">
             <CheckCircle2 className="w-4 h-4 text-emerald-400" />
@@ -400,7 +400,7 @@ export const ThermalHotspotInspector: React.FC = () => {
               </div>
               <a
                 href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(
-                  `Assalam-o-Alaikum Evonix Lab, I saw your Thermal Hotspot Inspector for component ${activeComponent.designator} (${activeComponent.name}). My laptop is completely dead and I want to bring it for free bench diagnostic.`
+                  `Assalam-o-Alaikum evonix lab, I saw your Thermal Hotspot Inspector for component ${activeComponent.designator} (${activeComponent.name}). My laptop is completely dead and I want to bring it for free bench diagnostic.`
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"

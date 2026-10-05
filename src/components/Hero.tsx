@@ -131,7 +131,7 @@ export const Hero: React.FC<HeroProps> = ({
             </button>
 
             <a
-              href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX, I would like to discuss my project requirement.')}`}
+              href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello evonix, I would like to discuss my project requirement.')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="px-5 py-3.5 rounded-xl bg-gradient-to-br from-emerald-50 via-white to-teal-50/70 hover:from-emerald-100/70 hover:to-teal-100 text-emerald-800 font-bold text-sm sm:text-base border-2 border-emerald-200/90 shadow-[0_4px_16px_rgba(16,185,129,0.12)] transition-all flex items-center gap-2 hover:-translate-y-0.5"

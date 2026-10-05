@@ -100,7 +100,7 @@ We will roll out these modules step by step over the next two weeks. You can che
       role: 'Hardware Bench Technician',
     },
     tags: ['Thermal Printer', 'Receipt Printer', 'POS Hardware', 'Printer Repair', 'Sialkot Retail'],
-    metaTitle: 'Thermal Receipt Printer Faded Lines Fix | EVONIX Blog',
+    metaTitle: 'Thermal Receipt Printer Faded Lines Fix | evonix Blog',
     metaDescription: 'Easy steps to fix faint thermal receipts, paper jams, and dirty thermal heads on Xprinter, Rongta, and Epson POS printers in retail shops.',
     targetKeywords: ['thermal printer repair sialkot', 'receipt printer faded print fix', 'pos machine printer jam'],
     internalLinks: [
@@ -139,7 +139,7 @@ If the printer makes grinding noises or the auto-cutter gets stuck halfway, the 
       role: 'Lead Systems Engineer',
     },
     tags: ['Laptop Overheating', 'Thermal Paste', 'Laptop Servicing', 'Motherboard Care', 'Sialkot Cantt'],
-    metaTitle: 'Why Laptops Overheat & Shut Down Suddenly | EVONIX Blog',
+    metaTitle: 'Why Laptops Overheat & Shut Down Suddenly | evonix Blog',
     metaDescription: 'Simple guide explaining laptop fan noise, heat shutdowns, and why replacing dried factory thermal paste saves your Core i5 and i7 motherboard.',
     targetKeywords: ['laptop overheating fix sialkot', 'laptop fan cleaning service', 'laptop thermal paste replacement'],
     internalLinks: [
@@ -179,7 +179,7 @@ Between your CPU chip and the copper heatsink sits a thin layer of thermal compo
       role: 'Chief Hardware Engineer',
     },
     tags: ['Desktop PC', 'Power Supply', 'Load Shedding', 'Factory IT', 'Hardware Repair'],
-    metaTitle: 'Desktop PC Dead After Power Cut? Simple Fixes | EVONIX Blog',
+    metaTitle: 'Desktop PC Dead After Power Cut? Simple Fixes | evonix Blog',
     metaDescription: 'Step-by-step troubleshooting for office and factory desktop computers that refuse to power on after generator changeover or voltage spikes.',
     targetKeywords: ['desktop pc not turning on sialkot', 'computer power supply repair', 'factory computer maintenance sialkot'],
     internalLinks: [
@@ -222,7 +222,7 @@ Always ensure your office and billing PCs are connected through a grounded AVR (
       role: 'Lead Systems Engineer',
     },
     tags: ['POS Software', 'Offline First', 'Retail Billing', 'Software Development', 'Web Architecture'],
-    metaTitle: 'Why Retail POS Needs Offline-First Architecture | EVONIX Blog',
+    metaTitle: 'Why Retail POS Needs Offline-First Architecture | evonix Blog',
     metaDescription: 'Learn why cloud-only POS systems cause long queues during internet outages and how local offline IndexedDB sync solves retail downtime.',
     targetKeywords: ['pos software sialkot', 'offline billing system pakistan', 'retail software development sialkot'],
     internalLinks: [
@@ -238,7 +238,7 @@ If your point-of-sale system is built on standard cloud-only software, your cash
 Traditional web developers often build apps that send an HTTP request to an overseas cloud server for every single barcode scanned. If a fiber line gets cut down the street or 4G signals fluctuate, your entire business comes to a screeching halt.
 
 ### What is Modern "Offline-First" Architecture?
-At EVONIX, when we design custom retail and inventory systems for local merchants, we use modern client-side storage technologies (like browser IndexedDB paired with Service Workers):
+At evonix, when we design custom retail and inventory systems for local merchants, we use modern client-side storage technologies (like browser IndexedDB paired with Service Workers):
 
 1. **Instant Local Execution:** When the cashier scans an item, the price lookup, tax computation, and receipt generation happen directly on the local machine in less than 5 milliseconds. No internet needed.
 2. **Local Queueing:** Every sales invoice is signed with a unique cryptographic transaction ID and stored securely in local encrypted storage.
@@ -261,7 +261,7 @@ Your staff never notices whether the internet was up or down, lines keep moving,
       role: 'Lead Systems Engineer',
     },
     tags: ['Web Design', 'Export Website', 'Page Speed', 'SEO Performance', 'Sialkot Exporters'],
-    metaTitle: 'Fast Websites Win Foreign Orders for Exporters | EVONIX Blog',
+    metaTitle: 'Fast Websites Win Foreign Orders for Exporters | evonix Blog',
     metaDescription: 'Why Sialkot surgical, sportswear, and leather exporters lose overseas buyers due to slow WordPress plugins, and how clean React builds rank #1 on Google.',
     targetKeywords: ['website development sialkot', 'best software house in sialkot', 'export company website design'],
     internalLinks: [

@@ -107,7 +107,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             </button>
 
             <a
-              href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX, I need urgent IT support in Sialkot.')}`}
+              href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello evonix, I need urgent IT support in Sialkot.')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-emerald-400 font-semibold text-xs border border-emerald-900/60 transition-colors flex items-center justify-center gap-2"
@@ -124,7 +124,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
           <div className="lg:col-span-4 space-y-4">
             <EvonixLogo size="md" forceTheme="dark" />
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm mt-3">
-              EVONIX brings two decades of enterprise engineering and hardware diagnostic experience from Dubai, UAE to Sialkot, Pakistan.
+              evonix brings two decades of enterprise engineering and hardware diagnostic experience from Dubai, UAE to Sialkot, Pakistan.
             </p>
 
             {/* Badges */}
@@ -471,7 +471,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
         {/* 4. Bottom Legal Policies & Copyright */}
         <div className="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div>
-            © {new Date().getFullYear()} EVONIX TECHNOLOGIES. All rights reserved. SECP Registered IT Company in Sialkot, Pakistan.
+            © {new Date().getFullYear()} evonix technologies. All rights reserved. SECP Registered IT Company in Sialkot, Pakistan.
           </div>
 
           <div className="flex flex-wrap items-center gap-3 sm:gap-4">

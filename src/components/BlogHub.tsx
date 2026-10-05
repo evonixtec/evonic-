@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Search, BookOpen, Clock, Calendar, ArrowRight, Sparkles, Filter, CheckCircle2, ChevronRight } from 'lucide-react';
+import { Search, BookOpen, Clock, Calendar, ArrowRight, Sparkles, Filter, CheckCircle2, ChevronRight, Barcode } from 'lucide-react';
 import { ALL_BLOGS, BLOG_CATEGORIES, BlogCategory, BlogPost, searchBlogs } from '../data/blogs';
 import { SectionId } from '../types';
 import { BlogReaderModal } from './BlogReaderModal';
@@ -7,7 +7,7 @@ import { EvonixMark } from './EvonixLogo';
 import { applyBlogPostSEO, applyPageSEO } from '../lib/seo';
 
 interface BlogHubProps {
-  onNavigateSection: (sectionId: SectionId) => void;
+  onNavigateSection: (sectionId: SectionId | string) => void;
   onOpenQuoteModal?: (serviceId?: string) => void;
 }
 
@@ -111,15 +111,15 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onNavigateSection, onOpenQuote
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="max-w-2xl space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-red-700 text-xs font-bold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-red-700 text-xs font-semibold">
               <EvonixMark className="w-3.5 h-3.5" />
-              <span>Official EVONIX Tech Blogs & Engineering Knowledge Hub</span>
+              <span>official evonix tech blogs &amp; engineering knowledge hub</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-              {ALL_BLOGS.length}+ Tech Blogs, Hardware Guides & Case Studies
+              {ALL_BLOGS.length}+ Tech Blogs, Hardware Guides &amp; Case Studies
             </h2>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
-              Written by EVONIX engineers with 20+ years Dubai enterprise experience. Featuring real on-site emergency field repairs on Daska Road & Rangpura, printer servicing, laptop maintenance, offline POS architecture, and chip-level motherboard restoration.
+              Written by evonix engineers with 20+ years Dubai enterprise experience. Featuring real on-site emergency field repairs on Daska Road &amp; Rangpura, printer servicing, laptop maintenance, offline POS architecture, and chip-level motherboard restoration.
             </p>
           </div>
 
@@ -211,6 +211,39 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onNavigateSection, onOpenQuote
           </div>
         )}
 
+        {/* Featured Exporter Utility Banner: Export Barcode Label Generator Studio */}
+        <div className="mb-8 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-4 border border-slate-700 shadow-sm">
+          <div className="flex items-center gap-3.5">
+            <div className="w-10 h-10 rounded-xl bg-red-600/20 border border-red-500/30 flex items-center justify-center flex-shrink-0 text-red-400">
+              <Barcode className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-bold tracking-widest uppercase text-red-400">
+                  Featured Sialkot Exporter Tool
+                </span>
+                <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                  Zero Database
+                </span>
+              </div>
+              <h4 className="text-sm sm:text-base font-bold text-white mt-0.5">
+                Export Barcode Label Generator Studio (GS1-128, Code128, Carton Stickers)
+              </h4>
+              <p className="text-xs text-slate-300 mt-0.5 leading-relaxed">
+                Generate compliant shipping labels, outer carton barcodes, and product serials for surgical, sports &amp; leather consignments.
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => onNavigateSection('export-barcode-studio')}
+            className="whitespace-nowrap px-4 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-md transition-all flex items-center gap-2 cursor-pointer flex-shrink-0"
+          >
+            <span>Open Barcode Studio</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+
         {/* Results Counter */}
         <div className="flex items-center justify-between text-xs text-slate-500 mb-6">
           <span>
@@ -249,59 +282,88 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onNavigateSection, onOpenQuote
               <article
                 key={blog.id}
                 onClick={() => handleOpenBlog(blog)}
-                className="bg-white border border-slate-200 rounded-2xl p-6 shadow-2xs hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between cursor-pointer group"
+                className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-2xs hover:shadow-lg hover:border-slate-300 transition-all flex flex-col justify-between cursor-pointer group"
               >
                 <div>
-                  {/* Category Pill and Meta */}
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700">
-                      <span
-                        className={`w-1.5 h-1.5 rounded-full ${
-                          blog.category === 'web-graphics'
-                            ? 'bg-red-500'
-                            : blog.category === 'software-dev'
-                            ? 'bg-blue-500'
-                            : 'bg-emerald-500'
-                        }`}
+                  {/* Blog Visual Thumbnail */}
+                  {blog.imageUrl && (
+                    <div className="relative w-full aspect-[16/10] bg-slate-100 overflow-hidden border-b border-slate-100">
+                      <img
+                        src={blog.imageUrl}
+                        alt={blog.imageAlt || blog.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
-                      {blog.categoryLabel}
-                    </span>
-                    <span className="text-[11px] text-slate-500 flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
-                      {blog.readTime}
-                    </span>
-                  </div>
+                      <div className="absolute top-3 left-3">
+                        <span className="inline-flex items-center gap-1.5 text-[10px] font-bold px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-xs text-white shadow-xs">
+                          <span
+                            className={`w-1.5 h-1.5 rounded-full ${
+                              blog.category === 'web-graphics'
+                                ? 'bg-red-400'
+                                : blog.category === 'software-dev'
+                                ? 'bg-blue-400'
+                                : 'bg-emerald-400'
+                            }`}
+                          />
+                          {blog.categoryLabel}
+                        </span>
+                      </div>
+                    </div>
+                  )}
 
-                  {/* Title */}
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-red-600 transition-colors leading-snug line-clamp-2">
-                    {blog.title}
-                  </h3>
-
-                  {/* Excerpt */}
-                  <p className="text-xs sm:text-sm text-slate-600 mt-2.5 line-clamp-3 leading-relaxed">
-                    {blog.excerpt}
-                  </p>
-
-                  {/* Keyword Tags */}
-                  <div className="flex flex-wrap gap-1.5 mt-4">
-                    {blog.tags.slice(0, 3).map((tag, tIdx) => (
-                      <span
-                        key={tIdx}
-                        className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-600"
-                      >
-                        #{tag}
+                  <div className="p-5 sm:p-6">
+                    {/* Read Time & Category Meta */}
+                    <div className="flex items-center justify-between gap-2 mb-2.5">
+                      <span className="text-[11px] text-slate-500 font-medium flex items-center gap-1">
+                        <Clock className="w-3 h-3 text-slate-400" />
+                        {blog.readTime}
                       </span>
-                    ))}
+                      <span className="text-[11px] text-slate-400 font-mono">
+                        {blog.publishedDate}
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-red-600 transition-colors leading-snug line-clamp-2">
+                      {blog.title}
+                    </h3>
+
+                    {/* Excerpt */}
+                    <p className="text-xs sm:text-sm text-slate-600 mt-2.5 line-clamp-2 leading-relaxed">
+                      {blog.excerpt}
+                    </p>
+
+                    {/* Keyword Tags */}
+                    <div className="flex flex-wrap gap-1.5 mt-3.5">
+                      {blog.tags.slice(0, 3).map((tag, tIdx) => (
+                        <span
+                          key={tIdx}
+                          className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-600"
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Barcode Label Studio & Tool Internal Link Badge */}
+                    {blog.internalLinks && blog.internalLinks.length > 0 && (
+                      <div className="mt-3.5 pt-2.5 border-t border-dashed border-slate-200 flex items-center gap-1.5 text-[11px] text-slate-600">
+                        <Barcode className="w-3.5 h-3.5 text-red-600 flex-shrink-0" />
+                        <span className="truncate font-semibold text-slate-700 hover:text-red-600 transition-colors">
+                          {blog.internalLinks[0].label}
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </div>
 
                 {/* Footer read action */}
-                <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+                <div className="px-5 pb-5 sm:px-6 sm:pb-6 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
                   <span className="text-slate-400 font-medium">
-                    {blog.publishedDate}
+                    By {blog.author.name}
                   </span>
                   <span className="inline-flex items-center gap-1 font-bold text-red-600 group-hover:translate-x-0.5 transition-transform">
-                    Read Blog Post
+                    Read Guide
                     <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>

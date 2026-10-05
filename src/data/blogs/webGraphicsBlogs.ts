@@ -12,7 +12,7 @@ export const WEB_GRAPHICS_BLOGS: BlogPost[] = [
     publishedDate: '2025-01-15',
     author: { name: 'Raza Muhammad', role: 'Lead Frontend Architect' },
     tags: ['Web Design', 'Responsive CSS', 'Mobile First', 'UI/UX'],
-    metaTitle: 'Responsive Web Design Best Practices 2025 | EVONIX',
+    metaTitle: 'Responsive Web Design Best Practices 2025 | evonix',
     metaDescription: 'Complete guide to responsive web design in 2025. Master fluid typography, mobile-first breakpoints, and multi-device usability.',
     targetKeywords: ['responsive web design', 'mobile first design', 'fluid typography', 'CSS grid layout', 'website developer Sialkot'],
     internalLinks: [
@@ -44,7 +44,7 @@ Buttons and navigation links must provide a minimum physical hit area of 44x44 p
     publishedDate: '2025-01-20',
     author: { name: 'Zainab Fatima', role: 'UI/UX Design Specialist' },
     tags: ['UI/UX', 'Conversion Rate', 'E-Commerce', 'User Experience'],
-    metaTitle: 'Modern UI/UX Principles for Higher Conversions | EVONIX',
+    metaTitle: 'Modern UI/UX Principles for Higher Conversions | evonix',
     metaDescription: 'Actionable UI/UX design techniques to reduce cart abandonment, simplify navigation, and improve sales conversion on modern web stores.',
     targetKeywords: ['UI UX design', 'conversion rate optimization', 'e-commerce UX', 'user journey mapping', 'web design Dubai'],
     internalLinks: [
@@ -72,11 +72,11 @@ Key Conversion Pillars
     publishedDate: '2025-01-28',
     author: { name: 'Ammar Sheikh', role: 'Brand Identity Director' },
     tags: ['Branding', 'Color Psychology', 'Logo Design', 'Graphic Design'],
-    metaTitle: 'Color Psychology in Brand & Logo Design | EVONIX',
+    metaTitle: 'Color Psychology in Brand & Logo Design | evonix',
     metaDescription: 'Understand how hues, saturation, and contrast influence customer purchasing decisions in international corporate branding.',
     targetKeywords: ['color psychology branding', 'corporate logo design', 'brand identity colors', 'graphic design agency'],
     internalLinks: [
-      { label: 'Company Heritage & Identity', targetSection: 'about', anchorText: 'About EVONIX Brand History' },
+      { label: 'Company Heritage & Identity', targetSection: 'about', anchorText: 'About evonix Brand History' },
     ],
     content: `
 Colors Speak Before Words Are Read
@@ -99,7 +99,7 @@ Vibrant Cyan & Electric Blue: Conveys digital security, cloud connectivity, and 
     publishedDate: '2025-02-02',
     author: { name: 'Raza Muhammad', role: 'Lead Frontend Architect' },
     tags: ['Typography', 'Web Design', 'CSS Styling', 'Design Systems'],
-    metaTitle: 'Typography Rules for High-End Web Design | EVONIX',
+    metaTitle: 'Typography Rules for High-End Web Design | evonix',
     metaDescription: 'Master font pairing, line heights, letter-spacing, and typographic scales for readable, professional enterprise web applications.',
     targetKeywords: ['web typography', 'font pairing guide', 'line height readability', 'clean web design'],
     internalLinks: [
@@ -126,7 +126,7 @@ Golden Rules of Web Typography
     publishedDate: '2025-02-06',
     author: { name: 'Zainab Fatima', role: 'UI/UX Design Specialist' },
     tags: ['Landing Pages', 'Conversion', 'Speed', 'Lead Generation'],
-    metaTitle: 'High-Performance Landing Page Design Guide | EVONIX',
+    metaTitle: 'High-Performance Landing Page Design Guide | evonix',
     metaDescription: 'Discover the exact anatomy of high-converting landing pages engineered for speed, technical SEO, and direct WhatsApp lead capture.',
     targetKeywords: ['landing page design', 'high converting pages', 'lead generation website', 'web developer Pakistan'],
     internalLinks: [
@@ -153,7 +153,7 @@ Core Page Sections
     publishedDate: '2025-02-10',
     author: { name: 'Raza Muhammad', role: 'Lead Frontend Architect' },
     tags: ['Figma', 'Frontend Dev', 'Design Systems', 'Workflow'],
-    metaTitle: 'Figma to Production Code Best Practices | EVONIX',
+    metaTitle: 'Figma to Production Code Best Practices | evonix',
     metaDescription: 'How modern tech teams bridge design tokens, auto-layout, and Tailwind CSS to deploy pixel-perfect web apps without developer rework.',
     targetKeywords: ['Figma to React', 'design system handoff', 'auto layout Figma', 'frontend workflow'],
     internalLinks: [
@@ -179,7 +179,7 @@ Component States: Designers must explicitly define hover, focus, active, loading
     publishedDate: '2025-02-14',
     author: { name: 'Ammar Sheikh', role: 'Brand Identity Director' },
     tags: ['Export Portals', 'B2B Web', 'Sialkot Exporters', 'Mobile First'],
-    metaTitle: 'Mobile-First Web Architecture for Exporters | EVONIX',
+    metaTitle: 'Mobile-First Web Architecture for Exporters | evonix',
     metaDescription: 'Learn how international B2B exporters build fast digital catalogs, interactive RFQ systems, and responsive multi-lingual websites.',
     targetKeywords: ['export company website', 'B2B web design Sialkot', 'industrial catalog portal', 'Dubai trade website'],
     internalLinks: [
@@ -205,7 +205,7 @@ Crucial Elements for Exporters
     publishedDate: '2025-02-18',
     author: { name: 'Zainab Fatima', role: 'UI/UX Design Specialist' },
     tags: ['E-Commerce', 'UI Patterns', 'Product Catalogs', 'Web Design'],
-    metaTitle: 'Modern E-Commerce UI Patterns for High-Volume Stores | EVONIX',
+    metaTitle: 'Modern E-Commerce UI Patterns for High-Volume Stores | evonix',
     metaDescription: 'Essential UI patterns for online retailers: faceted search filters, sticky mobile cart drawers, and rapid checkout flows.',
     targetKeywords: ['ecommerce UI patterns', 'online shopping UX', 'product filter design', 'ecommerce developers'],
     internalLinks: [
@@ -231,7 +231,7 @@ Sticky Bottom Buy Bar: On mobile devices, a persistent floating purchase bar ens
     publishedDate: '2025-02-22',
     author: { name: 'Raza Muhammad', role: 'Lead Frontend Architect' },
     tags: ['Image Optimization', 'Web Performance', 'SVG', 'PageSpeed'],
-    metaTitle: 'SVG vs PNG vs WebP vs AVIF Optimization Guide | EVONIX',
+    metaTitle: 'SVG vs PNG vs WebP vs AVIF Optimization Guide | evonix',
     metaDescription: 'How to select and optimize image formats for fast-loading websites, achieving sub-second load times and high Google rankings.',
     targetKeywords: ['image optimization web', 'SVG vs WebP', 'speed up website', 'Core Web Vitals'],
     internalLinks: [
@@ -258,7 +258,7 @@ When to Use What Format
     publishedDate: '2025-02-26',
     author: { name: 'Zainab Fatima', role: 'UI/UX Design Specialist' },
     tags: ['Accessibility', 'WCAG', 'Inclusive Design', 'Frontend'],
-    metaTitle: 'Building Accessible Websites (WCAG 2.1) | EVONIX',
+    metaTitle: 'Building Accessible Websites (WCAG 2.1) | evonix',
     metaDescription: 'Practical guide to web accessibility: high-contrast palettes, semantic HTML landmarks, and keyboard navigation that looks beautiful.',
     targetKeywords: ['web accessibility', 'WCAG compliance', 'accessible UI design', 'inclusive website design'],
     internalLinks: [
@@ -284,7 +284,7 @@ Keyboard Navigation: Ensure every interactive button and modal can be opened and
     publishedDate: '2025-03-02',
     author: { name: 'Raza Muhammad', role: 'Lead Frontend Architect' },
     tags: ['Web Animations', 'CSS Transitions', 'Performance', 'UX'],
-    metaTitle: 'Custom 60fps Web Animations Guide | EVONIX',
+    metaTitle: 'Custom 60fps Web Animations Guide | evonix',
     metaDescription: 'Create engaging, lag-free web animations using GPU-accelerated transforms and modern motion libraries without bloating load times.',
     targetKeywords: ['web animations', 'CSS transform performance', 'Framer Motion React', 'smooth website transitions'],
     internalLinks: [
@@ -309,11 +309,11 @@ Stick exclusively to animating transform (translate, scale, rotate) and opacity.
     publishedDate: '2025-03-06',
     author: { name: 'Ammar Sheikh', role: 'Brand Identity Director' },
     tags: ['Logo Design', 'Vector Branding', 'Corporate Identity', 'Graphic Design'],
-    metaTitle: 'Corporate Identity & Timeless Logo Design | EVONIX',
+    metaTitle: 'Corporate Identity & Timeless Logo Design | evonix',
     metaDescription: 'Step-by-step methodology for designing minimalist, scalable corporate vector logos that remain modern for 20+ years.',
     targetKeywords: ['corporate identity design', 'vector logo designer', 'brand guidelines package', 'Sialkot logo design'],
     internalLinks: [
-      { label: 'About EVONIX Identity', targetSection: 'about', anchorText: 'EVONIX Corporate History' },
+      { label: 'About evonix Identity', targetSection: 'about', anchorText: 'evonix Corporate History' },
     ],
     content: `
 Simplicity Is the Ultimate Sophistication
@@ -335,7 +335,7 @@ Color Independence: Retains 100% of its silhouette recognizability in single-col
     publishedDate: '2025-03-10',
     author: { name: 'Raza Muhammad', role: 'Lead Frontend Architect' },
     tags: ['React', 'Next.js', 'Vite', 'Frontend Architecture'],
-    metaTitle: 'Next.js vs Vite React Comparison 2025 | EVONIX',
+    metaTitle: 'Next.js vs Vite React Comparison 2025 | evonix',
     metaDescription: 'Detailed technical guide to selecting between Next.js and Vite React based on SEO requirements, cold-start latency, and deployment complexity.',
     targetKeywords: ['Next.js vs Vite', 'React frontend framework', 'modern web development', 'software engineering agency'],
     internalLinks: [
@@ -361,7 +361,7 @@ Decision Matrix
     publishedDate: '2025-03-14',
     author: { name: 'Ammar Sheikh', role: 'Brand Identity Director' },
     tags: ['B2B Web', 'Portfolio Design', 'Client Testimonials', 'Conversion'],
-    metaTitle: 'High-Converting B2B Portfolio Website Elements | EVONIX',
+    metaTitle: 'High-Converting B2B Portfolio Website Elements | evonix',
     metaDescription: 'How B2B companies structure their portfolios to attract international enterprise clients, build trust, and close high-ticket deals.',
     targetKeywords: ['B2B portfolio website', 'corporate case study design', 'industrial web design', 'exporters website'],
     internalLinks: [
@@ -387,7 +387,7 @@ The Four Irreplaceable B2B Pillars
     publishedDate: '2025-03-18',
     author: { name: 'Zainab Fatima', role: 'UI/UX Design Specialist' },
     tags: ['Micro-Interactions', 'UX Polish', 'Frontend', 'Web Design'],
-    metaTitle: 'Micro-Interactions in Web Usability | EVONIX',
+    metaTitle: 'Micro-Interactions in Web Usability | evonix',
     metaDescription: 'Understand how subtle UI micro-interactions give users confidence, reduce form abandonment, and elevate perception of quality.',
     targetKeywords: ['micro interactions UX', 'button feedback design', 'form validation UX', 'modern UI details'],
     internalLinks: [
@@ -412,18 +412,18 @@ Without micro-interactions, websites feel rigid, dead, and unresponsive, leaving
     publishedDate: '2025-03-22',
     author: { name: 'Raza Muhammad', role: 'Lead Frontend Architect' },
     tags: ['Dark Mode', 'Light Mode', 'Theming', 'CSS Variables'],
-    metaTitle: 'Mastering Dark Mode and Light Mode Web Design | EVONIX',
+    metaTitle: 'Mastering Dark Mode and Light Mode Web Design | evonix',
     metaDescription: 'Comprehensive guide to dual-theme website design: color luminance limits, elevated surfaces, and seamless theme switching.',
     targetKeywords: ['dark mode design', 'light mode website', 'theme switcher CSS', 'accessible color palette'],
     internalLinks: [
-      { label: 'Experience EVONIX Dual Theme', targetSection: 'services', anchorText: 'Explore Modern Web Theming' },
+      { label: 'Experience evonix Dual Theme', targetSection: 'services', anchorText: 'Explore Modern Web Theming' },
     ],
     content: `
 Dark Mode vs Light Mode: Beyond Mere Inverted Colors
 Designing a dual-theme website requires far more than flipping background hex colors from pure white to pitch black. Pure black (#000000) against stark white typography produces harsh optical halation and severe eye strain in dim office environments.
 
 Professional Dual-Theme Design Standards
-At EVONIX, our design team uses layered midnight slate palettes (#0F172A and #1E293B) for dark interfaces, paired with softened off-white typography (#F8FAFC) at 90% opacity. In light mode, subtle neutral grays and soft drop shadows maintain clear tactile elevation hierarchy. Color contrast ratios strictly exceed 4.5:1 across both modes for full WCAG AAA readability.
+At evonix, our design team uses layered midnight slate palettes (#0F172A and #1E293B) for dark interfaces, paired with softened off-white typography (#F8FAFC) at 90% opacity. In light mode, subtle neutral grays and soft drop shadows maintain clear tactile elevation hierarchy. Color contrast ratios strictly exceed 4.5:1 across both modes for full WCAG AAA readability.
     `,
   },
   {
@@ -437,7 +437,7 @@ At EVONIX, our design team uses layered midnight slate palettes (#0F172A and #1E
     publishedDate: '2025-03-26',
     author: { name: 'Raza Muhammad', role: 'Lead Frontend Architect' },
     tags: ['Core Web Vitals', 'PageSpeed', 'SEO', 'Web Performance'],
-    metaTitle: 'Core Web Vitals Optimization for 95+ PageSpeed | EVONIX',
+    metaTitle: 'Core Web Vitals Optimization for 95+ PageSpeed | evonix',
     metaDescription: 'Master LCP, INP, and CLS optimization to boost search rankings and provide lightning-fast browsing speeds on any network.',
     targetKeywords: ['Core Web Vitals optimization', 'fix LCP', 'improve INP score', 'Google PageSpeed 100'],
     internalLinks: [
@@ -464,7 +464,7 @@ Our Frontend Optimization Blueprint
     publishedDate: '2025-03-30',
     author: { name: 'Ammar Sheikh', role: 'Brand Identity Director' },
     tags: ['Social Media Ads', 'Graphic Design', 'Ad Creatives', 'Marketing'],
-    metaTitle: 'Designing Social Media Ad Creatives for High CTR | EVONIX',
+    metaTitle: 'Designing Social Media Ad Creatives for High CTR | evonix',
     metaDescription: 'Practical graphic design strategies for social media ads that stop user scrolling, communicate value in 2 seconds, and drive qualified clicks.',
     targetKeywords: ['social media ad design', 'Instagram ad creatives', 'graphic design services', 'digital marketing Pune Sialkot'],
     internalLinks: [
@@ -489,7 +489,7 @@ High-performing B2B ad creatives isolate a single dominant visual focal point (f
     publishedDate: '2025-04-03',
     author: { name: 'Zainab Fatima', role: 'UI/UX Design Specialist' },
     tags: ['SaaS UI', 'Dashboard Design', 'Data Visualization', 'UI/UX'],
-    metaTitle: 'SaaS Dashboard UI Design Best Practices | EVONIX',
+    metaTitle: 'SaaS Dashboard UI Design Best Practices | evonix',
     metaDescription: 'How to design scalable web application dashboards with clean data hierarchy, intuitive KPI cards, and ergonomic filtering.',
     targetKeywords: ['SaaS dashboard UI', 'admin panel design', 'data table UX', 'software UI design'],
     internalLinks: [
@@ -514,18 +514,18 @@ We design SaaS dashboard interfaces following strict progressive disclosure prin
     publishedDate: '2025-04-08',
     author: { name: 'Raza Muhammad', role: 'Lead Frontend Architect' },
     tags: ['Web Security', 'Frontend', 'Form Protection', 'Data Privacy'],
-    metaTitle: 'Frontend Web Security & Form Protection | EVONIX',
+    metaTitle: 'Frontend Web Security & Form Protection | evonix',
     metaDescription: 'Essential client-side security measures: input sanitization, CSP headers, rate-limiting, and preventing malicious spam submissions.',
     targetKeywords: ['frontend web security', 'protect contact forms', 'prevent XSS', 'secure web development'],
     internalLinks: [
-      { label: 'Review Our Security Policies', targetSection: 'about', anchorText: 'EVONIX Security Protocols' },
+      { label: 'Review Our Security Policies', targetSection: 'about', anchorText: 'evonix Security Protocols' },
     ],
     content: `
 Modern Frontend Security: Safeguarding Customer Forms & Portals
 Frontend web developers often mistakenly assume that security is solely a backend responsibility. In reality, client-side vulnerabilities like Cross-Site Scripting (XSS), CSRF token leakage, and insecure DOM manipulation can expose sensitive export buyer inquiries and customer credentials to malicious scrapers.
 
 Our Enterprise Frontend Hardening Suite
-At EVONIX, every web portal we build incorporates strict Content Security Policies (CSP), subresource integrity (SRI) hashes, sanitized DOM rendering, and client-side anti-tamper console shields. In addition, our proprietary anti-copy shield protects proprietary surgical product designs and catalog photography from unauthorized scraper harvesting.
+At evonix, every web portal we build incorporates strict Content Security Policies (CSP), subresource integrity (SRI) hashes, sanitized DOM rendering, and client-side anti-tamper console shields. In addition, our proprietary anti-copy shield protects proprietary surgical product designs and catalog photography from unauthorized scraper harvesting.
     `,
   },
 ];

@@ -78,7 +78,7 @@ export const WhyChooseUs: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-xs font-bold text-red-700">
             <Sparkles className="w-3.5 h-3.5 text-red-600" />
-            The EVONIX Advantage
+            The evonix Advantage
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
             Why Leading Businesses Choose Us
@@ -119,7 +119,7 @@ export const WhyChooseUs: React.FC = () => {
         <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8 max-w-4xl mx-auto shadow-2xs">
           <div className="text-center mb-6">
             <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
-              EVONIX vs. Conventional Local IT Services
+              evonix vs. Conventional Local IT Services
             </h3>
             <p className="text-xs sm:text-sm text-slate-500 mt-1">
               Clear accountability and transparent deliverables
@@ -131,7 +131,7 @@ export const WhyChooseUs: React.FC = () => {
               <thead>
                 <tr className="border-b border-slate-200 text-slate-500 text-[11px] uppercase tracking-wider">
                   <th className="py-3 px-3">Evaluation Criteria</th>
-                  <th className="py-3 px-3 text-red-600 font-bold bg-red-50/50 rounded-t-lg">EVONIX Standard</th>
+                  <th className="py-3 px-3 text-red-600 font-bold bg-red-50/50 rounded-t-lg">evonix Standard</th>
                   <th className="py-3 px-3 text-slate-400">Typical Local Vendors</th>
                 </tr>
               </thead>

@@ -58,7 +58,7 @@ export const GoogleBusinessProfileGallery: React.FC<GoogleBusinessProfileGallery
                 Authentic Technician Repair & Field Operations
               </h2>
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                Documented photographic proof of certified EVONIX hardware engineers working hands-on at our Sialkot diagnostic lab (Kotli Behram / Paris Road) and on-site corporate client premises.
+                Documented photographic proof of certified evonix hardware engineers working hands-on at our Sialkot diagnostic lab (Kotli Behram / Paris Road) and on-site corporate client premises.
               </p>
             </div>
 
@@ -244,7 +244,7 @@ export const GoogleBusinessProfileGallery: React.FC<GoogleBusinessProfileGallery
 
           <div className="flex items-center gap-2">
             <a
-              href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX TECHNOLOGIES, I saw your Google Business Profile repair gallery and need assistance.')}`}
+              href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello evonix technologies, I saw your Google Business Profile repair gallery and need assistance.')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors shadow-2xs"
@@ -335,7 +335,7 @@ export const GoogleBusinessProfileGallery: React.FC<GoogleBusinessProfileGallery
                   Book {selectedItem.title}
                 </button>
                 <a
-                  href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(`Hello EVONIX, I want to book: ${selectedItem.title}`)}`}
+                  href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(`Hello evonix, I want to book: ${selectedItem.title}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full sm:w-auto px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm transition-colors text-center flex items-center justify-center gap-2"

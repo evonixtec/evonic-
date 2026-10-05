@@ -36,7 +36,7 @@ export const SecurityAlertToast: React.FC<SecurityAlertToastProps> = ({ message,
             <div className="flex-1 pr-1">
               <div className="flex items-center gap-2 mb-0.5">
                 <span className="text-xs font-bold text-white tracking-wide">
-                  EVONIX Security Shield
+                  evonix Security Shield
                 </span>
                 <span className="px-1.5 py-0.2 rounded text-[9px] font-mono bg-cyan-950 text-cyan-300 border border-cyan-800/60 uppercase">
                   Protected

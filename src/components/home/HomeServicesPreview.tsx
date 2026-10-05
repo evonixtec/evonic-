@@ -228,7 +228,7 @@ export const HomeServicesPreview: React.FC<HomeServicesPreviewProps> = ({
               <span>Need quick repair for HP LaserJet, Canon, or Thermal printer in Sialkot? Call or WhatsApp us.</span>
             </div>
             <a
-              href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX TECHNOLOGIES, I need hardware repair for my printer/laptop.')}`}
+              href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello evonix technologies, I need hardware repair for my printer/laptop.')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-colors"
@@ -311,7 +311,7 @@ export const HomeServicesPreview: React.FC<HomeServicesPreviewProps> = ({
                   Book This Service
                 </button>
                 <a
-                  href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(`Hello EVONIX, I want to book: ${selectedPhoto.title}`)}`}
+                  href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(`Hello evonix, I want to book: ${selectedPhoto.title}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-colors flex items-center gap-1.5"

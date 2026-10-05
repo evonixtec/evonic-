@@ -30,7 +30,7 @@ export const Shop: React.FC<ShopProps> = ({ onInquireProduct }) => {
   });
 
   const generateWhatsAppLink = (product: ShopProduct) => {
-    const text = `Hello EVONIX, I am interested in inquiring about the following hardware in Sialkot:
+    const text = `Hello evonix, I am interested in inquiring about the following hardware in Sialkot:
 Product: ${product.name}
 Category: ${product.category}
 Condition: ${product.condition}

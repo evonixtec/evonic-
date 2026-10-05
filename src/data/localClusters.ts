@@ -87,7 +87,7 @@ export const LOCAL_CITIES: Record<LocalCity['slug'], LocalCity> = {
     infraChallenge:
       'Frequent industrial feeder voltage fluctuations and generator transfer phase-shifts that disrupt factory CNC servers, blow PC power supplies, and cause CAD/CAM workstation blue-screens.',
     localSolutionNote:
-      'Evonix deploys industrial online double-conversion UPS line conditioners, surge-arrestor network switches, and rapid on-site motherboard technicians reachable in under 45 minutes.',
+      'evonix deploys industrial online double-conversion UPS line conditioners, surge-arrestor network switches, and rapid on-site motherboard technicians reachable in under 45 minutes.',
     phoneContact: '+92 316 7637844',
     verifiedClients: [
       {
@@ -95,14 +95,14 @@ export const LOCAL_CITIES: Record<LocalCity['slug'], LocalCity> = {
         industry: 'Surgical Instruments Exporter',
         serviceProvided: 'Industrial IT Infrastructure & Server AMC',
         quote:
-          'Evonix installed our dual-WAN failover firewall and repaired two crucial CNC controller motherboards on-site in Daska within 2 hours. Exceptional Dubai-level precision.',
+          'evonix installed our dual-WAN failover firewall and repaired two crucial CNC controller motherboards on-site in Daska within 2 hours. Exceptional Dubai-level precision.',
       },
       {
         name: 'Falcon Medico Instruments',
         industry: 'Veterinary Forceps Manufacturer',
         serviceProvided: 'Export B2B Web Portal & RFID Inventory POS',
         quote:
-          'Our German buyers required ISO-compliant batch traceability. Evonix built an automated RFQ portal that increased our international wholesale orders by 40%.',
+          'Our German buyers required ISO-compliant batch traceability. evonix built an automated RFQ portal that increased our international wholesale orders by 40%.',
       },
     ],
   },
@@ -136,7 +136,7 @@ export const LOCAL_CITIES: Record<LocalCity['slug'], LocalCity> = {
     infraChallenge:
       'Strict zero-downtime WeBOC customs clearing deadlines. Thermal shipping barcode printers, cargo scales, and customs gateway servers cannot afford even 30 minutes of outage during flight cut-offs.',
     localSolutionNote:
-      'Evonix provides high-priority 25-minute field engineer response for Sambrial clearing agents, redundant thermal head spares, and automated WeBOC data mirror setups.',
+      'evonix provides high-priority 25-minute field engineer response for Sambrial clearing agents, redundant thermal head spares, and automated WeBOC data mirror setups.',
     phoneContact: '+92 316 7637844',
     verifiedClients: [
       {
@@ -144,14 +144,14 @@ export const LOCAL_CITIES: Record<LocalCity['slug'], LocalCity> = {
         industry: 'Air & Sea Freight Forwarding',
         serviceProvided: 'WeBOC Server Redundancy & 24/7 Hardware AMC',
         quote:
-          'When our primary customs clearing server power supply blew at 4 PM before SIAL cargo departure, Evonix arrived in 25 minutes with a hot-swap PSU and saved our shipment.',
+          'When our primary customs clearing server power supply blew at 4 PM before SIAL cargo departure, evonix arrived in 25 minutes with a hot-swap PSU and saved our shipment.',
       },
       {
         name: 'Horizon Cargo Forwarders',
         industry: 'Dry Port Bonded Carrier',
         serviceProvided: 'High-Speed 203 DPI Barcode Labeling System',
         quote:
-          'We print thousands of export carton labels daily. Evonix maintains all our industrial Zebra and Xprinter thermal units with zero paper-jam delays.',
+          'We print thousands of export carton labels daily. evonix maintains all our industrial Zebra and Xprinter thermal units with zero paper-jam delays.',
       },
     ],
   },
@@ -185,7 +185,7 @@ export const LOCAL_CITIES: Record<LocalCity['slug'], LocalCity> = {
     infraChallenge:
       'Fine conductive metal grinding and polishing dust floating in workshops, settling on computer fans and motherboard heatsinks, causing sudden thermal shutdowns and motherboard short circuits.',
     localSolutionNote:
-      'Evonix engineers install sealed positive-pressure dust filters, chemical conformal coatings on motherboards, and robust offline POS billing for bustling GT Road showrooms.',
+      'evonix engineers install sealed positive-pressure dust filters, chemical conformal coatings on motherboards, and robust offline POS billing for bustling GT Road showrooms.',
     phoneContact: '+92 316 7637844',
     verifiedClients: [
       {
@@ -193,14 +193,14 @@ export const LOCAL_CITIES: Record<LocalCity['slug'], LocalCity> = {
         industry: 'Damascus Steel Knife Exporter',
         serviceProvided: '3D Blade Visualizer E-Commerce Portal',
         quote:
-          'Evonix built an international catalog that allows US and European collectors to inspect our Damascus steel fold patterns in real-time 3D. Truly world-class.',
+          'evonix built an international catalog that allows US and European collectors to inspect our Damascus steel fold patterns in real-time 3D. Truly world-class.',
       },
       {
         name: 'Pearl Kitchenware Showroom',
         industry: 'Wholesale & Retail Cutlery',
         serviceProvided: 'Multi-Counter Offline POS Billing Software',
         quote:
-          'Our GT Road showroom needed billing that never freezes when broadband dips. Evonix POS has been running uninterrupted for 14 months without a single glitch.',
+          'Our GT Road showroom needed billing that never freezes when broadband dips. evonix POS has been running uninterrupted for 14 months without a single glitch.',
       },
     ],
   },
@@ -309,8 +309,8 @@ export function getClusterData(citySlug: LocalCity['slug'], serviceSlug: Cluster
   const city = LOCAL_CITIES[citySlug];
   const service = CLUSTER_SERVICES[serviceSlug];
 
-  const metaTitle = `${service.shortName} in ${city.name} – EVONIX TECHNOLOGIES`;
-  const metaDescription = `Looking for ${service.shortName.toLowerCase()} in ${city.name}? Evonix provides doorstep field support in ${city.dispatchEtaMinutes}. 20+ years Dubai engineering expertise for ${city.name} businesses.`;
+  const metaTitle = `${service.shortName} in ${city.name} – evonix technologies`;
+  const metaDescription = `Looking for ${service.shortName.toLowerCase()} in ${city.name}? evonix provides doorstep field support in ${city.dispatchEtaMinutes}. 20+ years Dubai engineering expertise for ${city.name} businesses.`;
 
   const primaryKeywords = [
     `${service.shortName.toLowerCase()} ${city.name.toLowerCase()}`,
@@ -330,10 +330,10 @@ export function getClusterData(citySlug: LocalCity['slug'], serviceSlug: Cluster
     headline: `${service.shortName} in ${city.name}`,
     subheadline: `On-Site Engineering Dispatch in ${city.dispatchEtaMinutes} across ${city.name}`,
     heroPitch: `Engineered specifically for ${city.name}'s manufacturing, wholesale, and commercial exporters. Backed by 20+ years of Dubai infrastructure expertise, now delivering rapid local on-site support right to your factory doorstep.`,
-    industrialBenefit: `In ${city.name}, where ${city.infraChallenge.toLowerCase()} Evonix provides specialized solutions including ${city.localSolutionNote.toLowerCase()}`,
+    industrialBenefit: `In ${city.name}, where ${city.infraChallenge.toLowerCase()} evonix provides specialized solutions including ${city.localSolutionNote.toLowerCase()}`,
     localFaqs: [
       {
-        q: `How quickly can an Evonix engineer arrive at my location in ${city.name}?`,
+        q: `How quickly can an evonix engineer arrive at my location in ${city.name}?`,
         a: `Our certified field engineers maintain an active mobile patrol across the Sialkot-${city.name} corridor. For ${city.name}, our guaranteed dispatch arrival window is ${city.dispatchEtaMinutes} from your call or WhatsApp booking.`,
       },
       {

@@ -52,7 +52,7 @@ export const DUTY_ENGINEERS: DutyEngineer[] = [
     title: 'Technical Services & Client Intake Coordinator',
     role: 'Client Care & Diagnostics Desk',
     shiftHours: 'Client Care & Service Desk',
-    location: 'Evonix Support Desk, Paris Road & Daska Road, Sialkot',
+    location: 'evonix Support Desk, Paris Road & Daska Road, Sialkot',
     avatar: rabiaNoorAvatar,
     gender: 'female'
   },
@@ -63,7 +63,7 @@ export const DUTY_ENGINEERS: DutyEngineer[] = [
     title: 'Lead Hardware & Micro-Soldering Specialist',
     role: 'Workshop Bench & Motherboard Diagnostics',
     shiftHours: 'Hardware Workshop Bench',
-    location: 'Evonix Hardware Lab, Daska Road & Paris Road, Sialkot',
+    location: 'evonix Hardware Lab, Daska Road & Paris Road, Sialkot',
     avatar: engrHamzaAvatar,
     gender: 'male'
   },
@@ -281,7 +281,7 @@ export const LiveSupportChat: React.FC<LiveSupportChatProps> = ({ onOpenQuote })
         agentName: currentEng.name,
         agentRole: currentEng.title,
         agentAvatar: currentEng.avatar,
-        text: `Assalam-o-Alaikum & ${timeGreeting}! I am ${currentEng.name} from the Evonix Sialkot Client Desk.\n\nHow are you doing today? Everything good?\n\nSir, could you please tell me your good name, and what problem are you facing with your laptop, printer, computer, or system?`,
+        text: `Assalam-o-Alaikum & ${timeGreeting}! I am ${currentEng.name} from the evonix Sialkot Client Desk.\n\nHow are you doing today? Everything good?\n\nSir, could you please tell me your good name, and what problem are you facing with your laptop, printer, computer, or system?`,
         timestamp: 'Just now'
       }
     ];
@@ -599,7 +599,7 @@ export const LiveSupportChat: React.FC<LiveSupportChatProps> = ({ onOpenQuote })
       // Turn 5+: Gracefully suggest moving to WhatsApp for professional record-keeping + Business Hours
       return {
         text: `Thank you so much for explaining everything so clearly, ${nameDisplayEng}!\n\nOur company business hours are 9:00 AM to 8:00 PM (Monday through Saturday) at our Paris Road & Daska Road facilities in Sialkot.\n\nTo keep a proper official service record of your diagnostic notes and case history, we can conveniently move this conversation to WhatsApp. Whenever you are comfortable, you may share your contact number here, or click the WhatsApp button below to message our lab desk directly. Our technical advisor will review your case file promptly during business hours.`,
-        actionText: `Hello Evonix, this is ${nameDisplayEng}. I am contacting you from your live chat regarding my ${category || 'hardware'} diagnostic case.`,
+        actionText: `Hello evonix, this is ${nameDisplayEng}. I am contacting you from your live chat regarding my ${category || 'hardware'} diagnostic case.`,
         detectedName: effectiveName,
         deviceCategory: category,
         nextStage: 'handover_whatsapp',
@@ -718,7 +718,7 @@ export const LiveSupportChat: React.FC<LiveSupportChatProps> = ({ onOpenQuote })
     // Turn 5+ in Urdu: Transition to WhatsApp + Timings (9 AM - 8 PM)
     return {
       text: `Aapka bohot bohot shukriya ${nameDisplayUrdu} itni tafseel se batane ka!\n\nHamari company ke official working hours subah 9:00 AM se raat 8:00 PM (Monday to Saturday) hain Paris Road aur Daska Road Sialkot par.\n\nAapki file aur diagnostic notes ka professional record mehfooz rakhne ke liye hum is baat cheet ko WhatsApp par shift kar sakte hain. Aap jab munasib samjhein apna phone/WhatsApp number yahan share kar dein, ya niche diye gaye button par click kar ke hamare lab desk par direct WhatsApp kar dein. Hamara service advisor working hours mein aapke case ka foran follow up karega.`,
-      actionText: `Assalam-o-Alaikum Evonix, main ${nameDisplayUrdu} hoon. Main ne website live chat par diagnostic case ke silsilay mein rabta kiya tha.`,
+      actionText: `Assalam-o-Alaikum evonix, main ${nameDisplayUrdu} hoon. Main ne website live chat par diagnostic case ke silsilay mein rabta kiya tha.`,
       detectedName: effectiveName,
       deviceCategory: category,
       nextStage: 'handover_whatsapp',
@@ -863,7 +863,7 @@ export const LiveSupportChat: React.FC<LiveSupportChatProps> = ({ onOpenQuote })
                 <span className="text-[10px] text-emerald-400 font-medium">(Online)</span>
               </div>
               <div className="text-[11px] text-slate-300">
-                Evonix Sialkot Lab Desk
+                evonix Sialkot Lab Desk
               </div>
             </div>
 

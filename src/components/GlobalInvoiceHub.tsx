@@ -163,7 +163,7 @@ function renderCode128Barcode(text: string) {
 
 export const GlobalInvoiceHub: React.FC = () => {
   // 1. Core Profile & Company States
-  const [issuerName, setIssuerName] = useState('EVONIX TECHNOLOGIES');
+  const [issuerName, setIssuerName] = useState('evonix technologies');
   const [issuerAddress, setIssuerAddress] = useState('Kotli Behram, Paris Road, Sialkot, Pakistan');
   const [issuerContact, setIssuerContact] = useState('Phone: +92 326 324 4002 | evonixtec@gmail.com');
 
@@ -227,7 +227,7 @@ export const GlobalInvoiceHub: React.FC = () => {
     'Bank Wire: Standard Chartered Bank / Wise Transfer\nIBAN / Account: PK44SCBL00000012894101\nSwift Code: SCBLPKKA'
   );
   const [customerNotes, setCustomerNotes] = useState(
-    'Thank you for partnering with EVONIX. Payment is due within 14 days of invoice receipt.'
+    'Thank you for partnering with evonix. Payment is due within 14 days of invoice receipt.'
   );
 
   // 9. Document Title & Headings (Commercial Invoice, Tax Invoice, Proforma, etc.)
@@ -416,7 +416,7 @@ export const GlobalInvoiceHub: React.FC = () => {
 
       const cleanDocTitle = (invoiceTitle || 'Invoice').replace(/[^a-zA-Z0-9]/g, '_');
       const cleanSerial = invoiceNumberString.replace(/[^a-zA-Z0-9]/g, '_');
-      const cleanBrand = (issuerName || 'EVONIX').replace(/[^a-zA-Z0-9]/g, '_');
+      const cleanBrand = (issuerName || 'evonix').replace(/[^a-zA-Z0-9]/g, '_');
       const filename = `${cleanBrand}_${cleanDocTitle}_${cleanSerial}.pdf`;
 
       pdf.save(filename);
@@ -448,7 +448,7 @@ export const GlobalInvoiceHub: React.FC = () => {
     } catch {
       // Local storage fallback
     }
-    setIssuerName('EVONIX TECHNOLOGIES');
+    setIssuerName('evonix technologies');
     setIssuerAddress('Kotli Behram, Paris Road, Sialkot, Pakistan');
     setIssuerContact('Direct Line: +92 326 324 4002 | Email: billing@evonixtec.com');
     setClientName('Al-Futtaim Enterprise Solutions');
@@ -1207,7 +1207,7 @@ export const GlobalInvoiceHub: React.FC = () => {
                   ) : (
                     <div className="flex items-center gap-2 text-red-600 font-extrabold text-xl tracking-tight">
                       <Building2 className="w-6 h-6" />
-                      <span>{issuerName || 'EVONIX TECHNOLOGIES'}</span>
+                      <span>{issuerName || 'evonix technologies'}</span>
                     </div>
                   )}
 
@@ -1470,14 +1470,14 @@ export const GlobalInvoiceHub: React.FC = () => {
                     Authorized Signatory
                   </span>
                   <span className="block text-[9px] text-slate-500">
-                    EVONIX Financial Operations
+                    evonix Financial Operations
                   </span>
                 </div>
               </div>
 
               {/* Micro-Footer Print Notice */}
               <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-[9px] text-slate-400 font-mono">
-                <span>Generated via EVONIX Zero-Database Enterprise Hub</span>
+                <span>Generated via evonix Zero-Database Enterprise Hub</span>
                 <span>ISO 9001 Compliant Electronic {invoiceTitle || 'Commercial Invoice'}</span>
               </div>
             </div>
@@ -1501,7 +1501,7 @@ export const GlobalInvoiceHub: React.FC = () => {
           </div>
 
           <p className="text-sm sm:text-base text-slate-700">
-            Managing client bills should not be complicated or expensive. The EVONIX online invoice maker gives you a 100% free, zero-database workspace to create and print professional commercial invoices in seconds.
+            Managing client bills should not be complicated or expensive. The evonix online invoice maker gives you a 100% free, zero-database workspace to create and print professional commercial invoices in seconds.
           </p>
 
           <p className="text-sm sm:text-base text-slate-700">

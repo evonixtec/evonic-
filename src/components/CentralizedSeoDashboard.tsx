@@ -619,7 +619,7 @@ export const CentralizedSeoDashboard: React.FC<CentralizedSeoDashboardProps> = (
   "url": "${selectedEntryForSchema.canonicalUrl}",
   "provider": {
     "@type": "LocalBusiness",
-    "name": "EVONIX TECHNOLOGIES",
+    "name": "evonix technologies",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Kotli Behram, Paris Road & Cantt Hub",

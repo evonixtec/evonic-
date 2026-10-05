@@ -13,7 +13,7 @@ export const PRIVACY_POLICY: PolicySection = {
   id: 'privacy-policy',
   title: 'Privacy Policy',
   lastUpdated: 'February 2025',
-  summary: 'At EVONIX TECHNOLOGIES, we take data privacy and intellectual property confidentiality with utmost seriousness. This policy outlines how we collect, process, and protect your personal and business information.',
+  summary: 'At evonix technologies, we take data privacy and intellectual property confidentiality with utmost seriousness. This policy outlines how we collect, process, and protect your personal and business information.',
   sections: [
     {
       heading: '1. Information We Collect',
@@ -43,7 +43,7 @@ export const PRIVACY_POLICY: PolicySection = {
       heading: '4. Contacting Our Data Privacy Officer',
       content: [
         'If you have questions regarding data privacy or wish to request data deletion, email our team directly at evonixtec@gmail.com.',
-        'Corporate Headquarters: EVONIX TECHNOLOGIES, Sialkot, Punjab, Pakistan & Akruti Avenues, Wakad, Pune 411057.',
+        'Corporate Headquarters: evonix technologies, Sialkot, Punjab, Pakistan & Akruti Avenues, Wakad, Pune 411057.',
       ],
     },
   ],
@@ -53,12 +53,12 @@ export const TERMS_AND_CONDITIONS: PolicySection = {
   id: 'terms-and-conditions',
   title: 'Terms and Conditions',
   lastUpdated: 'February 2025',
-  summary: 'These Terms of Service govern all technical engagements, software development contracts, web design milestones, and computer repair services provided by EVONIX.',
+  summary: 'These Terms of Service govern all technical engagements, software development contracts, web design milestones, and computer repair services provided by evonix.',
   sections: [
     {
       heading: '1. Scope of Services',
       content: [
-        'EVONIX provides professional Website Development, Custom Software & POS Systems, and Computer/Laptop/Printer Repairing Services according to agreed project specifications.',
+        'evonix provides professional Website Development, Custom Software & POS Systems, and Computer/Laptop/Printer Repairing Services according to agreed project specifications.',
         'All software deliverables include defined testing and staging review milestones prior to production deployment.',
       ],
     },
@@ -66,7 +66,7 @@ export const TERMS_AND_CONDITIONS: PolicySection = {
       heading: '2. Intellectual Property & Source Code Ownership',
       content: [
         'Upon final payment settlement, all custom software, web applications, and graphic assets created for the client become the exclusive property of the client, including production source code and relational database schemas.',
-        'EVONIX retains the right to display completed non-confidential visual designs in our digital agency portfolio unless a strict Non-Disclosure Agreement (NDA) is executed.',
+        'evonix retains the right to display completed non-confidential visual designs in our digital agency portfolio unless a strict Non-Disclosure Agreement (NDA) is executed.',
       ],
     },
     {
@@ -95,7 +95,7 @@ export const REFUND_POLICY: PolicySection = {
     {
       heading: '1. Hardware Repairs & Shop Products',
       content: [
-        'If a repaired computer, laptop, or printer experiences recurrence of the exact same hardware failure within our 30-day warranty window, EVONIX will re-service the device free of charge or issue a 100% refund on labor fees.',
+        'If a repaired computer, laptop, or printer experiences recurrence of the exact same hardware failure within our 30-day warranty window, evonix will re-service the device free of charge or issue a 100% refund on labor fees.',
         'Refurbished laptops and POS hardware products purchased through our store carry a 7-day checking warranty and replacement eligibility.',
       ],
     },

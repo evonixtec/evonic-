@@ -76,7 +76,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
 
           {/* 3. Center Highlight: Instant WhatsApp Call/Chat */}
           <a
-            href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX TECHNOLOGIES, I am reaching out from your mobile app for urgent support in Sialkot.')}`}
+            href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello evonix technologies, I am reaching out from your mobile app for urgent support in Sialkot.')}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center justify-center -mt-4 relative group"
@@ -144,7 +144,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
                   EX
                 </div>
                 <div>
-                  <h3 className="text-base font-extrabold text-slate-900">Install EVONIX App</h3>
+                  <h3 className="text-base font-extrabold text-slate-900">Install evonix App</h3>
                   <p className="text-xs text-slate-500">Fast home screen experience</p>
                 </div>
               </div>
@@ -167,7 +167,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
               </div>
               <div className="flex items-center gap-2 font-bold text-slate-900">
                 <span className="w-5 h-5 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-[11px]">3</span>
-                <span>Open EVONIX with 1-tap from your home screen</span>
+                <span>Open evonix with 1-tap from your home screen</span>
               </div>
             </div>
 

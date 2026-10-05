@@ -49,7 +49,7 @@ const HUBS: Record<'dubai' | 'sialkot', HubInfo> = {
     coordsLabel: '25.2048° N, 55.2708° E',
     badge: '20+ Years UAE Proven',
     description:
-      'Where EVONIX TECHNOLOGIES laid its foundational engineering DNA. Over two decades of delivering high-concurrency cloud ERPs, fintech portals, and hospitality management systems across Dubai Internet City, Business Bay, and Abu Dhabi.',
+      'Where evonix technologies laid its foundational engineering DNA. Over two decades of delivering high-concurrency cloud ERPs, fintech portals, and hospitality management systems across Dubai Internet City, Business Bay, and Abu Dhabi.',
     highlights: [
       'UAE Banking & Commercial grade cybersecurity auditing',
       'Over 100+ mission-critical portals & ERP deployments',
@@ -122,7 +122,7 @@ const MILESTONES = [
     year: '2024+',
     title: 'Sialkot Tech Center Expansion',
     location: 'Sialkot, Pakistan',
-    description: 'Officially launched EVONIX TECHNOLOGIES in Sialkot with SECP incorporation, transferring 20+ years of Dubai expertise to local businesses and exporters.',
+    description: 'Officially launched evonix technologies in Sialkot with SECP incorporation, transferring 20+ years of Dubai expertise to local businesses and exporters.',
   },
 ];
 
@@ -853,7 +853,7 @@ export const GlobalReach: React.FC<GlobalReachProps> = ({ onOpenQuote, onNavigat
             <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
               <h3 className="text-2xl font-bold text-white">100% Quality Parity: No Dilution</h3>
               <p className="text-xs sm:text-sm text-slate-400">
-                Comparing what was built for corporate UAE clients with what EVONIX delivers to Sialkot businesses today.
+                Comparing what was built for corporate UAE clients with what evonix delivers to Sialkot businesses today.
               </p>
             </div>
 

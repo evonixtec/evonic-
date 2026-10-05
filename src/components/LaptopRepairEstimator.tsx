@@ -23,7 +23,7 @@ const SYMPTOMS: SymptomOption[] = [
     actionRequired: 'DC current injection to isolate thermal hotspot, SMD desoldering, and replacement with OEM ceramic dielectric components.',
     turnaroundTime: '60 - 90 Minutes (Same-Day)',
     estimatedCostPkr: 'Rs. 2,500 - 4,500',
-    warranty: '90 Days EVONIX Hardware Warranty',
+    warranty: '90 Days evonix Hardware Warranty',
     severity: 'critical',
   },
   {
@@ -131,7 +131,7 @@ export const LaptopRepairEstimator: React.FC<LaptopRepairEstimatorProps> = ({ on
   };
 
   const whatsappMessage = encodeURIComponent(
-    `Hello EVONIX Hardware Lab, I need repair for my ${selectedBrand}. Issue: ${currentSymptom.label}. Estimated Cost: ${currentSymptom.estimatedCostPkr}. Please schedule diagnostic inspection in Sialkot.`
+    `Hello evonix Hardware Lab, I need repair for my ${selectedBrand}. Issue: ${currentSymptom.label}. Estimated Cost: ${currentSymptom.estimatedCostPkr}. Please schedule diagnostic inspection in Sialkot.`
   );
 
   return (
@@ -262,7 +262,7 @@ export const LaptopRepairEstimator: React.FC<LaptopRepairEstimatorProps> = ({ on
 
                 <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
                   <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
-                    EVONIX Certified Protocol:
+                    evonix Certified Protocol:
                   </span>
                   <p className="text-slate-800 font-medium leading-relaxed">
                     {currentSymptom.actionRequired}

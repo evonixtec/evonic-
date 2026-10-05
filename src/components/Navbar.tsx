@@ -125,7 +125,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             onClick={() => handlePageSelect('home')}
             className="flex items-center gap-2.5 group cursor-pointer transition-all duration-200 hover:scale-[1.02] flex-shrink-0"
-            aria-label="EVONIX Home"
+            aria-label="evonix Home"
           >
             <div className="relative p-1 rounded-xl transition-all duration-300 group-hover:drop-shadow-[0_4px_12px_rgba(220,38,38,0.3)]">
               <EvonixLogo size="md" forceTheme="light" />
@@ -664,7 +664,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <div className="absolute top-full right-0 lg:left-0 w-80 pt-1.5 z-50">
                   <div className="bg-white/98 backdrop-blur-2xl rounded-2xl shadow-[0_20px_45px_-10px_rgba(0,0,0,0.14),0_0_0_1px_rgba(0,0,0,0.06)] border border-slate-200 p-2 space-y-1">
                     <div className="px-3 py-1.5 border-b border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                      <span>EVONIX Heritage & Hubs</span>
+                      <span>evonix Heritage & Hubs</span>
                       <span className="text-[10px] text-red-600 font-bold">20+ Yrs UAE</span>
                     </div>
 
@@ -748,7 +748,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Colorful Direct WhatsApp Button (Header Quick Access - Hidden on all Tool Pages) */}
             {!isToolPage(currentPage) && (
               <a
-                href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX, I want to discuss a requirement.')}`}
+                href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello evonix, I want to discuss a requirement.')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hidden 2xl:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-50 via-white to-teal-50/80 hover:from-emerald-100/80 hover:to-teal-100 text-emerald-800 text-xs font-black border border-emerald-200/90 shadow-2xs hover:shadow-xs transition-all hover:scale-102 flex-shrink-0 cursor-pointer"
@@ -1086,7 +1086,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </a>
               {!isToolPage(currentPage) && (
                 <a
-                  href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX, I am contacting you from the mobile website.')}`}
+                  href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello evonix, I am contacting you from the mobile website.')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="py-2.5 px-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-sm active:scale-98 transition-all"

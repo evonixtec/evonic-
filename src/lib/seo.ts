@@ -17,13 +17,13 @@ const BASE_URL = 'https://www.evonixtec.com';
 const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.jpg`;
 
 /**
- * Common LocalBusiness schema for EVONIX TECHNOLOGIES in Sialkot
+ * Common LocalBusiness schema for evonix technologies in Sialkot
  */
 export const LOCAL_BUSINESS_SCHEMA = {
   '@type': 'LocalBusiness',
   '@id': `${BASE_URL}/#business`,
-  name: 'EVONIX TECHNOLOGIES',
-  alternateName: 'Evonix IT & Laptop Diagnostics Lab',
+  name: 'evonix technologies',
+  alternateName: 'evonix IT & Laptop Diagnostics Lab',
   image: DEFAULT_OG_IMAGE,
   url: `${BASE_URL}/`,
   telephone: '+92 326 324 4002',
@@ -281,15 +281,15 @@ export const FAQ_PAGE_SCHEMA = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'What IT consultancy and hardware maintenance services does EVONIX provide in Sialkot?',
+      name: 'What IT consultancy and hardware maintenance services does evonix provide in Sialkot?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'EVONIX provides enterprise web engineering, custom retail POS software, factory IT infrastructure AMC contracts, WeBOC customs networking, and chip-level motherboard, laptop, and thermal printer repair backed by 20+ years of Dubai international experience.',
+        text: 'evonix provides enterprise web engineering, custom retail POS software, factory IT infrastructure AMC contracts, WeBOC customs networking, and chip-level motherboard, laptop, and thermal printer repair backed by 20+ years of Dubai international experience.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Where is EVONIX located in Sialkot, and do you offer doorstep on-site visits?',
+      name: 'Where is evonix located in Sialkot, and do you offer doorstep on-site visits?',
       acceptedAnswer: {
         '@type': 'Answer',
         text: 'Our diagnostic lab desk is located at Kotli Behram, Paris Road and Cantt Hub, Sialkot. We offer 15-minute to 60-minute doorstep dispatch across Sialkot City, Daska Road, Small Industrial Estate, Sambrial Dry Port, and Wazirabad.',
@@ -297,7 +297,7 @@ export const FAQ_PAGE_SCHEMA = {
     },
     {
       '@type': 'Question',
-      name: 'Can EVONIX repair laptop motherboards and thermal receipt printers at the chip level?',
+      name: 'Can evonix repair laptop motherboards and thermal receipt printers at the chip level?',
       acceptedAnswer: {
         '@type': 'Answer',
         text: 'Yes, our certified hardware laboratory features stereo microscopes, DC bench power supplies, thermal infrared cameras, and precision SMD micro-soldering stations for component-level repair of blown MOSFETs, shorted capacitors, charging ICs, thermal printheads, and auto-cutters.',
@@ -305,15 +305,15 @@ export const FAQ_PAGE_SCHEMA = {
     },
     {
       '@type': 'Question',
-      name: 'Does EVONIX develop custom export ERP and retail POS software?',
+      name: 'Does evonix develop custom export ERP and retail POS software?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes, EVONIX engineers custom offline-first POS systems, multilingual export trade portals, barcode inventory engines, and automated billing software tailored for Sialkot surgical, sportswear, leather, and retail businesses.',
+        text: 'Yes, evonix engineers custom offline-first POS systems, multilingual export trade portals, barcode inventory engines, and automated billing software tailored for Sialkot surgical, sportswear, leather, and retail businesses.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How can I request a free quote or book a technical consultation with EVONIX?',
+      name: 'How can I request a free quote or book a technical consultation with evonix?',
       acceptedAnswer: {
         '@type': 'Answer',
         text: 'You can request a free consultation directly through our website with GPS area detection, generate a tracking reference number, or message our engineering desk via WhatsApp at +92 326 324 4002.',
@@ -329,7 +329,7 @@ export const INDIVIDUAL_PRODUCTS_SCHEMAS = [
   {
     '@type': 'Product',
     '@id': `${BASE_URL}/shop#pos-dual-screen-15`,
-    name: 'EVONIX All-in-One Dual-Screen Capacitive Touch POS Terminal (15.6" + 11.6")',
+    name: 'evonix All-in-One Dual-Screen Capacitive Touch POS Terminal (15.6" + 11.6")',
     image: DEFAULT_OG_IMAGE,
     description:
       'Heavy-duty industrial capacitive touch POS terminal for Sialkot supermarkets, pharmacies, and restaurants. Intel Core i5 processor, 8GB DDR4 RAM, 128GB High-Speed SSD with customer-facing display.',
@@ -337,7 +337,7 @@ export const INDIVIDUAL_PRODUCTS_SCHEMAS = [
     mpn: 'POS-DS-156-I5',
     brand: {
       '@type': 'Brand',
-      name: 'EVONIX',
+      name: 'evonix',
     },
     offers: {
       '@type': 'Offer',
@@ -359,7 +359,7 @@ export const INDIVIDUAL_PRODUCTS_SCHEMAS = [
   {
     '@type': 'Product',
     '@id': `${BASE_URL}/shop#thermal-printer-80mm`,
-    name: 'EVONIX Commercial 80mm High-Speed Thermal Receipt Printer with Auto-Cutter',
+    name: 'evonix Commercial 80mm High-Speed Thermal Receipt Printer with Auto-Cutter',
     image: DEFAULT_OG_IMAGE,
     description:
       'High-speed 260mm/s commercial 80mm thermal receipt printer with Japanese auto-cutter mechanism. USB + LAN + Cash Drawer interface, fully compatible with all retail POS software in Sialkot.',
@@ -367,7 +367,7 @@ export const INDIVIDUAL_PRODUCTS_SCHEMAS = [
     mpn: 'PRN-80-CUT-LAN',
     brand: {
       '@type': 'Brand',
-      name: 'EVONIX',
+      name: 'evonix',
     },
     offers: {
       '@type': 'Offer',
@@ -388,7 +388,7 @@ export const INDIVIDUAL_PRODUCTS_SCHEMAS = [
   {
     '@type': 'Product',
     '@id': `${BASE_URL}/shop#barcode-scanner-2d`,
-    name: 'EVONIX Omnidirectional 2D & 1D Desktop Hands-Free Barcode Scanner',
+    name: 'evonix Omnidirectional 2D & 1D Desktop Hands-Free Barcode Scanner',
     image: DEFAULT_OG_IMAGE,
     description:
       'High-precision optical CMOS desktop barcode scanner. Instant recognition of crumpled, damaged, or phone-screen QR codes and 1D retail barcodes. Plug-and-play USB for Sialkot shops.',
@@ -396,7 +396,7 @@ export const INDIVIDUAL_PRODUCTS_SCHEMAS = [
     mpn: 'SCN-OMNI-2D-USB',
     brand: {
       '@type': 'Brand',
-      name: 'EVONIX',
+      name: 'evonix',
     },
     offers: {
       '@type': 'Offer',
@@ -450,10 +450,10 @@ export const INDIVIDUAL_PRODUCTS_SCHEMAS = [
  */
 export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   home: {
-    title: 'EVONIX TECHNOLOGIES – IT Consultancy & Hardware Maintenance Services in Sialkot',
+    title: 'evonix technologies – IT Consultancy & Hardware Maintenance Services in Sialkot',
     description:
       'Leading IT consultancy and industrial hardware maintenance services in Sialkot. Enterprise website engineering, retail POS systems, and factory IT support backed by 20+ years Dubai expertise.',
-    ogTitle: 'EVONIX TECHNOLOGIES – IT Consultancy & Hardware Maintenance Services in Sialkot',
+    ogTitle: 'evonix technologies – IT Consultancy & Hardware Maintenance Services in Sialkot',
     ogDescription:
       'Industrial IT consultancy, hardware maintenance services, custom software, and chip-level computer repairs in Sialkot backed by 20+ years Dubai engineering excellence.',
     ogType: 'website',
@@ -478,10 +478,10 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   services: {
-    title: 'IT Consultancy & Hardware Maintenance Services Sialkot | EVONIX',
+    title: 'IT Consultancy & Hardware Maintenance Services Sialkot | evonix',
     description:
       'Premier IT consultancy & industrial hardware maintenance services in Sialkot: enterprise factory networks, AMC server support, custom POS, and motherboard repair.',
-    ogTitle: 'IT Consultancy & Hardware Maintenance Services in Sialkot – EVONIX',
+    ogTitle: 'IT Consultancy & Hardware Maintenance Services in Sialkot – evonix',
     ogDescription:
       'Full-suite industrial IT consultancy, hardware maintenance contracts, POS software, and motherboard repair with 20+ years Dubai technical excellence.',
     ogType: 'website',
@@ -507,10 +507,10 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   portfolio: {
-    title: 'IT Portfolio Sialkot – Web & Enterprise Deployments | EVONIX',
+    title: 'IT Portfolio Sialkot – Web & Enterprise Deployments | evonix',
     description:
       'Proven software and web development case studies for exporters and retail brands in Sialkot and Dubai. View our high-volume ERP and e-commerce work.',
-    ogTitle: 'IT Portfolio Sialkot – Software & Web Projects by EVONIX',
+    ogTitle: 'IT Portfolio Sialkot – Software & Web Projects by evonix',
     ogDescription:
       'High-volume e-commerce systems, custom export ERP portals, and POS deployments delivered for UAE and Sialkot enterprise clients.',
     ogType: 'website',
@@ -528,7 +528,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   shop: {
-    title: 'IT Hardware & POS Shop Sialkot – Laptops & Printers | EVONIX',
+    title: 'IT Hardware & POS Shop Sialkot – Laptops & Printers | evonix',
     description:
       'Buy business laptops, touch POS terminals, 80mm thermal receipt printers, and barcode scanners in Sialkot with local warranty and doorstep setup. Order today.',
     ogTitle: 'IT Hardware & POS Shop Sialkot – Laptops, Printers & Scanners',
@@ -550,17 +550,17 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   about: {
-    title: 'About EVONIX – IT Consultancy & Engineering Heritage in Sialkot',
+    title: 'About evonix – IT Consultancy & Engineering Heritage in Sialkot',
     description:
-      'EVONIX brings 20+ years of high-availability Dubai IT consultancy and industrial hardware maintenance to Sialkot manufacturers and businesses.',
-    ogTitle: 'About EVONIX – IT Consultancy & Engineering Heritage in Sialkot',
+      'evonix brings 20+ years of high-availability Dubai IT consultancy and industrial hardware maintenance to Sialkot manufacturers and businesses.',
+    ogTitle: 'About evonix – IT Consultancy & Engineering Heritage in Sialkot',
     ogDescription:
       '20+ years of Dubai enterprise IT engineering now operating in Sialkot. Learn about our leadership, diagnostic lab, and commitment to international standards.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalUrl: `${BASE_URL}/about`,
     keywords: [
-      'about EVONIX Technologies',
+      'about evonix Technologies',
       'IT consultancy Sialkot',
       'industrial hardware maintenance Sialkot',
       'IT company in Sialkot profile',
@@ -573,12 +573,12 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   guides: {
-    title: 'Tech Blogs, IT Guides & Field Case Studies Sialkot | EVONIX',
+    title: 'Tech Blogs, IT Guides & Field Case Studies Sialkot | evonix',
     description:
-      'Official EVONIX engineering blog & technical knowledge base for Sialkot: 85+ practical guides on printer repair, laptop overheating, retail POS, and chip-level restoration.',
-    ogTitle: 'Tech Blogs, IT Guides & Field Case Studies in Sialkot – EVONIX',
+      'Official evonix engineering blog & technical knowledge base for Sialkot: 85+ practical guides on printer repair, laptop overheating, retail POS, and chip-level restoration.',
+    ogTitle: 'Tech Blogs, IT Guides & Field Case Studies in Sialkot – evonix',
     ogDescription:
-      'Official engineering blogs, practical troubleshooting tutorials, and Daska Road & Rangpura on-site field case studies by EVONIX technicians.',
+      'Official engineering blogs, practical troubleshooting tutorials, and Daska Road & Rangpura on-site field case studies by evonix technicians.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalUrl: `${BASE_URL}/guides`,
@@ -601,10 +601,10 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   contact: {
-    title: 'Contact IT Consultants Sialkot – Kotli Behram & Paris Road | EVONIX',
+    title: 'Contact IT Consultants Sialkot – Kotli Behram & Paris Road | evonix',
     description:
       'Got a question? Call us. We reply in 2 hours. Doorstep IT support in Kotli Behram, Paris Road, and Sialkot Cantt. Free bench diagnosis.',
-    ogTitle: 'Contact EVONIX – IT Support in Kotli Behram & Paris Road Sialkot',
+    ogTitle: 'Contact evonix – IT Support in Kotli Behram & Paris Road Sialkot',
     ogDescription:
       'Got a question? Call us. We reply in 2 hours. Rapid doorstep dispatch across Kotli Behram, Cantt, Sambrial, and Daska Road.',
     ogType: 'website',
@@ -628,10 +628,10 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   locations: {
-    title: 'Local IT Services Hub – Daska, Sambrial & Wazirabad | EVONIX TECHNOLOGIES',
+    title: 'Local IT Services Hub – Daska, Sambrial & Wazirabad | evonix technologies',
     description:
       'Doorstep industrial IT consultancy, hardware maintenance, retail POS systems, and chip-level motherboard repair across Daska, Sambrial, and Wazirabad with 25-45 min field dispatch.',
-    ogTitle: 'EVONIX Local Hubs – Daska, Sambrial & Wazirabad On-Site IT Support',
+    ogTitle: 'evonix Local Hubs – Daska, Sambrial & Wazirabad On-Site IT Support',
     ogDescription:
       'High-priority industrial IT engineering, WeBOC server maintenance, and laptop repair across the Sialkot-Daska-Sambrial-Wazirabad industrial corridor.',
     ogType: 'website',
@@ -652,10 +652,10 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   invoice: {
-    title: 'Free Online Invoice Generator & Maker Pakistan | EVONIX',
+    title: 'Free Online Invoice Generator & Maker Pakistan | evonix',
     description:
       'Free online invoice maker and editor for Pakistan and global businesses. 100% free client-side billing with FBR tax rates, Code128 barcodes, and A4 PDF export.',
-    ogTitle: 'Online Invoice Maker & Generator Pakistan | EVONIX',
+    ogTitle: 'Online Invoice Maker & Generator Pakistan | evonix',
     ogDescription:
       'Create professional online invoices free with our zero-database invoice editor. Instant Pakistan GST calculations, barcodes, and print-ready sheets.',
     ogType: 'website',
@@ -686,10 +686,10 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   'ecommerce-calculator': {
-    title: 'E-Commerce Profit & Courier Shipping Margin Calculator | EVONIX Technologies',
+    title: 'E-Commerce Profit & Courier Shipping Margin Calculator | evonix Technologies',
     description:
       'Free zero-database e-commerce margin calculator. Real-time Leopards, TCS, Trax, PostEx courier tariffs, COD handling charges, marketing CAC, and RTO return loss simulator.',
-    ogTitle: 'E-Commerce Margin & Courier Tariff Calculator | EVONIX Technologies',
+    ogTitle: 'E-Commerce Margin & Courier Tariff Calculator | evonix Technologies',
     ogDescription:
       'Calculate unit economics, multi-courier rates, COD handling fees, break-even targets, and Pakistani return rate risk cushions with zero remote database tracking.',
     ogType: 'website',
@@ -711,10 +711,10 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   'cbm-calculator': {
-    title: 'Export CBM & Volumetric Shipping Cargo Calculator | EVONIX Technologies',
+    title: 'Export CBM & Volumetric Shipping Cargo Calculator | evonix Technologies',
     description:
       'Free B2B export CBM calculator. Instant Cubic Meters computations, DHL/FedEx and air cargo volumetric weights, and 20ft/40ft ocean container space utilization.',
-    ogTitle: 'Export CBM & Freight Volumetric Weight Engine | EVONIX Technologies',
+    ogTitle: 'Export CBM & Freight Volumetric Weight Engine | evonix Technologies',
     ogDescription:
       'Compute carton volume in CBM, air cargo dimensional weights, and container packing capacity instantly with zero remote database tracking.',
     ogType: 'website',
@@ -852,7 +852,7 @@ function generateRouteStructuredData(pageId: NavPageId): object {
   } else if (pageId === 'shop') {
     breadcrumbItems.push({ name: 'IT Hardware & POS Shop', url: `${BASE_URL}/shop` });
   } else if (pageId === 'about') {
-    breadcrumbItems.push({ name: 'About EVONIX & Dubai Heritage', url: `${BASE_URL}/about` });
+    breadcrumbItems.push({ name: 'About evonix & Dubai Heritage', url: `${BASE_URL}/about` });
   } else if (pageId === 'guides') {
     breadcrumbItems.push({ name: 'Tech Blogs & Guides', url: `${BASE_URL}/guides` });
   } else if (pageId === 'contact') {
@@ -870,7 +870,7 @@ function generateRouteStructuredData(pageId: NavPageId): object {
       '@type': 'WebSite',
       '@id': `${BASE_URL}/#website`,
       url: `${BASE_URL}/`,
-      name: 'EVONIX TECHNOLOGIES',
+      name: 'evonix technologies',
       description: meta.description,
       publisher: { '@id': `${BASE_URL}/#business` },
       potentialAction: {
@@ -904,7 +904,7 @@ function generateRouteStructuredData(pageId: NavPageId): object {
     graph.push({
       '@type': 'ServiceCatalog',
       '@id': `${BASE_URL}/services#catalog`,
-      name: 'EVONIX Sialkot IT & Engineering Services Catalog',
+      name: 'evonix Sialkot IT & Engineering Services Catalog',
       itemListElement: INDIVIDUAL_SERVICES_SCHEMAS.map((svc) => ({
         '@type': 'Service',
         name: svc.name,
@@ -920,7 +920,7 @@ function generateRouteStructuredData(pageId: NavPageId): object {
     graph.push({
       '@type': 'Store',
       '@id': `${BASE_URL}/shop#store`,
-      name: 'EVONIX IT Hardware & POS Equipment Shop',
+      name: 'evonix IT Hardware & POS Equipment Shop',
       url: `${BASE_URL}/shop`,
       description: meta.description,
       telephone: '+92 326 3244002',
@@ -958,7 +958,7 @@ function generateRouteStructuredData(pageId: NavPageId): object {
       breadcrumb: { '@id': `${BASE_URL}/about#breadcrumb` },
       mainEntity: {
         '@type': 'Organization',
-        name: 'EVONIX TECHNOLOGIES',
+        name: 'evonix technologies',
         url: `${BASE_URL}/`,
         foundingLocation: 'Dubai, United Arab Emirates',
         knowsAbout: [
@@ -1100,7 +1100,7 @@ export function applyPageSEO(pageId: NavPageId) {
   updateMetaTag('property', 'og:description', meta.ogDescription);
   updateMetaTag('property', 'og:url', meta.canonicalUrl);
   updateMetaTag('property', 'og:type', meta.ogType);
-  updateMetaTag('property', 'og:site_name', 'EVONIX TECHNOLOGIES');
+  updateMetaTag('property', 'og:site_name', 'evonix technologies');
   updateMetaTag('property', 'og:locale', 'en_PK');
   if (meta.ogImage) {
     updateMetaTag('property', 'og:image', meta.ogImage);
@@ -1125,7 +1125,7 @@ export function applyPageSEO(pageId: NavPageId) {
 
   // Brand Tagline & Micro-kicker meta
   updateMetaTag('name', 'tagline', 'Dubai Precision Engineering • Sialkot Tech Hub');
-  updateMetaTag('name', 'author', 'EVONIX TECHNOLOGIES');
+  updateMetaTag('name', 'author', 'evonix technologies');
 
   // Dynamically inject Schema.org JSON-LD @graph for the route
   const structuredData = generateRouteStructuredData(pageId);
@@ -1136,7 +1136,7 @@ export function applyPageSEO(pageId: NavPageId) {
  * Sets dynamic SEO for an active blog / technical guide post reader view
  */
 export function applyBlogPostSEO(blog: BlogPost) {
-  const pageTitle = `${blog.title.slice(0, 48)} | EVONIX Sialkot`;
+  const pageTitle = `${blog.title.slice(0, 48)} | evonix Sialkot`;
   const pageDesc = blog.excerpt.length > 155 ? `${blog.excerpt.slice(0, 152)}...` : blog.excerpt;
   const canonicalUrl = `${BASE_URL}/blog/${blog.slug}`;
 
@@ -1151,20 +1151,20 @@ export function applyBlogPostSEO(blog: BlogPost) {
       ...blog.tags,
       'Sialkot IT guide',
       'computer repair Sialkot',
-      'EVONIX Technologies',
+      'evonix Technologies',
     ].join(', ')
   );
 
-  updateMetaTag('property', 'og:title', `${blog.title} – EVONIX Sialkot`);
+  updateMetaTag('property', 'og:title', `${blog.title} – evonix Sialkot`);
   updateMetaTag('property', 'og:description', pageDesc);
   updateMetaTag('property', 'og:url', canonicalUrl);
   updateMetaTag('property', 'og:type', 'article');
-  updateMetaTag('property', 'og:site_name', 'EVONIX TECHNOLOGIES');
+  updateMetaTag('property', 'og:site_name', 'evonix technologies');
   updateMetaTag('property', 'og:locale', 'en_PK');
   updateMetaTag('property', 'og:image', DEFAULT_OG_IMAGE);
 
   updateMetaTag('name', 'twitter:card', 'summary_large_image');
-  updateMetaTag('name', 'twitter:title', `${blog.title} – EVONIX Sialkot`);
+  updateMetaTag('name', 'twitter:title', `${blog.title} – evonix Sialkot`);
   updateMetaTag('name', 'twitter:description', pageDesc);
   updateMetaTag('name', 'twitter:image', DEFAULT_OG_IMAGE);
 
@@ -1187,7 +1187,7 @@ export function applyBlogPostSEO(blog: BlogPost) {
     dateModified: '2026-03-01',
     author: {
       '@type': 'Person',
-      name: blog.author?.name || 'EVONIX Engineering Lead',
+      name: blog.author?.name || 'evonix Engineering Lead',
       jobTitle: blog.author?.role || 'Senior Diagnostic Engineer',
     },
     publisher: { '@id': `${BASE_URL}/#business` },

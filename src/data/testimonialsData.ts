@@ -16,7 +16,7 @@ export const TESTIMONIALS_DATA: TestimonialItem[] = [
       keyOutcome: 'Zero checkout crashes across 4 supermarket branches during high-volume Eid & Ramadan rushes.',
     },
     quote:
-      'We have relied on EVONIX for over 4 years across our multi-branch retail stores in Dubai. Their custom POS system was built with an offline-first failsafe that saved us during unexpected ISP outages. The speed of barcode checkout and real-time stock sync between our Sharjah warehouse and Deira branch is flawless. True enterprise craftsmanship.',
+      'We have relied on evonix for over 4 years across our multi-branch retail stores in Dubai. Their custom POS system was built with an offline-first failsafe that saved us during unexpected ISP outages. The speed of barcode checkout and real-time stock sync between our Sharjah warehouse and Deira branch is flawless. True enterprise craftsmanship.',
     rating: 5,
     verifiedBadge: 'Verified UAE Enterprise Client',
     avatarBg: 'from-cyan-600 to-blue-700',
@@ -36,7 +36,7 @@ export const TESTIMONIALS_DATA: TestimonialItem[] = [
       keyOutcome: '320% surge in qualified European & UK distributor sample inquiries within 60 days of launch.',
     },
     quote:
-      'Being a Sialkot exporter, having a website that looks international and loads instantly in Germany, France, and the UK is everything. EVONIX brought genuine Dubai standards to our doorstep. Their team understood our export catalog requirements down to RFQ forms, high-res 3D previews, and SSL certificates. Our buyers are genuinely impressed.',
+      'Being a Sialkot exporter, having a website that looks international and loads instantly in Germany, France, and the UK is everything. evonix brought genuine Dubai standards to our doorstep. Their team understood our export catalog requirements down to RFQ forms, high-res 3D previews, and SSL certificates. Our buyers are genuinely impressed.',
     rating: 5,
     verifiedBadge: 'SECP Verified Sialkot Exporter',
     avatarBg: 'from-emerald-600 to-teal-700',
@@ -56,7 +56,7 @@ export const TESTIMONIALS_DATA: TestimonialItem[] = [
       keyOutcome: '4x faster lead response times for international off-plan property investors.',
     },
     quote:
-      'In Dubai real estate, seconds matter when handling multi-million dirham buyer inquiries. EVONIX engineered our property portal with instantaneous WhatsApp routing, interactive floorplans, and automated lead segmentation. Their work ethics, clean code architecture, and transparent communication made them our go-to technology partner.',
+      'In Dubai real estate, seconds matter when handling multi-million dirham buyer inquiries. evonix engineered our property portal with instantaneous WhatsApp routing, interactive floorplans, and automated lead segmentation. Their work ethics, clean code architecture, and transparent communication made them our go-to technology partner.',
     rating: 5,
     verifiedBadge: 'Verified UAE Real Estate Client',
     avatarBg: 'from-sky-600 to-indigo-700',
@@ -76,7 +76,7 @@ export const TESTIMONIALS_DATA: TestimonialItem[] = [
       keyOutcome: 'Passed European MDR batch-tracking audit; 2-hour technician doorstep dispatch on demand.',
     },
     quote:
-      'When our factory laser marking computer went down before an urgent shipment to Frankfurt, EVONIX sent their mobile technician to our factory on Defense Road within 90 minutes. They diagnosed a blown motherboard capacitor, took it to their clean-room lab, and returned it calibrated by evening. Their "Zero Charge If Unresolved" policy gave us 100% confidence.',
+      'When our factory laser marking computer went down before an urgent shipment to Frankfurt, evonix sent their mobile technician to our factory on Defense Road within 90 minutes. They diagnosed a blown motherboard capacitor, took it to their clean-room lab, and returned it calibrated by evening. Their "Zero Charge If Unresolved" policy gave us 100% confidence.',
     rating: 5,
     verifiedBadge: 'Verified Sialkot Industrial Client',
     avatarBg: 'from-emerald-600 to-cyan-700',
@@ -96,7 +96,7 @@ export const TESTIMONIALS_DATA: TestimonialItem[] = [
       keyOutcome: 'Table-to-kitchen serving time reduced by 14 minutes; eliminated food order mix-ups entirely.',
     },
     quote:
-      'EVONIX eliminated the chaos between our waiters and kitchen during packed weekend evenings. The touchscreen terminals with thermal kitchen docket printers and tablet ordering operate with military precision. Over four years, we have had zero data loss, zero billing errors, and responsive weekend technical support.',
+      'evonix eliminated the chaos between our waiters and kitchen during packed weekend evenings. The touchscreen terminals with thermal kitchen docket printers and tablet ordering operate with military precision. Over four years, we have had zero data loss, zero billing errors, and responsive weekend technical support.',
     rating: 5,
     verifiedBadge: 'Verified UAE Hospitality Client',
     avatarBg: 'from-blue-600 to-slate-800',
@@ -136,7 +136,7 @@ export const TESTIMONIALS_DATA: TestimonialItem[] = [
       keyOutcome: 'Real-time airway bill tracking synchronized between UAE hub and Pakistani customs terminals.',
     },
     quote:
-      'Because our freight corridors connect Dubai International Airport directly to Sialkot and Lahore dry ports, having EVONIX on both ends has been an enormous blessing. They understand Gulf compliance as well as Pakistani ground realities. Outstanding system uptime and rock-solid barcode label software.',
+      'Because our freight corridors connect Dubai International Airport directly to Sialkot and Lahore dry ports, having evonix on both ends has been an enormous blessing. They understand Gulf compliance as well as Pakistani ground realities. Outstanding system uptime and rock-solid barcode label software.',
     rating: 5,
     verifiedBadge: 'Verified Logistics Partner',
     avatarBg: 'from-cyan-700 to-sky-900',
@@ -156,7 +156,7 @@ export const TESTIMONIALS_DATA: TestimonialItem[] = [
       keyOutcome: 'Rescued 8 administrative laptops with zero data loss; saved PKR 280,000+ vs replacement.',
     },
     quote:
-      'A severe voltage fluctuation damaged 8 laptops in our administrative office containing sensitive examination records. Local technicians said the motherboards were dead and data was lost. EVONIX picked them up, replaced the burnt power ICs in their lab, and safely preserved every single student record. Honest, competent, and lifesavers.',
+      'A severe voltage fluctuation damaged 8 laptops in our administrative office containing sensitive examination records. Local technicians said the motherboards were dead and data was lost. evonix picked them up, replaced the burnt power ICs in their lab, and safely preserved every single student record. Honest, competent, and lifesavers.',
     rating: 5,
     verifiedBadge: 'Verified Sialkot Institutional Client',
     avatarBg: 'from-indigo-600 to-cyan-800',

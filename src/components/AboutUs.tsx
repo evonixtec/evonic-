@@ -32,7 +32,7 @@ export const AboutUs: React.FC = () => {
               <div className="relative rounded-xl overflow-hidden aspect-[21/9] border border-slate-200 shadow-xs">
                 <img
                   src={heroDubai}
-                  alt="EVONIX Dubai 20-Year Heritage - International IT Partner in Sialkot Pakistan"
+                  alt="evonix Dubai 20-Year Heritage - International IT Partner in Sialkot Pakistan"
                   loading="lazy"
                   decoding="async"
                   width="1200"
@@ -61,7 +61,7 @@ export const AboutUs: React.FC = () => {
                   {COMPANY_INFO.about.story}
                 </p>
                 <p className="text-slate-600 text-sm sm:text-base mt-2 leading-relaxed">
-                  After two decades delivering enterprise-level IT infrastructure, custom retail systems, and precision hardware solutions across Dubai and the UAE, our leadership returned home to establish EVONIX in Sialkot. We offer local manufacturers, exporters, and merchants the identical high-caliber digital engineering they previously had to seek overseas.
+                  After two decades delivering enterprise-level IT infrastructure, custom retail systems, and precision hardware solutions across Dubai and the UAE, our leadership returned home to establish evonix in Sialkot. We offer local manufacturers, exporters, and merchants the identical high-caliber digital engineering they previously had to seek overseas.
                 </p>
               </div>
             </div>

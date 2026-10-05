@@ -203,7 +203,7 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
             <Printer className="w-4 h-4 text-red-600" />
             <span>Hardware Bench Diagnostic Tool</span>
             <span className="bg-red-600 text-white text-[10px] px-2 py-0.2 rounded-full font-black">
-              EVONIX Lab
+              evonix Lab
             </span>
           </div>
 
@@ -393,7 +393,7 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
                     <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900">
                       <span className="font-bold uppercase tracking-wider block mb-1 flex items-center gap-1.5 text-emerald-800">
                         <CheckCircle className="w-4 h-4 text-emerald-600" />
-                        <span>EVONIX Lab Recommended Resolution:</span>
+                        <span>evonix Lab Recommended Resolution:</span>
                       </span>
                       <p className="text-[11px] leading-relaxed text-emerald-800 font-medium">
                         {matchedDefect.solution}
@@ -415,7 +415,7 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
                     </button>
                     <a
                       href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(
-                        `Hello EVONIX, I have a printer defect with repeating ${inputDistance}mm mark on ${matchedDefect.component}.`
+                        `Hello evonix, I have a printer defect with repeating ${inputDistance}mm mark on ${matchedDefect.component}.`
                       )}`}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -573,7 +573,7 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
 
                   <div className="text-xs text-slate-700 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-200 font-medium">
                     <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
-                      EVONIX Sialkot Engineering Remedy:
+                      evonix Sialkot Engineering Remedy:
                     </span>
                     {code.sialkotFix}
                   </div>

@@ -33,7 +33,7 @@ export const EvonixMark: React.FC<{
   className?: string;
   size?: number | string;
   title?: string;
-}> = ({ className = 'w-9 h-9', size, title = 'EVONIX Official Emblem' }) => {
+}> = ({ className = 'w-9 h-9', size, title = 'evonix official emblem' }) => {
   return (
     <svg
       viewBox="0 0 100 90"
@@ -172,7 +172,7 @@ export const EvonixLogo: React.FC<EvonixLogoProps> = ({
 
         {showTechnologies && (
           <span
-            className={`font-black uppercase tracking-[0.28em] leading-none ${
+            className={`font-bold lowercase tracking-[0.2em] leading-none ${
               size === 'sm'
                 ? 'text-[7px] sm:text-[8px] -mt-0.5'
                 : size === 'md'

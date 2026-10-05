@@ -67,7 +67,7 @@ export const PageHeaderBanner: React.FC<PageHeaderBannerProps> = ({
             )}
 
             <a
-              href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(`Hello EVONIX, I am inquiring about ${title}`)}`}
+              href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(`Hello evonix, I am inquiring about ${title}`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-3 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold text-xs sm:text-sm border border-emerald-200 transition-colors flex items-center gap-1.5"

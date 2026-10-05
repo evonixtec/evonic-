@@ -95,7 +95,7 @@ export const LocalClusterLandingPage: React.FC<LocalClusterLandingPageProps> = (
 
   const handleSendDispatchWhatsApp = () => {
     if (!generatedDispatchToken) return;
-    const text = `*EVONIX ON-SITE FIELD DISPATCH PASS*\n` +
+    const text = `*evonix ON-SITE FIELD DISPATCH PASS*\n` +
       `Token: *${generatedDispatchToken}*\n` +
       `City: *${currentCity.name}* (Zone: ${dispatchZone || currentCity.keyCommercialHubs[0]})\n` +
       `Service: *${currentService.shortName}*\n` +
@@ -124,7 +124,7 @@ export const LocalClusterLandingPage: React.FC<LocalClusterLandingPageProps> = (
         {
           '@type': 'LocalBusiness',
           '@id': `https://evonixtec.com/location/${currentCity.slug}#localbusiness`,
-          name: `EVONIX TECHNOLOGIES – ${currentCity.name} Hub`,
+          name: `evonix technologies – ${currentCity.name} Hub`,
           image: 'https://evonixtec.com/og-image.jpg',
           telephone: currentCity.phoneContact,
           url: `https://evonixtec.com/location/${currentCity.slug}/${currentService.slug}`,
@@ -154,7 +154,7 @@ export const LocalClusterLandingPage: React.FC<LocalClusterLandingPageProps> = (
           serviceType: currentService.name,
           provider: {
             '@type': 'LocalBusiness',
-            name: 'EVONIX TECHNOLOGIES',
+            name: 'evonix technologies',
           },
           areaServed: {
             '@type': 'City',
@@ -397,7 +397,7 @@ export const LocalClusterLandingPage: React.FC<LocalClusterLandingPageProps> = (
 
                 <a
                   href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(
-                    `Hello EVONIX TECHNOLOGIES, I need urgent ${currentService.shortName} at our facility in ${currentCity.name}.`
+                    `Hello evonix technologies, I need urgent ${currentService.shortName} at our facility in ${currentCity.name}.`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"

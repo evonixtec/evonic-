@@ -323,6 +323,20 @@ export default function App() {
 
   // Navigate to dedicated page with clean URL path (e.g. /services, /portfolio, /shop)
   const navigateToPage = (page: NavPageId, subTarget?: string) => {
+    if ((page as string) === 'export-barcode-studio') {
+      setCurrentPage('home');
+      setTimeout(() => {
+        const el = document.getElementById('export-barcode-studio');
+        if (el) {
+          const navOffset = 80;
+          const elementPosition = el.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+      }, 200);
+      return;
+    }
+
     setCurrentPage(page);
 
     // Clean Path Format: /services, /portfolio, /shop, /about, /guides, /contact, or /
@@ -502,7 +516,7 @@ export default function App() {
                     </button>
 
                     <a
-                      href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX, I urgently need an on-site IT technician in Sialkot.')}`}
+                      href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello evonix, I urgently need an on-site IT technician in Sialkot.')}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="px-5 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center gap-2"
@@ -542,7 +556,7 @@ export default function App() {
             {/* 1m. Interactive Motherboard Power Sequence & PCB Voltage Simulator */}
             <PCBPowerSequenceSimulator onOpenQuote={handleOpenQuote} />
 
-            {/* 1m-2. EVONIX AI Hardware Diagnostics & Multimeter Test Point Simulator */}
+            {/* 1m-2. evonix AI Hardware Diagnostics & Multimeter Test Point Simulator */}
             <AiHardwareDiagnosticBoard
               onOpenIntakePass={(fault) => {
                 setSelectedServiceForQuote(fault || 'Component-Level Motherboard Repair');
@@ -741,7 +755,7 @@ export default function App() {
             <PageHeaderBanner
               breadcrumbCurrent="About Us"
               badgeText="20+ Years UAE Corporate Excellence"
-              title="About EVONIX & Our Dubai Heritage"
+              title="About evonix & Our Dubai Heritage"
               subtitle="Two decades of international engineering experience managing mission-critical IT infrastructure in Dubai, now translated into a high-precision diagnostic lab and tech hub in Sialkot, Pakistan."
               onNavigateHome={() => navigateToPage('home')}
               onOpenQuote={() => handleOpenQuote('Corporate Partnership')}
@@ -769,9 +783,9 @@ export default function App() {
           <div className="space-y-0">
             <PageHeaderBanner
               breadcrumbCurrent="Tech Blogs & Case Studies"
-              badgeText="EVONIX Engineering Blogs & Knowledge Hub"
+              badgeText="evonix Engineering Blogs & Knowledge Hub"
               title="Official Tech Blogs, Hardware Guides & Field Case Studies"
-              subtitle="Practical, ground-level engineering blogs written by EVONIX technicians. Covers retail thermal printer troubleshooting, laptop overheating fixes, factory network sync, and chip-level motherboard restoration in Sialkot."
+              subtitle="Practical, ground-level engineering blogs written by evonix technicians. Covers retail thermal printer troubleshooting, laptop overheating fixes, factory network sync, and chip-level motherboard restoration in Sialkot."
               onNavigateHome={() => navigateToPage('home')}
               onOpenQuote={() => handleOpenQuote('Technical Consultation')}
               ctaText="Ask An Engineer"
@@ -814,7 +828,7 @@ export default function App() {
             <PageHeaderBanner
               breadcrumbCurrent="Contact & Support"
               badgeText="Sialkot Service Lab & Office"
-              title="Contact EVONIX & Book On-Site Visit"
+              title="Contact evonix & Book On-Site Visit"
               subtitle="Reach out to our engineering lab on Paris Road and Sialkot Cantt. Automatic GPS sensor pinpoints your location area in Sialkot with an instant tracking reference code dispatched to evonixtec@gmail.com."
               onNavigateHome={() => navigateToPage('home')}
               onOpenQuote={() => handleOpenQuote('Direct Sialkot Inquiry')}
@@ -973,7 +987,7 @@ export default function App() {
 
           {/* WhatsApp in Sialkot */}
           <a
-            href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello EVONIX TECHNOLOGIES, I would like to get a free quote for IT services in Sialkot.')}`}
+            href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello evonix technologies, I would like to get a free quote for IT services in Sialkot.')}`}
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-2 px-3.5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shadow-xl shadow-emerald-600/30 hover:shadow-emerald-600/50 hover:scale-105 transition-all cursor-pointer"

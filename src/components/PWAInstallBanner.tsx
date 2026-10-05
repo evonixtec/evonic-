@@ -19,7 +19,7 @@ export const PWAInstallBanner: React.FC = () => {
         </div>
         <div className="truncate">
           <span className="font-bold text-white block text-[11px] leading-tight truncate">
-            Install EVONIX Mobile App
+            Install evonix Mobile App
           </span>
           <span className="text-[10px] text-slate-300 block truncate">
             Fast Sialkot repair tracking & instant support
