@@ -137,7 +137,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                   >
                     {COMPANY_INFO.contact.phoneDisplay}
                   </a>
-                  <p className="text-xs text-slate-600 mt-1 font-medium">Mon - Sat: 9:00 AM - 8:00 PM • Kotli Behram</p>
+                  <p className="text-xs text-slate-600 mt-1 font-medium">Mon - Sat: 9:00 AM - 8:00 PM • Kolti Behram, Sialkot, Pakistan</p>
                 </div>
               </div>
             </div>

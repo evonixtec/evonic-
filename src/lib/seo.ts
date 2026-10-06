@@ -31,10 +31,10 @@ export const LOCAL_BUSINESS_SCHEMA = {
   priceRange: 'PKR 1500 - PKR 85000',
   currenciesAccepted: 'PKR, USD, AED, EUR',
   paymentAccepted: 'Cash, Bank Transfer, EasyPaisa, JazzCash, Raast',
-  hasMap: 'https://maps.google.com/?q=Kotli+Behram+Paris+Road+Sialkot',
+  hasMap: 'https://maps.google.com/?q=Kolti+Behram+Sialkot+Pakistan',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Kotli Behram, Paris Road & Cantt Hub',
+    streetAddress: 'Kolti Behram, Sialkot, Pakistan',
     addressLocality: 'Sialkot',
     addressRegion: 'Punjab',
     postalCode: '51310',
@@ -778,6 +778,104 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'llm citation probability',
       'brand entity node optimization',
       'evonix technologies seo tools',
+    ],
+  },
+
+  tools: {
+    title: 'Online Web Tools Portfolio & Engineering Calculators | evonix',
+    description:
+      'Suite of zero-database client-side web tools by evonix: Free Invoice Generator, Export Barcode Studio, CBM Freight Engine, E-Com Margin Simulator, and Diagnostic Lab bench utilities.',
+    ogTitle: 'Online Web Tools Portfolio | evonix Technologies',
+    ogDescription:
+      'Zero-database, 100% client-side web tools and calculators for international exporters, freelancers, e-commerce stores, and electronics technicians.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    canonicalUrl: `${BASE_URL}/tools`,
+    keywords: [
+      'online tools portfolio',
+      'web tools hub',
+      'free business calculators',
+      'zero database tools',
+      'client side engineering tools',
+      'sialkot export utilities',
+      'evonix online tools',
+    ],
+  },
+
+  'export-barcode-studio': {
+    title: 'Export Barcode Label Studio – GS1-128 & Carton Labels | evonix',
+    description:
+      'Generate compliant thermal shipping carton barcode labels for surgical instruments, sports goods, and leather exports. 4x6 direct thermal, GS1-128, and Code 128 vector rendering.',
+    ogTitle: 'Export Barcode Label Studio | evonix Technologies',
+    ogDescription:
+      'Compliant outer carton thermal barcode generator for Sialkot exporters. GS1-128, Code 128, and instant 203 DPI thermal printing.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    canonicalUrl: `${BASE_URL}/export-barcode-studio`,
+    keywords: [
+      'export barcode label studio',
+      'gs1 128 carton barcode generator',
+      'shipping label maker 4x6',
+      'surgical instrument barcode label',
+      'thermal printer barcode generator',
+      'code 128 barcode generator pakistan',
+    ],
+  },
+
+  'live-repair-tracker': {
+    title: 'Live RMA Bench Repair Status Tracker | evonix Technologies',
+    description:
+      'Track your diagnostic bench repair ticket in real-time. Check motherboard micro-soldering progress, standby current logs, and 90-day warranty certificates in Sialkot.',
+    ogTitle: 'Live RMA Bench Repair Tracker | evonix Technologies',
+    ogDescription:
+      'Live RMA tracking for motherboard, laptop, and printer repairs in Sialkot. Real-time technician bench notes and voltage readings.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    canonicalUrl: `${BASE_URL}/live-repair-tracker`,
+    keywords: [
+      'live repair tracker',
+      'rma status tracking sialkot',
+      'laptop repair tracking online',
+      'micro soldering ticket status',
+      'evonix repair desk',
+    ],
+  },
+
+  'printer-diagnostics': {
+    title: 'Thermal Receipt & POS Printer Diagnostic Engine | evonix',
+    description:
+      'Interactive step-by-step troubleshooter for 80mm ESC/POS thermal printers, paper jams, blurred barcodes, cutter lockups, and Windows POS driver issues.',
+    ogTitle: 'Printer Diagnostic Troubleshooter | evonix Technologies',
+    ogDescription:
+      'Diagnose and fix thermal receipt printer defects, cutter jams, and ESC/POS communication errors with interactive decision trees.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    canonicalUrl: `${BASE_URL}/printer-diagnostics`,
+    keywords: [
+      'thermal printer diagnostic tool',
+      'esc pos printer troubleshooter',
+      'receipt printer repair sialkot',
+      '80mm printer paper jam fix',
+      'barcode printer troubleshooting',
+    ],
+  },
+
+  'factory-network-tester': {
+    title: 'Factory ERP & Customs Network Latency Benchmark | evonix',
+    description:
+      'Benchmark factory premise network latency, SQL server database sync times, and WeBOC customs gateway ping stability in Sialkot export industrial zones.',
+    ogTitle: 'Factory Network Latency Benchmark | evonix Technologies',
+    ogDescription:
+      'Real-time network latency, jitter, and packet loss tester for Sialkot export manufacturing factories and customs portals.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    canonicalUrl: `${BASE_URL}/factory-network-tester`,
+    keywords: [
+      'factory network latency test',
+      'weboc customs ping stability',
+      'erp database latency benchmark',
+      'dual wan failover tester',
+      'sialkot industrial network diagnostics',
     ],
   },
 };

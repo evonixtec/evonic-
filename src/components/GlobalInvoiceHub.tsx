@@ -164,7 +164,7 @@ function renderCode128Barcode(text: string) {
 export const GlobalInvoiceHub: React.FC = () => {
   // 1. Core Profile & Company States
   const [issuerName, setIssuerName] = useState('evonix technologies');
-  const [issuerAddress, setIssuerAddress] = useState('Kotli Behram, Paris Road, Sialkot, Pakistan');
+  const [issuerAddress, setIssuerAddress] = useState('Kolti Behram, Sialkot, Pakistan');
   const [issuerContact, setIssuerContact] = useState('Phone: +92 326 324 4002 | evonixtec@gmail.com');
 
   // 2. Client Billing Details
@@ -449,7 +449,7 @@ export const GlobalInvoiceHub: React.FC = () => {
       // Local storage fallback
     }
     setIssuerName('evonix technologies');
-    setIssuerAddress('Kotli Behram, Paris Road, Sialkot, Pakistan');
+    setIssuerAddress('Kolti Behram, Sialkot, Pakistan');
     setIssuerContact('Direct Line: +92 326 324 4002 | Email: billing@evonixtec.com');
     setClientName('Al-Futtaim Enterprise Solutions');
     setClientAddress('Festival City Tower, Level 14, Dubai, UAE');

@@ -53,12 +53,14 @@ import { FactoryNetworkLatencyTester } from './components/FactoryNetworkLatencyT
 import { BenchIntakePass } from './components/BenchIntakePass';
 import { ExportBarcodeLabelGenerator } from './components/ExportBarcodeLabelGenerator';
 import { PrinterDiagnosticTroubleshooter } from './components/PrinterDiagnosticTroubleshooter';
+import { ToolsHub } from './components/ToolsHub';
+import { ToolWorkspaceHeader } from './components/common/ToolWorkspaceHeader';
 import { MobileBottomNav } from './components/MobileBottomNav';
 import { PWAInstallBanner } from './components/PWAInstallBanner';
 import { LocalClusterLandingPage } from './components/LocalClusterLandingPage';
 import { AiHardwareDiagnosticBoard } from './components/AiHardwareDiagnosticBoard';
 import { LocalCity, ClusterService, LOCAL_CITIES, CLUSTER_SERVICES } from './data/localClusters';
-import { MessageSquare, Phone, ArrowUp, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2, FileText, Barcode, Printer } from 'lucide-react';
+import { MessageSquare, Phone, ArrowUp, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2, FileText, Barcode, Printer, Boxes, SlidersHorizontal, Calculator, Clock, Wifi } from 'lucide-react';
 import { isToolPage } from './lib/toolUtils';
 
 export default function App() {
@@ -124,6 +126,60 @@ export default function App() {
 
     if (path === 'locations' || path === 'location' || path.startsWith('location/') || path.startsWith('locations/')) {
       return 'locations';
+    }
+
+    if (
+      path === 'tools' ||
+      path === 'web-tools' ||
+      path === 'online-tools' ||
+      path === 'tools-hub' ||
+      path === 'tool-portfolio' ||
+      path === 'portfolio-tools' ||
+      path === 'all-tools' ||
+      path.startsWith('tools/') ||
+      path.startsWith('web-tools/')
+    ) {
+      return 'tools';
+    }
+
+    if (
+      path === 'export-barcode-studio' ||
+      path === 'barcode-studio' ||
+      path === 'barcode-generator' ||
+      path === 'barcode-label-studio' ||
+      path === 'barcode-label-generator' ||
+      path.startsWith('export-barcode-studio/') ||
+      path.startsWith('barcode-studio/')
+    ) {
+      return 'export-barcode-studio';
+    }
+
+    if (
+      path === 'live-repair-tracker' ||
+      path === 'repair-tracker' ||
+      path === 'rma-tracker' ||
+      path === 'track-repair' ||
+      path.startsWith('live-repair-tracker/')
+    ) {
+      return 'live-repair-tracker';
+    }
+
+    if (
+      path === 'printer-diagnostics' ||
+      path === 'printer-troubleshooter' ||
+      path === 'printer-repair' ||
+      path.startsWith('printer-diagnostics/')
+    ) {
+      return 'printer-diagnostics';
+    }
+
+    if (
+      path === 'factory-network-tester' ||
+      path === 'network-tester' ||
+      path === 'latency-tester' ||
+      path.startsWith('factory-network-tester/')
+    ) {
+      return 'factory-network-tester';
     }
 
     if (
@@ -244,16 +300,12 @@ export default function App() {
         setActivePolicyModal('refund');
       }
 
-      // Check specialized industrial solutions / tools direct routes
+      // Check specialized industrial home sections
       const SPECIALIZED_SECTION_MAP: Record<string, string> = {
         'sialkot-it-services': 'services',
         'laptop-repairing-sialkot': 'laptop-repair-estimator',
         'pos-software-sialkot': 'sialkot-industrial-solutions',
         'sialkot-export-erp': 'sialkot-industrial-solutions',
-        'export-barcode-studio': 'export-barcode-studio',
-        'printer-troubleshooter': 'printer-diagnostics',
-        'factory-network-tester': 'factory-network-tester',
-        'live-repair-tracker': 'live-repair-tracker',
         'thermal-hotspot-inspector': 'thermal-inspector',
       };
 
@@ -873,37 +925,107 @@ export default function App() {
         )}
 
         {/* ========================================================
-            PAGE 9: DEDICATED GLOBAL ZERO-DATABASE ENTERPRISE INVOICE HUB
+            PAGE 9: DEDICATED ONLINE WEB TOOLS PORTFOLIO HUB
+           ======================================================== */}
+        {currentPage === 'tools' && (
+          <div className="space-y-0">
+            <ToolsHub
+              onLaunchTool={(target) => navigateToPage(target as NavPageId)}
+              onNavigateHome={() => navigateToPage('home')}
+            />
+          </div>
+        )}
+
+        {/* ========================================================
+            PAGE 10: DEDICATED GLOBAL ZERO-DATABASE ENTERPRISE INVOICE HUB
            ======================================================== */}
         {currentPage === 'invoice' && (
           <div className="space-y-0">
+            <ToolWorkspaceHeader
+              currentToolId="invoice"
+              toolTitle="Global Micro-Invoice Generator"
+              toolCategory="Business & Export"
+              toolDescription="Create zero-database client invoices with 100+ countries tax engine, live Code128 barcodes, and PDF export."
+              icon={<FileText className="w-5 h-5 text-emerald-500" />}
+              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+              onNavigateToolsHub={() => navigateToPage('tools')}
+            />
             <GlobalInvoiceHub />
           </div>
         )}
 
         {/* ========================================================
-            PAGE 10: E-COMMERCE PROFIT & COURIER SHIPPING MARGIN CALCULATOR
+            PAGE 11: EXPORT BARCODE LABEL STUDIO
            ======================================================== */}
-        {currentPage === 'ecommerce-calculator' && (
+        {currentPage === 'export-barcode-studio' && (
           <div className="space-y-0">
-            <EcommerceCalculator />
+            <ToolWorkspaceHeader
+              currentToolId="export-barcode-studio"
+              toolTitle="Export Barcode Label Studio"
+              toolCategory="Business & Export"
+              toolDescription="Generate compliant thermal shipping labels and outer carton barcodes for surgical, leather & sports exports."
+              icon={<Barcode className="w-5 h-5 text-red-500" />}
+              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+              onNavigateToolsHub={() => navigateToPage('tools')}
+            />
+            <div className="py-8 bg-slate-100 min-h-screen">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <ExportBarcodeLabelGenerator onOpenQuote={handleOpenQuote} />
+              </div>
+            </div>
           </div>
         )}
 
         {/* ========================================================
-            PAGE 11: EXPORT CBM & VOLUMETRIC CARGO ENGINE
+            PAGE 12: EXPORT CBM & VOLUMETRIC CARGO ENGINE
            ======================================================== */}
         {currentPage === 'cbm-calculator' && (
           <div className="space-y-0">
+            <ToolWorkspaceHeader
+              currentToolId="cbm-calculator"
+              toolTitle="B2B Industrial CBM & Freight Engine"
+              toolCategory="Business & Export"
+              toolDescription="Cubic Meters (CBM), Air Freight Volumetric Weights, and Container Capacity Estimator."
+              icon={<Boxes className="w-5 h-5 text-cyan-500" />}
+              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+              onNavigateToolsHub={() => navigateToPage('tools')}
+            />
             <CbmCalculator />
           </div>
         )}
 
         {/* ========================================================
-            PAGE 12: DEDICATED DEVELOPER COST CALCULATOR (SEO CLUSTER)
+            PAGE 13: E-COMMERCE PROFIT & COURIER SHIPPING MARGIN CALCULATOR
+           ======================================================== */}
+        {currentPage === 'ecommerce-calculator' && (
+          <div className="space-y-0">
+            <ToolWorkspaceHeader
+              currentToolId="ecommerce-calculator"
+              toolTitle="E-Commerce Margin & COD Simulator"
+              toolCategory="E-Commerce & Ads"
+              toolDescription="Calculate net profit margins, ad spend ROAS, multi-courier COD fees, and return loss simulations."
+              icon={<SlidersHorizontal className="w-5 h-5 text-amber-500" />}
+              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+              onNavigateToolsHub={() => navigateToPage('tools')}
+            />
+            <EcommerceCalculator />
+          </div>
+        )}
+
+        {/* ========================================================
+            PAGE 14: DEDICATED DEVELOPER COST CALCULATOR
            ======================================================== */}
         {currentPage === 'developer-cost-calculator' && (
           <div className="space-y-0">
+            <ToolWorkspaceHeader
+              currentToolId="developer-cost-calculator"
+              toolTitle="Dedicated Developer Cost Calculator"
+              toolCategory="Business & Export"
+              toolDescription="Compare USA, UK & UAE developer salaries against dedicated offshore engineers with instant savings summary."
+              icon={<Calculator className="w-5 h-5 text-blue-500" />}
+              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+              onNavigateToolsHub={() => navigateToPage('tools')}
+            />
             <DeveloperCostCalculator
               onOpenQuote={handleOpenQuote}
               onNavigatePage={(page) => navigateToPage(page as NavPageId)}
@@ -912,13 +1034,86 @@ export default function App() {
         )}
 
         {/* ========================================================
-            PAGE 13: WEBSITE E-E-A-T & AI VISIBILITY CHECKER
+            PAGE 15: WEBSITE E-E-A-T & AI VISIBILITY CHECKER
            ======================================================== */}
         {currentPage === 'ai-visibility-checker' && (
           <div className="space-y-0">
-            <AiVisibilityChecker
-              onOpenQuote={handleOpenQuote}
+            <ToolWorkspaceHeader
+              currentToolId="ai-visibility-checker"
+              toolTitle="AI Visibility & GEO Readiness Auditor"
+              toolCategory="Growth & SEO"
+              toolDescription="Client-side audit for ChatGPT, Claude, and Google AI Overviews visibility readiness & entity schema."
+              icon={<Search className="w-5 h-5 text-purple-500" />}
+              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+              onNavigateToolsHub={() => navigateToPage('tools')}
             />
+            <AiVisibilityChecker onOpenQuote={handleOpenQuote} />
+          </div>
+        )}
+
+        {/* ========================================================
+            PAGE 16: LIVE RMA BENCH REPAIR TRACKER
+           ======================================================== */}
+        {currentPage === 'live-repair-tracker' && (
+          <div className="space-y-0">
+            <ToolWorkspaceHeader
+              currentToolId="live-repair-tracker"
+              toolTitle="Live RMA Bench Repair Tracker"
+              toolCategory="Hardware Diagnostics"
+              toolDescription="Track motherboard micro-soldering progress, standby current readings, and 90-day warranty ticket status."
+              icon={<Clock className="w-5 h-5 text-emerald-500" />}
+              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+              onNavigateToolsHub={() => navigateToPage('tools')}
+            />
+            <div className="py-8 bg-slate-900 min-h-screen text-white">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <LiveRepairTracker onOpenQuote={handleOpenQuote} />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ========================================================
+            PAGE 17: THERMAL RECEIPT & BARCODE PRINTER DIAGNOSTICS
+           ======================================================== */}
+        {currentPage === 'printer-diagnostics' && (
+          <div className="space-y-0">
+            <ToolWorkspaceHeader
+              currentToolId="printer-diagnostics"
+              toolTitle="Thermal Receipt Printer Diagnostic Engine"
+              toolCategory="Hardware Diagnostics"
+              toolDescription="Interactive diagnostics for HP paper jams, torn fuser sleeves, and thermal receipt auto-cutter errors."
+              icon={<Printer className="w-5 h-5 text-orange-500" />}
+              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+              onNavigateToolsHub={() => navigateToPage('tools')}
+            />
+            <div className="py-8 bg-slate-900 min-h-screen text-white">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <PrinterDiagnosticTroubleshooter onOpenQuote={handleOpenQuote} />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ========================================================
+            PAGE 18: FACTORY ERP & CUSTOMS NETWORK LATENCY BENCHMARK
+           ======================================================== */}
+        {currentPage === 'factory-network-tester' && (
+          <div className="space-y-0">
+            <ToolWorkspaceHeader
+              currentToolId="factory-network-tester"
+              toolTitle="Factory ERP & Customs Latency Benchmark"
+              toolCategory="Hardware Diagnostics"
+              toolDescription="Test factory premise latency bottlenecks, SQL database lag, and WeBOC customs gateway ping stability."
+              icon={<Wifi className="w-5 h-5 text-teal-500" />}
+              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+              onNavigateToolsHub={() => navigateToPage('tools')}
+            />
+            <div className="py-8 bg-slate-900 min-h-screen text-white">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <FactoryNetworkLatencyTester onOpenQuote={handleOpenQuote} />
+              </div>
+            </div>
           </div>
         )}
           </motion.div>

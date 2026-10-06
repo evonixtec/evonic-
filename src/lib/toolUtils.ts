@@ -33,9 +33,15 @@ export const isToolPage = (page?: string | null): boolean => {
     'checker',
     'calculator',
     'generator',
+    'barcode',
     'tool',
+    'tools',
     'converter',
     'simulator',
+    'tracker',
+    'diagnostics',
+    'troubleshooter',
+    'latency',
   ];
 
   return toolIdentifiers.some((identifier) => normalized.includes(identifier));

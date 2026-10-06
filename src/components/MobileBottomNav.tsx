@@ -145,7 +145,7 @@ const WEB_TOOLS_COLLECTION: WebToolItem[] = [
   },
   {
     id: 'printer-diagnostics',
-    navTarget: 'printer-troubleshooter',
+    navTarget: 'printer-diagnostics',
     name: 'Printer Hardware Troubleshooter',
     badge: 'LaserJet & Thermal Heads',
     badgeColor: 'bg-slate-100 text-slate-800 border-slate-300',
@@ -191,11 +191,16 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
   const [searchFilter, setSearchFilter] = useState('');
 
   const isToolsActive =
+    currentPage === 'tools' ||
     currentPage === 'invoice' ||
+    currentPage === 'export-barcode-studio' ||
     currentPage === 'ecommerce-calculator' ||
     currentPage === 'cbm-calculator' ||
     currentPage === 'developer-cost-calculator' ||
     currentPage === 'ai-visibility-checker' ||
+    currentPage === 'live-repair-tracker' ||
+    currentPage === 'printer-diagnostics' ||
+    currentPage === 'factory-network-tester' ||
     showToolsDrawer;
 
   const handleInstallClick = async () => {
@@ -287,21 +292,28 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
 
           {/* 5. Online Web Tools Portfolio Hub (Replaces static Invoice button per user instruction) */}
           <button
-            onClick={() => setShowToolsDrawer((prev) => !prev)}
-            className={`flex flex-col items-center justify-center py-1 px-2 rounded-xl transition-all cursor-pointer relative ${
+            onClick={() => {
+              if (currentPage === 'tools') {
+                setShowToolsDrawer((prev) => !prev);
+              } else {
+                setShowToolsDrawer(false);
+                onNavigate('tools');
+              }
+            }}
+            className={`flex flex-col items-center justify-center py-1 px-2.5 rounded-xl transition-all cursor-pointer relative ${
               isToolsActive
                 ? 'text-red-600 font-bold scale-105'
                 : 'text-slate-500 hover:text-red-600'
             }`}
-            title="Online Web Tools Portfolio"
+            title="آن لائن ٹولز پورٹ فولیو (Online Web Tools)"
           >
             <div className="relative">
               <Sparkles className="w-5 h-5 mb-0.5" />
               <span className="absolute -top-1 -right-2 text-[7.5px] bg-red-600 text-white font-black px-1 py-0.2 rounded-full leading-tight shadow-xs animate-pulse">
-                6+
+                9+
               </span>
             </div>
-            <span className="text-[10px] leading-tight">Online Tools</span>
+            <span className="text-[10px] font-bold leading-tight">Online Tools</span>
           </button>
 
           {/* 6. In-App Mobile Install Option (shown if installable or iOS) */}

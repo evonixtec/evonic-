@@ -38,11 +38,16 @@ export type NavPageId =
   | 'guides'
   | 'contact'
   | 'locations'
+  | 'tools'
   | 'invoice'
+  | 'export-barcode-studio'
   | 'ecommerce-calculator'
   | 'cbm-calculator'
   | 'developer-cost-calculator'
-  | 'ai-visibility-checker';
+  | 'ai-visibility-checker'
+  | 'live-repair-tracker'
+  | 'printer-diagnostics'
+  | 'factory-network-tester';
 
 interface NavbarProps {
   currentPage: NavPageId;
@@ -101,11 +106,16 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   const isToolsActive =
+    currentPage === 'tools' ||
     currentPage === 'invoice' ||
+    currentPage === 'export-barcode-studio' ||
     currentPage === 'ecommerce-calculator' ||
     currentPage === 'cbm-calculator' ||
     currentPage === 'developer-cost-calculator' ||
-    currentPage === 'ai-visibility-checker';
+    currentPage === 'ai-visibility-checker' ||
+    currentPage === 'live-repair-tracker' ||
+    currentPage === 'printer-diagnostics' ||
+    currentPage === 'factory-network-tester';
 
   return (
     <header
@@ -512,7 +522,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               onMouseLeave={() => setActiveDropdown(null)}
             >
               <button
-                onClick={() => setActiveDropdown(activeDropdown === 'tools' ? null : 'tools')}
+                onClick={() => handlePageSelect('tools')}
                 className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
                   isToolsActive
                     ? 'text-blue-700 bg-gradient-to-b from-blue-50 to-indigo-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(37,99,235,0.12)] border border-blue-200/80'
@@ -520,7 +530,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }`}
                 aria-expanded={activeDropdown === 'tools'}
               >
-                <span>⚙️ Web Tools Portfolio</span>
+                <span>⚙️ Online Tools</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
                     activeDropdown === 'tools' ? 'rotate-180 text-blue-600' : 'text-slate-400'
@@ -529,21 +539,34 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
 
               {activeDropdown === 'tools' && (
-                <div className="absolute top-full left-0 w-80 pt-1.5 z-50 animate-in fade-in slide-in-from-top-1 duration-200">
-                  <div className="bg-white/98 backdrop-blur-2xl rounded-2xl shadow-[0_20px_45px_-10px_rgba(0,0,0,0.14),0_0_0_1px_rgba(0,0,0,0.06)] border border-slate-200 p-2 space-y-1">
+                <div className="absolute top-full left-0 w-88 pt-1.5 z-50 animate-in fade-in slide-in-from-top-1 duration-200">
+                  <div className="bg-white/98 backdrop-blur-2xl rounded-2xl shadow-[0_20px_45px_-10px_rgba(0,0,0,0.14),0_0_0_1px_rgba(0,0,0,0.06)] border border-slate-200 p-2 space-y-1 max-h-[85vh] overflow-y-auto">
+                    {/* Top Hub Launch Banner */}
+                    <button
+                      onClick={() => handlePageSelect('tools')}
+                      className="w-full text-left p-2.5 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 text-white flex items-center justify-between cursor-pointer shadow-xs hover:opacity-95 transition-all mb-1"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-base">🛠️</span>
+                        <div>
+                          <div className="text-xs font-bold leading-tight">Web Tools Portfolio Hub</div>
+                          <div className="text-[10px] text-red-100">Browse all 9+ browser utilities</div>
+                        </div>
+                      </div>
+                      <ArrowRight className="w-3.5 h-3.5 text-white" />
+                    </button>
+
                     <span className="block px-3 py-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100 pb-1 mb-1">
-                      Production Hub
+                      Business &amp; Export Tools
                     </span>
 
                     <button
                       onClick={() => handlePageSelect('invoice')}
-                      className={`w-full text-left p-2.5 rounded-xl transition-colors flex items-center gap-3 cursor-pointer group ${
+                      className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
                         currentPage === 'invoice' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
                       }`}
                     >
-                      <span className="text-base flex items-center justify-center flex-shrink-0">
-                        🗂️
-                      </span>
+                      <span className="text-base flex items-center justify-center flex-shrink-0">🗂️</span>
                       <div className="flex-1 min-w-0">
                         <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
                           Global Micro-Invoice Generator
@@ -554,14 +577,64 @@ export const Navbar: React.FC<NavbarProps> = ({
                     </button>
 
                     <button
+                      onClick={() => handlePageSelect('export-barcode-studio')}
+                      className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
+                        currentPage === 'export-barcode-studio' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-base flex items-center justify-center flex-shrink-0">🏷️</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
+                          Export Barcode Label Studio
+                        </div>
+                        <div className="text-[10px] text-slate-500">GS1-128 & outer carton 4×6 labels</div>
+                      </div>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-red-100 text-red-700">Export</span>
+                    </button>
+
+                    <button
+                      onClick={() => handlePageSelect('cbm-calculator')}
+                      className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
+                        currentPage === 'cbm-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-base flex items-center justify-center flex-shrink-0">📦</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
+                          B2B Industrial CBM Engine
+                        </div>
+                        <div className="text-[10px] text-slate-500">Volumetric mass & container capacity</div>
+                      </div>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-700">Cargo</span>
+                    </button>
+
+                    <button
+                      onClick={() => handlePageSelect('developer-cost-calculator')}
+                      className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
+                        currentPage === 'developer-cost-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-base flex items-center justify-center flex-shrink-0">💻</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
+                          Developer Cost Calculator
+                        </div>
+                        <div className="text-[10px] text-slate-500">Compare USA vs Offshore rates & savings</div>
+                      </div>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">Save 72%</span>
+                    </button>
+
+                    <span className="block px-3 py-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider border-t border-slate-100 mt-2 pt-2 pb-1 mb-1">
+                      E-Commerce &amp; Growth
+                    </span>
+
+                    <button
                       onClick={() => handlePageSelect('ecommerce-calculator')}
-                      className={`w-full text-left p-2.5 rounded-xl transition-colors flex items-center gap-3 cursor-pointer group ${
+                      className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
                         currentPage === 'ecommerce-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
                       }`}
                     >
-                      <span className="text-base flex items-center justify-center flex-shrink-0">
-                        📊
-                      </span>
+                      <span className="text-base flex items-center justify-center flex-shrink-0">📊</span>
                       <div className="flex-1 min-w-0">
                         <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
                           E-Commerce Margin Calculator
@@ -572,66 +645,72 @@ export const Navbar: React.FC<NavbarProps> = ({
                     </button>
 
                     <button
-                      onClick={() => handlePageSelect('cbm-calculator')}
-                      className={`w-full text-left p-2.5 rounded-xl transition-colors flex items-center gap-3 cursor-pointer group ${
-                        currentPage === 'cbm-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
-                      }`}
-                    >
-                      <span className="text-base flex items-center justify-center flex-shrink-0">
-                        📦
-                      </span>
-                      <div className="flex-1 min-w-0">
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
-                          B2B Industrial CBM Engine
-                        </div>
-                        <div className="text-[10px] text-slate-500">Volumetric mass & container capacity</div>
-                      </div>
-                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-700">Export</span>
-                    </button>
-
-                    <button
-                      onClick={() => handlePageSelect('developer-cost-calculator')}
-                      className={`w-full text-left p-2.5 rounded-xl transition-colors flex items-center gap-3 cursor-pointer group ${
-                        currentPage === 'developer-cost-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
-                      }`}
-                    >
-                      <span className="text-base flex items-center justify-center flex-shrink-0">
-                        💻
-                      </span>
-                      <div className="flex-1 min-w-0">
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
-                          Developer Cost Calculator
-                        </div>
-                        <div className="text-[10px] text-slate-500">Compare USA vs Offshore rates & savings</div>
-                      </div>
-                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">Save 72%</span>
-                    </button>
-
-                    <button
                       onClick={() => handlePageSelect('ai-visibility-checker')}
-                      className={`w-full text-left p-2.5 rounded-xl transition-colors flex items-center gap-3 cursor-pointer group ${
+                      className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
                         currentPage === 'ai-visibility-checker' ? 'bg-purple-50 text-purple-700 font-bold' : 'hover:bg-slate-50'
                       }`}
                     >
-                      <span className="text-base flex items-center justify-center flex-shrink-0">
-                        🔍
-                      </span>
+                      <span className="text-base flex items-center justify-center flex-shrink-0">🔍</span>
                       <div className="flex-1 min-w-0">
                         <div className="text-xs font-bold text-slate-900 group-hover:text-purple-600 truncate">
                           AI Visibility & E-E-A-T Checker
                         </div>
-                        <div className="text-[10px] text-slate-500">ChatGPT, Claude & Google AI Overview Audit</div>
+                        <div className="text-[10px] text-slate-500">ChatGPT & Google AI Overview Audit</div>
                       </div>
-                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-purple-100 text-purple-700">AI / GEO</span>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-purple-100 text-purple-700">GEO</span>
                     </button>
 
-                    <span className="block px-3 py-1 text-[10px] font-bold text-amber-600 uppercase tracking-wider border-t border-slate-100 mt-2 pt-2 pb-1 mb-0.5 bg-amber-50/60 rounded-md">
-                      Next Releases Grid
+                    <span className="block px-3 py-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider border-t border-slate-100 mt-2 pt-2 pb-1 mb-1">
+                      Hardware Diagnostics Lab
                     </span>
-                    <div className="px-3 py-1.5 text-[11px] italic text-slate-500 flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                      <span>Multi-Router WiFi Setup Wizard</span>
-                    </div>
+
+                    <button
+                      onClick={() => handlePageSelect('live-repair-tracker')}
+                      className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
+                        currentPage === 'live-repair-tracker' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-base flex items-center justify-center flex-shrink-0">⏱️</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
+                          Live RMA Repair Tracker
+                        </div>
+                        <div className="text-[10px] text-slate-500">Track bench diagnosis & warranty</div>
+                      </div>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">Live</span>
+                    </button>
+
+                    <button
+                      onClick={() => handlePageSelect('printer-diagnostics')}
+                      className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
+                        currentPage === 'printer-diagnostics' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-base flex items-center justify-center flex-shrink-0">🖨️</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
+                          Printer Diagnostic Engine
+                        </div>
+                        <div className="text-[10px] text-slate-500">Thermal receipt & ESC/POS cutter errors</div>
+                      </div>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-orange-100 text-orange-700">Bench</span>
+                    </button>
+
+                    <button
+                      onClick={() => handlePageSelect('factory-network-tester')}
+                      className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
+                        currentPage === 'factory-network-tester' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-base flex items-center justify-center flex-shrink-0">📶</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
+                          Factory Latency Benchmark
+                        </div>
+                        <div className="text-[10px] text-slate-500">WeBOC customs & dual-WAN ping test</div>
+                      </div>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-teal-100 text-teal-700">Ping</span>
+                    </button>
                   </div>
                 </div>
               )}
@@ -708,7 +787,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       </div>
                       <div>
                         <div className="text-xs font-bold text-slate-900 group-hover:text-blue-700">
-                          Kotli Behram Lab & Team
+                          Kolti Behram Lab & Team
                         </div>
                         <div className="text-[11px] text-slate-500">Paris Road & Cantt Technical Hub</div>
                       </div>
@@ -979,6 +1058,15 @@ export const Navbar: React.FC<NavbarProps> = ({
 
               {mobileExpandedSection === 'tools' && (
                 <div className="p-2 space-y-1 bg-white border-t border-slate-200/80 text-xs">
+                  {/* Top Hub Link */}
+                  <button
+                    onClick={() => handlePageSelect('tools')}
+                    className="w-full text-left p-2.5 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 text-white font-bold flex items-center justify-between mb-1"
+                  >
+                    <span>🛠️ Open Web Tools Portfolio Hub</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+
                   <button
                     onClick={() => handlePageSelect('invoice')}
                     className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
@@ -992,15 +1080,15 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </button>
 
                   <button
-                    onClick={() => handlePageSelect('ecommerce-calculator')}
+                    onClick={() => handlePageSelect('export-barcode-studio')}
                     className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
-                      currentPage === 'ecommerce-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                      currentPage === 'export-barcode-studio' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
                     }`}
                   >
                     <div className="flex items-center gap-2">
-                      <span>📊 E-Commerce Margin Calculator</span>
+                      <span>🏷️ Export Barcode Label Studio</span>
                     </div>
-                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-700">Live</span>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-red-100 text-red-700">Export</span>
                   </button>
 
                   <button
@@ -1012,7 +1100,19 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <div className="flex items-center gap-2">
                       <span>📦 B2B Industrial CBM Engine</span>
                     </div>
-                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-700">Export</span>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-700">Cargo</span>
+                  </button>
+
+                  <button
+                    onClick={() => handlePageSelect('ecommerce-calculator')}
+                    className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
+                      currentPage === 'ecommerce-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span>📊 E-Commerce Margin Calculator</span>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-700">Live</span>
                   </button>
 
                   <button
@@ -1036,12 +1136,44 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <div className="flex items-center gap-2">
                       <span>🔍 AI Visibility & E-E-A-T Checker</span>
                     </div>
-                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-purple-100 text-purple-700">AI / GEO</span>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-purple-100 text-purple-700">GEO</span>
                   </button>
 
-                  <div className="pt-1.5 border-t border-slate-100 px-2 py-1 text-[11px] italic text-slate-400">
-                    Next: Multi-Router WiFi Setup Wizard
-                  </div>
+                  <button
+                    onClick={() => handlePageSelect('live-repair-tracker')}
+                    className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
+                      currentPage === 'live-repair-tracker' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span>⏱️ Live RMA Bench Repair Tracker</span>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">Live</span>
+                  </button>
+
+                  <button
+                    onClick={() => handlePageSelect('printer-diagnostics')}
+                    className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
+                      currentPage === 'printer-diagnostics' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span>🖨️ Printer Hardware Troubleshooter</span>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-orange-100 text-orange-700">Bench</span>
+                  </button>
+
+                  <button
+                    onClick={() => handlePageSelect('factory-network-tester')}
+                    className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
+                      currentPage === 'factory-network-tester' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span>📶 Factory Latency Benchmark</span>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-teal-100 text-teal-700">Ping</span>
+                  </button>
                 </div>
               )}
             </div>

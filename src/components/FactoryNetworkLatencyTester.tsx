@@ -57,7 +57,11 @@ const FACTORY_TARGETS: IndustrialTarget[] = [
   }
 ];
 
-export const FactoryNetworkLatencyTester: React.FC = () => {
+interface FactoryNetworkLatencyTesterProps {
+  onOpenQuote?: (service?: string) => void;
+}
+
+export const FactoryNetworkLatencyTester: React.FC<FactoryNetworkLatencyTesterProps> = ({ onOpenQuote }) => {
   const [selectedTarget, setSelectedTarget] = useState<IndustrialTarget>(FACTORY_TARGETS[0]);
   const [isRunning, setIsRunning] = useState(false);
   const [testStage, setTestStage] = useState<'idle' | 'testing' | 'completed'>('idle');
