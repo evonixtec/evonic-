@@ -322,11 +322,28 @@ export default function App() {
   }, []);
 
   // Navigate to dedicated page with clean URL path (e.g. /services, /portfolio, /shop)
-  const navigateToPage = (page: NavPageId, subTarget?: string) => {
-    if ((page as string) === 'export-barcode-studio') {
+  const navigateToPage = (page: NavPageId | string, subTarget?: string) => {
+    const SPECIALIZED_SECTION_MAP: Record<string, string> = {
+      'sialkot-it-services': 'services',
+      'laptop-repairing-sialkot': 'laptop-repair-estimator',
+      'laptop-repair-estimator': 'laptop-repair-estimator',
+      'pos-software-sialkot': 'sialkot-industrial-solutions',
+      'sialkot-export-erp': 'sialkot-industrial-solutions',
+      'export-barcode-studio': 'export-barcode-studio',
+      'printer-troubleshooter': 'printer-diagnostics',
+      'printer-diagnostics': 'printer-diagnostics',
+      'factory-network-tester': 'factory-network-tester',
+      'live-repair-tracker': 'live-repair-tracker',
+      'thermal-hotspot-inspector': 'thermal-inspector',
+      'thermal-inspector': 'thermal-inspector',
+      'pcb-power-simulator': 'pcb-power-simulator',
+    };
+
+    if (SPECIALIZED_SECTION_MAP[page as string]) {
       setCurrentPage('home');
       setTimeout(() => {
-        const el = document.getElementById('export-barcode-studio');
+        const targetId = SPECIALIZED_SECTION_MAP[page as string];
+        const el = document.getElementById(targetId);
         if (el) {
           const navOffset = 80;
           const elementPosition = el.getBoundingClientRect().top;
@@ -337,7 +354,7 @@ export default function App() {
       return;
     }
 
-    setCurrentPage(page);
+    setCurrentPage(page as NavPageId);
 
     // Clean Path Format: /services, /portfolio, /shop, /about, /guides, /contact, or /
     const cleanPath = page === 'home' ? '/' : `/${page}`;
@@ -428,7 +445,7 @@ export default function App() {
               duration: 0.3,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="w-full"
+            className="w-full pb-16 lg:pb-0"
           >
             {/* ========================================================
                 PAGE 1: HOME PAGE (Concise, Curated & Beautiful)
@@ -953,15 +970,13 @@ export default function App() {
         defaultDevice={selectedServiceForQuote}
       />
 
-      {/* Native App-Style Mobile Bottom Navigation Dock (Thumb Reach) - Hidden on all Tool Pages */}
-      {!isToolPage(currentPage) && (
-        <MobileBottomNav
-          currentPage={currentPage}
-          onNavigate={navigateToPage}
-          onOpenChat={() => window.dispatchEvent(new CustomEvent('open-evonix-chat'))}
-          onOpenQuote={() => handleOpenQuote('Mobile General Inquiry')}
-        />
-      )}
+      {/* Native App-Style Mobile Bottom Navigation Dock (Thumb Reach) */}
+      <MobileBottomNav
+        currentPage={currentPage}
+        onNavigate={navigateToPage}
+        onOpenChat={() => window.dispatchEvent(new CustomEvent('open-evonix-chat'))}
+        onOpenQuote={() => handleOpenQuote('Mobile General Inquiry')}
+      />
 
       {/* Desktop Floating Action Buttons (Hidden on all Tool Pages to keep workspace 100% focused) */}
       {!isToolPage(currentPage) && (
