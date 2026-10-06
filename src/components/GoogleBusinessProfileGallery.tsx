@@ -58,7 +58,7 @@ export const GoogleBusinessProfileGallery: React.FC<GoogleBusinessProfileGallery
                 Authentic Technician Repair & Field Operations
               </h2>
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                Documented photographic proof of certified evonix hardware engineers working hands-on at our Sialkot diagnostic lab (Kotli Behram / Paris Road) and on-site corporate client premises.
+                Documented photographic proof of certified evonix hardware engineers working hands-on at our Sialkot diagnostic lab (Kolti Behram / Paris Road) and on-site corporate client premises.
               </p>
             </div>
 
@@ -71,7 +71,7 @@ export const GoogleBusinessProfileGallery: React.FC<GoogleBusinessProfileGallery
               <span className="hidden sm:inline text-slate-300">|</span>
               <div className="flex items-center gap-1 text-xs text-slate-600">
                 <MapPin className="w-3.5 h-3.5 text-red-600" />
-                <span>Kotli Behram & Paris Rd, Sialkot</span>
+                <span>Kolti Behram & Paris Rd, Sialkot</span>
               </div>
             </div>
           </div>

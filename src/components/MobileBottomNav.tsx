@@ -22,11 +22,15 @@ import {
   ArrowRight,
   CheckCircle2,
   SlidersHorizontal,
-  ExternalLink
+  ExternalLink,
+  Smartphone,
+  Bot,
+  Cloud
 } from 'lucide-react';
 import { NavPageId } from './Navbar';
 import { COMPANY_INFO } from '../data/content';
 import { usePWAInstall } from '../hooks/usePWAInstall';
+import { ToolAiCloudIntegrationModal } from './common/ToolAiCloudIntegrationModal';
 
 interface MobileBottomNavProps {
   currentPage: NavPageId;
@@ -39,6 +43,7 @@ interface WebToolItem {
   id: string;
   navTarget: NavPageId | string;
   name: string;
+  urduName: string;
   badge: string;
   badgeColor: string;
   icon: React.ReactNode;
@@ -46,25 +51,94 @@ interface WebToolItem {
   categoryLabel: string;
   description: string;
   isFlagship?: boolean;
+  isMobileCore?: boolean;
+  mobileOrder?: number;
 }
 
 const WEB_TOOLS_COLLECTION: WebToolItem[] = [
+  // THE 5 CORE MOBILE APPLICATION TOOLS (Per user specification)
   {
     id: 'invoice',
     navTarget: 'invoice',
     name: 'Global Micro-Invoice Generator',
-    badge: 'Zero Database • Free',
+    urduName: 'گلوبل مائیکرو انوائس جنریٹر',
+    badge: 'Mobile Core #1 • Free Tax Engine',
     badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-200',
     icon: <FileText className="w-5 h-5 text-emerald-600" />,
     category: 'business-export',
     categoryLabel: 'Business & Export',
     description: 'Create zero-database client invoices with 100+ countries tax engine, live Code128 barcodes, and PDF export.',
     isFlagship: true,
+    isMobileCore: true,
+    mobileOrder: 1,
   },
+  {
+    id: 'ecommerce-calculator',
+    navTarget: 'ecommerce-calculator',
+    name: 'E-Commerce Margin & COD Simulator',
+    urduName: 'ای کامرس بی ٹو بی مارجن کیلکولیٹر',
+    badge: 'Mobile Core #2 • COD & RTO',
+    badgeColor: 'bg-amber-100 text-amber-800 border-amber-200',
+    icon: <SlidersHorizontal className="w-5 h-5 text-amber-600" />,
+    category: 'business-export',
+    categoryLabel: 'E-Commerce Growth',
+    description: 'Calculate net profit margins, ad spend ROAS, multi-courier COD fees, and return loss simulations.',
+    isFlagship: true,
+    isMobileCore: true,
+    mobileOrder: 2,
+  },
+  {
+    id: 'cbm-calculator',
+    navTarget: 'cbm-calculator',
+    name: 'B2B Industrial CBM & Freight Engine',
+    urduName: 'بی ٹو بی انڈسٹریل CBM کارٹن و فریٹ کیلکولیٹر',
+    badge: 'Mobile Core #3 • Air & Sea Packing',
+    badgeColor: 'bg-cyan-100 text-cyan-800 border-cyan-200',
+    icon: <Box className="w-5 h-5 text-cyan-600" />,
+    category: 'business-export',
+    categoryLabel: 'Business & Export',
+    description: 'Compute carton volume in CBM, air volumetric weight, and 20ft/40ft container stuffing capacity instantly.',
+    isFlagship: true,
+    isMobileCore: true,
+    mobileOrder: 3,
+  },
+  {
+    id: 'developer-cost-calculator',
+    navTarget: 'developer-cost-calculator',
+    name: 'Dedicated Developer Cost Calculator',
+    urduName: 'ڈیڈیکیٹڈ ڈویلپر کاسٹ کیلکولیٹر',
+    badge: 'Mobile Core #4 • Save 72%',
+    badgeColor: 'bg-blue-100 text-blue-800 border-blue-200',
+    icon: <Calculator className="w-5 h-5 text-blue-600" />,
+    category: 'business-export',
+    categoryLabel: 'Business & Export',
+    description: 'Compare USA, UK & UAE developer salaries against dedicated offshore engineers with instant savings summary.',
+    isFlagship: true,
+    isMobileCore: true,
+    mobileOrder: 4,
+  },
+  {
+    id: 'ai-visibility-checker',
+    navTarget: 'ai-visibility-checker',
+    name: 'AI Visibility & E-E-A-T Checker',
+    urduName: 'اے آئی اویلیبلٹی ای ای اے ٹی چیکر',
+    badge: 'Mobile Core #5 • ChatGPT / Claude',
+    badgeColor: 'bg-purple-100 text-purple-800 border-purple-200',
+    icon: <Search className="w-5 h-5 text-purple-600" />,
+    category: 'business-export',
+    categoryLabel: 'Growth & SEO',
+    description: 'Client-side audit for ChatGPT, Claude, and Google AI Overviews visibility readiness & entity schema.',
+    isFlagship: true,
+    isMobileCore: true,
+    mobileOrder: 5,
+  },
+
+  // ADDITIONAL EXTENDED WORKSHOP UTILITIES
   {
     id: 'export-barcode-studio',
     navTarget: 'export-barcode-studio',
     name: 'Export Barcode Label Studio',
+    urduName: 'ایکسپورٹ بارکوڈ لیبل اسٹوڈیو',
     badge: 'GS1-128 • Carton Shipping',
     badgeColor: 'bg-red-100 text-red-800 border-red-200',
     icon: <Barcode className="w-5 h-5 text-red-600" />,
@@ -74,79 +148,22 @@ const WEB_TOOLS_COLLECTION: WebToolItem[] = [
     isFlagship: true,
   },
   {
-    id: 'ai-visibility-checker',
-    navTarget: 'ai-visibility-checker',
-    name: 'AI Visibility & E-E-A-T Checker',
-    badge: 'AI Search • GEO Score',
-    badgeColor: 'bg-purple-100 text-purple-800 border-purple-200',
-    icon: <Search className="w-5 h-5 text-purple-600" />,
-    category: 'business-export',
-    categoryLabel: 'Business & Export',
-    description: 'Client-side audit for ChatGPT, Claude, and Google AI Overviews visibility readiness & entity schema.',
-    isFlagship: true,
-  },
-  {
-    id: 'developer-cost-calculator',
-    navTarget: 'developer-cost-calculator',
-    name: 'Dedicated Developer Cost Calculator',
-    badge: 'Save 72% • Global Rates',
-    badgeColor: 'bg-blue-100 text-blue-800 border-blue-200',
-    icon: <Calculator className="w-5 h-5 text-blue-600" />,
-    category: 'business-export',
-    categoryLabel: 'Business & Export',
-    description: 'Compare USA, UK & UAE developer salaries against dedicated offshore engineers with instant savings summary.',
-    isFlagship: true,
-  },
-  {
-    id: 'ecommerce-calculator',
-    navTarget: 'ecommerce-calculator',
-    name: 'E-Commerce Margin & ROI Calculator',
-    badge: 'COD & RTO • Profit Simulator',
-    badgeColor: 'bg-amber-100 text-amber-800 border-amber-200',
-    icon: <SlidersHorizontal className="w-5 h-5 text-amber-600" />,
-    category: 'business-export',
-    categoryLabel: 'Business & Export',
-    description: 'Calculate net profit margins, ad spend ROAS, multi-courier COD fees, and return loss simulations.',
-    isFlagship: true,
-  },
-  {
-    id: 'cbm-calculator',
-    navTarget: 'cbm-calculator',
-    name: 'B2B Industrial CBM & Freight Engine',
-    badge: 'Air & Sea Container Packing',
-    badgeColor: 'bg-cyan-100 text-cyan-800 border-cyan-200',
-    icon: <Box className="w-5 h-5 text-cyan-600" />,
-    category: 'business-export',
-    categoryLabel: 'Business & Export',
-    description: 'Compute carton volume in CBM, air volumetric weight, and 20ft/40ft container stuffing capacity instantly.',
-    isFlagship: true,
-  },
-  {
-    id: 'pcb-power-simulator',
-    navTarget: 'pcb-power-simulator',
-    name: 'Motherboard Power Sequence Simulator',
-    badge: 'Micro-Soldering Bench',
-    badgeColor: 'bg-indigo-100 text-indigo-800 border-indigo-200',
-    icon: <Cpu className="w-5 h-5 text-indigo-600" />,
+    id: 'live-repair-tracker',
+    navTarget: 'live-repair-tracker',
+    name: 'Live Repair Ticket & RMA Tracker',
+    urduName: 'لائیو ریپئر ٹریکر',
+    badge: 'Real-Time Bench Status',
+    badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-200',
+    icon: <Clock className="w-5 h-5 text-emerald-600" />,
     category: 'hardware-lab',
     categoryLabel: 'Hardware Diagnostics',
-    description: 'Interactive voltage rail simulator (19V, 3.3V, 5V, RAM, VCORE) for diagnosing dead laptop motherboards.',
-  },
-  {
-    id: 'thermal-inspector',
-    navTarget: 'thermal-hotspot-inspector',
-    name: 'FLIR Infrared Thermal Hotspot Inspector',
-    badge: 'Infrared Bench Camera',
-    badgeColor: 'bg-orange-100 text-orange-800 border-orange-200',
-    icon: <Thermometer className="w-5 h-5 text-orange-600" />,
-    category: 'hardware-lab',
-    categoryLabel: 'Hardware Diagnostics',
-    description: 'Safe low-voltage injection simulator to locate shorted ceramic capacitors without burning silicon chips.',
+    description: 'Track motherboard micro-soldering progress, standby current readings, and 90-day warranty ticket status.',
   },
   {
     id: 'printer-diagnostics',
     navTarget: 'printer-diagnostics',
     name: 'Printer Hardware Troubleshooter',
+    urduName: 'پرنٹر ڈائیگنوسٹک انجن',
     badge: 'LaserJet & Thermal Heads',
     badgeColor: 'bg-slate-100 text-slate-800 border-slate-300',
     icon: <Printer className="w-5 h-5 text-slate-700" />,
@@ -158,6 +175,7 @@ const WEB_TOOLS_COLLECTION: WebToolItem[] = [
     id: 'factory-network-tester',
     navTarget: 'factory-network-tester',
     name: 'Factory ERP Network Benchmark',
+    urduName: 'فیکٹری نیٹ ورک بینچ مارک',
     badge: 'Dual-WAN & SD-WAN',
     badgeColor: 'bg-teal-100 text-teal-800 border-teal-200',
     icon: <Wifi className="w-5 h-5 text-teal-600" />,
@@ -166,15 +184,16 @@ const WEB_TOOLS_COLLECTION: WebToolItem[] = [
     description: 'Test factory premise latency bottlenecks, SQL database lag, and WeBOC customs gateway ping stability.',
   },
   {
-    id: 'live-repair-tracker',
-    navTarget: 'live-repair-tracker',
-    name: 'Live Repair Ticket & RMA Tracker',
-    badge: 'Real-Time Bench Status',
-    badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-200',
-    icon: <Clock className="w-5 h-5 text-emerald-600" />,
+    id: 'pcb-power-simulator',
+    navTarget: 'pcb-power-simulator',
+    name: 'Motherboard Power Sequence Simulator',
+    urduName: 'مدر بورڈ پاور سیکوئنس سمیلیٹر',
+    badge: 'Micro-Soldering Bench',
+    badgeColor: 'bg-indigo-100 text-indigo-800 border-indigo-200',
+    icon: <Cpu className="w-5 h-5 text-indigo-600" />,
     category: 'hardware-lab',
     categoryLabel: 'Hardware Diagnostics',
-    description: 'Track motherboard micro-soldering progress, standby current readings, and 90-day warranty ticket status.',
+    description: 'Interactive voltage rail simulator (19V, 3.3V, 5V, RAM, VCORE) for diagnosing dead laptop motherboards.',
   },
 ];
 
@@ -187,8 +206,11 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
   const { isInstallable, isInstalled, isIOS, install } = usePWAInstall();
   const [showIOSModal, setShowIOSModal] = useState(false);
   const [showToolsDrawer, setShowToolsDrawer] = useState(false);
-  const [activeCategoryFilter, setActiveCategoryFilter] = useState<'all' | 'business-export' | 'hardware-lab'>('all');
+  const [activeCategoryFilter, setActiveCategoryFilter] = useState<
+    'mobile-core-5' | 'all' | 'business-export' | 'hardware-lab'
+  >('mobile-core-5');
   const [searchFilter, setSearchFilter] = useState('');
+  const [activeIntegrationToolId, setActiveIntegrationToolId] = useState<string | null>(null);
 
   const isToolsActive =
     currentPage === 'tools' ||
@@ -213,12 +235,19 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
 
   const filteredTools = WEB_TOOLS_COLLECTION.filter((tool) => {
     const matchesCategory =
-      activeCategoryFilter === 'all' || tool.category === activeCategoryFilter;
+      activeCategoryFilter === 'all'
+        ? true
+        : activeCategoryFilter === 'mobile-core-5'
+        ? !!tool.isMobileCore
+        : tool.category === activeCategoryFilter;
+
     const matchesSearch =
       !searchFilter ||
       tool.name.toLowerCase().includes(searchFilter.toLowerCase()) ||
       tool.description.toLowerCase().includes(searchFilter.toLowerCase()) ||
+      tool.urduName.includes(searchFilter) ||
       tool.badge.toLowerCase().includes(searchFilter.toLowerCase());
+
     return matchesCategory && matchesSearch;
   });
 
@@ -290,7 +319,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             <span className="text-[10px] leading-tight">Shop</span>
           </button>
 
-          {/* 5. Online Web Tools Portfolio Hub (Replaces static Invoice button per user instruction) */}
+          {/* 5. Online Web Tools Portfolio Hub (Featuring Top 5 Mobile Tools) */}
           <button
             onClick={() => {
               if (currentPage === 'tools') {
@@ -310,13 +339,13 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             <div className="relative">
               <Sparkles className="w-5 h-5 mb-0.5" />
               <span className="absolute -top-1 -right-2 text-[7.5px] bg-red-600 text-white font-black px-1 py-0.2 rounded-full leading-tight shadow-xs animate-pulse">
-                9+
+                5+
               </span>
             </div>
             <span className="text-[10px] font-bold leading-tight">Online Tools</span>
           </button>
 
-          {/* 6. In-App Mobile Install Option (shown if installable or iOS) */}
+          {/* 6. In-App Mobile Install Option */}
           {!isInstalled && (isInstallable || isIOS) && (
             <button
               onClick={handleInstallClick}
@@ -339,27 +368,27 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
           onClick={() => setShowToolsDrawer(false)}
         >
           <div
-            className="bg-white rounded-t-3xl max-h-[85vh] w-full max-w-lg flex flex-col shadow-2xl border-t border-slate-200 text-slate-900 animate-slideUp overflow-hidden"
+            className="bg-white rounded-t-3xl max-h-[88vh] w-full max-w-lg flex flex-col shadow-2xl border-t border-slate-200 text-slate-900 animate-slideUp overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Drawer Pull Indicator & Header */}
-            <div className="pt-3 pb-3 px-5 border-b border-slate-100 flex-shrink-0 bg-slate-50/80">
+            <div className="pt-3 pb-3 px-5 border-b border-slate-100 flex-shrink-0 bg-slate-50/90">
               <div className="w-12 h-1.5 rounded-full bg-slate-300 mx-auto mb-3" />
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-red-100 text-red-700 uppercase tracking-wide">
-                      Web Tools Portfolio
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-red-600 text-white uppercase tracking-wide">
+                      📱 5 Core Mobile Tools
                     </span>
-                    <span className="text-[10px] font-semibold text-slate-500">
-                      100% Client-Side
+                    <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                      موبائل ایپلیکیشن کے 5 ٹولز
                     </span>
                   </div>
-                  <h3 className="text-base sm:text-lg font-extrabold text-slate-900 mt-0.5">
-                    Online Web Tools &amp; Calculators
+                  <h3 className="text-base sm:text-lg font-extrabold text-slate-900 mt-1">
+                    Mobile Application Web Tools
                   </h3>
                   <p className="text-[11px] text-slate-500 mt-0.5">
-                    Zero-database business utilities, freight engines &amp; hardware simulators.
+                    Zero-database engines configured with ChatGPT, Google AI Studio &amp; Cloud Sync.
                   </p>
                 </div>
                 <button
@@ -374,10 +403,21 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
               {/* Category Filter Tabs */}
               <div className="flex items-center gap-1.5 mt-3 pt-2 border-t border-slate-200/60 overflow-x-auto pb-1 scrollbar-none">
                 <button
+                  onClick={() => setActiveCategoryFilter('mobile-core-5')}
+                  className={`text-[11px] font-extrabold px-3 py-1.5 rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center gap-1 ${
+                    activeCategoryFilter === 'mobile-core-5'
+                      ? 'bg-red-600 text-white shadow-xs'
+                      : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-100'
+                  }`}
+                >
+                  <Smartphone className="w-3.5 h-3.5" />
+                  <span>Top 5 Mobile Tools (5)</span>
+                </button>
+                <button
                   onClick={() => setActiveCategoryFilter('all')}
-                  className={`text-[11px] font-bold px-3 py-1 rounded-xl transition-all cursor-pointer whitespace-nowrap ${
+                  className={`text-[11px] font-bold px-3 py-1.5 rounded-xl transition-all cursor-pointer whitespace-nowrap ${
                     activeCategoryFilter === 'all'
-                      ? 'bg-red-600 text-white shadow-2xs'
+                      ? 'bg-slate-900 text-white shadow-xs'
                       : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
                   }`}
                 >
@@ -385,29 +425,38 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
                 </button>
                 <button
                   onClick={() => setActiveCategoryFilter('business-export')}
-                  className={`text-[11px] font-bold px-3 py-1 rounded-xl transition-all cursor-pointer whitespace-nowrap ${
+                  className={`text-[11px] font-bold px-3 py-1.5 rounded-xl transition-all cursor-pointer whitespace-nowrap ${
                     activeCategoryFilter === 'business-export'
-                      ? 'bg-red-600 text-white shadow-2xs'
+                      ? 'bg-slate-900 text-white shadow-xs'
                       : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
                   }`}
                 >
-                  Business &amp; Export (6)
+                  Business &amp; Export
                 </button>
                 <button
                   onClick={() => setActiveCategoryFilter('hardware-lab')}
-                  className={`text-[11px] font-bold px-3 py-1 rounded-xl transition-all cursor-pointer whitespace-nowrap ${
+                  className={`text-[11px] font-bold px-3 py-1.5 rounded-xl transition-all cursor-pointer whitespace-nowrap ${
                     activeCategoryFilter === 'hardware-lab'
-                      ? 'bg-red-600 text-white shadow-2xs'
+                      ? 'bg-slate-900 text-white shadow-xs'
                       : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
                   }`}
                 >
-                  Diagnostics (5)
+                  Hardware Lab
                 </button>
               </div>
             </div>
 
             {/* Scrollable Tools List */}
             <div className="p-4 space-y-2.5 overflow-y-auto flex-1 overscroll-contain">
+              {activeCategoryFilter === 'mobile-core-5' && (
+                <div className="p-2.5 rounded-xl bg-red-50/80 border border-red-200/80 flex items-center gap-2 text-xs text-red-900">
+                  <Smartphone className="w-4 h-4 text-red-600 flex-shrink-0" />
+                  <span>
+                    <strong>موبائل ایپلیکیشن کے 5 بنیادی ٹولز:</strong> Optimized for smartphones, touch interfaces, and instant client calculations in Sialkot.
+                  </span>
+                </div>
+              )}
+
               {filteredTools.map((tool) => {
                 const isCurrent = currentPage === tool.navTarget;
                 return (
@@ -447,13 +496,27 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
                         {tool.description}
                       </p>
                       <div className="flex items-center justify-between mt-2 pt-1 border-t border-slate-100 text-[10px]">
-                        <span className="text-slate-400 font-mono">
-                          {tool.categoryLabel}
+                        <span className="text-slate-400 font-urdu font-medium">
+                          {tool.urduName}
                         </span>
-                        <span className="inline-flex items-center gap-1 font-bold text-red-600 group-hover:translate-x-1 transition-transform">
-                          {isCurrent ? 'Current Workspace' : 'Launch Tool'}
-                          <ArrowRight className="w-3 h-3" />
-                        </span>
+                        <div className="flex items-center gap-2">
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setActiveIntegrationToolId(tool.id);
+                            }}
+                            className="inline-flex items-center gap-1 font-bold text-slate-600 hover:text-blue-600 px-2 py-0.5 rounded-md bg-slate-100 hover:bg-blue-50 transition-colors"
+                            title="Open ChatGPT & Cloud settings"
+                          >
+                            <Bot className="w-3 h-3 text-blue-600" />
+                            <span>AI / Cloud</span>
+                          </button>
+                          <span className="inline-flex items-center gap-1 font-bold text-red-600 group-hover:translate-x-1 transition-transform">
+                            {isCurrent ? 'Current' : 'Launch'}
+                            <ArrowRight className="w-3 h-3" />
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -463,7 +526,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
 
             {/* Bottom Footer Note */}
             <div className="p-3 bg-slate-50 border-t border-slate-200 text-center text-[11px] text-slate-500 flex items-center justify-between px-5">
-              <span>All utilities run locally in your browser</span>
+              <span>Kolti Behram, Sialkot · Zero Server Storage</span>
               <button
                 onClick={() => setShowToolsDrawer(false)}
                 className="text-red-600 font-bold hover:underline cursor-pointer"
@@ -473,6 +536,15 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             </div>
           </div>
         </div>
+      )}
+
+      {/* AI & Cloud Integration Modal from Mobile */}
+      {activeIntegrationToolId && (
+        <ToolAiCloudIntegrationModal
+          toolId={activeIntegrationToolId}
+          isOpen={!!activeIntegrationToolId}
+          onClose={() => setActiveIntegrationToolId(null)}
+        />
       )}
 
       {/* iOS Safari Guided Add-to-Home-Screen Modal */}

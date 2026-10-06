@@ -60,6 +60,7 @@ export const LOCAL_BUSINESS_SCHEMA = {
   ],
   areaServed: [
     { '@type': 'City', name: 'Sialkot' },
+    { '@type': 'AdministrativeArea', name: 'Kolti Behram Sialkot' },
     { '@type': 'AdministrativeArea', name: 'Kotli Behram Sialkot' },
     { '@type': 'AdministrativeArea', name: 'Sialkot Cantt' },
     { '@type': 'AdministrativeArea', name: 'Paris Road Sialkot' },
@@ -292,7 +293,7 @@ export const FAQ_PAGE_SCHEMA = {
       name: 'Where is evonix located in Sialkot, and do you offer doorstep on-site visits?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Our diagnostic lab desk is located at Kotli Behram, Paris Road and Cantt Hub, Sialkot. We offer 15-minute to 60-minute doorstep dispatch across Sialkot City, Daska Road, Small Industrial Estate, Sambrial Dry Port, and Wazirabad.',
+        text: 'Our diagnostic lab desk is located at Kolti Behram, Paris Road and Cantt Hub, Sialkot. We offer 15-minute to 60-minute doorstep dispatch across Sialkot City, Daska Road, Small Industrial Estate, Sambrial Dry Port, and Wazirabad.',
       },
     },
     {
@@ -601,12 +602,12 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   contact: {
-    title: 'Contact IT Consultants Sialkot – Kotli Behram & Paris Road | evonix',
+    title: 'Contact IT Consultants Sialkot – Kolti Behram & Paris Road | evonix',
     description:
-      'Got a question? Call us. We reply in 2 hours. Doorstep IT support in Kotli Behram, Paris Road, and Sialkot Cantt. Free bench diagnosis.',
-    ogTitle: 'Contact evonix – IT Support in Kotli Behram & Paris Road Sialkot',
+      'Got a question? Call us. We reply in 2 hours. Doorstep IT support in Kolti Behram, Paris Road, and Sialkot Cantt. Free bench diagnosis.',
+    ogTitle: 'Contact evonix – IT Support in Kolti Behram & Paris Road Sialkot',
     ogDescription:
-      'Got a question? Call us. We reply in 2 hours. Rapid doorstep dispatch across Kotli Behram, Cantt, Sambrial, and Daska Road.',
+      'Got a question? Call us. We reply in 2 hours. Rapid doorstep dispatch across Kolti Behram, Cantt, Sambrial, and Daska Road.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalUrl: `${BASE_URL}/contact`,
