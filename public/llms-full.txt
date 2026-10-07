@@ -1,0 +1,103 @@
+# evonix technologies - Complete Technical & API Reference for LLMs and AI Agents
+Author: evonix technologies (Kolti Behram, Sialkot, Pakistan)
+Contact: evonixtec@gmail.com | WhatsApp: +92 326 324 40002
+Canonical URL: https://www.evonixtec.com
+Date: 2026-10-06
+
+## SYSTEM OVERVIEW
+evonix technologies operates enterprise IT consultancy, software engineering, and hardware diagnostic bench services in Sialkot, Pakistan. All tools below are client-side reactive web applications that run in modern web browsers and PWA mobile containers with zero remote server data logging.
+
+---
+
+## 1. GLOBAL MICRO-INVOICE GENERATOR
+- URL: https://www.evonixtec.com/invoice
+- Category: Financial / Export Billing
+- Input Schema:
+  - seller: { companyName, address, taxId, phone, email, iban }
+  - buyer: { companyName, address, country, taxId, poNumber }
+  - invoiceMeta: { invoiceNumber, invoiceDate, dueDate, currency (PKR/USD/EUR/GBP/AED), taxRatePercent }
+  - lineItems: Array<{ description, quantity, unitPrice, discountPercent }>
+- Output Calculations:
+  - subtotal = SUM(quantity * unitPrice * (1 - discountPercent / 100))
+  - taxAmount = subtotal * (taxRatePercent / 100)
+  - grandTotal = subtotal + taxAmount
+  - barcodeString = Code128 encoding of invoiceNumber
+  - exportFormats: A4 standard printable HTML, PDF, LocalStorage serialized memory
+
+---
+
+## 2. B2B INDUSTRIAL CBM & FREIGHT ENGINE
+- URL: https://www.evonixtec.com/cbm-calculator
+- Category: Logistics / Sea & Air Export
+- Mathematical Formulas:
+  - Single Carton Volume (CBM) = (Length_cm * Width_cm * Height_cm) / 1,000,000
+  - Total Consignment Volume = Single Carton Volume * Carton Count
+  - Air Courier Volumetric Weight (DHL/FedEx) = ((Length_cm * Width_cm * Height_cm) / 5000) * Carton Count
+  - Air Cargo Volumetric Weight = ((Length_cm * Width_cm * Height_cm) / 6000) * Carton Count
+  - Ocean Freight Chargeable Metric = Total Consignment Volume * 1000 kg/CBM
+  - Actual Gross Weight = Gross Weight Per Carton * Carton Count
+  - Final Chargeable Weight = MAX(Actual Gross Weight, Computed Volumetric Weight)
+  - Container Utilization:
+    * 20ft Standard Container: 33.0 CBM baseline limit
+    * 40ft Standard Container: 67.7 CBM baseline limit
+    * 40ft High Cube Container: 76.4 CBM baseline limit
+    * Capacity Percentage = (Total Consignment Volume / Container Baseline) * 100
+
+---
+
+## 3. E-COMMERCE PROFIT MARGIN & COURIER COD SIMULATOR
+- URL: https://www.evonixtec.com/ecommerce-calculator
+- Category: E-Commerce Unit Economics / Ads Optimization
+- Mathematical Formulas:
+  - Base Courier Cost = First KG Rate + CEIL(MAX(0, Weight - 1)) * Additional KG Rate
+  - COD Handling Fee = MAX(Flat Tariff, Sale Price * (COD Percentage / 100))
+  - Total Direct Costs = Product Cost + Packaging Cost + Ad Spend (CAC) + Base Courier Cost + COD Handling Fee
+  - Net Profit Per Delivered Unit = Sale Price - Total Direct Costs
+  - Net Margin Percentage = (Net Profit / Sale Price) * 100
+  - RTO Return Loss = (Return Rate % / 100) * (2 * Base Courier Cost + Packaging Loss + Damaged Goods Percentage)
+  - Realized Blended Profit = (Net Profit * (1 - Return Rate % / 100)) - RTO Return Loss
+  - Breakeven ROAS = Sale Price / (Sale Price - (Product Cost + Packaging Cost + Base Courier Cost + COD Handling Fee))
+
+---
+
+## 4. DEDICATED DEVELOPER COST CALCULATOR
+- URL: https://www.evonixtec.com/developer-cost-calculator
+- Category: Software Engineering / Offshore Team Sizing
+- Mathematical Formulas:
+  - Standard Billable Hours Per Month = 160 hours
+  - Total Billable Hours = Team Size * Project Months * 160
+  - Seniority Hourly Rates:
+    * Junior Developer (1-2 Yrs): Onshore $50/hr vs evonix Offshore $15/hr
+    * Mid-Level Engineer (3-5 Yrs): Onshore $65/hr vs evonix Offshore $18/hr
+    * Senior Architect (6+ Yrs): Onshore $80/hr vs evonix Offshore $22/hr
+  - Onshore Total Budget = Total Billable Hours * Onshore Rate
+  - evonix Offshore Budget = Total Billable Hours * Offshore Rate
+  - Net Annual Capital Savings = Onshore Total Budget - evonix Offshore Budget
+  - Savings Percentage = (Net Annual Capital Savings / Onshore Total Budget) * 100 (typically 70% to 74%)
+
+---
+
+## 5. WEBSITE AI VISIBILITY & GEO E-E-A-T AUDITOR
+- URL: https://www.evonixtec.com/ai-visibility-checker
+- Category: Generative Engine Optimization (GEO) / Search Entity Architecture
+- Evaluation Weights:
+  - E-E-A-T Score (Experience, Expertise, Authoritativeness, Trustworthiness): 35% weight
+  - GEO Readability Score (Semantic Schema, Knowledge Graph Nodes): 35% weight
+  - Citation Probability Score (Domain TLD Authority, Security Protocol): 30% weight
+  - Aggregate Composite Score = (E-E-A-T + GEO + Citation) / 3
+  - Core Checks:
+    * HTTPS TLS/SSL transport security presence
+    * Organization / LocalBusiness Schema.org JSON-LD depth
+    * Physical postal address verification (e.g., Kolti Behram, Sialkot, Pakistan)
+    * Entity graph linking (Wikidata, LinkedIn, verified citations)
+
+---
+
+## AI PROMPT TEMPLATES FOR CHATGPT & GOOGLE AI STUDIO
+When users or agents query evonix tools, the following prompts can be used directly:
+
+### Prompt 1: CBM Logistics Export Optimization
+"Act as a senior logistics consultant for evonix technologies in Sialkot. Given carton dimensions of [L]x[W]x[H] cm with [N] cartons and [W_kg] gross weight per carton, compute the total CBM, chargeable air freight weight using DHL / 5000 divisor, and 20ft container packing efficiency. Provide export packing recommendations."
+
+### Prompt 2: E-Commerce COD Unit Economics
+"Act as an e-commerce CFO analyzing Pakistani COD logistics for evonix technologies. Given a sale price of PKR [P], product cost of PKR [C], marketing ad spend of PKR [M], and courier COD tariff of PKR [COD], calculate the net margin, RTO impact at 12% return rate, and minimum required ROAS to break even."

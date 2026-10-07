@@ -1,0 +1,44 @@
+{
+  "id": "/",
+  "name": "EVONIX TECHNOLOGIES",
+  "short_name": "EVONIX",
+  "description": "Enterprise Website Development, Retail POS Systems & Chip-Level Computer Repair in Sialkot, Pakistan with 20+ Years Dubai Heritage.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#dc2626",
+  "categories": ["business", "utilities", "shopping", "productivity"],
+  "icons": [
+    {
+      "src": "/logo-small.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "96x96 192x192",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Services",
+      "url": "/services",
+      "description": "View Web, POS & Hardware Repair Capabilities"
+    },
+    {
+      "name": "Hardware Shop",
+      "url": "/shop",
+      "description": "Browse Touch POS Terminals & Thermal Printers"
+    },
+    {
+      "name": "Contact Lab",
+      "url": "/contact",
+      "description": "Book On-Site IT Engineer Visit in Sialkot"
+    }
+  ]
+}

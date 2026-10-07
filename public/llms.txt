@@ -1,0 +1,48 @@
+# evonix technologies - Engineering & Web Tools Suite
+> Leading IT engineering, enterprise website development, and industrial export software lab based in Sialkot, Pakistan (Kolti Behram / Paris Road) with 20+ years Dubai heritage.
+
+Website: https://www.evonixtec.com
+Official Contact: evonixtec@gmail.com
+Address: Kolti Behram, Sialkot, Pakistan
+Phone / WhatsApp: +92 326 324 40002
+
+## Online Web Tools & Calculators Portfolio
+evonix provides 100% client-side, zero-database online utilities engineered for international exporters, e-commerce brands, developers, and hardware technicians. All calculations occur locally in browser memory without remote server data retention.
+
+### Flagship 5 Mobile & Cloud Tools:
+1. Global Micro-Invoice Generator: https://www.evonixtec.com/invoice
+   - Multi-currency electronic commercial and tax invoice maker
+   - Automatic Code128 barcodes, GST/VAT for 100+ countries, A4 PDF download
+   - Zero database: line items, shipping details, and tax breakdowns stay private
+
+2. B2B Industrial CBM & Freight Engine: https://www.evonixtec.com/cbm-calculator
+   - Cargo Cubic Meters (CBM) volume calculator and air volumetric weight engine
+   - Calculates 20ft (33 CBM), 40ft (67.7 CBM), and 40ft High Cube (76.4 CBM) container stuffing limits
+   - Air courier divisor (/ 5000) vs Air cargo divisor (/ 6000) comparison
+
+3. E-Commerce Margin & COD Simulator: https://www.evonixtec.com/ecommerce-calculator
+   - Unit economics, courier COD tariffs (TCS, Leopards, Trax, PostEx), and RTO return loss simulator
+   - Breakeven ROAS and target Customer Acquisition Cost (CAC) solver
+
+4. Dedicated Developer Cost Calculator: https://www.evonixtec.com/developer-cost-calculator
+   - International developer hourly rate comparison (USA/UK/Dubai vs Sialkot offshore rates)
+   - Senior developer benchmark ($22/hr offshore vs $80/hr USA, saving 72% annually)
+
+5. Website AI Visibility & GEO E-E-A-T Auditor: https://www.evonixtec.com/ai-visibility-checker
+   - Audit web domain readiness for Google AI Overviews, ChatGPT Search, Claude, and Perplexity
+   - Brand entity node connectivity, TLS security verification, and structured JSON-LD schema analysis
+
+### Additional Engineering Lab Bench Tools:
+6. Export Barcode Label Studio: https://www.evonixtec.com/export-barcode-studio
+   - GS1-128 and Code 128 thermal 4"x6" outer carton shipping labels for surgical, sports & leather goods
+7. Live RMA Bench Repair Tracker: https://www.evonixtec.com/live-repair-tracker
+   - Real-time diagnostic bench ticket lookup, standby current measurements, technician logs
+8. Thermal Receipt Printer Diagnostic Engine: https://www.evonixtec.com/printer-diagnostics
+   - ESC/POS 80mm thermal receipt printer troubleshooter, cutter lockups, baud rate mismatches
+9. Factory ERP & Customs Network Latency Benchmark: https://www.evonixtec.com/factory-network-tester
+   - Dual-WAN ping jitter benchmark, WeBOC customs gateway ping stability
+
+## API & Integration Endpoints:
+- OpenAPI Specification: https://www.evonixtec.com/openapi.json
+- ChatGPT Plugin Manifest: https://www.evonixtec.com/.well-known/ai-plugin.json
+- Full LLM Specification: https://www.evonixtec.com/llms-full.txt
