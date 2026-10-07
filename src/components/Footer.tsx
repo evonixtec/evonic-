@@ -1,76 +1,177 @@
 import React from 'react';
-import { MapPin, Phone, Mail, Sparkles } from 'lucide-react';
+import { Code2, ArrowUpRight, Sparkles, MapPin, Mail, Phone } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
-import { NavPageId } from '../types';
 
 interface FooterProps {
-  onNavigatePage: (page: NavPageId) => void;
+  onNavigateSection: (sectionId: string) => void;
+  onOpenCodeModal: () => void;
+  onOpenToolsHub: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigatePage }) => {
+export const Footer: React.FC<FooterProps> = ({
+  onNavigateSection,
+  onOpenCodeModal,
+  onOpenToolsHub,
+}) => {
   return (
-    <footer className="bg-slate-950 text-white border-t border-slate-900 py-12 text-xs">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="space-y-3">
+    <footer className="relative bg-[#06060a] border-t border-white/10 text-slate-400 py-16 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+          {/* Col 1 & 2: Brand & Mission */}
+          <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-red-600 text-white font-black flex items-center justify-center text-sm">
-                EX
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#00D4FF] to-[#A855F7] p-px">
+                <div className="w-full h-full bg-[#0a0a0f] rounded-[7px] flex items-center justify-center">
+                  <span className="font-display font-black text-xs text-[#00D4FF]">E</span>
+                </div>
               </div>
-              <span className="font-extrabold text-base tracking-tight">{COMPANY_INFO.name}</span>
+              <span className="text-xl font-black font-display tracking-tight text-white">
+                EVONIXTEC
+              </span>
             </div>
-            <p className="text-slate-400 leading-relaxed text-[11px]">
-              {COMPANY_INFO.legalName} is Sialkot's certified engineering hub for IT consultancy, enterprise web development, and chip-level motherboard diagnostics with 20+ years Dubai international experience.
+
+            <p className="text-xs sm:text-sm text-slate-400 max-w-sm leading-relaxed">
+              Premium 3D technology agency delivering Web Development, Mobile Apps, Enterprise AI Solutions, and Custom Cloud Platforms. Backed by 20+ years Dubai &amp; global international engineering expertise.
             </p>
+
+            <div className="pt-2 text-xs font-mono text-slate-500 space-y-1">
+              <div>Lab: Kolti Behram, Sialkot, Pakistan</div>
+              <div>Direct: +92 326 324 4002 · evonixtec@gmail.com</div>
+            </div>
           </div>
 
-          <div className="space-y-2">
-            <span className="font-bold text-white uppercase tracking-wider block text-[10px]">
-              Trade Tools Portfolio
-            </span>
-            <ul className="space-y-1.5 text-slate-400">
-              <li><button onClick={() => onNavigatePage('invoice')} className="hover:text-red-400">Global Micro-Invoice</button></li>
-              <li><button onClick={() => onNavigatePage('uk-eu-vat-calculator')} className="hover:text-red-400">UK &amp; EU VAT Reverse Charge</button></li>
-              <li><button onClick={() => onNavigatePage('us-duty-nexus-estimator')} className="hover:text-red-400">US Duty &amp; Section 321</button></li>
-              <li><button onClick={() => onNavigatePage('cbm-calculator')} className="hover:text-red-400">B2B CBM Cargo Engine</button></li>
-              <li><button onClick={() => onNavigatePage('developer-cost-calculator')} className="hover:text-red-400">Developer Cost Calculator</button></li>
-              <li><button onClick={() => onNavigatePage('tools')} className="text-red-400 font-bold hover:underline">All 12 Tools Hub &rarr;</button></li>
+          {/* Col 3: Capabilities */}
+          <div className="space-y-3">
+            <div className="text-xs font-mono uppercase tracking-wider text-white font-bold">
+              Capabilities
+            </div>
+            <ul className="space-y-2 text-xs">
+              <li>
+                <button
+                  onClick={() => onNavigateSection('services')}
+                  className="hover:text-[#00D4FF] transition-colors cursor-pointer"
+                >
+                  3D Web Development
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigateSection('services')}
+                  className="hover:text-[#00D4FF] transition-colors cursor-pointer"
+                >
+                  iOS &amp; Android Apps
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigateSection('services')}
+                  className="hover:text-[#00D4FF] transition-colors cursor-pointer"
+                >
+                  Enterprise AI &amp; RAG
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigateSection('services')}
+                  className="hover:text-[#00D4FF] transition-colors cursor-pointer"
+                >
+                  Custom Software &amp; ERP
+                </button>
+              </li>
             </ul>
           </div>
 
-          <div className="space-y-2">
-            <span className="font-bold text-white uppercase tracking-wider block text-[10px]">
-              Diagnostic Desk
-            </span>
-            <div className="space-y-2 text-slate-400 text-[11px]">
-              <div className="flex items-start gap-2">
-                <MapPin className="w-3.5 h-3.5 text-red-500 flex-shrink-0 mt-0.5" />
-                <span>{COMPANY_INFO.contact.address}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
-                <a href={`tel:${COMPANY_INFO.contact.phoneRaw}`} className="hover:text-white">{COMPANY_INFO.contact.phoneDisplay}</a>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-blue-400 flex-shrink-0" />
-                <a href={`mailto:${COMPANY_INFO.contact.email}`} className="hover:text-white">{COMPANY_INFO.contact.email}</a>
-              </div>
+          {/* Col 4: Platform */}
+          <div className="space-y-3">
+            <div className="text-xs font-mono uppercase tracking-wider text-white font-bold">
+              Ecosystem
             </div>
+            <ul className="space-y-2 text-xs">
+              <li>
+                <button
+                  onClick={onOpenToolsHub}
+                  className="hover:text-[#00D4FF] transition-colors cursor-pointer flex items-center gap-1.5"
+                >
+                  <span>Online Tools Suite</span>
+                  <span className="text-[10px] font-mono px-1 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">
+                    12 Free
+                  </span>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigateSection('tech-stack')}
+                  className="hover:text-[#00D4FF] transition-colors cursor-pointer"
+                >
+                  3D Tech Constellation
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigateSection('portfolio')}
+                  className="hover:text-[#00D4FF] transition-colors cursor-pointer"
+                >
+                  Case Studies &amp; Work
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={onOpenCodeModal}
+                  className="hover:text-[#00D4FF] transition-colors cursor-pointer flex items-center gap-1"
+                >
+                  <Code2 className="w-3 h-3 text-[#00D4FF]" />
+                  <span>Single HTML CDN File</span>
+                </button>
+              </li>
+            </ul>
           </div>
 
-          <div className="space-y-2">
-            <span className="font-bold text-white uppercase tracking-wider block text-[10px]">
-              International Standards
-            </span>
-            <p className="text-slate-400 text-[11px] leading-relaxed">
-              Serving exporters and enterprises across Sialkot, the United Kingdom, Europe, the United States, and the UAE with zero server tracking and full client-side execution.
+          {/* Col 5: Direct Action */}
+          <div className="space-y-3">
+            <div className="text-xs font-mono uppercase tracking-wider text-white font-bold">
+              Engineering Lab
+            </div>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Zero-database privacy guarantee. High-availability 99.99% multi-region deployments.
             </p>
+            <button
+              onClick={() => onNavigateSection('contact')}
+              className="w-full py-2.5 rounded-xl bg-white/10 hover:bg-[#00D4FF]/20 text-white hover:text-[#00D4FF] border border-white/10 hover:border-[#00D4FF]/40 text-xs font-mono transition-all cursor-pointer flex items-center justify-center gap-1.5"
+            >
+              <span>Initiate Discovery</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </button>
           </div>
         </div>
 
-        <div className="pt-6 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-3 text-slate-500 text-[11px]">
-          <span>&copy; {new Date().getFullYear()} {COMPANY_INFO.legalName}. Kolti Behram, Sialkot, Pakistan. All rights reserved.</span>
-          <span>100% Client-Side Privacy Standard</span>
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
+          <div>
+            &copy; {new Date().getFullYear()} EVONIXTEC. All rights reserved.
+          </div>
+
+          <div className="flex items-center gap-4">
+            <button
+              onClick={onOpenCodeModal}
+              className="hover:text-[#00D4FF] transition-colors cursor-pointer"
+            >
+              Standalone CDN HTML
+            </button>
+            <span aria-hidden="true">·</span>
+            <button
+              onClick={onOpenToolsHub}
+              className="hover:text-[#00D4FF] transition-colors cursor-pointer"
+            >
+              12 Web Workstations
+            </button>
+            <span aria-hidden="true">·</span>
+            <a
+              href="mailto:evonixtec@gmail.com"
+              className="hover:text-white transition-colors"
+            >
+              Security Policy
+            </a>
+          </div>
         </div>
       </div>
     </footer>

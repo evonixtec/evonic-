@@ -1,11 +1,102 @@
 @import "tailwindcss";
 
 @layer base {
+  :root {
+    --bg-dark: #0a0a0f;
+    --electric-blue: #00D4FF;
+    --neon-purple: #A855F7;
+  }
+
   html {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #0a0a0f;
+    color: #f8fafc;
+  }
+
+  body {
+    background-color: #0a0a0f;
+    overflow-x: hidden;
   }
 }
 
-.font-urdu {
-  font-family: system-ui, -apple-system, sans-serif;
+.font-display {
+  font-family: 'Space Grotesk', 'Sora', sans-serif;
+}
+
+.font-sora {
+  font-family: 'Sora', sans-serif;
+}
+
+.font-mono-code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(15, 17, 26, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-glow {
+  background: rgba(15, 17, 26, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 212, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 212, 255, 0.05);
+}
+
+.glass-panel-glow:hover {
+  border-color: rgba(0, 212, 255, 0.45);
+  box-shadow: 0 12px 40px 0 rgba(0, 212, 255, 0.12), 0 0 25px rgba(168, 85, 247, 0.1);
+}
+
+/* Neon Glows */
+.glow-cyan-text {
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+.glow-purple-text {
+  text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+}
+
+.text-gradient-cyan-purple {
+  background: linear-gradient(135deg, #00D4FF 0%, #A855F7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-white-cyan {
+  background: linear-gradient(180deg, #FFFFFF 0%, #94a3b8 60%, #00D4FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 3D Perspective Container */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 212, 255, 0.5);
 }

@@ -1,195 +1,184 @@
-import React, { useState } from 'react';
-import {
-  Sparkles,
-  Phone,
-  MessageSquare,
-  ChevronDown,
-  Wrench,
-  Globe,
-  MapPin,
-  Bot
-} from 'lucide-react';
-import { NavPageId } from '../types';
-import { COMPANY_INFO } from '../data/content';
+import React, { useState, useEffect } from 'react';
+import { Sparkles, Code2, Menu, X, ArrowUpRight } from 'lucide-react';
 
 interface NavbarProps {
-  currentPage: NavPageId;
-  onNavigate: (page: NavPageId) => void;
+  onNavigateSection: (sectionId: string) => void;
+  onOpenCodeModal: () => void;
+  onOpenToolsHub: () => void;
+  isToolsActive?: boolean;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
-  const [toolsDropdown, setToolsDropdown] = useState(false);
+export const Navbar: React.FC<NavbarProps> = ({
+  onNavigateSection,
+  onOpenCodeModal,
+  onOpenToolsHub,
+  isToolsActive = false,
+}) => {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleNavClick = (sectionId: string) => {
+    setMobileMenuOpen(false);
+    onNavigateSection(sectionId);
+  };
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs select-none">
+    <header
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        scrolled
+          ? 'bg-[#0a0a0f]/85 backdrop-blur-md border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.5)] py-3'
+          : 'bg-transparent py-5'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Brand */}
-          <div
-            onClick={() => onNavigate('home')}
-            className="flex items-center gap-2.5 cursor-pointer group"
+        <div className="flex items-center justify-between">
+          {/* Zone 1: Brand Zone - Single clean wordmark text element */}
+          <button
+            onClick={() => handleNavClick('hero')}
+            className="flex items-center gap-2 group cursor-pointer text-left"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-600 to-amber-600 text-white font-black flex items-center justify-center text-base shadow-md group-hover:scale-105 transition-transform">
-              EX
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#00D4FF] to-[#A855F7] p-px shadow-[0_0_15px_rgba(0,212,255,0.3)] group-hover:shadow-[0_0_20px_rgba(0,212,255,0.6)] transition-all">
+              <div className="w-full h-full bg-[#0a0a0f] rounded-[7px] flex items-center justify-center">
+                <span className="font-display font-black text-xs text-[#00D4FF]">E</span>
+              </div>
             </div>
-            <div>
-              <span className="font-extrabold text-slate-900 tracking-tight text-base sm:text-lg block leading-none">
-                EVONIX
-              </span>
-              <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block mt-0.5">
-                Technologies · Sialkot
-              </span>
-            </div>
-          </div>
+            <span className="text-xl font-black font-display tracking-tight text-white group-hover:text-[#00D4FF] transition-colors">
+              EVONIXTEC
+            </span>
+          </button>
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-1 sm:gap-2">
+          {/* Zone 2: Navigation Links - Single line, text hover underline */}
+          <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
             <button
-              onClick={() => onNavigate('home')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
-                currentPage === 'home' ? 'text-red-600 bg-red-50' : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              Home
-            </button>
-            <button
-              onClick={() => onNavigate('services')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
-                currentPage === 'services' ? 'text-red-600 bg-red-50' : 'text-slate-600 hover:text-slate-900'
-              }`}
+              onClick={() => handleNavClick('services')}
+              className="hover:text-[#00D4FF] transition-colors cursor-pointer whitespace-nowrap"
             >
               Services
             </button>
-
-            {/* Tools Menu with Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => setToolsDropdown(true)}
-              onMouseLeave={() => setToolsDropdown(false)}
-            >
-              <button
-                onClick={() => onNavigate('tools')}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1 transition-colors cursor-pointer ${
-                  currentPage === 'tools' ||
-                  currentPage === 'invoice' ||
-                  currentPage === 'ecommerce-calculator' ||
-                  currentPage === 'cbm-calculator' ||
-                  currentPage === 'developer-cost-calculator' ||
-                  currentPage === 'ai-visibility-checker' ||
-                  currentPage === 'uk-eu-vat-calculator' ||
-                  currentPage === 'us-duty-nexus-estimator'
-                    ? 'text-red-600 bg-red-50'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                <Sparkles className="w-3.5 h-3.5 text-red-500" />
-                <span>Online Web Tools</span>
-                <span className="text-[9px] bg-red-100 text-red-700 px-1 rounded-full font-black">12+</span>
-                <ChevronDown className="w-3 h-3 text-slate-400" />
-              </button>
-
-              {toolsDropdown && (
-                <div className="absolute top-full left-0 w-80 bg-white border border-slate-200 rounded-2xl shadow-xl p-2 z-50 text-xs animate-fadeIn space-y-1">
-                  <div className="p-2 border-b border-slate-100 flex justify-between items-center">
-                    <span className="font-bold text-slate-800 uppercase text-[10px] tracking-wider">
-                      Workstations &amp; Calculators
-                    </span>
-                    <button
-                      onClick={() => onNavigate('tools')}
-                      className="text-red-600 font-bold hover:underline text-[10px] cursor-pointer"
-                    >
-                      Browse All Hub &rarr;
-                    </button>
-                  </div>
-                  <button
-                    onClick={() => {
-                      setToolsDropdown(false);
-                      onNavigate('invoice');
-                    }}
-                    className="w-full text-left p-2 rounded-xl hover:bg-slate-50 flex items-center justify-between cursor-pointer"
-                  >
-                    <div>
-                      <div className="font-bold text-slate-800">Global Micro-Invoice Generator</div>
-                      <div className="text-[10px] text-slate-500">Free A4 PDF &amp; Code128 barcodes</div>
-                    </div>
-                    <span className="text-[9px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold">
-                      Flagship
-                    </span>
-                  </button>
-                  <button
-                    onClick={() => {
-                      setToolsDropdown(false);
-                      onNavigate('uk-eu-vat-calculator');
-                    }}
-                    className="w-full text-left p-2 rounded-xl hover:bg-slate-50 flex items-center justify-between cursor-pointer"
-                  >
-                    <div>
-                      <div className="font-bold text-slate-800">UK &amp; EU VAT Reverse Charge Engine</div>
-                      <div className="text-[10px] text-slate-500">HMRC &amp; European 0% B2B compliance</div>
-                    </div>
-                    <span className="text-[9px] bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-bold">
-                      UK/EU
-                    </span>
-                  </button>
-                  <button
-                    onClick={() => {
-                      setToolsDropdown(false);
-                      onNavigate('us-duty-nexus-estimator');
-                    }}
-                    className="w-full text-left p-2 rounded-xl hover:bg-slate-50 flex items-center justify-between cursor-pointer"
-                  >
-                    <div>
-                      <div className="font-bold text-slate-800">US Duty &amp; Section 321 Calculator</div>
-                      <div className="text-[10px] text-slate-500">$800 duty-free entry &amp; HTS codes</div>
-                    </div>
-                    <span className="text-[9px] bg-purple-100 text-purple-800 px-1.5 py-0.5 rounded font-bold">
-                      USA
-                    </span>
-                  </button>
-                  <button
-                    onClick={() => {
-                      setToolsDropdown(false);
-                      onNavigate('cbm-calculator');
-                    }}
-                    className="w-full text-left p-2 rounded-xl hover:bg-slate-50 flex items-center justify-between cursor-pointer"
-                  >
-                    <div>
-                      <div className="font-bold text-slate-800">B2B Industrial CBM Cargo Engine</div>
-                      <div className="text-[10px] text-slate-500">Air &amp; 20ft/40ft container limits</div>
-                    </div>
-                  </button>
-                </div>
-              )}
-            </div>
-
             <button
-              onClick={() => onNavigate('contact')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
-                currentPage === 'contact' ? 'text-red-600 bg-red-50' : 'text-slate-600 hover:text-slate-900'
+              onClick={() => handleNavClick('tech-stack')}
+              className="hover:text-[#00D4FF] transition-colors cursor-pointer whitespace-nowrap"
+            >
+              Tech Stack
+            </button>
+            <button
+              onClick={() => handleNavClick('portfolio')}
+              className="hover:text-[#00D4FF] transition-colors cursor-pointer whitespace-nowrap"
+            >
+              Work
+            </button>
+            <button
+              onClick={onOpenToolsHub}
+              className={`hover:text-[#00D4FF] transition-colors cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                isToolsActive ? 'text-[#00D4FF] font-bold' : ''
               }`}
+            >
+              <span>Tools Hub</span>
+              <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">
+                12
+              </span>
+            </button>
+            <button
+              onClick={() => handleNavClick('contact')}
+              className="hover:text-[#00D4FF] transition-colors cursor-pointer whitespace-nowrap"
             >
               Contact
             </button>
           </nav>
 
-          {/* Location & Contact Direct CTA */}
-          <div className="flex items-center gap-2">
-            <div className="hidden xl:flex items-center gap-1 text-[11px] text-slate-500 bg-slate-50 border border-slate-200 px-2.5 py-1 rounded-xl">
-              <MapPin className="w-3.5 h-3.5 text-red-500" />
-              <span>Kolti Behram, Sialkot, Pakistan</span>
-            </div>
-
-            <a
-              href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-xs"
+          {/* Zone 3: Primary Actions */}
+          <div className="hidden sm:flex items-center gap-3">
+            <button
+              onClick={onOpenCodeModal}
+              className="px-3.5 py-2 text-xs font-mono font-medium rounded-xl glass-panel text-slate-300 hover:text-white hover:border-[#00D4FF]/40 transition-all flex items-center gap-1.5 cursor-pointer shadow-xs"
+              title="View & Copy Single HTML CDN Code"
             >
-              <MessageSquare className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">WhatsApp</span>
-            </a>
+              <Code2 className="w-3.5 h-3.5 text-[#00D4FF]" />
+              <span>CDN Code</span>
+            </button>
+
+            <button
+              onClick={() => handleNavClick('contact')}
+              className="px-4 py-2 text-xs font-bold font-sora rounded-xl bg-gradient-to-r from-[#00D4FF] to-[#A855F7] text-black hover:opacity-95 hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5"
+            >
+              <span>Get in Touch</span>
+              <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
+            </button>
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <div className="flex sm:hidden items-center gap-2">
+            <button
+              onClick={onOpenCodeModal}
+              className="p-2 rounded-lg glass-panel text-[#00D4FF]"
+              title="CDN Code"
+            >
+              <Code2 className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 rounded-lg glass-panel text-slate-300 hover:text-white"
+              aria-label="Toggle navigation menu"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Dropdown Menu */}
+        {mobileMenuOpen && (
+          <div className="sm:hidden mt-3 p-4 rounded-2xl glass-panel-glow border border-white/10 space-y-3 animate-fadeIn">
+            <button
+              onClick={() => handleNavClick('services')}
+              className="block w-full text-left py-2 text-sm font-medium text-slate-200 hover:text-[#00D4FF]"
+            >
+              Services
+            </button>
+            <button
+              onClick={() => handleNavClick('tech-stack')}
+              className="block w-full text-left py-2 text-sm font-medium text-slate-200 hover:text-[#00D4FF]"
+            >
+              Tech Stack
+            </button>
+            <button
+              onClick={() => handleNavClick('portfolio')}
+              className="block w-full text-left py-2 text-sm font-medium text-slate-200 hover:text-[#00D4FF]"
+            >
+              Work &amp; Portfolio
+            </button>
+            <button
+              onClick={onOpenToolsHub}
+              className="block w-full text-left py-2 text-sm font-medium text-[#00D4FF] flex items-center justify-between"
+            >
+              <span>Online Tools Suite</span>
+              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">
+                12 Workstations
+              </span>
+            </button>
+            <button
+              onClick={() => handleNavClick('contact')}
+              className="block w-full text-left py-2 text-sm font-medium text-slate-200 hover:text-[#00D4FF]"
+            >
+              Contact
+            </button>
+            <div className="pt-2 border-t border-white/10 flex gap-2">
+              <button
+                onClick={() => handleNavClick('contact')}
+                className="w-full py-2.5 text-center text-xs font-bold rounded-xl bg-gradient-to-r from-[#00D4FF] to-[#A855F7] text-black"
+              >
+                Start a Project
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );

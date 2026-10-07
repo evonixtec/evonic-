@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import Lenis from 'lenis';
 import { NavPageId } from './types';
+import { LoadingScreen } from './components/LoadingScreen';
+import { ParticleFieldCanvas } from './components/3d/ParticleFieldCanvas';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Services } from './components/Services';
+import { TechStackSection } from './components/TechStackSection';
+import { Portfolio } from './components/Portfolio';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
-import { MobileBottomNav } from './components/MobileBottomNav';
+import { StandaloneExportModal } from './components/StandaloneExportModal';
+
+// Tools Portfolio and Workspace Headers
 import { ToolsHub } from './components/ToolsHub';
 import { ToolWorkspaceHeader } from './components/common/ToolWorkspaceHeader';
 
-// Tool Components
+// 12 Tool Components
 import { GlobalInvoiceHub } from './components/GlobalInvoiceHub';
 import EcommerceCalculator from './components/EcommerceCalculator';
 import CbmCalculator from './components/CbmCalculator';
@@ -37,10 +44,33 @@ import {
 } from 'lucide-react';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<NavPageId>('home');
+  const [currentPage, setCurrentPage] = useState<NavPageId | 'home'>('home');
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [showCodeModal, setShowCodeModal] = useState<boolean>(false);
 
+  // Initialize Lenis smooth scroll
   useEffect(() => {
-    // Basic pathname router
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    let rafId: number;
+    function raf(time: number) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+    };
+  }, []);
+
+  // Basic Pathname Router
+  useEffect(() => {
     const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
     if (path) {
       if (
@@ -58,6 +88,7 @@ export default function App() {
         path === 'printer-diagnostics' ||
         path === 'factory-network-tester' ||
         path === 'services' ||
+        path === 'portfolio' ||
         path === 'contact'
       ) {
         setCurrentPage(path as NavPageId);
@@ -84,42 +115,83 @@ export default function App() {
     }
   };
 
-  return (
-    <div className="min-h-screen bg-slate-50 flex flex-col text-slate-900 pb-16 lg:pb-0">
-      {/* Top Navbar */}
-      <Navbar currentPage={currentPage} onNavigate={navigateToPage} />
+  const scrollToSection = (sectionId: string) => {
+    if (currentPage !== 'home') {
+      setCurrentPage('home');
+      setTimeout(() => {
+        const el = document.getElementById(sectionId);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      const el = document.getElementById(sectionId);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
+  return (
+    <div className="min-h-screen bg-[#0a0a0f] text-slate-100 flex flex-col font-sans selection:bg-[#00D4FF] selection:text-black">
+      {/* 1. Loading Screen Bootloader */}
+      {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
+
+      {/* 2. Ambient Cosmic 3D Particle Field Canvas */}
+      <ParticleFieldCanvas count={800} />
+
+      {/* 3. Top Navigation */}
+      <Navbar
+        onNavigateSection={scrollToSection}
+        onOpenCodeModal={() => setShowCodeModal(true)}
+        onOpenToolsHub={() => navigateToPage('tools')}
+        isToolsActive={currentPage === 'tools'}
+      />
+
+      {/* 4. Main Body */}
       <main className="flex-1">
-        {/* PAGE 1: HOME */}
+        {/* HOMEPAGE: 3D Tech Agency Experience */}
         {currentPage === 'home' && (
           <>
-            <Hero onNavigatePage={navigateToPage} />
-            <Services onNavigatePage={navigateToPage} />
+            <Hero
+              onNavigateSection={scrollToSection}
+              onOpenToolsHub={() => navigateToPage('tools')}
+            />
+            <Services />
+            <TechStackSection />
+            <Portfolio />
             <ContactSection />
           </>
         )}
 
-        {/* PAGE 2: SERVICES */}
+        {/* STANDALONE SECTIONS (Deep links) */}
         {currentPage === 'services' && (
-          <Services onNavigatePage={navigateToPage} />
+          <div className="pt-20">
+            <Services />
+          </div>
         )}
 
-        {/* PAGE 3: CONTACT */}
+        {currentPage === 'portfolio' && (
+          <div className="pt-20">
+            <Portfolio />
+          </div>
+        )}
+
         {currentPage === 'contact' && (
-          <ContactSection />
+          <div className="pt-20">
+            <ContactSection />
+          </div>
         )}
 
-        {/* PAGE 4: TOOLS PORTFOLIO HUB */}
+        {/* TOOLS HUB */}
         {currentPage === 'tools' && (
-          <ToolsHub
-            onLaunchTool={navigateToPage}
-            onNavigateHome={() => navigateToPage('home')}
-          />
+          <div className="pt-20">
+            <ToolsHub
+              onLaunchTool={navigateToPage}
+              onNavigateHome={() => navigateToPage('home')}
+            />
+          </div>
         )}
 
-        {/* PAGE 5: GLOBAL INVOICE HUB */}
+        {/* 12 INDIVIDUAL TOOL WORKSPACES */}
         {currentPage === 'invoice' && (
-          <div>
+          <div className="pt-16">
             <ToolWorkspaceHeader
               currentToolId="invoice"
               toolTitle="Global Micro-Invoice Generator"
@@ -133,9 +205,8 @@ export default function App() {
           </div>
         )}
 
-        {/* PAGE 6: E-COMMERCE MARGIN SIMULATOR */}
         {currentPage === 'ecommerce-calculator' && (
-          <div>
+          <div className="pt-16">
             <ToolWorkspaceHeader
               currentToolId="ecommerce-calculator"
               toolTitle="E-Commerce Margin & COD Simulator"
@@ -149,9 +220,8 @@ export default function App() {
           </div>
         )}
 
-        {/* PAGE 7: CBM & CARGO ENGINE */}
         {currentPage === 'cbm-calculator' && (
-          <div>
+          <div className="pt-16">
             <ToolWorkspaceHeader
               currentToolId="cbm-calculator"
               toolTitle="B2B Industrial CBM & Freight Engine"
@@ -165,9 +235,8 @@ export default function App() {
           </div>
         )}
 
-        {/* PAGE 8: DEVELOPER COST CALCULATOR */}
         {currentPage === 'developer-cost-calculator' && (
-          <div>
+          <div className="pt-16">
             <ToolWorkspaceHeader
               currentToolId="developer-cost-calculator"
               toolTitle="Dedicated Developer Cost Calculator"
@@ -181,9 +250,8 @@ export default function App() {
           </div>
         )}
 
-        {/* PAGE 9: AI VISIBILITY CHECKER */}
         {currentPage === 'ai-visibility-checker' && (
-          <div>
+          <div className="pt-16">
             <ToolWorkspaceHeader
               currentToolId="ai-visibility-checker"
               toolTitle="AI Visibility & E-E-A-T Checker"
@@ -197,9 +265,8 @@ export default function App() {
           </div>
         )}
 
-        {/* PAGE 10: UK & EU VAT REVERSE CHARGE */}
         {currentPage === 'uk-eu-vat-calculator' && (
-          <div>
+          <div className="pt-16">
             <ToolWorkspaceHeader
               currentToolId="uk-eu-vat-calculator"
               toolTitle="UK & EU VAT Reverse Charge & MOSS Engine"
@@ -213,9 +280,8 @@ export default function App() {
           </div>
         )}
 
-        {/* PAGE 11: US DUTY & SECTION 321 */}
         {currentPage === 'us-duty-nexus-estimator' && (
-          <div>
+          <div className="pt-16">
             <ToolWorkspaceHeader
               currentToolId="us-duty-nexus-estimator"
               toolTitle="US Customs Tariff & Section 321 De Minimis Calculator"
@@ -229,9 +295,8 @@ export default function App() {
           </div>
         )}
 
-        {/* PAGE 12: CE & UKCA DECLARATION OF CONFORMITY */}
         {currentPage === 'ce-ukca-compliance-generator' && (
-          <div>
+          <div className="pt-16">
             <ToolWorkspaceHeader
               currentToolId="ce-ukca-compliance-generator"
               toolTitle="UKCA & CE Declaration of Conformity Generator"
@@ -245,9 +310,8 @@ export default function App() {
           </div>
         )}
 
-        {/* PAGE 13: EXPORT BARCODE STUDIO */}
         {currentPage === 'export-barcode-studio' && (
-          <div>
+          <div className="pt-16">
             <ToolWorkspaceHeader
               currentToolId="export-barcode-studio"
               toolTitle="Export Barcode Label Studio"
@@ -261,9 +325,8 @@ export default function App() {
           </div>
         )}
 
-        {/* PAGE 14: LIVE REPAIR TRACKER */}
         {currentPage === 'live-repair-tracker' && (
-          <div>
+          <div className="pt-16">
             <ToolWorkspaceHeader
               currentToolId="live-repair-tracker"
               toolTitle="Live RMA Bench Repair Tracker"
@@ -277,9 +340,8 @@ export default function App() {
           </div>
         )}
 
-        {/* PAGE 15: PRINTER DIAGNOSTICS */}
         {currentPage === 'printer-diagnostics' && (
-          <div>
+          <div className="pt-16">
             <ToolWorkspaceHeader
               currentToolId="printer-diagnostics"
               toolTitle="Thermal Receipt Printer Diagnostic Engine"
@@ -293,9 +355,8 @@ export default function App() {
           </div>
         )}
 
-        {/* PAGE 16: FACTORY NETWORK TESTER */}
         {currentPage === 'factory-network-tester' && (
-          <div>
+          <div className="pt-16">
             <ToolWorkspaceHeader
               currentToolId="factory-network-tester"
               toolTitle="Factory ERP & Customs Latency Benchmark"
@@ -310,14 +371,17 @@ export default function App() {
         )}
       </main>
 
-      {/* Footer */}
-      <Footer onNavigatePage={navigateToPage} />
+      {/* 5. Footer */}
+      <Footer
+        onNavigateSection={scrollToSection}
+        onOpenCodeModal={() => setShowCodeModal(true)}
+        onOpenToolsHub={() => navigateToPage('tools')}
+      />
 
-      {/* Mobile Sticky Bottom Navigation Dock */}
-      <MobileBottomNav
-        currentPage={currentPage}
-        onNavigate={navigateToPage}
-        onOpenChat={() => {}}
+      {/* 6. Single HTML CDN Code View / Download Modal */}
+      <StandaloneExportModal
+        isOpen={showCodeModal}
+        onClose={() => setShowCodeModal(false)}
       />
     </div>
   );
