@@ -1,6 +1,8 @@
 {
-  "name": "EVONIX TECHNOLOGIES",
-  "description": "Leading IT consultancy and industrial hardware maintenance services in Sialkot. Enterprise website engineering, retail POS systems, and factory IT support backed by 20+ years Dubai expertise.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "name": "EVONIXTEC – 3D Tech Agency & Software Engineering",
+  "description": "EVONIXTEC is a premium 3D tech agency engineering high-performance Web Applications, Mobile Apps, Enterprise AI Solutions, and Custom Software with next-generation 3D spatial experiences.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

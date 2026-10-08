@@ -102,7 +102,7 @@ const VERTICALS: IndustrialVertical[] = [
     keyModules: [
       {
         title: 'Synthetic Material & Yield Calculation',
-        description: 'Calculates exact square meter consumption for 32-panel, 24-panel, and seamless thermo-bonded designs.'
+        description: 'Calculates exact square meter consumption for 32-panel, 24-panel, and smooth thermo-bonded designs.'
       },
       {
         title: 'Bladder Pressure & Rebound Test Registry',
@@ -166,7 +166,7 @@ const VERTICALS: IndustrialVertical[] = [
       'Automated export rebate (DLTL) calculation forms ready for State Bank of Pakistan filing',
       'Multi-currency proforma invoices with pre-calculated shipping volume'
     ],
-    offlineResilience: 'Operates seamlessly on local high-reliability SSD mini-servers with nightly offsite encrypted cloud backup.',
+    offlineResilience: 'Operates smoothly on local high-reliability SSD mini-servers with nightly offsite encrypted cloud backup.',
     typicalDeployment: '3 weeks with tannery floor scale calibration and barcode terminal setup.',
     verifiedClientQuote: {
       client: 'Haji Asif Raza (CEO)',

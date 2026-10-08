@@ -32,7 +32,7 @@ export const FAQ: React.FC<FAQProps> = ({ onOpenQuote, onNavigateSection }) => {
     return {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
-      '@id': 'https://evonixtec.com/#faq-schema',
+      '@id': 'https://www.evonixtec.com/#faq-schema',
       mainEntity: FAQ_ITEMS.map((item) => ({
         '@type': 'Question',
         name: item.question,
@@ -107,8 +107,10 @@ export const FAQ: React.FC<FAQProps> = ({ onOpenQuote, onNavigateSection }) => {
 
           {/* Search bar */}
           <div className="pt-4 max-w-md mx-auto relative">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
+              id="faq-search-input"
+              aria-label="Search frequently asked questions"
               type="text"
               placeholder="Search frequently asked questions..."
               value={searchQuery}

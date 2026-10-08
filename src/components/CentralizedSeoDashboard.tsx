@@ -211,6 +211,7 @@ export const CentralizedSeoDashboard: React.FC<CentralizedSeoDashboardProps> = (
             <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
+              aria-label="Search keyword or URL"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search keyword or URL..."
@@ -279,7 +280,7 @@ export const CentralizedSeoDashboard: React.FC<CentralizedSeoDashboardProps> = (
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2 min-w-0">
                       <span className="font-mono text-[10px] font-bold text-red-700 bg-red-50 px-2 py-0.5 rounded border border-red-200 truncate">
-                        {entry.canonicalUrl.replace('https://evonixtec.com', '') || '/ (Home)'}
+                        {entry.canonicalUrl.replace('https://www.evonixtec.com', '') || '/ (Home)'}
                       </span>
                       <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">
                         {entry.category}
@@ -443,6 +444,7 @@ export const CentralizedSeoDashboard: React.FC<CentralizedSeoDashboardProps> = (
                 <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
+                  aria-label="Test keyword for cannibalization audit"
                   value={testSearchTerm}
                   onChange={(e) => setTestSearchTerm(e.target.value)}
                   placeholder="Enter keyword (e.g., laptop repair, POS billing, WeBOC, Daska AMC)..."

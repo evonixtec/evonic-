@@ -281,6 +281,7 @@ export const HardwareBlinkBeepIdentifier: React.FC = () => {
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
+              aria-label="Search error code or blink pattern"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search code e.g. 2 Amber, Caps Lock..."
@@ -320,7 +321,7 @@ export const HardwareBlinkBeepIdentifier: React.FC = () => {
                     </span>
                   </div>
 
-                  <h4 className="text-sm font-bold text-white mb-1">{code.patternDisplay}</h4>
+                  <h3 className="text-sm font-bold text-white mb-1">{code.patternDisplay}</h3>
                   <p className="text-xs text-slate-300 line-clamp-1">{code.faultName}</p>
 
                   <div className="mt-2.5 flex items-center justify-between text-[11px] text-slate-400 border-t border-slate-700/50 pt-2">

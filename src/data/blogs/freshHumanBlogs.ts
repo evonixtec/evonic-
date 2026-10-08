@@ -183,7 +183,7 @@ Between your CPU chip and the copper heatsink sits a thin layer of thermal compo
     metaDescription: 'Step-by-step troubleshooting for office and factory desktop computers that refuse to power on after generator changeover or voltage spikes.',
     targetKeywords: ['desktop pc not turning on sialkot', 'computer power supply repair', 'factory computer maintenance sialkot'],
     internalLinks: [
-      { label: 'Factory Computer AMC', targetSection: 'services', anchorText: 'Explore Factory IT AMC Contracts' },
+      { label: 'Factory Computer AMC', targetSection: 'services', anchorText: 'Check Factory IT AMC Contracts' },
       { label: 'Order Tested PC Supplies', targetSection: 'shop', anchorText: 'View Desktop PCs & Supplies' },
     ],
     content: `
@@ -266,7 +266,7 @@ Your staff never notices whether the internet was up or down, lines keep moving,
     targetKeywords: ['website development sialkot', 'best software house in sialkot', 'export company website design'],
     internalLinks: [
       { label: 'Website Development Services', targetSection: 'services', anchorText: 'Enterprise Web Development' },
-      { label: 'View Proven Case Studies', targetSection: 'portfolio', anchorText: 'Explore International Portfolio' },
+      { label: 'View Proven Case Studies', targetSection: 'portfolio', anchorText: 'View International Portfolio' },
     ],
     content: `
 If you manufacture surgical instruments, sports apparel, motorcycling gear, or equestrian equipment in Sialkot, your website is not just a digital business card. It is your international factory showroom.

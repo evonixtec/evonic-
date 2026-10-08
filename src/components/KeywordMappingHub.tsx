@@ -78,6 +78,7 @@ export const KeywordMappingHub: React.FC<KeywordMappingHubProps> = ({ onNavigate
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
+              aria-label="Filter by keyword or URL"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Filter by keyword or URL..."
@@ -97,7 +98,7 @@ export const KeywordMappingHub: React.FC<KeywordMappingHubProps> = ({ onNavigate
                 {/* Top Badge & URL */}
                 <div className="flex items-center justify-between gap-2">
                   <span className="font-mono text-[11px] font-bold text-red-600 bg-red-50 px-2.5 py-0.5 rounded-md border border-red-200">
-                    {entry.canonicalUrl.replace('https://evonixtec.com', '') || '/ (Home)'}
+                    {entry.canonicalUrl.replace('https://www.evonixtec.com', '') || '/ (Home)'}
                   </span>
                   <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">
                     {entry.searchIntent}

@@ -182,6 +182,7 @@ export const AiHardwareDiagnosticBoard: React.FC<AiHardwareDiagnosticBoardProps>
                 <Search className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
                 <input
                   type="text"
+                  aria-label="Search symptom or power rail"
                   placeholder="Search symptom, rail (+19V, +3.3V)..."
                   value={searchFilter}
                   onChange={(e) => setSearchFilter(e.target.value)}

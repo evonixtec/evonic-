@@ -299,7 +299,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                         </button>
 
                         <button
-                          onClick={() => handlePageSelect('home', 'factory-network-tester')}
+                          onClick={() => handlePageSelect('factory-network-tester')}
                           className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
                         >
                           <div className="p-1.5 rounded-lg bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
@@ -317,7 +317,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                         </button>
 
                         <button
-                          onClick={() => handlePageSelect('home', 'export-barcode-studio')}
+                          onClick={() => handlePageSelect('export-barcode-studio')}
                           className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
                         >
                           <div className="p-1.5 rounded-lg bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
@@ -844,7 +844,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             {!isToolPage(currentPage) && (
               <button
                 onClick={onOpenSearch}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100/90 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-200 shadow-2xs transition-all cursor-pointer"
+                aria-label="Search Services, Portfolio and Tools (Ctrl+K)"
+                className="flex items-center gap-1.5 px-3 py-1.5 min-h-[38px] rounded-xl bg-slate-100/90 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-200 shadow-2xs transition-all cursor-pointer"
                 title="Search Services, Portfolio & Shop (Ctrl+K)"
               >
                 <Search className="w-3.5 h-3.5 text-slate-500" />
@@ -861,7 +862,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* 3D Radiant Specular Free Quote Button */}
             <button
               onClick={() => onOpenQuote()}
-              className="px-3.5 sm:px-4.5 py-1.5 sm:py-2 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-600 active:from-red-700 active:to-rose-700 text-white font-extrabold text-xs sm:text-sm transition-all shadow-[inset_0_1.5px_0_rgba(255,255,255,0.4),0_6px_20px_rgba(220,38,38,0.4)] hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.5),0_8px_25px_rgba(220,38,38,0.5)] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer flex items-center gap-1.5 flex-shrink-0 border-t border-white/30"
+              aria-label="Request a Free Technical Quote"
+              className="px-3.5 sm:px-4.5 py-1.5 sm:py-2 min-h-[40px] rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-600 active:from-red-700 active:to-rose-700 text-white font-extrabold text-xs sm:text-sm transition-all shadow-[inset_0_1.5px_0_rgba(255,255,255,0.4),0_6px_20px_rgba(220,38,38,0.4)] hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.5),0_8px_25px_rgba(220,38,38,0.5)] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer flex items-center gap-1.5 flex-shrink-0 border-t border-white/30"
             >
               <Sparkles className="w-3.5 h-3.5 text-amber-200 animate-pulse" />
               <span>Free Quote</span>
@@ -871,7 +873,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="mobile-menu-toggle"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 cursor-pointer transition-colors"
+              className="lg:hidden p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 cursor-pointer transition-colors"
               aria-label={mobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
               aria-expanded={mobileMenuOpen}
             >

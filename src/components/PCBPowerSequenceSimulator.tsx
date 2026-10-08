@@ -137,7 +137,7 @@ export const PCBPowerSequenceSimulator: React.FC<PCBPowerSequenceSimulatorProps>
             Motherboard Power Sequence & Rail Diagnostics
           </h2>
           <p className="mt-3 text-sm sm:text-base text-slate-400 leading-relaxed">
-            When a laptop or MacBook is completely dead, power does not simply vanish. It halts at one of six sequential voltage rails. Explore how our Sialkot bench engineers trace and repair faults with multimeters, thermal cameras, and oscilloscopes.
+            When a laptop or MacBook is completely dead, power does not simply vanish. It halts at one of six sequential voltage rails. See how our Sialkot bench engineers trace and repair faults with multimeters, thermal cameras, and oscilloscopes.
           </p>
         </div>
 

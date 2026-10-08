@@ -129,6 +129,7 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onNavigateSection, onOpenQuote
               <input
                 type="text"
                 placeholder={`Search ${ALL_BLOGS.length}+ tech blogs & guides...`}
+                aria-label={`Search ${ALL_BLOGS.length}+ tech blogs and guides`}
                 value={searchQuery}
                 onChange={(e) => {
                   setSearchQuery(e.target.value);
@@ -226,9 +227,9 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onNavigateSection, onOpenQuote
                   Zero Database
                 </span>
               </div>
-              <h4 className="text-sm sm:text-base font-bold text-white mt-0.5">
+              <h3 className="text-sm sm:text-base font-bold text-white mt-0.5">
                 Export Barcode Label Generator Studio (GS1-128, Code128, Carton Stickers)
-              </h4>
+              </h3>
               <p className="text-xs text-slate-300 mt-0.5 leading-relaxed">
                 Generate compliant shipping labels, outer carton barcodes, and product serials for surgical, sports &amp; leather consignments.
               </p>

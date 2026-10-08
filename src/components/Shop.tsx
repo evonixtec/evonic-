@@ -60,6 +60,7 @@ Please share current price & delivery/setup availability.`;
               <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
+                aria-label="Search equipment, models, and parts"
                 placeholder="Search equipment, models, parts..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}

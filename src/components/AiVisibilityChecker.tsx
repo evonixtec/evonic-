@@ -24,7 +24,7 @@ interface AiVisibilityCheckerProps {
 }
 
 export default function AiVisibilityChecker({ onOpenQuote }: AiVisibilityCheckerProps) {
-  const [targetUrl, setTargetUrl] = useState<string>('https://evonixtec.com');
+  const [targetUrl, setTargetUrl] = useState<string>('https://www.evonixtec.com');
   const [isScanning, setIsScanning] = useState<boolean>(false);
 
   // Dynamic Score Aggregations
@@ -128,7 +128,7 @@ export default function AiVisibilityChecker({ onOpenQuote }: AiVisibilityChecker
     provider: {
       '@type': 'Organization',
       name: 'evonix Technologies',
-      url: 'https://evonixtec.com',
+      url: 'https://www.evonixtec.com',
     },
     description:
       'Evaluates top-level URL footprints client-side against Google E-E-A-T and Generative Engine Optimization (GEO) metrics for ChatGPT, Claude, and Google AI Overviews.',
@@ -176,11 +176,13 @@ export default function AiVisibilityChecker({ onOpenQuote }: AiVisibilityChecker
             </div>
 
             <div className="space-y-2">
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+              <label htmlFor="ai-target-url" className="block text-xs font-bold uppercase tracking-wider text-slate-700">
                 Target Digital Property URL
               </label>
               <div className="relative">
                 <input
+                  id="ai-target-url"
+                  aria-label="Target Digital Property URL"
                   type="url"
                   value={targetUrl}
                   onChange={(e) => setTargetUrl(e.target.value)}
@@ -219,7 +221,7 @@ export default function AiVisibilityChecker({ onOpenQuote }: AiVisibilityChecker
               </span>
               <div className="flex flex-wrap gap-1.5">
                 {[
-                  'https://evonixtec.com',
+                  'https://www.evonixtec.com',
                   'https://solutions.evonix.ae',
                   'https://technologies-global.org',
                   'http://insecure-domain.net',
@@ -374,7 +376,7 @@ export default function AiVisibilityChecker({ onOpenQuote }: AiVisibilityChecker
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
-            Securing authoritative brand visibility across modern digital touchpoints requires deep alignment with semantic search indexing variables and structured knowledge graph architectures. Traditional content monetization methodologies often overlook clean technical metadata layers, leading to domain omission from real-time model queries. The evonix Technologies Website E-E-A-T &amp; AI Visibility Checker functions as an objective diagnostic framework that breaks down domain visibility parameters directly inside your browser workspace. By processing uniform resource footprints against algorithmic verification modules, this client-side utility evaluates structural compliance benchmarks without remote network dependencies. Digital content strategists can instantly verify entity connectivity states and citation parameters to isolate discovery blockages, protect brand authority records, and optimize target web surfaces safely within a single system panel view.
+            Securing authoritative brand visibility across modern digital touchpoints requires deep alignment with semantic search indexing variables and structured knowledge graph architectures. Traditional content monetization methodologies often overlook clean technical metadata layers, leading to domain omission from real-time model queries. The evonix Technologies Website E-E-A-T &amp; AI Visibility Checker functions as an objective diagnostic framework that breaks down domain visibility parameters directly inside your browser workspace. By processing uniform resource footprints against algorithmic verification modules, this client-side utility evaluates structural compliance benchmarks without remote network dependencies. Digital content strategists can instantly verify entity connectivity states and citation parameters to isolate presence blockages, protect brand authority records, and optimize target web surfaces safely within a single system panel view.
           </p>
 
           <div className="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500">

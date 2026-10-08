@@ -227,6 +227,8 @@ export const SialkotLocationPicker: React.FC<SialkotLocationPickerProps> = ({
       {/* Main Input Field */}
       <div className="relative">
         <input
+          id="sialkot-location-input"
+          aria-label="Sialkot Area, Street or Landmark"
           type="text"
           required={required}
           value={value}

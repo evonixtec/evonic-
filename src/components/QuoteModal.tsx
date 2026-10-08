@@ -450,6 +450,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                     <span className="text-[10px] text-slate-400 font-normal">Dial: {selectedCountry.dialCode}</span>
                   </label>
                   <select
+                    aria-label="Your Country or Region"
                     value={selectedCountryCode}
                     onChange={(e) => handleCountryChange(e.target.value)}
                     className="w-full px-3 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-blue-500 font-semibold shadow-2xs"
@@ -468,6 +469,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                     Required Service / Architecture *
                   </label>
                   <select
+                    aria-label="Required Service or Architecture"
                     value={serviceType}
                     onChange={(e) => setServiceType(e.target.value)}
                     className="w-full px-3 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-blue-500 font-medium shadow-2xs truncate"

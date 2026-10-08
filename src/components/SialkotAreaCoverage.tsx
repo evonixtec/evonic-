@@ -121,7 +121,7 @@ const SIALKOT_HUBS: AreaHub[] = [
     activeDeployments: 49,
     featuredClients: ['Kashmir Road Pharmacy Mart', 'Hunterpura Wholesale Shoes', 'Galaxy Mobile Care'],
     keyServices: ['Thermal POS Cash Register Setup', 'Wholesale B2B Billing Software', 'Desktop & Laptop Fast Servicing', 'CCTV Security'],
-    highlight: 'Seamless billing and hardware repair keeping Kashmir Road retailers operating at full checkout capacity.',
+    highlight: 'Smooth billing and hardware repair keeping Kashmir Road retailers operating at full checkout capacity.',
   },
 ];
 
@@ -177,9 +177,9 @@ export const SialkotAreaCoverage: React.FC<SialkotAreaCoverageProps> = ({ onOpen
                     </span>
                     <MapPin className={`w-3.5 h-3.5 ${isSelected ? 'text-white' : 'text-slate-400'}`} />
                   </div>
-                  <h4 className="text-xs sm:text-sm font-bold line-clamp-1 leading-snug">
+                  <h3 className="text-xs sm:text-sm font-bold line-clamp-1 leading-snug">
                     {hub.name}
-                  </h4>
+                  </h3>
                   <span className={`text-[11px] font-urdu block mt-0.5 ${isSelected ? 'text-red-100' : 'text-slate-500'}`}>
                     {hub.urduName}
                   </span>
@@ -232,9 +232,9 @@ export const SialkotAreaCoverage: React.FC<SialkotAreaCoverageProps> = ({ onOpen
 
               {/* Key Services Dispatched */}
               <div>
-                <h5 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
+                <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
                   On-Site Services Available For This Zone
-                </h5>
+                </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {selectedHub.keyServices.map((svc, sIdx) => (
                     <div key={sIdx} className="p-3 rounded-xl bg-white border border-slate-200 flex items-center gap-2.5 text-xs text-slate-800 font-medium">

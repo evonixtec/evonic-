@@ -162,7 +162,7 @@ Diagnosing Common Laser Print Defects
     author: { name: 'Tariq Mehmood', role: 'Chief Hardware & Micro-Soldering Engineer' },
     tags: ['SSD Upgrade', 'PC Speedup', 'Hardware Upgrade', 'Data Migration'],
     metaTitle: 'SSD vs HDD Upgrade Guide for 10x PC Speed | evonix',
-    metaDescription: 'Transform sluggish office computers and laptops into high-speed workstations with SATA or NVMe solid state drives and seamless OS cloning.',
+    metaDescription: 'Transform sluggish office computers and laptops into high-speed workstations with SATA or NVMe solid state drives and smooth OS cloning.',
     targetKeywords: ['SSD upgrade laptop', 'speed up slow computer', 'HDD to SSD migration', 'computer upgrade Sialkot'],
     internalLinks: [
       { label: 'Book Doorstep SSD Upgrade', targetSection: 'services', anchorText: 'High-Speed SSD Upgrades' },
@@ -282,7 +282,7 @@ Many laptop buyers believe that having a single 16GB RAM module is equal to havi
 
 Real-World Performance Differences
 - Dual-Channel Memory: Delivers 35% to 50% higher memory bandwidth, directly boosting integrated Intel Iris Xe and AMD Radeon graphics performance.
-- Seamless Multitasking: Eliminates micro-stutters when running heavy ERP databases alongside Google Chrome tabs and Adobe Illustrator vector files.
+- Smooth Multitasking: Eliminates micro-stutters when running heavy ERP databases alongside Google Chrome tabs and Adobe Illustrator vector files.
 - evonix Matching Protocol: We pair identical memory chips with matching CAS latency (CL) and operating voltages (1.2V DDR4 / 1.1V DDR5) to prevent blue screen memory parity errors.
     `,
   },
@@ -523,7 +523,7 @@ During regular maintenance visits, our field technicians check thermal paste ela
     author: { name: 'Raza Muhammad', role: 'Founder & Technical Director' },
     tags: ['Zero Charge Diagnostics', 'Customer Trust', 'Transparency', 'evonix Policy'],
     metaTitle: 'evonix Zero-Charge Diagnostic Policy Explained | evonix',
-    metaDescription: 'Discover our customer promise: Thorough bench diagnostics at zero fee, transparent parts quotation before work begins, and zero charge if not repaired.',
+    metaDescription: 'See our customer promise: Thorough bench diagnostics at zero fee, transparent parts quotation before work begins, and zero charge if not repaired.',
     targetKeywords: ['zero charge laptop diagnostic', 'free computer inspection Sialkot', 'honest IT repair', 'evonix guarantee'],
     internalLinks: [
       { label: 'Review Our Customer Guarantee', targetSection: 'about', anchorText: 'evonix Customer Guarantee' },

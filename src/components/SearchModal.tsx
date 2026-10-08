@@ -492,6 +492,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           <Search className="w-5 h-5 text-red-600 flex-shrink-0" />
           <input
             ref={inputRef}
+            id="global-search-input"
+            aria-label="Search services, POS software, tech guides, portfolio, and hardware"
             type="text"
             value={query}
             onChange={(e) => {
@@ -507,7 +509,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                 setQuery('');
                 inputRef.current?.focus();
               }}
-              className="p-1 rounded-md text-slate-400 hover:text-slate-900 hover:bg-slate-200"
+              aria-label="Clear search query"
+              className="w-9 h-9 rounded-md text-slate-400 hover:text-slate-900 hover:bg-slate-200 flex items-center justify-center cursor-pointer"
               title="Clear search"
             >
               <X className="w-4 h-4" />
@@ -518,7 +521,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           </kbd>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-900 hover:bg-slate-200 sm:hidden"
+            aria-label="Close search dialog"
+            className="w-10 h-10 rounded-lg text-slate-400 hover:text-slate-900 hover:bg-slate-200 flex items-center justify-center sm:hidden cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>

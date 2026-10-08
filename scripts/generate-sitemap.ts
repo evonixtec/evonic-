@@ -6,22 +6,18 @@ import { LOCAL_CITIES, CLUSTER_SERVICES } from '../src/data/localClusters';
 const DOMAIN = 'https://www.evonixtec.com';
 const TODAY = new Date().toISOString().split('T')[0];
 
-// 1. Primary Core Landing Pages & Hubs
+// 1. Primary Core Canonical Landing Pages & Hubs
 const coreRoutes = [
   { loc: `${DOMAIN}/`, changefreq: 'daily', priority: '1.0' },
   { loc: `${DOMAIN}/services`, changefreq: 'daily', priority: '0.95' },
   { loc: `${DOMAIN}/guides`, changefreq: 'daily', priority: '0.95' },
-  { loc: `${DOMAIN}/blogs`, changefreq: 'daily', priority: '0.95' },
-  { loc: `${DOMAIN}/guidelines`, changefreq: 'daily', priority: '0.90' },
   { loc: `${DOMAIN}/portfolio`, changefreq: 'weekly', priority: '0.85' },
   { loc: `${DOMAIN}/shop`, changefreq: 'daily', priority: '0.90' },
   { loc: `${DOMAIN}/about`, changefreq: 'weekly', priority: '0.85' },
   { loc: `${DOMAIN}/contact`, changefreq: 'daily', priority: '0.90' },
   { loc: `${DOMAIN}/locations`, changefreq: 'daily', priority: '0.95' },
   { loc: `${DOMAIN}/invoice`, changefreq: 'daily', priority: '0.95' },
-  { loc: `${DOMAIN}/invoice-generator`, changefreq: 'daily', priority: '0.90' },
   { loc: `${DOMAIN}/ecommerce-calculator`, changefreq: 'daily', priority: '0.95' },
-  { loc: `${DOMAIN}/margin-calculator`, changefreq: 'daily', priority: '0.90' },
 ];
 
 // 2. Sub-Category & Direct Landing Pages

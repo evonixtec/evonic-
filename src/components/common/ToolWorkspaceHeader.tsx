@@ -183,6 +183,7 @@ export const ToolWorkspaceHeader: React.FC<ToolWorkspaceHeaderProps> = ({
             <div className="flex items-start sm:items-center gap-3">
               <button
                 onClick={onNavigateToolsHub}
+                aria-label="Return to Online Tools Portfolio Hub"
                 className="w-10 h-10 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-all flex-shrink-0 cursor-pointer shadow-sm group"
                 title="Return to Online Tools Portfolio Hub"
               >

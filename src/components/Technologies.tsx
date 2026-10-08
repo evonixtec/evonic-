@@ -325,7 +325,7 @@ export const Technologies: React.FC<{ onExploreService?: (serviceName: string) =
           </h2>
 
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-            We engineer enterprise-grade solutions using industry-standard languages, modern frameworks, robust databases, and reliable hardware protocols tested in Dubai's premier corporate market.
+            We engineer enterprise-grade solutions using industry-standard languages, modern frameworks, reliable databases, and reliable hardware protocols tested in Dubai's premier corporate market.
           </p>
 
           {/* Category Filter Pills */}
@@ -396,7 +396,7 @@ export const Technologies: React.FC<{ onExploreService?: (serviceName: string) =
           ))}
         </div>
 
-        {/* Seamless Marquee Ribbon Showcase */}
+        {/* Smooth Marquee Ribbon Showcase */}
         <div className="mt-14 p-6 rounded-2xl bg-white border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xs">
           <div className="flex items-center gap-3">
             <div className="p-3 rounded-xl bg-red-50 text-red-600 border border-red-200 flex-shrink-0">

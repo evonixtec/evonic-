@@ -273,9 +273,9 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
 
                     return (
                       <div key={bIdx} className="space-y-3 pt-2">
-                        <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight border-b border-slate-100 pb-2">
+                        <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight border-b border-slate-100 pb-2">
                           {cleanTitle}
-                        </h3>
+                        </h2>
                         {remainingLines.length > 0 && (
                           <div className="space-y-2">
                             {remainingLines.map((rLine, rIdx) => {
@@ -344,9 +344,9 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
                     </span>
                     <span className="text-xs text-slate-400">GS1-128 &amp; Code128</span>
                   </div>
-                  <h4 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                  <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
                     Sialkot Export Barcode &amp; Shipping Carton Label Studio
-                  </h4>
+                  </h3>
                   <p className="text-xs text-slate-300 max-w-xl leading-relaxed">
                     Create compliant thermal shipping labels, outer carton barcodes, and destination manifests for Sialkot surgical, leather, and sports consignments with instant zero-database printing.
                   </p>
@@ -415,9 +415,9 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
                 <span className="text-xs font-semibold text-red-600 block">
                   evonix enterprise solutions
                 </span>
-                <h4 className="text-base sm:text-lg font-bold text-slate-900 mt-0.5">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 mt-0.5">
                   Need professional execution for this technical architecture?
-                </h4>
+                </h3>
                 <p className="text-xs text-slate-600 mt-1">
                   Connect with our Dubai &amp; Sialkot engineering teams for dedicated consulting or doorstep hardware repair.
                 </p>
@@ -456,9 +456,9 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
                         <span className="text-[10px] font-semibold text-red-600 uppercase">
                           {rel.categoryLabel}
                         </span>
-                        <h5 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-red-600 transition-colors line-clamp-2 mt-1">
+                        <h4 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-red-600 transition-colors line-clamp-2 mt-1">
                           {rel.title}
-                        </h5>
+                        </h4>
                       </div>
                       <span className="text-[11px] text-slate-400 mt-3 block">
                         {rel.readTime}

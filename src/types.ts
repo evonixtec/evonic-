@@ -1,5 +1,97 @@
-export type SectionId = 'home' | 'about' | 'services' | 'blogs' | 'reach' | 'technologies' | 'portfolio' | 'testimonials' | 'shop' | 'faq' | 'contact';
-export type PageId = 'home' | 'services' | 'portfolio' | 'shop' | 'about' | 'guides' | 'contact' | 'locations';
+export type NavPageId =
+  | 'home'
+  | 'services'
+  | 'portfolio'
+  | 'shop'
+  | 'about'
+  | 'guides'
+  | 'contact'
+  | 'locations'
+  | 'tools'
+  | 'invoice'
+  | 'ecommerce-calculator'
+  | 'cbm-calculator'
+  | 'developer-cost-calculator'
+  | 'ai-visibility-checker'
+  | 'export-barcode-studio'
+  | 'live-repair-tracker'
+  | 'printer-diagnostics'
+  | 'factory-network-tester'
+  | 'uk-eu-vat-calculator'
+  | 'us-duty-nexus-estimator'
+  | 'ce-ukca-compliance-generator';
+
+export type PageId = NavPageId;
+
+export type SectionId =
+  | 'home'
+  | 'hero-slider-section'
+  | 'services'
+  | 'portfolio'
+  | 'shop'
+  | 'about'
+  | 'contact'
+  | 'tools'
+  | 'faq'
+  | 'technologies'
+  | 'reach'
+  | 'guides'
+  | 'blogs'
+  | 'testimonials'
+  | 'why-us';
+
+export interface ServiceItem {
+  id: string;
+  number?: string;
+  title: string;
+  urduTitle?: string;
+  summary?: string;
+  description?: string;
+  deliverables?: string[];
+  features?: string[];
+  icon?: string;
+  category?: 'software' | 'hardware' | 'consultancy' | string;
+  imageUrl?: string;
+  imageWebp?: string;
+  imageAlt?: string;
+}
+
+export interface ShopProduct {
+  id: string;
+  name: string;
+  category: string;
+  condition: string;
+  priceEstimate: string;
+  description: string;
+  specs: string[];
+  warranty: string;
+  availability: string;
+  imageUrl?: string;
+  imageWebp?: string;
+  imageAlt?: string;
+}
+
+export interface PortfolioCategory {
+  id: string;
+  title: string;
+  categoryName?: string;
+  description: string;
+  industry: string;
+  tags: string[];
+  deliverables: string[];
+  imageUrl?: string;
+  imageWebp?: string;
+  imageAlt?: string;
+  url?: string;
+}
+
+export interface FaqItem {
+  id: string;
+  question: string;
+  answer: string;
+  category: string;
+  highlightBadge?: string;
+}
 
 export interface TestimonialItem {
   id: string;
@@ -9,6 +101,7 @@ export interface TestimonialItem {
   location: string;
   region: 'dubai' | 'sialkot';
   flag: string;
+  industry: string;
   projectContext: {
     serviceType: string;
     timeline: string;
@@ -18,70 +111,4 @@ export interface TestimonialItem {
   rating: number;
   verifiedBadge: string;
   avatarBg: string;
-  industry: string;
-}
-
-export interface FaqItem {
-  id: string;
-  category: 'dubai-transition' | 'pricing' | 'onsite-support' | 'software-hardware';
-  question: string;
-  answer: string;
-  highlightBadge?: string;
-  actionText?: string;
-  actionPrefill?: string;
-}
-
-export interface ServiceItem {
-  id: string;
-  number: string;
-  title: string;
-  summary: string;
-  iconName: string;
-  imageUrl?: string;
-  imageWebp?: string;
-  imageAlt?: string;
-  features: string[];
-  dubaiExperienceNote?: string;
-  deliverables: string[];
-}
-
-export interface PortfolioCategory {
-  id: string;
-  type: 'website' | 'software';
-  title: string;
-  categoryName: string;
-  industry: string;
-  deliverables: string[];
-  description: string;
-  tags: string[];
-  dubaiHighlight: string;
-  imageUrl?: string;
-  imageWebp?: string;
-  imageAlt?: string;
-}
-
-export interface ShopProduct {
-  id: string;
-  name: string;
-  category: 'Laptops & PCs' | 'POS Hardware' | 'Printers & Scanners' | 'Upgrades & Accessories';
-  condition: 'Brand New' | 'Certified Refurbished (UAE Import)' | 'Original Genuine';
-  priceEstimate: string;
-  description: string;
-  specs: string[];
-  availability: 'In Stock (Sialkot)' | 'Available on Order';
-  warranty: string;
-  imageUrl?: string;
-  imageWebp?: string;
-  imageAlt?: string;
-}
-
-export interface QuoteFormState {
-  fullName: string;
-  phone: string;
-  email: string;
-  serviceType: string;
-  locationArea: string;
-  isHomeService: boolean;
-  budgetRange: string;
-  details: string;
 }

@@ -76,7 +76,7 @@ Client: M. Arshad Cheema, Managing Director, Al-Madina Surgical Instruments, Das
       'custom website designer in Sialkot',
     ],
     internalLinks: [
-      { label: 'Explore Web Capabilities', targetSection: 'services', anchorText: 'Enterprise Website Development' },
+      { label: 'View Web Capabilities', targetSection: 'services', anchorText: 'Enterprise Website Development' },
       { label: 'View Export Case Studies', targetSection: 'portfolio', anchorText: 'Browse Global Web Deployments' },
     ],
     content: `
@@ -166,7 +166,7 @@ Client: Sheikh Daniyal, Managing Partner, Royal Heritage Garments, Rangpura, Sia
       'Sialkot manufacturing ERP solutions',
     ],
     internalLinks: [
-      { label: 'Explore ERP Capabilities', targetSection: 'services', anchorText: 'Custom Enterprise Software' },
+      { label: 'View ERP Capabilities', targetSection: 'services', anchorText: 'Custom Enterprise Software' },
       { label: 'Schedule Factory Consultation', targetSection: 'contact', anchorText: 'Book Free ERP Architecture Audit' },
     ],
     content: `
@@ -341,7 +341,7 @@ On Daska Road, Sialkot, heavy CNC wire-cut machines, high-frequency drop-forging
 Case Implementation: Al-Zubair Surgical Complex (Daska Road)
 Infrastructure: 12-core armored single-mode optical fiber trunk linking the administration office, main warehouse, and 3 production sheds.
 Shielded SFTP Cat6 Runs: Grounded patch panels to eliminate induction spikes from heavy generator loads.
-Ubiquiti UniFi Outdoor Mesh: 100% seamless roaming Wi-Fi for warehouse barcode scanners across 45,000 sq ft.
+Ubiquiti UniFi Outdoor Mesh: 100% smooth roaming Wi-Fi for warehouse barcode scanners across 45,000 sq ft.
 
 Verified Client Testimonial (Daska Road, Sialkot)
 "Our production managers had constant Wi-Fi drops when updating dispatch manifests. evonix rewired our entire Daska Road plant with fiber and industrial access points. The network has been running without a second of downtime for 8 months."
@@ -385,7 +385,7 @@ Essential Elements of High-Converting Export Catalogs
 3. Interactive Click-to-Inquire Links: Embedded WhatsApp and web inquiry links directly from PDF pages.
 
 Verified Client Testimonial (Rangpura, Sialkot)
-"evonix designed our complete 64-page 2025 leather motorbike suit catalog. At the Cologne trade show, European buyers praised the professional layout and clear technical sizing tables. It elevated our company image tenfold."
+"evonix designed our complete 64-page 2025 leather motorbike suit catalog. At the Cologne trade show, European buyers praised the professional layout and clear technical sizing tables. It boosted our company image tenfold."
 Client: M. Waqas Butt, Partner, Prime Rider Leather, Rangpura, Sialkot (★★★★★ 5.0)
     `,
   },
@@ -505,7 +505,7 @@ A mid-sized sports or surgical manufacturer on Daska Road, Sialkot with 25–40 
 On-Site Migration Protocol (35 Units Completed in 2 Days)
 1. Bit-for-Bit Drive Cloning: Full system disk image cloned in 18 minutes per unit preserving ERP configurations, saved passwords, and local email PST archives.
 2. Gen3/Gen4 NVMe Solid State Drives: Read speeds increased from 85 MB/s to 3,500 MB/s.
-3. RAM Expansion to 16GB Dual-Channel: Seamless multitasking across Adobe Illustrator, CorelDraw, and QuickBooks.
+3. RAM Expansion to 16GB Dual-Channel: Smooth multitasking across Adobe Illustrator, CorelDraw, and QuickBooks.
 
 Verified Client Testimonial (Daska Road, Sialkot)
 "Our accounts and export staff were constantly complaining about freezing laptops. evonix upgraded our entire fleet of 35 Dell laptops over a weekend on Daska Road. Everything opens instantaneously now, saving us over 2 million PKR compared to buying new laptops."
@@ -745,7 +745,7 @@ Client: Atif Raza, Head Designer, Sialkot Fashion Wear, Rangpura, Sialkot (★�
       'best software company Daska Road',
     ],
     internalLinks: [
-      { label: 'Explore POS Architecture', targetSection: 'services', anchorText: 'Multi-Branch POS Architecture' },
+      { label: 'View POS Architecture', targetSection: 'services', anchorText: 'Multi-Branch POS Architecture' },
       { label: 'Request System Demo', targetSection: 'contact', anchorText: 'Schedule Multi-Branch Demo' },
     ],
     content: `
@@ -827,7 +827,7 @@ Client: Taimur Cheema, Director of Business Development, Cheema Leather & Textil
       'computer repair AMC near me Sialkot',
     ],
     internalLinks: [
-      { label: 'Explore IT Support Plans', targetSection: 'services', anchorText: 'Corporate IT Maintenance AMC' },
+      { label: 'View IT Support Plans', targetSection: 'services', anchorText: 'Corporate IT Maintenance AMC' },
       { label: 'Request Corporate Proposal', targetSection: 'contact', anchorText: 'Schedule Sialkot AMC Consultation' },
     ],
     content: `
@@ -1175,7 +1175,7 @@ The evonix 4-Layer Factory Hardening Standard
       'fast loading export catalog website',
     ],
     internalLinks: [
-      { label: 'View Web Portfolio', targetSection: 'portfolio', anchorText: 'Explore UAE & Sialkot Web Deployments' },
+      { label: 'View Web Portfolio', targetSection: 'portfolio', anchorText: 'View UAE & Sialkot Web Deployments' },
       { label: 'Calculate Web Project Cost', targetSection: 'home', anchorText: 'Launch Project Cost Calculator' },
     ],
     content: `

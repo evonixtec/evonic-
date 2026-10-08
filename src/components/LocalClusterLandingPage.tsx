@@ -123,11 +123,11 @@ export const LocalClusterLandingPage: React.FC<LocalClusterLandingPageProps> = (
       '@graph': [
         {
           '@type': 'LocalBusiness',
-          '@id': `https://evonixtec.com/location/${currentCity.slug}#localbusiness`,
+          '@id': `https://www.evonixtec.com/locations/${currentCity.slug}#localbusiness`,
           name: `evonix technologies – ${currentCity.name} Hub`,
-          image: 'https://evonixtec.com/og-image.jpg',
+          image: 'https://www.evonixtec.com/og-image.jpg',
           telephone: currentCity.phoneContact,
-          url: `https://evonixtec.com/location/${currentCity.slug}/${currentService.slug}`,
+          url: `https://www.evonixtec.com/locations/${currentCity.slug}/${currentService.slug}`,
           priceRange: 'PKR 1,500 - 350,000',
           address: {
             '@type': 'PostalAddress',
@@ -149,7 +149,7 @@ export const LocalClusterLandingPage: React.FC<LocalClusterLandingPageProps> = (
         },
         {
           '@type': 'Service',
-          '@id': `https://evonixtec.com/location/${currentCity.slug}/${currentService.slug}#service`,
+          '@id': `https://www.evonixtec.com/locations/${currentCity.slug}/${currentService.slug}#service`,
           name: `${currentService.shortName} in ${currentCity.name}`,
           serviceType: currentService.name,
           provider: {
@@ -164,7 +164,7 @@ export const LocalClusterLandingPage: React.FC<LocalClusterLandingPageProps> = (
         },
         {
           '@type': 'FAQPage',
-          '@id': `https://evonixtec.com/location/${currentCity.slug}/${currentService.slug}#faq`,
+          '@id': `https://www.evonixtec.com/locations/${currentCity.slug}/${currentService.slug}#faq`,
           mainEntity: cluster.localFaqs.map((faq) => ({
             '@type': 'Question',
             name: faq.q,
@@ -181,25 +181,25 @@ export const LocalClusterLandingPage: React.FC<LocalClusterLandingPageProps> = (
               '@type': 'ListItem',
               position: 1,
               name: 'Home',
-              item: 'https://evonixtec.com/',
+              item: 'https://www.evonixtec.com/',
             },
             {
               '@type': 'ListItem',
               position: 2,
               name: 'Locations',
-              item: 'https://evonixtec.com/locations',
+              item: 'https://www.evonixtec.com/locations',
             },
             {
               '@type': 'ListItem',
               position: 3,
               name: currentCity.name,
-              item: `https://evonixtec.com/location/${currentCity.slug}`,
+              item: `https://www.evonixtec.com/locations/${currentCity.slug}`,
             },
             {
               '@type': 'ListItem',
               position: 4,
               name: currentService.shortName,
-              item: `https://evonixtec.com/location/${currentCity.slug}/${currentService.slug}`,
+              item: `https://www.evonixtec.com/locations/${currentCity.slug}/${currentService.slug}`,
             },
           ],
         },
@@ -266,9 +266,9 @@ export const LocalClusterLandingPage: React.FC<LocalClusterLandingPageProps> = (
                 <Zap className="w-3.5 h-3.5 text-red-600" />
                 Local SEO Service Cluster Generator
               </span>
-              <h2 className="text-lg sm:text-xl font-extrabold text-slate-900">
-                Explore Direct On-Site Support by Industrial Area
-              </h2>
+              <p className="text-lg sm:text-xl font-extrabold text-slate-900">
+                Find Direct On-Site Support by Industrial Area
+              </p>
             </div>
             <div className="flex items-center gap-2 text-xs font-medium text-slate-600">
               <Clock className="w-4 h-4 text-emerald-600" />
@@ -423,10 +423,10 @@ export const LocalClusterLandingPage: React.FC<LocalClusterLandingPageProps> = (
                 <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
                   Mobile Unit Metrics
                 </span>
-                <h3 className="text-base font-extrabold text-white flex items-center gap-1.5 mt-0.5">
+                <h2 className="text-base font-extrabold text-white flex items-center gap-1.5 mt-0.5">
                   <Truck className="w-4 h-4 text-red-500" />
                   <span>{currentCity.name} Field Station</span>
-                </h3>
+                </h2>
               </div>
 
               <div className="space-y-3 text-xs">
@@ -632,6 +632,7 @@ export const LocalClusterLandingPage: React.FC<LocalClusterLandingPageProps> = (
                     <input
                       type="text"
                       required
+                      aria-label="Your Name or Factory Representative"
                       placeholder="e.g. Tariq Mehmood / Director"
                       value={dispatchName}
                       onChange={(e) => setDispatchName(e.target.value)}
@@ -647,6 +648,7 @@ export const LocalClusterLandingPage: React.FC<LocalClusterLandingPageProps> = (
                       <input
                         type="tel"
                         required
+                        aria-label="WhatsApp Contact Phone Number"
                         placeholder="0300-XXXXXXX"
                         value={dispatchPhone}
                         onChange={(e) => setDispatchPhone(e.target.value)}
@@ -660,6 +662,7 @@ export const LocalClusterLandingPage: React.FC<LocalClusterLandingPageProps> = (
                       </label>
                       <input
                         type="text"
+                        aria-label="Company or Industrial Unit Name"
                         placeholder="e.g. Surgical / Cutlery"
                         value={dispatchCompany}
                         onChange={(e) => setDispatchCompany(e.target.value)}
@@ -673,6 +676,7 @@ export const LocalClusterLandingPage: React.FC<LocalClusterLandingPageProps> = (
                       Target Area in {currentCity.name} *
                     </label>
                     <select
+                      aria-label={`Target Area in ${currentCity.name}`}
                       value={dispatchZone}
                       onChange={(e) => setDispatchZone(e.target.value)}
                       className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-red-500 focus:ring-1 focus:ring-red-500 text-xs font-semibold text-slate-900 bg-white"
@@ -724,6 +728,7 @@ export const LocalClusterLandingPage: React.FC<LocalClusterLandingPageProps> = (
                     </label>
                     <input
                       type="text"
+                      aria-label="Fault or Equipment Detail"
                       placeholder="e.g. Server down, thermal printer jammed, dead laptop"
                       value={dispatchFault}
                       onChange={(e) => setDispatchFault(e.target.value)}

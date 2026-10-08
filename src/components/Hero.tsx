@@ -51,7 +51,7 @@ export const Hero: React.FC<HeroProps> = ({
     software: {
       title: 'Software & POS Development',
       badge: 'Enterprise & Retail Automation',
-      desc: 'Robust custom Point of Sale (POS) systems, inventory management, ERP solutions, and FBR-compliant digital invoicing engineered for retail, wholesale, and export manufacturers.',
+      desc: 'Solid custom Point of Sale (POS) systems, inventory management, ERP solutions, and FBR-compliant digital invoicing engineered for retail, wholesale, and export manufacturers.',
       features: [
         'Retail & Wholesale POS with Barcode Automation',
         'FBR Digital Invoicing & Fiscal Tax Compliance',
@@ -145,7 +145,7 @@ export const Hero: React.FC<HeroProps> = ({
               className="px-5 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-sm sm:text-base border border-slate-300 shadow-2xs hover:shadow-xs transition-all flex items-center gap-2 cursor-pointer hover:-translate-y-0.5"
             >
               <Layers className="w-4 h-4 text-red-600" />
-              <span>Explore Tech Blogs & Case Studies</span>
+              <span>View Tech Blogs & Case Studies</span>
             </button>
           </div>
         </div>
@@ -198,9 +198,9 @@ export const Hero: React.FC<HeroProps> = ({
                 {pillars[activeTab].badge}
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
                 {pillars[activeTab].title}
-              </h3>
+              </h2>
 
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
                 {pillars[activeTab].desc}
@@ -248,7 +248,7 @@ export const Hero: React.FC<HeroProps> = ({
                     01
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-slate-900">Direct Dubai Engineering</h4>
+                    <h3 className="text-xs font-bold text-slate-900">Direct Dubai Engineering</h3>
                     <p className="text-[11px] text-slate-500">20+ years of corporate UAE standards implemented locally</p>
                   </div>
                 </div>
@@ -258,7 +258,7 @@ export const Hero: React.FC<HeroProps> = ({
                     02
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-slate-900">Transparent Pricing</h4>
+                    <h3 className="text-xs font-bold text-slate-900">Transparent Pricing</h3>
                     <p className="text-[11px] text-slate-500">Fixed milestones, written invoices, no hidden surcharges</p>
                   </div>
                 </div>
@@ -268,7 +268,7 @@ export const Hero: React.FC<HeroProps> = ({
                     03
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-slate-900">Sialkot On-Site & Remote</h4>
+                    <h3 className="text-xs font-bold text-slate-900">Sialkot On-Site & Remote</h3>
                     <p className="text-[11px] text-slate-500">Physical technicians & 24/7 remote monitoring</p>
                   </div>
                 </div>

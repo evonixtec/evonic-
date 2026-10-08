@@ -215,6 +215,7 @@ export const OfflineDataSyncEngine: React.FC = () => {
                 </label>
                 <input
                   type="text"
+                  aria-label="Operator or Client Name"
                   value={newOperatorName}
                   onChange={(e) => setNewOperatorName(e.target.value)}
                   placeholder="e.g. Master Asif (Stitching Unit 3)"
@@ -228,6 +229,7 @@ export const OfflineDataSyncEngine: React.FC = () => {
                 </label>
                 <input
                   type="text"
+                  aria-label="Job Card or Transaction Details"
                   value={newDetails}
                   onChange={(e) => setNewDetails(e.target.value)}
                   placeholder="e.g. Scanned 50 match soccer balls batch #A-89"

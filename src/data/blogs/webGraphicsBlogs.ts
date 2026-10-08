@@ -7,7 +7,7 @@ export const WEB_GRAPHICS_BLOGS: BlogPost[] = [
     title: 'Responsive Web Design Best Practices in 2025: From Mobile Screens to 4K Displays',
     category: 'web-graphics',
     categoryLabel: 'Web & Graphic Design',
-    excerpt: 'Discover the essential CSS Grid, Flexbox, dynamic typography, and fluid container techniques that ensure your business website looks stunning across all screen sizes.',
+    excerpt: 'Learn the essential CSS Grid, Flexbox, dynamic typography, and fluid container techniques that ensure your business website looks stunning across all screen sizes.',
     readTime: '6 min read',
     publishedDate: '2025-01-15',
     author: { name: 'Raza Muhammad', role: 'Lead Frontend Architect' },
@@ -16,7 +16,7 @@ export const WEB_GRAPHICS_BLOGS: BlogPost[] = [
     metaDescription: 'Complete guide to responsive web design in 2025. Master fluid typography, mobile-first breakpoints, and multi-device usability.',
     targetKeywords: ['responsive web design', 'mobile first design', 'fluid typography', 'CSS grid layout', 'website developer Sialkot'],
     internalLinks: [
-      { label: 'Explore Our Web Services', targetSection: 'services', anchorText: 'Website Development Services' },
+      { label: 'View Our Web Services', targetSection: 'services', anchorText: 'Website Development Services' },
       { label: 'Request Web Quote', targetSection: 'contact', anchorText: 'Get a Custom Web Design Quote' },
     ],
     content: `
@@ -85,7 +85,7 @@ Color increases brand recognition by up to 80%. When building digital presences 
 Strategic Color Archetypes
 Deep Crimson & Ruby (#C81D25): Represents dynamic energy, bold innovation, urgency, and technological vanguard.
 Midnight Slate (#0F172A): Provides authoritative stability, precision engineering, and premium executive presence.
-Vibrant Cyan & Electric Blue: Conveys digital security, cloud connectivity, and seamless technological efficiency.
+Vibrant Cyan & Electric Blue: Conveys digital security, cloud connectivity, and smooth technological efficiency.
     `,
   },
   {
@@ -127,7 +127,7 @@ Golden Rules of Web Typography
     author: { name: 'Zainab Fatima', role: 'UI/UX Design Specialist' },
     tags: ['Landing Pages', 'Conversion', 'Speed', 'Lead Generation'],
     metaTitle: 'High-Performance Landing Page Design Guide | evonix',
-    metaDescription: 'Discover the exact anatomy of high-converting landing pages engineered for speed, technical SEO, and direct WhatsApp lead capture.',
+    metaDescription: 'See the exact anatomy of high-converting landing pages engineered for speed, technical SEO, and direct WhatsApp lead capture.',
     targetKeywords: ['landing page design', 'high converting pages', 'lead generation website', 'web developer Pakistan'],
     internalLinks: [
       { label: 'Instant Quote Calculator', targetSection: 'contact', anchorText: 'Build a Landing Page' },
@@ -288,7 +288,7 @@ Keyboard Navigation: Ensure every interactive button and modal can be opened and
     metaDescription: 'Create engaging, lag-free web animations using GPU-accelerated transforms and modern motion libraries without bloating load times.',
     targetKeywords: ['web animations', 'CSS transform performance', 'Framer Motion React', 'smooth website transitions'],
     internalLinks: [
-      { label: 'Explore Web Portfolio', targetSection: 'services', anchorText: 'Interactive Web Experiences' },
+      { label: 'View Web Portfolio', targetSection: 'services', anchorText: 'Interactive Web Experiences' },
     ],
     content: `
 Purposeful Motion vs Distracting Clutter
@@ -388,7 +388,7 @@ The Four Irreplaceable B2B Pillars
     author: { name: 'Zainab Fatima', role: 'UI/UX Design Specialist' },
     tags: ['Micro-Interactions', 'UX Polish', 'Frontend', 'Web Design'],
     metaTitle: 'Micro-Interactions in Web Usability | evonix',
-    metaDescription: 'Understand how subtle UI micro-interactions give users confidence, reduce form abandonment, and elevate perception of quality.',
+    metaDescription: 'Understand how subtle UI micro-interactions give users confidence, reduce form abandonment, and raise perception of quality.',
     targetKeywords: ['micro interactions UX', 'button feedback design', 'form validation UX', 'modern UI details'],
     internalLinks: [
       { label: 'Interactive Web Services', targetSection: 'services', anchorText: 'UI & UX Design Services' },
@@ -407,16 +407,16 @@ Without micro-interactions, websites feel rigid, dead, and unresponsive, leaving
     title: 'Dark Mode vs Light Mode Design: Designing Flawless Dual-Theme Websites',
     category: 'web-graphics',
     categoryLabel: 'Web & Graphic Design',
-    excerpt: 'How to design seamless theme switchers with CSS custom properties, WCAG contrast compliance, and balanced visual comfort in both modes.',
+    excerpt: 'How to design smooth theme switchers with CSS custom properties, WCAG contrast compliance, and balanced visual comfort in both modes.',
     readTime: '6 min read',
     publishedDate: '2025-03-22',
     author: { name: 'Raza Muhammad', role: 'Lead Frontend Architect' },
     tags: ['Dark Mode', 'Light Mode', 'Theming', 'CSS Variables'],
     metaTitle: 'Mastering Dark Mode and Light Mode Web Design | evonix',
-    metaDescription: 'Comprehensive guide to dual-theme website design: color luminance limits, elevated surfaces, and seamless theme switching.',
+    metaDescription: 'Comprehensive guide to dual-theme website design: color luminance limits, raised surfaces, and smooth theme switching.',
     targetKeywords: ['dark mode design', 'light mode website', 'theme switcher CSS', 'accessible color palette'],
     internalLinks: [
-      { label: 'Experience evonix Dual Theme', targetSection: 'services', anchorText: 'Explore Modern Web Theming' },
+      { label: 'Experience evonix Dual Theme', targetSection: 'services', anchorText: 'View Modern Web Theming' },
     ],
     content: `
 Dark Mode vs Light Mode: Beyond Mere Inverted Colors

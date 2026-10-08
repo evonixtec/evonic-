@@ -111,7 +111,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
             Contact Us & Sialkot Office
           </h2>
           <p className="text-slate-700 text-base sm:text-lg font-bold">
-            Got a question? Call us. We reply in 2 hours with direct technician dispatch.
+            Got a question? Call us. We reply in 2 hours.
           </p>
         </div>
 
@@ -315,11 +315,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                   {/* Country & Name */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
+                      <label htmlFor="contact-country" className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
                         <span className="w-2 h-2 rounded-full bg-blue-500" />
                         <span>Your Country / Region *</span>
                       </label>
                       <select
+                        id="contact-country"
+                        aria-label="Your Country or Region"
                         value={selectedCountryCode}
                         onChange={(e) => {
                           setSelectedCountryCode(e.target.value);
@@ -339,11 +341,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
+                      <label htmlFor="contact-name" className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
                         <span className="w-2 h-2 rounded-full bg-red-500" />
                         <span>Your Full Name *</span>
                       </label>
                       <input
+                        id="contact-name"
+                        aria-label="Your Full Name"
                         type="text"
                         required
                         placeholder="e.g. Tariq Mehmood / John Miller"
@@ -357,7 +361,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                   {/* Phone & Email */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
+                      <label htmlFor="contact-phone" className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
                         <span className="w-2 h-2 rounded-full bg-emerald-500" />
                         <span>Phone / WhatsApp *</span>
                       </label>
@@ -366,6 +370,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                           {selectedCountry.flag} {selectedCountry.dialCode}
                         </span>
                         <input
+                          id="contact-phone"
+                          aria-label="Phone or WhatsApp Number"
                           type="tel"
                           required
                           placeholder={`e.g. ${selectedCountry.placeholder}`}
@@ -377,11 +383,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
+                      <label htmlFor="contact-email" className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
                         <span className="w-2 h-2 rounded-full bg-blue-500" />
                         <span>Email Address (Optional)</span>
                       </label>
                       <input
+                        id="contact-email"
+                        aria-label="Email Address"
                         type="email"
                         placeholder="name@company.com"
                         value={formEmail}
@@ -394,11 +402,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                   {/* Service & Location */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
+                      <label htmlFor="contact-service" className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
                         <span className="w-2 h-2 rounded-full bg-purple-500" />
                         <span>Service Required *</span>
                       </label>
                       <select
+                        id="contact-service"
+                        aria-label="Service Required"
                         value={formService}
                         onChange={(e) => setFormService(e.target.value)}
                         className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/70 border border-slate-300 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-purple-500 focus:bg-white focus:ring-4 focus:ring-purple-500/10 transition-all shadow-2xs font-semibold"
@@ -414,7 +424,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
+                      <label htmlFor="contact-location" className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
                         <span className="w-2 h-2 rounded-full bg-amber-500" />
                         <span>City / District *</span>
                       </label>
@@ -431,6 +441,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                         </div>
                       ) : (
                         <input
+                          id="contact-location"
+                          aria-label="City or District"
                           type="text"
                           required
                           placeholder="e.g. Dubai, UAE / London, UK / New York, USA"
@@ -443,11 +455,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
+                    <label htmlFor="contact-message" className="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full bg-rose-500" />
                       <span>Message / Project Details *</span>
                     </label>
                     <textarea
+                      id="contact-message"
+                      aria-label="Message or Project Details"
                       rows={3}
                       required
                       placeholder="Briefly describe your website needs, POS software requirements, or hardware issues..."

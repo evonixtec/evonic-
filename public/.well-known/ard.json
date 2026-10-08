@@ -1,0 +1,75 @@
+{
+  "$schema": "https://agent-resource-discovery.org/schemas/v0.91/ai-catalog.json",
+  "version": "1.0.0",
+  "name": "evonix technologies AI Catalog",
+  "description": "Industrial IT engineering, hardware diagnostic tools, and export calculators for Sialkot and international manufacturers.",
+  "publisher": {
+    "name": "evonix technologies",
+    "url": "https://www.evonixtec.com",
+    "email": "evonixtec@gmail.com"
+  },
+  "representativeQueries": [
+    "Generate commercial invoice with barcode for export cargo",
+    "Calculate CBM volumetric weight for shipping container",
+    "Troubleshoot industrial thermal receipt printer errors",
+    "Estimate e-commerce profit margin and courier COD fees",
+    "Track live hardware RMA repair ticket status"
+  ],
+  "items": [
+    {
+      "id": "urn:evonixtec:invoice-generator",
+      "displayName": "Global Micro-Invoice Generator",
+      "description": "Client-side commercial and tax invoice generator with Code128 barcodes and multi-currency support.",
+      "mediaType": "text/html",
+      "url": "https://www.evonixtec.com/invoice",
+      "representativeQueries": [
+        "Create export commercial invoice",
+        "Generate PDF invoice with barcode"
+      ]
+    },
+    {
+      "id": "urn:evonixtec:cbm-calculator",
+      "displayName": "B2B Industrial CBM & Freight Engine",
+      "description": "Volumetric weight and container stuffing calculator for air and sea freight consignments.",
+      "mediaType": "text/html",
+      "url": "https://www.evonixtec.com/cbm-calculator",
+      "representativeQueries": [
+        "Calculate CBM cargo volume",
+        "Calculate container packing limit 20ft 40ft"
+      ]
+    },
+    {
+      "id": "urn:evonixtec:ecommerce-calculator",
+      "displayName": "E-Commerce Margin & COD Simulator",
+      "description": "Courier cash-on-delivery tariffs, RTO loss simulation, and target CAC/ROAS margin solver.",
+      "mediaType": "text/html",
+      "url": "https://www.evonixtec.com/ecommerce-calculator",
+      "representativeQueries": [
+        "Calculate e-commerce COD profit margin",
+        "Simulate courier return to origin loss"
+      ]
+    },
+    {
+      "id": "urn:evonixtec:repair-tracker",
+      "displayName": "Live RMA Bench Repair Tracker",
+      "description": "Real-time hardware maintenance and motherboard diagnostic repair status lookup.",
+      "mediaType": "text/html",
+      "url": "https://www.evonixtec.com/live-repair-tracker",
+      "representativeQueries": [
+        "Track hardware repair ticket status",
+        "Check RMA laptop motherboard repair"
+      ]
+    },
+    {
+      "id": "urn:evonixtec:printer-diagnostics",
+      "displayName": "Thermal Receipt Printer Diagnostic Engine",
+      "description": "Diagnostic wizard for ESC/POS, TSC, and Zebra barcode and receipt printers.",
+      "mediaType": "text/html",
+      "url": "https://www.evonixtec.com/printer-diagnostics",
+      "representativeQueries": [
+        "Fix thermal receipt printer cutter jam",
+        "Diagnose POS barcode printer error"
+      ]
+    }
+  ]
+}

@@ -153,6 +153,7 @@ export const ThermalLifecyclePredictor: React.FC<ThermalLifecyclePredictorProps>
               </div>
               <input
                 type="range"
+                aria-label="Usage time in months since purchase or service"
                 min="1"
                 max="48"
                 value={usageMonths}

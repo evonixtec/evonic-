@@ -36,7 +36,7 @@ export const BLOG_CATEGORIES: BlogCategoryMeta[] = [
     id: 'all',
     label: 'All Articles',
     count: ALL_BLOGS.length,
-    description: 'Explore our complete library of 80+ technical guides, Daska Road & Rangpura field case studies, and diagnostic insights.',
+    description: 'View our complete library of 80+ technical guides, Daska Road & Rangpura field case studies, and diagnostic insights.',
   },
   {
     id: 'web-graphics',

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { PageId, SectionId } from './types';
 import { ScrollProgressBar } from './components/ScrollProgressBar';
@@ -12,21 +12,12 @@ import { GlobalReach } from './components/GlobalReach';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { Portfolio } from './components/Portfolio';
 import { Testimonials } from './components/Testimonials';
-import { Shop } from './components/Shop';
-import { BlogHub } from './components/BlogHub';
-import { PolicyModal, PolicyType } from './components/PolicyModal';
 import { FAQ } from './components/FAQ';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
-import { QuoteModal } from './components/QuoteModal';
-import { SearchModal } from './components/SearchModal';
+import type { PolicyType } from './components/PolicyModal';
 import { SecurityAlertToast } from './components/SecurityAlertToast';
 import { PageHeaderBanner } from './components/common/PageHeaderBanner';
-import { GlobalInvoiceHub } from './components/GlobalInvoiceHub';
-import EcommerceCalculator from './components/EcommerceCalculator';
-import CbmCalculator from './components/CbmCalculator';
-import { DeveloperCostCalculator } from './components/DeveloperCostCalculator';
-import { AiVisibilityChecker } from './components/AiVisibilityChecker';
 import { HomeServicesPreview } from './components/home/HomeServicesPreview';
 import { HomeAboutPreview } from './components/home/HomeAboutPreview';
 import { HomePortfolioPreview } from './components/home/HomePortfolioPreview';
@@ -34,34 +25,54 @@ import { HomeShopPreview } from './components/home/HomeShopPreview';
 import { COMPANY_INFO } from './data/content';
 import { initAntiCopyShield, initializeConsoleShield } from './lib/security';
 import { applyPageSEO } from './lib/seo';
-import { SialkotAreaCoverage } from './components/SialkotAreaCoverage';
-import { LaptopRepairEstimator } from './components/LaptopRepairEstimator';
-import { ProjectCostCalculator } from './components/ProjectCostCalculator';
-import { SialkotSeoKeywordsHub } from './components/SialkotSeoKeywordsHub';
-import { KeywordMappingHub } from './components/KeywordMappingHub';
-import { CentralizedSeoDashboard } from './components/CentralizedSeoDashboard';
-import { LiveRepairTracker } from './components/LiveRepairTracker';
-import { SialkotIndustrialSolutions } from './components/SialkotIndustrialSolutions';
-import { HardwareBeforeAfterGallery } from './components/HardwareBeforeAfterGallery';
-import { PCBPowerSequenceSimulator } from './components/PCBPowerSequenceSimulator';
-import { ThermalLifecyclePredictor } from './components/ThermalLifecyclePredictor';
-import { OfflineDataSyncEngine } from './components/OfflineDataSyncEngine';
-import { LiveSupportChat } from './components/LiveSupportChat';
-import { HardwareBlinkBeepIdentifier } from './components/HardwareBlinkBeepIdentifier';
-import { ThermalHotspotInspector } from './components/ThermalHotspotInspector';
-import { FactoryNetworkLatencyTester } from './components/FactoryNetworkLatencyTester';
-import { BenchIntakePass } from './components/BenchIntakePass';
-import { ExportBarcodeLabelGenerator } from './components/ExportBarcodeLabelGenerator';
-import { PrinterDiagnosticTroubleshooter } from './components/PrinterDiagnosticTroubleshooter';
 import { ToolsHub } from './components/ToolsHub';
 import { ToolWorkspaceHeader } from './components/common/ToolWorkspaceHeader';
 import { MobileBottomNav } from './components/MobileBottomNav';
 import { PWAInstallBanner } from './components/PWAInstallBanner';
-import { LocalClusterLandingPage } from './components/LocalClusterLandingPage';
-import { AiHardwareDiagnosticBoard } from './components/AiHardwareDiagnosticBoard';
 import { LocalCity, ClusterService, LOCAL_CITIES, CLUSTER_SERVICES } from './data/localClusters';
 import { MessageSquare, Phone, ArrowUp, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2, FileText, Barcode, Printer, Boxes, SlidersHorizontal, Calculator, Clock, Wifi } from 'lucide-react';
 import { isToolPage } from './lib/toolUtils';
+
+// Lazy-loaded heavy tools, calculators and modals to reduce main bundle and speed up initial page render
+const GlobalInvoiceHub = lazy(() => import('./components/GlobalInvoiceHub').then(m => ({ default: m.GlobalInvoiceHub })));
+const EcommerceCalculator = lazy(() => import('./components/EcommerceCalculator'));
+const CbmCalculator = lazy(() => import('./components/CbmCalculator'));
+const DeveloperCostCalculator = lazy(() => import('./components/DeveloperCostCalculator').then(m => ({ default: m.DeveloperCostCalculator })));
+const AiVisibilityChecker = lazy(() => import('./components/AiVisibilityChecker').then(m => ({ default: m.AiVisibilityChecker })));
+const LaptopRepairEstimator = lazy(() => import('./components/LaptopRepairEstimator').then(m => ({ default: m.LaptopRepairEstimator })));
+const ProjectCostCalculator = lazy(() => import('./components/ProjectCostCalculator').then(m => ({ default: m.ProjectCostCalculator })));
+const SialkotAreaCoverage = lazy(() => import('./components/SialkotAreaCoverage').then(m => ({ default: m.SialkotAreaCoverage })));
+const SialkotSeoKeywordsHub = lazy(() => import('./components/SialkotSeoKeywordsHub').then(m => ({ default: m.SialkotSeoKeywordsHub })));
+const KeywordMappingHub = lazy(() => import('./components/KeywordMappingHub').then(m => ({ default: m.KeywordMappingHub })));
+const CentralizedSeoDashboard = lazy(() => import('./components/CentralizedSeoDashboard').then(m => ({ default: m.CentralizedSeoDashboard })));
+const LiveRepairTracker = lazy(() => import('./components/LiveRepairTracker').then(m => ({ default: m.LiveRepairTracker })));
+const SialkotIndustrialSolutions = lazy(() => import('./components/SialkotIndustrialSolutions').then(m => ({ default: m.SialkotIndustrialSolutions })));
+const HardwareBeforeAfterGallery = lazy(() => import('./components/HardwareBeforeAfterGallery').then(m => ({ default: m.HardwareBeforeAfterGallery })));
+const PCBPowerSequenceSimulator = lazy(() => import('./components/PCBPowerSequenceSimulator').then(m => ({ default: m.PCBPowerSequenceSimulator })));
+const ThermalLifecyclePredictor = lazy(() => import('./components/ThermalLifecyclePredictor').then(m => ({ default: m.ThermalLifecyclePredictor })));
+const OfflineDataSyncEngine = lazy(() => import('./components/OfflineDataSyncEngine').then(m => ({ default: m.OfflineDataSyncEngine })));
+const HardwareBlinkBeepIdentifier = lazy(() => import('./components/HardwareBlinkBeepIdentifier').then(m => ({ default: m.HardwareBlinkBeepIdentifier })));
+const ThermalHotspotInspector = lazy(() => import('./components/ThermalHotspotInspector').then(m => ({ default: m.ThermalHotspotInspector })));
+const FactoryNetworkLatencyTester = lazy(() => import('./components/FactoryNetworkLatencyTester').then(m => ({ default: m.FactoryNetworkLatencyTester })));
+const BenchIntakePass = lazy(() => import('./components/BenchIntakePass').then(m => ({ default: m.BenchIntakePass })));
+const ExportBarcodeLabelGenerator = lazy(() => import('./components/ExportBarcodeLabelGenerator').then(m => ({ default: m.ExportBarcodeLabelGenerator })));
+const PrinterDiagnosticTroubleshooter = lazy(() => import('./components/PrinterDiagnosticTroubleshooter').then(m => ({ default: m.PrinterDiagnosticTroubleshooter })));
+const LocalClusterLandingPage = lazy(() => import('./components/LocalClusterLandingPage').then(m => ({ default: m.LocalClusterLandingPage })));
+const AiHardwareDiagnosticBoard = lazy(() => import('./components/AiHardwareDiagnosticBoard').then(m => ({ default: m.AiHardwareDiagnosticBoard })));
+const Shop = lazy(() => import('./components/Shop').then(m => ({ default: m.Shop })));
+const BlogHub = lazy(() => import('./components/BlogHub').then(m => ({ default: m.BlogHub })));
+const QuoteModal = lazy(() => import('./components/QuoteModal').then(m => ({ default: m.QuoteModal })));
+const PolicyModal = lazy(() => import('./components/PolicyModal').then(m => ({ default: m.PolicyModal })));
+const SearchModal = lazy(() => import('./components/SearchModal').then(m => ({ default: m.SearchModal })));
+const LiveSupportChat = lazy(() => import('./components/LiveSupportChat').then(m => ({ default: m.LiveSupportChat })));
+
+// Loading spinner fallback for lazy chunks
+const LazyLoaderFallback: React.FC = () => (
+  <div className="py-24 flex flex-col items-center justify-center space-y-3 min-h-[300px]">
+    <div className="w-9 h-9 rounded-full border-3 border-slate-200 border-t-red-600 animate-spin" />
+    <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">Loading Evonix Engine...</span>
+  </div>
+);
 
 export default function App() {
   // Helper to extract city and service cluster from URL path
@@ -598,7 +609,7 @@ export default function App() {
               </div>
             </section>
 
-            {/* 1g. Sialkot Citywide Direct On-Site Coverage Explorer */}
+            {/* 1g. Sialkot Citywide Direct On-Site Coverage Finder */}
             <SialkotAreaCoverage
               onOpenQuote={handleOpenQuote}
               onNavigatePage={navigateToPage}
@@ -715,18 +726,6 @@ export default function App() {
 
             {/* LaserJet & Thermal Printer Troubleshooter */}
             <PrinterDiagnosticTroubleshooter onOpenQuote={handleOpenQuote} />
-
-            {/* Sialkot Export Factory ERP & Network Latency Benchmark */}
-            <FactoryNetworkLatencyTester />
-
-            {/* Sialkot Export Barcode & Thermal Shipping Label Studio */}
-            <ExportBarcodeLabelGenerator onOpenQuote={handleOpenQuote} />
-
-            {/* Interactive Web & POS Software Project Cost Calculator */}
-            <ProjectCostCalculator
-              onOpenQuote={handleOpenQuote}
-              onNavigatePage={(page) => navigateToPage(page as NavPageId)}
-            />
 
             {/* Technologies We Use (Tech Stack Badges) */}
             <Technologies onExploreService={(svc) => handleOpenQuote(svc || 'Website Development')} />

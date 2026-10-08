@@ -185,7 +185,7 @@ export const LOCAL_CITIES: Record<LocalCity['slug'], LocalCity> = {
     infraChallenge:
       'Fine conductive metal grinding and polishing dust floating in workshops, settling on computer fans and motherboard heatsinks, causing sudden thermal shutdowns and motherboard short circuits.',
     localSolutionNote:
-      'evonix engineers install sealed positive-pressure dust filters, chemical conformal coatings on motherboards, and robust offline POS billing for bustling GT Road showrooms.',
+      'evonix engineers install sealed positive-pressure dust filters, chemical conformal coatings on motherboards, and reliable offline POS billing for bustling GT Road showrooms.',
     phoneContact: '+92 316 7637844',
     verifiedClients: [
       {

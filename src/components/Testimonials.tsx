@@ -282,10 +282,10 @@ export const Testimonials: React.FC<TestimonialsProps> = ({
                       </div>
 
                       <div>
-                        <h4 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                        <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
                           <span>{currentItem.clientName}</span>
                           <span className="text-sm">{currentItem.flag}</span>
-                        </h4>
+                        </h3>
                         <p className="text-xs text-slate-500">
                           {currentItem.role} •{' '}
                           <span className="text-slate-700 font-medium">

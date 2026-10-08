@@ -89,9 +89,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span>On-Duty Desk: Kolti Behram, Sialkot, Pakistan</span>
             </div>
-            <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+            <h2 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
               {COMPANY_INFO.tagline1}
-            </h3>
+            </h2>
             <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
               Got a question? Call us. We reply in 2 hours. 20+ years of Dubai IT engineering standard right here in Sialkot.
             </p>
@@ -164,10 +164,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
 
           {/* Column 2: Core Services (2 cols on lg) */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
               <Wrench className="w-3.5 h-3.5 text-red-500" />
               <span>Core Services</span>
-            </h4>
+            </h3>
             <ul className="space-y-2 text-slate-400">
               <li>
                 <button
@@ -222,10 +222,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
 
           {/* Column 3: Web Tools Suite (2 cols on lg) */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
               <Cpu className="w-3.5 h-3.5 text-red-500" />
               <span>Web Tools Hub</span>
-            </h4>
+            </h3>
             <ul className="space-y-2 text-slate-400">
               <li>
                 <button
@@ -278,10 +278,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
           <div className="lg:col-span-3 space-y-4">
             {/* Client Portfolio Sub-block */}
             <div className="space-y-2">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
                 <Briefcase className="w-3.5 h-3.5 text-red-500" />
                 <span>Client Portfolio</span>
-              </h4>
+              </h3>
               <ul className="space-y-1.5 text-slate-400">
                 <li>
                   <button
@@ -320,10 +320,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
 
             {/* Tech Blogs Sub-block */}
             <div className="space-y-2 pt-2 border-t border-slate-800/80">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
                 <BookOpen className="w-3.5 h-3.5 text-red-500" />
                 <span>Tech Blogs & Case Studies</span>
-              </h4>
+              </h3>
               <ul className="space-y-1.5 text-slate-400">
                 <li>
                   <button
@@ -363,10 +363,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
 
           {/* Column 5: Lab Address & Contact Desk (2 cols on lg) */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
               <Building2 className="w-3.5 h-3.5 text-red-500" />
               <span>Lab & Desk</span>
-            </h4>
+            </h3>
             <div className="space-y-2.5 text-slate-400">
               {/* Styled Kotli Behram Card */}
               <div className="p-3 rounded-xl bg-slate-900 border border-slate-700/80 text-slate-200 leading-snug space-y-1.5 shadow-sm">
@@ -427,9 +427,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div className="flex items-center gap-2">
               <Tag className="w-4 h-4 text-red-500 flex-shrink-0" />
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-200">
                 Quick Directory & Hub Links
-              </h4>
+              </h3>
             </div>
             <span className="text-[11px] text-slate-400">
               Serving Kolti Behram, Sialkot, Paris Road, Cantt, Daska, Sambrial & Wazirabad

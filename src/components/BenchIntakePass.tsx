@@ -261,6 +261,7 @@ export const BenchIntakePass: React.FC<BenchIntakePassProps> = ({
                   Manufacturer / Brand *
                 </label>
                 <select
+                  aria-label="Manufacturer or Brand"
                   value={brand}
                   onChange={(e) => setBrand(e.target.value)}
                   className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 text-sm font-semibold text-slate-900 bg-white"
@@ -285,6 +286,7 @@ export const BenchIntakePass: React.FC<BenchIntakePassProps> = ({
                 <input
                   type="text"
                   required
+                  aria-label="Exact Device Model or Series"
                   placeholder="e.g. Latitude 5420, ThinkPad T480, M1 Air"
                   value={deviceModel}
                   onChange={(e) => setDeviceModel(e.target.value)}
@@ -299,6 +301,7 @@ export const BenchIntakePass: React.FC<BenchIntakePassProps> = ({
               </label>
               <input
                 type="text"
+                aria-label="Serial Number or Service Tag"
                 placeholder="e.g. 7H8KL92 or under laptop barcode"
                 value={serialNumber}
                 onChange={(e) => setSerialNumber(e.target.value)}
@@ -360,6 +363,7 @@ export const BenchIntakePass: React.FC<BenchIntakePassProps> = ({
               </label>
               <textarea
                 rows={2}
+                aria-label="Additional Technical Notes or History"
                 placeholder="e.g. Laptop was working on inverter when it suddenly turned off with faint burning smell..."
                 value={customFaultNotes}
                 onChange={(e) => setCustomFaultNotes(e.target.value)}
@@ -472,6 +476,7 @@ export const BenchIntakePass: React.FC<BenchIntakePassProps> = ({
                 <input
                   type="text"
                   required
+                  aria-label="Full Customer Name"
                   placeholder="e.g. Mian Tariq / Usman Surgical"
                   value={clientName}
                   onChange={(e) => setClientName(e.target.value)}
@@ -486,6 +491,7 @@ export const BenchIntakePass: React.FC<BenchIntakePassProps> = ({
                 <input
                   type="tel"
                   required
+                  aria-label="Contact or WhatsApp Phone Number"
                   placeholder="0300-1234567"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
@@ -500,6 +506,7 @@ export const BenchIntakePass: React.FC<BenchIntakePassProps> = ({
                   Sialkot / Regional Area *
                 </label>
                 <select
+                  aria-label="Sialkot or Regional Area"
                   value={area}
                   onChange={(e) => setArea(e.target.value)}
                   className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 text-sm font-semibold text-slate-900 bg-white"
@@ -523,6 +530,7 @@ export const BenchIntakePass: React.FC<BenchIntakePassProps> = ({
                 </label>
                 <input
                   type="email"
+                  aria-label="Email for Digital Inspection Report"
                   placeholder="name@company.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}

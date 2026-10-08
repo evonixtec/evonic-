@@ -289,9 +289,9 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                   <Users className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs sm:text-sm font-bold text-slate-900">
+                  <h3 className="text-xs sm:text-sm font-bold text-slate-900">
                     Looking to hire dedicated full-time remote developers instead of fixed-scope?
-                  </h4>
+                  </h3>
                   <p className="text-[11px] text-slate-600">
                     Senior full-stack engineers in Sialkot at $22/hr vs $80/hr USA. Save $110,000+ per year.
                   </p>
@@ -372,7 +372,7 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                                 </span>
                               )}
                             </div>
-                            <h4 className="text-xs sm:text-sm font-bold mt-1.5 line-clamp-1">{tier.title}</h4>
+                            <h3 className="text-xs sm:text-sm font-bold mt-1.5 line-clamp-1">{tier.title}</h3>
                             <p className={`text-[11px] mt-1 line-clamp-2 ${isSelected ? 'text-slate-300' : 'text-slate-500'}`}>
                               {tier.description}
                             </p>
@@ -399,6 +399,7 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                       <div className="flex items-center gap-3">
                         <input
                           type="checkbox"
+                          aria-label="European Multilingual Subpath Architecture"
                           checked={addMultilingual}
                           onChange={(e) => setAddMultilingual(e.target.checked)}
                           className="w-4 h-4 rounded text-red-600 focus:ring-red-500 cursor-pointer"
@@ -421,6 +422,7 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                       <div className="flex items-center gap-3">
                         <input
                           type="checkbox"
+                          aria-label="Interactive 3D Product Customizer WebGL"
                           checked={addConfigurator}
                           onChange={(e) => setAddConfigurator(e.target.checked)}
                           className="w-4 h-4 rounded text-red-600 focus:ring-red-500 cursor-pointer"
@@ -625,6 +627,7 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                     </label>
                     <input
                       type="number"
+                      aria-label="Headcount of dedicated engineers"
                       min={1}
                       max={30}
                       value={devTeamSize}
@@ -639,6 +642,7 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                       Duration
                     </label>
                     <select
+                      aria-label="Duration of engineering engagement"
                       value={devMonths}
                       onChange={(e) => setDevMonths(parseInt(e.target.value))}
                       className="w-full p-2.5 border border-slate-200 rounded-xl bg-slate-50 text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
@@ -659,6 +663,7 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                     Primary Tech Stack
                   </label>
                   <select
+                    aria-label="Primary Tech Stack for dedicated engineers"
                     value={devTechStack}
                     onChange={(e) => setDevTechStack(e.target.value)}
                     className="w-full p-2.5 border border-slate-200 rounded-xl bg-slate-50 text-xs sm:text-sm font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
@@ -685,6 +690,7 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                         <span className="text-xs text-slate-400 mr-1">$</span>
                         <input
                           type="number"
+                          aria-label="USA or UK in-house hourly rate in USD"
                           value={devOnshoreRate}
                           onChange={(e) => setDevOnshoreRate(Math.max(1, parseFloat(e.target.value) || 0))}
                           className="w-full bg-white px-1.5 py-0.5 rounded border border-slate-300 text-xs font-bold text-slate-900"
@@ -699,6 +705,7 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                         <span className="text-xs text-slate-400 mr-1">$</span>
                         <input
                           type="number"
+                          aria-label="evonix Global offshore hourly rate in USD"
                           value={devOffshoreRate}
                           onChange={(e) => setDevOffshoreRate(Math.max(1, parseFloat(e.target.value) || 0))}
                           className="w-full bg-white px-1.5 py-0.5 rounded border border-slate-300 text-xs font-bold text-slate-900"

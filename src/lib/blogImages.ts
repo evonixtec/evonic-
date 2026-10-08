@@ -2,7 +2,7 @@
  * Blog Image Mapping & Visual Asset Engine
  * Provides deterministic, topic-relevant, high-resolution visuals for all 85+ evonix technical blogs.
  * All brand references strictly use lowercase "evonix" or "evonix technologies".
- * Uses web-accessible paths from /public/images/ so Node.js scripts (sitemap/SSG) and Vite work seamlessly.
+ * Uses web-accessible paths from /public/images/ so Node.js scripts (sitemap/SSG) and Vite work smoothly.
  */
 
 import { BlogPost, BlogInternalLink } from '../data/blogs/types';

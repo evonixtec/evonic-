@@ -693,7 +693,7 @@ export const GlobalReach: React.FC<GlobalReachProps> = ({ onOpenQuote, onNavigat
               </div>
             </div>
 
-            {/* Right 4 Cols: Active Hub Deep-Dive Card */}
+            {/* Right 4 Cols: Active Hub Detailed View Card */}
             <div className="lg:col-span-4 space-y-5">
               <div className="rounded-3xl bg-slate-900/80 border border-slate-800 p-6 shadow-2xl backdrop-blur-xl relative overflow-hidden ring-1 ring-cyan-500/20">
                 <div

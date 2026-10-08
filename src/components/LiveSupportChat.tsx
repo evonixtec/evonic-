@@ -292,8 +292,8 @@ export const LiveSupportChat: React.FC<LiveSupportChatProps> = ({ onOpenQuote })
   const [isTyping, setIsTyping] = useState(false); // Appears after 15s quiet hold
   const [unreadCount, setUnreadCount] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const holdTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const typeTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const holdTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const typeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Check and update duty engineer on every load / interval
   useEffect(() => {
@@ -1064,6 +1064,7 @@ export const LiveSupportChat: React.FC<LiveSupportChatProps> = ({ onOpenQuote })
             >
               <input
                 type="text"
+                aria-label="Type message"
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 disabled={isProcessing}
@@ -1072,6 +1073,7 @@ export const LiveSupportChat: React.FC<LiveSupportChatProps> = ({ onOpenQuote })
               />
               <button
                 type="submit"
+                aria-label="Send message"
                 disabled={!inputMessage.trim() || isProcessing}
                 className="p-2.5 rounded-xl bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white transition-colors cursor-pointer flex-shrink-0"
                 title="Send Message"

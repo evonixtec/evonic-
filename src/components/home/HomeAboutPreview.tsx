@@ -38,19 +38,19 @@ export const HomeAboutPreview: React.FC<HomeAboutPreviewProps> = ({
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
               <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
                 <ShieldCheck className="w-5 h-5 text-red-500 mb-1.5" />
-                <h4 className="text-xs font-bold text-white">UAE Quality Standards</h4>
+                <h3 className="text-xs font-bold text-white">UAE Quality Standards</h3>
                 <p className="text-[11px] text-slate-400 mt-0.5">Strict quality controls and zero-downtime protocols.</p>
               </div>
 
               <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
                 <Cpu className="w-5 h-5 text-cyan-400 mb-1.5" />
-                <h4 className="text-xs font-bold text-white">Micro-Soldering Lab</h4>
+                <h3 className="text-xs font-bold text-white">Micro-Soldering Lab</h3>
                 <p className="text-[11px] text-slate-400 mt-0.5">Motherboard chip repair with microscope accuracy.</p>
               </div>
 
               <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
                 <Clock className="w-5 h-5 text-emerald-400 mb-1.5" />
-                <h4 className="text-xs font-bold text-white">Doorstep Dispatch</h4>
+                <h3 className="text-xs font-bold text-white">Doorstep Dispatch</h3>
                 <p className="text-[11px] text-slate-400 mt-0.5">On-site engineers across all Sialkot industrial zones.</p>
               </div>
             </div>
@@ -89,7 +89,7 @@ export const HomeAboutPreview: React.FC<HomeAboutPreviewProps> = ({
                   20+
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-white">Years Corporate UAE Experience</h4>
+                  <h3 className="text-sm font-bold text-white">Years Corporate UAE Experience</h3>
                   <p className="text-xs text-slate-400 mt-0.5">Enterprise engineering across Dubai & UAE trading corridors.</p>
                 </div>
               </div>
@@ -99,7 +99,7 @@ export const HomeAboutPreview: React.FC<HomeAboutPreviewProps> = ({
                   500+
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-white">Commercial Projects Delivered</h4>
+                  <h3 className="text-sm font-bold text-white">Commercial Projects Delivered</h3>
                   <p className="text-xs text-slate-400 mt-0.5">Corporate portals, POS installations, and factory networks.</p>
                 </div>
               </div>
@@ -109,7 +109,7 @@ export const HomeAboutPreview: React.FC<HomeAboutPreviewProps> = ({
                   100%
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-white">Component-Level Diagnostics</h4>
+                  <h3 className="text-sm font-bold text-white">Component-Level Diagnostics</h3>
                   <p className="text-xs text-slate-400 mt-0.5">BGA rework, microscopic soldering & clean-room printer servicing.</p>
                 </div>
               </div>

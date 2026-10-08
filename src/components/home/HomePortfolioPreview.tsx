@@ -32,7 +32,7 @@ export const HomePortfolioPreview: React.FC<HomePortfolioPreviewProps> = ({
               Featured Client Deployments (Dubai & UAE)
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              Explore enterprise web platforms and mission-critical ERP solutions engineered for leading commercial brands in Dubai and now Sialkot.
+              Browse enterprise web platforms and mission-critical ERP solutions engineered for leading commercial brands in Dubai and now Sialkot.
             </p>
           </div>
 

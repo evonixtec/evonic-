@@ -173,6 +173,7 @@ export const ThermalHotspotInspector: React.FC = () => {
             </span>
             <input
               type="range"
+              aria-label="Bench DC injection voltage"
               min="0.8"
               max="1.8"
               step="0.1"

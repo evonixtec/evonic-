@@ -31,7 +31,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
   const [isPaused, setIsPaused] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
-  const slideTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const slideTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const totalSlides = HERO_SLIDES.length;
   const currentSlide: HeroSlide = HERO_SLIDES[currentSlideIndex];
