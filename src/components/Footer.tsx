@@ -228,48 +228,73 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             </h3>
             <ul className="space-y-2 text-slate-400">
               <li>
-                <button
-                  onClick={() => onNavigate('invoice')}
+                <a
+                  href="/invoice"
+                  onClick={(e) => { e.preventDefault(); onNavigate('invoice'); }}
                   className="hover:text-red-400 transition-colors text-left cursor-pointer text-amber-300 font-bold flex items-center gap-1.5"
                 >
                   <span>Micro-Invoice Generator</span>
                   <span className="text-[9px] bg-red-600 text-white px-1.5 py-0.2 rounded font-black">FREE</span>
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('ecommerce-calculator')}
+                <a
+                  href="/ai-tools-name-for-travel-itinerary"
+                  onClick={(e) => { e.preventDefault(); onNavigate('ai-travel-tools'); }}
+                  className="hover:text-teal-400 transition-colors text-left cursor-pointer text-teal-300 font-bold flex items-center gap-1.5"
+                >
+                  <span>10 Best AI Travel Tools</span>
+                  <span className="text-[9px] bg-teal-600 text-white px-1.5 py-0.2 rounded font-black">NEW</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/tools/ai-trip-planner"
+                  onClick={(e) => { e.preventDefault(); onNavigate('ai-trip-planner'); }}
+                  className="hover:text-teal-400 transition-colors text-left cursor-pointer text-slate-300 font-semibold flex items-center gap-1.5"
+                >
+                  <span>AI Trip Planner Engine</span>
+                  <span className="text-[9px] bg-slate-800 text-teal-400 border border-teal-500/40 px-1 py-0.2 rounded font-bold">FREE</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/factory-network-tester"
+                  onClick={(e) => { e.preventDefault(); onNavigate('factory-network-tester'); }}
+                  className="hover:text-blue-400 transition-colors text-left cursor-pointer text-blue-300 font-semibold flex items-center gap-1.5"
+                >
+                  <span>Factory Network Tester</span>
+                  <span className="text-[9px] bg-blue-900/60 text-blue-300 px-1.5 py-0.2 rounded font-bold">PING</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/ecommerce-calculator"
+                  onClick={(e) => { e.preventDefault(); onNavigate('ecommerce-calculator'); }}
                   className="hover:text-red-400 transition-colors text-left cursor-pointer text-blue-300 font-bold flex items-center gap-1.5"
                 >
                   <span>E-Commerce Margin Calc</span>
                   <span className="text-[9px] bg-blue-600 text-white px-1.5 py-0.2 rounded font-black">TOOL</span>
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('cbm-calculator')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-amber-300 font-bold flex items-center gap-1.5"
+                <a
+                  href="/export-barcode-studio"
+                  onClick={(e) => { e.preventDefault(); onNavigate('export-barcode-studio'); }}
+                  className="hover:text-amber-400 transition-colors text-left cursor-pointer text-amber-300 font-semibold flex items-center gap-1.5"
                 >
-                  <span>Export CBM Cargo Engine</span>
-                  <span className="text-[9px] bg-amber-500 text-slate-900 px-1.5 py-0.2 rounded font-black">EXPORT</span>
-                </button>
+                  <span>Export Barcode Studio</span>
+                  <span className="text-[9px] bg-amber-500 text-slate-900 px-1.5 py-0.2 rounded font-black">BARCODE</span>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('developer-cost-calculator')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-emerald-300 font-bold flex items-center gap-1.5"
-                >
-                  <span>Developer Cost Calculator</span>
-                  <span className="text-[9px] bg-emerald-600 text-white px-1.5 py-0.2 rounded font-black">72% OFF</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('home')}
+                <a
+                  href="/live-repair-tracker"
+                  onClick={(e) => { e.preventDefault(); onNavigate('live-repair-tracker'); }}
                   className="hover:text-red-400 transition-colors text-left cursor-pointer text-slate-300 flex items-center gap-1"
                 >
                   <span>Live RMA Repair Tracker</span>
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -475,19 +500,45 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
           </div>
 
           <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-            <button
-              onClick={() => onNavigate('portfolio')}
+            <a
+              href="/about"
+              onClick={(e) => { e.preventDefault(); onNavigate('about'); }}
+              className="hover:text-red-400 transition-colors cursor-pointer text-slate-400 font-semibold"
+            >
+              About
+            </a>
+            <span>•</span>
+            <a
+              href="/portfolio"
+              onClick={(e) => { e.preventDefault(); onNavigate('portfolio'); }}
               className="hover:text-red-400 transition-colors cursor-pointer text-slate-400 font-semibold"
             >
               Portfolio
-            </button>
+            </a>
             <span>•</span>
-            <button
-              onClick={() => onNavigate('guides')}
+            <a
+              href="/guides"
+              onClick={(e) => { e.preventDefault(); onNavigate('guides'); }}
               className="hover:text-red-400 transition-colors cursor-pointer text-slate-400 font-semibold"
             >
-              Blogs
-            </button>
+              Guides
+            </a>
+            <span>•</span>
+            <a
+              href="/locations"
+              onClick={(e) => { e.preventDefault(); onNavigate('locations'); }}
+              className="hover:text-red-400 transition-colors cursor-pointer text-slate-400 font-semibold"
+            >
+              Locations
+            </a>
+            <span>•</span>
+            <a
+              href="/contact"
+              onClick={(e) => { e.preventDefault(); onNavigate('contact'); }}
+              className="hover:text-red-400 transition-colors cursor-pointer text-slate-400 font-semibold"
+            >
+              Contact
+            </a>
             <span>•</span>
             {onOpenPolicy && (
               <>

@@ -47,7 +47,9 @@ export type NavPageId =
   | 'ai-visibility-checker'
   | 'live-repair-tracker'
   | 'printer-diagnostics'
-  | 'factory-network-tester';
+  | 'factory-network-tester'
+  | 'ai-trip-planner'
+  | 'ai-travel-tools';
 
 interface NavbarProps {
   currentPage: NavPageId;

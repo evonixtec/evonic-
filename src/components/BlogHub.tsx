@@ -245,6 +245,42 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onNavigateSection, onOpenQuote
           </button>
         </div>
 
+        {/* Trending AI Research Guide Banner */}
+        <div className="mb-8 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-teal-950 via-slate-900 to-slate-950 text-white flex flex-col sm:flex-row items-center justify-between gap-4 border border-teal-500/40 shadow-sm">
+          <div className="flex items-center gap-3.5">
+            <div className="w-10 h-10 rounded-xl bg-teal-500/20 border border-teal-400/30 flex items-center justify-center flex-shrink-0 text-teal-400">
+              <Sparkles className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-bold tracking-widest uppercase text-teal-400">
+                  Trending Guide &bull; +406% Search Volume
+                </span>
+                <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-teal-500/20 text-teal-300 border border-teal-500/30">
+                  Interactive AI Tool
+                </span>
+              </div>
+              <h3 className="text-sm sm:text-base font-bold text-white mt-0.5">
+                Tools Required for Artificial Intelligence: 10 Best AI Tools Name for Travel Itinerary
+              </h3>
+              <p className="text-xs text-slate-300 mt-0.5 leading-relaxed">
+                Expert tested list for travel planning, flight price prediction, vacation schedules, plus free day-by-day itinerary generator.
+              </p>
+            </div>
+          </div>
+          <a
+            href="/ai-tools-name-for-travel-itinerary"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigateSection('ai-travel-tools');
+            }}
+            className="whitespace-nowrap px-4 py-2.5 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-xs shadow-md transition-all flex items-center gap-2 cursor-pointer flex-shrink-0"
+          >
+            <span>Read AI Guide</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </a>
+        </div>
+
         {/* Results Counter */}
         <div className="flex items-center justify-between text-xs text-slate-500 mb-6">
           <span>

@@ -22,7 +22,8 @@ import {
   Bot,
   Cloud,
   Flame,
-  Plus
+  Plus,
+  Plane
 } from 'lucide-react';
 import { NavPageId } from '../types';
 import { ToolAiCloudIntegrationModal } from './common/ToolAiCloudIntegrationModal';
@@ -326,6 +327,29 @@ export const TOOLS_COLLECTION: WebToolDefinition[] = [
     icon: <Wifi className="w-6 h-6 text-teal-600" />,
     accentColor: 'border-teal-200 hover:border-teal-400 group-hover:bg-teal-50/50',
   },
+
+  // 13. AI TRIP PLANNER
+  {
+    id: 'ai-trip-planner',
+    navTarget: 'ai-trip-planner',
+    name: 'Evonixtec AI Trip Planner',
+    urduName: 'اے آئی ٹرپ پلانر',
+    shortName: 'AI Trip Planner',
+    category: 'business-export',
+    isPopular: true,
+    categoryLabel: 'AI Travel Tools',
+    regionFocus: 'Global',
+    description: 'Instant day-wise vacation itinerary generator. Automatically plans morning, afternoon, and evening sights, dining spots, and budgets for any global destination.',
+    highlights: [
+      'Generates 2 to 14 day schedules in 30 seconds',
+      'Accurate daily expense estimates for budget, moderate, and luxury travel',
+      'Transit advice and packing checklist tailored per destination',
+      'One-click export to WhatsApp, clipboard, or printable PDF',
+    ],
+    techSpec: 'GenAI Planning Engine · Geo-Clustering Algorithm · 100% Client-Side',
+    icon: <Plane className="w-6 h-6 text-teal-600" />,
+    accentColor: 'border-teal-200 hover:border-teal-400 group-hover:bg-teal-50/50',
+  },
 ];
 
 interface ToolsHubProps {
@@ -336,7 +360,7 @@ interface ToolsHubProps {
 export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<
-    'all' | 'popular' | 'mobile-core-5' | 'uk-eu' | 'usa' | 'business-export' | 'diagnostics-lab'
+    'all' | 'popular' | 'mobile-core-5' | 'ai-travel' | 'uk-eu' | 'usa' | 'business-export' | 'diagnostics-lab'
   >('all');
   const [activeModalToolId, setActiveModalToolId] = useState<string | null>(null);
   const [usageMap, setUsageMap] = useState<Record<string, number>>({});
@@ -374,6 +398,8 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
         matchesCategory = toolUsage > 5;
       } else if (selectedCategory === 'mobile-core-5') {
         matchesCategory = !!tool.isMobileCore;
+      } else if (selectedCategory === 'ai-travel') {
+        matchesCategory = tool.id === 'ai-trip-planner' || tool.categoryLabel.includes('Travel');
       } else if (selectedCategory === 'uk-eu') {
         matchesCategory = tool.regionFocus === 'UK/EU';
       } else if (selectedCategory === 'usa') {
@@ -505,6 +531,20 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
                   <span>📱 Mobile Core 5</span>
                 </button>
 
+                {/* AI TRAVEL PLANNER FILTER */}
+                <button
+                  type="button"
+                  onClick={() => setSelectedCategory('ai-travel')}
+                  className={`px-3 py-1.5 text-xs font-bold rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                    selectedCategory === 'ai-travel'
+                      ? 'bg-teal-600 text-white shadow-xs font-extrabold ring-1 ring-teal-400'
+                      : 'bg-teal-50 text-teal-800 border border-teal-300 hover:bg-teal-100'
+                  }`}
+                >
+                  <Plane className="w-3.5 h-3.5 text-teal-600" />
+                  <span>✈️ AI Trip Planner</span>
+                </button>
+
                 {/* UK & EU TOOLS */}
                 <button
                   type="button"
@@ -545,6 +585,41 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
                   Export &amp; B2B
                 </button>
               </div>
+            </div>
+          </div>
+
+          {/* Featured Top Tool: AI Trip Planner */}
+          <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-teal-950 via-slate-900 to-slate-950 border-2 border-teal-500/50 shadow-md text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-xl bg-teal-500/20 border border-teal-400/40 flex items-center justify-center flex-shrink-0 text-teal-400">
+                <Plane className="w-6 h-6" />
+              </div>
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-teal-500/20 text-teal-300 border border-teal-500/30">
+                    Featured AI Tool
+                  </span>
+                  <span className="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-bold">
+                    100% Free · No Login
+                  </span>
+                </div>
+                <h3 className="text-base sm:text-lg font-bold text-white">
+                  Evonixtec AI Trip Planner &amp; Day-Wise Itinerary Generator
+                </h3>
+                <p className="text-xs text-slate-300 max-w-2xl leading-relaxed">
+                  Generate complete custom vacation schedules with daily food spots, activities, transit advice, and budget breakdowns in 30 seconds.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2.5 w-full md:w-auto">
+              <button
+                type="button"
+                onClick={() => handleLaunchWithTrack('ai-trip-planner', 'ai-trip-planner')}
+                className="w-full md:w-auto px-5 py-2.5 rounded-xl bg-teal-400 hover:bg-teal-300 text-slate-950 font-black text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
+              >
+                <span>Launch AI Trip Planner</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
             </div>
           </div>
 

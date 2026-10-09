@@ -879,6 +879,48 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'sialkot industrial network diagnostics',
     ],
   },
+
+  'ai-travel-tools': {
+    title: 'Tools Required for Artificial Intelligence: 10 Best AI Tools Name for Travel Itinerary [2026 Tested]',
+    description:
+      'What are the best AI tools for travel planning in 2026? Find top 10 AI tools name, tools required for AI trip planning, flights & vacation planning + FREE tool.',
+    ogTitle: 'Tools Required for Artificial Intelligence: 10 Best AI Tools Name for Travel Itinerary [2026 Tested]',
+    ogDescription:
+      'What are the best AI tools for travel planning in 2026? Find top 10 AI tools name, tools required for AI trip planning, flights & vacation planning + FREE tool.',
+    ogType: 'article',
+    ogImage: DEFAULT_OG_IMAGE,
+    canonicalUrl: `${BASE_URL}/ai-tools-name-for-travel-itinerary`,
+    keywords: [
+      'ai tools name',
+      'tools required for artificial intelligence',
+      'ai tools for travel itinerary',
+      'best ai tools for travel planning',
+      'ai tools for flights',
+      'ai tools for vacation planning',
+      'ai travel tools',
+      'trip planner ai',
+      'itinerary generator',
+    ],
+  },
+
+  'ai-trip-planner': {
+    title: 'AI Trip Planner: Free Day-by-Day Vacation Itinerary Generator | EVONIX',
+    description:
+      'Free AI travel itinerary generator. Enter your destination, budget, and days to generate an instant day-wise vacation schedule with food spots, costs & transit advice.',
+    ogTitle: 'AI Trip Planner: Free Day-by-Day Vacation Itinerary Generator',
+    ogDescription:
+      'Free AI travel itinerary generator. Enter your destination, budget, and days to generate an instant day-wise vacation schedule with food spots, costs & transit advice.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    canonicalUrl: `${BASE_URL}/tools/ai-trip-planner`,
+    keywords: [
+      'ai trip planner',
+      'free itinerary generator',
+      'travel itinerary ai',
+      'vacation planning ai',
+      'trip planner free',
+    ],
+  },
 };
 
 /**
@@ -1171,6 +1213,75 @@ function generateRouteStructuredData(pageId: NavPageId): object {
         },
       },
       breadcrumb: { '@id': `${BASE_URL}/ai-visibility-checker#breadcrumb` },
+    });
+  } else if (pageId === 'ai-travel-tools') {
+    graph.push({
+      '@type': 'Article',
+      '@id': `${BASE_URL}/ai-tools-name-for-travel-itinerary#article`,
+      headline: 'Tools Required for Artificial Intelligence: 10 Best AI Tools Name for Travel',
+      description:
+        'What are the best AI tools for travel planning in 2026? See the top 10 AI tools name, tools required for AI trip planning, flights & vacation planning.',
+      author: {
+        '@type': 'Organization',
+        name: 'evonix technologies',
+      },
+      publisher: { '@id': `${BASE_URL}/#business` },
+      mainEntityOfPage: `${BASE_URL}/ai-tools-name-for-travel-itinerary`,
+    });
+    graph.push({
+      '@type': 'FAQPage',
+      '@id': `${BASE_URL}/ai-tools-name-for-travel-itinerary#faq`,
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'What are the best AI tools for travel planning in 2026?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'The best AI tools for travel planning in 2026 are Evonixtec AI Trip Planner, Kayak AI for flights, Roam Around for vacation planning, and Hopper for price prediction.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'What tools are required for artificial intelligence in travel?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Tools required for artificial intelligence in travel include natural language processing (NLP) models, flight data APIs, hotel booking APIs, and itinerary generation algorithms like ChatGPT-4o and Gemini 2.5.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'What is the best AI tools name for flights?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'The best AI tools name for flights are Kayak AI, Hopper, and Google Flights AI. They help you find the cheapest ai tools for flights tickets.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'How to use AI tools for vacation planning?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'To use AI tools for vacation planning, enter your destination, travel dates, budget, and interests into a tool like Evonixtec AI Planner. It will generate a complete day-wise vacation plan.',
+          },
+        },
+      ],
+    });
+  } else if (pageId === 'ai-trip-planner') {
+    graph.push({
+      '@type': 'SoftwareApplication',
+      '@id': `${BASE_URL}/tools/ai-trip-planner#app`,
+      name: 'Evonixtec AI Trip Planner - Free Day-by-Day Vacation Itinerary Generator',
+      applicationCategory: 'TravelApplication',
+      operatingSystem: 'All',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+      provider: {
+        '@type': 'Organization',
+        name: 'evonix Technologies',
+      },
     });
   }
 

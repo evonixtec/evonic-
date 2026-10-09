@@ -19,7 +19,9 @@ export type NavPageId =
   | 'factory-network-tester'
   | 'uk-eu-vat-calculator'
   | 'us-duty-nexus-estimator'
-  | 'ce-ukca-compliance-generator';
+  | 'ce-ukca-compliance-generator'
+  | 'ai-trip-planner'
+  | 'ai-travel-tools';
 
 export type PageId = NavPageId;
 

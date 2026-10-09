@@ -65,6 +65,8 @@ const QuoteModal = lazy(() => import('./components/QuoteModal').then(m => ({ def
 const PolicyModal = lazy(() => import('./components/PolicyModal').then(m => ({ default: m.PolicyModal })));
 const SearchModal = lazy(() => import('./components/SearchModal').then(m => ({ default: m.SearchModal })));
 const LiveSupportChat = lazy(() => import('./components/LiveSupportChat').then(m => ({ default: m.LiveSupportChat })));
+const AiTravelGuidePage = lazy(() => import('./components/AiTravelGuidePage').then(m => ({ default: m.AiTravelGuidePage })));
+const AiTripPlannerStandalonePage = lazy(() => import('./components/AiTripPlannerStandalonePage').then(m => ({ default: m.AiTripPlannerStandalonePage })));
 
 // Loading spinner fallback for lazy chunks
 const LazyLoaderFallback: React.FC = () => (
@@ -255,6 +257,28 @@ export default function App() {
       return 'ai-visibility-checker';
     }
 
+    if (
+      path === 'ai-tools-name-for-travel-itinerary' ||
+      path === 'ai-travel-tools' ||
+      path === 'ai-tools-for-travel-itinerary' ||
+      path === 'travel-itinerary-ai' ||
+      path === 'blog/ai-tools-name-for-travel-itinerary' ||
+      path === 'blogs/ai-tools-name-for-travel-itinerary' ||
+      path.startsWith('ai-tools-name-for-travel-itinerary')
+    ) {
+      return 'ai-travel-tools';
+    }
+
+    if (
+      path === 'tools/ai-trip-planner' ||
+      path === 'ai-trip-planner' ||
+      path === 'trip-planner' ||
+      path === 'ai-travel-planner' ||
+      path.startsWith('tools/ai-trip-planner')
+    ) {
+      return 'ai-trip-planner';
+    }
+
     return 'home';
   };
 
@@ -420,7 +444,12 @@ export default function App() {
     setCurrentPage(page as NavPageId);
 
     // Clean Path Format: /services, /portfolio, /shop, /about, /guides, /contact, or /
-    const cleanPath = page === 'home' ? '/' : `/${page}`;
+    let cleanPath = page === 'home' ? '/' : `/${page}`;
+    if (page === 'ai-travel-tools') {
+      cleanPath = '/ai-tools-name-for-travel-itinerary';
+    } else if (page === 'ai-trip-planner') {
+      cleanPath = '/tools/ai-trip-planner';
+    }
 
     // Update browser URL bar cleanly using HTML5 pushState (no hash '#')
     if (window.location.pathname !== cleanPath) {
@@ -1114,6 +1143,26 @@ export default function App() {
               </div>
             </div>
           </div>
+        )}
+
+        {/* ========================================================
+            PAGE 19: 10 BEST AI TOOLS FOR TRAVEL ITINERARY GUIDE
+           ======================================================== */}
+        {currentPage === 'ai-travel-tools' && (
+          <AiTravelGuidePage
+            onNavigatePage={(page) => navigateToPage(page as NavPageId)}
+            onOpenQuote={() => handleOpenQuote('AI Travel Systems')}
+          />
+        )}
+
+        {/* ========================================================
+            PAGE 20: AI TRIP PLANNER STANDALONE TOOL
+           ======================================================== */}
+        {currentPage === 'ai-trip-planner' && (
+          <AiTripPlannerStandalonePage
+            onNavigatePage={(page) => navigateToPage(page as NavPageId)}
+            onOpenQuote={() => handleOpenQuote('AI Travel Planner Custom Solution')}
+          />
         )}
           </motion.div>
         </AnimatePresence>
