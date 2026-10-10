@@ -87,7 +87,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
 
   return (
     <>
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-lg border-t border-slate-200/90 shadow-[0_-4px_25px_rgba(0,0,0,0.08)] px-2 py-1.5 safe-area-bottom">
+      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-lg border-t border-slate-200/90 shadow-[0_-4px_25px_rgba(0,0,0,0.08)] px-2 py-1.5 safe-area-bottom print:hidden">
         <div className="flex items-center justify-around max-w-md mx-auto">
           {/* 1. Home */}
           <button
@@ -118,7 +118,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
           {/* 3. WhatsApp Center Action */}
           <a
             href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(
-              'Hello evonix technologies, I am reaching out from your website for tech support in Kolti Behram, Sialkot.'
+              'Hello evonix technologies, I am reaching out from your website for tech support in Kotli Behram, Sialkot.'
             )}`}
             target="_blank"
             rel="noopener noreferrer"
@@ -245,7 +245,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             </div>
 
             <div className="p-3 bg-slate-50 border-t border-slate-200 text-center text-[11px] text-slate-500 flex items-center justify-between px-5">
-              <span>Kolti Behram, Sialkot · 100% Client-Side</span>
+              <span>Kotli Behram, Sialkot · 100% Client-Side</span>
               <button
                 onClick={() => {
                   setShowToolsDrawer(false);

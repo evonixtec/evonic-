@@ -19,19 +19,29 @@ import {
   Check,
   Eye,
   RefreshCw,
-  Hash
+  Hash,
+  Globe2,
+  Languages,
+  CheckCheck
 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
 import { EvonixLogo } from './EvonixLogo';
+import {
+  SupportedInvoiceLanguage,
+  SUPPORTED_LANGUAGES,
+  INVOICE_TRANSLATIONS,
+  SAMPLE_ITEMS_BY_LANG,
+  convertNumberToWordsLocalized
+} from '../data/invoiceTranslations';
 
-interface InvoiceItem {
+export interface InvoiceItem {
   id: string;
   description: string;
   quantity: number;
   rate: number;
 }
 
-const STORAGE_KEY = 'evonix_invoice_state_v2';
+const STORAGE_KEY = 'evonix_invoice_state_v3';
 
 // 100+ countries / regions tax configurations
 export interface TaxPreset {
@@ -51,6 +61,7 @@ export const TAX_PRESETS: TaxPreset[] = [
   { country: 'United Kingdom (HMRC Standard VAT 20%)', taxName: 'HMRC Standard VAT', rate: 20, currency: 'GBP', symbol: '£' },
   { country: 'United Kingdom (HMRC Reduced 5%)', taxName: 'HMRC Reduced VAT', rate: 5, currency: 'GBP', symbol: '£' },
   { country: 'European Union - Germany (MwSt 19%)', taxName: 'MwSt (Umsatzsteuer)', rate: 19, currency: 'EUR', symbol: '€' },
+  { country: 'European Union - Netherlands (Btw 21%)', taxName: 'BTW Hoog Tarief', rate: 21, currency: 'EUR', symbol: '€' },
   { country: 'European Union - France (TVA 20%)', taxName: 'TVA', rate: 20, currency: 'EUR', symbol: '€' },
   { country: 'European Union - Italy (IVA 22%)', taxName: 'IVA', rate: 22, currency: 'EUR', symbol: '€' },
   { country: 'European Union - Spain (IVA 21%)', taxName: 'IVA', rate: 21, currency: 'EUR', symbol: '€' },
@@ -74,78 +85,9 @@ export const TAX_PRESETS: TaxPreset[] = [
 ];
 
 /**
- * Convert number to English words for commercial financial invoices
- */
-export function convertNumberToWords(num: number, currencyCode: string = 'USD'): string {
-  if (isNaN(num) || num === 0) return 'Zero ' + currencyCode;
-
-  const ones = [
-    '', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine',
-    'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen',
-    'Seventeen', 'Eighteen', 'Nineteen'
-  ];
-  const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
-
-  const integerPart = Math.floor(Math.abs(num));
-  const decimalPart = Math.round((Math.abs(num) - integerPart) * 100);
-
-  function convertChunk(n: number): string {
-    let str = '';
-    if (n >= 100) {
-      str += ones[Math.floor(n / 100)] + ' Hundred ';
-      n %= 100;
-    }
-    if (n >= 20) {
-      str += tens[Math.floor(n / 10)] + (n % 10 !== 0 ? '-' + ones[n % 10] : '') + ' ';
-    } else if (n > 0) {
-      str += ones[n] + ' ';
-    }
-    return str.trim();
-  }
-
-  const billion = Math.floor(integerPart / 1000000000);
-  const million = Math.floor((integerPart % 1000000000) / 1000000);
-  const thousand = Math.floor((integerPart % 1000000) / 1000);
-  const remainder = integerPart % 1000;
-
-  let result = '';
-  if (billion) result += convertChunk(billion) + ' Billion ';
-  if (million) result += convertChunk(million) + ' Million ';
-  if (thousand) result += convertChunk(thousand) + ' Thousand ';
-  if (remainder) result += convertChunk(remainder) + ' ';
-
-  result = result.trim();
-  if (!result) result = 'Zero';
-
-  const currencyNames: Record<string, { main: string; sub: string }> = {
-    USD: { main: 'US Dollars', sub: 'Cents' },
-    PKR: { main: 'Pakistani Rupees', sub: 'Paisa' },
-    EUR: { main: 'Euros', sub: 'Cents' },
-    GBP: { main: 'British Pounds', sub: 'Pence' },
-    AED: { main: 'UAE Dirhams', sub: 'Fils' },
-    SAR: { main: 'Saudi Riyals', sub: 'Halalas' },
-    CAD: { main: 'Canadian Dollars', sub: 'Cents' },
-    AUD: { main: 'Australian Dollars', sub: 'Cents' },
-    SGD: { main: 'Singapore Dollars', sub: 'Cents' },
-    INR: { main: 'Indian Rupees', sub: 'Paisa' },
-    CHF: { main: 'Swiss Francs', sub: 'Rappen' },
-    JPY: { main: 'Japanese Yen', sub: 'Sen' },
-  };
-
-  const cInfo = currencyNames[currencyCode] || { main: currencyCode, sub: 'Cents' };
-
-  let formatted = `${result} ${cInfo.main}`;
-  if (decimalPart > 0) {
-    formatted += ` and ${convertChunk(decimalPart)} ${cInfo.sub}`;
-  }
-  return formatted + ' Only';
-}
-
-/**
  * Visual Vector Code-128 Barcode Generator
  */
 export const VisualCode128Barcode: React.FC<{ code: string; className?: string }> = ({ code, className = '' }) => {
-  // Deterministic bar widths based on char codes
   const bars = React.useMemo(() => {
     const list: { width: number; isBlack: boolean }[] = [];
     list.push({ width: 2, isBlack: true });
@@ -175,16 +117,16 @@ export const VisualCode128Barcode: React.FC<{ code: string; className?: string }
 
   return (
     <div className={`inline-flex flex-col items-center ${className}`}>
-      <div className="flex items-stretch h-10 bg-white px-2 py-1 border border-slate-200 rounded">
+      <div className="flex items-stretch h-9 bg-white px-2 py-0.5 border border-slate-200 rounded">
         {bars.map((bar, idx) => (
           <span
             key={idx}
-            style={{ width: `${bar.width * 1.6}px` }}
+            style={{ width: `${bar.width * 1.5}px` }}
             className={`h-full ${bar.isBlack ? 'bg-slate-900' : 'bg-transparent'}`}
           />
         ))}
       </div>
-      <span className="text-[10px] font-mono tracking-widest text-slate-600 mt-0.5">{code}</span>
+      <span className="text-[9.5px] font-mono tracking-widest text-slate-600 mt-0.5">{code}</span>
     </div>
   );
 };
@@ -192,12 +134,15 @@ export const VisualCode128Barcode: React.FC<{ code: string; className?: string }
 export const GlobalInvoiceHub: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // Active Selected Language (Default 'en', supports 'nl', 'fr', 'de', 'es', 'it', 'ar', 'ur')
+  const [selectedLanguage, setSelectedLanguage] = useState<SupportedInvoiceLanguage>('en');
+
   // Settings State: Logo & Brand
   const [useOfficialLogo, setUseOfficialLogo] = useState<boolean>(true);
   const [customLogoUrl, setCustomLogoUrl] = useState<string>('');
   const [brandName, setBrandName] = useState<string>(COMPANY_INFO.name);
   const [brandTagline, setBrandTagline] = useState<string>(COMPANY_INFO.tagline);
-  const [companyAddress, setCompanyAddress] = useState<string>(COMPANY_INFO.contact.address);
+  const [companyAddress, setCompanyAddress] = useState<string>('Kotli Behram, Sialkot, Pakistan');
   const [companyEmail, setCompanyEmail] = useState<string>(COMPANY_INFO.contact.email);
   const [companyPhone, setCompanyPhone] = useState<string>(COMPANY_INFO.contact.phoneDisplay);
   const [taxNumber, setTaxNumber] = useState<string>('NTN: 8492019-2 | STRN: 3277876123456');
@@ -228,8 +173,8 @@ export const GlobalInvoiceHub: React.FC = () => {
   const [currencySymbol, setCurrencySymbol] = useState<string>('$');
 
   // Payment & Banking Terms
-  const [paymentTerms, setPaymentTerms] = useState('Net 30 Days / TT Wire / LC at Sight');
-  const [deliveryTerms, setDeliveryTerms] = useState('FOB Sialkot / CIF Frankfurt Airport Cargo');
+  const [paymentTerms, setPaymentTerms] = useState(INVOICE_TRANSLATIONS.en.paymentTermsDefault);
+  const [deliveryTerms, setDeliveryTerms] = useState(INVOICE_TRANSLATIONS.en.deliveryTermsDefault);
   const [bankName, setBankName] = useState('Meezan Bank Ltd / Standard Chartered Sialkot');
   const [accountTitle, setAccountTitle] = useState('evonix technologies Sialkot');
   const [iban, setIban] = useState('PK36MEZN00001004582910');
@@ -238,34 +183,32 @@ export const GlobalInvoiceHub: React.FC = () => {
   // Authorized Signatory & Official Stamp
   const [showAuthorizedSignature, setShowAuthorizedSignature] = useState<boolean>(true);
   const [signatoryName, setSignatoryName] = useState<string>('Engr. Hamza Reza');
-  const [signatoryRole, setSignatoryRole] = useState<string>('Authorized Signatory & Chief Technology Officer');
-  const [stampText, setStampText] = useState<string>('EVONIX TECHNOLOGIES\nOFFICIAL EXPORT SEAL\nVERIFIED & PASSED');
+  const [signatoryRole, setSignatoryRole] = useState<string>(INVOICE_TRANSLATIONS.en.signatoryRoleDefault);
+  const [stampText, setStampText] = useState<string>(INVOICE_TRANSLATIONS.en.stampSealText);
   const [showStamp, setShowStamp] = useState<boolean>(true);
   const [signatureDate, setSignatureDate] = useState<string>(() => new Date().toLocaleDateString('en-GB'));
   const [showBarcode, setShowBarcode] = useState<boolean>(true);
 
   // Line Items
-  const [items, setItems] = useState<InvoiceItem[]>([
-    { id: '1', description: 'Titanium Micro-Surgical Scalpel Handles Grade 5', quantity: 150, rate: 24.0 },
-    { id: '2', description: 'Atraumatic Cardiovascular Forceps SS316 Hospital Grade', quantity: 80, rate: 32.5 },
-    { id: '3', description: 'Digital Cloud ERP Workstation License & Maintenance (1 Year)', quantity: 1, rate: 1450.0 },
-  ]);
+  const [items, setItems] = useState<InvoiceItem[]>(SAMPLE_ITEMS_BY_LANG.en);
 
   // Notes & Declarations
-  const [declarationText, setDeclarationText] = useState(
-    'We certify that this invoice shows the actual price of the goods described, that no other invoice has been or will be issued, and that all particulars are true and correct.'
-  );
+  const [declarationText, setDeclarationText] = useState(INVOICE_TRANSLATIONS.en.declaration);
 
   // UI helpers
-  const [copiedNotification, setCopiedNotification] = useState(false);
   const [savedNotification, setSavedNotification] = useState(false);
-  const [activeTab, setActiveTab] = useState<'editor' | 'settings'>('editor');
+  const [langChangedNotice, setLangChangedNotice] = useState<string | null>(null);
 
   // Calculations
   const subtotal = items.reduce((acc, it) => acc + (Number(it.quantity) || 0) * (Number(it.rate) || 0), 0);
   const taxAmount = (subtotal * (Number(taxRate) || 0)) / 100;
   const grandTotal = subtotal + taxAmount;
-  const amountInWords = convertNumberToWords(grandTotal, currency);
+  const amountInWords = convertNumberToWordsLocalized(grandTotal, currency, selectedLanguage);
+
+  // Active translation dictionary
+  const t = INVOICE_TRANSLATIONS[selectedLanguage] || INVOICE_TRANSLATIONS.en;
+  const activeLangMeta = SUPPORTED_LANGUAGES.find((l) => l.code === selectedLanguage) || SUPPORTED_LANGUAGES[0];
+  const isRtl = activeLangMeta.dir === 'rtl';
 
   // Load saved state from localStorage on initial mount
   useEffect(() => {
@@ -273,6 +216,7 @@ export const GlobalInvoiceHub: React.FC = () => {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const data = JSON.parse(saved);
+        if (data.selectedLanguage) setSelectedLanguage(data.selectedLanguage);
         if (data.invoiceNumber) setInvoiceNumber(data.invoiceNumber);
         if (data.invoicePrefix) setInvoicePrefix(data.invoicePrefix);
         if (data.invoiceSequence) setInvoiceSequence(data.invoiceSequence);
@@ -308,10 +252,41 @@ export const GlobalInvoiceHub: React.FC = () => {
     }
   }, []);
 
+  // Language switch handler
+  const handleSelectLanguage = (lang: SupportedInvoiceLanguage, switchSampleItems: boolean = false) => {
+    setSelectedLanguage(lang);
+    const langDict = INVOICE_TRANSLATIONS[lang];
+    setDeclarationText(langDict.declaration);
+    setStampText(langDict.stampSealText);
+    setSignatoryRole(langDict.signatoryRoleDefault);
+    setPaymentTerms(langDict.paymentTermsDefault);
+    setDeliveryTerms(langDict.deliveryTermsDefault);
+
+    if (switchSampleItems || items.length === 0) {
+      setItems(SAMPLE_ITEMS_BY_LANG[lang]);
+    }
+
+    // Set currency preset appropriate for region
+    if (lang === 'nl' || lang === 'fr' || lang === 'de' || lang === 'es' || lang === 'it') {
+      setCurrency('EUR');
+      setCurrencySymbol('€');
+    } else if (lang === 'ar') {
+      setCurrency('AED');
+      setCurrencySymbol('AED');
+    } else if (lang === 'ur') {
+      setCurrency('PKR');
+      setCurrencySymbol('Rs');
+    }
+
+    setLangChangedNotice(langDict.invoiceTitle);
+    setTimeout(() => setLangChangedNotice(null), 3000);
+  };
+
   // Save current state to localStorage
   const handleSaveToLocalStorage = () => {
     try {
       const stateToSave = {
+        selectedLanguage,
         invoiceNumber,
         invoicePrefix,
         invoiceSequence,
@@ -353,13 +328,14 @@ export const GlobalInvoiceHub: React.FC = () => {
     }
   };
 
-  // Reset to default 5 days ago settings
+  // Reset to default original 5-days ago settings with updated address
   const handleResetToDefaults = () => {
+    setSelectedLanguage('en');
     setUseOfficialLogo(true);
     setCustomLogoUrl('');
     setBrandName(COMPANY_INFO.name);
     setBrandTagline(COMPANY_INFO.tagline);
-    setCompanyAddress(COMPANY_INFO.contact.address);
+    setCompanyAddress('Kotli Behram, Sialkot, Pakistan');
     setCompanyEmail(COMPANY_INFO.contact.email);
     setCompanyPhone(COMPANY_INFO.contact.phoneDisplay);
     setTaxNumber('NTN: 8492019-2 | STRN: 3277876123456');
@@ -380,10 +356,14 @@ export const GlobalInvoiceHub: React.FC = () => {
     setCurrency('USD');
     setCurrencySymbol('$');
 
+    setPaymentTerms(INVOICE_TRANSLATIONS.en.paymentTermsDefault);
+    setDeliveryTerms(INVOICE_TRANSLATIONS.en.deliveryTermsDefault);
+    setDeclarationText(INVOICE_TRANSLATIONS.en.declaration);
+
     setShowAuthorizedSignature(true);
     setSignatoryName('Engr. Hamza Reza');
-    setSignatoryRole('Authorized Signatory & Chief Technology Officer');
-    setStampText('EVONIX TECHNOLOGIES\nOFFICIAL EXPORT SEAL\nVERIFIED & PASSED');
+    setSignatoryRole(INVOICE_TRANSLATIONS.en.signatoryRoleDefault);
+    setStampText(INVOICE_TRANSLATIONS.en.stampSealText);
     setShowStamp(true);
     setShowBarcode(true);
 
@@ -392,11 +372,7 @@ export const GlobalInvoiceHub: React.FC = () => {
     setIban('PK36MEZN00001004582910');
     setSwiftBic('MEZNPKKA');
 
-    setItems([
-      { id: '1', description: 'Titanium Micro-Surgical Scalpel Handles Grade 5', quantity: 150, rate: 24.0 },
-      { id: '2', description: 'Atraumatic Cardiovascular Forceps SS316 Hospital Grade', quantity: 80, rate: 32.5 },
-      { id: '3', description: 'Digital Cloud ERP Workstation License & Maintenance (1 Year)', quantity: 1, rate: 1450.0 },
-    ]);
+    setItems(SAMPLE_ITEMS_BY_LANG.en);
 
     localStorage.removeItem(STORAGE_KEY);
     setSavedNotification(true);
@@ -446,7 +422,22 @@ export const GlobalInvoiceHub: React.FC = () => {
   const handleAddItem = () => {
     setItems([
       ...items,
-      { id: Date.now().toString(), description: 'New Export Surgical Instrument or IT Service Item', quantity: 10, rate: 25.0 },
+      {
+        id: Date.now().toString(),
+        description: selectedLanguage === 'ur'
+          ? 'نئی آئٹم یا سروس کی تفصیل'
+          : selectedLanguage === 'ar'
+          ? 'بند أو خدمة جديدة'
+          : selectedLanguage === 'nl'
+          ? 'Nieuw export chirurgisch instrument of IT-dienst'
+          : selectedLanguage === 'fr'
+          ? 'Nouvel instrument chirurgical ou service IT'
+          : selectedLanguage === 'de'
+          ? 'Neues chirurgisches Instrument oder IT-Serviceartikel'
+          : 'New Export Surgical Instrument or IT Service Item',
+        quantity: 10,
+        rate: 25.0,
+      },
     ]);
   };
 
@@ -461,13 +452,68 @@ export const GlobalInvoiceHub: React.FC = () => {
   };
 
   return (
-    <div className="py-8 bg-slate-100 min-h-screen text-slate-900 print:bg-white print:py-0">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 print:p-0 print:max-w-none">
+    <div className="py-6 sm:py-8 bg-slate-100 min-h-screen text-slate-900 print:bg-white print:py-0 print:min-h-0">
+      
+      {/* ========================================================
+          CRITICAL STRICT CSS FOR ISOLATED A4 PRINT & PDF
+          Hides everything except the invoice canvas!
+         ======================================================== */}
+      <style>{`
+        @media print {
+          @page {
+            size: A4 portrait;
+            margin: 8mm 10mm;
+          }
+          html, body {
+            background: #ffffff !important;
+            color: #0f172a !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            font-size: 10.5pt !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+          /* Strictly hide all other elements in DOM */
+          body * {
+            visibility: hidden !important;
+          }
+          /* Only make the printable invoice container visible */
+          #invoice-print-canvas, #invoice-print-canvas * {
+            visibility: visible !important;
+          }
+          #invoice-print-canvas {
+            position: absolute !important;
+            left: 0 !important;
+            top: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 12px 14px !important;
+            border: none !important;
+            box-shadow: none !important;
+            background: #ffffff !important;
+          }
+          .print-hidden-strict {
+            display: none !important;
+            visibility: hidden !important;
+          }
+          input, select, textarea {
+            border: none !important;
+            background: transparent !important;
+            padding: 0 !important;
+            box-shadow: none !important;
+          }
+        }
+      `}</style>
+
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5 print:p-0 print:max-w-none">
         
-        {/* Top Management Toolbar (Hidden in Print) */}
+        {/* ========================================================
+            1. TOP MANAGEMENT TOOLBAR (100% Hidden in Print/PDF)
+           ======================================================== */}
         <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-wrap items-center justify-between gap-4 print:hidden">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center font-black shadow-sm">
+            <div className="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center font-black shadow-sm flex-shrink-0">
               <FileText className="w-5 h-5" />
             </div>
             <div>
@@ -475,12 +521,13 @@ export const GlobalInvoiceHub: React.FC = () => {
                 <h1 className="text-base sm:text-lg font-bold text-slate-900">
                   Global Micro-Invoice Generator
                 </h1>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
-                  All Settings Restored
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
+                  <CheckCheck className="w-3 h-3 text-emerald-600" />
+                  <span>8 Languages &amp; Kotli Behram Sialkot Active</span>
                 </span>
               </div>
               <p className="text-xs text-slate-500">
-                100% Free · Client-side zero-database privacy · Brand logo, stamps, auto-number &amp; authorized signature
+                A4 Zero-Database Engine · Dutch, French, German, Spanish, Italian, Arabic (RTL), Urdu (RTL) &amp; English
               </p>
             </div>
           </div>
@@ -493,7 +540,7 @@ export const GlobalInvoiceHub: React.FC = () => {
               className="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs flex items-center gap-1.5 cursor-pointer border border-slate-200 transition-colors"
             >
               <Hash className="w-3.5 h-3.5 text-red-600" />
-              <span>Next No. ({invoicePrefix}{String(invoiceSequence + 1).padStart(4, '0')})</span>
+              <span>{t.nextNoButtonText} ({invoicePrefix}{String(invoiceSequence + 1).padStart(4, '0')})</span>
             </button>
 
             {/* Quick Save to LocalStorage */}
@@ -502,36 +549,100 @@ export const GlobalInvoiceHub: React.FC = () => {
               className="px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-xs transition-colors"
             >
               {savedNotification ? <Check className="w-3.5 h-3.5" /> : <Save className="w-3.5 h-3.5" />}
-              <span>{savedNotification ? 'Saved locally!' : 'Save Settings'}</span>
+              <span>{savedNotification ? 'Saved locally!' : t.saveButtonText}</span>
             </button>
 
             {/* Restore 5 Days Ago Original Defaults */}
             <button
               onClick={handleResetToDefaults}
-              title="Reset all settings to original defaults (Brand logo, signatures, Sialkot export details)"
+              title="Reset all settings to original defaults (Kotli Behram, brand logo, signatures, Sialkot export details)"
               className="px-3 py-2 rounded-xl bg-slate-100 hover:bg-red-50 hover:text-red-600 text-slate-600 font-bold text-xs flex items-center gap-1.5 cursor-pointer border border-slate-200 transition-colors"
             >
               <RotateCcw className="w-3.5 h-3.5" />
-              <span>Reset to Defaults</span>
+              <span>{t.resetButtonText}</span>
             </button>
 
             {/* Print / Save A4 PDF Button */}
             <button
               onClick={() => window.print()}
               className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-xs transition-colors"
+              title="Prints ONLY the invoice canvas with clean A4 margins, zero website headers or footers"
             >
               <Printer className="w-3.5 h-3.5" />
-              <span>Print / Save A4 PDF</span>
+              <span>{t.printButtonText}</span>
             </button>
           </div>
         </div>
 
-        {/* Quick Settings Panel Accordion / Drawer (Hidden in Print) */}
+        {/* ========================================================
+            2. MULTILINGUAL SELECTOR BAR (Requested: Dutch, French, Europe, Arabic, Urdu)
+           ======================================================== */}
+        <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3 print:hidden">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2.5 border-b border-slate-100">
+            <div className="flex items-center gap-2">
+              <Languages className="w-4 h-4 text-red-600" />
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-800">
+                Invoice Language &amp; International Format (اے ٹو زیڈ زبان کا انتخاب):
+              </span>
+            </div>
+            {langChangedNotice && (
+              <span className="text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 animate-fadeIn">
+                ✓ Switched to {langChangedNotice}
+              </span>
+            )}
+          </div>
+
+          {/* Language Buttons Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2">
+            {SUPPORTED_LANGUAGES.map((lang) => {
+              const isCurrent = selectedLanguage === lang.code;
+              return (
+                <button
+                  key={lang.code}
+                  type="button"
+                  onClick={() => handleSelectLanguage(lang.code, false)}
+                  className={`flex flex-col items-center justify-center p-2.5 rounded-xl border text-center transition-all cursor-pointer ${
+                    isCurrent
+                      ? 'bg-red-600 text-white border-red-600 shadow-sm ring-2 ring-red-300'
+                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100 hover:border-slate-300'
+                  }`}
+                >
+                  <span className="text-xl mb-0.5">{lang.flag}</span>
+                  <span className="text-xs font-bold leading-tight">{lang.nativeName}</span>
+                  <span className={`text-[10px] mt-0.5 ${isCurrent ? 'text-red-100' : 'text-slate-400'}`}>
+                    {lang.name}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Quick Helper: Load Sample Items for Selected Language */}
+          <div className="flex flex-wrap items-center justify-between gap-2 pt-1 text-[11px] text-slate-500">
+            <div className="flex items-center gap-1.5">
+              <span className="font-semibold text-slate-700">Active Layout:</span>
+              <span className="px-1.5 py-0.5 rounded bg-slate-100 font-mono text-[10px] text-slate-700">
+                {activeLangMeta.name} ({activeLangMeta.regionBadge}) · {isRtl ? 'RTL Mode (دائیں سے بائیں)' : 'LTR Mode'}
+              </span>
+            </div>
+            <button
+              onClick={() => handleSelectLanguage(selectedLanguage, true)}
+              className="text-blue-600 hover:text-blue-700 font-bold hover:underline cursor-pointer flex items-center gap-1"
+            >
+              <RefreshCw className="w-3 h-3" />
+              <span>Load Sample Line Items in {activeLangMeta.nativeName}</span>
+            </button>
+          </div>
+        </div>
+
+        {/* ========================================================
+            3. CUSTOMIZATION CONTROLS PANEL (Hidden in Print)
+           ======================================================== */}
         <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs space-y-4 print:hidden">
           <div className="flex items-center justify-between pb-3 border-b border-slate-100">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-red-600" />
-              <span>Customize Invoice Controls (Logo, Brand, Number, Signature &amp; Stamp)</span>
+              <span>Customize Invoice Controls (Brand, Logo, Stamp, Signature &amp; Tax)</span>
             </span>
             <div className="flex items-center gap-2 text-xs">
               <label className="flex items-center gap-1.5 cursor-pointer select-none">
@@ -669,14 +780,22 @@ export const GlobalInvoiceHub: React.FC = () => {
         </div>
 
         {/* ========================================================
-            PRINT-READY COMMERCIAL INVOICE CANVAS (A4 Format)
+            4. PRINT-READY COMMERCIAL INVOICE CANVAS (A4 Format)
+            Only this section is rendered on print / PDF!
            ======================================================== */}
-        <div className="bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-md space-y-6 print:border-none print:shadow-none print:p-0 print:m-0 text-slate-900">
+        <div
+          id="invoice-print-canvas"
+          dir={isRtl ? 'rtl' : 'ltr'}
+          className={`bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-md space-y-6 print:border-none print:shadow-none print:p-0 print:m-0 text-slate-900 ${
+            isRtl ? 'font-sans' : 'font-sans'
+          }`}
+          style={isRtl ? { fontFamily: `'Noto Sans Arabic', 'Amiri', 'Jameel Noori Nastaleeq', 'Segoe UI', Tahoma, sans-serif` } : undefined}
+        >
           
           {/* Header Section: Logo + Brand + Commercial Invoice + Barcode */}
           <div className="flex flex-col sm:flex-row justify-between items-start gap-6 pb-6 border-b-2 border-slate-200">
-            {/* Left: Brand Logo & Information */}
-            <div className="space-y-2 max-w-sm">
+            {/* Left/Right: Brand Logo & Information (Address strictly Kotli Behram) */}
+            <div className={`space-y-2 max-w-sm ${isRtl ? 'text-right' : 'text-left'}`}>
               <div className="flex items-center gap-3">
                 {useOfficialLogo ? (
                   <div className="flex items-center gap-2">
@@ -701,19 +820,19 @@ export const GlobalInvoiceHub: React.FC = () => {
                 )}
               </div>
 
-              <p className="text-[11px] text-slate-500 leading-relaxed font-normal">
-                <span className="font-semibold text-slate-700">{companyAddress}</span>
+              <div className="text-[11px] text-slate-500 leading-relaxed font-normal">
+                <span className="font-semibold text-slate-800">{companyAddress}</span>
                 <br />
-                Email: {companyEmail} | Tel: {companyPhone}
+                <span>Email: {companyEmail} | Tel: {companyPhone}</span>
                 <br />
                 <span className="font-mono text-slate-600">{taxNumber}</span>
-              </p>
+              </div>
             </div>
 
-            {/* Right: Invoice Number, Barcode & Issue Dates */}
-            <div className="text-right flex flex-col items-end space-y-1.5 sm:min-w-[240px]">
+            {/* Invoice Number, Barcode & Issue Dates */}
+            <div className={`flex flex-col space-y-1.5 sm:min-w-[240px] ${isRtl ? 'items-start text-left' : 'items-end text-right'}`}>
               <span className="text-xs font-mono font-black text-red-600 tracking-wider uppercase block">
-                COMMERCIAL INVOICE
+                {t.invoiceTitle}
               </span>
 
               {/* Barcode representation */}
@@ -723,8 +842,8 @@ export const GlobalInvoiceHub: React.FC = () => {
                 </div>
               )}
 
-              <div className="flex items-center gap-2 justify-end text-xs font-mono">
-                <span className="text-slate-400 font-semibold">Invoice No:</span>
+              <div className="flex items-center gap-2 text-xs font-mono">
+                <span className="text-slate-400 font-semibold">{t.invoiceNumberLabel}</span>
                 <input
                   type="text"
                   aria-label="Invoice Number"
@@ -734,8 +853,8 @@ export const GlobalInvoiceHub: React.FC = () => {
                 />
               </div>
 
-              <div className="flex items-center gap-2 justify-end text-xs font-mono">
-                <span className="text-slate-400 font-semibold">Date:</span>
+              <div className="flex items-center gap-2 text-xs font-mono">
+                <span className="text-slate-400 font-semibold">{t.dateLabel}</span>
                 <input
                   type="date"
                   aria-label="Invoice Date"
@@ -745,8 +864,8 @@ export const GlobalInvoiceHub: React.FC = () => {
                 />
               </div>
 
-              <div className="flex items-center gap-2 justify-end text-xs font-mono">
-                <span className="text-slate-400 font-semibold">Due Date:</span>
+              <div className="flex items-center gap-2 text-xs font-mono">
+                <span className="text-slate-400 font-semibold">{t.dueDateLabel}</span>
                 <input
                   type="date"
                   aria-label="Due Date"
@@ -756,8 +875,8 @@ export const GlobalInvoiceHub: React.FC = () => {
                 />
               </div>
 
-              <div className="flex items-center gap-2 justify-end text-xs font-mono">
-                <span className="text-slate-400 font-semibold">PO Ref:</span>
+              <div className="flex items-center gap-2 text-xs font-mono">
+                <span className="text-slate-400 font-semibold">{t.poRefLabel}</span>
                 <input
                   type="text"
                   aria-label="Purchase Order Reference"
@@ -774,7 +893,7 @@ export const GlobalInvoiceHub: React.FC = () => {
             {/* Bill To */}
             <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-1.5 print:bg-transparent print:border print:p-3">
               <span className="font-bold text-slate-400 uppercase tracking-wider block text-[10px]">
-                Bill To (Consignee)
+                {t.billToLabel}
               </span>
               <input
                 type="text"
@@ -789,6 +908,7 @@ export const GlobalInvoiceHub: React.FC = () => {
                 value={buyerContact}
                 onChange={(e) => setBuyerContact(e.target.value)}
                 className="w-full text-slate-600 text-[11px] bg-transparent focus:outline-none"
+                placeholder={t.attentionLabel}
               />
               <input
                 type="text"
@@ -803,15 +923,16 @@ export const GlobalInvoiceHub: React.FC = () => {
                 value={buyerTaxId}
                 onChange={(e) => setBuyerTaxId(e.target.value)}
                 className="w-full font-mono text-[10px] text-slate-500 bg-transparent focus:outline-none"
+                placeholder={t.taxIdLabel}
               />
             </div>
 
             {/* Payment & Logistics Terms */}
             <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2 print:bg-transparent print:border print:p-3">
-              <div className="flex justify-between items-start">
-                <div>
+              <div className="flex justify-between items-start gap-2">
+                <div className="flex-1">
                   <span className="font-bold text-slate-400 uppercase tracking-wider block text-[10px]">
-                    Payment &amp; Delivery Terms
+                    {t.paymentDeliveryTermsLabel}
                   </span>
                   <input
                     type="text"
@@ -829,9 +950,9 @@ export const GlobalInvoiceHub: React.FC = () => {
                   />
                 </div>
 
-                <div className="text-right">
+                <div className={`text-right ${isRtl ? 'text-left' : 'text-right'}`}>
                   <label className="text-[10px] text-slate-400 font-bold uppercase block">
-                    Currency
+                    {t.currencyLabel}
                   </label>
                   <select
                     aria-label="Invoice Currency"
@@ -856,9 +977,9 @@ export const GlobalInvoiceHub: React.FC = () => {
                     className="px-2 py-1 rounded border border-slate-300 text-xs font-bold bg-white print:border-none"
                   >
                     <option value="USD">USD ($)</option>
-                    <option value="PKR">PKR (Rs)</option>
                     <option value="EUR">EUR (€)</option>
                     <option value="GBP">GBP (£)</option>
+                    <option value="PKR">PKR (Rs)</option>
                     <option value="AED">AED (Dirhams)</option>
                     <option value="SAR">SAR (Riyals)</option>
                     <option value="CAD">CAD (CA$)</option>
@@ -870,7 +991,7 @@ export const GlobalInvoiceHub: React.FC = () => {
               </div>
 
               <div className="pt-1 text-[10px] text-slate-500 border-t border-slate-200/60 flex items-center justify-between">
-                <span>Tax Scheme: {taxName}</span>
+                <span>{t.taxSchemeLabel}: {taxName}</span>
                 <span className="font-mono font-bold text-slate-700">{taxRate}%</span>
               </div>
             </div>
@@ -878,21 +999,21 @@ export const GlobalInvoiceHub: React.FC = () => {
 
           {/* Line Items Table */}
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs border-collapse">
+            <table className="w-full text-xs border-collapse">
               <thead>
                 <tr className="border-b-2 border-slate-300 text-slate-500 font-bold uppercase text-[10px] bg-slate-50/80 print:bg-transparent">
-                  <th className="py-2.5 px-2">#</th>
-                  <th className="py-2.5 px-2">Item Description &amp; Specifications</th>
-                  <th className="py-2.5 px-2 text-center w-20">Qty</th>
-                  <th className="py-2.5 px-2 text-right w-28">Unit Rate</th>
-                  <th className="py-2.5 px-2 text-right w-32">Amount</th>
+                  <th className={`py-2.5 px-2 w-10 ${isRtl ? 'text-right' : 'text-left'}`}>{t.colIndex}</th>
+                  <th className={`py-2.5 px-2 ${isRtl ? 'text-right' : 'text-left'}`}>{t.colDescription}</th>
+                  <th className="py-2.5 px-2 text-center w-20">{t.colQty}</th>
+                  <th className={`py-2.5 px-2 w-28 ${isRtl ? 'text-left' : 'text-right'}`}>{t.colRate}</th>
+                  <th className={`py-2.5 px-2 w-32 ${isRtl ? 'text-left' : 'text-right'}`}>{t.colAmount}</th>
                   <th className="py-2.5 px-2 text-center w-10 print:hidden"></th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200">
                 {items.map((it, idx) => (
                   <tr key={it.id} className="hover:bg-slate-50/50">
-                    <td className="py-2.5 px-2 text-slate-400 font-mono text-[11px] align-middle">
+                    <td className={`py-2.5 px-2 text-slate-400 font-mono text-[11px] align-middle ${isRtl ? 'text-right' : 'text-left'}`}>
                       {idx + 1}
                     </td>
                     <td className="py-2.5 px-2 align-middle">
@@ -901,7 +1022,7 @@ export const GlobalInvoiceHub: React.FC = () => {
                         aria-label={`Item ${idx + 1} Description`}
                         value={it.description}
                         onChange={(e) => handleUpdateItem(it.id, 'description', e.target.value)}
-                        className="w-full font-medium text-slate-800 bg-transparent focus:outline-none"
+                        className={`w-full font-medium text-slate-800 bg-transparent focus:outline-none ${isRtl ? 'text-right' : 'text-left'}`}
                       />
                     </td>
                     <td className="py-2.5 px-2 text-center align-middle">
@@ -914,18 +1035,18 @@ export const GlobalInvoiceHub: React.FC = () => {
                         min="1"
                       />
                     </td>
-                    <td className="py-2.5 px-2 text-right font-mono align-middle">
+                    <td className={`py-2.5 px-2 font-mono align-middle ${isRtl ? 'text-left' : 'text-right'}`}>
                       <input
                         type="number"
                         aria-label={`Item ${idx + 1} Unit Rate`}
                         value={it.rate}
                         onChange={(e) => handleUpdateItem(it.id, 'rate', Number(e.target.value) || 0)}
-                        className="w-24 px-1.5 py-0.5 text-right border border-slate-200 rounded font-mono bg-white print:border-none print:p-0"
+                        className={`w-24 px-1.5 py-0.5 border border-slate-200 rounded font-mono bg-white print:border-none print:p-0 ${isRtl ? 'text-left' : 'text-right'}`}
                         min="0"
                         step="0.01"
                       />
                     </td>
-                    <td className="py-2.5 px-2 text-right font-mono font-bold text-slate-900 align-middle">
+                    <td className={`py-2.5 px-2 font-mono font-bold text-slate-900 align-middle ${isRtl ? 'text-left' : 'text-right'}`}>
                       {currencySymbol} {((Number(it.quantity) || 0) * (Number(it.rate) || 0)).toFixed(2)}
                     </td>
                     <td className="py-2.5 px-2 text-center print:hidden align-middle">
@@ -950,20 +1071,20 @@ export const GlobalInvoiceHub: React.FC = () => {
               className="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold flex items-center gap-1.5 cursor-pointer transition-colors border border-slate-200 shadow-2xs"
             >
               <Plus className="w-3.5 h-3.5 text-red-600" />
-              <span>Add Line Item</span>
+              <span>{t.addItemBtn}</span>
             </button>
             <span className="text-[11px] text-slate-400">
-              {items.length} {items.length === 1 ? 'item' : 'items'} in commercial manifest
+              {items.length} {items.length === 1 ? 'item' : 'items'}
             </span>
           </div>
 
           {/* Amount In Words & Totals Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 border-t-2 border-slate-200 text-xs">
-            {/* Left: Amount in Words & Official Declaration */}
+            {/* Amount in Words & Official Declaration */}
             <div className="space-y-3">
               <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 print:bg-transparent print:border print:p-2.5">
                 <span className="font-bold text-slate-400 uppercase tracking-wider block text-[10px]">
-                  Total Amount In Words
+                  {t.totalWordsLabel}
                 </span>
                 <p className="font-serif italic font-semibold text-slate-800 text-xs mt-0.5 leading-snug">
                   {amountInWords}
@@ -972,11 +1093,11 @@ export const GlobalInvoiceHub: React.FC = () => {
 
               {/* Bank Details */}
               <div className="space-y-1 text-slate-600 text-[11px] leading-relaxed">
-                <span className="font-bold text-slate-900 block text-xs">Banking &amp; Wire Transfer Details:</span>
-                <p><strong className="text-slate-700">Bank Name:</strong> {bankName}</p>
-                <p><strong className="text-slate-700">Account Title:</strong> {accountTitle}</p>
-                <p><strong className="text-slate-700">IBAN:</strong> <span className="font-mono">{iban}</span></p>
-                <p><strong className="text-slate-700">SWIFT / BIC:</strong> <span className="font-mono">{swiftBic}</span></p>
+                <span className="font-bold text-slate-900 block text-xs">{t.bankingDetailsHeading}</span>
+                <p><strong className="text-slate-700">{t.bankNameLabel}</strong> {bankName}</p>
+                <p><strong className="text-slate-700">{t.accountTitleLabel}</strong> {accountTitle}</p>
+                <p><strong className="text-slate-700">{t.ibanLabel}</strong> <span className="font-mono">{iban}</span></p>
+                <p><strong className="text-slate-700">{t.swiftLabel}</strong> <span className="font-mono">{swiftBic}</span></p>
               </div>
 
               {/* Legal Declaration */}
@@ -985,10 +1106,10 @@ export const GlobalInvoiceHub: React.FC = () => {
               </div>
             </div>
 
-            {/* Right: Subtotals, Tax & Grand Total */}
+            {/* Subtotals, Tax & Grand Total */}
             <div className="space-y-2 font-mono flex flex-col justify-start">
               <div className="flex justify-between text-slate-600 py-1 border-b border-slate-100">
-                <span className="font-sans font-medium">Subtotal:</span>
+                <span className="font-sans font-medium">{t.subtotalLabel}</span>
                 <span>{currencySymbol} {subtotal.toFixed(2)}</span>
               </div>
 
@@ -1001,34 +1122,34 @@ export const GlobalInvoiceHub: React.FC = () => {
               </div>
 
               <div className="flex justify-between items-center text-base sm:text-lg font-bold text-slate-900 py-2 border-b-2 border-slate-900">
-                <span className="font-sans">Grand Total Due:</span>
+                <span className="font-sans">{t.grandTotalLabel}</span>
                 <span className="text-red-600">{currencySymbol} {grandTotal.toFixed(2)} {currency}</span>
               </div>
 
-              <div className="pt-2 text-right">
+              <div className={`pt-2 ${isRtl ? 'text-left' : 'text-right'}`}>
                 <span className="inline-block px-2.5 py-1 bg-emerald-50 text-emerald-800 text-[10px] font-sans font-bold rounded-lg border border-emerald-200">
-                  Zero Database Privacy · Encrypted Client Memory
+                  {t.zeroDbBadge}
                 </span>
               </div>
             </div>
           </div>
 
           {/* ========================================================
-              AUTHORIZED SIGNATURE & OFFICIAL STAMP FOOTER (Restored)
+              AUTHORIZED SIGNATURE & OFFICIAL STAMP FOOTER
              ======================================================== */}
-          <div className="pt-8 border-t-2 border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-8 items-end">
-            {/* Left: Terms and Customer Acceptance */}
+          <div className="pt-6 border-t-2 border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-8 items-end">
+            {/* Terms and Customer Acceptance */}
             <div className="text-[11px] text-slate-500 space-y-2">
-              <p className="font-semibold text-slate-700">Payment &amp; Acceptance Instructions:</p>
+              <p className="font-semibold text-slate-700">{t.instructionsTitle}</p>
               <ul className="list-disc list-inside space-y-0.5 text-[10.5px]">
-                <li>Direct wire transfers must quote Invoice #{invoiceNumber} on swift remarks.</li>
-                <li>Inspection certificates must match verified surgical lots prior to cargo departure.</li>
-                <li>All disputes are subject to Sialkot Chamber of Commerce &amp; Industry (SCCI) arbitration.</li>
+                <li>{t.instruction1.replace('{invoiceNumber}', invoiceNumber)}</li>
+                <li>{t.instruction2}</li>
+                <li>{t.instruction3}</li>
               </ul>
             </div>
 
-            {/* Right: Authorized Signature + Official Company Stamp */}
-            <div className="flex items-end justify-end gap-6 sm:gap-8">
+            {/* Authorized Signature + Official Company Stamp */}
+            <div className={`flex items-end gap-6 sm:gap-8 ${isRtl ? 'justify-start' : 'justify-end'}`}>
               {/* Official Red Stamp Seal */}
               {showStamp && (
                 <div className="w-24 h-24 rounded-full border-2 border-dashed border-red-500 bg-red-50/40 flex flex-col items-center justify-center text-center p-1.5 rotate-[-8deg] shadow-xs select-none">
@@ -1043,24 +1164,23 @@ export const GlobalInvoiceHub: React.FC = () => {
 
               {/* Authorized Signatory Line & Credentials */}
               {showAuthorizedSignature && (
-                <div className="text-right space-y-1 min-w-[190px]">
-                  {/* Signature script-like placeholder representation */}
-                  <div className="h-10 flex items-end justify-end pb-1">
+                <div className={`space-y-1 min-w-[190px] ${isRtl ? 'text-left' : 'text-right'}`}>
+                  <div className={`h-10 flex items-end pb-1 ${isRtl ? 'justify-start' : 'justify-end'}`}>
                     <span className="font-serif italic font-bold text-lg text-slate-800 tracking-wider border-b-2 border-slate-900 pb-0.5 px-4 inline-block">
                       {signatoryName}
                     </span>
                   </div>
                   <div className="font-bold text-xs text-slate-900">{signatoryName}</div>
                   <div className="text-[10px] text-slate-500 leading-tight">{signatoryRole}</div>
-                  <div className="text-[10px] font-mono text-slate-400">Date: {signatureDate}</div>
+                  <div className="text-[10px] font-mono text-slate-400">{t.signatureDateLabel} {signatureDate}</div>
                 </div>
               )}
             </div>
           </div>
 
           {/* Bottom Copyright watermark in print */}
-          <div className="text-center text-[9px] text-slate-400 pt-4 border-t border-slate-100">
-            Certified Commercial Document generated via EVONIX Zero-Database Invoice Hub · Kolti Behram, Sialkot, Pakistan · Verification: https://www.evonixtec.com/invoice
+          <div className="text-center text-[9px] text-slate-400 pt-3 border-t border-slate-100">
+            {t.footerWatermark}
           </div>
         </div>
       </div>

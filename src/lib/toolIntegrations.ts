@@ -36,7 +36,7 @@ export const ALL_TOOL_INTEGRATIONS: Record<string, ToolIntegrationDef> = {
     chatGptCustomGptInstructions: `You are the evonix Global Commercial Invoice Assistant. Enforce tax compliance and output structured invoice summaries.`,
     openApiSchema: { openapi: '3.1.0', info: { title: 'evonix Invoice API', version: '1.0.0' }, paths: {} },
     geminiFunctionDeclaration: { name: 'generateGlobalInvoice', description: 'Calculates international commercial invoice totals.', parameters: { type: 'OBJECT', properties: { invoiceNumber: { type: 'STRING' } } } },
-    geminiSystemInstruction: `You are the Google AI Studio Gemini Enterprise Invoice Engine. Calculate accurate commercial invoice totals for exporters in Kolti Behram, Sialkot.`,
+    geminiSystemInstruction: `You are the Google AI Studio Gemini Enterprise Invoice Engine. Calculate accurate commercial invoice totals for exporters in Kotli Behram, Sialkot.`,
     geminiPromptTemplate: `Evaluate commercial invoice {{invoiceNumber}} for international compliance.`,
     githubWorkflowYaml: `name: Invoice CI/CD\non: [push]\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo "Verifying invoice schemas..."`,
     githubSchemaSpec: { title: 'InvoiceSchema', type: 'object' },
@@ -120,7 +120,7 @@ export const ALL_TOOL_INTEGRATIONS: Record<string, ToolIntegrationDef> = {
     category: 'ecommerce-growth',
     categoryLabel: 'Growth & SEO',
     summary: 'Client-side audit for ChatGPT, Claude, and Google AI Overviews visibility readiness & entity schema.',
-    chatGptQuickPrompt: `Audit evonix technologies (Kolti Behram, Sialkot, Pakistan) for Generative Engine Optimization (GEO) and citation in ChatGPT / Perplexity / Google AI Overviews.`,
+    chatGptQuickPrompt: `Audit evonix technologies (Kotli Behram, Sialkot, Pakistan) for Generative Engine Optimization (GEO) and citation in ChatGPT / Perplexity / Google AI Overviews.`,
     chatGptCustomGptInstructions: `You are the evonix AI Search & GEO Auditor.`,
     openApiSchema: { openapi: '3.1.0', info: { title: 'AI Visibility API', version: '1.0.0' }, paths: {} },
     geminiFunctionDeclaration: { name: 'auditGeoReadiness', description: 'Audits domain readiness for generative AI citation.', parameters: { type: 'OBJECT', properties: {} } },
@@ -195,7 +195,7 @@ Provide US CBP entry guidelines, Section 321 exemption eligibility, and estimate
     categoryLabel: 'UK & Europe Compliance',
     summary: 'Generate standardized Declaration of Conformity documents for CE Marking (EU MDR 2017/745, RoHS, EMC) and UKCA compliance required by UK and European procurement directors.',
     chatGptQuickPrompt: `Draft an official Declaration of Conformity (DoC) for medical surgical instruments and electronic devices:
-- Manufacturer: evonix Technologies Lab, Kolti Behram, Sialkot, Pakistan
+- Manufacturer: evonix Technologies Lab, Kotli Behram, Sialkot, Pakistan
 - Standards: ISO 13485:2016, EN ISO 14971, EU MDR 2017/745 Class I, UK Medical Devices Regulations 2002.
 Format a ready-to-print executive certificate with authorized signatory declaration.`,
     chatGptCustomGptInstructions: `You are the evonix Regulatory Affairs and CE / UKCA Conformity Specialist.`,
@@ -239,7 +239,7 @@ Format a ready-to-print executive certificate with authorized signatory declarat
     category: 'diagnostics-lab',
     categoryLabel: 'Hardware Diagnostics',
     summary: 'Track motherboard micro-soldering progress, standby current readings, and 90-day warranty ticket status.',
-    chatGptQuickPrompt: `Review live diagnostic status for laptop bench ticket #EVX-8821 in Kolti Behram lab.`,
+    chatGptQuickPrompt: `Review live diagnostic status for laptop bench ticket #EVX-8821 in Kotli Behram lab.`,
     chatGptCustomGptInstructions: `You are the evonix Hardware Diagnostics Bench Engineer.`,
     openApiSchema: { openapi: '3.1.0', info: { title: 'RMA Tracker API', version: '1.0.0' }, paths: {} },
     geminiFunctionDeclaration: { name: 'getRepairStatus', description: 'Fetches RMA status.', parameters: { type: 'OBJECT', properties: {} } },

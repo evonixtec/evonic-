@@ -65,7 +65,7 @@ export const ScrollProgressBar: React.FC = () => {
 
   return (
     <div
-      className={`fixed top-0 left-0 right-0 h-[3.5px] z-[60] pointer-events-none transition-opacity duration-300 ${
+      className={`fixed top-0 left-0 right-0 h-[3.5px] z-[60] pointer-events-none transition-opacity duration-300 print:hidden ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
       role="progressbar"

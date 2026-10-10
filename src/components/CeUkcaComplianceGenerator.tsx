@@ -45,7 +45,7 @@ Harmonized Standards Applied:
 
 Authorized Signatory:
 Signed for and on behalf of: ${COMPANY_INFO.legalName}
-Place of Issue: Kolti Behram, Sialkot, Pakistan
+Place of Issue: Kotli Behram, Sialkot, Pakistan
 Date: ${new Date().toLocaleDateString('en-GB')}
 Name: ${signatoryName}
 Title: ${signatoryRole}
@@ -207,7 +207,7 @@ Title: ${signatoryRole}
               <div>
                 <div className="font-bold">{signatoryName}</div>
                 <div className="text-slate-500">{signatoryRole}</div>
-                <div className="text-slate-400">evonix Quality Lab, Kolti Behram</div>
+                <div className="text-slate-400">evonix Quality Lab, Kotli Behram</div>
               </div>
               <div className="w-16 h-16 rounded-full border-2 border-dashed border-red-400 flex items-center justify-center text-[8px] font-bold text-red-600 uppercase text-center p-1 rotate-[-12deg]">
                 Official Quality Stamp

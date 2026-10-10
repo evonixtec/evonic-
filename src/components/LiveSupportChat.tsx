@@ -926,7 +926,7 @@ export const LiveSupportChat: React.FC<LiveSupportChatProps> = ({ onOpenQuote })
                 </div>
                 <div className="text-[9px] sm:text-[10px] text-slate-400 flex items-center gap-1 mt-0.5">
                   <MapPin className="w-2.5 h-2.5 text-red-400 flex-shrink-0" />
-                  <span className="truncate">Kolti Behram, Sialkot, Pakistan</span>
+                  <span className="truncate">Kotli Behram, Sialkot, Pakistan</span>
                 </div>
               </div>
             </div>

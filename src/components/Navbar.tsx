@@ -122,7 +122,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header
       id="main-navbar"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 print:hidden ${
         isScrolled
           ? 'bg-white/95 backdrop-blur-[12px] shadow-[0_12px_32px_-4px_rgba(0,0,0,0.08),0_4px_6px_-2px_rgba(0,0,0,0.03)] border-b border-slate-200/80 py-2'
           : 'bg-white/90 backdrop-blur-[12px] shadow-[0_8px_24px_-4px_rgba(0,0,0,0.05)] border-b border-slate-200/60 py-2.5'
@@ -789,7 +789,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       </div>
                       <div>
                         <div className="text-xs font-bold text-slate-900 group-hover:text-blue-700">
-                          Kolti Behram Lab & Team
+                          Kotli Behram Lab & Team
                         </div>
                         <div className="text-[11px] text-slate-500">Paris Road & Cantt Technical Hub</div>
                       </div>

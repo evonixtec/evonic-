@@ -16,7 +16,7 @@ export const LiveRepairTracker: React.FC<LiveRepairTrackerProps> = () => {
             Diagnostic Bench System
           </span>
           <h1 className="text-xl sm:text-2xl font-bold text-white mt-1">Live RMA Bench Repair Tracker</h1>
-          <p className="text-xs sm:text-sm text-slate-400">Track motherboard micro-soldering progress, standby current readings, and 90-day warranty ticket status in Kolti Behram lab.</p>
+          <p className="text-xs sm:text-sm text-slate-400">Track motherboard micro-soldering progress, standby current readings, and 90-day warranty ticket status in Kotli Behram lab.</p>
         </div>
 
         <div className="bg-slate-800/80 p-6 rounded-2xl border border-slate-700 space-y-6">

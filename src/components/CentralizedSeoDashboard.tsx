@@ -624,7 +624,7 @@ export const CentralizedSeoDashboard: React.FC<CentralizedSeoDashboardProps> = (
     "name": "evonix technologies",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Kolti Behram, Sialkot, Pakistan",
+      "streetAddress": "Kotli Behram, Sialkot, Pakistan",
       "addressLocality": "Sialkot",
       "addressRegion": "Punjab",
       "postalCode": "51310",

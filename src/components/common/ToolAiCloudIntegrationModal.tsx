@@ -401,7 +401,7 @@ export const ToolAiCloudIntegrationModal: React.FC<ToolAiCloudIntegrationModalPr
         <div className="p-4 border-t border-slate-800 bg-slate-950/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span>evonix Engineering Lab · Kolti Behram, Sialkot, Pakistan</span>
+            <span>evonix Engineering Lab · Kotli Behram, Sialkot, Pakistan</span>
           </div>
           <button
             onClick={onClose}

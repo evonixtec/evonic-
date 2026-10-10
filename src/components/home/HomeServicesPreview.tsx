@@ -135,7 +135,7 @@ export const HomeServicesPreview: React.FC<HomeServicesPreviewProps> = ({
 
             <div className="flex items-center gap-2 text-xs font-bold text-slate-500 bg-slate-50 px-3.5 py-2 rounded-xl border border-slate-200">
               <MapPin className="w-4 h-4 text-red-600" />
-              <span>Kolti Behram, Sialkot Lab</span>
+              <span>Kotli Behram, Sialkot Lab</span>
             </div>
           </div>
 

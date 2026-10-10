@@ -452,7 +452,7 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
             </h1>
 
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              Zero-database business utilities, export shipping barcode engines, freight CBM calculators, and UK/US/EU trade compliance tools built by <strong>evonix</strong> in Kolti Behram, Sialkot. Every tool runs 100% locally in your browser with automatic local usage tracking and one-click ChatGPT &amp; Cloud integration.
+              Zero-database business utilities, export shipping barcode engines, freight CBM calculators, and UK/US/EU trade compliance tools built by <strong>evonix</strong> in Kotli Behram, Sialkot. Every tool runs 100% locally in your browser with automatic local usage tracking and one-click ChatGPT &amp; Cloud integration.
             </p>
 
             <div className="inline-flex flex-wrap items-center justify-center gap-x-4 gap-y-1 pt-1 text-xs text-slate-500">
@@ -738,7 +738,7 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
           {/* Privacy & Standard Assurance */}
           <div className="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 border border-slate-800 space-y-4">
             <span className="text-xs font-bold text-red-400 uppercase tracking-wider block">
-              Global Compliance Standard · Kolti Behram, Sialkot, Pakistan
+              Global Compliance Standard · Kotli Behram, Sialkot, Pakistan
             </span>
             <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
               Built for UK, US, European, and Global Cross-Border Enterprises

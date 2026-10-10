@@ -80,14 +80,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
   ];
 
   return (
-    <footer id="main-footer" className="bg-slate-950 text-slate-400 border-t border-slate-800 pt-16 pb-12 selection:bg-red-900 selection:text-white">
+    <footer id="main-footer" className="bg-slate-950 text-slate-400 border-t border-slate-800 pt-16 pb-12 selection:bg-red-900 selection:text-white print:hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 1. Top Emergency Help Desk Banner */}
         <div className="pb-10 border-b border-slate-800/90 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           <div className="lg:col-span-8 space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-800 text-red-300 text-xs font-bold">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>On-Duty Desk: Kolti Behram, Sialkot, Pakistan</span>
+              <span>On-Duty Desk: Kotli Behram, Sialkot, Pakistan</span>
             </div>
             <h2 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
               {COMPANY_INFO.tagline1}
@@ -398,7 +398,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                 <div className="flex items-center justify-between">
                   <span className="text-red-400 font-extrabold text-[11px] uppercase tracking-wider flex items-center gap-1">
                     <MapPin className="w-3 h-3 text-red-500" />
-                    <span>Kolti Behram Lab Desk</span>
+                    <span>Kotli Behram Lab Desk</span>
                   </span>
                   <span className="text-[10px] text-slate-400 font-mono">Sialkot</span>
                 </div>
@@ -457,7 +457,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               </h3>
             </div>
             <span className="text-[11px] text-slate-400">
-              Serving Kolti Behram, Sialkot, Paris Road, Cantt, Daska, Sambrial & Wazirabad
+              Serving Kotli Behram, Sialkot, Paris Road, Cantt, Daska, Sambrial & Wazirabad
             </span>
           </div>
 
@@ -468,7 +468,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               { label: 'Web Tools Hub', sub: 'Invoice, Barcode, CBM & Calculators', target: 'tools', badge: 'TOOLS' },
               { label: 'Core Services', sub: 'Factory AMC Contracts', target: 'services', badge: null },
               { label: 'Hardware Store', sub: 'Printers & Terminals', target: 'shop', badge: null },
-              { label: 'Kolti Behram Lab', sub: '15-Min Rapid Dispatch', target: 'contact', badge: null },
+              { label: 'Kotli Behram Lab', sub: '15-Min Rapid Dispatch', target: 'contact', badge: null },
             ].map((item, idx) => (
               <button
                 key={idx}

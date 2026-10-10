@@ -12,7 +12,7 @@ export const PWAInstallBanner: React.FC = () => {
   }
 
   return (
-    <div className="lg:hidden bg-gradient-to-r from-slate-950 via-slate-900 to-red-950 text-white border-b border-red-500/20 px-3 py-2 flex items-center justify-between text-xs sticky top-0 z-50 animate-fadeIn">
+    <div className="lg:hidden bg-gradient-to-r from-slate-950 via-slate-900 to-red-950 text-white border-b border-red-500/20 px-3 py-2 flex items-center justify-between text-xs sticky top-0 z-50 animate-fadeIn print:hidden">
       <div className="flex items-center gap-2.5 overflow-hidden">
         <div className="w-7 h-7 rounded-lg bg-red-600 text-white flex items-center justify-center font-black text-[11px] flex-shrink-0 shadow-sm">
           EX

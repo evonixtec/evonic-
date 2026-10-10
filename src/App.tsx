@@ -969,15 +969,17 @@ export default function App() {
            ======================================================== */}
         {currentPage === 'invoice' && (
           <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="invoice"
-              toolTitle="Global Micro-Invoice Generator"
-              toolCategory="Business & Export"
-              toolDescription="Create zero-database client invoices with 100+ countries tax engine, live Code128 barcodes, and PDF export."
-              icon={<FileText className="w-5 h-5 text-emerald-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
+            <div className="print:hidden">
+              <ToolWorkspaceHeader
+                currentToolId="invoice"
+                toolTitle="Global Micro-Invoice Generator"
+                toolCategory="Business & Export"
+                toolDescription="Create zero-database client invoices with 100+ countries tax engine, live Code128 barcodes, and PDF export."
+                icon={<FileText className="w-5 h-5 text-emerald-500" />}
+                onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+                onNavigateToolsHub={() => navigateToPage('tools')}
+              />
+            </div>
             <GlobalInvoiceHub />
           </div>
         )}
@@ -1223,7 +1225,7 @@ export default function App() {
 
       {/* Desktop Floating Action Buttons (Hidden on all Tool Pages to keep workspace 100% focused) */}
       {!isToolPage(currentPage) && (
-        <div className="hidden lg:flex fixed bottom-6 right-6 z-40 flex-col items-end gap-2.5">
+        <div className="hidden lg:flex fixed bottom-6 right-6 z-40 flex-col items-end gap-2.5 print:hidden">
           {/* Free Bench Pass Trigger */}
           <button
             onClick={() => setIsIntakePassOpen(true)}
@@ -1270,7 +1272,7 @@ export default function App() {
       {!isToolPage(currentPage) && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="lg:hidden fixed bottom-18 right-3 z-30 p-2 rounded-full bg-white/95 backdrop-blur-xs text-slate-700 hover:text-red-600 border border-slate-200 shadow-md transition-all active:scale-95 cursor-pointer"
+          className="lg:hidden fixed bottom-18 right-3 z-30 p-2 rounded-full bg-white/95 backdrop-blur-xs text-slate-700 hover:text-red-600 border border-slate-200 shadow-md transition-all active:scale-95 cursor-pointer print:hidden"
           title="Back to Top"
           aria-label="Scroll back to top"
         >

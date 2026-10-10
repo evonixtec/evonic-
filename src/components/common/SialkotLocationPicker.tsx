@@ -14,11 +14,11 @@ export interface SialkotArea {
 export const SIALKOT_AREAS: SialkotArea[] = [
   {
     id: 'kotli-behram',
-    name: 'Kolti Behram, Sialkot, Pakistan',
+    name: 'Kotli Behram, Sialkot, Pakistan',
     category: 'Commercial Hub',
     lat: 32.4980,
     lng: 74.5260,
-    landmark: 'Kolti Behram Commercial Hub & Main Link',
+    landmark: 'Kotli Behram Commercial Hub & Main Link',
     description: 'Major commercial, IT retail, and corporate corridor.',
   },
   {
