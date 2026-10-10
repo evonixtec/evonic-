@@ -805,3 +805,114 @@ export function convertNumberToWordsLocalized(
     return text.trim() + ' Only';
   }
 }
+
+export interface InvoiceTitlePresets {
+  commercial: string;
+  tax: string;
+  proforma: string;
+  vat: string;
+  gst: string;
+}
+
+export const INVOICE_TITLE_PRESETS_BY_LANG: Record<SupportedInvoiceLanguage, InvoiceTitlePresets> = {
+  en: {
+    commercial: 'COMMERCIAL INVOICE',
+    tax: 'TAX INVOICE',
+    proforma: 'PROFORMA INVOICE',
+    vat: 'VAT INVOICE',
+    gst: 'GST INVOICE',
+  },
+  nl: {
+    commercial: 'HANDELSFACTUUR',
+    tax: 'FISCALE FACTUUR',
+    proforma: 'PROFORMA FACTUUR',
+    vat: 'BTW-FACTUUR',
+    gst: 'GST-FACTUUR',
+  },
+  fr: {
+    commercial: 'FACTURE COMMERCIALE',
+    tax: 'FACTURE FISCALE',
+    proforma: 'FACTURE PROFORMA',
+    vat: 'FACTURE AVEC TVA',
+    gst: 'FACTURE TPS',
+  },
+  de: {
+    commercial: 'HANDELSRECHNUNG',
+    tax: 'STEUERRECHNUNG',
+    proforma: 'PROFORMA-RECHNUNG',
+    vat: 'MEHRWERTSTEUERRECHNUNG',
+    gst: 'GST-RECHNUNG',
+  },
+  es: {
+    commercial: 'FACTURA COMERCIAL',
+    tax: 'FACTURA FISCAL',
+    proforma: 'FACTURA PROFORMA',
+    vat: 'FACTURA CON IVA',
+    gst: 'FACTURA GST',
+  },
+  it: {
+    commercial: 'FATTURA COMMERCIALE',
+    tax: 'FATTURA FISCALE',
+    proforma: 'FATTURA PROFORMA',
+    vat: 'FATTURA CON IVA',
+    gst: 'FATTURA GST',
+  },
+  ar: {
+    commercial: 'فاتورة تجارية رسمية',
+    tax: 'فاتورة ضريبية رسمية',
+    proforma: 'فاتورة شكلية مبدئية (بروفورما)',
+    vat: 'فاتورة ضريبة القيمة المضافة',
+    gst: 'فاتورة ضريبة السلع والخدمات',
+  },
+  ur: {
+    commercial: 'کمرشل ایکسپورٹ انوائس',
+    tax: 'سیلز ٹیکس / ایف بی آر انوائس',
+    proforma: 'پروفارما انوائس (ابتدائی کوٹیشن)',
+    vat: 'ویلیو ایڈڈ ٹیکس (ویٹ) انوائس',
+    gst: 'جنرل سیلز ٹیکس (جی ایس ٹی) انوائس',
+  },
+};
+
+export const DEFAULT_TERMS_BY_LANG: Record<SupportedInvoiceLanguage, string[]> = {
+  en: [
+    'Direct wire transfers must quote Invoice #{invoiceNumber} on swift remarks.',
+    'Inspection certificates must match verified surgical lots prior to cargo departure.',
+    'All disputes are subject to Sialkot Chamber of Commerce & Industry (SCCI) arbitration.'
+  ],
+  nl: [
+    'Vermeld bij bankoverschrijving altijd factuurnummer #{invoiceNumber} in de betalingsreferentie.',
+    'Inspectiecertificaten dienen vóór vertrek van de vracht overeen te komen met de geverifieerde partij.',
+    'Geschillen vallen onder de arbitrage van de Sialkot Chamber of Commerce & Industry (SCCI).'
+  ],
+  fr: [
+    'Tout virement bancaire doit obligatoirement mentionner le N° de facture #{invoiceNumber}.',
+    'Les certificats de conformité chirurgicale doivent correspondre aux lots avant expédition.',
+    'Tout litige commercial est soumis à l’arbitrage de la Chambre de Commerce et d’Industrie de Sialkot (SCCI).'
+  ],
+  de: [
+    'Bitte geben Sie bei der Überweisung unbedingt die Rechnungsnummer #{invoiceNumber} im Verwendungszweck an.',
+    'Prüfzertifikate müssen vor Verladung der Fracht mit den verifizierten Chargen übereinstimmen.',
+    'Alle Streitigkeiten unterliegen dem Schiedsverfahren der Industrie- und Handelskammer Sialkot (SCCI).'
+  ],
+  es: [
+    'Las transferencias bancarias deben indicar el N.º de Factura #{invoiceNumber} en el concepto.',
+    'Los certificados de inspección deben coincidir con los lotes quirúrgicos antes del despacho.',
+    'Cualquier controversia se someterá al arbitraje de la Cámara de Comercio e Industria de Sialkot (SCCI).'
+  ],
+  it: [
+    'I bonifici bancari devono riportare il numero di fattura #{invoiceNumber} nella causale.',
+    'I certificati di ispezione chirurgica devono corrispondere ai lotti verificati prima della spedizione.',
+    'Eventuali controversie sono soggette all’arbitrato della Camera di Commercio di Sialkot (SCCI).'
+  ],
+  ar: [
+    'يجب ذكر رقم الفاتورة #{invoiceNumber} بوضوح في خانة تفاصيل التحويل البنكي (SWIFT Remarks).',
+    'يجب أن تتطابق شهادات الفحص والتعقيم الطبي مع الشحنات قبل مغادرة البضائع للشحن الجوي.',
+    'تخضع جميع المعاملات والنزاعات التجارية للتحكيم الرسمي بغرفة تجارة وصناعة سيالكوت (SCCI).'
+  ],
+  ur: [
+    'بینک وائر ٹرانسفر کے وقت سوئفٹ ریمارکس میں انوائس نمبر #{invoiceNumber} لازماً درج کریں۔',
+    'سرجیکل و میڈیکل لاٹس کی کوالٹی انسپکشن سرٹیفکیٹ کارگو روانگی سے قبل تصدیق شدہ ہونا ضروری ہے۔',
+    'تمام تجارتی تنازعات سیالکوٹ چیمبر آف کامرس اینڈ انڈسٹری (SCCI) کے ثالثی قوانین کے تابع ہیں۔'
+  ]
+};
+
