@@ -25,6 +25,8 @@ import {
   Plane
 } from 'lucide-react';
 import { NavPageId } from '../types';
+import tripPlannerMockup from '../assets/images/Ai Trip Planner.jpg';
+import tripPlannerMockupWebp from '../assets/images/Ai Trip Planner.webp';
 import {
   getAllToolUsage,
   getToolUsageCount,
@@ -571,13 +573,24 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
           </div>
 
           {/* Featured Top Tool: AI Trip Planner */}
-          <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-teal-950 via-slate-900 to-slate-950 border-2 border-teal-500/50 shadow-md text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-teal-500/20 border border-teal-400/40 flex items-center justify-center flex-shrink-0 text-teal-400">
-                <Plane className="w-6 h-6" />
+          <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-teal-950 via-slate-900 to-slate-950 border-2 border-teal-500/50 shadow-md text-white flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 overflow-hidden relative">
+            <div className="flex flex-col sm:flex-row items-start gap-5 flex-1">
+              {/* Tool Mockup Image Thumbnail */}
+              <div className="w-full sm:w-44 md:w-52 aspect-[16/9] rounded-xl overflow-hidden border border-teal-500/30 flex-shrink-0 bg-slate-950 shadow-inner group">
+                <picture>
+                  <source srcSet={tripPlannerMockupWebp} type="image/webp" />
+                  <img
+                    src={tripPlannerMockup}
+                    alt="Ai Trip Planner - Evonixtec Day-Wise Vacation Itinerary Generator"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                  />
+                </picture>
               </div>
-              <div className="space-y-1">
-                <div className="flex items-center gap-2">
+
+              <div className="space-y-1.5 flex-1">
+                <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-teal-500/20 text-teal-300 border border-teal-500/30">
                     Featured AI Tool
                   </span>
@@ -593,11 +606,11 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-2.5 w-full md:w-auto">
+            <div className="flex items-center gap-2.5 w-full lg:w-auto">
               <button
                 type="button"
                 onClick={() => handleLaunchWithTrack('ai-trip-planner', 'ai-trip-planner')}
-                className="w-full md:w-auto px-5 py-2.5 rounded-xl bg-teal-400 hover:bg-teal-300 text-slate-950 font-black text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
+                className="w-full lg:w-auto px-5 py-2.5 rounded-xl bg-teal-400 hover:bg-teal-300 text-slate-950 font-black text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
               >
                 <span>Launch AI Trip Planner</span>
                 <ArrowRight className="w-4 h-4" />

@@ -110,6 +110,14 @@ export function getBlogVisual(blog: Pick<BlogPost, 'id' | 'slug' | 'category' | 
   const tagsStr = (Array.isArray(blog.tags) ? blog.tags.join(' ') : '').toLowerCase();
   const combined = `${slug} ${title} ${tagsStr}`;
 
+  // 0. AI Trip Planner & Travel Niche
+  if (combined.includes('trip planner') || combined.includes('vacation') || combined.includes('travel itinerary') || combined.includes('niche')) {
+    return {
+      imageUrl: '/images/Ai Trip Planner.jpg',
+      imageAlt: `evonix technologies - AI Trip Planner and Niche Strategy for ${blog.title}`,
+    };
+  }
+
   // 1. Barcode, Shipping Labels, QR code & Packing
   if (combined.includes('barcode') || combined.includes('shipping label') || combined.includes('carton') || combined.includes('labeling') || combined.includes('thermal roll') || combined.includes('gs1')) {
     if (combined.includes('carton') || combined.includes('shipping label') || combined.includes('export')) {

@@ -309,6 +309,30 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         targetElementId: 'developer-cost-calculator',
         priceOrHighlight: '100% Free Tool',
         whatsappMessage: 'Hello evonix, I am estimating dedicated software developer hiring costs using your calculator.',
+      },
+      {
+        id: 'ai-trip-planner-tool',
+        type: 'service',
+        title: 'Evonixtec AI Trip Planner (Free Vacation Itinerary Generator)',
+        categoryLabel: 'Free Serverless Tool',
+        description: 'Instant day-by-day vacation schedule generator for Dubai, Tokyo, Paris, London, Istanbul, and 100+ cities. Morning, afternoon, and evening sights, dining spots, and budget breakdown.',
+        tags: ['Trip Planner', 'AI Trip Planner', 'Travel', 'Itinerary', 'Vacation', 'Holiday', 'Dubai Trip', 'Tokyo', 'Tour Guide', 'Free Tool', 'Generator', 'Planner'],
+        targetSection: 'services',
+        targetElementId: 'ai-trip-planner',
+        priceOrHighlight: '100% Free Tool',
+        whatsappMessage: 'Hello evonix, I am using your AI Trip Planner tool to generate a travel itinerary.',
+      },
+      {
+        id: 'ai-travel-tools-guide',
+        type: 'blog',
+        title: '10 Best AI Tools Name for Travel Itinerary (2026 Ultimate Guide)',
+        categoryLabel: 'Editorial Guide & Benchmarks',
+        description: 'Deep-dive comparison of top AI travel tools: Wonderplan, Roam Around, Curiosio, Mindtrip, iPlan.ai, Tripnotes, and Evonixtec AI Trip Planner.',
+        tags: ['Travel Itinerary', 'AI Tools', 'Travel Guide', 'Best AI Tools for Travel', 'Wonderplan', 'Roam Around', 'Itinerary AI', 'Blog', 'Guide'],
+        targetSection: 'blogs',
+        targetElementId: 'ai-travel-tools',
+        priceOrHighlight: 'Comprehensive Guide',
+        whatsappMessage: 'Hello evonix, I read your 10 Best AI Tools for Travel Itinerary guide.',
       }
     );
 

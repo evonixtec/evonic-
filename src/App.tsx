@@ -141,18 +141,28 @@ export default function App() {
       return 'locations';
     }
 
+    // Specific tool routes MUST be matched before generic 'tools'
     if (
-      path === 'tools' ||
-      path === 'web-tools' ||
-      path === 'online-tools' ||
-      path === 'tools-hub' ||
-      path === 'tool-portfolio' ||
-      path === 'portfolio-tools' ||
-      path === 'all-tools' ||
-      path.startsWith('tools/') ||
-      path.startsWith('web-tools/')
+      path === 'tools/ai-trip-planner' ||
+      path === 'ai-trip-planner' ||
+      path === 'trip-planner' ||
+      path === 'ai-travel-planner' ||
+      path.startsWith('tools/ai-trip-planner') ||
+      path.startsWith('ai-trip-planner')
     ) {
-      return 'tools';
+      return 'ai-trip-planner';
+    }
+
+    if (
+      path === 'ai-tools-name-for-travel-itinerary' ||
+      path === 'ai-travel-tools' ||
+      path === 'ai-tools-for-travel-itinerary' ||
+      path === 'travel-itinerary-ai' ||
+      path === 'blog/ai-tools-name-for-travel-itinerary' ||
+      path === 'blogs/ai-tools-name-for-travel-itinerary' ||
+      path.startsWith('ai-tools-name-for-travel-itinerary')
+    ) {
+      return 'ai-travel-tools';
     }
 
     if (
@@ -258,25 +268,17 @@ export default function App() {
     }
 
     if (
-      path === 'ai-tools-name-for-travel-itinerary' ||
-      path === 'ai-travel-tools' ||
-      path === 'ai-tools-for-travel-itinerary' ||
-      path === 'travel-itinerary-ai' ||
-      path === 'blog/ai-tools-name-for-travel-itinerary' ||
-      path === 'blogs/ai-tools-name-for-travel-itinerary' ||
-      path.startsWith('ai-tools-name-for-travel-itinerary')
+      path === 'tools' ||
+      path === 'web-tools' ||
+      path === 'online-tools' ||
+      path === 'tools-hub' ||
+      path === 'tool-portfolio' ||
+      path === 'portfolio-tools' ||
+      path === 'all-tools' ||
+      path.startsWith('tools/') ||
+      path.startsWith('web-tools/')
     ) {
-      return 'ai-travel-tools';
-    }
-
-    if (
-      path === 'tools/ai-trip-planner' ||
-      path === 'ai-trip-planner' ||
-      path === 'trip-planner' ||
-      path === 'ai-travel-planner' ||
-      path.startsWith('tools/ai-trip-planner')
-    ) {
-      return 'ai-trip-planner';
+      return 'tools';
     }
 
     return 'home';
@@ -537,6 +539,14 @@ export default function App() {
       navigateToPage('invoice');
       return;
     }
+    if (elementId === 'ai-trip-planner') {
+      navigateToPage('ai-trip-planner');
+      return;
+    }
+    if (elementId === 'ai-travel-tools') {
+      navigateToPage('ai-travel-tools');
+      return;
+    }
 
     // Map sectionId to PageId
     let targetPage: NavPageId = 'home';
@@ -585,10 +595,11 @@ export default function App() {
             }}
             className="w-full pb-16 lg:pb-0"
           >
-            {/* ========================================================
-                PAGE 1: HOME PAGE (Concise, Curated & Beautiful)
-               ======================================================== */}
-        {currentPage === 'home' && (
+            <Suspense fallback={<LazyLoaderFallback />}>
+              {/* ========================================================
+                  PAGE 1: HOME PAGE (Concise, Curated & Beautiful)
+                 ======================================================== */}
+          {currentPage === 'home' && (
           <div className="space-y-0">
             {/* 1a. Flagship Interactive Hero Slider with Touch-Swipe & Cross-Fade Visuals */}
             <HeroSlider
@@ -1212,6 +1223,7 @@ export default function App() {
             onOpenQuote={() => handleOpenQuote('AI Travel Planner Custom Solution')}
           />
         )}
+            </Suspense>
           </motion.div>
         </AnimatePresence>
       </main>

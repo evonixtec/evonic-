@@ -117,7 +117,9 @@ export const Navbar: React.FC<NavbarProps> = ({
     currentPage === 'ai-visibility-checker' ||
     currentPage === 'live-repair-tracker' ||
     currentPage === 'printer-diagnostics' ||
-    currentPage === 'factory-network-tester';
+    currentPage === 'factory-network-tester' ||
+    currentPage === 'ai-trip-planner' ||
+    currentPage === 'ai-travel-tools';
 
   return (
     <header
@@ -663,6 +665,43 @@ export const Navbar: React.FC<NavbarProps> = ({
                     </button>
 
                     <span className="block px-3 py-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider border-t border-slate-100 mt-2 pt-2 pb-1 mb-1">
+                      AI &amp; Travel Solutions
+                    </span>
+
+                    <button
+                      onClick={() => handlePageSelect('ai-trip-planner')}
+                      className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
+                        currentPage === 'ai-trip-planner' ? 'bg-teal-50 text-teal-700 font-bold' : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-base flex items-center justify-center flex-shrink-0">✈️</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-teal-600 truncate flex items-center gap-1.5">
+                          <span>AI Trip Planner</span>
+                          <span className="text-[8px] bg-teal-100 text-teal-800 px-1 py-0.2 rounded font-bold">New</span>
+                        </div>
+                        <div className="text-[10px] text-slate-500">Day-by-day vacation itinerary generator</div>
+                      </div>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-teal-100 text-teal-700">Free AI</span>
+                    </button>
+
+                    <button
+                      onClick={() => handlePageSelect('ai-travel-tools')}
+                      className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
+                        currentPage === 'ai-travel-tools' ? 'bg-teal-50 text-teal-700 font-bold' : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-base flex items-center justify-center flex-shrink-0">🧭</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-teal-600 truncate">
+                          10 Best AI Travel Tools Guide
+                        </div>
+                        <div className="text-[10px] text-slate-500">Curated AI travel itinerary tools (2026)</div>
+                      </div>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-700">Guide</span>
+                    </button>
+
+                    <span className="block px-3 py-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider border-t border-slate-100 mt-2 pt-2 pb-1 mb-1">
                       Hardware Diagnostics Lab
                     </span>
 
@@ -1141,6 +1180,30 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <span>🔍 AI Visibility & E-E-A-T Checker</span>
                     </div>
                     <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-purple-100 text-purple-700">GEO</span>
+                  </button>
+
+                  <button
+                    onClick={() => handlePageSelect('ai-trip-planner')}
+                    className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
+                      currentPage === 'ai-trip-planner' ? 'bg-teal-50 text-teal-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span>✈️ AI Trip Planner (Vacation Generator)</span>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-teal-100 text-teal-700">Free AI</span>
+                  </button>
+
+                  <button
+                    onClick={() => handlePageSelect('ai-travel-tools')}
+                    className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
+                      currentPage === 'ai-travel-tools' ? 'bg-teal-50 text-teal-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span>🧭 10 Best AI Travel Tools Guide</span>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-700">Guide</span>
                   </button>
 
                   <button

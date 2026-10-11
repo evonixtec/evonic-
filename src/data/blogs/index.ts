@@ -4,6 +4,7 @@ import { WEB_GRAPHICS_BLOGS } from './webGraphicsBlogs';
 import { SOFTWARE_DEV_BLOGS } from './softwareDevBlogs';
 import { HARDWARE_REPAIR_BLOGS } from './hardwareRepairBlogs';
 import { SIALKOT_FIELD_BLOGS } from './sialkotFieldBlogs';
+import { NICHE_AND_AI_BLOGS } from './nicheAiBlogs';
 
 import { enrichBlogPost } from '../../lib/blogImages';
 
@@ -13,8 +14,10 @@ export { WEB_GRAPHICS_BLOGS } from './webGraphicsBlogs';
 export { SOFTWARE_DEV_BLOGS } from './softwareDevBlogs';
 export { HARDWARE_REPAIR_BLOGS } from './hardwareRepairBlogs';
 export { SIALKOT_FIELD_BLOGS } from './sialkotFieldBlogs';
+export { NICHE_AND_AI_BLOGS } from './nicheAiBlogs';
 
 const RAW_BLOGS: BlogPost[] = [
+  ...NICHE_AND_AI_BLOGS,
   ...FRESH_HUMAN_BLOGS,
   ...SIALKOT_FIELD_BLOGS,
   ...WEB_GRAPHICS_BLOGS,

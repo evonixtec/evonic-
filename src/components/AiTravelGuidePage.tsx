@@ -18,6 +18,9 @@ import {
 } from 'lucide-react';
 import { AiTripPlannerTool } from './AiTripPlannerTool';
 import { COMPANY_INFO } from '../data/content';
+import { OptimizedImage } from './common/OptimizedImage';
+import tripPlannerMockup from '../assets/images/Ai Trip Planner.jpg';
+import tripPlannerMockupWebp from '../assets/images/Ai Trip Planner.webp';
 
 interface AiTravelGuidePageProps {
   onNavigatePage: (page: string) => void;
@@ -29,7 +32,7 @@ export const AiTravelGuidePage: React.FC<AiTravelGuidePageProps> = ({
   onOpenQuote
 }) => {
   return (
-    <article className="min-h-screen bg-slate-950 text-slate-100 py-12 px-4 sm:px-6 lg:px-8">
+    <article className="min-h-screen bg-slate-950 text-slate-100 pt-24 pb-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto space-y-10">
         {/* Breadcrumbs */}
         <nav aria-label="Breadcrumbs" className="flex items-center gap-2 text-xs text-slate-400">
@@ -135,6 +138,22 @@ export const AiTravelGuidePage: React.FC<AiTravelGuidePageProps> = ({
               <p className="text-sm text-slate-300 leading-relaxed">
                 This is the most complete tool required for artificial intelligence travel planning. Just enter your destination, days, and budget. It creates a day-wise plan with food spots, activities, and estimated cost.
               </p>
+
+              {/* Verified Image Preview */}
+              <div className="rounded-xl overflow-hidden border border-slate-700 my-3 bg-slate-950">
+                <OptimizedImage
+                  src={tripPlannerMockup}
+                  webpSrc={tripPlannerMockupWebp}
+                  alt="Ai Trip Planner - Evonixtec Day-Wise Vacation Itinerary Generator"
+                  aspectRatio="aspect-[16/9]"
+                  priority={false}
+                  zoomOnHover={true}
+                  badge="Interactive AI Engine"
+                  badgeColor="emerald"
+                  className="w-full h-auto object-cover max-h-[380px]"
+                />
+              </div>
+
               <p className="text-xs text-slate-400 font-semibold">
                 <strong>Best For:</strong> Free travel itinerary, family trips, solo travel.
               </p>

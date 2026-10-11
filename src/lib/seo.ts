@@ -694,9 +694,10 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'Calculate unit economics, multi-courier rates, COD handling fees, break-even targets, and Pakistani return rate risk cushions with zero remote database tracking.',
     ogType: 'website',
-    ogImage: DEFAULT_OG_IMAGE,
+    ogImage: `${BASE_URL}/images/E-Commerce_Profit_and_Loss.jpg`,
     canonicalUrl: `${BASE_URL}/ecommerce-calculator`,
     keywords: [
+      'E-Commerce_Profit_and_Loss',
       'ecommerce profit calculator pakistan',
       'courier shipping margin calculator',
       'leopards courier rates calculator',
@@ -719,9 +720,10 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'Compute carton volume in CBM, air cargo dimensional weights, and container packing capacity instantly with zero remote database tracking.',
     ogType: 'website',
-    ogImage: DEFAULT_OG_IMAGE,
+    ogImage: `${BASE_URL}/images/Compute_industrial_cargo.jpg`,
     canonicalUrl: `${BASE_URL}/cbm-calculator`,
     keywords: [
+      'Compute_industrial_cargo',
       'cbm calculator',
       'export cbm calculator',
       'cubic meter calculator shipping',
@@ -743,9 +745,10 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'Calculate cost to hire dedicated developers via evonix Technologies Sialkot. Senior dev at $22/hr vs $80/hr in USA. Save $111k/year. Get CVs in 24h.',
     ogType: 'website',
-    ogImage: DEFAULT_OG_IMAGE,
+    ogImage: `${BASE_URL}/images/Developer_cost_calculator.jpg`,
     canonicalUrl: `${BASE_URL}/hire-dedicated-developer-cost-calculator-pune-india`,
     keywords: [
+      'Developer_cost_calculator',
       'hire dedicated developer cost calculator pakistan',
       'hire dedicated developer cost calculator',
       'cost to hire developer in india',
@@ -766,7 +769,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'Free client-side Google E-E-A-T & Generative Engine Optimization (GEO) checker. Audit your domain readiness for ChatGPT, Claude, and Google AI Overviews.',
     ogType: 'website',
-    ogImage: DEFAULT_OG_IMAGE,
+    ogImage: `${BASE_URL}/images/GEO_and_E-E-A-T_Diagnostic.jpg`,
     canonicalUrl: `${BASE_URL}/ai-visibility-checker`,
     keywords: [
       'ai visibility checker',
@@ -911,9 +914,10 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'Free AI travel itinerary generator. Enter your destination, budget, and days to generate an instant day-wise vacation schedule with food spots, costs & transit advice.',
     ogType: 'website',
-    ogImage: DEFAULT_OG_IMAGE,
+    ogImage: `${BASE_URL}/images/Ai%20Trip%20Planner.jpg`,
     canonicalUrl: `${BASE_URL}/tools/ai-trip-planner`,
     keywords: [
+      'Ai Trip Planner',
       'ai trip planner',
       'free itinerary generator',
       'travel itinerary ai',

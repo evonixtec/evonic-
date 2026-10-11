@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { AiTripPlannerTool } from './AiTripPlannerTool';
 import { COMPANY_INFO } from '../data/content';
+import { ToolArticleGuideSection } from './common/ToolArticleGuideSection';
 
 interface AiTripPlannerStandalonePageProps {
   onNavigatePage: (page: string) => void;
@@ -25,7 +26,7 @@ export const AiTripPlannerStandalonePage: React.FC<AiTripPlannerStandalonePagePr
   onOpenQuote
 }) => {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-950 text-slate-100 pt-24 pb-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto space-y-10">
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumbs" className="flex items-center gap-2 text-xs text-slate-400">
@@ -122,6 +123,9 @@ export const AiTripPlannerStandalonePage: React.FC<AiTripPlannerStandalonePagePr
             </div>
           </div>
         </section>
+
+        {/* High-Resolution Tool Mockup & Semantic Deep-Dive Section */}
+        <ToolArticleGuideSection toolId="ai-trip-planner" onOpenQuote={onOpenQuote} />
 
         {/* FAQ Section */}
         <section className="space-y-4 pt-6 border-t border-slate-800">

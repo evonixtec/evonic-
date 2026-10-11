@@ -26,6 +26,9 @@ import printerDiagMockupWebp from '../assets/images/printer_diag_mockup_17916359
 import factoryNetMockup from '../assets/images/factory_net_mockup_1791636034905.jpg';
 import factoryNetMockupWebp from '../assets/images/factory_net_mockup_1791636034905.webp';
 
+import tripPlannerMockup from '../assets/images/Ai Trip Planner.jpg';
+import tripPlannerMockupWebp from '../assets/images/Ai Trip Planner.webp';
+
 export interface ToolFaqItem {
   question: string;
   answer: string;
@@ -141,6 +144,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
     metaTitle: 'E-Commerce Margin & COD Simulator | Courier Fees, RTO Loss & Breakeven ROAS',
     metaDescription: 'Accurately model e-commerce profit margins, return to origin (RTO) courier penalties, customer acquisition cost (CAC), and target breakeven ROAS for digital retailers.',
     keywords: [
+      'E-Commerce_Profit_and_Loss',
       'ecommerce margin calculator',
       'cod return loss simulator',
       'breakeven roas calculator',
@@ -150,7 +154,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
     ],
     mockupImage: ecomMockup,
     mockupWebp: ecomMockupWebp,
-    imageAlt: 'E-Commerce Margin & COD Simulator Dashboard with ROAS Analytics and Courier Matrix',
+    imageAlt: 'E-Commerce_Profit_and_Loss - E-Commerce Margin & COD Simulator Cash Flow Margin Simulator COD and Return Profit Simulator',
     imageCaption: 'Comprehensive unit economics model factoring delivery success rates, reverse courier penalties, and advertising acquisition costs.',
     badge: 'Multi-Courier Tariff Engine · COD Fee Matrix',
     gradientClass: 'from-amber-950/40 via-slate-900 to-slate-950 border-amber-500/20',
@@ -209,7 +213,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
     ],
     mockupImage: cbmMockup,
     mockupWebp: cbmMockupWebp,
-    imageAlt: '3D Container Loading and Volumetric CBM Cargo Calculator Interface',
+    imageAlt: 'Compute_industrial_cargo - B2B Industrial Cargo & Logistics Air and Sea Metric CBM Freight Engine',
     imageCaption: 'Cubic meter and volumetric weight calculator evaluating container stuffing capacity across 20ft and 40ft High Cube specifications.',
     badge: 'ISO Freight Metric · Air & Sea Volumetric Rules',
     gradientClass: 'from-cyan-950/40 via-slate-900 to-slate-950 border-cyan-500/20',
@@ -266,7 +270,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
     ],
     mockupImage: devRatesMockup,
     mockupWebp: devRatesMockupWebp,
-    imageAlt: 'Software Engineering Hiring Cost Analytics Dashboard Comparing Worldwide Developer Rates',
+    imageAlt: 'Developer_cost_calculator - Workforce Budgeting Engine Dedicated Developer Cost Calculator',
     imageCaption: 'Capital efficiency benchmark comparing in-house hiring overhead with dedicated engineering retainers.',
     badge: 'Workforce Budgeting · 160h/Month Standard',
     gradientClass: 'from-blue-950/40 via-slate-900 to-slate-950 border-blue-500/20',
@@ -301,6 +305,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
     metaTitle: 'AI Visibility & GEO Readiness Auditor | Google AI Overviews & ChatGPT Schema',
     metaDescription: 'Audit your website for AI search engine visibility across Google AI Overviews, Perplexity, Claude, and ChatGPT Search. Analyze Schema.org entity graphs and E-E-A-T signals.',
     keywords: [
+      'GEO_and_E-E-A-T_Diagnostic',
       'ai visibility checker',
       'generative engine optimization audit',
       'chatgpt search schema validator',
@@ -309,7 +314,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
     ],
     mockupImage: aiVisMockup,
     mockupWebp: aiVisMockupWebp,
-    imageAlt: 'AI Visibility and Generative Engine Optimization Auditor Dashboard UI',
+    imageAlt: 'GEO_and_E-E-A-T_Diagnostic - Generative Engine Optimization GEO & E-E-A-T Diagnostic Engine Website AI Visibility Checker',
     imageCaption: 'Client-side verification of entity connectivity, Schema.org markup depth, and citations readiness.',
     badge: 'GEO Readiness Score · Entity Graph Analyzer',
     gradientClass: 'from-purple-950/40 via-slate-900 to-slate-950 border-purple-500/20',
@@ -505,6 +510,64 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
       {
         question: 'What ping latency is ideal for local ERP SQL database sync?',
         answer: 'On a properly structured Gigabit industrial local area network, ping between terminals and the central database server should remain under 2ms with zero packet drop.'
+      }
+    ]
+  },
+
+  // 10. EVONIXTEC AI TRIP PLANNER
+  'ai-trip-planner': {
+    toolId: 'ai-trip-planner',
+    title: 'AI Trip Planner: Day-Wise Vacation Itinerary Generator & Travel Budget Engine',
+    metaTitle: 'Ai Trip Planner | Day-Wise Vacation Itinerary Generator & Budget Breakdown',
+    metaDescription: 'Free AI trip planner generating day-wise travel itineraries, attraction timing, food spots, transit advice, and daily budget breakdowns in 30 seconds.',
+    keywords: [
+      'Ai Trip Planner',
+      'ai travel itinerary generator',
+      'day wise vacation planner',
+      'ai trip planner free',
+      'travel budget calculator ai',
+      'evonixtec ai trip planner'
+    ],
+    mockupImage: tripPlannerMockup,
+    mockupWebp: tripPlannerMockupWebp,
+    imageAlt: 'Ai Trip Planner - Evonixtec Day-Wise Vacation Itinerary Generator & Budget Breakdown Interface',
+    imageCaption: 'Evonixtec AI Trip Planner dashboard showcasing interactive day-wise schedule, transit routes, and daily budget breakdown.',
+    badge: '100% Free · Instant Day-Wise Schedule',
+    gradientClass: 'from-teal-950/40 via-slate-900 to-slate-950 border-teal-500/20',
+    articleSummary: 'Modern travel planning requires realistic transit schedules and accurate budget estimates rather than generic blog tips. The Evonixtec AI Trip Planner builds bespoke, day-wise vacation itineraries complete with meal recommendations, landmark time blocks, transit advice, and currency budgets in 30 seconds.',
+    sections: [
+      {
+        heading: 'Intelligent Geographic Clustering for Walkable Days',
+        content: [
+          'Travel fatigue usually happens when visitors zigzag across huge cities between distant attractions. Our algorithm groups attractions into cohesive geographic zones so morning activities, lunch spots, and evening views flow naturally with minimal commute times.',
+          'Whether you are visiting Tokyo, Dubai, Paris, or Istanbul, each itinerary details recommended metro lines, walking distances, and realistic duration windows for every stop.'
+        ]
+      },
+      {
+        heading: 'Real-World Daily Cost & Budget Estimations',
+        content: [
+          'Unlike generic chatbots, the Evonixtec engine factors real city tier costs into budget, moderate, and luxury spending brackets. Every itinerary provides estimated expense ranges covering entrance tickets, public transit passes, and local culinary experiences.'
+        ]
+      }
+    ],
+    practicalUseCases: [
+      {
+        title: 'Solo & Family Vacation Roadmaps',
+        description: 'Generate complete 3 to 14 day schedules balanced for family rest breaks, photo spots, and kid-friendly dining.'
+      },
+      {
+        title: 'WhatsApp Itinerary Handoff',
+        description: 'Share formatted daily schedules directly with travel partners and family on WhatsApp in one click.'
+      }
+    ],
+    faqs: [
+      {
+        question: 'Is the Evonixtec AI Trip Planner completely free?',
+        answer: 'Yes, it is 100% free with unlimited itinerary generations, zero hidden paywalls, and no login required.'
+      },
+      {
+        question: 'Can I export my generated itinerary?',
+        answer: 'You can copy the clean markdown text, print an offline travel PDF, or share the complete day-by-day plan on WhatsApp.'
       }
     ]
   }
