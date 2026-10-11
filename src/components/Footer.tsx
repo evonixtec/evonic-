@@ -28,7 +28,7 @@ import {
 interface FooterProps {
   onNavigate: (section: SectionId | string) => void;
   onOpenQuote: () => void;
-  onOpenPolicy?: (type: 'privacy' | 'terms' | 'refund') => void;
+  onOpenPolicy?: (type: 'privacy' | 'terms' | 'refund' | 'mobile' | 'matrix') => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenPolicy }) => {
@@ -553,14 +553,28 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                   onClick={() => onOpenPolicy('terms')}
                   className="hover:text-red-400 transition-colors cursor-pointer"
                 >
-                  Terms of Service
+                  Terms &amp; EULA
                 </button>
                 <span>•</span>
                 <button
                   onClick={() => onOpenPolicy('refund')}
                   className="hover:text-red-400 transition-colors cursor-pointer"
                 >
-                  Warranty & RMA Policy
+                  Refund &amp; RMA
+                </button>
+                <span>•</span>
+                <button
+                  onClick={() => onOpenPolicy('mobile')}
+                  className="hover:text-blue-400 transition-colors cursor-pointer font-medium text-slate-300"
+                >
+                  Google Play Policy
+                </button>
+                <span>•</span>
+                <button
+                  onClick={() => onOpenPolicy('matrix')}
+                  className="hover:text-indigo-400 transition-colors cursor-pointer font-medium text-slate-300"
+                >
+                  Data Safety Matrix
                 </button>
                 <span>•</span>
               </>

@@ -95,10 +95,25 @@ export const ToolArticleGuideSection: React.FC<ToolArticleGuideSectionProps> = (
               <div className="p-2 rounded-xl bg-teal-500/20 text-teal-300 flex-shrink-0 mt-0.5">
                 <Sparkles className="w-4 h-4" />
               </div>
-              <div className="space-y-1">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-teal-400">
-                  Quick AI Summary &amp; Direct Technical Answer
-                </span>
+              <div className="space-y-1.5 flex-1">
+                <div className="flex items-center justify-between flex-wrap gap-2">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-teal-400">
+                    Quick AI Summary &amp; Direct Technical Answer
+                  </span>
+                  <button
+                    onClick={() => {
+                      if (typeof window !== 'undefined') {
+                        window.dispatchEvent(new CustomEvent('evonix-open-policy', { detail: 'matrix' }));
+                      }
+                    }}
+                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 hover:bg-teal-500/30 border border-teal-500/30 transition-colors cursor-pointer"
+                    title="View Google Play Store & Web Data Safety Declaration"
+                  >
+                    <ShieldCheck className="w-3 h-3 text-teal-300" />
+                    <span>Data Safety Verified</span>
+                    <ExternalLink className="w-2.5 h-2.5 ml-0.5 opacity-80" />
+                  </button>
+                </div>
                 <p className="text-xs text-slate-200 leading-relaxed">
                   Evonix Technologies engineers free, privacy-first diagnostic engines and business tools running 100% client-side in the browser. Zero server uploads, zero license friction, and validated against international ESC/POS, thermal print, and ERP enterprise standards.
                 </p>

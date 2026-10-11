@@ -326,13 +326,47 @@ export default function App() {
       const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
       const hash = window.location.hash.replace('#', '').toLowerCase();
 
-      // Check direct policy modal routes
-      if (path === 'privacy-policy' || path === 'privacy') {
+      // Check direct policy modal routes (Web & Google Play Store Compliance)
+      if (
+        path === 'privacy-policy' ||
+        path === 'privacy' ||
+        path === 'app-privacy-policy' ||
+        path === 'google-privacy' ||
+        path === 'privacy-policy-tools'
+      ) {
         setActivePolicyModal('privacy');
-      } else if (path === 'terms-and-conditions' || path === 'terms') {
+      } else if (
+        path === 'terms-and-conditions' ||
+        path === 'terms' ||
+        path === 'terms-of-service' ||
+        path === 'eula' ||
+        path === 'app-terms'
+      ) {
         setActivePolicyModal('terms');
-      } else if (path === 'warranty-policy' || path === 'warranty' || path === 'refund') {
+      } else if (
+        path === 'warranty-policy' ||
+        path === 'warranty' ||
+        path === 'refund' ||
+        path === 'refund-policy' ||
+        path === 'returns' ||
+        path === 'cancellation-policy'
+      ) {
         setActivePolicyModal('refund');
+      } else if (
+        path === 'mobile-policy' ||
+        path === 'play-store-policy' ||
+        path === 'google-play-policy' ||
+        path === 'app-policy' ||
+        path === 'android-policy'
+      ) {
+        setActivePolicyModal('mobile');
+      } else if (
+        path === 'data-safety' ||
+        path === 'safety-matrix' ||
+        path === 'tools-safety' ||
+        path === 'tool-data-safety'
+      ) {
+        setActivePolicyModal('matrix');
       }
 
       // Check specialized industrial home sections
@@ -388,11 +422,23 @@ export default function App() {
     // Run on initial load
     syncRouteFromLocation();
 
+    const handlePolicyEvent = (e: Event) => {
+      const customEvent = e as CustomEvent<PolicyType>;
+      if (customEvent.detail) {
+        setActivePolicyModal(customEvent.detail);
+      } else {
+        setActivePolicyModal('privacy');
+      }
+    };
+
     window.addEventListener('popstate', syncRouteFromLocation);
     window.addEventListener('hashchange', syncRouteFromLocation);
+    window.addEventListener('evonix-open-policy', handlePolicyEvent);
+
     return () => {
       window.removeEventListener('popstate', syncRouteFromLocation);
       window.removeEventListener('hashchange', syncRouteFromLocation);
+      window.removeEventListener('evonix-open-policy', handlePolicyEvent);
     };
   }, []);
 
