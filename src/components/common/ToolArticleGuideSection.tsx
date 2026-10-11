@@ -111,6 +111,7 @@ export const ToolArticleGuideSection: React.FC<ToolArticleGuideSectionProps> = (
             <div className="rounded-2xl overflow-hidden border border-slate-300/80 shadow-md bg-slate-950 group">
               <OptimizedImage
                 src={guide.mockupImage}
+                webpSrc={guide.mockupWebp}
                 alt={guide.imageAlt}
                 aspectRatio="aspect-[16/9]"
                 priority={false}

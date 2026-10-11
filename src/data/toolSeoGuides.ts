@@ -1,13 +1,30 @@
-// High-Resolution Generated Tool UI Mockup Visuals
+// High-Resolution Generated Tool UI Mockup Visuals (JPEG & WebP)
 import invoiceMockup from '../assets/images/invoice_generator_mockup_1791635145434.jpg';
+import invoiceMockupWebp from '../assets/images/invoice_generator_mockup_1791635145434.webp';
+
 import ecomMockup from '../assets/images/ecom_calculator_mockup_1791635166292.jpg';
+import ecomMockupWebp from '../assets/images/ecom_calculator_mockup_1791635166292.webp';
+
 import cbmMockup from '../assets/images/cbm_cargo_mockup_1791635193504.jpg';
+import cbmMockupWebp from '../assets/images/cbm_cargo_mockup_1791635193504.webp';
+
 import devRatesMockup from '../assets/images/dev_rates_mockup_1791635232968.jpg';
+import devRatesMockupWebp from '../assets/images/dev_rates_mockup_1791635232968.webp';
+
 import aiVisMockup from '../assets/images/ai_vis_mockup_1791635271095.jpg';
+import aiVisMockupWebp from '../assets/images/ai_vis_mockup_1791635271095.webp';
+
 import barcodeMockup from '../assets/images/barcode_studio_mockup_1791635317504.jpg';
+import barcodeMockupWebp from '../assets/images/barcode_studio_mockup_1791635317504.webp';
+
 import liveRmaMockup from '../assets/images/live_rma_mockup_1791635366930.jpg';
+import liveRmaMockupWebp from '../assets/images/live_rma_mockup_1791635366930.webp';
+
 import printerDiagMockup from '../assets/images/printer_diag_mockup_1791635961966.jpg';
+import printerDiagMockupWebp from '../assets/images/printer_diag_mockup_1791635961966.webp';
+
 import factoryNetMockup from '../assets/images/factory_net_mockup_1791636034905.jpg';
+import factoryNetMockupWebp from '../assets/images/factory_net_mockup_1791636034905.webp';
 
 export interface ToolFaqItem {
   question: string;
@@ -21,6 +38,7 @@ export interface ToolSeoGuide {
   metaDescription: string;
   keywords: string[];
   mockupImage: string;
+  mockupWebp?: string;
   imageAlt: string;
   imageCaption: string;
   badge: string;
@@ -53,6 +71,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
       'dutch french arabic urdu invoice maker'
     ],
     mockupImage: invoiceMockup,
+    mockupWebp: invoiceMockupWebp,
     imageAlt: 'Global Micro-Invoice Generator Dashboard with Multi-Currency Tax Calculator and Barcode',
     imageCaption: 'Real-time client-side invoice editor with 50+ country tax presets, Code128 scannable barcodes, and ISO 216 A4 print engine.',
     badge: 'Zero-Database · ISO 216 A4 Print Engine',
@@ -130,6 +149,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
       'ecommerce unit economics spreadsheet'
     ],
     mockupImage: ecomMockup,
+    mockupWebp: ecomMockupWebp,
     imageAlt: 'E-Commerce Margin & COD Simulator Dashboard with ROAS Analytics and Courier Matrix',
     imageCaption: 'Comprehensive unit economics model factoring delivery success rates, reverse courier penalties, and advertising acquisition costs.',
     badge: 'Multi-Courier Tariff Engine · COD Fee Matrix',
@@ -188,6 +208,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
       'ocean freight cbm stuffing optimizer'
     ],
     mockupImage: cbmMockup,
+    mockupWebp: cbmMockupWebp,
     imageAlt: '3D Container Loading and Volumetric CBM Cargo Calculator Interface',
     imageCaption: 'Cubic meter and volumetric weight calculator evaluating container stuffing capacity across 20ft and 40ft High Cube specifications.',
     badge: 'ISO Freight Metric · Air & Sea Volumetric Rules',
@@ -244,6 +265,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
       'software development agency rate calculator'
     ],
     mockupImage: devRatesMockup,
+    mockupWebp: devRatesMockupWebp,
     imageAlt: 'Software Engineering Hiring Cost Analytics Dashboard Comparing Worldwide Developer Rates',
     imageCaption: 'Capital efficiency benchmark comparing in-house hiring overhead with dedicated engineering retainers.',
     badge: 'Workforce Budgeting · 160h/Month Standard',
@@ -286,6 +308,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
       'entity graph eeat analyzer'
     ],
     mockupImage: aiVisMockup,
+    mockupWebp: aiVisMockupWebp,
     imageAlt: 'AI Visibility and Generative Engine Optimization Auditor Dashboard UI',
     imageCaption: 'Client-side verification of entity connectivity, Schema.org markup depth, and citations readiness.',
     badge: 'GEO Readiness Score · Entity Graph Analyzer',
@@ -328,6 +351,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
       'export shipping marks generator'
     ],
     mockupImage: barcodeMockup,
+    mockupWebp: barcodeMockupWebp,
     imageAlt: 'Industrial Thermal Barcode Label Printer Printing 4x6 Export Carton Label',
     imageCaption: 'Direct thermal vector label generator formatted for standard 100mm × 150mm (4" × 6") Zebra and TSC printers.',
     badge: 'GS1-128 · 203/300 DPI Vector Thermal Engine',
@@ -370,6 +394,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
       'chip level hardware repair warranty'
     ],
     mockupImage: liveRmaMockup,
+    mockupWebp: liveRmaMockupWebp,
     imageAlt: 'Electronics Laboratory RMA Diagnostic Repair Workbench with Oscilloscope and Microscope',
     imageCaption: 'Chip-level electronics diagnostic bench logging voltage rail verification and 90-day warranty certificates.',
     badge: 'Hardware QC · Micro-Soldering Logs',
@@ -412,6 +437,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
       'pos billing printer repair sialkot'
     ],
     mockupImage: printerDiagMockup,
+    mockupWebp: printerDiagMockupWebp,
     imageAlt: 'Thermal Receipt and Industrial Laser Printer Diagnostic Repair Workshop Bench',
     imageCaption: 'Comprehensive troubleshooting guide for ESC/POS receipt printers and industrial laser fusers.',
     badge: 'ESC/POS Protocol · 80mm/58mm Hardware Matrix',
@@ -454,6 +480,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
       'sialkot export factory network monitoring'
     ],
     mockupImage: factoryNetMockup,
+    mockupWebp: factoryNetMockupWebp,
     imageAlt: 'Industrial Factory Network Latency Benchmark Dashboard with Dual-WAN Status',
     imageCaption: 'Real-time telemetry measuring premise network ping jitter, database responsiveness, and customs gateway stability.',
     badge: 'Client-Side Ping Engine · WAN Jitter Analysis',

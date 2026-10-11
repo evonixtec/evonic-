@@ -61,13 +61,10 @@ export function getWebpSource(src: string | undefined): string {
     }
   }
 
-  // Handle local Vite imports or public assets
-  // Matches .jpg, .jpeg, .png before any query string or hash
-  if (/\.(jpe?g|png)(\?.*)?$/i.test(src)) {
-    return src.replace(/\.(jpe?g|png)(\?.*)?$/i, '.webp$2');
-  }
-
-  return src;
+  // For local bundled assets (Vite hashes, relative imports, etc.), do NOT synthesize
+  // speculative .webp URLs. Doing so causes 404 responses in the browser and breaks
+  // image rendering unless webpSrc is explicitly provided.
+  return '';
 }
 
 /**

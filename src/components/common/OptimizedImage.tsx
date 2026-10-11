@@ -31,10 +31,25 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [currentSrc, setCurrentSrc] = useState(src);
 
-  // Derive WebP source if not explicitly provided
-  const resolvedWebp = webpSrc || (isWebPFormat(src) ? src : getWebpSource(src));
+  React.useEffect(() => {
+    setCurrentSrc(src);
+    setIsLoaded(false);
+    setHasError(false);
+  }, [src]);
+
+  // Derive WebP source if explicitly provided or CDN convertible
   const fallback = fallbackSrc || src;
+  const resolvedWebp = webpSrc || (isWebPFormat(currentSrc) ? currentSrc : getWebpSource(currentSrc));
+
+  const handleImageError = () => {
+    if (currentSrc !== fallback && fallback) {
+      setCurrentSrc(fallback);
+    } else {
+      setHasError(true);
+    }
+  };
 
   const badgeColorClasses = {
     red: 'bg-red-600 text-white',
@@ -46,37 +61,42 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
 
   return (
     <div
-      className={`relative overflow-hidden bg-slate-100 ${aspectRatio} ${containerClassName} ${
+      className={`relative overflow-hidden bg-slate-900 ${aspectRatio} ${containerClassName} ${
         zoomOnHover ? 'group' : ''
       }`}
     >
       {/* Loading Skeleton Shimmer */}
       {!isLoaded && !hasError && (
-        <div className="absolute inset-0 z-0 bg-slate-200 animate-pulse flex items-center justify-center">
-          <div className="w-8 h-8 rounded-full border-2 border-slate-300 border-t-red-600 animate-spin opacity-50" />
+        <div className="absolute inset-0 z-0 bg-slate-800/80 animate-pulse flex items-center justify-center">
+          <div className="w-8 h-8 rounded-full border-2 border-slate-600 border-t-red-600 animate-spin opacity-70" />
         </div>
       )}
 
-      {/* Error Fallback State */}
+      {/* Resilient Error Fallback State - High-Tech Blueprint Mockup */}
       {hasError ? (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-100 text-slate-400 p-4 text-center">
-          <ImageOff className="w-8 h-8 mb-2 opacity-60 text-slate-400" />
-          <span className="text-xs font-medium text-slate-500 line-clamp-1">{alt}</span>
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-300 p-6 text-center border border-slate-800">
+          <div className="w-14 h-14 rounded-2xl bg-red-600/10 border border-red-500/20 flex items-center justify-center mb-3">
+            <ImageOff className="w-6 h-6 text-red-400 opacity-80" />
+          </div>
+          <p className="text-xs font-semibold text-slate-200 line-clamp-1 max-w-md mb-1">{alt}</p>
+          <span className="text-[11px] font-mono text-slate-400">
+            Interactive Diagnostic Engine • Ready In Browser Runtime
+          </span>
         </div>
       ) : (
         /* Modern Picture Element with WebP Source & Fallback */
         <picture className="w-full h-full block">
-          {resolvedWebp && resolvedWebp !== fallback && (
+          {resolvedWebp && resolvedWebp !== currentSrc && (
             <source type="image/webp" srcSet={resolvedWebp} />
           )}
           <img
-            src={fallback}
+            src={currentSrc}
             alt={alt}
             loading={priority ? 'eager' : 'lazy'}
             decoding="async"
             fetchPriority={priority ? 'high' : 'low'}
             onLoad={() => setIsLoaded(true)}
-            onError={() => setHasError(true)}
+            onError={handleImageError}
             className={`w-full h-full object-cover transition-all duration-500 ease-out ${
               isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-98'
             } ${zoomOnHover ? 'group-hover:scale-105' : ''} ${className}`}
@@ -96,10 +116,10 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
         </div>
       )}
 
-      {/* WebP Indicator for Search & SEO (Subtle high-perf indicator) */}
+      {/* WebP Indicator for Search & SEO */}
       <div className="absolute bottom-2 right-2 z-10 pointer-events-none opacity-0 group-hover:opacity-80 transition-opacity">
         <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-black/60 text-emerald-400 backdrop-blur-xs">
-          WEBP • OPTIMIZED
+          OPTIMIZED • ISO READY
         </span>
       </div>
     </div>
