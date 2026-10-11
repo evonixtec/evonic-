@@ -1,4 +1,67 @@
+# robots.txt for evonix technologies (https://www.evonixtec.com)
+# Full crawler permissions for standard search engines, AI models, and Cloud agents.
+
 User-agent: *
 Allow: /
 
+# OpenAI / ChatGPT Crawlers & Search Agents
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Google Search & Google AI (Gemini / AI Overviews)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+# Anthropic Claude Crawlers
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity AI Crawler
+User-agent: PerplexityBot
+Allow: /
+
+# Apple AI & Siri Knowledge Crawlers
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Microsoft Bing & Copilot
+User-agent: Bingbot
+Allow: /
+
+User-agent: msnbot
+Allow: /
+
+# Other Knowledge Base Crawlers
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# Sitemaps and AI Machine-Readable Specifications
 Sitemap: https://www.evonixtec.com/sitemap.xml
+# LLM Knowledge Base Endpoints:
+# https://www.evonixtec.com/llms.txt
+# https://www.evonixtec.com/llms-full.txt
+# https://www.evonixtec.com/ai-catalog.json

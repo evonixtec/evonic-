@@ -14,12 +14,10 @@ import {
   X,
   Smartphone,
   Globe,
-  Bot,
   Flame
 } from 'lucide-react';
 import { NavPageId } from '../types';
 import { COMPANY_INFO } from '../data/content';
-import { ToolAiCloudIntegrationModal } from './common/ToolAiCloudIntegrationModal';
 import { getAllToolUsage, isToolMostPopular } from '../lib/toolUsageTracker';
 
 interface MobileBottomNavProps {
@@ -35,7 +33,6 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
   onOpenQuote,
 }) => {
   const [showToolsDrawer, setShowToolsDrawer] = useState(false);
-  const [activeIntegrationToolId, setActiveIntegrationToolId] = useState<string | null>(null);
   const [usageMap, setUsageMap] = useState<Record<string, number>>({});
 
   useEffect(() => {
@@ -46,7 +43,6 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
     {
       id: 'invoice',
       name: 'Global Micro-Invoice Generator',
-      urduName: 'آن لائن انوائس جنریٹر',
       desc: 'Zero-database multi-currency commercial invoices with Code128 barcodes.',
       icon: <FileText className="w-5 h-5 text-emerald-600" />,
       order: 1,
@@ -54,7 +50,6 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
     {
       id: 'ecommerce-calculator',
       name: 'E-Commerce Margin & COD Simulator',
-      urduName: 'ای کامرس مارجن اور سی او ڈی کیلکولیٹر',
       desc: 'Simulate net profit margins, ad spend ROAS, and return loss rates.',
       icon: <SlidersHorizontal className="w-5 h-5 text-amber-600" />,
       order: 2,
@@ -62,7 +57,6 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
     {
       id: 'cbm-calculator',
       name: 'B2B Industrial CBM & Freight Engine',
-      urduName: 'کارگو سی بی ایم کیلکولیٹر',
       desc: 'Calculate carton CBM volume and 20ft/40ft container stuffing capacity.',
       icon: <Boxes className="w-5 h-5 text-cyan-600" />,
       order: 3,
@@ -70,7 +64,6 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
     {
       id: 'developer-cost-calculator',
       name: 'Dedicated Developer Cost Calculator',
-      urduName: 'ڈویلپر کاسٹ کیلکولیٹر',
       desc: 'Compare USA/UK software salaries against dedicated offshore squads.',
       icon: <Calculator className="w-5 h-5 text-blue-600" />,
       order: 4,
@@ -78,7 +71,6 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
     {
       id: 'ai-visibility-checker',
       name: 'AI Visibility & E-E-A-T Checker',
-      urduName: 'اے آئی سرچ وزیبلٹی چیکر',
       desc: 'Client-side audit for ChatGPT, Claude, and Google AI Overviews citation.',
       icon: <Search className="w-5 h-5 text-purple-600" />,
       order: 5,
@@ -167,9 +159,6 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
                     <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-red-600 text-white uppercase tracking-wide">
                       📱 5 Core Mobile Tools
                     </span>
-                    <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                      موبائل ایپلیکیشن کے 5 ٹولز
-                    </span>
                   </div>
                   <h3 className="text-base font-extrabold text-slate-900 mt-1">
                     Mobile Application Workstations
@@ -221,22 +210,10 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
                       </div>
                       <p className="text-[11px] text-slate-600 line-clamp-1">{tool.desc}</p>
                       <div className="flex items-center justify-between mt-2 pt-1 border-t border-slate-100 text-[10px]">
-                        <span className="text-slate-400">{tool.urduName}</span>
-                        <div className="flex items-center gap-2">
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setActiveIntegrationToolId(tool.id);
-                            }}
-                            className="text-slate-500 hover:text-blue-600 font-bold px-1.5 py-0.5 rounded bg-slate-100 hover:bg-blue-50"
-                          >
-                            AI / Cloud
-                          </button>
-                          <span className="text-red-600 font-bold inline-flex items-center gap-0.5 group-hover:translate-x-0.5 transition-transform">
-                            Open <ArrowRight className="w-3 h-3" />
-                          </span>
-                        </div>
+                        <span className="text-slate-400 font-mono">100% Offline / Local</span>
+                        <span className="text-red-600 font-bold inline-flex items-center gap-0.5 group-hover:translate-x-0.5 transition-transform">
+                          Open <ArrowRight className="w-3 h-3" />
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -260,13 +237,6 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
         </div>
       )}
 
-      {activeIntegrationToolId && (
-        <ToolAiCloudIntegrationModal
-          toolId={activeIntegrationToolId}
-          isOpen={!!activeIntegrationToolId}
-          onClose={() => setActiveIntegrationToolId(null)}
-        />
-      )}
     </>
   );
 };

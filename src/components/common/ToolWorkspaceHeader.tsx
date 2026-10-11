@@ -19,12 +19,9 @@ import {
   ChevronRight,
   ExternalLink,
   Laptop,
-  Bot,
-  Cloud,
-  Github,
-  Smartphone
+  Smartphone,
+  Plane
 } from 'lucide-react';
-import { ToolAiCloudIntegrationModal } from './ToolAiCloudIntegrationModal';
 import { ALL_TOOL_INTEGRATIONS } from '../../lib/toolIntegrations';
 
 export interface ToolNavDefinition {
@@ -86,7 +83,7 @@ export const ALL_TOOLS_DIRECTORY: ToolNavDefinition[] = [
     category: 'ecommerce-growth',
     categoryLabel: 'Growth & SEO',
     icon: <Search className="w-4 h-4 text-purple-500" />,
-    badge: 'ChatGPT / Claude',
+    badge: 'Search & Schema Ready',
     isMobileCore: true,
   },
   {
@@ -125,6 +122,15 @@ export const ALL_TOOLS_DIRECTORY: ToolNavDefinition[] = [
     icon: <Wifi className="w-4 h-4 text-teal-500" />,
     badge: 'Dual-WAN',
   },
+  {
+    id: 'ai-trip-planner',
+    name: 'Evonixtec AI Trip Planner',
+    shortName: 'AI Trip Planner',
+    category: 'business-export',
+    categoryLabel: 'AI Travel Tools',
+    icon: <Plane className="w-4 h-4 text-teal-400" />,
+    badge: 'Itinerary AI',
+  },
 ];
 
 interface ToolWorkspaceHeaderProps {
@@ -157,7 +163,6 @@ export const ToolWorkspaceHeader: React.FC<ToolWorkspaceHeaderProps> = ({
   workspaceState,
 }) => {
   const [copiedLink, setCopiedLink] = useState(false);
-  const [showAiCloudModal, setShowAiCloudModal] = useState(false);
 
   const currentToolIntegration = ALL_TOOL_INTEGRATIONS[currentToolId];
   const isMobileCore = currentToolIntegration?.isMobileAppCore;
@@ -224,21 +229,8 @@ export const ToolWorkspaceHeader: React.FC<ToolWorkspaceHeaderProps> = ({
               </div>
             </div>
 
-            {/* Right: Workspace Quick Action Controls & AI/Cloud Hub */}
+            {/* Right: Workspace Quick Action Controls */}
             <div className="flex flex-wrap items-center gap-2 pt-1 lg:pt-0">
-              {/* PRIMARY AI & CLOUD SETTINGS TRIGGER */}
-              <button
-                type="button"
-                onClick={() => setShowAiCloudModal(true)}
-                className="px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-emerald-600 via-blue-600 to-purple-600 hover:from-emerald-500 hover:via-blue-500 hover:to-purple-500 text-white text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-md shadow-blue-950/60 ring-1 ring-white/20 animate-pulse"
-                title="Open ChatGPT, Google AI Studio, GitHub and Cloud settings for this tool"
-              >
-                <Bot className="w-3.5 h-3.5" />
-                <span className="font-extrabold">ChatGPT &amp; Cloud Hub</span>
-                <span className="text-[10px] bg-black/40 px-1.5 py-0.2 rounded font-mono">
-                  GPT/Cloud/Git
-                </span>
-              </button>
 
               {onLoadSampleData && (
                 <button
@@ -359,14 +351,6 @@ export const ToolWorkspaceHeader: React.FC<ToolWorkspaceHeaderProps> = ({
           </div>
         </div>
       </div>
-
-      {/* AI & Cloud Integration Modal */}
-      <ToolAiCloudIntegrationModal
-        toolId={currentToolId}
-        isOpen={showAiCloudModal}
-        onClose={() => setShowAiCloudModal(false)}
-        currentWorkspaceState={workspaceState}
-      />
     </>
   );
 };

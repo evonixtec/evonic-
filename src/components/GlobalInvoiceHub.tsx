@@ -53,6 +53,7 @@ import {
   convertNumberToWordsLocalized
 } from '../data/invoiceTranslations';
 import { MAJOR_50_COUNTRIES, CountryTaxPreset } from '../data/countryPresets';
+import { ToolArticleGuideSection } from './common/ToolArticleGuideSection';
 
 export interface InvoiceItem {
   id: string;
@@ -685,7 +686,7 @@ export const GlobalInvoiceHub: React.FC = () => {
             <div className="flex items-center gap-2">
               <Languages className="w-4 h-4 text-red-600" />
               <span className="text-xs font-bold uppercase tracking-wider text-slate-800">
-                Invoice Language &amp; International Format (اے ٹو زیڈ زبان کا انتخاب):
+                Invoice Language &amp; International Format:
               </span>
             </div>
             {langChangedNotice && (
@@ -829,7 +830,7 @@ export const GlobalInvoiceHub: React.FC = () => {
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-xs text-slate-800 flex items-center gap-1.5">
                     <Hash className="w-4 h-4 text-red-600" />
-                    <span>Invoice Number &amp; Identification (انوائس نمبر ایڈیٹ کریں):</span>
+                    <span>Invoice Number &amp; Identification:</span>
                   </span>
                   <span className="text-[11px] text-slate-500">
                     Type your full custom number or adjust prefix &amp; sequence
@@ -839,7 +840,7 @@ export const GlobalInvoiceHub: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
                   <div className="sm:col-span-6 space-y-1">
                     <label className="text-[11px] font-bold text-slate-700 block">
-                      Full Invoice Number (براہ راست انوائس نمبر لکھیں):
+                      Full Invoice Number:
                     </label>
                     <input
                       type="text"
@@ -894,7 +895,7 @@ export const GlobalInvoiceHub: React.FC = () => {
               <div className="space-y-3">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <span className="text-xs font-bold text-slate-800">
-                    Quick Title Presets (ٹائٹل کی فوری اقسام):
+                    Quick Title Presets:
                   </span>
                   <div className="flex flex-wrap gap-1.5">
                     <button
@@ -1005,7 +1006,7 @@ export const GlobalInvoiceHub: React.FC = () => {
 
                 <div className="space-y-1 sm:col-span-2">
                   <label className="font-bold text-slate-700 block flex items-center justify-between">
-                    <span>Company Registered Address (ایڈریس تبدیل کریں):</span>
+                    <span>Company Registered Address:</span>
                     <span className="text-[10px] text-emerald-600 font-semibold">Kotli Behram, Sialkot</span>
                   </label>
                   <input
@@ -1088,7 +1089,7 @@ export const GlobalInvoiceHub: React.FC = () => {
             <div className="space-y-3 animate-fadeIn">
               <div className="flex items-center justify-between pb-1">
                 <span className="text-xs font-bold text-slate-700">
-                  Bank Wire Transfer Credentials (بینک کی تفصیلات تبدیل کریں):
+                  Bank Wire Transfer Credentials:
                 </span>
                 <label className="flex items-center gap-1.5 cursor-pointer text-xs">
                   <input
@@ -1155,7 +1156,7 @@ export const GlobalInvoiceHub: React.FC = () => {
                   <div className="flex items-center gap-2">
                     <HelpCircle className="w-4 h-4 text-blue-600" />
                     <span className="font-bold text-xs text-blue-900">
-                      Help You Quotation Box (اختیاری کوٹیشن باکس):
+                      Help You Quotation Box (Optional):
                     </span>
                   </div>
                   <label className="flex items-center gap-1.5 cursor-pointer text-xs">
@@ -1221,7 +1222,7 @@ export const GlobalInvoiceHub: React.FC = () => {
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-xs text-slate-800">
-                    Payment Terms &amp; Conditions (شرائط و ضوابط ایڈٹ، ڈیلیٹ یا شامل کریں):
+                    Payment Terms &amp; Conditions:
                   </span>
                   <div className="flex gap-2">
                     <button
@@ -1768,7 +1769,7 @@ export const GlobalInvoiceHub: React.FC = () => {
                 <div className="flex items-center justify-between border-b border-blue-200/60 pb-1.5">
                   <span className="font-bold text-blue-900 flex items-center gap-1.5 text-[11px] uppercase tracking-wider">
                     <FileCheck className="w-3.5 h-3.5 text-blue-600" />
-                    <span>Approved Commercial Quotation Reference (منظور شدہ کوٹیشن):</span>
+                    <span>Approved Commercial Quotation Reference:</span>
                   </span>
                   <span className="text-[10px] text-blue-700 font-mono font-semibold">
                     Valid: {quotationValidity}
@@ -2081,6 +2082,11 @@ export const GlobalInvoiceHub: React.FC = () => {
               {t.footerWatermark}
             </div>
           </div>
+        </div>
+
+        {/* Semantically Optimized Technical Article, FAQs & Generated High-Res Mockup (Hidden during print) */}
+        <div className="print:hidden">
+          <ToolArticleGuideSection toolId="invoice" />
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { SlidersHorizontal, DollarSign, TrendingUp, AlertTriangle, ShieldCheck } from 'lucide-react';
+import { ToolArticleGuideSection } from './common/ToolArticleGuideSection';
 
 export default function EcommerceCalculator() {
   const [sellingPrice, setSellingPrice] = useState(4500);
@@ -73,6 +74,9 @@ export default function EcommerceCalculator() {
             </div>
           </div>
         </div>
+
+        {/* Semantically Optimized Technical Article & High-Resolution Tool Preview */}
+        <ToolArticleGuideSection toolId="ecommerce-calculator" />
       </div>
     </div>
   );

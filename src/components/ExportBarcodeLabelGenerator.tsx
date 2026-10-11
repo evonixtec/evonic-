@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Barcode, Printer, Download, Copy, Check } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
+import { ToolArticleGuideSection } from './common/ToolArticleGuideSection';
 
 export interface ExportBarcodeLabelGeneratorProps {
   onOpenQuote?: (serviceType?: string) => void;
 }
 
-export const ExportBarcodeLabelGenerator: React.FC<ExportBarcodeLabelGeneratorProps> = () => {
+export const ExportBarcodeLabelGenerator: React.FC<ExportBarcodeLabelGeneratorProps> = ({ onOpenQuote }) => {
   const [consignee, setConsignee] = useState('Apex Medical GmbH, Frankfurt, Germany');
   const [cartonNo, setCartonNo] = useState('01 / 45');
   const [grossWeight, setGrossWeight] = useState('18.5 KG');
@@ -59,6 +60,9 @@ export const ExportBarcodeLabelGenerator: React.FC<ExportBarcodeLabelGeneratorPr
             </div>
           </div>
         </div>
+
+        {/* Semantically Optimized Technical Article, FAQs & Generated High-Res Mockup */}
+        <ToolArticleGuideSection toolId="export-barcode-studio" onOpenQuote={onOpenQuote} />
       </div>
     </div>
   );

@@ -246,15 +246,26 @@ export const AiTripPlannerTool: React.FC<{
             className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white focus:border-teal-400 outline-none"
             required
           />
-          <div className="flex flex-wrap gap-1 pt-1">
-            {POPULAR_DESTINATIONS.slice(0, 4).map((d) => (
+          <div className="flex flex-wrap gap-1.5 pt-1.5">
+            <span className="text-[10px] text-slate-400 font-medium self-center mr-1">Trending:</span>
+            {[
+              { name: 'Dubai 5D VIP', dest: 'Dubai, UAE', d: 5, b: 'luxury' as const },
+              { name: 'London 7D Culture', dest: 'London, UK', d: 7, b: 'moderate' as const },
+              { name: 'Tokyo 5D Tech', dest: 'Tokyo, Japan', d: 5, b: 'moderate' as const },
+              { name: 'Istanbul 4D Old Town', dest: 'Istanbul, Turkey', d: 4, b: 'budget' as const },
+              { name: 'Bangkok 3D Budget', dest: 'Bangkok, Thailand', d: 3, b: 'budget' as const }
+            ].map((p) => (
               <button
                 type="button"
-                key={d}
-                onClick={() => setDestination(d)}
-                className="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700"
+                key={p.name}
+                onClick={() => {
+                  setDestination(p.dest);
+                  setDays(p.d);
+                  setBudgetTier(p.b);
+                }}
+                className="text-[10px] px-2 py-0.5 rounded-md bg-teal-500/10 border border-teal-500/20 text-teal-300 hover:text-white hover:bg-teal-500/30 transition-all font-semibold"
               >
-                {d.split(',')[0]}
+                {p.name}
               </button>
             ))}
           </div>
@@ -461,39 +472,62 @@ export const AiTripPlannerTool: React.FC<{
             </div>
           </div>
 
-          {/* Tested Hotel Booking App Tip Box */}
-          <div className="p-4 rounded-2xl bg-gradient-to-r from-blue-950/60 to-slate-900 border border-blue-500/30 space-y-2">
-            <div className="flex items-center justify-between gap-2">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-blue-300">
-                Tested Travel Tech Tip
-              </span>
-              <span className="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-bold">
-                Saved $150
+          {/* Dynamic AI Alliance Hotel Booking Deal Box */}
+          <div className="p-5 rounded-2xl bg-gradient-to-r from-blue-950/80 via-slate-900 to-teal-950/40 border border-teal-500/30 space-y-3 shadow-xl">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-extrabold uppercase tracking-wider text-teal-300 px-2.5 py-0.5 rounded-full bg-teal-500/20 border border-teal-500/30">
+                  Exclusive Verified Alliance Deals
+                </span>
+                <span className="text-[10px] font-bold text-amber-400">
+                  &bull; Instant Confirmation
+                </span>
+              </div>
+              <span className="text-[11px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2.5 py-0.5 rounded font-extrabold">
+                Up to 60% Member Discount
               </span>
             </div>
-            <h4 className="text-sm font-bold text-white">
-              I Tested The Best App to Book Cheap Dubai Hotels - I Saved $150
+
+            <h4 className="text-base font-bold text-white">
+              Verified Hotel Deals in {itinerary.destination} &bull; Save on Your {itinerary.days}-Day Stay
             </h4>
+
             <p className="text-xs text-slate-300 leading-relaxed">
-              I love testing travel tech. Last week I tested 5 hotel booking apps for Dubai. The cheapest and fastest was Trip.com - they have a special alliance discount. The booking was instant, and I got free breakfast.
+              We benchmarked major hotel booking networks for <strong className="text-teal-300">{itinerary.destination}</strong>. Our official Trip.com Alliance integration provides verified lowest room rates, free cancellation options, and exclusive booking perks.
             </p>
-            <div className="flex flex-wrap items-center gap-3 pt-1 text-xs">
+
+            <div className="flex flex-wrap items-center gap-3 pt-2">
               <a
-                href="https://www.trip.com/hotels/list?city=220&display=Dubai&optionId=220&optionType=City&optionName=Dubai&Allianceid=10929626&SID=332911573&trip_sub1=&trip_sub3=D20154955"
+                href={
+                  itinerary.destination.toLowerCase().includes('dubai')
+                    ? "https://www.trip.com/hotels/list?city=220&display=Dubai&optionId=220&optionType=City&optionName=Dubai&Allianceid=10929626&SID=332911573&trip_sub1=&trip_sub3=D20154955"
+                    : itinerary.destination.toLowerCase().includes('london')
+                    ? "https://www.trip.com/hotels/list?city=338&display=London&Allianceid=10929626&SID=332911573"
+                    : itinerary.destination.toLowerCase().includes('tokyo')
+                    ? "https://www.trip.com/hotels/list?city=228&display=Tokyo&Allianceid=10929626&SID=332911573"
+                    : itinerary.destination.toLowerCase().includes('paris')
+                    ? "https://www.trip.com/hotels/list?city=192&display=Paris&Allianceid=10929626&SID=332911573"
+                    : itinerary.destination.toLowerCase().includes('istanbul')
+                    ? "https://www.trip.com/hotels/list?city=1028&display=Istanbul&Allianceid=10929626&SID=332911573"
+                    : itinerary.destination.toLowerCase().includes('bangkok')
+                    ? "https://www.trip.com/hotels/list?city=359&display=Bangkok&Allianceid=10929626&SID=332911573"
+                    : "https://www.trip.com/hotels/list?city=220&display=Dubai&optionId=220&optionType=City&optionName=Dubai&Allianceid=10929626&SID=332911573&trip_sub1=&trip_sub3=D20154955"
+                }
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-cyan-400 font-bold hover:underline"
+                className="px-4 py-2 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 text-slate-950 font-bold text-xs hover:opacity-95 shadow-md flex items-center gap-1.5 transition-all"
               >
-                My Tested Dubai Hotel Booking Link - 60% Off &rarr;
+                <span>View Discounted Hotels in {itinerary.destination} (Up to 60% Off)</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </a>
-              <span className="text-slate-600">&bull;</span>
+
               <a
                 href="https://allsharq.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-teal-300 font-medium hover:underline"
+                className="text-xs text-slate-400 hover:text-white underline"
               >
-                AllSharq.com - Dubai Travel Guide
+                AllSharq.com Travel Guides
               </a>
             </div>
           </div>

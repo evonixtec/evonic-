@@ -1,7 +1,6 @@
 export interface ToolIntegrationDef {
   toolId: string;
   name: string;
-  urduName: string;
   shortName: string;
   isMobileAppCore: boolean;
   mobileCoreOrder?: number;
@@ -24,7 +23,6 @@ export const ALL_TOOL_INTEGRATIONS: Record<string, ToolIntegrationDef> = {
   invoice: {
     toolId: 'invoice',
     name: 'Global Micro-Invoice Generator',
-    urduName: 'گلوبل مائیکرو انوائس جنریٹر',
     shortName: 'Invoice Maker',
     isMobileAppCore: true,
     mobileCoreOrder: 1,
@@ -46,7 +44,6 @@ export const ALL_TOOL_INTEGRATIONS: Record<string, ToolIntegrationDef> = {
   'ecommerce-calculator': {
     toolId: 'ecommerce-calculator',
     name: 'E-Commerce Margin & COD Simulator',
-    urduName: 'ای کامرس بی ٹو بی مارجن کیلکولیٹر',
     shortName: 'E-Com Margin Calc',
     isMobileAppCore: true,
     mobileCoreOrder: 2,
@@ -68,7 +65,6 @@ export const ALL_TOOL_INTEGRATIONS: Record<string, ToolIntegrationDef> = {
   'cbm-calculator': {
     toolId: 'cbm-calculator',
     name: 'B2B Industrial CBM & Freight Engine',
-    urduName: 'بی ٹو بی انڈسٹریل CBM کارٹن و فریٹ کیلکولیٹر',
     shortName: 'CBM Cargo Engine',
     isMobileAppCore: true,
     mobileCoreOrder: 3,
@@ -90,7 +86,6 @@ export const ALL_TOOL_INTEGRATIONS: Record<string, ToolIntegrationDef> = {
   'developer-cost-calculator': {
     toolId: 'developer-cost-calculator',
     name: 'Dedicated Developer Cost Calculator',
-    urduName: 'ڈیڈیکیٹڈ ڈویلپر کاسٹ کیلکولیٹر',
     shortName: 'Developer Rates',
     isMobileAppCore: true,
     mobileCoreOrder: 4,
@@ -112,7 +107,6 @@ export const ALL_TOOL_INTEGRATIONS: Record<string, ToolIntegrationDef> = {
   'ai-visibility-checker': {
     toolId: 'ai-visibility-checker',
     name: 'AI Visibility & E-E-A-T Checker',
-    urduName: 'اے آئی اویلیبلٹی ای ای اے ٹی چیکر',
     shortName: 'AI Visibility Audit',
     isMobileAppCore: true,
     mobileCoreOrder: 5,
@@ -135,7 +129,6 @@ export const ALL_TOOL_INTEGRATIONS: Record<string, ToolIntegrationDef> = {
   'uk-eu-vat-calculator': {
     toolId: 'uk-eu-vat-calculator',
     name: 'UK & EU VAT Reverse Charge & VAT MOSS Engine',
-    urduName: 'یو کے و یورپین VAT معافی و ریورس چارج انجن',
     shortName: 'UK & EU VAT Engine',
     isMobileAppCore: false,
     regionFocus: 'UK/EU',
@@ -161,7 +154,6 @@ Confirm the exact reverse charge statement required under UK VAT Act 1994 s.55A 
   'us-duty-nexus-estimator': {
     toolId: 'us-duty-nexus-estimator',
     name: 'US Customs Tariff (HTS) & Section 321 De Minimis Calculator',
-    urduName: 'امریکی کسٹمز ڈیوٹی و سیکشن 321 چھوٹ کیلکولیٹر',
     shortName: 'US Duty & Nexus Calc',
     isMobileAppCore: false,
     regionFocus: 'USA',
@@ -187,7 +179,6 @@ Provide US CBP entry guidelines, Section 321 exemption eligibility, and estimate
   'ce-ukca-compliance-generator': {
     toolId: 'ce-ukca-compliance-generator',
     name: 'UKCA & CE Declaration of Conformity (DoC) Generator',
-    urduName: 'سی ای مارک اور یو کے سی اے ڈیکلریشن جنریٹر',
     shortName: 'CE & UKCA Generator',
     isMobileAppCore: false,
     regionFocus: 'UK/EU',
@@ -211,7 +202,6 @@ Format a ready-to-print executive certificate with authorized signatory declarat
   'export-barcode-studio': {
     toolId: 'export-barcode-studio',
     name: 'Export Barcode Label Studio',
-    urduName: 'ایکسپورٹ بارکوڈ لیبل اسٹوڈیو',
     shortName: 'Barcode Studio',
     isMobileAppCore: false,
     regionFocus: 'Global',
@@ -232,7 +222,6 @@ Format a ready-to-print executive certificate with authorized signatory declarat
   'live-repair-tracker': {
     toolId: 'live-repair-tracker',
     name: 'Live RMA Bench Repair Tracker',
-    urduName: 'لائیو ریپئر ٹریکر',
     shortName: 'Live RMA Tracker',
     isMobileAppCore: false,
     regionFocus: 'Global',
@@ -253,7 +242,6 @@ Format a ready-to-print executive certificate with authorized signatory declarat
   'printer-diagnostics': {
     toolId: 'printer-diagnostics',
     name: 'Thermal Receipt Printer Diagnostic Engine',
-    urduName: 'پرنٹر ڈائیگنوسٹک انجن',
     shortName: 'Printer Diagnostics',
     isMobileAppCore: false,
     regionFocus: 'Global',
@@ -274,7 +262,6 @@ Format a ready-to-print executive certificate with authorized signatory declarat
   'factory-network-tester': {
     toolId: 'factory-network-tester',
     name: 'Factory ERP & Customs Latency Benchmark',
-    urduName: 'فیکٹری نیٹ ورک بینچ مارک',
     shortName: 'Network Latency Test',
     isMobileAppCore: false,
     regionFocus: 'Global',

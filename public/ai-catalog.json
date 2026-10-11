@@ -70,6 +70,18 @@
         "Fix thermal receipt printer cutter jam",
         "Diagnose POS barcode printer error"
       ]
+    },
+    {
+      "id": "urn:evonixtec:ai-trip-planner",
+      "displayName": "Evonixtec AI Trip Planner & Travel Tools",
+      "description": "Interactive day-by-day vacation itinerary planner and hotel booking deals for Dubai, Tokyo, and global destinations.",
+      "mediaType": "text/html",
+      "url": "https://www.evonixtec.com/tools/ai-trip-planner",
+      "representativeQueries": [
+        "Plan vacation itinerary with AI",
+        "AI tools for travel itinerary and hotels",
+        "Dubai hotel booking alliance discount"
+      ]
     }
   ]
 }

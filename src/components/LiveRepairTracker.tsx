@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Clock, Search, CheckCircle2, ShieldCheck, AlertCircle } from 'lucide-react';
+import { ToolArticleGuideSection } from './common/ToolArticleGuideSection';
 
 export interface LiveRepairTrackerProps {
   onOpenQuote?: (serviceType?: string) => void;
 }
 
-export const LiveRepairTracker: React.FC<LiveRepairTrackerProps> = () => {
+export const LiveRepairTracker: React.FC<LiveRepairTrackerProps> = ({ onOpenQuote }) => {
   const [ticketNo, setTicketNo] = useState('EVX-8821');
 
   return (
@@ -65,6 +66,9 @@ export const LiveRepairTracker: React.FC<LiveRepairTrackerProps> = () => {
             </p>
           </div>
         </div>
+
+        {/* Semantically Optimized Technical Article, FAQs & Generated High-Res Mockup */}
+        <ToolArticleGuideSection toolId="live-repair-tracker" onOpenQuote={onOpenQuote} />
       </div>
     </div>
   );

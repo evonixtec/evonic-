@@ -19,14 +19,12 @@ import {
   Globe,
   ExternalLink,
   Smartphone,
-  Bot,
   Cloud,
   Flame,
   Plus,
   Plane
 } from 'lucide-react';
 import { NavPageId } from '../types';
-import { ToolAiCloudIntegrationModal } from './common/ToolAiCloudIntegrationModal';
 import {
   getAllToolUsage,
   getToolUsageCount,
@@ -38,7 +36,6 @@ export interface WebToolDefinition {
   id: string;
   navTarget: NavPageId | string;
   name: string;
-  urduName?: string;
   shortName: string;
   category: 'business-export' | 'ecommerce-growth' | 'diagnostics-lab' | 'international-compliance';
   categoryLabel: string;
@@ -59,7 +56,6 @@ export const TOOLS_COLLECTION: WebToolDefinition[] = [
     id: 'invoice',
     navTarget: 'invoice',
     name: 'Global Micro-Invoice Generator',
-    urduName: 'آن لائن انوائس جنریٹر (موبائل کور #1)',
     shortName: 'Invoice Maker',
     category: 'business-export',
     categoryLabel: 'Business & Export',
@@ -83,7 +79,6 @@ export const TOOLS_COLLECTION: WebToolDefinition[] = [
     id: 'ecommerce-calculator',
     navTarget: 'ecommerce-calculator',
     name: 'E-Commerce Margin & COD Simulator',
-    urduName: 'ای کامرس مارجن اور سی او ڈی کیلکولیٹر (موبائل کور #2)',
     shortName: 'E-Com Margin Calc',
     category: 'ecommerce-growth',
     categoryLabel: 'E-Commerce & Ads',
@@ -107,7 +102,6 @@ export const TOOLS_COLLECTION: WebToolDefinition[] = [
     id: 'cbm-calculator',
     navTarget: 'cbm-calculator',
     name: 'B2B Industrial CBM & Freight Engine',
-    urduName: 'کارگو سی بی ایم کیلکولیٹر (موبائل کور #3)',
     shortName: 'CBM Cargo Engine',
     category: 'business-export',
     categoryLabel: 'Business & Export',
@@ -131,7 +125,6 @@ export const TOOLS_COLLECTION: WebToolDefinition[] = [
     id: 'developer-cost-calculator',
     navTarget: 'developer-cost-calculator',
     name: 'Dedicated Developer Cost Calculator',
-    urduName: 'ڈویلپر کاسٹ کیلکولیٹر (موبائل کور #4)',
     shortName: 'Developer Rates',
     category: 'business-export',
     categoryLabel: 'Business & Export',
@@ -155,7 +148,6 @@ export const TOOLS_COLLECTION: WebToolDefinition[] = [
     id: 'ai-visibility-checker',
     navTarget: 'ai-visibility-checker',
     name: 'AI Visibility & GEO Readiness Auditor',
-    urduName: 'اے آئی سرچ وزیبلٹی چیکر (موبائل کور #5)',
     shortName: 'AI Visibility Audit',
     category: 'ecommerce-growth',
     categoryLabel: 'Growth & SEO',
@@ -179,7 +171,6 @@ export const TOOLS_COLLECTION: WebToolDefinition[] = [
     id: 'uk-eu-vat-calculator',
     navTarget: 'uk-eu-vat-calculator',
     name: 'UK & EU VAT Reverse Charge & VAT MOSS Engine',
-    urduName: 'یو کے و یورپین VAT ریورس چارج انجن',
     shortName: 'UK & EU VAT Engine',
     category: 'international-compliance',
     categoryLabel: 'UK & Europe Compliance',
@@ -201,7 +192,6 @@ export const TOOLS_COLLECTION: WebToolDefinition[] = [
     id: 'us-duty-nexus-estimator',
     navTarget: 'us-duty-nexus-estimator',
     name: 'US Customs Tariff (HTS) & Section 321 De Minimis Calculator',
-    urduName: 'امریکی کسٹمز ڈیوٹی و سیکشن 321 چھوٹ کیلکولیٹر',
     shortName: 'US Duty & Nexus Calc',
     category: 'international-compliance',
     categoryLabel: 'North America Trade',
@@ -223,7 +213,6 @@ export const TOOLS_COLLECTION: WebToolDefinition[] = [
     id: 'ce-ukca-compliance-generator',
     navTarget: 'ce-ukca-compliance-generator',
     name: 'UKCA & CE Declaration of Conformity (DoC) Generator',
-    urduName: 'سی ای مارک اور یو کے سی اے ڈیکلریشن جنریٹر',
     shortName: 'CE & UKCA Generator',
     category: 'international-compliance',
     categoryLabel: 'UK & Europe Compliance',
@@ -245,7 +234,6 @@ export const TOOLS_COLLECTION: WebToolDefinition[] = [
     id: 'export-barcode-studio',
     navTarget: 'export-barcode-studio',
     name: 'Export Barcode Label Studio',
-    urduName: 'ایکسپورٹ بارکوڈ لیبل اسٹوڈیو',
     shortName: 'Barcode Studio',
     category: 'business-export',
     categoryLabel: 'Business & Export',
@@ -267,7 +255,6 @@ export const TOOLS_COLLECTION: WebToolDefinition[] = [
     id: 'live-repair-tracker',
     navTarget: 'live-repair-tracker',
     name: 'Live RMA Bench Repair Tracker',
-    urduName: 'لائیو ریپئر ٹریکر',
     shortName: 'Live RMA Tracker',
     category: 'diagnostics-lab',
     categoryLabel: 'Hardware Diagnostics',
@@ -289,7 +276,6 @@ export const TOOLS_COLLECTION: WebToolDefinition[] = [
     id: 'printer-diagnostics',
     navTarget: 'printer-diagnostics',
     name: 'Thermal Receipt Printer Diagnostic Engine',
-    urduName: 'تھرمل پرنٹر ڈائیگنوسٹک انجن',
     shortName: 'Printer Diagnostics',
     category: 'diagnostics-lab',
     categoryLabel: 'Hardware Diagnostics',
@@ -311,7 +297,6 @@ export const TOOLS_COLLECTION: WebToolDefinition[] = [
     id: 'factory-network-tester',
     navTarget: 'factory-network-tester',
     name: 'Factory ERP & Customs Latency Benchmark',
-    urduName: 'فیکٹری نیٹ ورک بینچ مارک',
     shortName: 'Network Latency Test',
     category: 'diagnostics-lab',
     categoryLabel: 'Hardware Diagnostics',
@@ -333,7 +318,6 @@ export const TOOLS_COLLECTION: WebToolDefinition[] = [
     id: 'ai-trip-planner',
     navTarget: 'ai-trip-planner',
     name: 'Evonixtec AI Trip Planner',
-    urduName: 'اے آئی ٹرپ پلانر',
     shortName: 'AI Trip Planner',
     category: 'business-export',
     isPopular: true,
@@ -362,7 +346,6 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
   const [selectedCategory, setSelectedCategory] = useState<
     'all' | 'popular' | 'mobile-core-5' | 'ai-travel' | 'uk-eu' | 'usa' | 'business-export' | 'diagnostics-lab'
   >('all');
-  const [activeModalToolId, setActiveModalToolId] = useState<string | null>(null);
   const [usageMap, setUsageMap] = useState<Record<string, number>>({});
 
   // Load and listen to localStorage usage counts
@@ -414,7 +397,6 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
       const matchesSearch =
         !q ||
         tool.name.toLowerCase().includes(q) ||
-        (tool.urduName && tool.urduName.includes(q)) ||
         tool.description.toLowerCase().includes(q) ||
         tool.categoryLabel.toLowerCase().includes(q) ||
         tool.highlights.some((h) => h.toLowerCase().includes(q));
@@ -452,7 +434,7 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
             </h1>
 
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              Zero-database business utilities, export shipping barcode engines, freight CBM calculators, and UK/US/EU trade compliance tools built by <strong>evonix</strong> in Kotli Behram, Sialkot. Every tool runs 100% locally in your browser with automatic local usage tracking and one-click ChatGPT &amp; Cloud integration.
+              Zero-database business utilities, export shipping barcode engines, freight CBM calculators, and UK/US/EU trade compliance tools built by <strong>evonix</strong> in Kotli Behram, Sialkot. Every tool runs 100% locally in your browser with automatic local usage tracking and complete client-side data privacy.
             </p>
 
             <div className="inline-flex flex-wrap items-center justify-center gap-x-4 gap-y-1 pt-1 text-xs text-slate-500">
@@ -467,8 +449,8 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
               </span>
               <span aria-hidden="true" className="hidden sm:inline">·</span>
               <span className="flex items-center gap-1.5 text-purple-700 font-medium">
-                <Bot className="w-4 h-4 text-purple-600" />
-                <span>OpenAPI &amp; Gemini Declarations</span>
+                <Sparkles className="w-4 h-4 text-purple-600" />
+                <span>Enterprise Grade &amp; Instant PDF Export</span>
               </span>
             </div>
           </div>
@@ -683,11 +665,6 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
                       <h2 className="text-lg font-bold text-slate-900 group-hover:text-red-600 transition-colors">
                         {tool.name}
                       </h2>
-                      {tool.urduName && (
-                        <span className="text-xs text-slate-500 block mt-0.5 font-medium">
-                          {tool.urduName}
-                        </span>
-                      )}
                       <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mt-2">
                         {tool.description}
                       </p>
@@ -710,21 +687,11 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
                   </div>
 
                   {/* Footer */}
-                  <div className="p-4 bg-slate-50/80 border-t border-slate-100 flex items-center justify-between gap-2">
-                    <button
-                      type="button"
-                      onClick={() => setActiveModalToolId(tool.id)}
-                      className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-700 hover:text-blue-600 border border-slate-200 text-xs font-bold transition-colors cursor-pointer shadow-2xs"
-                      title="Open ChatGPT & Cloud settings"
-                    >
-                      <Bot className="w-3.5 h-3.5 text-blue-600" />
-                      <span>AI / Cloud</span>
-                    </button>
-
+                  <div className="p-4 bg-slate-50/80 border-t border-slate-100 flex items-center justify-end">
                     <button
                       type="button"
                       onClick={() => handleLaunchWithTrack(tool.navTarget, tool.id)}
-                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-red-600 text-white text-xs font-bold transition-all shadow-2xs group-hover:shadow-xs cursor-pointer ml-auto"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 hover:bg-red-600 text-white text-xs font-bold transition-all shadow-2xs group-hover:shadow-xs cursor-pointer"
                     >
                       <span>Launch Tool</span>
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -750,13 +717,6 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
         </div>
       </div>
 
-      {activeModalToolId && (
-        <ToolAiCloudIntegrationModal
-          toolId={activeModalToolId}
-          isOpen={!!activeModalToolId}
-          onClose={() => setActiveModalToolId(null)}
-        />
-      )}
     </>
   );
 };

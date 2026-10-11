@@ -18,6 +18,7 @@ import {
   Share2
 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
+import { ToolArticleGuideSection } from './common/ToolArticleGuideSection';
 
 interface AiVisibilityCheckerProps {
   onOpenQuote?: (serviceType?: string) => void;
@@ -395,6 +396,9 @@ export default function AiVisibilityChecker({ onOpenQuote }: AiVisibilityChecker
             </button>
           </div>
         </div>
+
+        {/* Semantically Optimized Technical Article, FAQs & Generated High-Res Mockup */}
+        <ToolArticleGuideSection toolId="ai-visibility-checker" onOpenQuote={onOpenQuote} />
       </div>
     </div>
   );

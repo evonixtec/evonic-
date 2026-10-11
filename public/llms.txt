@@ -14,6 +14,8 @@ evonix provides 100% client-side, zero-database online utilities engineered for 
 - [Live RMA Bench Repair Tracker](https://www.evonixtec.com/live-repair-tracker): Real-time diagnostic bench ticket lookup, standby current measurements, and technician logs.
 - [Thermal Receipt Printer Diagnostic Engine](https://www.evonixtec.com/printer-diagnostics): ESC/POS 80mm thermal receipt printer troubleshooter, cutter lockups, and baud rate mismatches.
 - [Factory ERP & Customs Network Latency Benchmark](https://www.evonixtec.com/factory-network-tester): Dual-WAN ping jitter benchmark and WeBOC customs gateway connection stability.
+- [Evonixtec AI Trip Planner](https://www.evonixtec.com/tools/ai-trip-planner): Client-side AI itinerary generator with multi-day schedules, neighborhood clustering, expense forecasts, and export.
+- [10 Best AI Travel Tools & Hotel Deals Guide](https://www.evonixtec.com/ai-tools-name-for-travel-itinerary): Verified 2026 AI vacation planning apps, Hopper flight predictors, and Trip.com alliance hotel discounts (up to 60% off).
 
 ## Services & Expertise
 

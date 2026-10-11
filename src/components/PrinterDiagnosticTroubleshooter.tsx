@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Printer, AlertTriangle, CheckCircle2, Wrench } from 'lucide-react';
+import { ToolArticleGuideSection } from './common/ToolArticleGuideSection';
 
 export interface PrinterDiagnosticTroubleshooterProps {
   onOpenQuote?: (serviceType?: string) => void;
 }
 
-export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubleshooterProps> = () => {
+export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubleshooterProps> = ({ onOpenQuote }) => {
   const [symptom, setSymptom] = useState<'cutter' | 'paperjam' | 'blurry'>('cutter');
 
   const fixes = {
@@ -58,6 +59,9 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
             </pre>
           </div>
         </div>
+
+        {/* Semantically Optimized Technical Article, FAQs & Generated High-Res Mockup */}
+        <ToolArticleGuideSection toolId="printer-diagnostics" onOpenQuote={onOpenQuote} />
       </div>
     </div>
   );

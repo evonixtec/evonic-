@@ -940,7 +940,7 @@ export const LiveSupportChat: React.FC<LiveSupportChatProps> = ({ onOpenQuote })
                 aria-label="Close Chat"
               >
                 <X className="w-4 h-4 stroke-[2.5]" />
-                <span className="text-[11px] sm:text-xs">Close / بند کریں</span>
+                <span className="text-[11px] sm:text-xs">Close</span>
               </button>
             </div>
           </div>

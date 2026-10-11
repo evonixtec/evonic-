@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Boxes, Box, ArrowRight, ShieldCheck } from 'lucide-react';
+import { ToolArticleGuideSection } from './common/ToolArticleGuideSection';
 
 export default function CbmCalculator() {
   const [lengthCm, setLengthCm] = useState(60);
@@ -61,6 +62,9 @@ export default function CbmCalculator() {
             </div>
           </div>
         </div>
+
+        {/* Semantically Optimized Technical Article & High-Resolution Tool Preview */}
+        <ToolArticleGuideSection toolId="cbm-calculator" />
       </div>
     </div>
   );
