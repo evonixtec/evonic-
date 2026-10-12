@@ -188,11 +188,27 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
     faqs: [
       {
         question: 'What is a healthy RTO (Return to Origin) rate for Pakistani COD e-commerce?',
-        answer: 'In apparel and footwear, healthy stores maintain 12% to 18% RTO. Rates above 25% require immediate order confirmation verification and courier SLA scrutiny.'
+        answer: 'In apparel, footwear, and consumer goods, healthy stores maintain a 12% to 18% RTO rate. RTO above 25% quickly wipes out operating margins and requires immediate WhatsApp automated order confirmations and customer address validation before dispatch.'
       },
       {
         question: 'How is the breakeven ROAS calculated in this engine?',
-        answer: 'Breakeven ROAS equals Total Retail Selling Price divided by the sum of actual Product Sourcing Cost and full Delivery & Return Expenses incurred per order.'
+        answer: 'Breakeven ROAS equals Total Retail Selling Price divided by the sum of actual Product Sourcing Cost and full Delivery & Return Expenses incurred per order. If your selling price is 3,000 PKR and total fulfillment plus product cost is 2,000 PKR, your breakeven ROAS is 3,000 ÷ 1,000 = 3.0x.'
+      },
+      {
+        question: 'How can COD online brands reduce return shipping losses before dispatch?',
+        answer: 'Implement automated WhatsApp order verification bots, call high-risk or repeat-refusal postal codes, mandate advance partial payments for customized goods, and blacklist fake phone numbers through centralized carrier fraud databases.'
+      },
+      {
+        question: 'What is the impact of courier flyer size and volumetric weight re-weighing on profit margin?',
+        answer: 'Carriers apply dimensional weight (L × W × H in cm / 5000) if the package is bulky. A miscalculated 0.5 kg difference across 2,000 monthly deliveries can add 200,000+ PKR in unbudgeted freight charges, severely eroding net store margins.'
+      },
+      {
+        question: 'How does cash remittance delay (COD cashflow cycle) impact store scaling?',
+        answer: 'Most couriers hold COD cash payments for 7 to 14 days before bank transfer. Without sufficient working capital reserves to replenish manufacturer inventory and pay daily Meta ad spend, stores face cash-flow lockups during peak sales events.'
+      },
+      {
+        question: 'When should an e-commerce brand switch from flat shipping to tiered delivery rates?',
+        answer: 'Switch to free shipping thresholds (e.g. Free Delivery on orders over 3,500 PKR) once average order value (AOV) is high enough to absorb shipping into the product markup, which increases cart conversions by up to 28%.'
       }
     ]
   },
@@ -246,11 +262,27 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
     faqs: [
       {
         question: 'How do you calculate CBM from centimeter carton dimensions?',
-        answer: 'Formula: (Length in cm × Width in cm × Height in cm) ÷ 1,000,000 = CBM per carton. Multiply by total cartons for consignment volume.'
+        answer: 'Formula: (Length in cm × Width in cm × Height in cm) ÷ 1,000,000 = CBM per carton. Multiply by total cartons for consignment volume. For example, a 60 × 40 × 40 cm carton equals 96,000 ÷ 1,000,000 = 0.096 CBM. 100 cartons equal 9.6 CBM.'
       },
       {
         question: 'Why does air courier freight cost more than actual scale weight for sports goods?',
-        answer: 'Airlines have limited cargo bay volume. If sports gear is bulky but light, couriers charge by dimensional volumetric weight to account for the physical space consumed.'
+        answer: 'Airlines have limited cargo bay volume. If sports gear (e.g. boxing gloves, martial arts uniforms, inflatable balls) is bulky but lightweight, couriers bill by volumetric dimensional weight rather than scale weight to charge for the physical room taken up in the aircraft hold.'
+      },
+      {
+        question: 'What is the difference between air express (1:5000) and commercial air cargo (1:6000)?',
+        answer: 'Express couriers (DHL, FedEx, UPS) use a divisor of 5000 (1 CBM = 200 kg chargeable). Airline freight forwarders on commercial flights generally use 6000 (1 CBM = 167 kg chargeable), offering more economical shipping rates for heavier factory consignments.'
+      },
+      {
+        question: 'How many standard cartons fit into a 20ft container vs a 40ft High Cube container?',
+        answer: 'A standard 20ft dry container fits approximately 28 to 30 usable CBM (around 300 standard export cartons). A 40ft High Cube container fits approximately 68 to 72 usable CBM (around 700 to 750 cartons), allowing for real-world palletization and stacking gaps.'
+      },
+      {
+        question: 'What is the difference between FCL (Full Container Load) and LCL (Less Container Load) cost thresholds?',
+        answer: 'LCL shipments are billed per CBM or metric ton. Once your total volume exceeds approximately 14 to 16 CBM, booking a dedicated 20ft FCL container is usually cheaper and eliminates multi-consignee port deconsolidation delays.'
+      },
+      {
+        question: 'How do export factories prevent carton crushing while maintaining maximum CBM container fill?',
+        answer: 'Use heavy-duty 5-ply or 7-ply double-wall corrugated master cartons, reinforce carton corners with edge protectors, orient stacking flaps vertically along structural load lines, and use container air dunnage bags to absorb ocean transit shock.'
       }
     ]
   },
@@ -293,7 +325,27 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
     faqs: [
       {
         question: 'What time zone overlap do Sialkot developers provide with Europe and the US?',
-        answer: 'Pakistan Standard Time (GMT+5) provides full 4-5 hours of synchronous morning overlap with the UK/Europe, and seamless evening handoff cycles for US East Coast teams.'
+        answer: 'Pakistan Standard Time (GMT+5) provides 4 to 5 hours of direct synchronous working overlap with the UK and European business hours, and daily evening standup cycles for US East Coast product teams, enabling rapid daily sprint review loops.'
+      },
+      {
+        question: 'What are the hidden overhead costs of hiring in-house engineers in the USA and UK?',
+        answer: 'Beyond the base salary of $130,000 to $160,000, US employers pay mandatory FICA/Medicare taxes (7.65%), state unemployment, health insurance ($7,000 - $14,000/yr), 401(k) matching, MacBook hardware provisions, and 20% recruiter bounty fees. Offshore engineering retainers eliminate all of these overheads.'
+      },
+      {
+        question: 'How does Evonix ensure code quality, IP ownership, and NDA enforcement for offshore projects?',
+        answer: 'All intellectual property (IP), git repositories, cloud infrastructure, and patents remain 100% owned by the client from day one. Developers work under comprehensive non-disclosure agreements (NDAs) enforced under international SECP corporate governance frameworks.'
+      },
+      {
+        question: 'Can we hire a dedicated developer on a monthly rolling retainer or hourly trial basis?',
+        answer: 'Yes. We offer flexible 160-hour monthly dedicated retainers with a 2-week risk-free trial period. If you are not satisfied with sprint deliverables during the trial, you can switch developers or cancel with zero penalty.'
+      },
+      {
+        question: 'What happens if a developer needs to be replaced or if team size needs to scale up quickly?',
+        answer: 'Evonix maintains a deep bench of senior vetted full-stack, mobile, and cloud engineers. If project requirements shift or you need additional engineers, we can onboard qualified developers into your existing Jira/GitHub workflows within 3 to 5 business days.'
+      },
+      {
+        question: 'Which technology stacks provide the highest capital efficiency when outsourcing to Sialkot?',
+        answer: 'Next.js, React, Node.js, Python FastAPI, React Native, Flutter, and PostgreSQL offer the greatest velocity and cost advantage, allowing startups and SMEs to ship production-ready applications 3x faster for roughly one-third of Tier-1 agency rates.'
       }
     ]
   },
@@ -337,7 +389,27 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
     faqs: [
       {
         question: 'What is Generative Engine Optimization (GEO)?',
-        answer: 'GEO is the practice of optimizing content structure, semantic schema, and factual clarity so AI search engines (ChatGPT Search, Perplexity, Google AI Overviews) cite your brand as an authoritative reference.'
+        answer: 'GEO is the practice of optimizing content architecture, semantic entities, citations, and structured JSON-LD schema so generative AI engines (ChatGPT Search, Perplexity, Claude, Google AI Overviews) synthesize and cite your business as a primary source.'
+      },
+      {
+        question: 'How do AI search engines like ChatGPT Search and Perplexity extract business answers from websites?',
+        answer: 'AI engines employ Retrieval-Augmented Generation (RAG) scrapers that parse semantic HTML tags (<article>, <section>, <table>), JSON-LD Organization/FAQPage schemas, and authoritative brand co-citations. Content written in clear, factual prose with verified technical data has the highest probability of extraction.'
+      },
+      {
+        question: 'Why are Schema.org JSON-LD entity graphs essential for Google AI Overviews citation?',
+        answer: 'Large Language Models rely on entity disambiguation. Without Schema.org markup linking your brand name to verified physical coordinates (geo latitude/longitude), telephone, founder profiles, SECP corporate registration, and social profiles, AI models treat your brand as generic untrusted text.'
+      },
+      {
+        question: 'What are the key E-E-A-T signals Google algorithms look for on technical websites?',
+        answer: 'Google evaluates Experience (first-hand case studies and diagnostic photos), Expertise (named authors with verified engineering credentials), Authoritativeness (industry citations and external references), and Trustworthiness (HTTPS, clear physical address, transparent warranty policies, and privacy disclosures).'
+      },
+      {
+        question: 'How does physical address and LocalBusiness markup prevent entity ambiguity in LLMs?',
+        answer: 'LocalBusiness and PostalAddress schemas anchor your digital presence to physical world coordinates (e.g. Kotli Behram, Sialkot, Pakistan). When users ask AI engines for regional services or exporter verifications, the model can confidently confirm your geographic authenticity.'
+      },
+      {
+        question: 'How often should websites audit their robots.txt, sitemap, and AI crawler access policies?',
+        answer: 'Audit monthly or whenever major search crawlers update user agents. Ensure bots like OAI-SearchBot, PerplexityBot, and Google-Extended are permitted in robots.txt if you want your technical content and product catalogs cited in AI answers.'
       }
     ]
   },
@@ -568,6 +640,22 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
       {
         question: 'Can I export my generated itinerary?',
         answer: 'You can copy the clean markdown text, print an offline travel PDF, or share the complete day-by-day plan on WhatsApp.'
+      },
+      {
+        question: 'How does the AI group attractions to prevent unnecessary travel commute times?',
+        answer: 'The system uses geographic proximity clustering so that each morning, afternoon, and evening activity is located within the same neighborhood or transit line, eliminating hours wasted zigzagging across large metropolises.'
+      },
+      {
+        question: 'Are the daily cost and meal budget estimations realistic for international destinations?',
+        answer: 'Yes. The engine benchmarks local restaurant tiers, metro pass pricing, and museum ticket costs across budget ($40-70/day), moderate ($100-180/day), and luxury ($300+/day) spending tiers.'
+      },
+      {
+        question: 'Can I customize the pace of the itinerary for family or relaxed travel?',
+        answer: 'Yes. You can select relaxed, moderate, or fast-paced travel styles. Relaxed mode spaces activities out with longer lunch breaks and fewer daily stops, perfect for traveling with children or elders.'
+      },
+      {
+        question: 'How do I access or share the day-wise itinerary on mobile or WhatsApp without internet?',
+        answer: 'Click the "Share on WhatsApp" button or use "Save as PDF" to download a lightweight, offline-ready document you can view while on airplanes or in areas without roaming mobile data.'
       }
     ]
   }

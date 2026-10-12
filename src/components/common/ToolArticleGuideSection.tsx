@@ -121,38 +121,38 @@ export const ToolArticleGuideSection: React.FC<ToolArticleGuideSectionProps> = (
             </div>
           </div>
 
-          {/* High-Resolution Generated Tool Mockup Visual */}
-          <div className="p-6 sm:p-8 bg-slate-50 border-b border-slate-200">
-            <div className="rounded-2xl overflow-hidden border border-slate-300/80 shadow-md bg-slate-950 group">
+          {/* High-Resolution Generated Tool Mockup Visual (Compact Frame) */}
+          <div className="p-4 sm:p-5 bg-slate-50 border-b border-slate-200">
+            <div className="max-w-3xl mx-auto rounded-xl overflow-hidden border border-slate-300/80 shadow-xs bg-slate-950 group">
               <OptimizedImage
                 src={guide.mockupImage}
                 webpSrc={guide.mockupWebp}
                 alt={guide.imageAlt}
-                aspectRatio="aspect-[16/9]"
+                aspectRatio="aspect-[21/9] sm:aspect-[16/7]"
                 priority={false}
                 zoomOnHover={true}
-                badge="High-Fidelity Preview"
+                badge="Interface Preview"
                 badgeColor="red"
-                className="w-full h-auto object-cover max-h-[460px]"
+                className="w-full h-auto object-cover max-h-[260px] sm:max-h-[300px]"
               />
-              <div className="p-3.5 bg-slate-900 text-slate-300 text-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-t border-slate-800">
+              <div className="px-3 py-2 bg-slate-900 text-slate-300 text-[11px] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 border-t border-slate-800">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
-                  <span className="text-slate-300 font-medium">{guide.imageCaption}</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
+                  <span className="text-slate-300 font-medium truncate">{guide.imageCaption}</span>
                 </div>
-                <span className="text-[11px] font-mono text-slate-500 whitespace-nowrap">
+                <span className="text-[10px] font-mono text-slate-500 whitespace-nowrap">
                   Zero Data Leak · Client-Side Execution
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Deep Semantic Technical Article Body */}
-          <div className="p-6 sm:p-8 lg:p-10 space-y-8 text-slate-700">
+          {/* Deep Semantic Technical Article Body (Streamlined Height) */}
+          <div className="p-5 sm:p-6 lg:p-7 space-y-5 text-slate-700">
             {guide.sections.map((section, idx) => (
-              <div key={idx} className="space-y-3">
-                <h3 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight flex items-center gap-2.5">
-                  <span className="w-7 h-7 rounded-lg bg-red-100 text-red-700 font-mono text-xs font-black flex items-center justify-center flex-shrink-0">
+              <div key={idx} className="space-y-2">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-md bg-red-100 text-red-700 font-mono text-xs font-black flex items-center justify-center flex-shrink-0">
                     0{idx + 1}
                   </span>
                   <span>{section.heading}</span>
@@ -167,22 +167,22 @@ export const ToolArticleGuideSection: React.FC<ToolArticleGuideSectionProps> = (
 
             {/* Practical Use Cases Grid */}
             {guide.practicalUseCases && guide.practicalUseCases.length > 0 && (
-              <div className="pt-6 border-t border-slate-100">
-                <h3 className="text-base font-bold text-slate-900 mb-4 flex items-center gap-2">
+              <div className="pt-4 border-t border-slate-100">
+                <h3 className="text-sm font-bold text-slate-900 mb-3 flex items-center gap-1.5">
                   <Award className="w-4 h-4 text-emerald-600" />
                   <span>Real-World Field Applications</span>
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                   {guide.practicalUseCases.map((uc, uIdx) => (
                     <div
                       key={uIdx}
-                      className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1.5"
+                      className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1"
                     >
                       <h4 className="font-bold text-xs text-slate-900 flex items-center gap-1.5">
                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
                         <span>{uc.title}</span>
                       </h4>
-                      <p className="text-[11.5px] text-slate-600 leading-normal">
+                      <p className="text-[11px] text-slate-600 leading-normal">
                         {uc.description}
                       </p>
                     </div>
@@ -196,17 +196,17 @@ export const ToolArticleGuideSection: React.FC<ToolArticleGuideSectionProps> = (
         {/* ========================================================
             FREQUENTLY ASKED QUESTIONS (FAQS) ACCORDION
            ======================================================== */}
-        <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4">
+        <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-2xs space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
             <div>
               <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 uppercase tracking-wider">
-                Technical FAQ
+                Technical FAQ ({guide.faqs.length} Answers)
               </span>
-              <h3 className="text-lg sm:text-xl font-bold text-slate-900 mt-1">
+              <h3 className="text-base sm:text-lg font-bold text-slate-900 mt-1">
                 Frequently Asked Technical &amp; Operational Questions
               </h3>
             </div>
-            <span className="text-xs text-slate-500 font-medium">
+            <span className="text-[11px] text-slate-500 font-medium">
               Authentic Engineering Answers
             </span>
           </div>
