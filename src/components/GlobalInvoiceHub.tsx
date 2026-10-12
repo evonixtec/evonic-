@@ -187,7 +187,7 @@ export const GlobalInvoiceHub: React.FC = () => {
   const [signatoryName, setSignatoryName] = useState<string>('Engr. Hamza Reza');
   const [signatoryRole, setSignatoryRole] = useState<string>(INVOICE_TRANSLATIONS.en.signatoryRoleDefault);
   const [stampText, setStampText] = useState<string>(INVOICE_TRANSLATIONS.en.stampSealText);
-  const [showStamp, setShowStamp] = useState<boolean>(true);
+  const [showStamp, setShowStamp] = useState<boolean>(false);
   const [signatureDate, setSignatureDate] = useState<string>(() => new Date().toLocaleDateString('en-GB'));
   const [showBarcode, setShowBarcode] = useState<boolean>(true);
 
@@ -198,7 +198,7 @@ export const GlobalInvoiceHub: React.FC = () => {
   const [declarationText, setDeclarationText] = useState(INVOICE_TRANSLATIONS.en.declaration);
 
   // UI helpers
-  const [savedNotification, setSavedNotification] = useState(false);
+  const [savedNotification, setSavedNotification] = useState<boolean | string>(false);
   const [langChangedNotice, setLangChangedNotice] = useState<string | null>(null);
 
   // Active Controls Tab
@@ -464,7 +464,7 @@ export const GlobalInvoiceHub: React.FC = () => {
     setSignatoryName('Engr. Hamza Reza');
     setSignatoryRole(INVOICE_TRANSLATIONS.en.signatoryRoleDefault);
     setStampText(INVOICE_TRANSLATIONS.en.stampSealText);
-    setShowStamp(true);
+    setShowStamp(false);
     setShowBarcode(true);
 
     setShowBankDetails(true);
@@ -495,8 +495,9 @@ export const GlobalInvoiceHub: React.FC = () => {
   const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      if (file.size > 2 * 1024 * 1024) {
-        alert('Please choose an image under 2MB.');
+      if (file.size > 3 * 1024 * 1024) {
+        setSavedNotification('Logo image must be under 3MB');
+        setTimeout(() => setSavedNotification(false), 3000);
         return;
       }
       const reader = new FileReader();
@@ -504,6 +505,8 @@ export const GlobalInvoiceHub: React.FC = () => {
         if (event.target?.result) {
           setCustomLogoUrl(event.target.result as string);
           setUseOfficialLogo(false);
+          setSavedNotification('Custom logo uploaded successfully!');
+          setTimeout(() => setSavedNotification(false), 3000);
         }
       };
       reader.readAsDataURL(file);
@@ -558,6 +561,15 @@ export const GlobalInvoiceHub: React.FC = () => {
   return (
     <div className="py-6 sm:py-8 bg-slate-100 min-h-screen text-slate-900 print:bg-white print:py-0 print:min-h-0">
       
+      {/* Persistent Hidden Logo File Input */}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        onChange={handleLogoUpload}
+        className="hidden"
+      />
+
       {/* ========================================================
           CRITICAL STRICT CSS FOR ISOLATED A4 PRINT & PDF
           Guarantees zero website headers, footers or chrome on print!
@@ -566,14 +578,16 @@ export const GlobalInvoiceHub: React.FC = () => {
         @media print {
           @page {
             size: A4 portrait;
-            margin: 8mm 10mm;
+            margin: 6mm 8mm;
           }
           html, body {
             background: #ffffff !important;
             color: #0f172a !important;
             margin: 0 !important;
             padding: 0 !important;
-            font-size: 10pt !important;
+            width: 100% !important;
+            font-size: 8.5pt !important;
+            line-height: 1.3 !important;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
           }
@@ -590,14 +604,15 @@ export const GlobalInvoiceHub: React.FC = () => {
             left: 0 !important;
             top: 0 !important;
             width: 100% !important;
-            max-width: 100% !important;
-            margin: 0 !important;
-            padding: 10px 14px !important;
+            max-width: 194mm !important;
+            margin: 0 auto !important;
+            padding: 2mm 3mm !important;
+            box-sizing: border-box !important;
             border: none !important;
             box-shadow: none !important;
             background: #ffffff !important;
           }
-          .print-hidden-strict {
+          .print-hidden-strict, .print\\:hidden {
             display: none !important;
             visibility: hidden !important;
           }
@@ -606,6 +621,29 @@ export const GlobalInvoiceHub: React.FC = () => {
             background: transparent !important;
             padding: 0 !important;
             box-shadow: none !important;
+            outline: none !important;
+            font-family: inherit !important;
+            color: inherit !important;
+            appearance: none !important;
+            -webkit-appearance: none !important;
+          }
+          table {
+            width: 100% !important;
+            border-collapse: collapse !important;
+            page-break-inside: auto !important;
+          }
+          tr {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+          }
+          .print-avoid-break {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+          }
+          main {
+            overflow: visible !important;
+            padding: 0 !important;
+            margin: 0 !important;
           }
         }
       `}</style>
@@ -631,12 +669,23 @@ export const GlobalInvoiceHub: React.FC = () => {
                 </span>
               </div>
               <p className="text-xs text-slate-500">
-                100% Editable Invoice Number, Title, Tax, Address &amp; Wire Details · 50+ Country Engines
+                100% Editable Commercial Invoice Number, Title, Tax, Address &amp; Wire Details · 50+ Country Engines
               </p>
             </div>
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
+            {/* Upload Custom Logo Button */}
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              title="Upload custom business or store logo (PNG, JPG, SVG)"
+              className="px-3 py-2 rounded-xl bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 font-bold text-xs flex items-center gap-1.5 cursor-pointer border border-slate-200 transition-colors shadow-2xs"
+            >
+              <Upload className="w-3.5 h-3.5 text-blue-600" />
+              <span>{customLogoUrl && !useOfficialLogo ? 'Change Logo' : 'Upload Logo'}</span>
+            </button>
+
             {/* Auto-Increment Invoice Number Button */}
             <button
               onClick={handleIncrementInvoiceNumber}
@@ -653,7 +702,7 @@ export const GlobalInvoiceHub: React.FC = () => {
               className="px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-xs transition-colors"
             >
               {savedNotification ? <Check className="w-3.5 h-3.5" /> : <Save className="w-3.5 h-3.5" />}
-              <span>{savedNotification ? 'Saved locally!' : t.saveButtonText}</span>
+              <span>{typeof savedNotification === 'string' ? savedNotification : (savedNotification ? 'Saved locally!' : t.saveButtonText)}</span>
             </button>
 
             {/* Restore Original Defaults */}
@@ -791,8 +840,8 @@ export const GlobalInvoiceHub: React.FC = () => {
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
-                <Stamp className="w-3.5 h-3.5" />
-                <span>Stamp &amp; Signature</span>
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>Authorized Signatory</span>
               </button>
             </div>
 
@@ -1073,13 +1122,6 @@ export const GlobalInvoiceHub: React.FC = () => {
                   <Upload className="w-3.5 h-3.5" />
                   <span>Upload Custom Logo (PNG/JPG)</span>
                 </button>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="image/*"
-                  onChange={handleLogoUpload}
-                  className="hidden"
-                />
               </div>
             </div>
           )}
@@ -1269,37 +1311,52 @@ export const GlobalInvoiceHub: React.FC = () => {
             </div>
           )}
 
-          {/* TAB 5: STAMP & SIGNATURE */}
+          {/* TAB 5: AUTHORIZED SIGNATORY */}
           {activeControlsTab === 'stamp-signature' && (
             <div className="space-y-3 animate-fadeIn text-xs">
+              <div className="flex items-center justify-between pb-1 border-b border-slate-100">
+                <span className="font-bold text-slate-800">Authorized Signatory Settings:</span>
+                <label className="flex items-center gap-1.5 cursor-pointer text-xs">
+                  <input
+                    type="checkbox"
+                    checked={showAuthorizedSignature}
+                    onChange={(e) => setShowAuthorizedSignature(e.target.checked)}
+                    className="rounded text-red-600 focus:ring-red-500 w-3.5 h-3.5"
+                  />
+                  <span className="text-slate-600 font-medium">Show Signatory on Invoice</span>
+                </label>
+              </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 <div className="space-y-1">
-                  <label className="font-bold text-slate-700 block">Signatory Name:</label>
+                  <label className="font-bold text-slate-700 block">Signatory Full Name:</label>
                   <input
                     type="text"
                     value={signatoryName}
                     onChange={(e) => setSignatoryName(e.target.value)}
                     className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-800"
+                    placeholder="Engr. Hamza Reza"
                   />
                 </div>
 
-                <div className="space-y-1 sm:col-span-2">
-                  <label className="font-bold text-slate-700 block">Signatory Official Title / Role:</label>
+                <div className="space-y-1">
+                  <label className="font-bold text-slate-700 block">Official Title / Role:</label>
                   <input
                     type="text"
                     value={signatoryRole}
                     onChange={(e) => setSignatoryRole(e.target.value)}
                     className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-slate-800"
+                    placeholder="Lead Hardware & Micro-Soldering Specialist"
                   />
                 </div>
 
-                <div className="space-y-1 sm:col-span-3">
-                  <label className="font-bold text-slate-700 block">Official Seal Stamp Text:</label>
-                  <textarea
-                    rows={2}
-                    value={stampText}
-                    onChange={(e) => setStampText(e.target.value)}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-mono text-xs text-slate-800"
+                <div className="space-y-1">
+                  <label className="font-bold text-slate-700 block">Signature Date:</label>
+                  <input
+                    type="text"
+                    value={signatureDate}
+                    onChange={(e) => setSignatureDate(e.target.value)}
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl font-mono text-slate-800"
                   />
                 </div>
               </div>
@@ -1437,14 +1494,14 @@ export const GlobalInvoiceHub: React.FC = () => {
           {/* Top Luxury Accent Strip */}
           <div className="h-2 bg-gradient-to-r from-red-600 via-slate-900 to-red-600" />
 
-          <div className="p-6 sm:p-10 space-y-6 print:p-0">
+          <div className="p-6 sm:p-8 space-y-4 print:p-0 print:space-y-2">
             
             {/* Header: Company Profile + Hero Invoice Title & Hero Editable Number */}
-            <div className="flex flex-col md:flex-row justify-between items-start gap-6 pb-6 border-b-2 border-slate-200/80">
+            <div className="flex flex-col sm:flex-row print:flex-row justify-between items-start gap-4 pb-4 print:pb-2.5 border-b-2 border-slate-200/80">
               
               {/* Left/Right: Company Branding & Direct Inline Editable Address */}
-              <div className={`space-y-2.5 max-w-md flex-1 ${isRtl ? 'text-right' : 'text-left'}`}>
-                <div className="flex items-center gap-3">
+              <div className={`space-y-2 max-w-md flex-1 ${isRtl ? 'text-right' : 'text-left'}`}>
+                <div className="flex flex-wrap items-center gap-3">
                   {useOfficialLogo ? (
                     <div className="flex items-center gap-2">
                       <EvonixLogo size="sm" forceTheme="light" showTechnologies={true} />
@@ -1466,6 +1523,32 @@ export const GlobalInvoiceHub: React.FC = () => {
                       <span className="text-xl font-black tracking-tight text-slate-900">{brandName}</span>
                     </div>
                   )}
+
+                  {/* Direct Logo Upload / Change Buttons on Invoice Canvas */}
+                  <div className="flex items-center gap-1.5 print:hidden">
+                    <button
+                      type="button"
+                      onClick={() => fileInputRef.current?.click()}
+                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-700 font-bold text-[11px] border border-slate-200 transition-colors shadow-2xs cursor-pointer"
+                      title="Upload your business or store logo (PNG, JPG, SVG)"
+                    >
+                      <Upload className="w-3 h-3 text-blue-600" />
+                      <span>{customLogoUrl && !useOfficialLogo ? 'Change Logo' : 'Upload Logo'}</span>
+                    </button>
+                    {(!useOfficialLogo || customLogoUrl) && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setUseOfficialLogo(true);
+                        }}
+                        className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-white hover:bg-slate-100 text-slate-500 hover:text-slate-800 font-medium text-[10.5px] border border-slate-200 transition-colors cursor-pointer"
+                        title="Reset to default Evonix logo"
+                      >
+                        <RotateCcw className="w-2.5 h-2.5" />
+                        <span>Default</span>
+                      </button>
+                    )}
+                  </div>
                 </div>
 
                 {/* Subtitle / Tagline */}
@@ -1474,7 +1557,7 @@ export const GlobalInvoiceHub: React.FC = () => {
                 </p>
 
                 {/* Company Metadata Row (Kotli Behram, Sialkot, Pakistan) */}
-                <div className="text-[11.5px] text-slate-600 space-y-1 pt-1 font-sans">
+                <div className="text-[11px] text-slate-600 space-y-1 pt-0.5 font-sans">
                   
                   {/* DIRECTLY EDITABLE COMPANY ADDRESS */}
                   <div className="flex items-center gap-1.5 group">
@@ -1529,10 +1612,42 @@ export const GlobalInvoiceHub: React.FC = () => {
               </div>
 
               {/* Right/Left: Hero Invoice Title, Prominent Invoice Number & Meta Badges */}
-              <div className={`flex flex-col space-y-2.5 md:min-w-[300px] ${isRtl ? 'items-start text-left' : 'items-end text-right'}`}>
+              <div className={`flex flex-col space-y-2 w-full sm:w-auto sm:min-w-[280px] print:w-auto print:min-w-[280px] print:space-y-1 ${isRtl ? 'items-start text-left print:items-start print:text-left' : 'items-end text-right print:items-end print:text-right'}`}>
                 
                 {/* 1. Directly Editable Title */}
                 <div className="w-full">
+                  <div className={`flex items-center gap-1.5 print:hidden mb-1 ${isRtl ? 'justify-start' : 'justify-end'}`}>
+                    <span className="text-[10px] font-bold uppercase text-slate-400">Type:</span>
+                    <div className="inline-flex rounded-lg border border-slate-200 bg-slate-50 p-0.5 text-[10px]">
+                      <button
+                        type="button"
+                        onClick={() => handleSetInvoiceType('commercial')}
+                        className={`px-2 py-0.5 rounded font-bold transition-all cursor-pointer ${
+                          invoiceTypePreset === 'commercial' ? 'bg-red-600 text-white shadow-2xs' : 'text-slate-600 hover:text-slate-900'
+                        }`}
+                      >
+                        Commercial
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleSetInvoiceType('tax')}
+                        className={`px-2 py-0.5 rounded font-bold transition-all cursor-pointer ${
+                          invoiceTypePreset === 'tax' ? 'bg-red-600 text-white shadow-2xs' : 'text-slate-600 hover:text-slate-900'
+                        }`}
+                      >
+                        Tax
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleSetInvoiceType('proforma')}
+                        className={`px-2 py-0.5 rounded font-bold transition-all cursor-pointer ${
+                          invoiceTypePreset === 'proforma' ? 'bg-red-600 text-white shadow-2xs' : 'text-slate-600 hover:text-slate-900'
+                        }`}
+                      >
+                        Proforma
+                      </button>
+                    </div>
+                  </div>
                   <input
                     type="text"
                     aria-label="Invoice Header Title"
@@ -1541,13 +1656,13 @@ export const GlobalInvoiceHub: React.FC = () => {
                       setInvoiceTitle(e.target.value);
                       setInvoiceTypePreset('custom');
                     }}
-                    className={`w-full text-xl sm:text-2xl font-mono font-black text-slate-900 tracking-wider uppercase bg-transparent hover:bg-slate-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-red-400 rounded px-1 -mx-1 print:p-0 print:border-none ${
-                      isRtl ? 'text-left' : 'text-right'
+                    className={`w-full text-xl sm:text-2xl print:text-2xl font-mono font-black text-slate-900 tracking-wider uppercase bg-transparent hover:bg-slate-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-red-400 rounded px-1 -mx-1 print:p-0 print:border-none print:shadow-none print:bg-transparent ${
+                      isRtl ? 'text-left print:text-left' : 'text-right print:text-right'
                     }`}
                     placeholder="COMMERCIAL INVOICE"
                   />
-                  <div className={`text-[10px] uppercase font-bold tracking-widest text-red-600 mt-0.5 ${isRtl ? 'text-left' : 'text-right'}`}>
-                    Official Financial Instrument
+                  <div className={`text-[10px] uppercase font-bold tracking-widest text-red-600 mt-0.5 ${isRtl ? 'text-left print:text-left' : 'text-right print:text-right'}`}>
+                    Official Commercial Instrument
                   </div>
                 </div>
 
@@ -1617,10 +1732,10 @@ export const GlobalInvoiceHub: React.FC = () => {
             </div>
 
             {/* Symmetrical Dual Executive Cards: Billed To (Buyer) & Commercial Terms */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 print:grid-cols-2 gap-4 print:gap-2.5 text-xs print:text-[10px]">
               
               {/* CARD 1: BILLED TO / CONSIGNEE */}
-              <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200/90 space-y-2 print:bg-transparent print:border print:p-3">
+              <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200/90 space-y-2 print:bg-transparent print:border print:border-slate-300 print:p-2.5 print:rounded-lg print:space-y-1">
                 <div className="flex items-center justify-between border-b border-slate-200/70 pb-1.5">
                   <span className="font-bold text-slate-500 uppercase tracking-wider text-[10px] flex items-center gap-1.5">
                     <User className="w-3.5 h-3.5 text-blue-600" />
@@ -1666,7 +1781,7 @@ export const GlobalInvoiceHub: React.FC = () => {
               </div>
 
               {/* CARD 2: COMMERCIAL LOGISTICS & TAX REGIME */}
-              <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200/90 space-y-2 print:bg-transparent print:border print:p-3">
+              <div className="p-4 bg-slate-50/80 rounded-2xl border border-slate-200/90 space-y-2 print:bg-transparent print:border print:border-slate-300 print:p-2.5 print:rounded-lg print:space-y-1">
                 <div className="flex items-center justify-between border-b border-slate-200/70 pb-1.5">
                   <span className="font-bold text-slate-500 uppercase tracking-wider text-[10px] flex items-center gap-1.5">
                     <CreditCard className="w-3.5 h-3.5 text-emerald-600" />
@@ -1826,54 +1941,54 @@ export const GlobalInvoiceHub: React.FC = () => {
               <table className="w-full text-xs border-collapse">
                 <thead>
                   <tr className="bg-slate-900 text-white font-bold uppercase text-[10px] tracking-wider print:bg-slate-100 print:text-slate-900">
-                    <th className={`py-3 px-3 w-10 ${isRtl ? 'text-right' : 'text-left'}`}>{t.colIndex}</th>
-                    <th className={`py-3 px-3 ${isRtl ? 'text-right' : 'text-left'}`}>{t.colDescription}</th>
-                    <th className="py-3 px-3 text-center w-20">{t.colQty}</th>
-                    <th className={`py-3 px-3 w-28 ${isRtl ? 'text-left' : 'text-right'}`}>{t.colRate}</th>
-                    <th className={`py-3 px-3 w-32 ${isRtl ? 'text-left' : 'text-right'}`}>{t.colAmount}</th>
-                    <th className="py-3 px-2 text-center w-10 print:hidden"></th>
+                    <th className={`py-2.5 px-3 print:py-1 print:px-2 print:text-[9px] w-10 ${isRtl ? 'text-right' : 'text-left'}`}>{t.colIndex}</th>
+                    <th className={`py-2.5 px-3 print:py-1 print:px-2 print:text-[9px] ${isRtl ? 'text-right' : 'text-left'}`}>{t.colDescription}</th>
+                    <th className="py-2.5 px-3 print:py-1 print:px-2 print:text-[9px] text-center w-20">{t.colQty}</th>
+                    <th className={`py-2.5 px-3 print:py-1 print:px-2 print:text-[9px] w-28 ${isRtl ? 'text-left' : 'text-right'}`}>{t.colRate}</th>
+                    <th className={`py-2.5 px-3 print:py-1 print:px-2 print:text-[9px] w-32 ${isRtl ? 'text-left' : 'text-right'}`}>{t.colAmount}</th>
+                    <th className="py-2.5 px-2 text-center w-10 print:hidden"></th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-200">
                   {items.map((it, idx) => (
                     <tr key={it.id} className="hover:bg-slate-50/60 transition-colors">
-                      <td className={`py-3 px-3 text-slate-400 font-mono text-xs align-middle ${isRtl ? 'text-right' : 'text-left'}`}>
+                      <td className={`py-2.5 px-3 print:py-1 print:px-2 print:text-[9.5px] text-slate-400 font-mono text-xs align-middle ${isRtl ? 'text-right' : 'text-left'}`}>
                         {String(idx + 1).padStart(2, '0')}
                       </td>
-                      <td className="py-3 px-3 align-middle">
+                      <td className="py-2.5 px-3 print:py-1 print:px-2 print:text-[9.5px] align-middle">
                         <input
                           type="text"
                           aria-label={`Item ${idx + 1} Description`}
                           value={it.description}
                           onChange={(e) => handleUpdateItem(it.id, 'description', e.target.value)}
-                          className={`w-full font-medium text-slate-900 bg-transparent focus:outline-none ${isRtl ? 'text-right' : 'text-left'}`}
+                          className={`w-full font-medium text-slate-900 bg-transparent focus:outline-none print:text-[9.5px] ${isRtl ? 'text-right' : 'text-left'}`}
                         />
                       </td>
-                      <td className="py-3 px-3 text-center align-middle">
+                      <td className="py-2.5 px-3 print:py-1 print:px-2 text-center align-middle">
                         <input
                           type="number"
                           aria-label={`Item ${idx + 1} Quantity`}
                           value={it.quantity}
                           onChange={(e) => handleUpdateItem(it.id, 'quantity', Number(e.target.value) || 0)}
-                          className="w-16 px-1.5 py-0.5 text-center border border-slate-200 rounded font-mono bg-white print:border-none print:p-0"
+                          className="w-16 px-1.5 py-0.5 text-center border border-slate-200 rounded font-mono bg-white print:border-none print:p-0 print:text-[9.5px]"
                           min="1"
                         />
                       </td>
-                      <td className={`py-3 px-3 font-mono align-middle ${isRtl ? 'text-left' : 'text-right'}`}>
+                      <td className={`py-2.5 px-3 print:py-1 print:px-2 font-mono align-middle ${isRtl ? 'text-left' : 'text-right'}`}>
                         <input
                           type="number"
                           aria-label={`Item ${idx + 1} Unit Rate`}
                           value={it.rate}
                           onChange={(e) => handleUpdateItem(it.id, 'rate', Number(e.target.value) || 0)}
-                          className={`w-24 px-1.5 py-0.5 border border-slate-200 rounded font-mono bg-white print:border-none print:p-0 ${isRtl ? 'text-left' : 'text-right'}`}
+                          className={`w-24 px-1.5 py-0.5 border border-slate-200 rounded font-mono bg-white print:border-none print:p-0 print:text-[9.5px] ${isRtl ? 'text-left' : 'text-right'}`}
                           min="0"
                           step="0.01"
                         />
                       </td>
-                      <td className={`py-3 px-3 font-mono font-bold text-slate-900 align-middle ${isRtl ? 'text-left' : 'text-right'}`}>
+                      <td className={`py-2.5 px-3 print:py-1 print:px-2 print:text-[9.5px] font-mono font-bold text-slate-900 align-middle ${isRtl ? 'text-left' : 'text-right'}`}>
                         {currencySymbol} {((Number(it.quantity) || 0) * (Number(it.rate) || 0)).toFixed(2)}
                       </td>
-                      <td className="py-3 px-2 text-center print:hidden align-middle">
+                      <td className="py-2.5 px-2 text-center print:hidden align-middle">
                         <button
                           onClick={() => handleRemoveItem(it.id)}
                           className="text-slate-300 hover:text-red-500 cursor-pointer p-1 transition-colors"
@@ -1903,25 +2018,25 @@ export const GlobalInvoiceHub: React.FC = () => {
             </div>
 
             {/* Financial Summary Grid (Dual Columns) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t-2 border-slate-200 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 print:grid-cols-2 gap-4 print:gap-3 pt-3 print:pt-2 border-t-2 border-slate-200 text-xs print:text-[10px] print-avoid-break">
               
               {/* Left Column: Amount in Words, Bank Details & Legal Declaration */}
-              <div className="space-y-3">
+              <div className="space-y-2.5 print:space-y-1.5">
                 
                 {/* Official Total Amount in Words */}
-                <div className="p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/90 print:bg-transparent print:border print:p-2.5">
-                  <span className="font-bold text-slate-400 uppercase tracking-wider block text-[10px]">
+                <div className="p-3 bg-slate-50/80 rounded-xl border border-slate-200/90 print:bg-transparent print:border print:border-slate-300 print:p-2 print:rounded-lg">
+                  <span className="font-bold text-slate-400 uppercase tracking-wider block text-[9.5px]">
                     {t.totalWordsLabel}
                   </span>
-                  <p className="font-serif italic font-bold text-slate-900 text-xs mt-1 leading-snug">
+                  <p className="font-serif italic font-bold text-slate-900 text-xs print:text-[10px] mt-0.5 leading-snug">
                     {amountInWords}
                   </p>
                 </div>
 
                 {/* Editable Banking Details on Canvas */}
                 {showBankDetails && (
-                  <div className="space-y-1.5 text-slate-600 text-[11px] leading-relaxed p-3.5 bg-slate-50/60 rounded-xl border border-slate-200/80 print:bg-transparent print:border print:p-2.5">
-                    <span className="font-bold text-slate-900 block text-xs flex items-center gap-1.5">
+                  <div className="space-y-1 text-slate-600 text-[11px] leading-relaxed p-3 bg-slate-50/60 rounded-xl border border-slate-200/80 print:bg-transparent print:border print:border-slate-300 print:p-2 print:rounded-lg print:text-[9.5px]">
+                    <span className="font-bold text-slate-900 block text-xs print:text-[10px] flex items-center gap-1.5">
                       <Landmark className="w-3.5 h-3.5 text-red-600" />
                       <span>{t.bankingDetailsHeading}</span>
                     </span>
@@ -1969,20 +2084,20 @@ export const GlobalInvoiceHub: React.FC = () => {
                 )}
 
                 {/* Legal Commercial Declaration */}
-                <div className="text-[10px] text-slate-500 italic pt-1 border-t border-slate-100 leading-tight">
+                <div className="text-[10px] text-slate-500 italic pt-0.5 border-t border-slate-100 leading-tight">
                   "{declarationText}"
                 </div>
               </div>
 
               {/* Right Column: Executive Totals & Subtotals */}
-              <div className="space-y-2.5 font-mono flex flex-col justify-start">
-                <div className="flex justify-between text-slate-600 py-1.5 border-b border-slate-100">
-                  <span className="font-sans font-medium text-xs">{t.subtotalLabel}</span>
+              <div className="space-y-2 font-mono flex flex-col justify-start print:space-y-1.5">
+                <div className="flex justify-between text-slate-600 py-1 border-b border-slate-100">
+                  <span className="font-sans font-medium text-xs print:text-[10px]">{t.subtotalLabel}</span>
                   <span className="font-bold text-slate-800">{currencySymbol} {subtotal.toFixed(2)}</span>
                 </div>
 
-                <div className="flex justify-between items-center text-slate-600 py-1.5 border-b border-slate-100">
-                  <div className="flex items-center gap-1.5 font-sans text-xs">
+                <div className="flex justify-between items-center text-slate-600 py-1 border-b border-slate-100">
+                  <div className="flex items-center gap-1.5 font-sans text-xs print:text-[10px]">
                     <span>{taxName}:</span>
                     <span className="text-[10px] text-slate-400 font-mono">({taxRate}%)</span>
                   </div>
@@ -1990,28 +2105,28 @@ export const GlobalInvoiceHub: React.FC = () => {
                 </div>
 
                 {/* HERO TOTALS DUE BOX */}
-                <div className="p-3.5 bg-red-50/70 rounded-xl border border-red-200/80 flex items-center justify-between text-slate-900 print:border-2 print:border-slate-900">
-                  <span className="font-sans font-bold text-xs sm:text-sm">{t.grandTotalLabel}</span>
-                  <span className="text-lg sm:text-xl font-black text-red-600 font-mono">
+                <div className="p-3 bg-red-50/70 rounded-xl border border-red-200/80 flex items-center justify-between text-slate-900 print:bg-transparent print:border print:border-slate-800 print:p-2 print:rounded-lg">
+                  <span className="font-sans font-bold text-xs sm:text-sm print:text-xs">{t.grandTotalLabel}</span>
+                  <span className="text-lg sm:text-xl print:text-base font-black text-red-600 font-mono">
                     {currencySymbol} {grandTotal.toFixed(2)} <span className="text-xs font-bold text-slate-700">{currency}</span>
                   </span>
                 </div>
 
-                <div className={`pt-1 ${isRtl ? 'text-left' : 'text-right'}`}>
-                  <span className="inline-block px-3 py-1 bg-emerald-50 text-emerald-800 text-[10px] font-sans font-bold rounded-lg border border-emerald-200">
+                <div className={`pt-0.5 ${isRtl ? 'text-left' : 'text-right'}`}>
+                  <span className="inline-block px-2.5 py-0.5 bg-emerald-50 text-emerald-800 text-[9.5px] font-sans font-bold rounded-lg border border-emerald-200">
                     {t.zeroDbBadge}
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Payment Terms & Conditions + Authorized Signatory / Stamp */}
-            <div className="pt-6 border-t-2 border-slate-200 grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+            {/* Payment Terms & Conditions + Authorized Signatory (NO RED STAMP) */}
+            <div className="pt-4 print:pt-2 border-t-2 border-slate-200 grid grid-cols-1 sm:grid-cols-2 print:grid-cols-2 gap-4 print:gap-3 items-end text-xs print:text-[9.5px] print-avoid-break">
               
               {/* Terms and Acceptance with Add/Delete directly on canvas */}
-              <div className="text-[11px] text-slate-600 space-y-2">
+              <div className="text-[11px] text-slate-600 space-y-1.5 print:space-y-1">
                 <div className="flex items-center justify-between">
-                  <p className="font-bold text-slate-900 text-xs">{t.instructionsTitle}</p>
+                  <p className="font-bold text-slate-900 text-xs print:text-[10px]">{t.instructionsTitle}</p>
                   <button
                     type="button"
                     onClick={handleAddTerm}
@@ -2022,7 +2137,7 @@ export const GlobalInvoiceHub: React.FC = () => {
                   </button>
                 </div>
 
-                <ul className="space-y-1.5 text-[10.5px]">
+                <ul className="space-y-1 text-[10.5px] print:text-[9.5px]">
                   {termsAndConditions.map((cond, idx) => (
                     <li key={idx} className="flex items-start gap-1.5 group">
                       <span className="text-slate-400 font-mono mt-0.5">{idx + 1}.</span>
@@ -2046,30 +2161,16 @@ export const GlobalInvoiceHub: React.FC = () => {
                 </ul>
               </div>
 
-              {/* Authorized Signature & Official Export Seal Stamp */}
-              <div className={`flex items-end gap-6 sm:gap-8 ${isRtl ? 'justify-start' : 'justify-end'}`}>
-                
-                {/* Official Circular Red Ink Seal */}
-                {showStamp && (
-                  <div className="w-24 h-24 rounded-full border-2 border-dashed border-red-500 bg-red-50/40 flex flex-col items-center justify-center text-center p-1.5 rotate-[-8deg] shadow-xs select-none">
-                    <div className="w-full h-full border border-red-300 rounded-full flex flex-col items-center justify-center p-1">
-                      <Stamp className="w-3.5 h-3.5 text-red-600 mb-0.5" />
-                      <span className="text-[7.5px] font-black text-red-700 tracking-tight leading-tight uppercase whitespace-pre-line">
-                        {stampText}
-                      </span>
-                    </div>
-                  </div>
-                )}
-
-                {/* Digital Authorized Signatory Block */}
+              {/* Authorized Digital Signatory Block (Clean Executive Finish, No Red Stamp) */}
+              <div className={`flex items-end ${isRtl ? 'justify-start' : 'justify-end'}`}>
                 {showAuthorizedSignature && (
                   <div className={`space-y-1 min-w-[200px] ${isRtl ? 'text-left' : 'text-right'}`}>
-                    <div className={`h-11 flex items-end pb-1 ${isRtl ? 'justify-start' : 'justify-end'}`}>
-                      <span className="font-serif italic font-bold text-lg text-slate-900 tracking-wider border-b-2 border-slate-900 pb-0.5 px-4 inline-block">
+                    <div className={`h-10 flex items-end pb-1 ${isRtl ? 'justify-start' : 'justify-end'}`}>
+                      <span className="font-serif italic font-bold text-lg print:text-base text-slate-900 tracking-wider border-b-2 border-slate-900 pb-0.5 px-4 inline-block">
                         {signatoryName}
                       </span>
                     </div>
-                    <div className="font-bold text-xs text-slate-900">{signatoryName}</div>
+                    <div className="font-bold text-xs print:text-[10.5px] text-slate-900">{signatoryName}</div>
                     <div className="text-[10px] text-slate-500 leading-tight">{signatoryRole}</div>
                     <div className="text-[10px] font-mono text-slate-400">{t.signatureDateLabel} {signatureDate}</div>
                   </div>
