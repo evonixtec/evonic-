@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SERVICES, VERIFIED_SERVICE_GALLERY, ServiceGalleryItem, COMPANY_INFO } from '../../data/content';
 import { OptimizedImage } from '../common/OptimizedImage';
+import { SialkotCoreServicesSlider } from '../SialkotCoreServicesSlider';
 import {
   ArrowRight,
   Sparkles,
@@ -53,6 +54,14 @@ export const HomeServicesPreview: React.FC<HomeServicesPreviewProps> = ({
             <span>View All Services</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
+        </div>
+
+        {/* Interactive Image Slider with Sialkot Core Services */}
+        <div className="mb-14">
+          <SialkotCoreServicesSlider
+            onBookService={onOpenQuote}
+            onNavigateServices={onNavigateToServices}
+          />
         </div>
 
         {/* 4 Main Core Service Cards */}

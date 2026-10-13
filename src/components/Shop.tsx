@@ -154,8 +154,10 @@ Please share current price & delivery/setup availability.`;
               <div className="px-6 pb-6 pt-0">
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
                   <div>
-                    <span className="text-[10px] text-slate-400 uppercase tracking-wider block font-bold">Estimated Range</span>
-                    <span className="text-xs sm:text-sm font-bold text-slate-900">
+                    <span className="text-[10px] text-red-600 uppercase tracking-wider block font-bold flex items-center gap-1">
+                      <Tag className="w-2.5 h-2.5" /> Direct Lab Pricing
+                    </span>
+                    <span className="text-xs sm:text-sm font-extrabold text-slate-800">
                       {product.priceEstimate}
                     </span>
                   </div>
@@ -165,23 +167,81 @@ Please share current price & delivery/setup availability.`;
                       href={generateWhatsAppLink(product)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 transition-colors shadow-2xs"
-                      title="Inquire via WhatsApp"
+                      className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold transition-all shadow-2xs hover:scale-105"
+                      title="Instant Quote via WhatsApp"
                     >
-                      <MessageSquare className="w-4 h-4" />
+                      <MessageSquare className="w-3.5 h-3.5" />
+                      <span className="hidden sm:inline">WhatsApp</span>
                     </a>
 
                     <button
                       onClick={() => onInquireProduct(product.name)}
                       className="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-red-600 text-white text-xs font-bold transition-colors cursor-pointer shadow-2xs"
                     >
-                      Order / Inquire
+                      Inquire / Quote
                     </button>
                   </div>
                 </div>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Sialkot Hardware, SSD Upgrades & POS FAQ Section */}
+        <div className="mt-20 pt-12 border-t border-slate-200">
+          <div className="max-w-3xl mx-auto text-center mb-10">
+            <span className="text-xs font-extrabold text-red-600 uppercase tracking-wider bg-red-50 px-3 py-1 rounded-full border border-red-200 inline-block mb-2">
+              Hardware & POS Buying FAQs
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
+              Frequently Asked Hardware & Upgrade Questions
+            </h3>
+            <p className="text-slate-600 text-xs sm:text-sm mt-2">
+              Everything you need to know about warranty, SSD speed upgrades, thermal printers, and doorstep deployment in Sialkot.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+            <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl">
+              <h4 className="font-bold text-slate-900 text-sm mb-2 flex items-center gap-2">
+                <Shield className="w-4 h-4 text-emerald-600" />
+                What is the warranty policy on your hardware products?
+              </h4>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                All brand-new POS touch terminals and thermal receipt printers come with a <strong>1-Year local written replacement warranty</strong> in Sialkot. Our genuine NVMe/SATA SSDs include a <strong>3-Year warranty</strong>, and imported laptops include a 3-month bench repair warranty plus a 10-day testing guarantee.
+              </p>
+            </div>
+
+            <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl">
+              <h4 className="font-bold text-slate-900 text-sm mb-2 flex items-center gap-2">
+                <HardDrive className="w-4 h-4 text-red-600" />
+                How long does an SSD upgrade take, and will my data be safe?
+              </h4>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Our lab performs <strong>100% lossless OS & data migration</strong> in under 45 minutes. Your Windows, installed accounting software, passwords, desktop files, and browser bookmarks are cloned bit-by-bit to the new high-speed SSD so your computer boots 10x faster with zero data loss.
+              </p>
+            </div>
+
+            <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl">
+              <h4 className="font-bold text-slate-900 text-sm mb-2 flex items-center gap-2">
+                <Printer className="w-4 h-4 text-blue-600" />
+                Do 80mm thermal receipt printers require ink or ribbons?
+              </h4>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                No ink or ribbons are needed. Direct thermal receipt printers use heat-sensitive paper rolls (80mm width). They feature a heavy-duty Japanese auto-cutter rated for 1.5 million cuts and connect directly to Windows, Android POS, or billing computers via USB and Ethernet LAN.
+              </p>
+            </div>
+
+            <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl">
+              <h4 className="font-bold text-slate-900 text-sm mb-2 flex items-center gap-2">
+                <Laptop className="w-4 h-4 text-purple-600" />
+                Can you deliver and install hardware at our factory in Sialkot?
+              </h4>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Yes! Our on-site technicians deliver and configure all hardware directly at your retail store, warehouse, or factory on Paris Road, Cantt, Daska Road, Sambrial, Wazirabad Road, and Small Industrial Estate Sialkot with full hands-on staff demonstration.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

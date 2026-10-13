@@ -39,7 +39,9 @@ import {
   Clock,
   User,
   Shield,
-  FileSpreadsheet
+  FileSpreadsheet,
+  MessageSquare,
+  Share2
 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
 import { EvonixLogo } from './EvonixLogo';
@@ -558,6 +560,30 @@ export const GlobalInvoiceHub: React.FC = () => {
 
   const selectedCountryObj = MAJOR_50_COUNTRIES.find((c) => c.id === selectedCountryId) || MAJOR_50_COUNTRIES[0];
 
+  // Instant share formatted invoice summary via WhatsApp
+  const handleShareOnWhatsApp = () => {
+    const linesSummary = items
+      .map((it, idx) => `${idx + 1}. ${it.description || 'Item'} (Qty: ${it.quantity} x ${currencySymbol}${Number(it.rate).toFixed(2)} = ${currencySymbol}${(it.quantity * it.rate).toFixed(2)})`)
+      .join('\n');
+    const msg = `*${invoiceTitle || 'COMMERCIAL INVOICE'}*\n` +
+      `*Invoice No:* ${invoiceNumber}\n` +
+      `*Date:* ${invoiceDate} | *Due:* ${dueDate}\n` +
+      `*Billed To:* ${buyerName || 'Valued Client'}\n` +
+      `${buyerAddress ? `*Address:* ${buyerAddress}\n` : ''}` +
+      `\n*Items Summary:*\n${linesSummary}\n\n` +
+      `*Subtotal:* ${currencySymbol} ${subtotal.toFixed(2)}\n` +
+      `*${taxName} (${taxRate}%):* ${currencySymbol} ${taxAmount.toFixed(2)}\n` +
+      `*Grand Total Due:* ${currencySymbol} ${grandTotal.toFixed(2)} ${currency}\n\n` +
+      `*Bank / IBAN:* ${bankName} | ${iban}\n` +
+      `*Issued By:* ${brandName} (${signatoryName})\n` +
+      `----------------------------------------\n` +
+      `Official commercial invoice generated via EVONIX Commercial Invoicing Studio. Print/PDF copy available.`;
+
+    const encoded = encodeURIComponent(msg);
+    const url = `https://wa.me/?text=${encoded}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <div className="py-6 sm:py-8 bg-slate-100 min-h-screen text-slate-900 print:bg-white print:py-0 print:min-h-0">
       
@@ -713,6 +739,16 @@ export const GlobalInvoiceHub: React.FC = () => {
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>{t.resetButtonText}</span>
+            </button>
+
+            {/* Share via WhatsApp Button */}
+            <button
+              onClick={handleShareOnWhatsApp}
+              className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-xs transition-colors"
+              title="Share formatted invoice summary and total directly to WhatsApp"
+            >
+              <MessageSquare className="w-3.5 h-3.5" />
+              <span>Share WhatsApp</span>
             </button>
 
             {/* Print / Save A4 PDF Button */}

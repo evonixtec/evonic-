@@ -79,14 +79,14 @@ export const HomeShopPreview: React.FC<HomeShopPreviewProps> = ({
 
               <div className="p-5 pt-0 border-t border-slate-200 mt-2 flex items-center justify-between">
                 <div>
-                  <span className="text-xs text-slate-500 block">Starting at</span>
-                  <span className="text-sm font-black text-slate-900">{prod.priceEstimate}</span>
+                  <span className="text-[10px] uppercase font-bold text-red-600 block">Pricing</span>
+                  <span className="text-xs font-extrabold text-slate-800">{prod.priceEstimate}</span>
                 </div>
                 <button
                   onClick={() => onInquireProduct(prod.name)}
-                  className="px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition-colors cursor-pointer shadow-2xs"
+                  className="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-red-600 text-white font-bold text-xs transition-colors cursor-pointer shadow-2xs"
                 >
-                  Order / Inquire
+                  Inquire / Quote
                 </button>
               </div>
             </div>

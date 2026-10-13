@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Globe, Smartphone, BrainCircuit, Cpu, ArrowUpRight, CheckCircle2, Sparkles, Layers } from 'lucide-react';
+import { SialkotCoreServicesSlider } from './SialkotCoreServicesSlider';
 
 interface ServiceItem {
   id: string;
@@ -158,6 +159,13 @@ export const Services: React.FC<ServicesProps> = ({
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
             We deliver end-to-end digital mastery with zero compromises. From 3D web interfaces to neural AI integrations and cloud infrastructure, every solution is built for production reliability.
           </p>
+        </div>
+
+        {/* Interactive Image Slider for Core Sialkot Services */}
+        <div className="pt-2">
+          <SialkotCoreServicesSlider
+            onBookService={(name) => onSelectServiceForQuote?.(name)}
+          />
         </div>
 
         {/* 3D Floating Glassmorphism Cards Grid */}
