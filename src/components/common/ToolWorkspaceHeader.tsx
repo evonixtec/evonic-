@@ -57,6 +57,16 @@ export const ALL_TOOLS_DIRECTORY: ToolNavDefinition[] = [
     isMobileCore: true,
   },
   {
+    id: 'ebay-fee-calculator',
+    name: 'eBay Fee & Profit Builder',
+    shortName: 'eBay Calculator',
+    category: 'ecommerce-growth',
+    categoryLabel: 'E-Commerce',
+    icon: <Calculator className="w-4 h-4 text-blue-500" />,
+    badge: '10 Markets',
+    isMobileCore: true,
+  },
+  {
     id: 'cbm-calculator',
     name: 'B2B Industrial CBM & Freight Engine',
     shortName: 'CBM Cargo Engine',

@@ -117,6 +117,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     currentPage === 'invoice' ||
     currentPage === 'export-barcode-studio' ||
     currentPage === 'ecommerce-calculator' ||
+    currentPage === 'ebay-fee-calculator' ||
     currentPage === 'cbm-calculator' ||
     currentPage === 'developer-cost-calculator' ||
     currentPage === 'ai-visibility-checker' ||
@@ -447,7 +448,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               onMouseLeave={() => setActiveDropdown(null)}
             >
               <button
-                onClick={() => handlePageSelect('tools')}
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveDropdown(activeDropdown === 'tools' ? null : 'tools');
+                }}
                 className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
                   isToolsActive
                     ? 'text-blue-700 bg-gradient-to-b from-blue-50 to-indigo-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(37,99,235,0.12)] border border-blue-200/80'
@@ -480,6 +485,40 @@ export const Navbar: React.FC<NavbarProps> = ({
                       </div>
                       <ArrowRight className="w-3.5 h-3.5 text-white" />
                     </button>
+
+                    {/* TOP FEATURED SPOTLIGHT: eBay Fee & Profit Builder */}
+                    <div className="bg-gradient-to-r from-blue-50/90 to-indigo-50/70 border border-blue-200/90 rounded-xl p-1 mb-1">
+                      <button
+                        onClick={() => handlePageSelect('ebay-fee-calculator')}
+                        className={`w-full text-left p-2 rounded-lg transition-all flex items-center gap-2.5 cursor-pointer group ${
+                          currentPage === 'ebay-fee-calculator' ? 'bg-blue-600 text-white font-bold shadow-xs' : 'hover:bg-white/90'
+                        }`}
+                      >
+                        <span className="text-base flex items-center justify-center flex-shrink-0">🏷️</span>
+                        <div className="flex-1 min-w-0">
+                          <div className={`text-xs font-bold truncate flex items-center gap-1.5 ${
+                            currentPage === 'ebay-fee-calculator' ? 'text-white' : 'text-blue-900 group-hover:text-blue-700'
+                          }`}>
+                            <span>eBay Fee &amp; Profit Builder</span>
+                            <span className={`text-[8px] px-1 py-0.2 rounded font-bold ${
+                              currentPage === 'ebay-fee-calculator' ? 'bg-white text-blue-700' : 'bg-blue-600 text-white'
+                            }`}>
+                              10 MARKETS
+                            </span>
+                          </div>
+                          <div className={`text-[10px] truncate ${
+                            currentPage === 'ebay-fee-calculator' ? 'text-blue-100' : 'text-slate-600'
+                          }`}>
+                            FVF, Promoted Ads &amp; Real-Time FX
+                          </div>
+                        </div>
+                        <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded ${
+                          currentPage === 'ebay-fee-calculator' ? 'bg-blue-800 text-white' : 'bg-emerald-100 text-emerald-800'
+                        }`}>
+                          HOT · Pro
+                        </span>
+                      </button>
+                    </div>
 
                     <span className="block px-3 py-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100 pb-1 mb-1">
                       Business &amp; Export Tools
@@ -567,6 +606,23 @@ export const Navbar: React.FC<NavbarProps> = ({
                         <div className="text-[10px] text-slate-500">Multi-courier COD & RTO simulator</div>
                       </div>
                       <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-700">Live</span>
+                    </button>
+
+                    <button
+                      onClick={() => handlePageSelect('ebay-fee-calculator')}
+                      className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
+                        currentPage === 'ebay-fee-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-base flex items-center justify-center flex-shrink-0">🏷️</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate flex items-center gap-1.5">
+                          <span>eBay Fee &amp; Profit Builder</span>
+                          <span className="text-[8px] bg-blue-100 text-blue-800 px-1 py-0.2 rounded font-bold">10 Markets</span>
+                        </div>
+                        <div className="text-[10px] text-slate-500">FVF, Promoted Ads &amp; Real-Time FX</div>
+                      </div>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">Pro</span>
                     </button>
 
                     <button
@@ -969,10 +1025,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }`}
               >
                 <div className="flex items-center gap-2">
-                  <span>⚙️ Web Tools Portfolio</span>
+                  <span>⚙️ Online Tools</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="px-1.5 py-0.2 bg-blue-100 text-blue-700 text-[10px] rounded font-bold">4 TOOLS</span>
+                  <span className="px-1.5 py-0.2 bg-blue-100 text-blue-700 text-[10px] rounded font-bold">9+ TOOLS</span>
                   <ChevronDown
                     className={`w-4 h-4 transition-transform duration-200 ${
                       mobileExpandedSection === 'tools' ? 'rotate-180 text-blue-600' : 'text-slate-400'
@@ -990,6 +1046,26 @@ export const Navbar: React.FC<NavbarProps> = ({
                   >
                     <span>🛠️ Open Web Tools Portfolio Hub</span>
                     <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+
+                  {/* 1. TOP HIGHLIGHT: eBay Fee & Profit Builder */}
+                  <button
+                    onClick={() => handlePageSelect('ebay-fee-calculator')}
+                    className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between border ${
+                      currentPage === 'ebay-fee-calculator'
+                        ? 'bg-blue-600 text-white font-bold border-blue-600 shadow-xs'
+                        : 'bg-blue-50/90 hover:bg-blue-100/90 text-blue-900 border-blue-200/90'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="text-base">🏷️</span>
+                      <span className="font-bold">eBay Fee &amp; Profit Builder</span>
+                    </div>
+                    <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded ${
+                      currentPage === 'ebay-fee-calculator' ? 'bg-blue-800 text-white' : 'bg-blue-600 text-white'
+                    }`}>
+                      10 Markets · Pro
+                    </span>
                   </button>
 
                   <button
@@ -1038,6 +1114,18 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <span>📊 E-Commerce Margin Calculator</span>
                     </div>
                     <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-700">Live</span>
+                  </button>
+
+                  <button
+                    onClick={() => handlePageSelect('ebay-fee-calculator')}
+                    className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
+                      currentPage === 'ebay-fee-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span>🏷️ eBay Fee &amp; Profit Builder</span>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">10 Markets</span>
                   </button>
 
                   <button

@@ -55,6 +55,13 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
       order: 2,
     },
     {
+      id: 'ebay-fee-calculator',
+      name: 'eBay Fee & Profit Builder',
+      desc: 'Calculate exact eBay marketplace fees, promoted ads, and take-home margins.',
+      icon: <Calculator className="w-5 h-5 text-blue-600" />,
+      order: 3,
+    },
+    {
       id: 'cbm-calculator',
       name: 'B2B Industrial CBM & Freight Engine',
       desc: 'Calculate carton CBM volume and 20ft/40ft container stuffing capacity.',
