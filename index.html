@@ -9,11 +9,23 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>evonix technologies – IT Consultancy & Hardware Maintenance Services in Sialkot</title>
     <meta name="description" content="Leading IT consultancy and industrial hardware maintenance services in Sialkot. Enterprise website engineering, retail POS systems, and factory IT support backed by 20+ years Dubai expertise." />
     <meta name="keywords" content="IT consultancy Sialkot, hardware maintenance services Sialkot, industrial hardware maintenance Sialkot, IT company in Sialkot, factory IT infrastructure Sialkot, IT maintenance contract Sialkot, best software house in Sialkot, computer repair Sialkot, laptop repairing Sialkot Cantt, IT solutions Paris Road Sialkot, Dubai IT experience Pakistan" />
-    <link rel="canonical" href="https://www.evonixtec.com/" />
+    <link rel="canonical" id="canonical-url" href="https://www.evonixtec.com/" />
+    <script>
+      (function() {
+        try {
+          var p = window.location.pathname.replace(/\/+$/, '') || '';
+          var c = 'https://www.evonixtec.com' + (p ? p : '/');
+          var l = document.getElementById('canonical-url') || document.querySelector('link[rel="canonical"]');
+          if (l) { l.setAttribute('href', c); }
+        } catch(e) {}
+      })();
+    </script>
     <!-- Brand Nano Taglines & Identity Directives -->
     <meta name="tagline" content="Dubai Precision Engineering • Sialkot Tech Hub" />
     <meta name="brand" content="evonix technologies" />
@@ -80,7 +92,7 @@
         "priceRange": "PKR 1500 - PKR 85000",
         "currenciesAccepted": "PKR, AED, USD",
         "paymentAccepted": "Cash, Bank Transfer, EasyPaisa, JazzCash",
-        "hasMap": "https://maps.google.com/?q=Paris+Road+Sialkot",
+        "hasMap": "https://maps.google.com/?q=Kotli+Behram+Sialkot",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Kotli Behram, Sialkot, Pakistan",
@@ -91,10 +103,11 @@
         },
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": 32.4945,
-          "longitude": 74.5229
+          "latitude": 32.4980,
+          "longitude": 74.5260
         },
         "areaServed": [
+          "Kotli Behram",
           "Sialkot",
           "Sialkot Cantt",
           "Paris Road",

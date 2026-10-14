@@ -21,7 +21,11 @@ export type NavPageId =
   | 'us-duty-nexus-estimator'
   | 'ce-ukca-compliance-generator'
   | 'ai-trip-planner'
-  | 'ai-travel-tools';
+  | 'ai-travel-tools'
+  | 'admin'
+  | 'doorstep-support'
+  | 'sialkot-export-erp'
+  | 'guidelines';
 
 export type PageId = NavPageId;
 

@@ -31,7 +31,7 @@ export const LOCAL_BUSINESS_SCHEMA = {
   priceRange: 'PKR 1500 - PKR 85000',
   currenciesAccepted: 'PKR, USD, AED, EUR',
   paymentAccepted: 'Cash, Bank Transfer, EasyPaisa, JazzCash, Raast',
-  hasMap: 'https://maps.google.com/?q=Kolti+Behram+Sialkot+Pakistan',
+  hasMap: 'https://maps.google.com/?q=Kotli+Behram+Sialkot+Pakistan',
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Kotli Behram, Sialkot, Pakistan',
@@ -925,6 +925,70 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'trip planner free',
     ],
   },
+  admin: {
+    title: 'Admin Security Hub | evonix technologies',
+    description: 'Internal protected security management console for evonix engineering staff in Kotli Behram, Sialkot.',
+    canonicalUrl: `${BASE_URL}/admin`,
+    ogTitle: 'Admin Security Hub | evonix technologies',
+    ogDescription: 'Internal protected management console.',
+    ogType: 'website',
+    ogImage: `${BASE_URL}/og-image.jpg`,
+    keywords: ['admin security', 'internal portal'],
+  },
+  'doorstep-support': {
+    title: 'Doorstep IT Support & On-Site Hardware Repair Sialkot | evonix',
+    description:
+      'Emergency doorstep IT engineer dispatch in Sialkot, Sambrial, Daska & Wazirabad. 45-min arrival for factory POS, server crashes, and network failure.',
+    canonicalUrl: `${BASE_URL}/services/doorstep-support`,
+    ogTitle: 'Doorstep IT Support & On-Site Hardware Repair in Sialkot',
+    ogDescription:
+      'Fast on-site tech support in Sialkot. Certified engineers reach your shop or factory within 45 minutes.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    keywords: [
+      'doorstep IT support Sialkot',
+      'on-site computer repair Sialkot',
+      'factory network repair Sialkot',
+      'POS emergency support Sialkot',
+      'IT engineer visit Sialkot',
+    ],
+  },
+  'sialkot-export-erp': {
+    title: 'Sialkot Export Manufacturing ERP & WeBOC Cloud Billing Suite | evonix',
+    description:
+      'Industrial ERP software for Sialkot surgical, leather, and sports exporters. Complete batch traceability, multi-currency invoicing, and WeBOC customs sync.',
+    canonicalUrl: `${BASE_URL}/sialkot-export-erp`,
+    ogTitle: 'Sialkot Export Manufacturing ERP & Customs Suite',
+    ogDescription:
+      'Industrial ERP software built for Sialkot export factories. Track batches, orders, and customs declarations.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    keywords: [
+      'sialkot export erp',
+      'surgical manufacturing erp sialkot',
+      'leather factory erp sialkot',
+      'weboc billing software',
+      'customs erp sialkot',
+    ],
+  },
+  guidelines: {
+    title: 'IT Infrastructure & Hardware Engineering Guidelines | evonix',
+    description:
+      'Technical guidelines for industrial factory networks, server data backup, and motherboard diagnostics in Sialkot export manufacturing.',
+    canonicalUrl: `${BASE_URL}/guidelines`,
+    ogTitle: 'IT Infrastructure & Hardware Engineering Guidelines',
+    ogDescription:
+      'Clear tech guidelines for factory networks, server backups, and hardware repair.',
+    ogType: 'article',
+    ogImage: DEFAULT_OG_IMAGE,
+    keywords: [
+      'it guidelines sialkot',
+      'hardware repair guidelines',
+      'factory network best practices',
+      'server backup guidelines',
+      'tech guidelines',
+    ],
+  },
 };
 
 /**
@@ -944,7 +1008,7 @@ function updateMetaTag(attributeName: 'name' | 'property', attributeValue: strin
 /**
  * Creates or updates the canonical link tag
  */
-function updateCanonicalLink(url: string) {
+export function updateCanonicalLink(url: string) {
   if (typeof document === 'undefined') return;
   let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
   if (!link) {
@@ -984,6 +1048,9 @@ function updateSubpageStructuredData(data?: object) {
  * - Individual Service or Product schemas where appropriate
  */
 function generateRouteStructuredData(pageId: NavPageId): object {
+  if (pageId === 'admin') {
+    return { '@context': 'https://schema.org', '@graph': [] };
+  }
   const meta = SIALKOT_PAGE_SEO[pageId];
   const graph: object[] = [];
 
@@ -1299,20 +1366,54 @@ function generateRouteStructuredData(pageId: NavPageId): object {
  * Synchronizes document title, meta descriptions, Open Graph, Twitter cards,
  * canonical URL, and Schema.org for a given sub-page route.
  */
-export function applyPageSEO(pageId: NavPageId) {
-  const meta = SIALKOT_PAGE_SEO[pageId] || SIALKOT_PAGE_SEO.home;
+export function applyPageSEO(
+  pageId: NavPageId,
+  overrideCanonicalUrl?: string,
+  customMeta?: Partial<PageMetadata>
+) {
+  const base = SIALKOT_PAGE_SEO[pageId] || SIALKOT_PAGE_SEO.home;
+  const meta: PageMetadata = {
+    ...base,
+    ...customMeta,
+  };
+
+  // Determine exact self-referential canonical URL
+  let canonicalUrl = overrideCanonicalUrl || meta.canonicalUrl;
+  if (!overrideCanonicalUrl && typeof window !== 'undefined') {
+    const rawPath = window.location.pathname.replace(/\/+$/, '') || '/';
+    if (rawPath === '/locations/wazirabad' || rawPath === '/location/wazirabad') {
+      canonicalUrl = `${BASE_URL}/locations/wazirabad`;
+    } else if (rawPath === '/locations/sambrial' || rawPath === '/location/sambrial') {
+      canonicalUrl = `${BASE_URL}/locations/sambrial`;
+    } else if (rawPath === '/services/doorstep-support' || rawPath === '/doorstep-support') {
+      canonicalUrl = `${BASE_URL}/services/doorstep-support`;
+    } else if (rawPath === '/sialkot-export-erp') {
+      canonicalUrl = `${BASE_URL}/sialkot-export-erp`;
+    } else if (rawPath === '/guidelines') {
+      canonicalUrl = `${BASE_URL}/guidelines`;
+    } else if (rawPath === '/factory-network-tester') {
+      canonicalUrl = `${BASE_URL}/factory-network-tester`;
+    }
+  }
 
   // Title
   document.title = meta.title;
 
-  // Primary Meta
+  // Primary Meta & Robots Directives
   updateMetaTag('name', 'description', meta.description);
   updateMetaTag('name', 'keywords', meta.keywords.join(', '));
+  if (pageId === 'admin') {
+    updateMetaTag('name', 'robots', 'noindex, nofollow, noarchive');
+    updateMetaTag('name', 'googlebot', 'noindex, nofollow');
+  } else {
+    updateMetaTag('name', 'robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+    updateMetaTag('name', 'googlebot', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+  }
 
   // Open Graph
   updateMetaTag('property', 'og:title', meta.ogTitle);
   updateMetaTag('property', 'og:description', meta.ogDescription);
-  updateMetaTag('property', 'og:url', meta.canonicalUrl);
+  updateMetaTag('property', 'og:url', canonicalUrl);
   updateMetaTag('property', 'og:type', meta.ogType);
   updateMetaTag('property', 'og:site_name', 'evonix technologies');
   updateMetaTag('property', 'og:locale', 'en_PK');
@@ -1329,7 +1430,7 @@ export function applyPageSEO(pageId: NavPageId) {
   }
 
   // Canonical URL
-  updateCanonicalLink(meta.canonicalUrl);
+  updateCanonicalLink(canonicalUrl);
 
   // Geo / Local Sialkot meta tags
   updateMetaTag('name', 'geo.region', 'PK-PB');

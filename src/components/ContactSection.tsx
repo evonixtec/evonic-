@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { COMPANY_INFO } from '../data/content';
-import { MapPin, Mail, Phone, MessageSquare, Clock, ShieldCheck, Send, CheckCircle2, ArrowRight, Copy, Check, Globe } from 'lucide-react';
-import { sanitizeInput, checkRateLimit } from '../lib/security';
+import { MapPin, Mail, Phone, MessageSquare, Clock, ShieldCheck, Send, CheckCircle2, ArrowRight, Copy, Check, Globe, AlertTriangle } from 'lucide-react';
+import { sanitizeInput, checkRateLimit, isValidEmail, isValidPhone } from '../lib/security';
 import { SialkotLocationPicker } from './common/SialkotLocationPicker';
 import { dispatchQuoteNotification, buildWhatsAppQuoteUrl, buildMailtoQuoteUrl, QuotePayload } from '../lib/quoteService';
 import { QuotationSuccessModal } from './QuotationSuccessModal';
@@ -28,10 +28,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
   const [formPhone, setFormPhone] = useState('');
   const [formEmail, setFormEmail] = useState('');
   const [formService, setFormService] = useState('Website Development & Enterprise Portals');
-  const [formLocation, setFormLocation] = useState('Paris Road & City Center');
+  const [formLocation, setFormLocation] = useState('Kotli Behram, Sialkot, Pakistan');
   const [internationalCity, setInternationalCity] = useState('Dubai, UAE');
   const [gpsData, setGpsData] = useState<{ lat: number; lng: number; detected: boolean } | undefined>();
   const [formMessage, setFormMessage] = useState('');
+  const [botTrap, setBotTrap] = useState(''); // Anti-bot honeypot field
   const [submittedRecord, setSubmittedRecord] = useState<QuotePayload | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
   const [copiedRef, setCopiedRef] = useState(false);
@@ -43,20 +44,39 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
     e.preventDefault();
     setFormError(null);
 
-    const rateCheck = checkRateLimit('contact_section', 3000);
+    // 1. Bot honeypot trap: if filled, drop silently
+    if (botTrap) {
+      setIsSubmitting(false);
+      return;
+    }
+
+    // 2. Sliding window rate limit check
+    const rateCheck = checkRateLimit('contact_section', 3000, 5, 60000);
     if (!rateCheck.allowed) {
-      setFormError(`Please wait ${rateCheck.remainingSecs} seconds before resubmitting.`);
+      setFormError(rateCheck.reason || `Please wait ${rateCheck.remainingSecs} seconds before resubmitting.`);
+      return;
+    }
+
+    // 3. Email format validation if provided
+    if (formEmail.trim() && !isValidEmail(formEmail.trim())) {
+      setFormError('Please enter a valid email address (e.g. name@domain.com).');
+      return;
+    }
+
+    // 4. Phone length validation
+    if (formPhone.trim() && !isValidPhone(formPhone.trim())) {
+      setFormError('Please enter a valid phone number (minimum 8 digits).');
       return;
     }
 
     setIsSubmitting(true);
     try {
-      const cleanName = sanitizeInput(formName) || 'Customer';
-      const cleanPhone = sanitizeInput(formPhone) || 'Not specified';
-      const cleanEmail = sanitizeInput(formEmail) || '';
-      const cleanLocation = sanitizeInput(formLocation) || 'Sialkot District';
-      const cleanInternationalCity = sanitizeInput(internationalCity) || selectedCountry.name;
-      const cleanMessage = sanitizeInput(formMessage) || 'General inquiry submitted via Contact form.';
+      const cleanName = sanitizeInput(formName).slice(0, 80) || 'Customer';
+      const cleanPhone = sanitizeInput(formPhone).slice(0, 30) || 'Not specified';
+      const cleanEmail = sanitizeInput(formEmail).slice(0, 100) || '';
+      const cleanLocation = sanitizeInput(formLocation).slice(0, 120) || 'Kotli Behram, Sialkot';
+      const cleanInternationalCity = sanitizeInput(internationalCity).slice(0, 100) || selectedCountry.name;
+      const cleanMessage = sanitizeInput(formMessage).slice(0, 1000) || 'General inquiry submitted via Contact form.';
 
       const finalLocation = selectedCountryCode === 'PK' ? cleanLocation : cleanInternationalCity;
 
@@ -307,10 +327,25 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                   </div>
 
                   {formError && (
-                    <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-semibold">
-                      {formError}
+                    <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-semibold flex items-center gap-2">
+                      <AlertTriangle className="w-4 h-4 text-red-600 flex-shrink-0" />
+                      <span>{formError}</span>
                     </div>
                   )}
+
+                  {/* Honeypot field - invisible to human users, traps automated bots */}
+                  <div className="absolute -left-[9999px] opacity-0 pointer-events-none" aria-hidden="true" tabIndex={-1}>
+                    <label htmlFor="company_website_hp">Leave this field blank</label>
+                    <input
+                      id="company_website_hp"
+                      type="text"
+                      name="company_website_hp"
+                      value={botTrap}
+                      onChange={(e) => setBotTrap(e.target.value)}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
 
                   {/* Country & Name */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

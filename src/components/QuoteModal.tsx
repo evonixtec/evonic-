@@ -19,7 +19,7 @@ import {
   Clock,
   DollarSign
 } from 'lucide-react';
-import { sanitizeInput, checkRateLimit } from '../lib/security';
+import { sanitizeInput, checkRateLimit, isValidEmail, isValidPhone } from '../lib/security';
 import { SialkotLocationPicker } from './common/SialkotLocationPicker';
 import {
   dispatchQuoteNotification,
@@ -101,6 +101,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
   // Status
   const [submittedQuote, setSubmittedQuote] = useState<QuotePayload | null>(null);
   const [spamError, setSpamError] = useState<string | null>(null);
+  const [botTrap, setBotTrap] = useState(''); // Anti-bot honeypot
   const [copiedRef, setCopiedRef] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -184,24 +185,40 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
     e.preventDefault();
     setSpamError(null);
 
-    const rateCheck = checkRateLimit('quote_modal', 3000);
+    // Bot honeypot defense
+    if (botTrap) {
+      setIsSubmitting(false);
+      return;
+    }
+
+    const rateCheck = checkRateLimit('quote_modal', 3000, 5, 60000);
     if (!rateCheck.allowed) {
-      setSpamError(`Please wait ${rateCheck.remainingSecs} seconds before submitting again.`);
+      setSpamError(rateCheck.reason || `Please wait ${rateCheck.remainingSecs} seconds before submitting again.`);
+      return;
+    }
+
+    if (email.trim() && !isValidEmail(email.trim())) {
+      setSpamError('Please enter a valid email address.');
+      return;
+    }
+
+    if (phone.trim() && !isValidPhone(phone.trim())) {
+      setSpamError('Please enter a valid phone number (minimum 8 digits).');
       return;
     }
 
     setIsSubmitting(true);
     try {
-      const cleanName = sanitizeInput(fullName) || 'Valued Client';
-      const cleanOrg = sanitizeInput(organization);
-      const cleanPhone = sanitizeInput(phone) || 'Not provided';
-      const cleanEmail = sanitizeInput(email) || '';
-      const cleanDetails = sanitizeInput(details) || '';
+      const cleanName = sanitizeInput(fullName).slice(0, 80) || 'Valued Client';
+      const cleanOrg = sanitizeInput(organization).slice(0, 80);
+      const cleanPhone = sanitizeInput(phone).slice(0, 30) || 'Not provided';
+      const cleanEmail = sanitizeInput(email).slice(0, 100) || '';
+      const cleanDetails = sanitizeInput(details).slice(0, 1000) || '';
 
       const locationStr =
         clientType === 'pakistan'
-          ? sanitizeInput(localLocationArea) || 'Pakistan'
-          : sanitizeInput(internationalLocation) || selectedCountry.name;
+          ? sanitizeInput(localLocationArea).slice(0, 120) || 'Kotli Behram, Sialkot'
+          : sanitizeInput(internationalLocation).slice(0, 100) || selectedCountry.name;
 
       const fullCustomerName = cleanOrg ? `${cleanName} (${cleanOrg})` : cleanName;
 
@@ -407,6 +424,20 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
           ) : (
             /* International Quotation Form */
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Anti-bot honeypot field */}
+              <div className="absolute -left-[9999px] opacity-0 pointer-events-none" aria-hidden="true" tabIndex={-1}>
+                <label htmlFor="quote_company_hp">Do not fill this</label>
+                <input
+                  id="quote_company_hp"
+                  type="text"
+                  name="quote_company_hp"
+                  value={botTrap}
+                  onChange={(e) => setBotTrap(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
               {spamError && (
                 <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-semibold">
                   {spamError}

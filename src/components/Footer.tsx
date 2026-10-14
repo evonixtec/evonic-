@@ -591,6 +591,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             </a>
             <span>•</span>
             <button
+              onClick={() => onNavigate('admin')}
+              className="hover:text-red-400 text-slate-500 transition-colors inline-flex items-center gap-1 cursor-pointer"
+              title="Protected Admin Security Console"
+            >
+              <ShieldCheck className="w-3 h-3 text-red-500" />
+              <span>Admin Console</span>
+            </button>
+            <span>•</span>
+            <button
               onClick={scrollToTop}
               className="p-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 transition-colors flex items-center gap-1 cursor-pointer"
               title="Back to Top"

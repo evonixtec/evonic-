@@ -48,7 +48,7 @@ export const AboutUs: React.FC = () => {
                   </span>
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-600 text-white font-bold backdrop-blur-sm shadow-xs">
                     <MapPin className="w-3.5 h-3.5" />
-                    Active in Sialkot
+                    Kotli Behram, Sialkot Lab
                   </span>
                 </div>
               </div>

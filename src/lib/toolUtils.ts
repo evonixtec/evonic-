@@ -44,6 +44,7 @@ export const isToolPage = (page?: string | null): boolean => {
     'latency',
     'trip-planner',
     'planner',
+    'admin',
   ];
 
   return toolIdentifiers.some((identifier) => normalized.includes(identifier));

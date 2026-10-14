@@ -32,6 +32,7 @@ import {
 } from '../data/localClusters';
 import { COMPANY_INFO } from '../data/content';
 import { NavPageId } from './Navbar';
+import { updateCanonicalLink } from '../lib/seo';
 
 interface LocalClusterLandingPageProps {
   initialCity?: LocalCity['slug'];
@@ -208,10 +209,12 @@ export const LocalClusterLandingPage: React.FC<LocalClusterLandingPageProps> = (
 
     existingScript.textContent = JSON.stringify(structuredData);
 
-    // Update document title and description dynamically
+    // Update document title, description, and canonical dynamically
     document.title = cluster.metaTitle;
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) metaDesc.setAttribute('content', cluster.metaDescription);
+    const selfCanonical = `https://www.evonixtec.com/locations/${currentCity.slug}`;
+    updateCanonicalLink(selfCanonical);
 
     return () => {
       // Keep script alive or update on next render

@@ -67,6 +67,10 @@ const SearchModal = lazy(() => import('./components/SearchModal').then(m => ({ d
 const LiveSupportChat = lazy(() => import('./components/LiveSupportChat').then(m => ({ default: m.LiveSupportChat })));
 const AiTravelGuidePage = lazy(() => import('./components/AiTravelGuidePage').then(m => ({ default: m.AiTravelGuidePage })));
 const AiTripPlannerStandalonePage = lazy(() => import('./components/AiTripPlannerStandalonePage').then(m => ({ default: m.AiTripPlannerStandalonePage })));
+const AdminPortal = lazy(() => import('./components/AdminPortal').then(m => ({ default: m.AdminPortal })));
+const DoorstepSupportPage = lazy(() => import('./components/DoorstepSupportPage').then(m => ({ default: m.DoorstepSupportPage })));
+const SialkotExportErpPage = lazy(() => import('./components/SialkotExportErpPage').then(m => ({ default: m.SialkotExportErpPage })));
+const GuidelinesPage = lazy(() => import('./components/GuidelinesPage').then(m => ({ default: m.GuidelinesPage })));
 
 // Loading spinner fallback for lazy chunks
 const LazyLoaderFallback: React.FC = () => (
@@ -99,20 +103,45 @@ export default function App() {
     if (!path) return 'home';
 
     if (
+      path === 'services/doorstep-support' ||
+      path === 'doorstep-support' ||
+      path === 'doorstep-it-support' ||
+      path.startsWith('services/doorstep-support') ||
+      path.startsWith('doorstep-support')
+    ) {
+      return 'doorstep-support';
+    }
+
+    if (
+      path === 'sialkot-export-erp' ||
+      path === 'export-erp' ||
+      path === 'export-erp-software' ||
+      path.startsWith('sialkot-export-erp')
+    ) {
+      return 'sialkot-export-erp';
+    }
+
+    if (
+      path === 'guidelines' ||
+      path === 'guideline' ||
+      path === 'it-guidelines' ||
+      path.startsWith('guidelines/') ||
+      path.startsWith('guideline/')
+    ) {
+      return 'guidelines';
+    }
+
+    if (
       path === 'guides' ||
       path === 'guide' ||
       path === 'blogs' ||
       path === 'blog' ||
-      path === 'guidelines' ||
-      path === 'guideline' ||
       path === 'tech-guides' ||
       path === 'articles' ||
       path.startsWith('blog/') ||
       path.startsWith('blogs/') ||
       path.startsWith('guide/') ||
-      path.startsWith('guides/') ||
-      path.startsWith('guideline/') ||
-      path.startsWith('guidelines/')
+      path.startsWith('guides/')
     ) {
       return 'guides';
     }
@@ -281,6 +310,19 @@ export default function App() {
       return 'tools';
     }
 
+    if (
+      path === 'admin' ||
+      path === 'dashboard' ||
+      path === 'portal' ||
+      path === 'admin-portal' ||
+      path === 'evonix-admin' ||
+      path === 'management' ||
+      path.startsWith('admin/') ||
+      path.startsWith('portal/')
+    ) {
+      return 'admin';
+    }
+
     return 'home';
   };
 
@@ -376,7 +418,6 @@ export default function App() {
         'sialkot-it-services': 'services',
         'laptop-repairing-sialkot': 'laptop-repair-estimator',
         'pos-software-sialkot': 'sialkot-industrial-solutions',
-        'sialkot-export-erp': 'sialkot-industrial-solutions',
         'thermal-hotspot-inspector': 'thermal-inspector',
       };
 
@@ -463,12 +504,6 @@ export default function App() {
       'laptop-repairing-sialkot': 'laptop-repair-estimator',
       'laptop-repair-estimator': 'laptop-repair-estimator',
       'pos-software-sialkot': 'sialkot-industrial-solutions',
-      'sialkot-export-erp': 'sialkot-industrial-solutions',
-      'export-barcode-studio': 'export-barcode-studio',
-      'printer-troubleshooter': 'printer-diagnostics',
-      'printer-diagnostics': 'printer-diagnostics',
-      'factory-network-tester': 'factory-network-tester',
-      'live-repair-tracker': 'live-repair-tracker',
       'thermal-hotspot-inspector': 'thermal-inspector',
       'thermal-inspector': 'thermal-inspector',
       'pcb-power-simulator': 'pcb-power-simulator',
@@ -497,6 +532,12 @@ export default function App() {
       cleanPath = '/ai-tools-name-for-travel-itinerary';
     } else if (page === 'ai-trip-planner') {
       cleanPath = '/tools/ai-trip-planner';
+    } else if (page === 'doorstep-support') {
+      cleanPath = '/services/doorstep-support';
+    } else if (page === 'sialkot-export-erp') {
+      cleanPath = '/sialkot-export-erp';
+    } else if (page === 'guidelines') {
+      cleanPath = '/guidelines';
     }
 
     // Update browser URL bar cleanly using HTML5 pushState (no hash '#')
@@ -1223,17 +1264,56 @@ export default function App() {
             onOpenQuote={() => handleOpenQuote('AI Travel Planner Custom Solution')}
           />
         )}
+
+        {/* ========================================================
+            PAGE 21: PROTECTED ADMIN PORTAL & AUDIT HUB
+           ======================================================== */}
+        {currentPage === 'admin' && (
+          <AdminPortal onNavigateHome={() => navigateToPage('home')} />
+        )}
+
+        {/* ========================================================
+            PAGE 22: DOORSTEP SUPPORT & EMERGENCY DISPATCH HUB
+           ======================================================== */}
+        {currentPage === 'doorstep-support' && (
+          <DoorstepSupportPage
+            onNavigatePage={(page, subTarget) => navigateToPage(page as NavPageId, subTarget)}
+            onOpenQuote={handleOpenQuote}
+          />
+        )}
+
+        {/* ========================================================
+            PAGE 23: SIALKOT EXPORT ERP & CUSTOMS SUITE
+           ======================================================== */}
+        {currentPage === 'sialkot-export-erp' && (
+          <SialkotExportErpPage
+            onNavigatePage={(page, subTarget) => navigateToPage(page as NavPageId, subTarget)}
+            onOpenQuote={handleOpenQuote}
+          />
+        )}
+
+        {/* ========================================================
+            PAGE 24: IT INFRASTRUCTURE & HARDWARE GUIDELINES
+           ======================================================== */}
+        {currentPage === 'guidelines' && (
+          <GuidelinesPage
+            onNavigatePage={(page, subTarget) => navigateToPage(page as NavPageId, subTarget)}
+            onOpenQuote={handleOpenQuote}
+          />
+        )}
             </Suspense>
           </motion.div>
         </AnimatePresence>
       </main>
 
       {/* 7. Footer Tagline, Policies & Navigation */}
-      <Footer
-        onNavigate={(sec) => navigateToPage(sec as NavPageId)}
-        onOpenQuote={() => handleOpenQuote('General Inquiry')}
-        onOpenPolicy={(type) => setActivePolicyModal(type)}
-      />
+      {currentPage !== 'admin' && (
+        <Footer
+          onNavigate={(sec) => navigateToPage(sec as NavPageId)}
+          onOpenQuote={() => handleOpenQuote('General Inquiry')}
+          onOpenPolicy={(type) => setActivePolicyModal(type)}
+        />
+      )}
 
       {/* Corporate Policy Modal (Privacy, Terms & Refund) */}
       <PolicyModal
