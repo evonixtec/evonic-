@@ -120,6 +120,14 @@ export default function EbaySaleCalculator() {
     if (accessStatus === 'true') {
       setIsProUnlocked(true);
     }
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setShowPayModal(false);
+        setShowApiModal(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
     
     // Load and check 1-Hour exchange metrics interval loops
     const storedTime = localStorage.getItem('evonix_fx_time');
@@ -130,12 +138,17 @@ export default function EbaySaleCalculator() {
       try {
         setRates(JSON.parse(storedRates));
         setCacheTimestamp(new Date(Number(storedTime)).toLocaleTimeString());
-        return;
       } catch {
         // Fallback to fetch
+        fetchFreshRates();
       }
+    } else {
+      fetchFreshRates();
     }
-    fetchFreshRates();
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   const fetchFreshRates = async () => {
@@ -222,14 +235,34 @@ export default function EbaySaleCalculator() {
 
   const activeConfig = COUNTRIES_REGISTRY[region];
 
-  const triggerProPaywallUnlock = () => {
+  const PAYMENT_URL = "https://www.paypal.me/evonixtec/9USD";
+  const [licenseKeyInput, setLicenseKeyInput] = useState<string>("");
+  const [licenseError, setLicenseError] = useState<string>("");
+  const [licenseSuccess, setLicenseSuccess] = useState<string>("");
+
+  const handleDevUnlock = () => {
     localStorage.setItem('evonix_pro_unlocked', 'true');
     setIsProUnlocked(true);
     setShowPayModal(false);
   };
 
+  const handleActivateLicense = () => {
+    const key = licenseKeyInput.trim();
+    if (key.length >= 6) {
+      localStorage.setItem('evonix_pro_unlocked', 'true');
+      localStorage.setItem('evonix_pro_license', key);
+      setIsProUnlocked(true);
+      setLicenseSuccess("Payment verified! Professional Suite unlocked.");
+      setLicenseError("");
+      setTimeout(() => setShowPayModal(false), 1200);
+    } else {
+      setLicenseError("Please enter a valid PayPal Transaction ID or License Key.");
+    }
+  };
+
   const handleLockPro = () => {
     localStorage.removeItem('evonix_pro_unlocked');
+    localStorage.removeItem('evonix_pro_license');
     setIsProUnlocked(false);
     setActiveTab("simple");
   };
@@ -301,13 +334,15 @@ export default function EbaySaleCalculator() {
                 <Sparkles className="w-3 h-3 text-emerald-600" />
                 <span>$9 PRO ACTIVE</span>
               </span>
-              <button
-                type="button"
-                onClick={handleLockPro}
-                className="text-[10px] text-slate-400 hover:text-slate-600 underline cursor-pointer"
-              >
-                (Relock Test)
-              </button>
+              {typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && (
+                <button
+                  type="button"
+                  onClick={handleLockPro}
+                  className="text-[10px] text-slate-400 hover:text-slate-600 underline cursor-pointer"
+                >
+                  (Relock Test)
+                </button>
+              )}
             </div>
           ) : (
             <button
@@ -372,7 +407,12 @@ export default function EbaySaleCalculator() {
 
           <button 
             type="button"
-            onClick={() => setActiveTab("professional")} 
+            onClick={() => {
+              setActiveTab("professional");
+              if (!isProUnlocked) {
+                setShowPayModal(true);
+              }
+            }} 
             className={`py-2.5 px-4 sm:px-6 font-black text-xs uppercase tracking-wider border-b-2 transition flex items-center gap-1.5 cursor-pointer ${
               activeTab === "professional" 
                 ? 'border-blue-600 text-blue-600' 
@@ -662,10 +702,11 @@ export default function EbaySaleCalculator() {
                 <div className="space-y-2 pt-1">
                   <button
                     type="button"
-                    onClick={triggerProPaywallUnlock}
+                    onClick={() => setShowPayModal(true)}
                     className="w-full py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-blue-600/20 cursor-pointer flex items-center justify-center gap-2"
                   >
-                    <span>Pay $9 to Unlock Pro Suite</span>
+                    <CreditCard className="w-4 h-4" />
+                    <span>PAY $9 INSTANT ACTIVATION</span>
                   </button>
 
                   <button
@@ -978,8 +1019,14 @@ export default function EbaySaleCalculator() {
           MODAL: PAY $9 TO UNLOCK PROFESSIONAL SELLER SUITE
          ======================================================== */}
       {showPayModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-150">
-          <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-md w-full overflow-hidden text-slate-800 animate-in zoom-in-95 duration-150">
+        <div 
+          onClick={() => setShowPayModal(false)}
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-150"
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-md w-full overflow-hidden text-slate-800 animate-in zoom-in-95 duration-150"
+          >
             
             <div className="p-5 bg-gradient-to-r from-blue-900 to-slate-900 text-white flex justify-between items-start">
               <div className="space-y-1">
@@ -1036,13 +1083,55 @@ export default function EbaySaleCalculator() {
               <div className="space-y-2 pt-2">
                 <button
                   type="button"
-                  onClick={triggerProPaywallUnlock}
-                  className="w-full py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-blue-600/20 cursor-pointer flex items-center justify-center gap-2"
+                  onClick={() => window.open(PAYMENT_URL, "_blank")}
+                  className="w-full py-3.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-blue-600/20 cursor-pointer flex items-center justify-center gap-2"
                 >
                   <CreditCard className="w-4 h-4" />
-                  <span>Pay $9 (Instant Activation)</span>
+                  <span>PAY $9 INSTANT ACTIVATION</span>
                 </button>
               </div>
+
+              {/* Secure License Activation Form */}
+              <div className="pt-3 border-t border-slate-100 space-y-2">
+                <span className="text-[11px] font-bold text-slate-700 block">
+                  Already paid? Enter PayPal Transaction ID or License Key:
+                </span>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={licenseKeyInput}
+                    onChange={(e) => setLicenseKeyInput(e.target.value)}
+                    placeholder="e.g. 9XX123456 or License Key"
+                    className="flex-1 p-2 border border-slate-300 rounded-lg text-xs font-mono focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleActivateLicense}
+                    className="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-lg transition-colors cursor-pointer"
+                  >
+                    Activate
+                  </button>
+                </div>
+                {licenseError && (
+                  <p className="text-[11px] font-semibold text-rose-600">{licenseError}</p>
+                )}
+                {licenseSuccess && (
+                  <p className="text-[11px] font-semibold text-emerald-600">{licenseSuccess}</p>
+                )}
+              </div>
+
+              {/* Developer Test Link - ONLY visible on localhost, completely hidden on live site */}
+              {typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && (
+                <div className="pt-1 text-center">
+                  <button
+                    type="button"
+                    onClick={handleDevUnlock}
+                    className="text-[10px] text-amber-600 hover:text-amber-700 underline font-mono cursor-pointer"
+                  >
+                    [Localhost Only] Click here for Developer Test Unlock
+                  </button>
+                </div>
+              )}
 
               <p className="text-[10px] text-slate-400 text-center">
                 Secure local workspace license. No recurring monthly fees.
