@@ -99,6 +99,26 @@ export const TOOLS_COLLECTION: WebToolDefinition[] = [
     mobileCoreOrder: 2,
   },
 
+  {
+    id: 'ebay-fee-calculator',
+    navTarget: 'ebay-fee-calculator',
+    name: 'eBay Fee & Profit Builder',
+    shortName: 'eBay Profit Calc',
+    category: 'ecommerce-growth',
+    categoryLabel: 'E-Commerce & Export',
+    regionFocus: 'Global',
+    description: 'Calculate eBay marketplace final value fees, promoted ads, international tariffs, and net payout margins across US, UK, Germany, UAE, and Pakistan.',
+    highlights: [
+      'Multi-country fee matrices (US, UK, DE, AU, CA, UAE, Pakistan)',
+      'Store tiers, seller performance credits, and promoted listing rates',
+      'Automatic 1-hour live exchange rate cache for PKR and AED conversions',
+      'One-click PDF invoice export and direct WhatsApp profit sharing',
+    ],
+    techSpec: 'eBay 2026 Tariff Engine · Rolling Forex Cache · Live Breakeven Matrix',
+    icon: <SlidersHorizontal className="w-6 h-6 text-blue-600" />,
+    accentColor: 'border-blue-200 hover:border-blue-400 group-hover:bg-blue-50/50',
+  },
+
   // 3. B2B INDUSTRIAL CBM & FREIGHT ENGINE (Core Mobile Tool #3)
   {
     id: 'cbm-calculator',

@@ -22,6 +22,7 @@ export type NavPageId =
   | 'ce-ukca-compliance-generator'
   | 'ai-trip-planner'
   | 'ai-travel-tools'
+  | 'ebay-fee-calculator'
   | 'admin'
   | 'doorstep-support'
   | 'sialkot-export-erp'

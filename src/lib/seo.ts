@@ -989,6 +989,25 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'tech guidelines',
     ],
   },
+  'ebay-fee-calculator': {
+    title: 'eBay Fee & Profit Calculator 2026 | Accurate Seller Margins | evonix',
+    description:
+      'Free eBay fee and profit calculator. Calculate final value fees, promoted ads, shipping costs, and net margins across US, UK, Germany, UAE, and Pakistan.',
+    canonicalUrl: `${BASE_URL}/ebay-fee-calculator`,
+    ogTitle: 'eBay Fee & Profit Calculator 2026',
+    ogDescription:
+      'Calculate eBay seller fees, promoted listings, and net profits accurately with live currency conversions.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    keywords: [
+      'ebay fee calculator',
+      'ebay profit calculator',
+      'ebay seller fee calculator',
+      'ebay final value fee calculator',
+      'ebay margin calculator',
+      'ebay calculator pakistan',
+    ],
+  },
 };
 
 /**

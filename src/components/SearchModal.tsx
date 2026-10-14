@@ -263,6 +263,18 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         whatsappMessage: 'Assalam-o-Alaikum evonix, I would like to request an industrial ERP demo for my factory in Sialkot.',
       },
       {
+        id: 'ebay-fee-calculator',
+        type: 'service',
+        title: 'eBay Fee & Profit Builder (2026 Multi-Region Calculator)',
+        categoryLabel: 'Free Serverless Tool',
+        description: 'Instant eBay seller fee calculation, promoted ads, store subscriptions, break-even price, and live PKR/AED currency conversion.',
+        tags: ['eBay', 'eBay Calculator', 'eBay Fee', 'Profit', 'Seller', 'Final Value Fee', 'Promoted Listings', 'Ecommerce', 'Calculator', 'Dropshipping'],
+        targetSection: 'services',
+        targetElementId: 'ebay-fee-calculator',
+        priceOrHighlight: '100% Free Tool',
+        whatsappMessage: 'Hello evonix, I am using your eBay Fee & Profit Calculator and would like to consult on my e-commerce business.',
+      },
+      {
         id: 'ecommerce-margin-calculator',
         type: 'service',
         title: 'E-Commerce Profit & Multi-Courier Shipping Margin Calculator',

@@ -50,6 +50,7 @@ export type NavPageId =
   | 'factory-network-tester'
   | 'ai-trip-planner'
   | 'ai-travel-tools'
+  | 'ebay-fee-calculator'
   | 'admin'
   | 'doorstep-support'
   | 'sialkot-export-erp'

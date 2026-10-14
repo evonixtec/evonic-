@@ -72,6 +72,7 @@ const AdminPortal = lazy(() => import('./components/AdminPortal').then(m => ({ d
 const DoorstepSupportPage = lazy(() => import('./components/DoorstepSupportPage').then(m => ({ default: m.DoorstepSupportPage })));
 const SialkotExportErpPage = lazy(() => import('./components/SialkotExportErpPage').then(m => ({ default: m.SialkotExportErpPage })));
 const GuidelinesPage = lazy(() => import('./components/GuidelinesPage').then(m => ({ default: m.GuidelinesPage })));
+const EbaySaleCalculator = lazy(() => import('./components/EbaySaleCalculator'));
 
 // Loading spinner fallback for lazy chunks
 const LazyLoaderFallback: React.FC = () => (
@@ -248,17 +249,26 @@ export default function App() {
     }
 
     if (
+      path === 'ebay-fee-calculator' ||
+      path === 'ebay-calculator' ||
+      path === 'ebay-fee-profit-builder' ||
+      path === 'ebay-fee' ||
+      path === 'ebay-fees' ||
+      path.startsWith('ebay-fee-calculator') ||
+      path.startsWith('ebay-calculator')
+    ) {
+      return 'ebay-fee-calculator';
+    }
+
+    if (
       path === 'ecommerce-calculator' ||
       path === 'ecom-calculator' ||
       path === 'margin-calculator' ||
-      path === 'ebay-fee-calculator' ||
-      path === 'ebay-fee-profit-builder' ||
       path === 'calculator' ||
       path === 'shipping-calculator' ||
       path === 'courier-calculator' ||
       path.startsWith('ecommerce-calculator/') ||
-      path.startsWith('margin-calculator/') ||
-      path.startsWith('ebay-fee-calculator')
+      path.startsWith('margin-calculator/')
     ) {
       return 'ecommerce-calculator';
     }
@@ -574,6 +584,10 @@ export default function App() {
   };
 
   const handleNavigateFromSearch = (sectionId: SectionId, elementId?: string) => {
+    if (elementId === 'ebay-fee-calculator' || elementId === 'ebay-calculator') {
+      navigateToPage('ebay-fee-calculator');
+      return;
+    }
     if (elementId === 'ecommerce-calculator') {
       navigateToPage('ecommerce-calculator');
       return;
@@ -1147,6 +1161,24 @@ export default function App() {
               onNavigateToolsHub={() => navigateToPage('tools')}
             />
             <EcommerceCalculator />
+          </div>
+        )}
+
+        {/* ========================================================
+            PAGE: EBAY SALE & PROFIT FEE CALCULATOR
+           ======================================================== */}
+        {currentPage === 'ebay-fee-calculator' && (
+          <div className="space-y-0">
+            <ToolWorkspaceHeader
+              currentToolId="ebay-fee-calculator"
+              toolTitle="eBay Fee & Profit Builder"
+              toolCategory="E-Commerce & Export"
+              toolDescription="Calculate accurate eBay marketplace final value fees, promoted ads, international tariffs, and net payout margins."
+              icon={<Calculator className="w-5 h-5 text-blue-500" />}
+              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+              onNavigateToolsHub={() => navigateToPage('tools')}
+            />
+            <EbaySaleCalculator />
           </div>
         )}
 
