@@ -61,20 +61,18 @@ export const SialkotExportErpPage: React.FC<SialkotExportErpPageProps> = ({
               <span>Book Live Factory Demo</span>
             </button>
             <a
-              href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello evonix, I want to see a live demo of your Sialkot Export ERP.')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/30 transition-all flex items-center gap-2"
+              href="#erp-modules"
+              className="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm border border-slate-600 transition-all flex items-center gap-2"
             >
-              <MessageSquare className="w-4 h-4" />
-              <span>WhatsApp Demo Pass</span>
+              <Factory className="w-4 h-4 text-cyan-400" />
+              <span>View ERP Modules</span>
             </a>
           </div>
         </div>
       </section>
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 space-y-12">
+      <div id="erp-modules" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 space-y-12">
         {/* Industry Selector Tabs */}
         <div className="flex flex-wrap items-center justify-center gap-2">
           <button

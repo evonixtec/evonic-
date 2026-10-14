@@ -293,31 +293,29 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
                 </div>
               </div>
 
-              {/* Fast Direct Contacts */}
+              {/* Quick Actions */}
               <div className="grid grid-cols-2 gap-3 text-xs pt-1">
-                <a
-                  href={`tel:${COMPANY_INFO.contact.phoneRaw}`}
-                  className="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 hover:border-cyan-500/50 flex items-center gap-2 text-slate-300 hover:text-white transition-all"
+                <button
+                  onClick={() => onOpenQuote(currentSlide.primaryCta)}
+                  className="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 hover:border-cyan-500/50 flex items-center gap-2 text-slate-300 hover:text-white transition-all cursor-pointer text-left"
                 >
-                  <PhoneCall className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                  <Sparkles className="w-4 h-4 text-cyan-400 flex-shrink-0" />
                   <div>
-                    <div className="text-[10px] text-slate-500">Call Direct</div>
-                    <div className="font-semibold">{COMPANY_INFO.contact.phoneDisplay}</div>
+                    <div className="text-[10px] text-slate-500">Free Estimate</div>
+                    <div className="font-semibold text-white">Get Tech Quote</div>
                   </div>
-                </a>
+                </button>
 
-                <a
-                  href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2.5 rounded-xl bg-emerald-950/50 border border-emerald-800/60 hover:bg-emerald-900/40 flex items-center gap-2 text-emerald-300 transition-all"
+                <button
+                  onClick={() => onNavigate('services')}
+                  className="p-2.5 rounded-xl bg-red-950/40 border border-red-800/60 hover:bg-red-900/40 flex items-center gap-2 text-red-200 transition-all cursor-pointer text-left"
                 >
-                  <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                  <ArrowRight className="w-4 h-4 text-red-400 flex-shrink-0" />
                   <div>
-                    <div className="text-[10px] text-emerald-400">WhatsApp 24/7</div>
-                    <div className="font-semibold">Fast Response</div>
+                    <div className="text-[10px] text-red-400">View Catalog</div>
+                    <div className="font-semibold text-white">All Services</div>
                   </div>
-                </a>
+                </button>
               </div>
             </div>
           </div>

@@ -15,6 +15,7 @@ import { Testimonials } from './components/Testimonials';
 import { FAQ } from './components/FAQ';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
+import FooterLinks from './components/FooterLinks';
 import type { PolicyType } from './components/PolicyModal';
 import { SecurityAlertToast } from './components/SecurityAlertToast';
 import { PageHeaderBanner } from './components/common/PageHeaderBanner';
@@ -250,11 +251,14 @@ export default function App() {
       path === 'ecommerce-calculator' ||
       path === 'ecom-calculator' ||
       path === 'margin-calculator' ||
+      path === 'ebay-fee-calculator' ||
+      path === 'ebay-fee-profit-builder' ||
       path === 'calculator' ||
       path === 'shipping-calculator' ||
       path === 'courier-calculator' ||
       path.startsWith('ecommerce-calculator/') ||
-      path.startsWith('margin-calculator/')
+      path.startsWith('margin-calculator/') ||
+      path.startsWith('ebay-fee-calculator')
     ) {
       return 'ecommerce-calculator';
     }
@@ -263,10 +267,13 @@ export default function App() {
       path === 'cbm-calculator' ||
       path === 'cbm' ||
       path === 'cbm-engine' ||
+      path === 'professional-freight-analyzer' ||
+      path === 'freight-analyzer' ||
       path === 'export-cbm-calculator' ||
       path === 'volumetric-calculator' ||
       path.startsWith('cbm-calculator/') ||
-      path.startsWith('cbm/')
+      path.startsWith('cbm/') ||
+      path.startsWith('professional-freight-analyzer')
     ) {
       return 'cbm-calculator';
     }
@@ -538,6 +545,9 @@ export default function App() {
       cleanPath = '/sialkot-export-erp';
     } else if (page === 'guidelines') {
       cleanPath = '/guidelines';
+    } else if (page === 'locations' && subTarget) {
+      cleanPath = `/locations/${subTarget}`;
+      setClusterParams({ city: subTarget as any, service: 'it-consultancy' });
     }
 
     // Update browser URL bar cleanly using HTML5 pushState (no hash '#')
@@ -1308,11 +1318,15 @@ export default function App() {
 
       {/* 7. Footer Tagline, Policies & Navigation */}
       {currentPage !== 'admin' && (
-        <Footer
-          onNavigate={(sec) => navigateToPage(sec as NavPageId)}
-          onOpenQuote={() => handleOpenQuote('General Inquiry')}
-          onOpenPolicy={(type) => setActivePolicyModal(type)}
-        />
+        <>
+          <Footer
+            onNavigate={(sec) => navigateToPage(sec as NavPageId)}
+            onOpenQuote={() => handleOpenQuote('General Inquiry')}
+            onOpenPolicy={(type) => setActivePolicyModal(type)}
+          />
+          {/* Main Template Shell Bottom Layer: 146 Interconnected Internal URLs */}
+          <FooterLinks />
+        </>
       )}
 
       {/* Corporate Policy Modal (Privacy, Terms & Refund) */}

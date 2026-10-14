@@ -200,158 +200,74 @@ export const Navbar: React.FC<NavbarProps> = ({
                 />
               </button>
 
-              {/* Services 2-Column Mega-Menu Card */}
+              {/* Services Dropdown */}
               {activeDropdown === 'services' && (
-                <div className="absolute top-full left-0 w-[540px] pt-1.5 z-50">
-                  <div className="bg-white/98 backdrop-blur-2xl rounded-2xl shadow-[0_20px_45px_-10px_rgba(0,0,0,0.14),0_0_0_1px_rgba(0,0,0,0.06)] border border-slate-200 p-3">
-                    <div className="grid grid-cols-2 gap-3">
-                      {/* Left Column: Core Engineering Services */}
-                      <div className="space-y-1">
-                        <div className="px-2.5 py-1 text-[10px] font-black text-slate-500 uppercase tracking-wider flex items-center justify-between border-b border-slate-100 pb-1.5 mb-1">
-                          <span>Core Services</span>
-                          <span className="text-red-600 font-bold">Dubai Stds</span>
-                        </div>
+                <div className="absolute top-full left-0 w-80 pt-1.5 z-50">
+                  <div className="bg-white/98 backdrop-blur-2xl rounded-2xl shadow-[0_20px_45px_-10px_rgba(0,0,0,0.14),0_0_0_1px_rgba(0,0,0,0.06)] border border-slate-200 p-2.5 space-y-1">
+                    <div className="px-2.5 py-1 text-[10px] font-black text-slate-500 uppercase tracking-wider flex items-center justify-between border-b border-slate-100 pb-1.5 mb-1">
+                      <span>Core Services</span>
+                      <span className="text-red-600 font-bold">Dubai Stds</span>
+                    </div>
 
-                        <button
-                          onClick={() => handlePageSelect('services', 'web-development')}
-                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
-                        >
-                          <div className="p-1.5 rounded-lg bg-red-50 text-red-600 group-hover:bg-red-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
-                            <Globe className="w-3.5 h-3.5" />
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors">
-                              Website Development
-                            </div>
-                            <div className="text-[10px] text-slate-500 line-clamp-1">
-                              E-Commerce & High-Speed Next.js Portals
-                            </div>
-                          </div>
-                        </button>
-
-                        <button
-                          onClick={() => handlePageSelect('services', 'software-pos')}
-                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
-                        >
-                          <div className="p-1.5 rounded-lg bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
-                            <Monitor className="w-3.5 h-3.5" />
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
-                              Software & POS Systems
-                            </div>
-                            <div className="text-[10px] text-slate-500 line-clamp-1">
-                              Retail ERP, Invoicing & Inventory Control
-                            </div>
-                          </div>
-                        </button>
-
-                        <button
-                          onClick={() => handlePageSelect('services', 'hardware-repair')}
-                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
-                        >
-                          <div className="p-1.5 rounded-lg bg-amber-50 text-amber-600 group-hover:bg-amber-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
-                            <Wrench className="w-3.5 h-3.5" />
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
-                              Hardware & Printer Repairing
-                            </div>
-                            <div className="text-[10px] text-slate-500 line-clamp-1">
-                              Chip-Level Diagnostics & Motherboard Lab
-                            </div>
-                          </div>
-                        </button>
-
-                        <button
-                          onClick={() => handlePageSelect('services', 'doorstep-support')}
-                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
-                        >
-                          <div className="p-1.5 rounded-lg bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
-                            <Clock className="w-3.5 h-3.5" />
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
-                              Doorstep Sialkot On-Site IT
-                            </div>
-                            <div className="text-[10px] text-slate-500 line-clamp-1">
-                              Office, Factory & Home Visits
-                            </div>
-                          </div>
-                        </button>
+                    <button
+                      onClick={() => handlePageSelect('services', 'web-development')}
+                      className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
+                    >
+                      <div className="p-1.5 rounded-lg bg-red-50 text-red-600 group-hover:bg-red-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+                        <Globe className="w-3.5 h-3.5" />
                       </div>
-
-                      {/* Right Column: Industrial Suite & Tools */}
-                      <div className="space-y-1 border-l border-slate-100 pl-3">
-                        <div className="px-2.5 py-1 text-[10px] font-black text-slate-500 uppercase tracking-wider flex items-center justify-between border-b border-slate-100 pb-1.5 mb-1">
-                          <span>Sialkot Industry Suite</span>
-                          <span className="text-emerald-600 font-bold">Specialized</span>
+                      <div>
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors">
+                          Website Development
                         </div>
-
-                        <button
-                          onClick={() => handlePageSelect('home', 'sialkot-industrial-solutions')}
-                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
-                        >
-                          <div className="p-1.5 rounded-lg bg-purple-50 text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
-                            <Monitor className="w-3.5 h-3.5" />
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-slate-900 group-hover:text-purple-600 transition-colors flex items-center gap-1.5">
-                              <span>Export Industry ERP</span>
-                              <span className="text-[8px] bg-red-100 text-red-700 px-1 py-0.2 rounded font-bold">New</span>
-                            </div>
-                            <div className="text-[10px] text-slate-500 line-clamp-1">
-                              Surgical, Sports & Leather Software
-                            </div>
-                          </div>
-                        </button>
-
-                        <button
-                          onClick={() => handlePageSelect('factory-network-tester')}
-                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
-                        >
-                          <div className="p-1.5 rounded-lg bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
-                            <Globe className="w-3.5 h-3.5" />
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors flex items-center gap-1.5">
-                              <span>Network Latency Benchmark</span>
-                              <span className="text-[8px] bg-blue-100 text-blue-700 px-1 py-0.2 rounded font-bold">Live</span>
-                            </div>
-                            <div className="text-[10px] text-slate-500 line-clamp-1">
-                              Dry Port & Cloud Diagnostic Ping
-                            </div>
-                          </div>
-                        </button>
-
-                        <button
-                          onClick={() => handlePageSelect('export-barcode-studio')}
-                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
-                        >
-                          <div className="p-1.5 rounded-lg bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
-                            <Barcode className="w-3.5 h-3.5" />
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-slate-900 group-hover:text-emerald-600 transition-colors flex items-center gap-1.5">
-                              <span>Export Barcode Studio</span>
-                              <span className="text-[8px] bg-emerald-100 text-emerald-700 px-1 py-0.2 rounded font-bold">Tool</span>
-                            </div>
-                            <div className="text-[10px] text-slate-500 line-clamp-1">
-                              GS1 & Code 128 Carton Labels
-                            </div>
-                          </div>
-                        </button>
-
-                        <div className="pt-2">
-                          <button
-                            onClick={() => handlePageSelect('services')}
-                            className="w-full py-1.5 px-3 rounded-lg bg-slate-50 hover:bg-red-50 text-center text-[11px] font-bold text-red-600 hover:text-red-700 flex items-center justify-center gap-1 cursor-pointer transition-colors border border-slate-200"
-                          >
-                            <span>Open Full Services Directory</span>
-                            <ArrowRight className="w-3 h-3" />
-                          </button>
+                        <div className="text-[10px] text-slate-500 line-clamp-1">
+                          E-Commerce & High-Speed Next.js Portals
                         </div>
                       </div>
+                    </button>
+
+                    <button
+                      onClick={() => handlePageSelect('services', 'software-pos')}
+                      className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
+                    >
+                      <div className="p-1.5 rounded-lg bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+                        <Monitor className="w-3.5 h-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                          Software & POS Systems
+                        </div>
+                        <div className="text-[10px] text-slate-500 line-clamp-1">
+                          Retail ERP, Invoicing & Inventory Control
+                        </div>
+                      </div>
+                    </button>
+
+                    <button
+                      onClick={() => handlePageSelect('services', 'hardware-repair')}
+                      className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
+                    >
+                      <div className="p-1.5 rounded-lg bg-amber-50 text-amber-600 group-hover:bg-amber-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+                        <Wrench className="w-3.5 h-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                          Hardware & Printer Repairing
+                        </div>
+                        <div className="text-[10px] text-slate-500 line-clamp-1">
+                          Chip-Level Diagnostics & Motherboard Lab
+                        </div>
+                      </div>
+                    </button>
+
+                    <div className="pt-2 border-t border-slate-100">
+                      <button
+                        onClick={() => handlePageSelect('services')}
+                        className="w-full py-1.5 px-3 rounded-lg bg-slate-50 hover:bg-red-50 text-center text-[11px] font-bold text-red-600 hover:text-red-700 flex items-center justify-center gap-1 cursor-pointer transition-colors border border-slate-200"
+                      >
+                        <span>Open Full Services Directory</span>
+                        <ArrowRight className="w-3 h-3" />
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -966,18 +882,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                     • Computer, Laptop & Printer Repairing
                   </button>
                   <button
-                    onClick={() => handlePageSelect('services', 'doorstep-support')}
-                    className="w-full text-left p-2 rounded-lg text-slate-700 hover:bg-slate-50 font-medium"
-                  >
-                    • Doorstep Sialkot On-Site IT Visit
-                  </button>
-                  <button
-                    onClick={() => handlePageSelect('home', 'sialkot-industrial-solutions')}
-                    className="w-full text-left p-2 rounded-lg text-purple-700 bg-purple-50/50 hover:bg-purple-100/50 font-bold"
-                  >
-                    • Sialkot Export Industry ERP (Surgical/Sports/Leather)
-                  </button>
-                  <button
                     onClick={() => handlePageSelect('services')}
                     className="w-full text-left p-2 text-red-600 font-bold hover:underline"
                   >
@@ -1222,19 +1126,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </div>
 
-            {/* Local Industrial Hubs (Daska, Sambrial, Wazirabad) */}
-            <button
-              onClick={() => handlePageSelect('locations')}
-              className={`w-full text-left px-3.5 py-2 rounded-xl text-sm font-bold flex items-center justify-between ${
-                currentPage === 'locations' ? 'bg-red-50 text-red-600' : 'text-slate-800 hover:bg-slate-100'
-              }`}
-            >
-              <span className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-red-600" />
-                <span>Daska, Sambrial & Wazirabad Hubs</span>
-              </span>
-              <span className="px-1.5 py-0.2 bg-red-100 text-red-700 text-[10px] rounded font-bold">Local SEO</span>
-            </button>
 
             {/* Contact */}
             <button

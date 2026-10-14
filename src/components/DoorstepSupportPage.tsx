@@ -97,13 +97,11 @@ export const DoorstepSupportPage: React.FC<DoorstepSupportPageProps> = ({
               <span>Book An On-Site Engineer</span>
             </button>
             <a
-              href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello evonix, I need urgent doorstep IT support in Sialkot.')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/30 transition-all flex items-center gap-2"
+              href="#dispatch-form"
+              className="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm border border-slate-600 transition-all flex items-center gap-2"
             >
-              <MessageSquare className="w-4 h-4" />
-              <span>WhatsApp Us Now</span>
+              <Clock className="w-4 h-4 text-emerald-400" />
+              <span>Fill Quick Dispatch Ticket</span>
             </a>
           </div>
         </div>
@@ -145,7 +143,7 @@ export const DoorstepSupportPage: React.FC<DoorstepSupportPageProps> = ({
         </div>
 
         {/* Dispatch Pass Generator Form */}
-        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md">
+        <div id="dispatch-form" className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md">
           <div className="max-w-2xl mx-auto space-y-6">
             <div className="text-center space-y-2">
               <h2 className="text-2xl font-bold text-slate-900">Request An On-Site Visit</h2>

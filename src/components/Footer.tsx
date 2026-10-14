@@ -210,9 +210,36 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                 </button>
               </li>
               <li>
+                <a
+                  href="/services/doorstep-support"
+                  onClick={(e) => { e.preventDefault(); onNavigate('doorstep-support'); }}
+                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-emerald-400 font-semibold block"
+                >
+                  Doorstep IT Support Sialkot →
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/sialkot-export-erp"
+                  onClick={(e) => { e.preventDefault(); onNavigate('sialkot-export-erp'); }}
+                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-purple-400 font-semibold block"
+                >
+                  Sialkot Export ERP Suite →
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/guidelines"
+                  onClick={(e) => { e.preventDefault(); onNavigate('guidelines'); }}
+                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-cyan-400 font-semibold block"
+                >
+                  IT &amp; Hardware Guidelines →
+                </a>
+              </li>
+              <li>
                 <button
                   onClick={() => onNavigate('shop')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-emerald-400 font-semibold"
+                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-slate-300 font-semibold"
                 >
                   POS Hardware Store →
                 </button>
@@ -453,27 +480,69 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             <div className="flex items-center gap-2">
               <Tag className="w-4 h-4 text-red-500 flex-shrink-0" />
               <h3 className="text-xs font-bold uppercase tracking-wider text-slate-200">
-                Quick Directory & Hub Links
+                Specialized Services, Industrial ERP &amp; Regional Hubs
               </h3>
             </div>
             <span className="text-[11px] text-slate-400">
-              Serving Kotli Behram, Sialkot, Paris Road, Cantt, Daska, Sambrial & Wazirabad
+              Serving Kotli Behram, Sialkot, Paris Road, Cantt, Daska, Sambrial &amp; Wazirabad
             </span>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 text-xs">
             {[
-              { label: 'Client Portfolio', sub: 'UAE & Sialkot Case Studies', target: 'portfolio', badge: 'PORTFOLIO' },
-              { label: 'Tech Blogs & Guides', sub: '80+ Field Tutorials', target: 'guides', badge: 'BLOGS' },
-              { label: 'Web Tools Hub', sub: 'Invoice, Barcode, CBM & Calculators', target: 'tools', badge: 'TOOLS' },
-              { label: 'Core Services', sub: 'Factory AMC Contracts', target: 'services', badge: null },
-              { label: 'Hardware Store', sub: 'Printers & Terminals', target: 'shop', badge: null },
-              { label: 'Kotli Behram Lab', sub: '15-Min Rapid Dispatch', target: 'contact', badge: null },
+              {
+                label: 'Doorstep IT Support',
+                sub: '45-Min Emergency Dispatch',
+                href: '/services/doorstep-support',
+                target: 'doorstep-support',
+                badge: 'DISPATCH',
+              },
+              {
+                label: 'Sialkot Export ERP',
+                sub: 'Surgical & Leather Billing',
+                href: '/sialkot-export-erp',
+                target: 'sialkot-export-erp',
+                badge: 'EXPORT',
+              },
+              {
+                label: 'IT Guidelines Hub',
+                sub: 'Factory Network Rules',
+                href: '/guidelines',
+                target: 'guidelines',
+                badge: 'STANDARDS',
+              },
+              {
+                label: 'Factory Latency Benchmark',
+                sub: 'Dry Port & Cloud Ping',
+                href: '/factory-network-tester',
+                target: 'factory-network-tester',
+                badge: 'PING',
+              },
+              {
+                label: 'Wazirabad Tech Hub',
+                sub: 'Cutlery & Hardware IT',
+                href: '/locations/wazirabad',
+                target: 'locations',
+                subTarget: 'wazirabad',
+                badge: 'HUB',
+              },
+              {
+                label: 'Sambrial Export Zone',
+                sub: 'Dry Port IT Support',
+                href: '/locations/sambrial',
+                target: 'locations',
+                subTarget: 'sambrial',
+                badge: 'DRY PORT',
+              },
             ].map((item, idx) => (
-              <button
+              <a
                 key={idx}
-                onClick={() => onNavigate(item.target)}
-                className="p-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-red-600/60 text-left transition-all cursor-pointer group"
+                href={item.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate(item.target);
+                }}
+                className="p-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-red-600/60 text-left transition-all cursor-pointer group block"
               >
                 <div className="flex items-center justify-between gap-1">
                   <span className="text-slate-200 font-bold text-xs group-hover:text-red-400 transition-colors">
@@ -488,7 +557,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                 <span className="text-[10px] text-slate-400 block mt-0.5">
                   {item.sub}
                 </span>
-              </button>
+              </a>
             ))}
           </div>
         </div>
@@ -499,13 +568,61 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             © {new Date().getFullYear()} evonix technologies. All rights reserved. SECP Registered IT Company in Sialkot, Pakistan.
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
             <a
               href="/about"
               onClick={(e) => { e.preventDefault(); onNavigate('about'); }}
               className="hover:text-red-400 transition-colors cursor-pointer text-slate-400 font-semibold"
             >
               About
+            </a>
+            <span>•</span>
+            <a
+              href="/services/doorstep-support"
+              onClick={(e) => { e.preventDefault(); onNavigate('doorstep-support'); }}
+              className="hover:text-red-400 transition-colors cursor-pointer text-emerald-400 font-semibold"
+            >
+              Doorstep IT
+            </a>
+            <span>•</span>
+            <a
+              href="/sialkot-export-erp"
+              onClick={(e) => { e.preventDefault(); onNavigate('sialkot-export-erp'); }}
+              className="hover:text-red-400 transition-colors cursor-pointer text-purple-400 font-semibold"
+            >
+              Export ERP
+            </a>
+            <span>•</span>
+            <a
+              href="/guidelines"
+              onClick={(e) => { e.preventDefault(); onNavigate('guidelines'); }}
+              className="hover:text-red-400 transition-colors cursor-pointer text-cyan-400 font-semibold"
+            >
+              Guidelines
+            </a>
+            <span>•</span>
+            <a
+              href="/factory-network-tester"
+              onClick={(e) => { e.preventDefault(); onNavigate('factory-network-tester'); }}
+              className="hover:text-red-400 transition-colors cursor-pointer text-blue-400 font-semibold"
+            >
+              Network Ping
+            </a>
+            <span>•</span>
+            <a
+              href="/locations/wazirabad"
+              onClick={(e) => { e.preventDefault(); onNavigate('locations'); }}
+              className="hover:text-red-400 transition-colors cursor-pointer text-slate-400 font-semibold"
+            >
+              Wazirabad
+            </a>
+            <span>•</span>
+            <a
+              href="/locations/sambrial"
+              onClick={(e) => { e.preventDefault(); onNavigate('locations'); }}
+              className="hover:text-red-400 transition-colors cursor-pointer text-slate-400 font-semibold"
+            >
+              Sambrial
             </a>
             <span>•</span>
             <a
