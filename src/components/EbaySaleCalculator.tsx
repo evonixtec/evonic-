@@ -14,7 +14,9 @@ import {
   Code2, 
   ShieldCheck, 
   X,
-  CreditCard
+  CreditCard,
+  ExternalLink,
+  QrCode
 } from 'lucide-react';
 
 // 1. Centralized Immutable Presets Registry Configuration
@@ -235,34 +237,78 @@ export default function EbaySaleCalculator() {
 
   const activeConfig = COUNTRIES_REGISTRY[region];
 
-  const PAYMENT_URL = "https://www.paypal.me/evonixtec/9USD";
+  const PAYMENT_URL = "https://link.payoneer.com/Token?t=92EF253542CE4D4DA2F32B91E7DB463F&src=pl";
+  const [currentDeviceId, setCurrentDeviceId] = useState<string>(() => {
+    if (typeof window !== 'undefined') {
+      let devId = localStorage.getItem('evonic_device_id');
+      if (!devId) {
+        devId = 'DEV-' + Math.random().toString(36).substring(2, 8).toUpperCase() + '-' + Date.now().toString(36).toUpperCase();
+        localStorage.setItem('evonic_device_id', devId);
+      }
+      return devId;
+    }
+    return 'DEV-INITIALIZING';
+  });
   const [licenseKeyInput, setLicenseKeyInput] = useState<string>("");
   const [licenseError, setLicenseError] = useState<string>("");
   const [licenseSuccess, setLicenseSuccess] = useState<string>("");
 
-  const handleDevUnlock = () => {
-    localStorage.setItem('evonix_pro_unlocked', 'true');
-    setIsProUnlocked(true);
-    setShowPayModal(false);
-  };
-
   const handleActivateLicense = () => {
-    const key = licenseKeyInput.trim();
-    if (key.length >= 6) {
+    const rawKey = licenseKeyInput.trim();
+    if (!rawKey) {
+      setLicenseError("Please enter your License Key (e.g. EVONIC-PRO-A1B2-C3D4).");
+      setLicenseSuccess("");
+      return;
+    }
+
+    const key = rawKey.toUpperCase();
+
+    // Ensure valid device ID
+    let deviceId = localStorage.getItem('evonic_device_id');
+    if (!deviceId) {
+      deviceId = 'DEV-' + Math.random().toString(36).substring(2, 8).toUpperCase() + '-' + Date.now().toString(36).toUpperCase();
+      localStorage.setItem('evonic_device_id', deviceId);
+      setCurrentDeviceId(deviceId);
+    }
+
+    try {
+      const bindingsRaw = localStorage.getItem('evonic_license_bindings');
+      const bindings: Record<string, string> = bindingsRaw ? JSON.parse(bindingsRaw) : {};
+
+      // Check if Key was already activated on a different device
+      if (bindings[key] && bindings[key] !== deviceId) {
+        setLicenseError("This license is already activated on another device. Contact Support.");
+        setLicenseSuccess("");
+        return;
+      }
+
+      // Check key minimum length / format
+      if (key.length < 8) {
+        setLicenseError("Invalid License Key format. Example: EVONIC-PRO-A1B2-C3D4");
+        setLicenseSuccess("");
+        return;
+      }
+
+      // First time on this device or matching device: Bind & Unlock
+      bindings[key] = deviceId;
+      localStorage.setItem('evonic_license_bindings', JSON.stringify(bindings));
       localStorage.setItem('evonix_pro_unlocked', 'true');
       localStorage.setItem('evonix_pro_license', key);
+      localStorage.setItem('evonic_bound_device', deviceId);
+
       setIsProUnlocked(true);
-      setLicenseSuccess("Payment verified! Professional Suite unlocked.");
+      setLicenseSuccess("License verified! Professional Suite unlocked for this device.");
       setLicenseError("");
       setTimeout(() => setShowPayModal(false), 1200);
-    } else {
-      setLicenseError("Please enter a valid PayPal Transaction ID or License Key.");
+    } catch {
+      setLicenseError("Error verifying device license. Please try again.");
     }
   };
 
   const handleLockPro = () => {
     localStorage.removeItem('evonix_pro_unlocked');
     localStorage.removeItem('evonix_pro_license');
+    localStorage.removeItem('evonic_bound_device');
     setIsProUnlocked(false);
     setActiveTab("simple");
   };
@@ -332,17 +378,16 @@ export default function EbaySaleCalculator() {
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 flex items-center gap-1">
                 <Sparkles className="w-3 h-3 text-emerald-600" />
-                <span>$9 PRO ACTIVE</span>
+                <span>$20 PRO ACTIVE</span>
               </span>
-              {typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && (
-                <button
-                  type="button"
-                  onClick={handleLockPro}
-                  className="text-[10px] text-slate-400 hover:text-slate-600 underline cursor-pointer"
-                >
-                  (Relock Test)
-                </button>
-              )}
+              <button
+                type="button"
+                onClick={handleLockPro}
+                title="Deactivate and relock this device"
+                className="text-[10px] text-slate-400 hover:text-slate-600 underline cursor-pointer"
+              >
+                (Deactivate)
+              </button>
             </div>
           ) : (
             <button
@@ -351,7 +396,7 @@ export default function EbaySaleCalculator() {
               className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 flex items-center gap-1 transition-all cursor-pointer"
             >
               <Lock className="w-3 h-3 text-amber-600" />
-              <span>Unlock Pro ($9)</span>
+              <span>Unlock Pro ($20)</span>
             </button>
           )}
         </div>
@@ -422,7 +467,7 @@ export default function EbaySaleCalculator() {
             <span>Professional Mode</span>
             {!isProUnlocked ? (
               <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-amber-100 text-amber-800">
-                🔒 $9 Pro
+                🔒 $20 Pro
               </span>
             ) : (
               <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800">
@@ -678,7 +723,7 @@ export default function EbaySaleCalculator() {
         {/* RIGHT COMPONENT PANEL: DYNAMIC LIVE PERFORMANCE DASHBOARD (3 cols on lg) */}
         <div className="lg:col-span-3 relative">
           
-          {/* ================= ABSOLUTE $9 PAYWALL OVERLAY FOR PROFESSIONAL MODE ================= */}
+          {/* ================= ABSOLUTE $20 PAYWALL OVERLAY FOR PROFESSIONAL MODE ================= */}
           {isProModuleBlurActive && (
             <div className="absolute inset-0 z-30 flex flex-col items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md rounded-2xl animate-in fade-in duration-200">
               <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-2xl border border-slate-200 max-w-md w-full text-center space-y-4">
@@ -689,13 +734,13 @@ export default function EbaySaleCalculator() {
 
                 <div className="space-y-1">
                   <span className="text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-700">
-                    Premium Option Token Access: $9.00 Only
+                    Lifetime Pro Access - $20 One Time
                   </span>
                   <h3 className="text-xl font-black text-slate-900 tracking-tight mt-1">
                     Unlock Professional Seller Suite
                   </h3>
                   <p className="text-xs text-slate-600 leading-relaxed max-w-sm mx-auto">
-                    Gain instant access to bulk multi-order calculations (up to 100x), real-time forex cache pools for 7 currencies, country strategies, and CSV/PDF export.
+                    Get 100x bulk order profit calculations, live forex currency conversion, CSV/PDF export, and developer tools.
                   </p>
                 </div>
 
@@ -706,7 +751,7 @@ export default function EbaySaleCalculator() {
                     className="w-full py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-blue-600/20 cursor-pointer flex items-center justify-center gap-2"
                   >
                     <CreditCard className="w-4 h-4" />
-                    <span>PAY $9 INSTANT ACTIVATION</span>
+                    <span>Pay $20 with Payoneer - Get Pro Key</span>
                   </button>
 
                   <button
@@ -720,7 +765,7 @@ export default function EbaySaleCalculator() {
 
                 <div className="pt-2 border-t border-slate-100">
                   <span className="text-[10px] text-slate-400 block">
-                    One-time lifetime access. Saved directly to local browser workspace.
+                    One-time $20 payment. Device locked for lifetime access.
                   </span>
                 </div>
 
@@ -1016,28 +1061,28 @@ export default function EbaySaleCalculator() {
       </div>
 
       {/* ========================================================
-          MODAL: PAY $9 TO UNLOCK PROFESSIONAL SELLER SUITE
+          MODAL: PAY $20 TO UNLOCK PROFESSIONAL SELLER SUITE
          ======================================================== */}
       {showPayModal && (
         <div 
           onClick={() => setShowPayModal(false)}
-          className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-150"
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-150 overflow-y-auto"
         >
           <div 
             onClick={(e) => e.stopPropagation()}
-            className="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-md w-full overflow-hidden text-slate-800 animate-in zoom-in-95 duration-150"
+            className="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-md w-full overflow-hidden text-slate-800 animate-in zoom-in-95 duration-150 my-6"
           >
             
             <div className="p-5 bg-gradient-to-r from-blue-900 to-slate-900 text-white flex justify-between items-start">
               <div className="space-y-1">
                 <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-blue-500/30 text-blue-200 border border-blue-400/30">
-                  Instant Access
+                  Lifetime Pro Access - $20 One Time
                 </span>
                 <h3 className="text-xl font-black tracking-tight text-white">
                   Unlock Professional Suite
                 </h3>
                 <p className="text-xs text-slate-300">
-                  One-time $9 lifetime purchase for your browser workspace.
+                  One-time $20 payment. Locks to your device for lifetime access.
                 </p>
               </div>
               <button
@@ -1049,92 +1094,135 @@ export default function EbaySaleCalculator() {
               </button>
             </div>
 
-            <div className="p-6 space-y-4 text-xs">
+            <div className="p-5 sm:p-6 space-y-4 text-xs">
               <div className="space-y-2 pb-3 border-b border-slate-100">
                 <div className="flex items-center gap-2 font-bold text-slate-800">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                   <span>100x Bulk Unit Profit Multiplier</span>
                 </div>
                 <div className="flex items-center gap-2 font-bold text-slate-800">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                   <span>Real-Time Currency Rates (PKR, AED, CAD, GBP, EUR, AUD)</span>
                 </div>
                 <div className="flex items-center gap-2 font-bold text-slate-800">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                   <span>1-Click CSV Ledger &amp; PDF Report Generator</span>
                 </div>
                 <div className="flex items-center gap-2 font-bold text-slate-800">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                   <span>Developer API Code &amp; Webhook Integration</span>
                 </div>
               </div>
 
+              {/* Price Callout */}
               <div className="p-4 rounded-xl bg-blue-50/70 border border-blue-200 flex items-center justify-between">
                 <div>
-                  <span className="text-[11px] font-bold text-blue-900 block">Total One-Time Price</span>
-                  <span className="text-2xl font-black font-mono text-blue-700 block mt-0.5">$9.00 USD</span>
+                  <span className="text-[11px] font-bold text-blue-900 block">
+                    Lifetime Pro Access - $20 One Time
+                  </span>
+                  <span className="text-2xl font-black font-mono text-blue-700 block mt-0.5">
+                    $20.00 USD
+                  </span>
                 </div>
                 <div className="text-right text-[10px] text-blue-700 font-medium">
                   <ShieldCheck className="w-5 h-5 text-blue-600 ml-auto mb-0.5" />
-                  <span>Instant Activation</span>
+                  <span>Device Lock 1:1</span>
                 </div>
               </div>
 
-              <div className="space-y-2 pt-2">
-                <button
-                  type="button"
-                  onClick={() => window.open(PAYMENT_URL, "_blank")}
-                  className="w-full py-3.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-blue-600/20 cursor-pointer flex items-center justify-center gap-2"
+              {/* Payoneer Action Button */}
+              <div className="space-y-2 pt-1">
+                <a
+                  href={PAYMENT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-blue-600/20 cursor-pointer flex items-center justify-center gap-2 text-center"
                 >
                   <CreditCard className="w-4 h-4" />
-                  <span>PAY $9 INSTANT ACTIVATION</span>
-                </button>
+                  <span>Pay $20 with Payoneer - Get Pro Key</span>
+                  <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+                </a>
               </div>
 
-              {/* Secure License Activation Form */}
+              {/* QR Code Scan Card */}
+              <div className="bg-slate-50 border border-slate-200 p-3 rounded-xl text-center space-y-2">
+                <div className="inline-block p-2 bg-white rounded-xl border border-slate-200 shadow-xs">
+                  <img
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(PAYMENT_URL)}&margin=4`}
+                    alt="Scan & Pay $20 via Payoneer"
+                    className="w-32 h-32 mx-auto rounded-lg object-contain"
+                  />
+                </div>
+                <div>
+                  <span className="font-black text-slate-900 text-xs block uppercase tracking-wide">
+                    Scan &amp; Pay $20
+                  </span>
+                  <p className="text-[11px] text-slate-500 mt-0.5">
+                    Scan with your mobile camera or banking app to pay $20.
+                  </p>
+                </div>
+              </div>
+
+              {/* Device Lock License Key Box */}
               <div className="pt-3 border-t border-slate-100 space-y-2">
-                <span className="text-[11px] font-bold text-slate-700 block">
-                  Already paid? Enter PayPal Transaction ID or License Key:
+                <span className="text-[11px] font-bold text-slate-800 block">
+                  Enter License Key:
                 </span>
+                <p className="text-[10px] text-slate-500">
+                  After payment, Raza bhai sends your License Key. Enter it below to unlock.
+                </p>
                 <div className="flex gap-2">
                   <input
                     type="text"
                     value={licenseKeyInput}
                     onChange={(e) => setLicenseKeyInput(e.target.value)}
-                    placeholder="e.g. 9XX123456 or License Key"
-                    className="flex-1 p-2 border border-slate-300 rounded-lg text-xs font-mono focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    placeholder="e.g. EVONIC-PRO-A1B2-C3D4"
+                    className="flex-1 p-2 border border-slate-300 rounded-lg text-xs font-mono uppercase focus:outline-none focus:ring-1 focus:ring-blue-500"
                   />
                   <button
                     type="button"
                     onClick={handleActivateLicense}
-                    className="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-lg transition-colors cursor-pointer"
+                    className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-lg transition-colors cursor-pointer"
                   >
                     Activate
                   </button>
                 </div>
+
                 {licenseError && (
-                  <p className="text-[11px] font-semibold text-rose-600">{licenseError}</p>
+                  <div className="p-2 rounded-lg bg-rose-50 border border-rose-200 text-rose-700 text-[11px] font-semibold">
+                    {licenseError}
+                  </div>
                 )}
                 {licenseSuccess && (
-                  <p className="text-[11px] font-semibold text-emerald-600">{licenseSuccess}</p>
+                  <div className="p-2 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-700 text-[11px] font-semibold flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>{licenseSuccess}</span>
+                  </div>
                 )}
-              </div>
 
-              {/* Developer Test Link - ONLY visible on localhost, completely hidden on live site */}
-              {typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && (
-                <div className="pt-1 text-center">
+                {/* Device ID Lock Box */}
+                <div className="p-2.5 bg-slate-100/80 border border-slate-200 rounded-lg flex items-center justify-between text-[11px]">
+                  <div>
+                    <span className="text-[10px] text-slate-500 font-bold block uppercase tracking-wider">
+                      Your Device ID (Locked 1:1)
+                    </span>
+                    <span className="font-mono font-bold text-slate-800 text-xs">
+                      {currentDeviceId}
+                    </span>
+                  </div>
                   <button
                     type="button"
-                    onClick={handleDevUnlock}
-                    className="text-[10px] text-amber-600 hover:text-amber-700 underline font-mono cursor-pointer"
+                    onClick={() => copyToClipboard(currentDeviceId, 'dev_id')}
+                    className="px-2.5 py-1 text-[10px] font-bold bg-white border border-slate-300 rounded hover:bg-slate-50 text-slate-700 cursor-pointer flex items-center gap-1 shadow-xs"
                   >
-                    [Localhost Only] Click here for Developer Test Unlock
+                    {copiedKey === 'dev_id' ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
+                    <span>{copiedKey === 'dev_id' ? 'Copied' : 'Copy ID'}</span>
                   </button>
                 </div>
-              )}
+              </div>
 
               <p className="text-[10px] text-slate-400 text-center">
-                Secure local workspace license. No recurring monthly fees.
+                One key locks to one device for lifetime access. Need to move device? Contact Support.
               </p>
             </div>
 

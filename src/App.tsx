@@ -16,7 +16,7 @@ import { FAQ } from './components/FAQ';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import FooterLinks from './components/FooterLinks';
-import type { PolicyType } from './components/PolicyModal';
+import PolicyModal, { type PolicyType } from './components/PolicyModal';
 import { SecurityAlertToast } from './components/SecurityAlertToast';
 import { PageHeaderBanner } from './components/common/PageHeaderBanner';
 import { HomeServicesPreview } from './components/home/HomeServicesPreview';
@@ -63,7 +63,6 @@ const AiHardwareDiagnosticBoard = lazy(() => import('./components/AiHardwareDiag
 const Shop = lazy(() => import('./components/Shop').then(m => ({ default: m.Shop })));
 const BlogHub = lazy(() => import('./components/BlogHub').then(m => ({ default: m.BlogHub })));
 const QuoteModal = lazy(() => import('./components/QuoteModal').then(m => ({ default: m.QuoteModal })));
-const PolicyModal = lazy(() => import('./components/PolicyModal').then(m => ({ default: m.PolicyModal })));
 const SearchModal = lazy(() => import('./components/SearchModal').then(m => ({ default: m.SearchModal })));
 const LiveSupportChat = lazy(() => import('./components/LiveSupportChat').then(m => ({ default: m.LiveSupportChat })));
 const AiTravelGuidePage = lazy(() => import('./components/AiTravelGuidePage').then(m => ({ default: m.AiTravelGuidePage })));
@@ -1374,30 +1373,46 @@ export default function App() {
       />
 
       {/* Interactive Quick Search Modal (Command Palette across Services, Portfolio & Shop) */}
-      <SearchModal
-        isOpen={isSearchOpen}
-        onClose={() => setIsSearchOpen(false)}
-        onNavigateToSection={handleNavigateFromSearch}
-        onSelectForQuote={handleOpenQuote}
-      />
+      {isSearchOpen && (
+        <Suspense fallback={null}>
+          <SearchModal
+            isOpen={isSearchOpen}
+            onClose={() => setIsSearchOpen(false)}
+            onNavigateToSection={handleNavigateFromSearch}
+            onSelectForQuote={handleOpenQuote}
+          />
+        </Suspense>
+      )}
 
       {/* Interactive Free Quote Dialog with Sialkot GPS Sensor & Reference Code */}
-      <QuoteModal
-        isOpen={isQuoteOpen}
-        onClose={() => setIsQuoteOpen(false)}
-        initialService={selectedServiceForQuote}
-        onNavigatePage={(page) => navigateToPage(page as NavPageId)}
-      />
+      {isQuoteOpen && (
+        <Suspense fallback={null}>
+          <QuoteModal
+            isOpen={isQuoteOpen}
+            onClose={() => setIsQuoteOpen(false)}
+            initialService={selectedServiceForQuote}
+            onNavigatePage={(page) => navigateToPage(page as NavPageId)}
+          />
+        </Suspense>
+      )}
 
       {/* Live Human Engineering Support Desk with Engr. Hamza Tariq (Hidden on all Tool Pages) */}
-      {!isToolPage(currentPage) && <LiveSupportChat onOpenQuote={handleOpenQuote} />}
+      {!isToolPage(currentPage) && (
+        <Suspense fallback={null}>
+          <LiveSupportChat onOpenQuote={handleOpenQuote} />
+        </Suspense>
+      )}
 
       {/* Official Free Bench Intake Pass Generator Dialog */}
-      <BenchIntakePass
-        isOpen={isIntakePassOpen}
-        onClose={() => setIsIntakePassOpen(false)}
-        defaultDevice={selectedServiceForQuote}
-      />
+      {isIntakePassOpen && (
+        <Suspense fallback={null}>
+          <BenchIntakePass
+            isOpen={isIntakePassOpen}
+            onClose={() => setIsIntakePassOpen(false)}
+            defaultDevice={selectedServiceForQuote}
+          />
+        </Suspense>
+      )}
 
       {/* Native App-Style Mobile Bottom Navigation Dock (Thumb Reach) */}
       <MobileBottomNav
