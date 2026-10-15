@@ -52,7 +52,7 @@ export const ServicesSection: React.FC = () => {
         'Deep device sensor integrations and Bluetooth hardware linking',
       ],
       techStack: ['React Native', 'Flutter', 'iOS Swift', 'Android Kotlin', 'SQLite', 'Firebase'],
-      stats: '4.9★ App Store & Play Store Average',
+      stats: 'iOS & Android Production Grade Deployment',
     },
     {
       id: 'ai',

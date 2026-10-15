@@ -12,6 +12,8 @@ import { GlobalReach } from './components/GlobalReach';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { Portfolio } from './components/Portfolio';
 import { Testimonials } from './components/Testimonials';
+import { GoogleReviewsSection } from './components/GoogleReviewsSection';
+import { LaptopRepairEstimator } from './components/LaptopRepairEstimator';
 import { FAQ } from './components/FAQ';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
@@ -23,6 +25,7 @@ import { HomeServicesPreview } from './components/home/HomeServicesPreview';
 import { HomeAboutPreview } from './components/home/HomeAboutPreview';
 import { HomePortfolioPreview } from './components/home/HomePortfolioPreview';
 import { HomeShopPreview } from './components/home/HomeShopPreview';
+import { HomeToolsGrid } from './components/home/HomeToolsGrid';
 import { COMPANY_INFO } from './data/content';
 import { initAntiCopyShield, initializeConsoleShield } from './lib/security';
 import { applyPageSEO } from './lib/seo';
@@ -40,7 +43,6 @@ const EcommerceCalculator = lazy(() => import('./components/EcommerceCalculator'
 const CbmCalculator = lazy(() => import('./components/CbmCalculator'));
 const DeveloperCostCalculator = lazy(() => import('./components/DeveloperCostCalculator').then(m => ({ default: m.DeveloperCostCalculator })));
 const AiVisibilityChecker = lazy(() => import('./components/AiVisibilityChecker').then(m => ({ default: m.AiVisibilityChecker })));
-const LaptopRepairEstimator = lazy(() => import('./components/LaptopRepairEstimator').then(m => ({ default: m.LaptopRepairEstimator })));
 const ProjectCostCalculator = lazy(() => import('./components/ProjectCostCalculator').then(m => ({ default: m.ProjectCostCalculator })));
 const SialkotAreaCoverage = lazy(() => import('./components/SialkotAreaCoverage').then(m => ({ default: m.SialkotAreaCoverage })));
 const SialkotSeoKeywordsHub = lazy(() => import('./components/SialkotSeoKeywordsHub').then(m => ({ default: m.SialkotSeoKeywordsHub })));
@@ -719,6 +721,12 @@ export default function App() {
               }
             />
 
+            {/* 1e-2. Apple Liquid Glass Online Web Tools Grid */}
+            <HomeToolsGrid
+              onLaunchTool={(toolId) => navigateToPage(toolId)}
+              onNavigateToToolsHub={() => navigateToPage('tools')}
+            />
+
             {/* 1f. Sialkot Doorstep IT & Emergency Support Banner */}
             <section className="py-14 bg-gradient-to-r from-red-600 via-red-700 to-red-800 text-white">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -819,7 +827,10 @@ export default function App() {
             {/* 1m. Why Choose Us (Dubai Quality & Component Diagnostics) */}
             <WhyChooseUs />
 
-            {/* 1h. Client Testimonials */}
+            {/* 1h. Genuine Google Business Reviews */}
+            <GoogleReviewsSection />
+
+            {/* 1h-2. Client Testimonials */}
             <Testimonials
               onOpenQuote={handleOpenQuote}
               onNavigateSection={(sec) => navigateToPage(sec as NavPageId)}

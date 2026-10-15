@@ -342,3 +342,5 @@ export const LaptopRepairEstimator: React.FC<LaptopRepairEstimatorProps> = ({ on
     </section>
   );
 };
+
+export default LaptopRepairEstimator;

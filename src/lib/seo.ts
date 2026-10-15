@@ -45,11 +45,6 @@ export const LOCAL_BUSINESS_SCHEMA = {
     latitude: 32.4945,
     longitude: 74.5229,
   },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '128',
-  },
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
@@ -351,11 +346,6 @@ export const INDIVIDUAL_PRODUCTS_SCHEMAS = [
       seller: { '@id': `${BASE_URL}/#business` },
       warranty: '1 Year Sialkot On-Site Warranty',
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: '48',
-    },
   },
   {
     '@type': 'Product',
@@ -379,11 +369,6 @@ export const INDIVIDUAL_PRODUCTS_SCHEMAS = [
       itemCondition: 'https://schema.org/NewCondition',
       availability: 'https://schema.org/InStock',
       seller: { '@id': `${BASE_URL}/#business` },
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: '62',
     },
   },
   {
@@ -409,11 +394,6 @@ export const INDIVIDUAL_PRODUCTS_SCHEMAS = [
       availability: 'https://schema.org/InStock',
       seller: { '@id': `${BASE_URL}/#business` },
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: '39',
-    },
   },
   {
     '@type': 'Product',
@@ -437,11 +417,6 @@ export const INDIVIDUAL_PRODUCTS_SCHEMAS = [
       itemCondition: 'https://schema.org/RefurbishedCondition',
       availability: 'https://schema.org/InStock',
       seller: { '@id': `${BASE_URL}/#business` },
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.95',
-      reviewCount: '74',
     },
   },
 ];
