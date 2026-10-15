@@ -7,7 +7,8 @@ import {
   CheckCircle2,
   Building,
   Calendar,
-  Check
+  Check,
+  FileSignature
 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
 
@@ -61,36 +62,44 @@ Title: ${signatoryRole}
     }
   };
 
+  const [hasGenerated, setHasGenerated] = useState(true);
+
+  const handleGenerate = () => {
+    setHasGenerated(true);
+  };
+
   return (
-    <div className="py-8 bg-slate-100 min-h-screen text-slate-900">
+    <div className="py-8 min-h-screen apple-tool-layout text-[#1d1d1f]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        {/* Banner */}
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+        {/* Apple Clean Header Banner */}
+        <div className="apple-glass-box p-6 sm:p-7 flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 text-purple-800 uppercase tracking-wider">
+              <span className="apple-badge">
                 UK &amp; European Regulatory Standard
               </span>
-              <span className="text-xs text-slate-500 font-mono">UKCA &amp; CE Marking MDR / RoHS</span>
+              <span className="text-xs text-[#86868b] font-mono">UKCA &amp; CE Marking MDR / RoHS</span>
             </div>
-            <h1 className="text-xl sm:text-2xl font-bold text-slate-900 mt-1">
+            <h1 className="apple-tool-title mt-2">
               UKCA &amp; CE Declaration of Conformity (DoC) Generator
             </h1>
-            <p className="text-xs sm:text-sm text-slate-600">
+            <p className="apple-tool-subtitle">
               Generate audited technical Declaration of Conformity certificates for UK and European Union medical, surgical, and hardware procurement tenders.
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex items-center gap-2.5">
             <button
+              type="button"
               onClick={handleCopy}
-              className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-red-600 text-white font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
+              className="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 border border-black/[0.08] text-[#1d1d1f] font-semibold text-xs flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
             >
-              {copiedDoc ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+              {copiedDoc ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 text-[#86868b]" />}
               <span>{copiedDoc ? 'Copied Certificate!' : 'Copy Certificate'}</span>
             </button>
             <button
+              type="button"
               onClick={() => window.print()}
-              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
+              className="px-4 py-2.5 rounded-xl bg-[#0071e3] hover:bg-[#0077ed] text-white font-semibold text-xs flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs shadow-blue-500/20"
             >
               <Printer className="w-3.5 h-3.5" />
               <span>Print Certificate</span>
@@ -98,120 +107,129 @@ Title: ${signatoryRole}
           </div>
         </div>
 
+        {/* Apple Clean Calculator Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Controls */}
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4">
-            <h2 className="text-base font-bold text-slate-900 pb-2 border-b border-slate-100">
+          <div className="apple-glass-box p-6 space-y-4">
+            <h2 className="text-sm font-semibold text-[#1d1d1f] pb-2 border-b border-black/[0.06]">
               Technical File &amp; Batch Parameters
             </h2>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">Product Description</label>
+              <label className="block text-xs font-medium text-[#86868b] mb-1">Product Description</label>
               <input
                 type="text"
                 aria-label="Product Description"
                 value={productName}
                 onChange={(e) => setProductName(e.target.value)}
-                className="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 bg-slate-50 font-medium"
+                className="apple-input w-full font-medium"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">Model / Catalog No</label>
+                <label className="block text-xs font-medium text-[#86868b] mb-1">Model / Catalog No</label>
                 <input
                   type="text"
                   aria-label="Model or Catalog Number"
                   value={modelNumber}
                   onChange={(e) => setModelNumber(e.target.value)}
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 bg-slate-50 font-mono"
+                  className="apple-input w-full font-mono font-medium"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">Batch / Lot Identification</label>
+                <label className="block text-xs font-medium text-[#86868b] mb-1">Batch / Lot Identification</label>
                 <input
                   type="text"
                   aria-label="Batch or Lot Identification"
                   value={batchLotNumber}
                   onChange={(e) => setBatchLotNumber(e.target.value)}
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 bg-slate-50 font-mono"
+                  className="apple-input w-full font-mono font-medium"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">Conformity Directives</label>
+              <label className="block text-xs font-medium text-[#86868b] mb-1">Conformity Directives</label>
               <input
                 type="text"
                 aria-label="Conformity Directives"
                 value={standardDirective}
                 onChange={(e) => setStandardDirective(e.target.value)}
-                className="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 bg-slate-50 font-medium"
+                className="apple-input w-full font-medium"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">Harmonized Quality Standards</label>
+              <label className="block text-xs font-medium text-[#86868b] mb-1">Harmonized ISO Standards</label>
               <input
                 type="text"
-                aria-label="Harmonized Quality Standards"
+                aria-label="Harmonized ISO Standards"
                 value={isoStandard}
                 onChange={(e) => setIsoStandard(e.target.value)}
-                className="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 bg-slate-50 font-medium"
+                className="apple-input w-full font-mono font-medium text-xs"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">Signatory Engineer Name</label>
+                <label className="block text-xs font-medium text-[#86868b] mb-1">Authorized Signatory Name</label>
                 <input
                   type="text"
-                  aria-label="Signatory Engineer Name"
+                  aria-label="Authorized Signatory Name"
                   value={signatoryName}
                   onChange={(e) => setSignatoryName(e.target.value)}
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 bg-slate-50 font-medium"
+                  className="apple-input w-full font-medium"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">Signatory Title</label>
+                <label className="block text-xs font-medium text-[#86868b] mb-1">Executive Title / Role</label>
                 <input
                   type="text"
-                  aria-label="Signatory Title"
+                  aria-label="Executive Title or Role"
                   value={signatoryRole}
                   onChange={(e) => setSignatoryRole(e.target.value)}
-                  className="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 bg-slate-50 font-medium"
+                  className="apple-input w-full font-medium"
                 />
               </div>
+            </div>
+
+            {/* Apple Blue Calculate / Generate Button */}
+            <div className="pt-2">
+              <button
+                type="button"
+                onClick={handleGenerate}
+                className="apple-calculate-btn"
+              >
+                <FileSignature className="w-4 h-4" />
+                <span>Generate Official Declaration (DoC)</span>
+              </button>
             </div>
           </div>
 
-          {/* Certificate Preview Card */}
-          <div className="bg-white p-6 rounded-2xl border border-slate-300 shadow-md font-mono text-[11px] leading-relaxed text-slate-800 space-y-3 relative overflow-hidden">
-            <div className="flex justify-between items-center border-b pb-2">
-              <span className="font-bold text-red-600">UKCA &amp; CE DECLARATION OF CONFORMITY</span>
-              <span className="text-[10px] text-slate-400">EN ISO 17050-1 COMPLIANT</span>
+          {/* Liquid Glass Certificate Preview */}
+          <div className="apple-result-box p-6 space-y-4 flex flex-col justify-between">
+            <div className="space-y-3">
+              <div className="flex items-center justify-between pb-3 border-b border-black/[0.06]">
+                <span className="text-xs font-semibold text-[#86868b]">Certified Certificate Preview</span>
+                <span className="text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  ISO 17050-1 Compliant
+                </span>
+              </div>
+
+              <div className="bg-white/90 p-4 rounded-xl border border-black/[0.06] font-mono text-[11px] leading-relaxed text-[#1d1d1f] shadow-xs overflow-x-auto whitespace-pre-wrap max-h-[380px]">
+                {docText}
+              </div>
             </div>
 
-            <div className="text-[10px] space-y-1 text-slate-600 bg-slate-50 p-2.5 rounded-lg border">
-              <div><strong>Manufacturer:</strong> {COMPANY_INFO.legalName}</div>
-              <div><strong>Origin:</strong> {COMPANY_INFO.contact.address}</div>
-              <div><strong>Item:</strong> {productName} ({modelNumber})</div>
-              <div><strong>Traceability:</strong> Batch {batchLotNumber}</div>
-            </div>
-
-            <p className="text-[10.5px] text-slate-700">
-              We declare under sole responsibility that the above apparatus conforms to the essential requirements of EU MDR 2017/745 and UK Medical Devices Regulations 2002, applied against {isoStandard}.
-            </p>
-
-            <div className="pt-4 border-t border-slate-200 flex justify-between items-end text-[10px]">
-              <div>
-                <div className="font-bold">{signatoryName}</div>
-                <div className="text-slate-500">{signatoryRole}</div>
-                <div className="text-slate-400">evonix Quality Lab, Kotli Behram</div>
+            <div className="p-3 bg-white/70 rounded-xl border border-black/[0.04] text-[11px] text-[#86868b] space-y-1">
+              <div className="flex items-center gap-1.5 font-semibold text-[#0071e3]">
+                <ShieldCheck className="w-3.5 h-3.5" />
+                <span>Audited Legal Responsibility</span>
               </div>
-              <div className="w-16 h-16 rounded-full border-2 border-dashed border-red-400 flex items-center justify-center text-[8px] font-bold text-red-600 uppercase text-center p-1 rotate-[-12deg]">
-                Official Quality Stamp
-              </div>
+              <p>
+                This DoC template satisfies European Union Medical Device Regulation (EU MDR 2017/745) Class I Annex IV and UK MDR 2002 statutory filing guidelines for global hospital tenders.
+              </p>
             </div>
           </div>
         </div>

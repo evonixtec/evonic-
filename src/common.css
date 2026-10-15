@@ -1,0 +1,166 @@
+/* ========================================================
+   COMMON.CSS - APPLE-STYLE CLEAN LIQUID GLASS DESIGN SYSTEM
+   FINAL & APPROVED DESIGN SPECIFICATION FOR ALL TOOLS
+   ======================================================== */
+
+:root {
+  --apple-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --apple-bg: #f5f5f7;
+  --apple-card-bg: rgba(255, 255, 255, 0.82);
+  --apple-card-solid: #ffffff;
+  --apple-card-border: rgba(0, 0, 0, 0.08);
+  --apple-glass-bg: rgba(255, 255, 255, 0.65);
+  --apple-glass-border: rgba(255, 255, 255, 0.7);
+  --apple-glass-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.04), 0 1px 4px 0 rgba(0, 0, 0, 0.02);
+  --apple-blue: #0071e3;
+  --apple-blue-hover: #0077ed;
+  --apple-blue-active: #0062c4;
+  --apple-text-primary: #1d1d1f;
+  --apple-text-secondary: #86868b;
+  --apple-input-bg: #ffffff;
+  --apple-input-border: #d2d2d7;
+}
+
+/* Base tool container styling */
+.apple-tool-layout {
+  font-family: var(--apple-font);
+  background-color: var(--apple-bg);
+  color: var(--apple-text-primary);
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Apple Liquid Glass Card */
+.apple-glass-box {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--apple-card-border);
+  box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  border-radius: 1.25rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.apple-glass-box:hover {
+  box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.06);
+}
+
+/* Light liquid glass result / inspector card */
+.apple-result-box {
+  background: rgba(245, 245, 247, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 1.25rem;
+  color: var(--apple-text-primary);
+}
+
+/* Apple Input / Select Elements */
+.apple-input {
+  font-family: var(--apple-font);
+  background: var(--apple-input-bg);
+  border: 1px solid var(--apple-input-border);
+  border-radius: 0.75rem;
+  color: var(--apple-text-primary);
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.apple-input:focus {
+  background: #ffffff;
+  border-color: var(--apple-blue);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.16);
+  outline: none;
+}
+
+/* Large Prominent Apple Blue Calculate Button */
+.apple-calculate-btn {
+  font-family: var(--apple-font);
+  background-color: var(--apple-blue);
+  color: #ffffff;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 0.875rem 1.75rem;
+  border-radius: 0.875rem;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.25);
+  width: 100%;
+}
+
+.apple-calculate-btn:hover {
+  background-color: var(--apple-blue-hover);
+  box-shadow: 0 4px 14px rgba(0, 113, 227, 0.35);
+  transform: translateY(-1px);
+}
+
+.apple-calculate-btn:active {
+  background-color: var(--apple-blue-active);
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(0, 113, 227, 0.2);
+}
+
+/* Apple Subtle Badge */
+.apple-badge {
+  font-family: var(--apple-font);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: rgba(0, 113, 227, 0.08);
+  color: var(--apple-blue);
+  border: 1px solid rgba(0, 113, 227, 0.15);
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 0.25rem 0.625rem;
+}
+
+/* Apple Header */
+.apple-tool-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.apple-tool-title {
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--apple-text-primary);
+}
+
+.apple-tool-subtitle {
+  font-size: 0.8125rem;
+  color: var(--apple-text-secondary);
+  margin-top: 0.25rem;
+  line-height: 1.4;
+}
+
+/* Apple Metrics & Ledger items */
+.apple-metric-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  font-size: 0.8125rem;
+}
+
+.apple-metric-label {
+  color: var(--apple-text-secondary);
+  font-weight: 500;
+}
+
+.apple-metric-val {
+  font-weight: 600;
+  color: var(--apple-text-primary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}

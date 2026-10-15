@@ -488,8 +488,12 @@ export const Navbar: React.FC<NavbarProps> = ({
 
                     {/* TOP FEATURED SPOTLIGHT: eBay Fee & Profit Builder */}
                     <div className="bg-gradient-to-r from-blue-50/90 to-indigo-50/70 border border-blue-200/90 rounded-xl p-1 mb-1">
-                      <button
-                        onClick={() => handlePageSelect('ebay-fee-calculator')}
+                      <a
+                        href="/ebay-fee-calculator"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handlePageSelect('ebay-fee-calculator');
+                        }}
                         className={`w-full text-left p-2 rounded-lg transition-all flex items-center gap-2.5 cursor-pointer group ${
                           currentPage === 'ebay-fee-calculator' ? 'bg-blue-600 text-white font-bold shadow-xs' : 'hover:bg-white/90'
                         }`}
@@ -517,7 +521,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                         }`}>
                           HOT · Pro
                         </span>
-                      </button>
+                      </a>
                     </div>
 
                     <span className="block px-3 py-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100 pb-1 mb-1">
@@ -608,8 +612,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-700">Live</span>
                     </button>
 
-                    <button
-                      onClick={() => handlePageSelect('ebay-fee-calculator')}
+                    <a
+                      href="/ebay-fee-calculator"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handlePageSelect('ebay-fee-calculator');
+                      }}
                       className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
                         currentPage === 'ebay-fee-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
                       }`}
@@ -623,7 +631,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                         <div className="text-[10px] text-slate-500">FVF, Promoted Ads &amp; Real-Time FX</div>
                       </div>
                       <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">Pro</span>
-                    </button>
+                    </a>
 
                     <button
                       onClick={() => handlePageSelect('ai-visibility-checker')}
@@ -1049,8 +1057,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </button>
 
                   {/* 1. TOP HIGHLIGHT: eBay Fee & Profit Builder */}
-                  <button
-                    onClick={() => handlePageSelect('ebay-fee-calculator')}
+                  <a
+                    href="/ebay-fee-calculator"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePageSelect('ebay-fee-calculator');
+                    }}
                     className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between border ${
                       currentPage === 'ebay-fee-calculator'
                         ? 'bg-blue-600 text-white font-bold border-blue-600 shadow-xs'
@@ -1066,7 +1078,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     }`}>
                       10 Markets · Pro
                     </span>
-                  </button>
+                  </a>
 
                   <button
                     onClick={() => handlePageSelect('invoice')}

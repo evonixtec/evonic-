@@ -585,7 +585,7 @@ export const GlobalInvoiceHub: React.FC = () => {
   };
 
   return (
-    <div className="py-6 sm:py-8 bg-slate-100 min-h-screen text-slate-900 print:bg-white print:py-0 print:min-h-0">
+    <div className="py-6 sm:py-8 apple-tool-layout bg-[#f5f5f7] min-h-screen text-[#1d1d1f] print:bg-white print:py-0 print:min-h-0">
       
       {/* Persistent Hidden Logo File Input */}
       <input

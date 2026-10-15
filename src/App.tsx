@@ -31,7 +31,7 @@ import { ToolWorkspaceHeader } from './components/common/ToolWorkspaceHeader';
 import { MobileBottomNav } from './components/MobileBottomNav';
 import { PWAInstallBanner } from './components/PWAInstallBanner';
 import { LocalCity, ClusterService, LOCAL_CITIES, CLUSTER_SERVICES } from './data/localClusters';
-import { MessageSquare, Phone, ArrowUp, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2, FileText, Barcode, Printer, Boxes, SlidersHorizontal, Calculator, Clock, Wifi } from 'lucide-react';
+import { MessageSquare, Phone, ArrowUp, ArrowRight, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2, FileText, Barcode, Printer, Boxes, SlidersHorizontal, Calculator, Clock, Wifi } from 'lucide-react';
 import { isToolPage } from './lib/toolUtils';
 
 // Lazy-loaded heavy tools, calculators and modals to reduce main bundle and speed up initial page render
@@ -882,6 +882,47 @@ export default function App() {
 
             {/* Centralized SEO Dashboard: Keyword Mapping & Health Tracking */}
             <CentralizedSeoDashboard onNavigatePage={navigateToPage} />
+
+            {/* Featured High-CPC Web Tool Spotlight: eBay Fee & Profit Builder (Homepage Internal Linking) */}
+            <div className="bg-gradient-to-r from-blue-900 via-slate-900 to-indigo-950 py-10 px-4 text-white border-y border-blue-800/40">
+              <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+                <div className="space-y-2 text-center md:text-left">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold uppercase tracking-wider border border-blue-400/30">
+                    <span>🏷️ Featured Online Tool</span>
+                    <span className="bg-emerald-500 text-slate-950 px-1.5 py-0.2 rounded font-black text-[9px]">10 COUNTRIES</span>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-black tracking-tight text-white">
+                    eBay Marketplace Fee &amp; Profit Builder
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+                    Calculate exact Final Value Fees (FVF), promoted listings, international tariffs, and 100x bulk order margins across USA, UK, Germany, and 7 other global hubs.
+                  </p>
+                </div>
+                <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0">
+                  <a
+                    href="/ebay-fee-calculator"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigateToPage('ebay-fee-calculator');
+                    }}
+                    className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-black text-xs uppercase tracking-wider shadow-lg shadow-blue-600/30 transition-all flex items-center gap-2 cursor-pointer"
+                  >
+                    <span>Open eBay Fee Calculator</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="/tools"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigateToPage('tools');
+                    }}
+                    className="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-slate-200 font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
+                  >
+                    View All Tools
+                  </a>
+                </div>
+              </div>
+            </div>
 
             {/* Doorstep On-Site Callout */}
             <div className="bg-slate-50 py-12 border-t border-slate-200">

@@ -256,6 +256,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             <ul className="space-y-2 text-slate-400">
               <li>
                 <a
+                  href="/ebay-fee-calculator"
+                  onClick={(e) => { e.preventDefault(); onNavigate('ebay-fee-calculator'); }}
+                  className="hover:text-blue-400 transition-colors text-left cursor-pointer text-blue-300 font-bold flex items-center gap-1.5"
+                >
+                  <span>eBay Fee &amp; Profit Calculator</span>
+                  <span className="text-[9px] bg-blue-600 text-white px-1.5 py-0.2 rounded font-black">HOT</span>
+                </a>
+              </li>
+              <li>
+                <a
                   href="/invoice"
                   onClick={(e) => { e.preventDefault(); onNavigate('invoice'); }}
                   className="hover:text-red-400 transition-colors text-left cursor-pointer text-amber-300 font-bold flex items-center gap-1.5"
