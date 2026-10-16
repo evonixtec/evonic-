@@ -18,14 +18,20 @@ export default function FooterLinks() {
 
   // International Premium High-CPC Finance Calculators Web Tools
   const toolLinks = [
+    { name: "eBay Fee & Profit Builder", path: "/ebay-fee-calculator" },
+    { name: "TikTok Shop Fee Calculator", path: "/tiktok-shop-fee-calculator" },
+    { name: "Amazon FBA Fee Calculator", path: "/amazon-fba-calculator" },
+    { name: "Shopify Fee Calculator", path: "/shopify-fee-calculator" },
+    { name: "Stripe Processing Fee Calculator", path: "/stripe-fee-calculator" },
+    { name: "Temu Seller Fee Calculator", path: "/temu-seller-calculator" },
     { name: "Global Invoice Generator", path: "/invoice" },
     { name: "E-Commerce Margin Calculator", path: "/ecommerce-calculator" },
     { name: "B2B Packing CBM Engine", path: "/cbm-calculator" },
     { name: "Developer Sourcing Calculator", path: "/hire-dedicated-developer-cost-calculator" },
     { name: "DHL Freight Analyzer Pro", path: "/professional-freight-analyzer" },
-    { name: "eBay Fee & Profit Builder", path: "/ebay-fee-calculator" },
     { name: "Website AI Visibility Checker", path: "/ai-visibility-checker" },
     { name: "AI Trip Planner Tool", path: "/ai-trip-planner" },
+    { name: "Desktop Software Setup Guide", path: "/installation-guide" },
   ];
 
   const handleNav = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {

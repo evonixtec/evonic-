@@ -609,6 +609,126 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">Pro</span>
                     </a>
 
+                    <a
+                      href="/tiktok-shop-fee-calculator"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handlePageSelect('tiktok-shop-fee-calculator');
+                      }}
+                      className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
+                        currentPage === 'tiktok-shop-fee-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-base flex items-center justify-center flex-shrink-0">🎵</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
+                          TikTok Shop Fee Calculator
+                        </div>
+                        <div className="text-[10px] text-slate-500">Commission, margin &amp; affiliate ROI</div>
+                      </div>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-black text-white">New</span>
+                    </a>
+
+                    <a
+                      href="/amazon-fba-calculator"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handlePageSelect('amazon-fba-calculator');
+                      }}
+                      className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
+                        currentPage === 'amazon-fba-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-base flex items-center justify-center flex-shrink-0">📦</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
+                          Amazon FBA Fee Calculator
+                        </div>
+                        <div className="text-[10px] text-slate-500">Fulfillment, storage &amp; profit margin</div>
+                      </div>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-800">FBA</span>
+                    </a>
+
+                    <a
+                      href="/shopify-fee-calculator"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handlePageSelect('shopify-fee-calculator');
+                      }}
+                      className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
+                        currentPage === 'shopify-fee-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-base flex items-center justify-center flex-shrink-0">🛍️</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
+                          Shopify Fee Calculator
+                        </div>
+                        <div className="text-[10px] text-slate-500">Plan tiers, gateway &amp; 3P transaction fees</div>
+                      </div>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800">Shopify</span>
+                    </a>
+
+                    <a
+                      href="/stripe-fee-calculator"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handlePageSelect('stripe-fee-calculator');
+                      }}
+                      className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
+                        currentPage === 'stripe-fee-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-base flex items-center justify-center flex-shrink-0">💳</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
+                          Stripe Fee Calculator
+                        </div>
+                        <div className="text-[10px] text-slate-500">Forward &amp; reverse payout fees</div>
+                      </div>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-800">Stripe</span>
+                    </a>
+
+                    <a
+                      href="/temu-seller-calculator"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handlePageSelect('temu-seller-calculator');
+                      }}
+                      className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
+                        currentPage === 'temu-seller-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-base flex items-center justify-center flex-shrink-0">🏷️</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
+                          Temu Seller Calculator
+                        </div>
+                        <div className="text-[10px] text-slate-500">Temu margins, warehouse &amp; payouts</div>
+                      </div>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-orange-100 text-orange-800">Temu</span>
+                    </a>
+
+                    <a
+                      href="/installation-guide"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handlePageSelect('installation-guide');
+                      }}
+                      className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
+                        currentPage === 'installation-guide' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-base flex items-center justify-center flex-shrink-0">💻</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
+                          Desktop Setup &amp; HWID Guide
+                        </div>
+                        <div className="text-[10px] text-slate-500">Windows (.exe) &amp; Mac (.dmg) activation</div>
+                      </div>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-slate-200 text-slate-800">Guide</span>
+                    </a>
+
                     <button
                       onClick={() => handlePageSelect('ai-visibility-checker')}
                       className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
@@ -1104,17 +1224,101 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-700">Live</span>
                   </button>
 
-                  <button
-                    onClick={() => handlePageSelect('ebay-fee-calculator')}
+                  <a
+                    href="/tiktok-shop-fee-calculator"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePageSelect('tiktok-shop-fee-calculator');
+                    }}
                     className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
-                      currentPage === 'ebay-fee-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                      currentPage === 'tiktok-shop-fee-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
                     }`}
                   >
                     <div className="flex items-center gap-2">
-                      <span>🏷️ eBay Fee &amp; Profit Builder</span>
+                      <span>🎵 TikTok Shop Fee Calculator</span>
                     </div>
-                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">10 Markets</span>
-                  </button>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-black text-white">New</span>
+                  </a>
+
+                  <a
+                    href="/amazon-fba-calculator"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePageSelect('amazon-fba-calculator');
+                    }}
+                    className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
+                      currentPage === 'amazon-fba-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span>📦 Amazon FBA Calculator</span>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-800">FBA</span>
+                  </a>
+
+                  <a
+                    href="/shopify-fee-calculator"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePageSelect('shopify-fee-calculator');
+                    }}
+                    className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
+                      currentPage === 'shopify-fee-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span>🛍️ Shopify Fee Calculator</span>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800">Shopify</span>
+                  </a>
+
+                  <a
+                    href="/stripe-fee-calculator"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePageSelect('stripe-fee-calculator');
+                    }}
+                    className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
+                      currentPage === 'stripe-fee-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span>💳 Stripe Fee Calculator</span>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-800">Stripe</span>
+                  </a>
+
+                  <a
+                    href="/temu-seller-calculator"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePageSelect('temu-seller-calculator');
+                    }}
+                    className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
+                      currentPage === 'temu-seller-calculator' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span>🏷️ Temu Seller Calculator</span>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-orange-100 text-orange-800">Temu</span>
+                  </a>
+
+                  <a
+                    href="/installation-guide"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePageSelect('installation-guide');
+                    }}
+                    className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
+                      currentPage === 'installation-guide' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span>💻 Desktop Setup &amp; HWID Guide</span>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-slate-200 text-slate-800">Guide</span>
+                  </a>
 
                   <button
                     onClick={() => handlePageSelect('developer-cost-calculator')}

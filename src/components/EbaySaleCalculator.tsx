@@ -369,6 +369,50 @@ export default function EbaySaleCalculator() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6 apple-tool-layout font-sans antialiased text-[#1d1d1f]">
+      {/* ================= GOOGLE SEARCH FAQ STRUCTURED DATA SCHEMA ================= */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How do I qualify for the eBay Top Rated Seller 10% FVF discount?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "To bypass standard percentage costs under the global seller hub mapping layout, your merchant account must maintain a transaction defect rate below 0.5% and dispatch over 100 transactions with a minimum valuation threshold annually. Once verified by the platform criteria, eBay automatically applies a dynamic 10% credit discount directly to your base Final Value Fee (FVF) ledger rows securely."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the exact cost threshold for utilizing the eBay Standard Envelope shipping option in the USA?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The eBay Standard Envelope framework operates at a locked flat baseline starting from $0.64 up to $1.12 depending on gross package weight variables (1 oz to 3 oz bounds). This specialized tracking utility is strictly reserved for lightweight general merchandise assets like trading cards, numismatic coins, and stamp collections with an absolute individual retail valuation capping below $20."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Why does cross-border international optimization incur an extra 1.65% transaction surcharge?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "When an end consumer purchases your inventory from a different country registry (e.g., an overseas buyer purchasing from a South Asian hub), the platform levies a mandatory 1.65% international transaction tariff. This surcharge covers cross-border multi-currency conversion settlement fees and processes completely locally outside standard domestic processing arrays."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How is the penny-perfect break-even retail valuation price calculated inside the workspace memory?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The serverless calculation engine loops your absolute wholesale sourcing product cost (COGS) and outbound freight expenses against the combined decimal values of platform percentage fees. The mathematical matrix operates on the formula: Break-Even Price = (Fixed Charges + Cost of Goods) / (1 - Aggregate Fee Percentages). Any listing configuration registered above this limit safely prevents negative cash depletion."
+                }
+              }
+            ]
+          })
+        }}
+      />
       
       {/* 10-COUNTRY SELECTION FLAG CARDS GRID */}
       <div className="bg-white p-4 rounded-xl border border-slate-200/60 shadow-sm mb-6 print:hidden">
@@ -1080,9 +1124,9 @@ export default function EbaySaleCalculator() {
       {/* ================= OPTIMIZED KNOWLEDGEBASE & STRUCTURED FAQ ACCORDION MODULE ================= */}
       <div className="mt-8 bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm space-y-6">
         <div>
-          <h2 className="text-lg font-black text-slate-900 uppercase tracking-tight">
+          <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight">
             Frequently Asked Questions &amp; Marketplace Revenue Metrics
-          </h2>
+          </h3>
           <p className="text-xs text-slate-400 font-medium mt-0.5">
             Technical operational compliance and seller hub expense guidelines certified for {activeTimelineString}.
           </p>
@@ -1092,9 +1136,9 @@ export default function EbaySaleCalculator() {
           
           {/* FAQ ACCORDION 1 */}
           <div className="p-4 rounded-xl border border-slate-100 bg-slate-50/30">
-            <h3 className="font-black text-slate-800 uppercase tracking-tight text-[11px] mb-1.5">
+            <h4 className="font-black text-slate-800 uppercase tracking-tight text-[11px] mb-1.5">
               Q1: How do I qualify for the eBay Top Rated Seller 10% FVF discount?
-            </h3>
+            </h4>
             <p>
               To bypass standard percentage costs under the global seller hub mapping layout, your merchant account must maintain a transaction defect rate below 0.5% and dispatch over 100 transactions with a minimum valuation threshold annually. Once verified by the platform criteria, eBay automatically applies a dynamic 10% credit discount directly to your base Final Value Fee (FVF) ledger rows securely.
             </p>
@@ -1102,9 +1146,9 @@ export default function EbaySaleCalculator() {
 
           {/* FAQ ACCORDION 2 */}
           <div className="p-4 rounded-xl border border-slate-100 bg-slate-50/30">
-            <h3 className="font-black text-slate-800 uppercase tracking-tight text-[11px] mb-1.5">
+            <h4 className="font-black text-slate-800 uppercase tracking-tight text-[11px] mb-1.5">
               Q2: What is the exact cost threshold for utilizing the eBay Standard Envelope shipping option in the USA?
-            </h3>
+            </h4>
             <p>
               The eBay Standard Envelope framework operates at a locked flat baseline starting from <span className="font-bold text-slate-900">$0.64</span> up to <span className="font-bold text-slate-900">$1.12</span> depending on gross package weight variables (1 oz to 3 oz bounds). This specialized tracking utility is strictly reserved for lightweight general merchandise assets like trading cards, numismatic coins, and stamp collections with an absolute individual retail valuation capping below $20.
             </p>
@@ -1112,9 +1156,9 @@ export default function EbaySaleCalculator() {
 
           {/* FAQ ACCORDION 3 */}
           <div className="p-4 rounded-xl border border-slate-100 bg-slate-50/30">
-            <h3 className="font-black text-slate-800 uppercase tracking-tight text-[11px] mb-1.5">
+            <h4 className="font-black text-slate-800 uppercase tracking-tight text-[11px] mb-1.5">
               Q3: Why does cross-border international optimization incur an extra 1.65% transaction surcharge?
-            </h3>
+            </h4>
             <p>
               When an end consumer purchases your inventory from a different country registry (e.g., an overseas buyer purchasing from a South Asian hub), the platform levies a mandatory 1.65% international transaction tariff. This surcharge covers cross-border multi-currency conversion settlement fees and processes completely locally outside standard domestic processing arrays.
             </p>
@@ -1122,9 +1166,9 @@ export default function EbaySaleCalculator() {
 
           {/* FAQ ACCORDION 4 */}
           <div className="p-4 rounded-xl border border-slate-100 bg-slate-50/30">
-            <h3 className="font-black text-slate-800 uppercase tracking-tight text-[11px] mb-1.5">
+            <h4 className="font-black text-slate-800 uppercase tracking-tight text-[11px] mb-1.5">
               Q4: How is the penny-perfect break-even retail valuation price calculated inside the workspace memory?
-            </h3>
+            </h4>
             <p>
               The serverless calculation engine loops your absolute wholesale sourcing product cost (COGS) and outbound freight expenses against the combined decimal values of platform percentage fees. The mathematical matrix operates on the formula: <span className="font-mono bg-slate-100 px-1 py-0.5 rounded font-bold text-slate-800">Break-Even Price = (Fixed Charges + Cost of Goods) / (1 - Aggregate Fee Percentages)</span>. Any listing configuration registered above this limit safely prevents negative cash depletion.
             </p>
