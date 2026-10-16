@@ -252,3 +252,5 @@ export const UsDutyNexusEstimator: React.FC = () => {
     </div>
   );
 };
+
+export default UsDutyNexusEstimator;

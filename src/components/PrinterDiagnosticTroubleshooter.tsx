@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Printer, AlertTriangle, CheckCircle2, Wrench } from 'lucide-react';
+import { Printer, AlertTriangle, CheckCircle2, Wrench, ShieldCheck } from 'lucide-react';
 import { ToolArticleGuideSection } from './common/ToolArticleGuideSection';
 
 export interface PrinterDiagnosticTroubleshooterProps {
@@ -25,36 +25,58 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
   };
 
   return (
-    <div className="py-8 bg-slate-900 min-h-screen text-slate-100">
+    <div className="py-12 bg-[#f5f5f7] min-h-screen text-[#1d1d1f] font-[-apple-system,BlinkMacSystemFont,'SF_Pro_Text','Helvetica_Neue',sans-serif]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700 shadow-md">
-          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-orange-950 text-orange-400 border border-orange-800 uppercase tracking-wider">
-            Hardware Lab Diagnostics
-          </span>
-          <h1 className="text-xl sm:text-2xl font-bold text-white mt-1">Thermal Receipt Printer Diagnostic Engine</h1>
-          <p className="text-xs sm:text-sm text-slate-400">Component-level troubleshooting for 80mm ESC/POS thermal printers, paper jams, and cutter motors.</p>
+        <div className="apple-glass-box p-6 space-y-2">
+          <div className="apple-badge">
+            <Printer className="w-3.5 h-3.5 text-[#0071e3]" />
+            <span>Hardware Lab Diagnostics</span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#1d1d1f]">Thermal Receipt Printer Diagnostic Engine</h1>
+          <p className="text-xs sm:text-sm text-[#86868b]">Component-level troubleshooting for 80mm ESC/POS thermal printers, paper jams, and cutter motors.</p>
         </div>
 
-        <div className="bg-slate-800/80 p-6 rounded-2xl border border-slate-700 space-y-4">
-          <label className="text-xs font-bold text-slate-300 block">Select Hardware Error Symptom</label>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-            <button onClick={() => setSymptom('cutter')} className={`p-3 rounded-xl border text-xs font-bold text-left transition-colors cursor-pointer ${symptom === 'cutter' ? 'bg-red-600 text-white border-red-500' : 'bg-slate-900 text-slate-300 border-slate-700'}`}>
+        <div className="apple-glass-box p-6 space-y-5">
+          <label className="text-xs font-bold text-[#86868b] uppercase tracking-wider block">Select Hardware Error Symptom</label>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <button 
+              onClick={() => setSymptom('cutter')} 
+              className={`p-3.5 rounded-xl border text-xs font-semibold text-left transition-all cursor-pointer ${
+                symptom === 'cutter' 
+                  ? 'bg-[#0071e3] text-white border-[#0071e3] shadow-xs' 
+                  : 'bg-white text-[#1d1d1f] border-slate-200/80 hover:bg-slate-50'
+              }`}
+            >
               Cutter Blade Locked
             </button>
-            <button onClick={() => setSymptom('paperjam')} className={`p-3 rounded-xl border text-xs font-bold text-left transition-colors cursor-pointer ${symptom === 'paperjam' ? 'bg-red-600 text-white border-red-500' : 'bg-slate-900 text-slate-300 border-slate-700'}`}>
+            <button 
+              onClick={() => setSymptom('paperjam')} 
+              className={`p-3.5 rounded-xl border text-xs font-semibold text-left transition-all cursor-pointer ${
+                symptom === 'paperjam' 
+                  ? 'bg-[#0071e3] text-white border-[#0071e3] shadow-xs' 
+                  : 'bg-white text-[#1d1d1f] border-slate-200/80 hover:bg-slate-50'
+              }`}
+            >
               LaserJet Fuser Jam
             </button>
-            <button onClick={() => setSymptom('blurry')} className={`p-3 rounded-xl border text-xs font-bold text-left transition-colors cursor-pointer ${symptom === 'blurry' ? 'bg-red-600 text-white border-red-500' : 'bg-slate-900 text-slate-300 border-slate-700'}`}>
+            <button 
+              onClick={() => setSymptom('blurry')} 
+              className={`p-3.5 rounded-xl border text-xs font-semibold text-left transition-all cursor-pointer ${
+                symptom === 'blurry' 
+                  ? 'bg-[#0071e3] text-white border-[#0071e3] shadow-xs' 
+                  : 'bg-white text-[#1d1d1f] border-slate-200/80 hover:bg-slate-50'
+              }`}
+            >
               Faded Print / Light Lines
             </button>
           </div>
 
-          <div className="p-4 bg-slate-900 rounded-xl border border-slate-700 mt-4 space-y-2">
-            <h3 className="text-sm font-bold text-white flex items-center gap-2">
-              <Wrench className="w-4 h-4 text-orange-400" />
+          <div className="apple-result-box p-5 space-y-3">
+            <h3 className="text-sm font-bold text-[#1d1d1f] flex items-center gap-2">
+              <Wrench className="w-4 h-4 text-[#0071e3]" />
               <span>{fixes[symptom].title}</span>
             </h3>
-            <pre className="text-xs text-slate-300 whitespace-pre-wrap leading-relaxed font-mono bg-slate-950 p-3 rounded-lg border border-slate-800">
+            <pre className="text-xs text-[#1d1d1f] whitespace-pre-wrap leading-relaxed font-mono bg-white/80 p-4 rounded-xl border border-black/6">
               {fixes[symptom].solution}
             </pre>
           </div>

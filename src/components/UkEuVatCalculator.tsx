@@ -267,3 +267,5 @@ export const UkEuVatCalculator: React.FC = () => {
     </div>
   );
 };
+
+export default UkEuVatCalculator;

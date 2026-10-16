@@ -227,49 +227,49 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
   );
 
   return (
-    <section id="project-calculator" className="py-20 md:py-28 bg-white border-b border-slate-200">
+    <section id="project-calculator" className="py-20 md:py-28 bg-[#f5f5f7] border-b border-slate-200/80 font-[-apple-system,BlinkMacSystemFont,'SF_Pro_Text','Helvetica_Neue',sans-serif]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 text-red-700 text-xs font-bold uppercase tracking-wider">
-            <Calculator className="w-3.5 h-3.5 text-red-600" />
-            <span>Instant Scope & Quotation Estimator</span>
+          <div className="apple-badge mx-auto">
+            <Calculator className="w-3.5 h-3.5 text-[#0071e3]" />
+            <span>Instant Scope &amp; Quotation Estimator</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-            Web, Software & Developer Cost Quotation Estimator
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1d1d1f] tracking-tight">
+            Web, Software &amp; Developer Cost Quotation Estimator
           </h2>
-          <p className="text-base text-slate-600 leading-relaxed font-sans">
-            Calculate instant estimated investment, timelines, and deliverables. Compare turnkey web & POS software projects, or calculate your exact savings hiring dedicated remote developers vs USA rates.
+          <p className="text-base text-[#86868b] leading-relaxed">
+            Calculate instant estimated investment, timelines, and deliverables. Compare turnkey web &amp; POS software projects, or calculate your exact savings hiring dedicated remote developers vs USA rates.
           </p>
 
           {/* DUAL CALCULATOR TABS */}
-          <div className="inline-flex p-1.5 bg-slate-100 rounded-2xl border border-slate-200 shadow-inner mt-4">
+          <div className="inline-flex p-1 bg-white/80 backdrop-blur-md rounded-2xl border border-black/8 shadow-xs mt-4">
             <button
               type="button"
               onClick={() => setActiveTab('projects')}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
                 activeTab === 'projects'
-                  ? 'bg-white text-slate-900 shadow-sm border border-slate-200/80'
-                  : 'text-slate-600 hover:text-slate-900'
+                  ? 'bg-[#0071e3] text-white shadow-xs'
+                  : 'text-[#1d1d1f] hover:text-[#0071e3]'
               }`}
             >
-              <Layers className="w-4 h-4 text-red-600" />
-              <span>Web, POS & ERP Packages</span>
+              <Layers className="w-4 h-4" />
+              <span>Web, POS &amp; ERP Packages</span>
             </button>
 
             <button
               type="button"
               onClick={() => setActiveTab('developers')}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
                 activeTab === 'developers'
-                  ? 'bg-blue-600 text-white shadow-md'
-                  : 'text-slate-600 hover:text-slate-900'
+                  ? 'bg-[#0071e3] text-white shadow-xs'
+                  : 'text-[#1d1d1f] hover:text-[#0071e3]'
               }`}
             >
-              <Users className="w-4 h-4 text-amber-300" />
+              <Users className="w-4 h-4" />
               <span>Dedicated Developer Cost Calculator</span>
-              <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-extrabold ${
-                activeTab === 'developers' ? 'bg-blue-700 text-white' : 'bg-emerald-100 text-emerald-800'
+              <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${
+                activeTab === 'developers' ? 'bg-white/20 text-white' : 'bg-emerald-50 text-emerald-700 border border-emerald-200'
               }`}>
                 Save 72%
               </span>
@@ -283,16 +283,16 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
         {activeTab === 'projects' && (
           <div>
             {/* Quick Banner Linking to Developer Calculator */}
-            <div className="mb-8 p-4 rounded-2xl bg-gradient-to-r from-blue-50 via-indigo-50/70 to-slate-50 border border-blue-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xs">
+            <div className="mb-8 p-4 rounded-2xl apple-glass-box flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-xl bg-blue-600 text-white shadow-xs">
+                <div className="p-2.5 rounded-xl bg-[#0071e3] text-white shadow-xs">
                   <Users className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="text-xs sm:text-sm font-bold text-slate-900">
+                  <h3 className="text-xs sm:text-sm font-semibold text-[#1d1d1f]">
                     Looking to hire dedicated full-time remote developers instead of fixed-scope?
                   </h3>
-                  <p className="text-[11px] text-slate-600">
+                  <p className="text-[11px] text-[#86868b]">
                     Senior full-stack engineers in Sialkot at $22/hr vs $80/hr USA. Save $110,000+ per year.
                   </p>
                 </div>
@@ -300,7 +300,7 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveTab('developers')}
-                className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-colors cursor-pointer shadow-xs whitespace-nowrap"
+                className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-semibold transition-colors cursor-pointer shadow-xs whitespace-nowrap"
               >
                 <span>Switch to Developer Calculator</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -311,8 +311,8 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
               {/* Left Column: Scope & Feature Selectors */}
               <div className="lg:col-span-7 space-y-6">
                 {/* Step 1: Industry Selection */}
-                <div className="bg-slate-50 p-6 rounded-3xl border border-slate-200 shadow-2xs space-y-3">
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
+                <div className="apple-glass-box p-6 space-y-3">
+                  <label className="block text-xs font-bold text-[#86868b] uppercase tracking-wider">
                     Step 1: Select Your Business Sector in Sialkot
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -324,12 +324,12 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                           onClick={() => setSelectedSectorId(sec.id)}
                           className={`p-3 rounded-xl text-left border transition-all cursor-pointer ${
                             isSelected
-                              ? 'bg-red-600 text-white border-red-600 shadow-xs'
-                              : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-100'
+                              ? 'bg-[#0071e3] text-white border-[#0071e3] shadow-xs'
+                              : 'bg-white border-slate-200/80 text-[#1d1d1f] hover:bg-slate-50'
                           }`}
                         >
                           <span className="text-xs font-bold block">{sec.name}</span>
-                          <span className={`text-[10px] block mt-0.5 line-clamp-1 ${isSelected ? 'text-red-100' : 'text-slate-500'}`}>
+                          <span className={`text-[10px] block mt-0.5 line-clamp-1 ${isSelected ? 'text-blue-100' : 'text-[#86868b]'}`}>
                             {sec.commonNeed}
                           </span>
                         </button>
@@ -339,8 +339,8 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                 </div>
 
                 {/* Step 2: Project Architecture / Package */}
-                <div className="bg-slate-50 p-6 rounded-3xl border border-slate-200 shadow-2xs space-y-3">
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
+                <div className="apple-glass-box p-6 space-y-3">
+                  <label className="block text-xs font-bold text-[#86868b] uppercase tracking-wider">
                     Step 2: Choose Project Architecture
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -357,13 +357,13 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                           }}
                           className={`p-4 rounded-2xl text-left border transition-all cursor-pointer flex flex-col justify-between ${
                             isSelected
-                              ? 'bg-slate-900 text-white border-slate-900 shadow-md'
-                              : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-100'
+                              ? 'bg-[#1d1d1f] text-white border-[#1d1d1f] shadow-md'
+                              : 'bg-white border-slate-200/80 text-[#1d1d1f] hover:bg-slate-50'
                           }`}
                         >
                           <div>
                             <div className="flex items-center justify-between mb-1">
-                              <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${isSelected ? 'bg-red-500 text-white' : 'bg-red-100 text-red-700'}`}>
+                              <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${isSelected ? 'bg-[#0071e3] text-white' : 'bg-slate-100 text-slate-700'}`}>
                                 {tier.days}
                               </span>
                               {tier.id === 'dedicated-developer' && (
@@ -373,13 +373,13 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                               )}
                             </div>
                             <h3 className="text-xs sm:text-sm font-bold mt-1.5 line-clamp-1">{tier.title}</h3>
-                            <p className={`text-[11px] mt-1 line-clamp-2 ${isSelected ? 'text-slate-300' : 'text-slate-500'}`}>
+                            <p className={`text-[11px] mt-1 line-clamp-2 ${isSelected ? 'text-slate-300' : 'text-[#86868b]'}`}>
                               {tier.description}
                             </p>
                           </div>
                           <div className="mt-3 pt-2 border-t border-current/15 flex items-baseline justify-between text-xs">
-                            <span className={isSelected ? 'text-slate-300' : 'text-slate-500'}>Starting from</span>
-                            <span className={`font-black ${isSelected ? 'text-emerald-400' : 'text-slate-900'}`}>
+                            <span className={isSelected ? 'text-slate-300' : 'text-[#86868b]'}>Starting from</span>
+                            <span className={`font-black ${isSelected ? 'text-white' : 'text-[#0071e3]'}`}>
                               Rs. {tier.basePkr.toLocaleString()}
                             </span>
                           </div>
@@ -390,53 +390,53 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                 </div>
 
                 {/* Step 3: Optional Enterprise Add-ons */}
-                <div className="bg-slate-50 p-6 rounded-3xl border border-slate-200 shadow-2xs space-y-3">
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
+                <div className="apple-glass-box p-6 space-y-3">
+                  <label className="block text-xs font-bold text-[#86868b] uppercase tracking-wider">
                     Step 3: Optional High-Value Modules
                   </label>
                   <div className="space-y-2">
-                    <label className="flex items-center justify-between p-3.5 rounded-xl bg-white border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
+                    <label className="flex items-center justify-between p-3.5 rounded-xl bg-white border border-slate-200/80 cursor-pointer hover:bg-slate-50 transition-colors">
                       <div className="flex items-center gap-3">
                         <input
                           type="checkbox"
                           aria-label="European Multilingual Subpath Architecture"
                           checked={addMultilingual}
                           onChange={(e) => setAddMultilingual(e.target.checked)}
-                          className="w-4 h-4 rounded text-red-600 focus:ring-red-500 cursor-pointer"
+                          className="w-4 h-4 rounded text-[#0071e3] focus:ring-[#0071e3] cursor-pointer"
                         />
                         <div>
-                          <span className="text-xs font-bold text-slate-900 block">
-                            European Multilingual Subpath Architecture (German & French)
+                          <span className="text-xs font-bold text-[#1d1d1f] block">
+                            European Multilingual Subpath Architecture (German &amp; French)
                           </span>
-                          <span className="text-[11px] text-slate-500 block">
+                          <span className="text-[11px] text-[#86868b] block">
                             Target OEM buyers in Frankfurt, Munich, and Lyon with hreflang SEO tags.
                           </span>
                         </div>
                       </div>
-                      <span className="text-xs font-bold text-red-600 whitespace-nowrap pl-2">
+                      <span className="text-xs font-bold text-[#0071e3] whitespace-nowrap pl-2">
                         +Rs. 25,000
                       </span>
                     </label>
 
-                    <label className="flex items-center justify-between p-3.5 rounded-xl bg-white border border-slate-200 cursor-pointer hover:bg-slate-100 transition-colors">
+                    <label className="flex items-center justify-between p-3.5 rounded-xl bg-white border border-slate-200/80 cursor-pointer hover:bg-slate-50 transition-colors">
                       <div className="flex items-center gap-3">
                         <input
                           type="checkbox"
                           aria-label="Interactive 3D Product Customizer WebGL"
                           checked={addConfigurator}
                           onChange={(e) => setAddConfigurator(e.target.checked)}
-                          className="w-4 h-4 rounded text-red-600 focus:ring-red-500 cursor-pointer"
+                          className="w-4 h-4 rounded text-[#0071e3] focus:ring-[#0071e3] cursor-pointer"
                         />
                         <div>
-                          <span className="text-xs font-bold text-slate-900 block">
+                          <span className="text-xs font-bold text-[#1d1d1f] block">
                             Interactive 3D Product Customizer (WebGL / Three.js)
                           </span>
-                          <span className="text-[11px] text-slate-500 block">
+                          <span className="text-[11px] text-[#86868b] block">
                             Allow foreign buyers to customize uniforms, gloves, or instruments in real-time.
                           </span>
                         </div>
                       </div>
-                      <span className="text-xs font-bold text-red-600 whitespace-nowrap pl-2">
+                      <span className="text-xs font-bold text-[#0071e3] whitespace-nowrap pl-2">
                         +Rs. 45,000
                       </span>
                     </label>
@@ -446,29 +446,29 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
 
               {/* Right Column: Instant Quotation Summary Card */}
               <div className="lg:col-span-5 space-y-6">
-                <div className="bg-white text-slate-900 p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-200 space-y-6">
+                <div className="apple-glass-box p-6 sm:p-8 space-y-6">
                   {/* Card Header */}
-                  <div className="space-y-1 pb-4 border-b border-slate-100">
-                    <span className="text-xs font-bold text-red-600 uppercase tracking-wider">
+                  <div className="space-y-1 pb-4 border-b border-black/6">
+                    <span className="text-xs font-bold text-[#0071e3] uppercase tracking-wider">
                       Official Estimation Summary
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-black tracking-tight text-slate-900">
+                    <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-[#1d1d1f]">
                       {currentTier.title}
                     </h3>
-                    <span className="text-xs text-slate-500 block font-medium">
+                    <span className="text-xs text-[#86868b] block font-medium">
                       Configured for {currentSector.name}
                     </span>
                   </div>
 
                   {/* Price Display */}
-                  <div className="p-5 rounded-2xl bg-red-50/70 border border-red-200/80 space-y-1">
+                  <div className="p-5 rounded-2xl bg-white/90 border border-slate-200/80 space-y-1 shadow-xs">
                     <div className="flex items-baseline justify-between">
-                      <span className="text-xs text-slate-600 font-semibold">Total Investment (PKR):</span>
-                      <span className="text-2xl sm:text-3xl font-black text-red-700">
+                      <span className="text-xs text-[#86868b] font-medium">Total Investment (PKR):</span>
+                      <span className="text-2xl sm:text-3xl font-black text-[#1d1d1f]">
                         Rs. {totalPkr.toLocaleString()}
                       </span>
                     </div>
-                    <div className="flex items-baseline justify-between text-xs text-slate-600 pt-1.5 border-t border-red-200/60">
+                    <div className="flex items-baseline justify-between text-xs text-[#86868b] pt-2 border-t border-slate-100">
                       <span>Dubai / UAE Equivalent:</span>
                       <span className="font-bold text-emerald-700">~{totalAed} AED</span>
                     </div>
@@ -476,37 +476,37 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
 
                   {/* Delivery & Architecture Details */}
                   <div className="grid grid-cols-2 gap-3 text-xs">
-                    <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                      <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">Timeline</span>
-                      <span className="font-bold text-slate-900 block mt-0.5">{currentTier.days}</span>
+                    <div className="p-3 rounded-xl bg-white/80 border border-slate-200/80">
+                      <span className="text-[10px] text-[#86868b] font-bold uppercase tracking-wider block">Timeline</span>
+                      <span className="font-bold text-[#1d1d1f] block mt-0.5">{currentTier.days}</span>
                     </div>
-                    <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                      <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">Standard</span>
-                      <span className="font-bold text-slate-900 block mt-0.5">Dubai Enterprise</span>
+                    <div className="p-3 rounded-xl bg-white/80 border border-slate-200/80">
+                      <span className="text-[10px] text-[#86868b] font-bold uppercase tracking-wider block">Standard</span>
+                      <span className="font-bold text-[#1d1d1f] block mt-0.5">Dubai Enterprise</span>
                     </div>
                   </div>
 
                   {/* Included Modules Checklist */}
                   <div className="space-y-2.5">
-                    <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
-                      Included Features & Modules:
+                    <span className="text-xs font-bold text-[#86868b] uppercase tracking-wider block">
+                      Included Features &amp; Modules:
                     </span>
                     <div className="space-y-2">
                       {currentTier.includedModules.map((mod, mIdx) => (
-                        <div key={mIdx} className="flex items-start gap-2.5 text-xs text-slate-700">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-600 mt-0.5 flex-shrink-0" />
+                        <div key={mIdx} className="flex items-start gap-2.5 text-xs text-[#1d1d1f]">
+                          <CheckCircle2 className="w-4 h-4 text-[#0071e3] mt-0.5 flex-shrink-0" />
                           <span>{mod}</span>
                         </div>
                       ))}
                       {addMultilingual && (
-                        <div className="flex items-start gap-2.5 text-xs text-amber-800 font-semibold">
-                          <CheckCircle2 className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0" />
+                        <div className="flex items-start gap-2.5 text-xs text-[#1d1d1f]">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 mt-0.5 flex-shrink-0" />
                           <span>Multilingual (DE/FR/ES) with hreflang tags</span>
                         </div>
                       )}
                       {addConfigurator && (
-                        <div className="flex items-start gap-2.5 text-xs text-amber-800 font-semibold">
-                          <CheckCircle2 className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0" />
+                        <div className="flex items-start gap-2.5 text-xs text-[#1d1d1f]">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 mt-0.5 flex-shrink-0" />
                           <span>Interactive 3D WebGL Uniform / Product Configurator</span>
                         </div>
                       )}
@@ -517,10 +517,10 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                   <div className="pt-2 space-y-3">
                     <button
                       onClick={handleRequestProjectQuote}
-                      className="w-full py-4 px-6 rounded-2xl bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-red-600/25 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                      className="apple-calculate-btn py-4 text-sm sm:text-base cursor-pointer"
                     >
-                      <Sparkles className="w-4 h-4 text-amber-300" />
-                      <span>Lock In Estimate & Request Proposal</span>
+                      <Sparkles className="w-4 h-4" />
+                      <span>Lock In Estimate &amp; Request Proposal</span>
                       <ArrowRight className="w-4 h-4 ml-1" />
                     </button>
 
@@ -528,14 +528,14 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                       href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${whatsappMessage}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full py-3.5 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+                      className="w-full py-3 px-6 rounded-2xl bg-[#34c759] hover:bg-[#30b753] text-white font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
                     >
                       <MessageSquare className="w-4 h-4" />
                       <span>Instant WhatsApp Discussion With Senior Engineer</span>
                     </a>
                   </div>
 
-                  <p className="text-[11px] text-slate-400 text-center">
+                  <p className="text-[11px] text-[#86868b] text-center">
                     No hidden setup fees. Estimates include 1-year warranty and code deployment.
                   </p>
                 </div>
@@ -550,13 +550,13 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
         {activeTab === 'developers' && (
           <div className="space-y-8">
             {/* Quick Answer Banner */}
-            <div className="bg-gradient-to-r from-blue-50 via-indigo-50/50 to-emerald-50 border border-blue-200 p-4 sm:p-5 rounded-2xl text-xs sm:text-sm text-slate-800 shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="apple-glass-box p-4 sm:p-5 text-xs sm:text-sm text-[#1d1d1f] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="space-y-1">
-                <span className="font-extrabold text-blue-900 block text-sm sm:text-base flex items-center gap-2">
-                  <Award className="w-4 h-4 text-blue-600" />
+                <span className="font-bold text-[#1d1d1f] block text-sm sm:text-base flex items-center gap-2">
+                  <Award className="w-4 h-4 text-[#0071e3]" />
                   Instant Benchmark: $22/hr Sialkot vs $80/hr USA Standard
                 </span>
-                <p className="text-slate-600 text-xs">
+                <p className="text-[#86868b] text-xs">
                   For <strong>{devTeamSize} {devTier.toUpperCase()} Developer</strong> over <strong>{devMonths} Months</strong> ({devTotalHours.toLocaleString()} billable hours):
                   You invest <strong>${devOffshoreTotal.toLocaleString()}</strong> vs <strong>${devOnshoreTotal.toLocaleString()}</strong> in the USA.
                   You retain <strong className="text-emerald-700">${devNetSavings.toLocaleString()} (~Rs. {Math.round(devNetSavingsPkr).toLocaleString()})</strong> at <strong>{devSavingsPercentage.toFixed(0)}% net savings</strong>.
@@ -567,7 +567,7 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                 <button
                   type="button"
                   onClick={() => onNavigatePage('developer-cost-calculator')}
-                  className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-colors cursor-pointer shadow-xs whitespace-nowrap flex items-center gap-1.5 self-start sm:self-auto"
+                  className="px-4 py-2 rounded-xl bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-semibold transition-colors cursor-pointer shadow-xs whitespace-nowrap flex items-center gap-1.5 self-start sm:self-auto"
                 >
                   <span>Open Full Dedicated Page</span>
                   <ExternalLink className="w-3.5 h-3.5" />
@@ -577,13 +577,13 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               {/* LEFT: CONTROLS (5 Cols) */}
-              <div className="lg:col-span-5 bg-white p-6 sm:p-7 rounded-3xl border border-slate-200 shadow-sm space-y-5">
-                <div className="border-b border-slate-100 pb-3 flex items-center justify-between">
-                  <h3 className="font-extrabold text-slate-900 text-base flex items-center gap-2">
-                    <Users className="w-4 h-4 text-blue-600" />
+              <div className="lg:col-span-5 apple-glass-box p-6 sm:p-7 space-y-5">
+                <div className="border-b border-black/6 pb-3 flex items-center justify-between">
+                  <h3 className="font-bold text-[#1d1d1f] text-base flex items-center gap-2">
+                    <Users className="w-4 h-4 text-[#0071e3]" />
                     <span>Resource Configuration</span>
                   </h3>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">
                     Live Client-Side
                   </span>
                 </div>
@@ -718,17 +718,17 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
               </div>
 
               {/* RIGHT: LIVE ESTIMATE REPORT (7 Cols) */}
-              <div className="lg:col-span-7 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
+              <div className="lg:col-span-7 apple-glass-box p-6 sm:p-8 flex flex-col justify-between space-y-6">
                 <div>
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-2">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-black/6 gap-2">
                     <div>
-                      <span className="text-xs font-bold text-blue-600 uppercase tracking-wider block">
-                        Live Quotation & Efficiency Report
+                      <span className="text-xs font-bold text-[#0071e3] uppercase tracking-wider block">
+                        Live Quotation &amp; Efficiency Report
                       </span>
-                      <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                      <h3 className="text-xl sm:text-2xl font-bold text-[#1d1d1f] tracking-tight">
                         {devTeamSize} {devTier.toUpperCase()} Engineer • {devMonths} Months
                       </h3>
-                      <p className="text-xs text-slate-500 mt-0.5">
+                      <p className="text-xs text-[#86868b] mt-0.5">
                         {devTechStack} • {devTotalHours.toLocaleString()} Total Billable Hours
                       </p>
                     </div>
@@ -745,35 +745,35 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
 
                   {/* Comparison Side-by-Side Cards */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
-                    <div className="p-4 rounded-2xl bg-red-50/70 border border-red-100">
-                      <span className="text-[11px] font-bold text-red-600 uppercase tracking-wider block">
+                    <div className="p-4 rounded-2xl bg-white/80 border border-slate-200/80">
+                      <span className="text-[11px] font-bold text-[#86868b] uppercase tracking-wider block">
                         USA / UK In-House Outlay
                       </span>
-                      <div className="text-2xl font-black text-slate-900 mt-1">
+                      <div className="text-2xl font-black text-[#1d1d1f] mt-1">
                         ${devOnshoreTotal.toLocaleString()}
                       </div>
-                      <span className="text-[10px] text-slate-500 block mt-0.5">
-                        At ${devOnshoreRate}/hr standard salary & overhead
+                      <span className="text-[10px] text-[#86868b] block mt-0.5">
+                        At ${devOnshoreRate}/hr standard salary &amp; overhead
                       </span>
                     </div>
 
-                    <div className="p-4 rounded-2xl bg-emerald-50/80 border border-emerald-200">
-                      <span className="text-[11px] font-bold text-emerald-700 uppercase tracking-wider block">
+                    <div className="p-4 rounded-2xl bg-white/90 border border-[#0071e3]/30 shadow-xs">
+                      <span className="text-[11px] font-bold text-[#0071e3] uppercase tracking-wider block">
                         evonix Global Delivery
                       </span>
-                      <div className="text-2xl font-black text-emerald-900 mt-1">
+                      <div className="text-2xl font-black text-[#0071e3] mt-1">
                         ${devOffshoreTotal.toLocaleString()}
                       </div>
-                      <span className="text-[10px] text-emerald-600 block mt-0.5">
+                      <span className="text-[10px] text-emerald-700 font-semibold block mt-0.5">
                         At ${devOffshoreRate}/hr all-inclusive managed rate
                       </span>
                     </div>
                   </div>
 
                   {/* Net Retained Capital Ribbon */}
-                  <div className="mt-4 p-4 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-700 text-white flex items-center justify-between shadow-md">
+                  <div className="mt-4 p-4 rounded-2xl bg-[#0071e3] text-white flex items-center justify-between shadow-xs">
                     <div>
-                      <span className="text-[10px] font-bold text-emerald-100 uppercase tracking-wider block">
+                      <span className="text-[10px] font-bold text-blue-100 uppercase tracking-wider block">
                         Your Retained Capital (Total Project Savings)
                       </span>
                       <span className="text-2xl sm:text-3xl font-black">
@@ -781,7 +781,7 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                       </span>
                     </div>
                     <div className="text-right">
-                      <span className="text-xs font-bold text-emerald-100 block">PKR Equivalent</span>
+                      <span className="text-xs font-bold text-blue-100 block">PKR Equivalent</span>
                       <span className="text-sm sm:text-base font-extrabold text-white">
                         ~Rs. {Math.round(devNetSavingsPkr).toLocaleString()}
                       </span>
@@ -789,34 +789,34 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                   </div>
 
                   {/* Deliverables Checklist */}
-                  <div className="mt-5 p-4 rounded-xl bg-slate-50 border border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700">
+                  <div className="mt-5 p-4 rounded-xl bg-white/80 border border-slate-200/80 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[#1d1d1f]">
                     <div className="flex items-center gap-1.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
-                      <span>Direct daily Slack & video standups</span>
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#0071e3] flex-shrink-0" />
+                      <span>Direct daily Slack &amp; video standups</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#0071e3] flex-shrink-0" />
                       <span>Strict NDA and 100% IP code ownership</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
-                      <span>Zero recruiter fees & no long lock-in</span>
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#0071e3] flex-shrink-0" />
+                      <span>Zero recruiter fees &amp; no long lock-in</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
-                      <span>Dual-monitor setup & 100% backup power</span>
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#0071e3] flex-shrink-0" />
+                      <span>Dual-monitor setup &amp; 100% backup power</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Action Buttons */}
-                <div className="pt-3 border-t border-slate-100 space-y-2.5">
+                <div className="pt-3 border-t border-black/6 space-y-2.5">
                   <button
                     type="button"
                     onClick={handleRequestDevQuote}
-                    className="w-full py-4 px-6 rounded-2xl bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-red-600/25 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="apple-calculate-btn py-4 text-sm sm:text-base cursor-pointer"
                   >
-                    <Sparkles className="w-4 h-4 text-amber-300" />
+                    <Sparkles className="w-4 h-4" />
                     <span>Get Vetted Developer CVs in 24-48 Hours</span>
                     <ArrowRight className="w-4 h-4 ml-1" />
                   </button>

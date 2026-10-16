@@ -108,18 +108,18 @@ export const FactoryNetworkLatencyTester: React.FC<FactoryNetworkLatencyTesterPr
   };
 
   return (
-    <section id="factory-network-tester" className="py-20 bg-slate-50 text-slate-900 relative overflow-hidden border-t border-slate-200">
+    <section id="factory-network-tester" className="py-20 bg-[#f5f5f7] text-[#1d1d1f] relative overflow-hidden border-t border-slate-200/80 font-[-apple-system,BlinkMacSystemFont,'SF_Pro_Text','Helvetica_Neue',sans-serif]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold uppercase tracking-wider">
-            <Activity className="w-3.5 h-3.5 text-blue-600" />
-            <span>Industrial IT & Infrastructure</span>
+          <div className="apple-badge mx-auto">
+            <Activity className="w-3.5 h-3.5 text-[#0071e3]" />
+            <span>Industrial IT &amp; Infrastructure</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
-            Sialkot Export Factory ERP & Network Latency Benchmark
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#1d1d1f]">
+            Sialkot Export Factory ERP &amp; Network Latency Benchmark
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
+          <p className="text-sm sm:text-base text-[#86868b] leading-relaxed">
             Diagnose latency bottlenecks, packet drops, and SQL database slowdowns across your factory premises.
             evonix provides high-reliability dual-fiber failover, VLAN segmentation, and enterprise firewall routing across Sialkot.
           </p>
@@ -129,7 +129,7 @@ export const FactoryNetworkLatencyTester: React.FC<FactoryNetworkLatencyTesterPr
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column: Industrial Sector Selector */}
           <div className="lg:col-span-5 space-y-3">
-            <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
+            <h3 className="text-xs font-bold text-[#86868b] uppercase tracking-wider mb-2">
               Select Factory Target Profile
             </h3>
             {FACTORY_TARGETS.map((target) => {
@@ -144,18 +144,18 @@ export const FactoryNetworkLatencyTester: React.FC<FactoryNetworkLatencyTesterPr
                   }}
                   className={`p-4 rounded-2xl border transition-all cursor-pointer ${
                     isSelected
-                      ? 'bg-blue-50/80 border-blue-500 shadow-sm ring-1 ring-blue-500/30'
-                      : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'
+                      ? 'apple-glass-box border-[#0071e3] shadow-xs ring-1 ring-[#0071e3]/30 bg-white/95'
+                      : 'bg-white border-slate-200/80 text-[#1d1d1f] hover:bg-slate-50'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2 mb-1">
-                    <span className="text-sm font-bold text-slate-900">{target.name}</span>
-                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-blue-100 text-blue-800">
+                    <span className="text-sm font-bold text-[#1d1d1f]">{target.name}</span>
+                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-blue-50 text-[#0071e3] border border-blue-200/60">
                       Ideal &lt; {target.idealPing}ms
                     </span>
                   </div>
-                  <p className="text-xs text-slate-500 mb-2">{target.location}</p>
-                  <p className="text-xs text-slate-700 bg-slate-100/70 p-2 rounded-xl border border-slate-200 font-medium">
+                  <p className="text-xs text-[#86868b] mb-2">{target.location}</p>
+                  <p className="text-xs text-[#1d1d1f] bg-slate-50 p-2 rounded-xl border border-slate-200/60 font-medium">
                     {target.application}
                   </p>
                 </div>
@@ -165,7 +165,7 @@ export const FactoryNetworkLatencyTester: React.FC<FactoryNetworkLatencyTesterPr
             <button
               onClick={runBenchmark}
               disabled={isRunning}
-              className="w-full py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-bold text-sm shadow-xs transition-colors cursor-pointer flex items-center justify-center gap-2 mt-4"
+              className="apple-calculate-btn mt-4 disabled:opacity-50"
             >
               {isRunning ? (
                 <>
@@ -182,7 +182,7 @@ export const FactoryNetworkLatencyTester: React.FC<FactoryNetworkLatencyTesterPr
           </div>
 
           {/* Right Column: Interactive Benchmark Dashboard */}
-          <div className="lg:col-span-7 bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-xs">
+          <div className="lg:col-span-7 apple-glass-box p-6 sm:p-8 flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
                 <div>

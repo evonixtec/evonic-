@@ -164,3 +164,10 @@
   color: var(--apple-text-primary);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+

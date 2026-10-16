@@ -983,6 +983,172 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'ebay calculator pakistan',
     ],
   },
+  'uk-eu-vat-calculator': {
+    title: 'UK & EU VAT Reverse Charge & VAT MOSS Engine | evonix',
+    description:
+      'Automate HMRC Section 55A and EU Directive 2006/112/EC 0% reverse charge VAT exemptions and statutory invoice clauses for international B2B exporters.',
+    canonicalUrl: `${BASE_URL}/uk-eu-vat-calculator`,
+    ogTitle: 'UK & EU VAT Reverse Charge & VAT MOSS Engine',
+    ogDescription:
+      'HMRC Section 55A and EU Directive 2006/112/EC reverse charge calculator with automated compliance notes.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    keywords: [
+      'uk eu vat calculator',
+      'vat reverse charge calculator',
+      'hmrc section 55a invoice clause',
+      'eu directive 2006 112 ec vat exemption',
+      'cross border vat b2b calculator',
+    ],
+  },
+  'us-duty-nexus-estimator': {
+    title: 'US Customs Tariff & Section 321 De Minimis Calculator | evonix',
+    description:
+      'Calculate US CBP tariffs, verify the $800 duty-free Section 321 entry eligibility, and estimate landed costs for US buyers.',
+    canonicalUrl: `${BASE_URL}/us-duty-nexus-estimator`,
+    ogTitle: 'US Customs Tariff & Section 321 De Minimis Calculator',
+    ogDescription:
+      'US CBP customs tariffs, Section 321 $800 de minimis qualification, and landed cost calculator.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    keywords: [
+      'us duty nexus calculator',
+      'section 321 de minimis calculator',
+      'us cbp import tariff calculator',
+      'hts duty calculator',
+      'landed cost us customs',
+    ],
+  },
+  'ce-ukca-compliance-generator': {
+    title: 'UKCA & CE Declaration of Conformity (DoC) Generator | evonix',
+    description:
+      'Generate audited technical Declaration of Conformity documents for CE Marking (EU MDR Class I) and UKCA tenders.',
+    canonicalUrl: `${BASE_URL}/ce-ukca-compliance-generator`,
+    ogTitle: 'UKCA & CE Declaration of Conformity Generator',
+    ogDescription:
+      'Create compliant CE and UKCA declarations of conformity for international tenders.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    keywords: [
+      'ce ukca compliance generator',
+      'declaration of conformity generator',
+      'eu mdr class 1 doc',
+      'ukca tender declaration template',
+      'ce marking technical file exporter',
+    ],
+  },
+  'tiktok-shop-fee-calculator': {
+    title: 'TikTok Shop Fee Calculator | Calculate Commission & Profit',
+    description:
+      'Use the professional TikTok Shop fee calculator to accurately process TikTok shop fees explained, affiliate commissions, seller margins, and net profits instantly.',
+    canonicalUrl: `${BASE_URL}/tiktok-shop-fee-calculator`,
+    ogTitle: 'TikTok Shop Fee Calculator | Calculate Commission & Profit',
+    ogDescription:
+      'Accurately process TikTok shop fees explained, affiliate commissions, seller margins, and net profits instantly.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    keywords: [
+      'tiktok shop fee calculator',
+      'tiktok seller calculator',
+      'tiktok shop commission calculator',
+      'tiktok shop profit calculator',
+      'tiktok shop margin calculator',
+      'tiktok shop fees explained',
+    ],
+  },
+  'amazon-fba-calculator': {
+    title: 'Amazon FBA Calculator | FBA Fee & Profit Margin Utility',
+    description:
+      'Run the official Amazon FBA calculator to process FBA fee calculator metrics, referral tariffs, amazon seller calculator profiles, and exact profit margins.',
+    canonicalUrl: `${BASE_URL}/amazon-fba-calculator`,
+    ogTitle: 'Amazon FBA Calculator | FBA Fee & Profit Margin Utility',
+    ogDescription:
+      'Process FBA fee calculator metrics, referral tariffs, amazon seller calculator profiles, and exact profit margins.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    keywords: [
+      'amazon fba calculator',
+      'fba fee calculator',
+      'amazon seller calculator',
+      'amazon profit calculator',
+      'amazon fba fees calculator',
+      'amazon fba profit margin calculator',
+    ],
+  },
+  'shopify-fee-calculator': {
+    title: 'Shopify Fee Calculator | Shopify Payment & Profit Utility',
+    description:
+      'Calculate platform billing costs via our Shopify fee calculator. Track shopify profit calculator projections, transaction fees, and payment channels.',
+    canonicalUrl: `${BASE_URL}/shopify-fee-calculator`,
+    ogTitle: 'Shopify Fee Calculator | Shopify Payment & Profit Utility',
+    ogDescription:
+      'Calculate platform billing costs via our Shopify fee calculator. Track shopify profit calculator projections, transaction fees, and payment channels.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    keywords: [
+      'shopify fee calculator',
+      'shopify profit calculator',
+      'shopify transaction fee calculator',
+      'shopify profit margin calculator',
+      'shopify payment calculator',
+      'shopify fees calculator',
+    ],
+  },
+  'stripe-fee-calculator': {
+    title: 'Stripe Fee Calculator | Stripe Transaction & Payout Tool',
+    description:
+      'Run our advanced Stripe fee calculator to analyze stripe transaction fee calculator tiers, processing margins, and reverse payment logic instantly.',
+    canonicalUrl: `${BASE_URL}/stripe-fee-calculator`,
+    ogTitle: 'Stripe Fee Calculator | Stripe Transaction & Payout Tool',
+    ogDescription:
+      'Analyze stripe transaction fee calculator tiers, processing margins, and reverse payment logic instantly.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    keywords: [
+      'stripe fee calculator',
+      'stripe fees calculator',
+      'stripe transaction fee calculator',
+      'stripe payment fee calculator',
+      'stripe processing fee calculator',
+      'stripe commission calculator',
+    ],
+  },
+  'temu-seller-calculator': {
+    title: 'Temu Seller Calculator | Temu Fee & Profit Margin Calculator',
+    description:
+      'Use the real Temu seller calculator to process temu fee calculator rows, commission profiles, supply chain costs, and net margins instantly.',
+    canonicalUrl: `${BASE_URL}/temu-seller-calculator`,
+    ogTitle: 'Temu Seller Calculator | Temu Fee & Profit Margin Calculator',
+    ogDescription:
+      'Process temu fee calculator rows, commission profiles, supply chain costs, and net margins instantly.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    keywords: [
+      'temu seller calculator',
+      'temu fee calculator',
+      'temu seller fee calculator',
+      'temu profit calculator',
+      'temu commission calculator',
+      'temu seller margin calculator',
+    ],
+  },
+  'installation-guide': {
+    title: 'Desktop Software Installation & License Activation Guide | evonix',
+    description:
+      'Step-by-step installation guide for Windows 10/11 and macOS for Evonix fee calculators. Single key activation and hardware ID locking instructions.',
+    canonicalUrl: `${BASE_URL}/installation-guide`,
+    ogTitle: 'Desktop Software Installation & License Activation Guide | evonix',
+    ogDescription:
+      'Step-by-step installation guide for Windows 10/11 and macOS for Evonix fee calculators.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    keywords: [
+      'software installation guide',
+      'evonix license activation',
+      'hardware id finding',
+      'offline fee calculator windows mac',
+    ],
+  },
 };
 
 /**

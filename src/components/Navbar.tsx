@@ -29,32 +29,8 @@ import {
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { isToolPage } from '../lib/toolUtils';
 
-export type NavPageId =
-  | 'home'
-  | 'services'
-  | 'portfolio'
-  | 'shop'
-  | 'about'
-  | 'guides'
-  | 'contact'
-  | 'locations'
-  | 'tools'
-  | 'invoice'
-  | 'export-barcode-studio'
-  | 'ecommerce-calculator'
-  | 'cbm-calculator'
-  | 'developer-cost-calculator'
-  | 'ai-visibility-checker'
-  | 'live-repair-tracker'
-  | 'printer-diagnostics'
-  | 'factory-network-tester'
-  | 'ai-trip-planner'
-  | 'ai-travel-tools'
-  | 'ebay-fee-calculator'
-  | 'admin'
-  | 'doorstep-support'
-  | 'sialkot-export-erp'
-  | 'guidelines';
+import { NavPageId } from '../types';
+export type { NavPageId };
 
 interface NavbarProps {
   currentPage: NavPageId;

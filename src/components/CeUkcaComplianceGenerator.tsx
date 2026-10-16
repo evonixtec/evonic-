@@ -237,3 +237,5 @@ Title: ${signatoryRole}
     </div>
   );
 };
+
+export default CeUkcaComplianceGenerator;

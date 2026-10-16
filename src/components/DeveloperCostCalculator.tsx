@@ -149,3 +149,5 @@ export const DeveloperCostCalculator: React.FC<DeveloperCostCalculatorProps> = (
     </div>
   );
 };
+
+export default DeveloperCostCalculator;

@@ -20,6 +20,7 @@ import { Footer } from './components/Footer';
 import FooterLinks from './components/FooterLinks';
 import PolicyModal, { type PolicyType } from './components/PolicyModal';
 import { SecurityAlertToast } from './components/SecurityAlertToast';
+import { ErrorBoundary } from './components/common/ErrorBoundary';
 import { PageHeaderBanner } from './components/common/PageHeaderBanner';
 import { HomeServicesPreview } from './components/home/HomeServicesPreview';
 import { HomeAboutPreview } from './components/home/HomeAboutPreview';
@@ -34,7 +35,7 @@ import { ToolWorkspaceHeader } from './components/common/ToolWorkspaceHeader';
 import { MobileBottomNav } from './components/MobileBottomNav';
 import { PWAInstallBanner } from './components/PWAInstallBanner';
 import { LocalCity, ClusterService, LOCAL_CITIES, CLUSTER_SERVICES } from './data/localClusters';
-import { MessageSquare, Phone, ArrowUp, ArrowRight, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2, FileText, Barcode, Printer, Boxes, SlidersHorizontal, Calculator, Clock, Wifi } from 'lucide-react';
+import { MessageSquare, Phone, ArrowUp, ArrowRight, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2, FileText, Barcode, Printer, Boxes, SlidersHorizontal, Calculator, Clock, Wifi, Globe } from 'lucide-react';
 import { isToolPage } from './lib/toolUtils';
 
 // Lazy-loaded heavy tools, calculators and modals to reduce main bundle and speed up initial page render
@@ -43,6 +44,9 @@ const EcommerceCalculator = lazy(() => import('./components/EcommerceCalculator'
 const CbmCalculator = lazy(() => import('./components/CbmCalculator'));
 const DeveloperCostCalculator = lazy(() => import('./components/DeveloperCostCalculator').then(m => ({ default: m.DeveloperCostCalculator })));
 const AiVisibilityChecker = lazy(() => import('./components/AiVisibilityChecker').then(m => ({ default: m.AiVisibilityChecker })));
+const UkEuVatCalculator = lazy(() => import('./components/UkEuVatCalculator'));
+const UsDutyNexusEstimator = lazy(() => import('./components/UsDutyNexusEstimator'));
+const CeUkcaComplianceGenerator = lazy(() => import('./components/CeUkcaComplianceGenerator'));
 const ProjectCostCalculator = lazy(() => import('./components/ProjectCostCalculator').then(m => ({ default: m.ProjectCostCalculator })));
 const SialkotAreaCoverage = lazy(() => import('./components/SialkotAreaCoverage').then(m => ({ default: m.SialkotAreaCoverage })));
 const SialkotSeoKeywordsHub = lazy(() => import('./components/SialkotSeoKeywordsHub').then(m => ({ default: m.SialkotSeoKeywordsHub })));
@@ -74,6 +78,12 @@ const DoorstepSupportPage = lazy(() => import('./components/DoorstepSupportPage'
 const SialkotExportErpPage = lazy(() => import('./components/SialkotExportErpPage').then(m => ({ default: m.SialkotExportErpPage })));
 const GuidelinesPage = lazy(() => import('./components/GuidelinesPage').then(m => ({ default: m.GuidelinesPage })));
 const EbaySaleCalculator = lazy(() => import('./components/EbaySaleCalculator'));
+const TikTokShopCalculator = lazy(() => import('./components/TikTokShopCalculator'));
+const AmazonFbaCalculator = lazy(() => import('./components/AmazonFbaCalculator'));
+const ShopifyFeeCalculator = lazy(() => import('./components/ShopifyFeeCalculator'));
+const StripeFeeCalculator = lazy(() => import('./components/StripeFeeCalculator'));
+const TemuSellerCalculator = lazy(() => import('./components/TemuSellerCalculator'));
+const InstallationGuidePage = lazy(() => import('./components/InstallationGuidePage').then(m => ({ default: m.InstallationGuidePage })));
 
 // Loading spinner fallback for lazy chunks
 const LazyLoaderFallback: React.FC = () => (
@@ -1269,6 +1279,60 @@ export default function App() {
               onNavigateToolsHub={() => navigateToPage('tools')}
             />
             <AiVisibilityChecker onOpenQuote={handleOpenQuote} />
+          </div>
+        )}
+
+        {/* ========================================================
+            PAGE: UK & EU VAT REVERSE CHARGE CALCULATOR
+           ======================================================== */}
+        {currentPage === 'uk-eu-vat-calculator' && (
+          <div className="space-y-0">
+            <ToolWorkspaceHeader
+              currentToolId="uk-eu-vat-calculator"
+              toolTitle="UK & EU VAT Reverse Charge & VAT MOSS Engine"
+              toolCategory="UK & Europe Compliance"
+              toolDescription="Automate HMRC Section 55A and EU Directive 2006/112/EC 0% reverse charge VAT exemptions and statutory invoice clauses."
+              icon={<Globe className="w-5 h-5 text-emerald-500" />}
+              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+              onNavigateToolsHub={() => navigateToPage('tools')}
+            />
+            <UkEuVatCalculator />
+          </div>
+        )}
+
+        {/* ========================================================
+            PAGE: US CUSTOMS TARIFF & SECTION 321 CALCULATOR
+           ======================================================== */}
+        {currentPage === 'us-duty-nexus-estimator' && (
+          <div className="space-y-0">
+            <ToolWorkspaceHeader
+              currentToolId="us-duty-nexus-estimator"
+              toolTitle="US Customs Tariff & Section 321 De Minimis Calculator"
+              toolCategory="North America Trade"
+              toolDescription="Calculate US CBP tariffs, verify the $800 duty-free Section 321 clearance, and estimate landed costs for US buyers."
+              icon={<Globe className="w-5 h-5 text-blue-500" />}
+              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+              onNavigateToolsHub={() => navigateToPage('tools')}
+            />
+            <UsDutyNexusEstimator />
+          </div>
+        )}
+
+        {/* ========================================================
+            PAGE: UKCA & CE DECLARATION OF CONFORMITY GENERATOR
+           ======================================================== */}
+        {currentPage === 'ce-ukca-compliance-generator' && (
+          <div className="space-y-0">
+            <ToolWorkspaceHeader
+              currentToolId="ce-ukca-compliance-generator"
+              toolTitle="UKCA & CE Declaration of Conformity (DoC) Generator"
+              toolCategory="UK & Europe Compliance"
+              toolDescription="Generate audited technical Declaration of Conformity documents for CE Marking (EU MDR Class I) and UKCA tenders."
+              icon={<Globe className="w-5 h-5 text-purple-500" />}
+              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+              onNavigateToolsHub={() => navigateToPage('tools')}
+            />
+            <CeUkcaComplianceGenerator />
           </div>
         )}
 
