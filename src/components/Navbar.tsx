@@ -568,6 +568,26 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">Save 72%</span>
                     </button>
 
+                    <a
+                      href="/sialkot-export-erp"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handlePageSelect('sialkot-export-erp');
+                      }}
+                      className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
+                        currentPage === 'sialkot-export-erp' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-base flex items-center justify-center flex-shrink-0">🏭</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
+                          Sialkot Export ERP Suite
+                        </div>
+                        <div className="text-[10px] text-slate-500">WeBOC, export invoices & batch tracking</div>
+                      </div>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-700">ERP</span>
+                    </a>
+
                     <span className="block px-3 py-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider border-t border-slate-100 mt-2 pt-2 pb-1 mb-1">
                       E-Commerce &amp; Growth
                     </span>
@@ -727,6 +747,27 @@ export const Navbar: React.FC<NavbarProps> = ({
                         <div className="text-[10px] text-slate-500">Windows (.exe) &amp; Mac (.dmg) activation</div>
                       </div>
                       <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-slate-200 text-slate-800">Guide</span>
+                    </a>
+
+                    <a
+                      href="/trend-intelligence-suite"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handlePageSelect('trend-intelligence-suite');
+                      }}
+                      className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
+                        currentPage === 'trend-intelligence-suite' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-base flex items-center justify-center flex-shrink-0">🚀</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate flex items-center gap-1.5">
+                          <span>Trend Intelligence Suite</span>
+                          <span className="text-[8px] bg-red-100 text-red-700 px-1 py-0.2 rounded font-bold">V15</span>
+                        </div>
+                        <div className="text-[10px] text-slate-500">Multi-platform keyword trend scoring &amp; failover</div>
+                      </div>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-800">Pro</span>
                     </a>
 
                     <button
@@ -1212,6 +1253,22 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-700">Cargo</span>
                   </button>
 
+                  <a
+                    href="/sialkot-export-erp"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePageSelect('sialkot-export-erp');
+                    }}
+                    className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
+                      currentPage === 'sialkot-export-erp' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span>🏭 Sialkot Export ERP Suite</span>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-700">ERP</span>
+                  </a>
+
                   <button
                     onClick={() => handlePageSelect('ecommerce-calculator')}
                     className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
@@ -1318,6 +1375,22 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <span>💻 Desktop Setup &amp; HWID Guide</span>
                     </div>
                     <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-slate-200 text-slate-800">Guide</span>
+                  </a>
+
+                  <a
+                    href="/trend-intelligence-suite"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePageSelect('trend-intelligence-suite');
+                    }}
+                    className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
+                      currentPage === 'trend-intelligence-suite' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span>🚀 Trend Intelligence Suite</span>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-800">V15</span>
                   </a>
 
                   <button

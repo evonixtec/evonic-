@@ -295,7 +295,7 @@ Installation Guide: /installation-guide
 
         {/* Quick Links to 6 Tools */}
         <div className="apple-glass-box p-6 sm:p-8 space-y-4">
-          <h3 className="font-bold text-base text-[#1d1d1f]">Explore All 6 E-Commerce Fee Calculators</h3>
+          <h3 className="font-bold text-base text-[#1d1d1f]">All 6 E-Commerce Fee Calculators</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
             {[
               { id: 'ebay-fee-calculator', name: 'eBay Fee Calculator', tag: 'Master Reference' },

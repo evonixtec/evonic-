@@ -88,6 +88,16 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onNavigateSection, onOpenQuote
         }
       }
 
+      // Direct root-level slug match (e.g. /pos-software-in-sialkot)
+      const cleanRootSlug = path.replace(/^\/+|\/+$/g, '');
+      if (cleanRootSlug) {
+        const directTarget = ALL_BLOGS.find((b) => b.slug.toLowerCase() === cleanRootSlug || b.id.toString() === cleanRootSlug);
+        if (directTarget) {
+          setReadingBlog(directTarget);
+          return;
+        }
+      }
+
       const hash = window.location.hash.toLowerCase();
       if (hash.startsWith('#blog-')) {
         const idOrSlug = hash.replace('#blog-', '');

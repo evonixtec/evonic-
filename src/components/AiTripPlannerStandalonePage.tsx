@@ -124,7 +124,7 @@ export const AiTripPlannerStandalonePage: React.FC<AiTripPlannerStandalonePagePr
           </div>
         </section>
 
-        {/* High-Resolution Tool Mockup & Semantic Deep-Dive Section */}
+        {/* High-Resolution Tool Mockup & Semantic In-Depth Section */}
         <ToolArticleGuideSection toolId="ai-trip-planner" onOpenQuote={onOpenQuote} />
 
         {/* FAQ Section */}

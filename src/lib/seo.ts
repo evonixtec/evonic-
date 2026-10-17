@@ -1149,6 +1149,25 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'offline fee calculator windows mac',
     ],
   },
+  'trend-intelligence-suite': {
+    title: 'Trend Intelligence Suite V15 | Multi-Platform Trend Scoring | EVONIXTEC',
+    description:
+      'Real-time multi-platform trend scoring engine across Google, Bing, eBay, YouTube, and Amazon with automated edge failover.',
+    canonicalUrl: `${BASE_URL}/trend-intelligence-suite`,
+    ogTitle: 'Trend Intelligence Suite V15 | Evonix Technologies',
+    ogDescription:
+      'Multi-platform keyword trend intelligence engine across Google, Bing, eBay, YouTube, and Amazon.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    keywords: [
+      'trend intelligence suite',
+      'keyword trend analyzer',
+      'ebay trend score',
+      'google trend volume',
+      'amazon sales score',
+      'evonix technologies v15',
+    ],
+  },
 };
 
 /**

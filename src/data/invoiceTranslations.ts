@@ -495,7 +495,7 @@ export const SAMPLE_ITEMS_BY_LANG: Record<
 };
 
 /**
- * Robust Multilingual Number To Words Converter
+ * Complete Multilingual Number To Words Converter
  */
 export function convertNumberToWordsLocalized(
   num: number,

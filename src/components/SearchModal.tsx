@@ -339,7 +339,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         type: 'blog',
         title: '10 Best AI Tools Name for Travel Itinerary (2026 Ultimate Guide)',
         categoryLabel: 'Editorial Guide & Benchmarks',
-        description: 'Deep-dive comparison of top AI travel tools: Wonderplan, Roam Around, Curiosio, Mindtrip, iPlan.ai, Tripnotes, and Evonixtec AI Trip Planner.',
+        description: 'Detailed comparison of top AI travel tools: Wonderplan, Roam Around, Curiosio, Mindtrip, iPlan.ai, Tripnotes, and Evonixtec AI Trip Planner.',
         tags: ['Travel Itinerary', 'AI Tools', 'Travel Guide', 'Best AI Tools for Travel', 'Wonderplan', 'Roam Around', 'Itinerary AI', 'Blog', 'Guide'],
         targetSection: 'blogs',
         targetElementId: 'ai-travel-tools',

@@ -32,7 +32,8 @@ export type NavPageId =
   | 'admin'
   | 'doorstep-support'
   | 'sialkot-export-erp'
-  | 'guidelines';
+  | 'guidelines'
+  | 'trend-intelligence-suite';
 
 export type PageId = NavPageId;
 

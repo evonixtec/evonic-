@@ -84,6 +84,7 @@ const ShopifyFeeCalculator = lazy(() => import('./components/ShopifyFeeCalculato
 const StripeFeeCalculator = lazy(() => import('./components/StripeFeeCalculator'));
 const TemuSellerCalculator = lazy(() => import('./components/TemuSellerCalculator'));
 const InstallationGuidePage = lazy(() => import('./components/InstallationGuidePage').then(m => ({ default: m.InstallationGuidePage })));
+const TrendIntelligenceSuite = lazy(() => import('./components/TrendIntelligenceSuite'));
 
 // Loading spinner fallback for lazy chunks
 const LazyLoaderFallback: React.FC = () => (
@@ -154,7 +155,9 @@ export default function App() {
       path.startsWith('blog/') ||
       path.startsWith('blogs/') ||
       path.startsWith('guide/') ||
-      path.startsWith('guides/')
+      path.startsWith('guides/') ||
+      path === 'pos-software-in-sialkot' ||
+      path.startsWith('pos-software-in-sialkot')
     ) {
       return 'guides';
     }
@@ -272,6 +275,69 @@ export default function App() {
     }
 
     if (
+      path === 'tiktok-shop-fee-calculator' ||
+      path === 'tiktok-shop' ||
+      path === 'tiktok-calculator' ||
+      path === 'tiktok-fee' ||
+      path.startsWith('tiktok-shop') ||
+      path.startsWith('tiktok-fee')
+    ) {
+      return 'tiktok-shop-fee-calculator';
+    }
+
+    if (
+      path === 'amazon-fba-calculator' ||
+      path === 'amazon-fba' ||
+      path === 'amazon-calculator' ||
+      path === 'fba-calculator' ||
+      path.startsWith('amazon-fba') ||
+      path.startsWith('amazon-calculator')
+    ) {
+      return 'amazon-fba-calculator';
+    }
+
+    if (
+      path === 'shopify-fee-calculator' ||
+      path === 'shopify-calculator' ||
+      path === 'shopify-fee' ||
+      path.startsWith('shopify-fee') ||
+      path.startsWith('shopify-calculator')
+    ) {
+      return 'shopify-fee-calculator';
+    }
+
+    if (
+      path === 'stripe-fee-calculator' ||
+      path === 'stripe-calculator' ||
+      path === 'stripe-fee' ||
+      path.startsWith('stripe-fee') ||
+      path.startsWith('stripe-calculator')
+    ) {
+      return 'stripe-fee-calculator';
+    }
+
+    if (
+      path === 'temu-seller-calculator' ||
+      path === 'temu-calculator' ||
+      path === 'temu-seller' ||
+      path === 'temu-fee' ||
+      path.startsWith('temu-seller') ||
+      path.startsWith('temu-calculator')
+    ) {
+      return 'temu-seller-calculator';
+    }
+
+    if (
+      path === 'installation-guide' ||
+      path === 'setup-guide' ||
+      path === 'hwid-guide' ||
+      path === 'desktop-guide' ||
+      path.startsWith('installation-guide')
+    ) {
+      return 'installation-guide';
+    }
+
+    if (
       path === 'ecommerce-calculator' ||
       path === 'ecom-calculator' ||
       path === 'margin-calculator' ||
@@ -322,6 +388,16 @@ export default function App() {
       path.startsWith('ai-visibility')
     ) {
       return 'ai-visibility-checker';
+    }
+
+    if (
+      path === 'trend-intelligence-suite' ||
+      path === 'trend-intelligence' ||
+      path === 'trend-suite' ||
+      path === 'trends' ||
+      path.startsWith('trend-intelligence')
+    ) {
+      return 'trend-intelligence-suite';
     }
 
     if (
@@ -1244,6 +1320,105 @@ export default function App() {
         )}
 
         {/* ========================================================
+            PAGE: TIKTOK SHOP COMMISSION & FEE CALCULATOR
+           ======================================================== */}
+        {currentPage === 'tiktok-shop-fee-calculator' && (
+          <div className="space-y-0">
+            <ToolWorkspaceHeader
+              currentToolId="tiktok-shop-fee-calculator"
+              toolTitle="TikTok Shop Fee Calculator"
+              toolCategory="E-Commerce & Ads"
+              toolDescription="Calculate TikTok Shop platform commission, affiliate margins, logistics costs, and net merchant payout."
+              icon={<SlidersHorizontal className="w-5 h-5 text-pink-500" />}
+              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+              onNavigateToolsHub={() => navigateToPage('tools')}
+            />
+            <TikTokShopCalculator />
+          </div>
+        )}
+
+        {/* ========================================================
+            PAGE: AMAZON FBA REVENUE & PROFIT CALCULATOR
+           ======================================================== */}
+        {currentPage === 'amazon-fba-calculator' && (
+          <div className="space-y-0">
+            <ToolWorkspaceHeader
+              currentToolId="amazon-fba-calculator"
+              toolTitle="Amazon FBA Fee & Profit Calculator"
+              toolCategory="E-Commerce & Export"
+              toolDescription="Calculate Amazon referral tariffs, pick and pack fulfillment costs, and monthly inventory storage charges."
+              icon={<Calculator className="w-5 h-5 text-amber-500" />}
+              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+              onNavigateToolsHub={() => navigateToPage('tools')}
+            />
+            <AmazonFbaCalculator />
+          </div>
+        )}
+
+        {/* ========================================================
+            PAGE: SHOPIFY PLAN & TRANSACTION FEE CALCULATOR
+           ======================================================== */}
+        {currentPage === 'shopify-fee-calculator' && (
+          <div className="space-y-0">
+            <ToolWorkspaceHeader
+              currentToolId="shopify-fee-calculator"
+              toolTitle="Shopify Fee & Transaction Calculator"
+              toolCategory="E-Commerce & Ads"
+              toolDescription="Compare transaction fees across Basic, Shopify, and Advanced plans with external payment gateway rates."
+              icon={<SlidersHorizontal className="w-5 h-5 text-emerald-500" />}
+              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+              onNavigateToolsHub={() => navigateToPage('tools')}
+            />
+            <ShopifyFeeCalculator />
+          </div>
+        )}
+
+        {/* ========================================================
+            PAGE: STRIPE PAYMENT PROCESSING FEE CALCULATOR
+           ======================================================== */}
+        {currentPage === 'stripe-fee-calculator' && (
+          <div className="space-y-0">
+            <ToolWorkspaceHeader
+              currentToolId="stripe-fee-calculator"
+              toolTitle="Stripe Payment Fee Calculator"
+              toolCategory="Business & Finance"
+              toolDescription="Calculate domestic and international Stripe credit card processing fees with forward and reverse payout logic."
+              icon={<Calculator className="w-5 h-5 text-indigo-500" />}
+              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+              onNavigateToolsHub={() => navigateToPage('tools')}
+            />
+            <StripeFeeCalculator />
+          </div>
+        )}
+
+        {/* ========================================================
+            PAGE: TEMU SELLER MARGIN & COMMISSION CALCULATOR
+           ======================================================== */}
+        {currentPage === 'temu-seller-calculator' && (
+          <div className="space-y-0">
+            <ToolWorkspaceHeader
+              currentToolId="temu-seller-calculator"
+              toolTitle="Temu Seller Fee & Margin Calculator"
+              toolCategory="E-Commerce & Export"
+              toolDescription="Calculate Temu marketplace commissions, warehouse fulfillment expenses, and net profit yields."
+              icon={<SlidersHorizontal className="w-5 h-5 text-orange-500" />}
+              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+              onNavigateToolsHub={() => navigateToPage('tools')}
+            />
+            <TemuSellerCalculator />
+          </div>
+        )}
+
+        {/* ========================================================
+            PAGE: DESKTOP SETUP & HARDWARE KEY ACTIVATION GUIDE
+           ======================================================== */}
+        {currentPage === 'installation-guide' && (
+          <InstallationGuidePage
+            onNavigatePage={(page) => navigateToPage(page as NavPageId)}
+          />
+        )}
+
+        {/* ========================================================
             PAGE 14: DEDICATED DEVELOPER COST CALCULATOR
            ======================================================== */}
         {currentPage === 'developer-cost-calculator' && (
@@ -1457,6 +1632,13 @@ export default function App() {
             onNavigatePage={(page, subTarget) => navigateToPage(page as NavPageId, subTarget)}
             onOpenQuote={handleOpenQuote}
           />
+        )}
+
+        {/* ========================================================
+            PAGE 25: TREND INTELLIGENCE SUITE (V15 MASTER BUILD)
+           ======================================================== */}
+        {currentPage === 'trend-intelligence-suite' && (
+          <TrendIntelligenceSuite />
         )}
             </Suspense>
           </motion.div>
