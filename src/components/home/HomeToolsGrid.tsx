@@ -124,11 +124,11 @@ const FEATURED_TOOLS: CoreToolPreview[] = [
   },
   {
     id: 'invoice',
-    name: 'Global Micro-Invoice Generator',
+    name: 'Free Global Micro-Invoice Generator',
     category: 'Business & Finance',
-    badge: 'Zero Database Storage',
-    description: 'Generate multi-currency electronic commercial invoices with instant Code128 barcodes and crisp A4 PDF print export.',
-    metric: '100+ Countries Tax Engine',
+    badge: 'No Signup · 150+ Currencies',
+    description: 'Create invoice in browser, data never leaves your device. Multi-currency invoice generator for freelance billing and small business invoicing with instant A4 PDF.',
+    metric: 'Instant PDF · No Signup',
     icon: <FileText className="w-5 h-5 text-[#0071e3]" />,
   },
   {

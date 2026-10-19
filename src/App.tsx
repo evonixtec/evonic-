@@ -157,7 +157,12 @@ export default function App() {
       path.startsWith('guide/') ||
       path.startsWith('guides/') ||
       path === 'pos-software-in-sialkot' ||
-      path.startsWith('pos-software-in-sialkot')
+      path.startsWith('pos-software-in-sialkot') ||
+      path === 'wholesale-leather-hardware-pos-barcode-system-rangpura-sialkot' ||
+      path.startsWith('wholesale-leather-hardware') ||
+      path === 'mobile-shop-pos-software-sialkot' ||
+      path === 'sports-goods-shop-pos-software-sialkot' ||
+      path === 'surgical-instruments-pos-software-sialkot'
     ) {
       return 'guides';
     }
@@ -699,6 +704,38 @@ export default function App() {
       navigateToPage('ai-travel-tools');
       return;
     }
+    if (elementId === 'tiktok-shop-fee-calculator' || elementId === 'tiktok-shop') {
+      navigateToPage('tiktok-shop-fee-calculator');
+      return;
+    }
+    if (elementId === 'amazon-fba-calculator' || elementId === 'amazon-fba') {
+      navigateToPage('amazon-fba-calculator');
+      return;
+    }
+    if (elementId === 'shopify-fee-calculator' || elementId === 'shopify-fee') {
+      navigateToPage('shopify-fee-calculator');
+      return;
+    }
+    if (elementId === 'stripe-fee-calculator' || elementId === 'stripe-fee') {
+      navigateToPage('stripe-fee-calculator');
+      return;
+    }
+    if (elementId === 'temu-seller-calculator' || elementId === 'temu-seller') {
+      navigateToPage('temu-seller-calculator');
+      return;
+    }
+    if (elementId === 'trend-intelligence-suite' || elementId === 'trend-intelligence') {
+      navigateToPage('trend-intelligence-suite');
+      return;
+    }
+    if (elementId === 'sialkot-export-erp' || elementId === 'sialkot-export-erp-suite') {
+      navigateToPage('sialkot-export-erp');
+      return;
+    }
+    if (elementId === 'installation-guide' || elementId === 'setup-guide' || elementId === 'desktop-installation-guide') {
+      navigateToPage('installation-guide');
+      return;
+    }
 
     // Map sectionId to PageId
     let targetPage: NavPageId = 'home';
@@ -1231,9 +1268,9 @@ export default function App() {
             <div className="print:hidden">
               <ToolWorkspaceHeader
                 currentToolId="invoice"
-                toolTitle="Global Micro-Invoice Generator"
+                toolTitle="Free Global Micro-Invoice Generator - No Signup, 150+ Currencies, Instant PDF"
                 toolCategory="Business & Export"
-                toolDescription="Create zero-database client invoices with 100+ countries tax engine, live Code128 barcodes, and PDF export."
+                toolDescription="Create invoice in browser, data never leaves your device. Designed for freelance billing and small business invoicing with 150+ currencies, paper-style editor, automatic tax calculation, and instant A4 PDF download."
                 icon={<FileText className="w-5 h-5 text-emerald-500" />}
                 onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
                 onNavigateToolsHub={() => navigateToPage('tools')}
@@ -1649,7 +1686,7 @@ export default function App() {
       {currentPage !== 'admin' && (
         <>
           <Footer
-            onNavigate={(sec) => navigateToPage(sec as NavPageId)}
+            onNavigate={(sec, subTarget) => navigateToPage(sec as NavPageId, subTarget)}
             onOpenQuote={() => handleOpenQuote('General Inquiry')}
             onOpenPolicy={(type) => setActivePolicyModal(type)}
           />

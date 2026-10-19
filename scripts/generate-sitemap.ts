@@ -18,6 +18,15 @@ const coreRoutes = [
   { loc: `${DOMAIN}/locations`, changefreq: 'daily', priority: '0.95' },
   { loc: `${DOMAIN}/invoice`, changefreq: 'daily', priority: '0.95' },
   { loc: `${DOMAIN}/ecommerce-calculator`, changefreq: 'daily', priority: '0.95' },
+  { loc: `${DOMAIN}/cbm-calculator`, changefreq: 'daily', priority: '0.95' },
+  { loc: `${DOMAIN}/ebay-fee-calculator`, changefreq: 'daily', priority: '0.95' },
+  { loc: `${DOMAIN}/tiktok-shop-fee-calculator`, changefreq: 'daily', priority: '0.95' },
+  { loc: `${DOMAIN}/amazon-fba-calculator`, changefreq: 'daily', priority: '0.95' },
+  { loc: `${DOMAIN}/shopify-fee-calculator`, changefreq: 'daily', priority: '0.95' },
+  { loc: `${DOMAIN}/stripe-fee-calculator`, changefreq: 'daily', priority: '0.95' },
+  { loc: `${DOMAIN}/temu-seller-calculator`, changefreq: 'daily', priority: '0.95' },
+  { loc: `${DOMAIN}/trend-intelligence-suite`, changefreq: 'daily', priority: '0.95' },
+  { loc: `${DOMAIN}/installation-guide`, changefreq: 'weekly', priority: '0.90' },
   { loc: `${DOMAIN}/ai-tools-name-for-travel-itinerary`, changefreq: 'daily', priority: '0.95' },
   { loc: `${DOMAIN}/tools/ai-trip-planner`, changefreq: 'daily', priority: '0.90' },
 ];
@@ -40,6 +49,7 @@ const specializedRoutes = [
   { loc: `${DOMAIN}/sialkot-it-services`, changefreq: 'weekly', priority: '0.9' },
   { loc: `${DOMAIN}/laptop-repairing-sialkot`, changefreq: 'weekly', priority: '0.9' },
   { loc: `${DOMAIN}/pos-software-sialkot`, changefreq: 'weekly', priority: '0.9' },
+  { loc: `${DOMAIN}/pos-software-in-sialkot`, changefreq: 'weekly', priority: '0.9' },
   { loc: `${DOMAIN}/sialkot-export-erp`, changefreq: 'weekly', priority: '0.9' },
   { loc: `${DOMAIN}/export-barcode-studio`, changefreq: 'weekly', priority: '0.9' },
   { loc: `${DOMAIN}/printer-troubleshooter`, changefreq: 'weekly', priority: '0.9' },
@@ -81,21 +91,42 @@ const policyRoutes = [
   { loc: `${DOMAIN}/warranty-policy`, changefreq: 'monthly', priority: '0.5' },
 ];
 
-// 6. Complete Field Technical Blogs (All 93 articles)
+// Helper to guarantee valid ISO 8601 date format for lastmod
+function formatLastmod(dateStr?: string): string {
+  if (!dateStr) return '2026-10-17T10:00:00+00:00';
+  if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/.test(dateStr)) {
+    return dateStr.includes('+') ? dateStr : `${dateStr}+00:00`;
+  }
+  if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+    return `${dateStr}T10:00:00+00:00`;
+  }
+  const parsed = new Date(dateStr);
+  if (!isNaN(parsed.getTime())) {
+    const yyyy = parsed.getFullYear();
+    const mm = String(parsed.getMonth() + 1).padStart(2, '0');
+    const dd = String(parsed.getDate()).padStart(2, '0');
+    return `${yyyy}-${mm}-${dd}T10:00:00+00:00`;
+  }
+  return '2026-10-17T10:00:00+00:00';
+}
+
+const DEFAULT_LASTMOD = '2026-10-17T10:00:00+00:00';
+
+// 6. Complete Field Technical Blogs
 const blogRoutes = ALL_BLOGS.map((blog) => ({
   loc: `${DOMAIN}/blog/${blog.slug}`,
-  lastmod: blog.publishedDate || TODAY,
+  lastmod: formatLastmod(blog.publishedDate),
   changefreq: 'weekly',
   priority: '0.8',
 }));
 
 // Compile XML Sitemap
 const allEntries = [
-  ...coreRoutes.map((r) => ({ ...r, lastmod: TODAY })),
-  ...subCategoryRoutes.map((r) => ({ ...r, lastmod: TODAY })),
-  ...specializedRoutes.map((r) => ({ ...r, lastmod: TODAY })),
-  ...locationClusterRoutes.map((r) => ({ ...r, lastmod: TODAY })),
-  ...policyRoutes.map((r) => ({ ...r, lastmod: TODAY })),
+  ...coreRoutes.map((r) => ({ ...r, lastmod: DEFAULT_LASTMOD })),
+  ...subCategoryRoutes.map((r) => ({ ...r, lastmod: DEFAULT_LASTMOD })),
+  ...specializedRoutes.map((r) => ({ ...r, lastmod: DEFAULT_LASTMOD })),
+  ...locationClusterRoutes.map((r) => ({ ...r, lastmod: DEFAULT_LASTMOD })),
+  ...policyRoutes.map((r) => ({ ...r, lastmod: DEFAULT_LASTMOD })),
   ...blogRoutes,
 ];
 

@@ -9,7 +9,7 @@ export const FRESH_HUMAN_BLOGS: BlogPost[] = [
     categoryLabel: 'Point of Sale & Retail Automation',
     excerpt: 'Best POS Software in Sialkot for retail, leather, hardware & wholesale shops. Price PKR 15000 - 85000. Offline billing, barcode, inventory. Installation in Kotli Behram, Rangpura, Shahabpura. Call +92 326 324 4002',
     readTime: '5 min read',
-    publishedDate: 'October 17, 2026',
+    publishedDate: '2026-10-17T10:00:00+00:00',
     author: {
       name: 'Raza - Lead POS Engineer at EVONIXTEC',
       role: 'Enterprise POS Systems Specialist',
@@ -61,13 +61,13 @@ Founded with 20+ years of enterprise experience in Dubai, UAE, EVONIXTEC brings 
 
 **2. Barcode & Touch POS Hardware Setup:** Complete setup including thermal receipt printer, rugged 2.4GHz wireless barcode scanner, barcode label printer, and touch POS machine. Range up to 50 meters.
 
-**3. Smart Inventory Management:** Track exact stock with batch-wise purchase rates, supplier details, and low-stock alerts. See our detailed guide on [Wholesale Leather & Hardware POS Barcode System Setup in Rangpura](https://evonixtec.com/wholesale-leather-hardware-pos-barcode-system-rangpura-sialkot).
+**3. Smart Inventory Management:** Track exact stock with batch-wise purchase rates, supplier details, and low-stock alerts. See our detailed guide on [Wholesale Leather & Hardware POS Barcode System Setup in Rangpura](/blog/wholesale-pos-barcode-inventory-rangpura-sialkot).
 
 **4. Leather & Hardware Special Features:** Square-footage matrix for leather hides, meterage for pipes and wires, color lot tracking, and roll management - built specially for Sialkot wholesale hubs.
 
 **5. Credit Ledger & WhatsApp Reminders:** Built-in customer udhar khata with auto SMS and WhatsApp reminders for outstanding market credit.
 
-**6. Profit & Supplier Reports:** Know which batch gave you more profit and which supplier gave you cheaper rate. Check our upcoming guides on [Garments Shop POS Software in Sialkot](/garments-shop-pos-software-sialkot) and [Mobile Shop POS Software Sialkot](/mobile-shop-pos-software-sialkot).
+**6. Profit & Supplier Reports:** Know which batch gave you more profit and which supplier gave you cheaper rate. Check our field guides on [Garments Shop POS Software in Sialkot](/blog/retail-pos-software-rangpura-bazar-sialkot-garments) and [Sialkot Export Factory ERP](/sialkot-export-erp).
 
 ### POS Software Price in Sialkot 2026
 
@@ -83,15 +83,15 @@ No monthly fees for offline version. One-time investment.
 
 We have customized POS for every Sialkot industry:
 
-* [Leather & Rexine Shops in Rangpura](/wholesale-leather-hardware-pos-barcode-system-rangpura-sialkot)
+* [Leather & Rexine Shops in Rangpura](/blog/wholesale-pos-barcode-inventory-rangpura-sialkot)
 * Garments & Cloth Shops in Shahabpura
-* [Mobile & Electronics Shops](/mobile-shop-pos-software-sialkot)
+* [Mobile & Electronics Shops](/services)
 * Hardware & Sanitary Stores in Kotli Behram
 * Sports Goods Shops in Sialkot Cantt
 * Surgical Instruments Traders
 * Wholesale & Super Stores
 
-Want to see how we help sports industry? Read [Sports Goods Shop POS Software Sialkot](/sports-goods-shop-pos-software-sialkot).
+Want to see how we help sports industry? Read [Sports Goods Shop POS Software Sialkot](/blog/sports-goods-b2b-ecommerce-portal-daska-road-sialkot).
 
 ### Verified Client Testimonial (Kotli Behram, Sialkot)
 
@@ -119,7 +119,7 @@ Yes, specially built for Sialkot leather market. It calculates square footage wi
 Mon-Sat: 09:00 AM to 08:00 PM. Emergency support on Sunday.
 
 **Q4: Do you have software for surgical instruments export packing?**
-Yes, we have [Surgical Instruments POS with export packing list](/surgical-instruments-pos-software-sialkot).
+Yes, we have [Surgical Instruments POS with export packing list](/blog/sialkot-surgical-instruments-mdr-udi-barcode-software-guide).
 
 ### Get Your POS Setup Today
 
@@ -145,7 +145,7 @@ Written by **Raza - Lead POS Engineer at EVONIXTEC**. With 20+ years of enterpri
     categoryLabel: 'E-Commerce Software & Utilities',
     excerpt: 'After the huge success of our eBay Calculator, we are launching 5 more powerful tools - TikTok Shop, Amazon FBA, Shopify, Stripe & Temu Calculators for Windows & Mac.',
     readTime: '3 min read',
-    publishedDate: 'October 15, 2026',
+    publishedDate: '2026-10-17T10:00:00+00:00',
     author: {
       name: 'Raza Ahmed',
       role: 'Head of E-Commerce Engineering',

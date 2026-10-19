@@ -128,6 +128,35 @@ export default function AmazonFbaCalculator() {
     }
   };
 
+  const handleExportCSV = () => {
+    if (!isProUnlocked) {
+      setShowPayModal(true);
+      return;
+    }
+    const headers = ['Category', 'Size Tier', 'Listing Price', 'Item Cost', 'Inbound Shipping', 'Fulfillment Fee', 'Referral Fee', 'Total Amazon Fees', 'Net Profit', 'Margin'];
+    const activeCat = FBA_CATEGORIES.find(c => c.id === categoryId) || FBA_CATEGORIES[0];
+    const row = [
+      activeCat.name,
+      sizeTier,
+      listingPrice.toFixed(2),
+      itemCost.toFixed(2),
+      inboundShipping.toFixed(2),
+      fbaFee.toFixed(2),
+      referralFee.toFixed(2),
+      totalAmazonFees.toFixed(2),
+      netProfit.toFixed(2),
+      `${margin.toFixed(1)}%`
+    ];
+    const csvContent = "data:text/csv;charset=utf-8," + [headers.join(","), row.join(",")].join("\n");
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `amazon_fba_report_${categoryId}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const isProBlurActive = activeTab === 'professional' && !isProUnlocked;
 
   return (
@@ -147,18 +176,21 @@ export default function AmazonFbaCalculator() {
           </div>
         </div>
 
-        {/* Red Blinking User Guide Link */}
+        {/* User Guide Link */}
         <div className="text-center">
           <a
-            href="#"
+            href="/installation-guide"
             onClick={(e) => {
-              e.preventDefault();
-              alert("Amazon FBA Calculator PDF Guide will be available upon verified public release.");
+              if (!e.ctrlKey && !e.metaKey && !e.shiftKey) {
+                e.preventDefault();
+                window.history.pushState({}, '', '/installation-guide');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
             }}
-            style={{ color: 'red', animation: 'blinker 1s linear infinite' }}
-            className="font-bold text-sm tracking-wide inline-flex items-center gap-1.5 underline cursor-pointer"
+            className="font-bold text-sm tracking-wide inline-flex items-center gap-1.5 text-blue-600 hover:text-blue-700 underline cursor-pointer"
           >
-            <span>Download Free Amazon FBA Calculator User Guide PDF</span>
+            <span>View Offline Desktop Installation &amp; Single Key Activation Guide</span>
           </a>
         </div>
 
@@ -445,10 +477,7 @@ export default function AmazonFbaCalculator() {
               {/* Pro Feature Export Trigger */}
               <div className="pt-2">
                 <button
-                  onClick={() => {
-                    if (!isProUnlocked) setShowPayModal(true);
-                    else alert("Exporting Amazon FBA Financial Ledger to CSV...");
-                  }}
+                  onClick={handleExportCSV}
                   className="w-full py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-[#1d1d1f] text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer transition-colors"
                 >
                   <FileSpreadsheet className="w-4 h-4 text-[#0071e3]" />

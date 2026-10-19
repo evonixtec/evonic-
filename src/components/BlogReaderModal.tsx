@@ -18,7 +18,7 @@ import {
   Sparkles,
   ExternalLink,
 } from 'lucide-react';
-import { BlogPost, getRelatedBlogs } from '../data/blogs';
+import { BlogPost, getRelatedBlogs, ALL_BLOGS } from '../data/blogs';
 import { SectionId } from '../types';
 import { EvonixMark } from './EvonixLogo';
 
@@ -42,17 +42,22 @@ const sanitizePureText = (text: string): string => {
     .trim();
 };
 
-// Render inline text with clean bolding for key terms without any markdown syntax leaking
-const renderInlineText = (text: string) => {
+// Render inline text with clean bolding for key terms and clickable markdown links [label](url)
+const renderInlineText = (
+  text: string,
+  onNavigateInternal?: (url: string) => void
+) => {
   // First strip complex AI sign combinations
-  let clean = text
+  const clean = text
     .replace(/\*?\s*>\s*\*+\s*—?/g, ' ')
     .replace(/\*+\s*—\s*\*+/g, ' ')
     .replace(/^[>*\s—]+/, '')
     .trim();
 
-  // If text has bold markers **word**, render them as <strong>, else clean any stray asterisks
-  const parts = clean.split(/(\*\*.*?\*\*)/g);
+  // Match bold **word** or markdown links [label](url)
+  const tokenRegex = /(\*\*.*?\*\*|\[.*?\]\(.*?\))/g;
+  const parts = clean.split(tokenRegex);
+
   return parts.map((part, idx) => {
     if (part.startsWith('**') && part.endsWith('**')) {
       const boldText = part.slice(2, -2).replace(/[*_~`>—]/g, '').trim();
@@ -62,6 +67,56 @@ const renderInlineText = (text: string) => {
         </strong>
       );
     }
+
+    if (part.startsWith('[') && part.includes('](') && part.endsWith(')')) {
+      const match = part.match(/^\[(.*?)\]\((.*?)\)$/);
+      if (match) {
+        const label = match[1].replace(/[*_~`>—]/g, '').trim();
+        const url = match[2].trim();
+        const isExternal =
+          url.startsWith('http://') ||
+          url.startsWith('https://') ||
+          url.startsWith('//') ||
+          url.startsWith('mailto:') ||
+          url.startsWith('tel:') ||
+          url.startsWith('wa.me');
+
+        if (isExternal) {
+          return (
+            <a
+              key={idx}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-red-600 hover:text-red-700 underline font-semibold inline-flex items-center gap-0.5"
+            >
+              <span>{label}</span>
+              <ExternalLink className="w-3 h-3 inline-block ml-0.5 opacity-80" />
+            </a>
+          );
+        }
+
+        return (
+          <a
+            key={idx}
+            href={url}
+            onClick={(e) => {
+              e.preventDefault();
+              if (onNavigateInternal) {
+                onNavigateInternal(url);
+              } else {
+                window.history.pushState({}, '', url);
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }
+            }}
+            className="text-red-600 hover:text-red-700 underline font-semibold cursor-pointer"
+          >
+            {label}
+          </a>
+        );
+      }
+    }
+
     // Remove any remaining stray asterisks, backticks, or signs
     const sanitized = part.replace(/[*_~`]/g, '');
     return sanitized;
@@ -80,6 +135,26 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
   if (!blog) return null;
 
   const related = getRelatedBlogs(blog.slug, 3);
+
+  const handleInternalLinkClick = (url: string) => {
+    const cleanUrl = url.replace(/^\/+|\/+$/g, '');
+    if (cleanUrl.startsWith('blog/')) {
+      const slug = cleanUrl.replace('blog/', '');
+      const foundBlog = ALL_BLOGS.find((b) => b.slug.toLowerCase() === slug.toLowerCase() || b.id.toString() === slug);
+      if (foundBlog) {
+        onSelectBlog(foundBlog);
+        return;
+      }
+    }
+    const directBlog = ALL_BLOGS.find((b) => b.slug.toLowerCase() === cleanUrl.toLowerCase());
+    if (directBlog) {
+      onSelectBlog(directBlog);
+      return;
+    }
+    onClose();
+    window.history.pushState({}, '', url.startsWith('/') ? url : `/${url}`);
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  };
 
   const handleShare = () => {
     if (navigator.clipboard) {
@@ -285,13 +360,13 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
                                 return (
                                   <div key={rIdx} className="flex items-start gap-2.5 text-slate-700 pl-1">
                                     <span className="w-1.5 h-1.5 rounded-full bg-red-600 mt-2 flex-shrink-0" />
-                                    <span className="leading-relaxed">{renderInlineText(rTrimmed)}</span>
+                                    <span className="leading-relaxed">{renderInlineText(rTrimmed, handleInternalLinkClick)}</span>
                                   </div>
                                 );
                               }
                               return (
                                 <p key={rIdx} className="text-slate-700 leading-relaxed">
-                                  {renderInlineText(rTrimmed)}
+                                  {renderInlineText(rTrimmed, handleInternalLinkClick)}
                                 </p>
                               );
                             })}
@@ -312,7 +387,7 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
                             <li key={iIdx} className="flex items-start gap-2.5">
                               <span className="w-1.5 h-1.5 rounded-full bg-red-600 mt-2 flex-shrink-0" />
                               <span className="leading-relaxed">
-                                {renderInlineText(cleanItem)}
+                                {renderInlineText(cleanItem, handleInternalLinkClick)}
                               </span>
                             </li>
                           );
@@ -324,7 +399,7 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
                   // 5. Standard paragraph
                   return (
                     <p key={bIdx} className="text-slate-700 leading-relaxed">
-                      {renderInlineText(trimmed)}
+                      {renderInlineText(trimmed, handleInternalLinkClick)}
                     </p>
                   );
                 });

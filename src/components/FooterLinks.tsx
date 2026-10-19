@@ -4,16 +4,16 @@ import { GLOBAL_BLOGS_DATA } from '../config/blogsList';
 export default function FooterLinks() {
   // Sialkot Localized Sells & Service Branches Area Clusters Array
   const locationLinks = [
-    { name: "Sialkot Cantt Hub", path: "/locations/sialkot-cantt" },
-    { name: "Sambrial Laptop Repair", path: "/locations/sambrial/laptop-repair" },
     { name: "Daska IT Support Node", path: "/locations/daska" },
-    { name: "Pasrur Hardware Maintenance", path: "/locations/pasrur" },
-    { name: "Khadim Ali Road Services", path: "/locations/khadim-ali-road" },
-    { name: "Paris Road Tech Center", path: "/locations/paris-road" },
-    { name: "SCCI Chamber Network Service", path: "/locations/scci-area" },
-    { name: "Ugoki Industrial Software Support", path: "/locations/ugoki" },
-    { name: "Wazirabad Tech Hub", path: "/locations/wazirabad" },
+    { name: "Daska Industrial Hardware", path: "/locations/daska/hardware-maintenance" },
+    { name: "Daska POS & Inventory", path: "/locations/daska/pos-systems" },
+    { name: "Sambrial Laptop Repair", path: "/locations/sambrial/laptop-repair" },
     { name: "Sambrial Export Zone", path: "/locations/sambrial" },
+    { name: "Sambrial IT Consultancy", path: "/locations/sambrial/it-consultancy" },
+    { name: "Wazirabad Tech Hub", path: "/locations/wazirabad" },
+    { name: "Wazirabad Web Portals", path: "/locations/wazirabad/web-development" },
+    { name: "Wazirabad Hardware Care", path: "/locations/wazirabad/hardware-maintenance" },
+    { name: "Wazirabad POS Solutions", path: "/locations/wazirabad/pos-systems" },
   ];
 
   // International Premium High-CPC Finance Calculators Web Tools
@@ -24,13 +24,13 @@ export default function FooterLinks() {
     { name: "Shopify Fee Calculator", path: "/shopify-fee-calculator" },
     { name: "Stripe Processing Fee Calculator", path: "/stripe-fee-calculator" },
     { name: "Temu Seller Fee Calculator", path: "/temu-seller-calculator" },
+    { name: "Sialkot Export ERP Suite", path: "/sialkot-export-erp" },
+    { name: "Trend Intelligence Suite", path: "/trend-intelligence-suite" },
     { name: "Global Invoice Generator", path: "/invoice" },
     { name: "E-Commerce Margin Calculator", path: "/ecommerce-calculator" },
     { name: "B2B Packing CBM Engine", path: "/cbm-calculator" },
     { name: "Developer Sourcing Calculator", path: "/hire-dedicated-developer-cost-calculator" },
-    { name: "DHL Freight Analyzer Pro", path: "/professional-freight-analyzer" },
     { name: "Website AI Visibility Checker", path: "/ai-visibility-checker" },
-    { name: "AI Trip Planner Tool", path: "/ai-trip-planner" },
     { name: "Desktop Software Setup Guide", path: "/installation-guide" },
   ];
 

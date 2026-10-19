@@ -237,7 +237,7 @@ export default function TrendIntelligenceSuite() {
 
               {/* ================= PAYONEER ACTIVE PAYWALL BUTTON BLOCK ================= */}
               <a
-                href="https://evonix.lemonsqueezy.com/buy/YOUR-PRODUCT-ID-HERE"
+                href="https://link.payoneer.com/Token?t=92EF253542CE4D4DA2F32B91E7DB463F&src=pl"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-2 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase py-3 px-6 rounded-xl w-full tracking-wider shadow-md transition block text-center cursor-pointer"
@@ -252,7 +252,7 @@ export default function TrendIntelligenceSuite() {
               >
                 Close
               </button>
-              <p className="text-[10px] text-gray-400 mt-3">پیسہ LemonSqueezy سے ہوتا ہوا آپ کے Payoneer میں آئے گا</p>
+              <p className="text-[10px] text-gray-400 mt-3">Secure 256-Bit Encrypted Payoneer Checkout</p>
             </div>
           </div>
         )}

@@ -62,29 +62,35 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
   // 1. GLOBAL MICRO-INVOICE GENERATOR
   invoice: {
     toolId: 'invoice',
-    title: 'Global Micro-Invoice Architecture: Zero-Database Cross-Border Billing & Multi-Currency Standards',
-    metaTitle: 'Free Global Micro-Invoice Generator | Multi-Currency A4 Tax & Commercial Invoices',
-    metaDescription: 'Create professional multi-currency commercial invoices, proforma bills, and tax invoices in Dutch, French, German, Arabic, Urdu, and English with Code128 barcodes and zero-database privacy.',
+    title: 'Free Global Micro-Invoice Generator - No Signup, 150+ Currencies, Instant PDF',
+    metaTitle: 'Free Global Micro-Invoice Generator - No Signup, 150+ Currencies, Instant PDF | evonix',
+    metaDescription: 'Free online invoice generator for freelance billing and small business invoicing. Create multi-currency commercial invoices in browser with paper-style editor, automatic tax calculation, and instant A4 PDF download. No signup required.',
     keywords: [
-      'global micro-invoice generator',
-      'zero database invoice maker',
-      'multilingual commercial invoice pdf',
-      'code 128 barcode invoice generator',
-      'cross border tax invoice generator sialkot',
-      'dutch french arabic urdu invoice maker'
+      'invoice generator',
+      'free invoice generator',
+      'online invoice generator',
+      'micro invoice',
+      'freelance invoice maker',
+      'freelance billing',
+      'small business invoicing',
+      'multi-currency invoice',
+      'paper-style editor',
+      'automatic tax calculation',
+      'free commercial invoice generator',
+      'zero database invoice maker'
     ],
     mockupImage: invoiceMockup,
     mockupWebp: invoiceMockupWebp,
-    imageAlt: 'Global Micro-Invoice Generator Dashboard with Multi-Currency Tax Calculator and Barcode',
-    imageCaption: 'Real-time client-side invoice editor with 50+ country tax presets, Code128 scannable barcodes, and ISO 216 A4 print engine.',
-    badge: 'Zero-Database · ISO 216 A4 Print Engine',
+    imageAlt: 'Free Global Micro-Invoice Generator - No Signup, 150+ Currencies, Instant PDF',
+    imageCaption: 'Real-time client-side invoice editor with 150+ currency selector, 50+ country tax presets, Code128 scannable barcodes, and ISO 216 A4 print engine.',
+    badge: 'No Signup · 150+ Currencies · Instant PDF',
     gradientClass: 'from-emerald-950/40 via-slate-900 to-slate-950 border-emerald-500/20',
-    articleSummary: 'Modern cross-border trade demands financial documentation that meets both strict statutory customs compliance and airtight client confidentiality. The Evonix Global Micro-Invoice Generator operates entirely within your browser runtime without transmitting transaction ledgers to third-party databases, generating ISO 216 A4-compliant commercial invoices with synchronized Code128 barcodes and jurisdiction-specific tax clauses.',
+    articleSummary: 'Modern cross-border trade, freelance billing, and small business invoicing demand financial documentation that meets both strict statutory customs compliance and airtight client confidentiality. The Evonix Free Global Micro-Invoice Generator operates entirely within your browser runtime without transmitting transaction ledgers to third-party databases, generating ISO 216 A4-compliant commercial invoices with synchronized Code128 barcodes, multi-currency support, and automatic tax calculations.',
     sections: [
       {
-        heading: 'Why Zero-Database Architecture Protects Cross-Border Trade Secrets',
+        heading: 'Why Zero-Database Architecture Protects Freelancers & Exporters',
         content: [
-          'In global B2B trade across surgical, sportswear, and industrial goods, invoice ledgers contain sensitive commercial intelligence: exact unit pricing, overseas consignee addresses, bank routing details, and customs declarations. Traditional SaaS billing platforms store these records on centralized cloud databases, exposing exporters to data leaks and unsolicited vendor scrutiny.',
+          'In global freelance billing and B2B trade across surgical, sportswear, and industrial goods, invoice ledgers contain sensitive commercial intelligence: exact unit pricing, overseas consignee addresses, bank routing details, and customs declarations. Traditional SaaS billing platforms store these records on centralized cloud databases, exposing users to data leaks and unsolicited vendor scrutiny.',
           'Our architecture ensures that 100% of the invoice drafting, mathematical tax computations, number-to-words translations, and PDF rendering occur client-side in the browser memory using HTML5 LocalStorage and CSS Paged Media. Not a single byte of your financial record is stored on external servers.'
         ]
       },
@@ -119,20 +125,28 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
     ],
     faqs: [
       {
+        question: 'Is it free?',
+        answer: 'Yes, the Evonix Global Micro-Invoice Generator is 100% free with no hidden charges, watermarks, monthly fees, or signup requirements. You can create unlimited commercial invoices, tax receipts, and proforma bills with high-resolution A4 PDF downloads directly in your browser.'
+      },
+      {
+        question: 'Does it support PKR to USD?',
+        answer: 'Yes! It provides full multi-currency support with over 150+ international currencies including USD ($), PKR (Rs), AED (Dirhams), GBP (£), EUR (€), SAR (Riyals), CAD, AUD, and INR. You can easily bill overseas clients in USD or EUR while operating from Pakistan or the UAE, complete with automatic localized number-to-words currency translation and SWIFT/IBAN banking routing.'
+      },
+      {
+        question: 'Can I use offline?',
+        answer: 'Yes. The generator is engineered with an offline-first, zero-database client-side architecture. Once the web page loads in your browser, all mathematical calculations, automatic tax assessments, paper-style layout rendering, and A4 print/PDF exports execute 100% offline without requiring an active internet connection. Your private financial data never leaves your device.'
+      },
+      {
+        question: 'How do I duplicate an invoice for recurring client billing?',
+        answer: 'Simply click the "Duplicate Invoice" button in the top toolbar. It instantly clones your line items, client details, and tax settings, automatically increments the sequential invoice number (e.g., INV-2026-0043), updates the issue date to today, and saves the new draft to your browser memory—saving freelancers and agencies valuable time.'
+      },
+      {
         question: 'Does Evonix store our client invoices or banking details on a remote server?',
-        answer: 'No. The Global Micro-Invoice Generator runs 100% client-side inside your browser sandbox. Drafts are safely cached in your local device memory (localStorage) and are never sent to remote databases, safeguarding all pricing and banking secrets.'
+        answer: 'No. The invoice studio runs entirely client-side inside your browser sandbox. All invoice history and drafts are saved strictly to your local device memory (HTML5 LocalStorage). No financial records, client names, or bank account numbers are transmitted or stored on remote servers.'
       },
       {
         question: 'How do I ensure only the invoice appears in the printed A4 PDF without website headers?',
         answer: 'The system includes dedicated print CSS rules that automatically isolate the invoice canvas, hide navigation bars, footers, and chat widgets, and enforce precise ISO 216 A4 margins with page-break protection.'
-      },
-      {
-        question: 'Can I add or remove custom payment terms and condition lines?',
-        answer: 'Yes. Every condition item is fully editable directly on the invoice canvas, with quick "+ Add Condition" and trash delete buttons that appear on screen and hide automatically during PDF printing.'
-      },
-      {
-        question: 'Are the Code128 barcodes genuinely scannable by freight forwarders?',
-        answer: 'Yes. The barcode is dynamically constructed using standard Code-128 binary checksum patterns rendered as crisp vector SVG lines, perfectly legible by laser barcode scanners, thermal handhelds, and smartphone logistics apps.'
       }
     ]
   },

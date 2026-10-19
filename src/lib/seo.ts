@@ -628,36 +628,33 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   invoice: {
-    title: 'Free Online Invoice Generator & Maker Pakistan | evonix',
+    title: 'Free Global Micro-Invoice Generator - No Signup, 150+ Currencies, Instant PDF | evonix',
     description:
-      'Free online invoice maker and editor for Pakistan and global businesses. 100% free client-side billing with FBR tax rates, Code128 barcodes, and A4 PDF export.',
-    ogTitle: 'Online Invoice Maker & Generator Pakistan | evonix',
+      'Free online invoice generator for freelance billing and small business invoicing. Create multi-currency commercial invoices in browser with paper-style editor, automatic tax calculation, and instant A4 PDF download. No signup required.',
+    ogTitle: 'Free Global Micro-Invoice Generator - No Signup, 150+ Currencies, Instant PDF',
     ogDescription:
-      'Create professional online invoices free with our zero-database invoice editor. Instant Pakistan GST calculations, barcodes, and print-ready sheets.',
+      'Create invoice in browser, data never leaves your device. Free multi-currency commercial invoices for freelancers and exporters with automatic tax calculations and instant A4 PDF.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalUrl: `${BASE_URL}/invoice`,
     keywords: [
-      'online invoice maker free',
-      'online invoice generator pakistan',
-      'online invoice editor',
-      'online invoice free',
-      'online invoice maker',
-      'online invoice',
-      'free online invoice generator',
+      'invoice generator',
+      'free invoice generator',
       'online invoice generator',
-      'free invoice maker online',
-      'free invoice generator pakistan',
-      'instant online invoice generator',
-      'pdf invoice generator free',
+      'micro invoice',
+      'freelance invoice maker',
+      'freelance billing',
+      'small business invoicing',
+      'multi-currency invoice',
+      'paper-style editor',
+      'automatic tax calculation',
       'free commercial invoice generator',
       'zero database invoice generator',
-      'client side invoice generator',
-      'free invoice generator with tax',
+      'instant pdf invoice',
+      'online invoice maker free',
+      'free invoice generator pakistan',
       'code128 barcode invoice generator',
-      'freelance commercial invoice maker',
-      'print ready A4 invoice template',
-      'amount in words invoice generator',
+      'multi currency invoice maker',
     ],
   },
 
@@ -1414,9 +1411,41 @@ function generateRouteStructuredData(pageId: NavPageId): object {
         'Instant Code128 barcode generation',
         'Dynamic amount in words converter',
         'Print ready A4 commercial invoice sheet',
+        'Local storage invoice history and cloning',
       ],
       breadcrumb: { '@id': `${BASE_URL}/invoice#breadcrumb` },
       publisher: { '@id': `${BASE_URL}/#business` },
+    });
+
+    graph.push({
+      '@type': 'FAQPage',
+      '@id': `${BASE_URL}/invoice#faq`,
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Is it free?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Yes, the Evonix Global Micro-Invoice Generator is 100% free with no hidden charges, watermarks, monthly fees, or signup requirements. Generate unlimited commercial invoices and download instant A4 PDFs.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Does it support PKR to USD?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Yes! It supports over 150+ international currencies including USD ($), PKR (Rs), AED (Dirhams), GBP (£), EUR (€), SAR (Riyals), CAD, AUD, and INR, with automatic localized number-to-words currency translation and IBAN/SWIFT banking routing.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Can I use offline?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Yes. The generator is built using an offline-first, zero-database client-side architecture. All calculations, layout rendering, and PDF exports execute directly in your browser memory without an active internet connection. Data never leaves your device.',
+          },
+        },
+      ],
     });
   } else if (pageId === 'developer-cost-calculator') {
     graph.push({

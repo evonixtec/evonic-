@@ -1,8 +1,9 @@
 // EVONIX TECHNOLOGIES Service Worker - Ultra-Fast Mobile Caching
-const CACHE_NAME = 'evonix-v1';
+const CACHE_NAME = 'evonix-v2';
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
+  '/invoice',
   '/manifest.json',
   '/favicon.svg',
   '/logo-small.svg'

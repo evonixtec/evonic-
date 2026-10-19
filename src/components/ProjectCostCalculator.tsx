@@ -227,7 +227,8 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
   );
 
   return (
-    <section id="project-calculator" className="py-20 md:py-28 bg-[#f5f5f7] border-b border-slate-200/80 font-[-apple-system,BlinkMacSystemFont,'SF_Pro_Text','Helvetica_Neue',sans-serif]">
+    <section id="project-calculator" className="py-20 md:py-28 bg-[#f5f5f7] border-b border-slate-200/80 font-[-apple-system,BlinkMacSystemFont,'SF_Pro_Text','Helvetica_Neue',sans-serif] relative">
+      <div id="estimator" className="absolute -top-20 left-0 w-full h-1 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-10">

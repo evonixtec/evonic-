@@ -126,6 +126,35 @@ export default function TikTokShopCalculator() {
     }
   };
 
+  const handleExportCSV = () => {
+    if (!isProUnlocked) {
+      setShowPayModal(true);
+      return;
+    }
+    const headers = ['Region', 'Selling Price', 'Shipping Charged', 'COGS', 'Shipping Cost', 'Affiliate Rate', 'Orders', 'Referral Fee', 'Total Fees', 'Net Profit', 'Margin'];
+    const row = [
+      activeConfig.name,
+      salePrice.toFixed(2),
+      shippingCharged.toFixed(2),
+      productCost.toFixed(2),
+      shippingCost.toFixed(2),
+      `${affiliateRate}%`,
+      numOrders,
+      referralFee.toFixed(2),
+      totalFees.toFixed(2),
+      netProfit.toFixed(2),
+      `${margin.toFixed(1)}%`
+    ];
+    const csvContent = "data:text/csv;charset=utf-8," + [headers.join(","), row.join(",")].join("\n");
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `tiktok_shop_fee_report_${region.toLowerCase()}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const isProBlurActive = activeTab === 'professional' && !isProUnlocked;
 
   return (
@@ -145,18 +174,21 @@ export default function TikTokShopCalculator() {
           </div>
         </div>
 
-        {/* Red Blinking User Guide Link */}
+        {/* User Guide Link */}
         <div className="text-center">
           <a
-            href="#"
+            href="/installation-guide"
             onClick={(e) => {
-              e.preventDefault();
-              alert("TikTok Shop Fee Calculator PDF Guide will be available upon verified public release.");
+              if (!e.ctrlKey && !e.metaKey && !e.shiftKey) {
+                e.preventDefault();
+                window.history.pushState({}, '', '/installation-guide');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
             }}
-            style={{ color: 'red', animation: 'blinker 1s linear infinite' }}
-            className="font-bold text-sm tracking-wide inline-flex items-center gap-1.5 underline cursor-pointer"
+            className="font-bold text-sm tracking-wide inline-flex items-center gap-1.5 text-blue-600 hover:text-blue-700 underline cursor-pointer"
           >
-            <span>Download Free TikTok Shop Fee Calculator User Guide PDF</span>
+            <span>View Offline Desktop Installation &amp; Single Key Activation Guide</span>
           </a>
         </div>
 
@@ -454,10 +486,7 @@ export default function TikTokShopCalculator() {
               {/* Pro Feature Export Trigger */}
               <div className="pt-2">
                 <button
-                  onClick={() => {
-                    if (!isProUnlocked) setShowPayModal(true);
-                    else alert("Exporting 100-Order TikTok Shop Fee Ledger to CSV/PDF...");
-                  }}
+                  onClick={handleExportCSV}
                   className="w-full py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-[#1d1d1f] text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer transition-colors"
                 >
                   <FileSpreadsheet className="w-4 h-4 text-[#0071e3]" />

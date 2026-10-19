@@ -26,7 +26,7 @@ import {
 } from 'lucide-react';
 
 interface FooterProps {
-  onNavigate: (section: SectionId | string) => void;
+  onNavigate: (section: SectionId | string, subTarget?: string) => void;
   onOpenQuote: () => void;
   onOpenPolicy?: (type: 'privacy' | 'terms' | 'refund' | 'mobile' | 'matrix') => void;
 }
@@ -72,7 +72,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
     },
     {
       name: 'WhatsApp',
-      url: COMPANY_INFO.contact.socials?.whatsapp || 'https://wa.me/9232632440002',
+      url: COMPANY_INFO.contact.socials?.whatsapp || 'https://wa.me/923263244002',
       hoverClass: 'hover:bg-[#25D366] hover:border-[#25D366] hover:text-white',
       label: 'Direct WhatsApp Chat',
       icon: <MessageSquare className="w-4 h-4" />,

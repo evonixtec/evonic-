@@ -112,6 +112,35 @@ export default function TemuSellerCalculator() {
     }
   };
 
+  const handleExportCSV = () => {
+    if (!isProUnlocked) {
+      setShowPayModal(true);
+      return;
+    }
+    const headers = ['Category', 'Selling Price', 'Factory COGS', 'Bulk Freight', 'Packaging/QC', 'Units', 'Temu Commission', 'Customs Tariff', 'Total Deductions', 'Net Payout', 'Margin'];
+    const row = [
+      categoryId,
+      sellingPrice.toFixed(2),
+      factoryCogs.toFixed(2),
+      bulkFreightUnit.toFixed(2),
+      packagingQcCost.toFixed(2),
+      numUnits,
+      temuCommissionFee.toFixed(2),
+      customsFee.toFixed(2),
+      totalPlatformDeductions.toFixed(2),
+      netSellerPayout.toFixed(2),
+      `${marginPercent.toFixed(1)}%`
+    ];
+    const csvContent = "data:text/csv;charset=utf-8," + [headers.join(","), row.join(",")].join("\n");
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `temu_seller_report_${categoryId}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const isProBlurActive = activeTab === 'professional' && !isProUnlocked;
 
   return (
@@ -131,18 +160,21 @@ export default function TemuSellerCalculator() {
           </div>
         </div>
 
-        {/* Red Blinking User Guide Link */}
+        {/* User Guide Link */}
         <div className="text-center">
           <a
-            href="#"
+            href="/installation-guide"
             onClick={(e) => {
-              e.preventDefault();
-              alert("Temu Seller Calculator PDF Guide will be available upon verified public release.");
+              if (!e.ctrlKey && !e.metaKey && !e.shiftKey) {
+                e.preventDefault();
+                window.history.pushState({}, '', '/installation-guide');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
             }}
-            style={{ color: 'red', animation: 'blinker 1s linear infinite' }}
-            className="font-bold text-sm tracking-wide inline-flex items-center gap-1.5 underline cursor-pointer"
+            className="font-bold text-sm tracking-wide inline-flex items-center gap-1.5 text-blue-600 hover:text-blue-700 underline cursor-pointer"
           >
-            <span>Download Free Temu Seller Calculator User Guide PDF</span>
+            <span>View Offline Desktop Installation &amp; Single Key Activation Guide</span>
           </a>
         </div>
 
@@ -401,10 +433,7 @@ export default function TemuSellerCalculator() {
               {/* Pro Feature Export Trigger */}
               <div className="pt-2">
                 <button
-                  onClick={() => {
-                    if (!isProUnlocked) setShowPayModal(true);
-                    else alert("Exporting Temu Cross-Border Ledger to CSV...");
-                  }}
+                  onClick={handleExportCSV}
                   className="w-full py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-[#1d1d1f] text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer transition-colors"
                 >
                   <FileSpreadsheet className="w-4 h-4 text-[#0071e3]" />

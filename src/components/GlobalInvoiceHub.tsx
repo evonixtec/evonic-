@@ -41,7 +41,14 @@ import {
   Shield,
   FileSpreadsheet,
   MessageSquare,
-  Share2
+  Share2,
+  Copy,
+  History,
+  FileDown,
+  Smartphone,
+  ChevronUp,
+  Minus,
+  Maximize2
 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
 import { EvonixLogo } from './EvonixLogo';
@@ -55,6 +62,7 @@ import {
   convertNumberToWordsLocalized
 } from '../data/invoiceTranslations';
 import { MAJOR_50_COUNTRIES, CountryTaxPreset } from '../data/countryPresets';
+import { WORLD_CURRENCIES, getCurrencySymbol } from '../data/worldCurrencies';
 import { ToolArticleGuideSection } from './common/ToolArticleGuideSection';
 
 export interface InvoiceItem {
@@ -64,7 +72,22 @@ export interface InvoiceItem {
   rate: number;
 }
 
+export interface SavedInvoiceRecord {
+  id: string;
+  invoiceNumber: string;
+  invoiceTitle: string;
+  invoiceDate: string;
+  buyerName: string;
+  currency: string;
+  currencySymbol: string;
+  grandTotal: number;
+  itemsCount: number;
+  timestamp: number;
+  snapshot: any;
+}
+
 const STORAGE_KEY = 'evonix_invoice_state_v5';
+const INVOICE_HISTORY_KEY = 'evonix_invoice_history_v1';
 
 /**
  * Visual Vector Code-128 Barcode Generator
@@ -203,6 +226,15 @@ export const GlobalInvoiceHub: React.FC = () => {
   const [savedNotification, setSavedNotification] = useState<boolean | string>(false);
   const [langChangedNotice, setLangChangedNotice] = useState<string | null>(null);
 
+  // Saved Invoices History (100% Client-Side LocalStorage - Data never leaves device)
+  const [invoiceHistory, setInvoiceHistory] = useState<SavedInvoiceRecord[]>([]);
+  const [showHistoryModal, setShowHistoryModal] = useState<boolean>(false);
+
+  // Mobile App-Style Responsive Experience
+  const [mobileMode, setMobileMode] = useState<'editor' | 'preview'>('editor');
+  const [mobileScale, setMobileScale] = useState<'fit' | 'medium' | 'full'>('fit');
+  const [mobileAccordion, setMobileAccordion] = useState<'items' | 'buyer' | 'terms' | 'config' | null>('items');
+
   // Active Controls Tab
   const [activeControlsTab, setActiveControlsTab] = useState<'invoice-meta' | 'company' | 'banking' | 'terms-quotation' | 'stamp-signature'>('invoice-meta');
 
@@ -220,6 +252,10 @@ export const GlobalInvoiceHub: React.FC = () => {
   // Load saved state from localStorage on initial mount
   useEffect(() => {
     try {
+      const historyRaw = localStorage.getItem(INVOICE_HISTORY_KEY);
+      if (historyRaw) {
+        setInvoiceHistory(JSON.parse(historyRaw));
+      }
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const data = JSON.parse(saved);
@@ -493,6 +529,199 @@ export const GlobalInvoiceHub: React.FC = () => {
     setInvoiceNumber(`${invoicePrefix}${padded}`);
   };
 
+  // Helper to build a full snapshot record
+  const buildCurrentSnapshot = (invNum = invoiceNumber) => ({
+    id: `inv-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+    invoiceNumber: invNum,
+    invoiceTitle,
+    invoiceDate,
+    buyerName: buyerName || 'Unnamed Client',
+    currency,
+    currencySymbol,
+    grandTotal,
+    itemsCount: items.length,
+    timestamp: Date.now(),
+    snapshot: {
+      selectedLanguage,
+      invoiceTitle,
+      invoiceTypePreset,
+      selectedCountryId,
+      invoiceNumber: invNum,
+      invoicePrefix,
+      invoiceSequence,
+      invoiceDate,
+      dueDate,
+      poNumber,
+      brandName,
+      brandTagline,
+      customLogoUrl,
+      useOfficialLogo,
+      companyAddress,
+      companyEmail,
+      companyPhone,
+      taxNumber,
+      buyerName,
+      buyerAddress,
+      buyerTaxId,
+      buyerContact,
+      currency,
+      currencySymbol,
+      taxRate,
+      taxName,
+      items: JSON.parse(JSON.stringify(items)),
+      signatoryName,
+      signatoryRole,
+      stampText,
+      showAuthorizedSignature,
+      showStamp,
+      showBarcode,
+      showBankDetails,
+      bankName,
+      accountTitle,
+      iban,
+      swiftBic,
+      paymentTerms,
+      deliveryTerms,
+      declarationText,
+      termsAndConditions: [...termsAndConditions],
+      showQuotationBox,
+      quotationNumber,
+      quotationDate,
+      quotationValidity,
+      quotationNotes,
+    }
+  });
+
+  // Duplicate current invoice: clone items, auto-increment number, set date to today, save to history
+  const handleDuplicateInvoice = () => {
+    const nextSeq = invoiceSequence + 1;
+    const nextInvoiceNumber = `${invoicePrefix}${String(nextSeq).padStart(4, '0')}`;
+    const todayDate = new Date().toISOString().split('T')[0];
+
+    // Save current invoice to history first
+    const currentRecord = buildCurrentSnapshot(invoiceNumber);
+    const updatedHistory = [currentRecord, ...invoiceHistory.filter(h => h.invoiceNumber !== invoiceNumber)].slice(0, 50);
+    setInvoiceHistory(updatedHistory);
+    try {
+      localStorage.setItem(INVOICE_HISTORY_KEY, JSON.stringify(updatedHistory));
+    } catch (err) {
+      console.error('History save error:', err);
+    }
+
+    // Apply duplicated state
+    setInvoiceSequence(nextSeq);
+    setInvoiceNumber(nextInvoiceNumber);
+    setInvoiceDate(todayDate);
+
+    setSavedNotification(`Duplicated & auto-incremented to ${nextInvoiceNumber}`);
+    setTimeout(() => setSavedNotification(false), 3500);
+  };
+
+  // Explicit Save to History (Local Storage)
+  const handleSaveToHistory = () => {
+    const currentRecord = buildCurrentSnapshot(invoiceNumber);
+    const updatedHistory = [currentRecord, ...invoiceHistory.filter(h => h.invoiceNumber !== invoiceNumber)].slice(0, 50);
+    setInvoiceHistory(updatedHistory);
+    try {
+      localStorage.setItem(INVOICE_HISTORY_KEY, JSON.stringify(updatedHistory));
+    } catch (err) {
+      console.error('History save error:', err);
+    }
+    handleSaveToLocalStorage();
+  };
+
+  // Restore invoice from history snapshot
+  const handleRestoreFromHistory = (record: SavedInvoiceRecord) => {
+    const d = record.snapshot;
+    if (!d) return;
+    if (d.selectedLanguage) setSelectedLanguage(d.selectedLanguage);
+    if (d.invoiceTitle) setInvoiceTitle(d.invoiceTitle);
+    if (d.invoiceTypePreset) setInvoiceTypePreset(d.invoiceTypePreset);
+    if (d.selectedCountryId) setSelectedCountryId(d.selectedCountryId);
+    if (d.invoiceNumber) setInvoiceNumber(d.invoiceNumber);
+    if (d.invoicePrefix) setInvoicePrefix(d.invoicePrefix);
+    if (d.invoiceSequence) setInvoiceSequence(d.invoiceSequence);
+    if (d.invoiceDate) setInvoiceDate(d.invoiceDate);
+    if (d.dueDate) setDueDate(d.dueDate);
+    if (d.poNumber) setPoNumber(d.poNumber);
+    if (d.brandName) setBrandName(d.brandName);
+    if (d.brandTagline) setBrandTagline(d.brandTagline);
+    if (d.customLogoUrl) setCustomLogoUrl(d.customLogoUrl);
+    if (typeof d.useOfficialLogo === 'boolean') setUseOfficialLogo(d.useOfficialLogo);
+    if (d.companyAddress) setCompanyAddress(d.companyAddress);
+    if (d.companyEmail) setCompanyEmail(d.companyEmail);
+    if (d.companyPhone) setCompanyPhone(d.companyPhone);
+    if (d.taxNumber) setTaxNumber(d.taxNumber);
+    if (d.buyerName) setBuyerName(d.buyerName);
+    if (d.buyerAddress) setBuyerAddress(d.buyerAddress);
+    if (d.buyerTaxId) setBuyerTaxId(d.buyerTaxId);
+    if (d.buyerContact) setBuyerContact(d.buyerContact);
+    if (d.currency) setCurrency(d.currency);
+    if (d.currencySymbol) setCurrencySymbol(d.currencySymbol);
+    if (d.taxRate !== undefined) setTaxRate(d.taxRate);
+    if (d.taxName) setTaxName(d.taxName);
+    if (d.items && Array.isArray(d.items)) setItems(d.items);
+    if (d.signatoryName) setSignatoryName(d.signatoryName);
+    if (d.signatoryRole) setSignatoryRole(d.signatoryRole);
+    if (d.stampText) setStampText(d.stampText);
+    if (typeof d.showAuthorizedSignature === 'boolean') setShowAuthorizedSignature(d.showAuthorizedSignature);
+    if (typeof d.showStamp === 'boolean') setShowStamp(d.showStamp);
+    if (typeof d.showBarcode === 'boolean') setShowBarcode(d.showBarcode);
+    if (typeof d.showBankDetails === 'boolean') setShowBankDetails(d.showBankDetails);
+    if (d.bankName) setBankName(d.bankName);
+    if (d.accountTitle) setAccountTitle(d.accountTitle);
+    if (d.iban) setIban(d.iban);
+    if (d.swiftBic) setSwiftBic(d.swiftBic);
+    if (d.paymentTerms) setPaymentTerms(d.paymentTerms);
+    if (d.deliveryTerms) setDeliveryTerms(d.deliveryTerms);
+    if (d.declarationText) setDeclarationText(d.declarationText);
+    if (d.termsAndConditions) setTermsAndConditions(d.termsAndConditions);
+    if (typeof d.showQuotationBox === 'boolean') setShowQuotationBox(d.showQuotationBox);
+    if (d.quotationNumber) setQuotationNumber(d.quotationNumber);
+    if (d.quotationDate) setQuotationDate(d.quotationDate);
+    if (d.quotationValidity) setQuotationValidity(d.quotationValidity);
+    if (d.quotationNotes) setQuotationNotes(d.quotationNotes);
+
+    setShowHistoryModal(false);
+    setSavedNotification(`Restored invoice ${record.invoiceNumber}`);
+    setTimeout(() => setSavedNotification(false), 3000);
+  };
+
+  // Delete single history item
+  const handleDeleteHistoryItem = (id: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    const updated = invoiceHistory.filter(h => h.id !== id);
+    setInvoiceHistory(updated);
+    try {
+      localStorage.setItem(INVOICE_HISTORY_KEY, JSON.stringify(updated));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  // Clear all history
+  const handleClearHistory = () => {
+    if (window.confirm('Clear all local invoice history? This cannot be undone.')) {
+      setInvoiceHistory([]);
+      try {
+        localStorage.removeItem(INVOICE_HISTORY_KEY);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  };
+
+  // Export JSON backup
+  const handleExportBackup = () => {
+    const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(invoiceHistory, null, 2));
+    const downloadAnchor = document.createElement('a');
+    downloadAnchor.setAttribute('href', dataStr);
+    downloadAnchor.setAttribute('download', `evonix_invoices_backup_${new Date().toISOString().split('T')[0]}.json`);
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+  };
+
   // Custom Logo upload via FileReader
   const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -546,6 +775,16 @@ export const GlobalInvoiceHub: React.FC = () => {
 
   const handleUpdateItem = (id: string, field: keyof InvoiceItem, value: any) => {
     setItems(items.map((it) => (it.id === id ? { ...it, [field]: value } : it)));
+  };
+
+  const handleUpdateItemQuantity = (id: string, delta: number) => {
+    setItems(items.map((it) => {
+      if (it.id === id) {
+        const nextQ = Math.max(1, (Number(it.quantity) || 1) + delta);
+        return { ...it, quantity: nextQ };
+      }
+      return it;
+    }));
   };
 
   // Filtered countries for the modal
@@ -674,99 +913,573 @@ export const GlobalInvoiceHub: React.FC = () => {
         }
       `}</style>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5 print:p-0 print:max-w-none">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5 print:p-0 print:max-w-none pb-24 sm:pb-8">
         
         {/* ========================================================
-            1. TOP MANAGEMENT TOOLBAR (100% Hidden in Print/PDF)
+            1. TOP HERO HEADER & VIRAL PRIVACY PROMISE (100% Client-Side)
            ======================================================== */}
-        <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-wrap items-center justify-between gap-4 print:hidden">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-600 to-red-800 text-white flex items-center justify-center font-black shadow-sm flex-shrink-0">
-              <FileSpreadsheet className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-base sm:text-lg font-bold text-slate-900">
-                  Global Professional Invoice Studio
-                </h1>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
-                  <CheckCheck className="w-3 h-3 text-emerald-600" />
-                  <span>Executive A4 Format</span>
+        <div className="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white p-5 sm:p-7 rounded-3xl border border-slate-800 shadow-xl space-y-4 print:hidden">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+            <div className="space-y-3 max-w-3xl">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5 shadow-xs">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>No Signup · Zero Database · 100% Client-Side</span>
+                </span>
+                <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-slate-800 text-slate-300 border border-slate-700">
+                  150+ Currencies &amp; 50+ Country Tax Engines
+                </span>
+                <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-blue-500/10 text-blue-300 border border-blue-500/20 flex items-center gap-1">
+                  <CheckCheck className="w-3.5 h-3.5 text-blue-400" />
+                  <span>ISO 216 A4 Print Engine</span>
                 </span>
               </div>
-              <p className="text-xs text-slate-500">
-                100% Editable Commercial Invoice Number, Title, Tax, Address &amp; Wire Details · 50+ Country Engines
-              </p>
+
+              {/* Exact H1 requested by user */}
+              <h1 className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight leading-snug">
+                Free Global Micro-Invoice Generator - No Signup, 150+ Currencies, Instant PDF
+              </h1>
+
+              {/* Exact 2 lines requested by user highlighting the viral privacy trend */}
+              <div className="p-3.5 rounded-2xl bg-slate-900/90 border border-emerald-500/25 text-slate-300 text-xs sm:text-sm space-y-1.5">
+                <p className="font-bold text-emerald-300 flex items-center gap-1.5 text-sm sm:text-base">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                  <span>Create invoice in browser, data never leaves your device.</span>
+                </p>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Engineered with zero-database privacy for <strong className="text-slate-200">freelance billing</strong> and <strong className="text-slate-200">small business invoicing</strong>. Enjoy a high-precision <strong className="text-slate-200">paper-style editor</strong>, <strong className="text-slate-200">multi-currency invoice</strong> support, <strong className="text-slate-200">automatic tax calculation</strong>, and instant high-resolution A4 PDF export with scannable Code128 barcodes.
+                </p>
+              </div>
+            </div>
+
+            {/* Quick Action Buttons Group */}
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-2.5 flex-shrink-0 min-w-[210px]">
+              {/* Primary Download PDF Button */}
+              <button
+                type="button"
+                onClick={() => window.print()}
+                className="w-full px-5 py-3 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg hover:shadow-indigo-500/25 cursor-pointer transition-all transform active:scale-95"
+                title="Download or Print Instant ISO 216 A4 PDF without website chrome"
+              >
+                <Download className="w-4 h-4" />
+                <span>Download PDF</span>
+              </button>
+
+              {/* Duplicate Invoice Button */}
+              <button
+                type="button"
+                onClick={handleDuplicateInvoice}
+                className="w-full px-4 py-2.5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-amber-300 hover:text-amber-200 border border-amber-500/30 font-bold text-xs flex items-center justify-center gap-2 cursor-pointer transition-all shadow-xs"
+                title="Clones this invoice, increments invoice number, and saves a copy to your device Local Storage"
+              >
+                <Copy className="w-3.5 h-3.5 text-amber-400" />
+                <span>Duplicate Invoice</span>
+              </button>
+
+              {/* Local Storage History Button */}
+              <button
+                type="button"
+                onClick={() => setShowHistoryModal(true)}
+                className="w-full px-4 py-2.5 rounded-2xl bg-emerald-950/60 hover:bg-emerald-900/60 text-emerald-300 border border-emerald-500/30 text-xs font-bold flex items-center justify-center gap-2 cursor-pointer transition-colors shadow-xs"
+                title="View invoices saved strictly on your local browser memory"
+              >
+                <History className="w-3.5 h-3.5 text-emerald-400" />
+                <span>History ({invoiceHistory.length})</span>
+              </button>
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
-            {/* Upload Custom Logo Button */}
+          {/* Secondary Utility Controls Bar */}
+          <div className="pt-3 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center gap-2">
+              {/* Upload Custom Logo Button */}
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                title="Upload custom business or store logo (PNG, JPG, SVG)"
+                className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs flex items-center gap-1.5 cursor-pointer border border-slate-700 transition-colors"
+              >
+                <Upload className="w-3.5 h-3.5 text-blue-400" />
+                <span>{customLogoUrl && !useOfficialLogo ? 'Change Logo' : 'Upload Logo'}</span>
+              </button>
+
+              {/* Auto-Increment Invoice Number Button */}
+              <button
+                type="button"
+                onClick={handleIncrementInvoiceNumber}
+                title="Generate Next Sequential Invoice Number"
+                className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs flex items-center gap-1.5 cursor-pointer border border-slate-700 transition-colors"
+              >
+                <Hash className="w-3.5 h-3.5 text-red-400" />
+                <span>{t.nextNoButtonText} ({invoicePrefix}{String(invoiceSequence + 1).padStart(4, '0')})</span>
+              </button>
+
+              {/* Save to Local Storage */}
+              <button
+                type="button"
+                onClick={handleSaveToHistory}
+                className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-xs transition-colors"
+                title="Saves this draft and adds it to your device Local Storage history"
+              >
+                {savedNotification ? <Check className="w-3.5 h-3.5" /> : <Save className="w-3.5 h-3.5" />}
+                <span>{typeof savedNotification === 'string' ? savedNotification : (savedNotification ? 'Saved locally!' : 'Save Draft')}</span>
+              </button>
+
+              {/* Reset to Defaults */}
+              <button
+                type="button"
+                onClick={handleResetToDefaults}
+                title="Reset all settings to original defaults"
+                className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-red-950/60 hover:text-red-300 text-slate-400 font-medium text-xs flex items-center gap-1.5 cursor-pointer border border-slate-700 transition-colors"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>{t.resetButtonText}</span>
+              </button>
+            </div>
+
+            <div className="flex items-center gap-2">
+              {/* Share via WhatsApp */}
+              <button
+                type="button"
+                onClick={handleShareOnWhatsApp}
+                className="px-3 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-xs transition-colors"
+                title="Share formatted invoice summary and total directly to WhatsApp"
+              >
+                <MessageSquare className="w-3.5 h-3.5" />
+                <span>Share WhatsApp</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* ========================================================
+            MOBILE-SPECIFIC APP-STYLE TOUCH EDITOR (sm:hidden, print:hidden)
+           ======================================================== */}
+        <div className="block sm:hidden print:hidden space-y-3.5">
+          {/* Segmented View Switcher */}
+          <div className="bg-white p-1.5 rounded-2xl border border-slate-200 shadow-xs grid grid-cols-2 gap-1.5">
             <button
               type="button"
-              onClick={() => fileInputRef.current?.click()}
-              title="Upload custom business or store logo (PNG, JPG, SVG)"
-              className="px-3 py-2 rounded-xl bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 font-bold text-xs flex items-center gap-1.5 cursor-pointer border border-slate-200 transition-colors shadow-2xs"
+              onClick={() => setMobileMode('editor')}
+              className={`py-2 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+                mobileMode === 'editor'
+                  ? 'bg-slate-900 text-white shadow-sm font-black'
+                  : 'bg-slate-50 text-slate-600 hover:text-slate-900'
+              }`}
             >
-              <Upload className="w-3.5 h-3.5 text-blue-600" />
-              <span>{customLogoUrl && !useOfficialLogo ? 'Change Logo' : 'Upload Logo'}</span>
+              <Smartphone className="w-4 h-4 text-emerald-400" />
+              <span>Mobile Form Editor</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setMobileMode('preview')}
+              className={`py-2 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+                mobileMode === 'preview'
+                  ? 'bg-blue-600 text-white shadow-sm font-black'
+                  : 'bg-slate-50 text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <Eye className="w-4 h-4" />
+              <span>Live A4 Preview</span>
+            </button>
+          </div>
+
+          {/* Mobile Fast Language & Currency Quick Bar */}
+          <div className="grid grid-cols-2 gap-2">
+            <div className="flex items-center justify-between gap-1 p-2 bg-white rounded-xl border border-slate-200 shadow-2xs">
+              <span className="text-[10px] font-bold text-slate-500 uppercase flex items-center gap-1">
+                <Languages className="w-3 h-3 text-red-600" />
+                <span>Lang:</span>
+              </span>
+              <select
+                value={selectedLanguage}
+                onChange={(e) => handleSelectLanguage(e.target.value as SupportedInvoiceLanguage, false)}
+                className="text-xs font-bold bg-transparent text-slate-800 focus:outline-none max-w-[100px] truncate"
+              >
+                {SUPPORTED_LANGUAGES.map((l) => (
+                  <option key={l.code} value={l.code}>{l.flag} {l.name}</option>
+                ))}
+              </select>
+            </div>
+
+            <div className="flex items-center justify-between gap-1 p-2 bg-white rounded-xl border border-slate-200 shadow-2xs">
+              <span className="text-[10px] font-bold text-slate-500 uppercase flex items-center gap-1">
+                <Globe2 className="w-3 h-3 text-blue-600" />
+                <span>Cur:</span>
+              </span>
+              <select
+                value={currency}
+                onChange={(e) => {
+                  const cur = e.target.value;
+                  setCurrency(cur);
+                  const sym = getCurrencySymbol(cur);
+                  setCurrencySymbol(sym);
+                }}
+                className="text-xs font-bold bg-transparent text-slate-800 focus:outline-none max-w-[100px] truncate font-mono"
+              >
+                {WORLD_CURRENCIES.map((c) => (
+                  <option key={c.code} value={c.code}>{c.code} ({getCurrencySymbol(c.code)})</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          {/* Mobile Grand Total Summary Card */}
+          <div className="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white p-4 rounded-2xl border border-slate-800 shadow-md flex items-center justify-between">
+            <div className="space-y-0.5">
+              <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Grand Total</span>
+              <div className="text-xl font-black text-emerald-400 flex items-baseline gap-1">
+                <span>{currencySymbol} {grandTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                <span className="text-xs text-slate-400 font-mono font-normal">{currency}</span>
+              </div>
+              <div className="text-[10px] text-slate-400 font-mono flex items-center gap-2">
+                <span>{invoiceNumber}</span>
+                <span>·</span>
+                <span>{items.length} item{items.length === 1 ? '' : 's'}</span>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <button
+                type="button"
+                onClick={() => setMobileMode('preview')}
+                className="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs flex items-center justify-center gap-1 shadow-xs"
+              >
+                <Eye className="w-3.5 h-3.5" />
+                <span>Preview</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowHistoryModal(true)}
+                className="px-3 py-1 rounded-xl bg-slate-800 text-slate-300 text-[11px] font-semibold flex items-center justify-center gap-1 border border-slate-700"
+              >
+                <History className="w-3 h-3 text-emerald-400" />
+                <span>History ({invoiceHistory.length})</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Section 1: Line Items (Hero on Mobile) */}
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
+            <div className="p-3.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="w-6 h-6 rounded-lg bg-emerald-600 text-white text-xs font-bold flex items-center justify-center">
+                  {items.length}
+                </span>
+                <span className="font-bold text-xs text-slate-900">Line Items &amp; Charges</span>
+              </div>
+              <button
+                type="button"
+                onClick={handleAddItem}
+                className="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1 shadow-2xs cursor-pointer"
+              >
+                <Plus className="w-3 h-3" />
+                <span>Add Item</span>
+              </button>
+            </div>
+
+            <div className="p-3 space-y-3">
+              {items.map((it, idx) => (
+                <div key={it.id} className="p-3 bg-slate-50/70 rounded-xl border border-slate-200/90 space-y-2.5">
+                  <div className="flex items-start justify-between gap-2">
+                    <span className="text-[10px] font-mono font-bold text-slate-400 mt-1.5">#{idx + 1}</span>
+                    <input
+                      type="text"
+                      value={it.description}
+                      onChange={(e) => handleUpdateItem(it.id, 'description', e.target.value)}
+                      placeholder="Item or service description"
+                      className="flex-1 text-xs font-semibold text-slate-900 bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveItem(it.id)}
+                      disabled={items.length <= 1}
+                      className="p-1.5 text-slate-400 hover:text-red-500 rounded-lg bg-white border border-slate-200 disabled:opacity-30 cursor-pointer"
+                      title="Delete item"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+
+                  <div className="flex items-center justify-between gap-2 pt-1 border-t border-slate-200/60">
+                    {/* Touch Quantity Stepper */}
+                    <div className="flex items-center gap-1 bg-white border border-slate-200 rounded-lg p-0.5">
+                      <button
+                        type="button"
+                        onClick={() => handleUpdateItemQuantity(it.id, -1)}
+                        className="w-7 h-7 flex items-center justify-center text-slate-600 hover:bg-slate-100 rounded font-bold cursor-pointer"
+                        aria-label="Decrease quantity"
+                      >
+                        <Minus className="w-3 h-3" />
+                      </button>
+                      <input
+                        type="number"
+                        inputMode="numeric"
+                        min="1"
+                        value={it.quantity}
+                        onChange={(e) => handleUpdateItem(it.id, 'quantity', Math.max(1, parseInt(e.target.value, 10) || 1))}
+                        className="w-10 text-center font-bold text-xs text-slate-800 focus:outline-none"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => handleUpdateItemQuantity(it.id, 1)}
+                        className="w-7 h-7 flex items-center justify-center text-slate-600 hover:bg-slate-100 rounded font-bold cursor-pointer"
+                        aria-label="Increase quantity"
+                      >
+                        <Plus className="w-3 h-3" />
+                      </button>
+                    </div>
+
+                    {/* Rate Input */}
+                    <div className="flex items-center gap-1 bg-white border border-slate-200 rounded-lg px-2 py-1">
+                      <span className="text-[11px] font-bold text-slate-400">{currencySymbol}</span>
+                      <input
+                        type="number"
+                        step="any"
+                        inputMode="decimal"
+                        value={it.rate}
+                        onChange={(e) => handleUpdateItem(it.id, 'rate', parseFloat(e.target.value) || 0)}
+                        placeholder="Rate"
+                        className="w-16 font-mono font-bold text-xs text-slate-900 focus:outline-none text-right"
+                      />
+                    </div>
+
+                    {/* Line Subtotal */}
+                    <div className="text-right">
+                      <span className="text-[10px] text-slate-400 block font-medium">Subtotal</span>
+                      <span className="font-bold text-xs text-slate-900">
+                        {currencySymbol} {((Number(it.quantity) || 0) * (Number(it.rate) || 0)).toFixed(2)}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              <button
+                type="button"
+                onClick={handleAddItem}
+                className="w-full py-2.5 rounded-xl border border-dashed border-slate-300 hover:border-emerald-500 bg-slate-50 hover:bg-emerald-50/50 text-emerald-700 font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+              >
+                <Plus className="w-4 h-4" />
+                <span>Add Another Line Item</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Section 2: Billed To (Buyer Information) */}
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
+            <button
+              type="button"
+              onClick={() => setMobileAccordion(mobileAccordion === 'buyer' ? null : 'buyer')}
+              className="w-full p-3.5 bg-slate-50/80 hover:bg-slate-100 transition-colors flex items-center justify-between text-left cursor-pointer"
+            >
+              <div className="flex items-center gap-2">
+                <User className="w-4 h-4 text-blue-600" />
+                <span className="font-bold text-xs text-slate-900">Billed To (Buyer Information)</span>
+              </div>
+              <div className="flex items-center gap-2 text-slate-400">
+                <span className="text-[11px] font-medium text-slate-600 truncate max-w-[120px]">{buyerName}</span>
+                {mobileAccordion === 'buyer' ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              </div>
             </button>
 
-            {/* Auto-Increment Invoice Number Button */}
+            {mobileAccordion === 'buyer' && (
+              <div className="p-3.5 space-y-2.5 border-t border-slate-200 bg-white">
+                <div>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Buyer / Company Name</label>
+                  <input
+                    type="text"
+                    value={buyerName}
+                    onChange={(e) => setBuyerName(e.target.value)}
+                    className="w-full p-2 text-xs font-bold text-slate-900 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    placeholder="Client or Company Name"
+                  />
+                </div>
+                <div>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Contact Person</label>
+                  <input
+                    type="text"
+                    value={buyerContact}
+                    onChange={(e) => setBuyerContact(e.target.value)}
+                    className="w-full p-2 text-xs text-slate-800 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none"
+                    placeholder="Procurement Officer / Contact"
+                  />
+                </div>
+                <div>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Registered Address</label>
+                  <input
+                    type="text"
+                    value={buyerAddress}
+                    onChange={(e) => setBuyerAddress(e.target.value)}
+                    className="w-full p-2 text-xs text-slate-800 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none"
+                    placeholder="Delivery / Billing Address"
+                  />
+                </div>
+                <div>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Tax / VAT Registration ID</label>
+                  <input
+                    type="text"
+                    value={buyerTaxId}
+                    onChange={(e) => setBuyerTaxId(e.target.value)}
+                    className="w-full p-2 text-xs font-mono text-slate-800 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none"
+                    placeholder="VAT / GST / Tax ID"
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Section 3: Tax Engine & 50+ Country Presets */}
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
             <button
-              onClick={handleIncrementInvoiceNumber}
-              title="Generate Next Sequential Invoice Number"
-              className="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs flex items-center gap-1.5 cursor-pointer border border-slate-200 transition-colors shadow-2xs"
+              type="button"
+              onClick={() => setMobileAccordion(mobileAccordion === 'config' ? null : 'config')}
+              className="w-full p-3.5 bg-slate-50/80 hover:bg-slate-100 transition-colors flex items-center justify-between text-left cursor-pointer"
             >
-              <Hash className="w-3.5 h-3.5 text-red-600" />
-              <span>{t.nextNoButtonText} ({invoicePrefix}{String(invoiceSequence + 1).padStart(4, '0')})</span>
+              <div className="flex items-center gap-2">
+                <DollarSign className="w-4 h-4 text-emerald-600" />
+                <span className="font-bold text-xs text-slate-900">Tax &amp; 50+ Country Presets</span>
+              </div>
+              <div className="flex items-center gap-2 text-slate-400">
+                <span className="text-[11px] font-bold text-emerald-700">{taxName} · {taxRate}%</span>
+                {mobileAccordion === 'config' ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              </div>
             </button>
 
-            {/* Quick Save to LocalStorage */}
+            {mobileAccordion === 'config' && (
+              <div className="p-3.5 space-y-3 border-t border-slate-200 bg-white">
+                <div>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">50+ Country Tax Presets</label>
+                  <button
+                    type="button"
+                    onClick={() => setShowCountryModal(true)}
+                    className="w-full p-2 text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 rounded-lg text-left flex items-center justify-between cursor-pointer"
+                  >
+                    <span>Browse 50+ Global Country Tax Engines</span>
+                    <Globe2 className="w-3.5 h-3.5 text-blue-600" />
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Tax Label</label>
+                    <input
+                      type="text"
+                      value={taxName}
+                      onChange={(e) => setTaxName(e.target.value)}
+                      className="w-full p-2 text-xs font-medium text-slate-900 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none"
+                      placeholder="e.g. Export 0%, VAT, GST"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Tax Rate (%)</label>
+                    <input
+                      type="number"
+                      step="any"
+                      inputMode="decimal"
+                      value={taxRate}
+                      onChange={(e) => setTaxRate(parseFloat(e.target.value) || 0)}
+                      className="w-full p-2 text-xs font-mono font-bold text-slate-900 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none text-right"
+                      placeholder="0"
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Section 4: Bank Routing & Terms */}
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
             <button
-              onClick={handleSaveToLocalStorage}
-              className="px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-xs transition-colors"
+              type="button"
+              onClick={() => setMobileAccordion(mobileAccordion === 'terms' ? null : 'terms')}
+              className="w-full p-3.5 bg-slate-50/80 hover:bg-slate-100 transition-colors flex items-center justify-between text-left cursor-pointer"
             >
-              {savedNotification ? <Check className="w-3.5 h-3.5" /> : <Save className="w-3.5 h-3.5" />}
-              <span>{typeof savedNotification === 'string' ? savedNotification : (savedNotification ? 'Saved locally!' : t.saveButtonText)}</span>
+              <div className="flex items-center gap-2">
+                <Landmark className="w-4 h-4 text-purple-600" />
+                <span className="font-bold text-xs text-slate-900">Bank Routing &amp; Signatures</span>
+              </div>
+              <div className="flex items-center gap-2 text-slate-400">
+                {mobileAccordion === 'terms' ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              </div>
             </button>
 
-            {/* Restore Original Defaults */}
-            <button
-              onClick={handleResetToDefaults}
-              title="Reset all settings to original defaults (Kotli Behram, brand logo, signatures, Sialkot export details)"
-              className="px-3 py-2 rounded-xl bg-slate-100 hover:bg-red-50 hover:text-red-600 text-slate-600 font-bold text-xs flex items-center gap-1.5 cursor-pointer border border-slate-200 transition-colors"
-            >
-              <RotateCcw className="w-3.5 h-3.5" />
-              <span>{t.resetButtonText}</span>
-            </button>
+            {mobileAccordion === 'terms' && (
+              <div className="p-3.5 space-y-2.5 border-t border-slate-200 bg-white">
+                <div>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Bank Name</label>
+                  <input
+                    type="text"
+                    value={bankName}
+                    onChange={(e) => setBankName(e.target.value)}
+                    className="w-full p-2 text-xs font-medium text-slate-900 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Account Title</label>
+                  <input
+                    type="text"
+                    value={accountTitle}
+                    onChange={(e) => setAccountTitle(e.target.value)}
+                    className="w-full p-2 text-xs font-semibold text-slate-900 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">IBAN / Account Number</label>
+                  <input
+                    type="text"
+                    value={iban}
+                    onChange={(e) => setIban(e.target.value)}
+                    className="w-full p-2 text-xs font-mono font-semibold text-slate-900 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">SWIFT / BIC</label>
+                  <input
+                    type="text"
+                    value={swiftBic}
+                    onChange={(e) => setSwiftBic(e.target.value)}
+                    className="w-full p-2 text-xs font-mono font-semibold text-slate-900 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Signatory Name</label>
+                  <input
+                    type="text"
+                    value={signatoryName}
+                    onChange={(e) => setSignatoryName(e.target.value)}
+                    className="w-full p-2 text-xs font-bold text-slate-900 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none"
+                  />
+                </div>
+              </div>
+            )}
+          </div>
 
-            {/* Share via WhatsApp Button */}
+          {/* Bottom Mobile Action Buttons */}
+          <div className="grid grid-cols-2 gap-2 pt-1">
             <button
-              onClick={handleShareOnWhatsApp}
-              className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-xs transition-colors"
-              title="Share formatted invoice summary and total directly to WhatsApp"
+              type="button"
+              onClick={() => setMobileMode('preview')}
+              className="py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-sm cursor-pointer"
             >
-              <MessageSquare className="w-3.5 h-3.5" />
-              <span>Share WhatsApp</span>
+              <Eye className="w-4 h-4 text-blue-400" />
+              <span>Live A4 Paper</span>
             </button>
-
-            {/* Print / Save A4 PDF Button */}
             <button
+              type="button"
               onClick={() => window.print()}
-              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-xs transition-colors"
-              title="Prints ONLY the invoice canvas with clean A4 margins, zero website headers or footers"
+              className="py-3 px-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-xs flex items-center justify-center gap-2 shadow-sm cursor-pointer"
             >
-              <Printer className="w-3.5 h-3.5" />
-              <span>{t.printButtonText}</span>
+              <Download className="w-4 h-4" />
+              <span>Download PDF</span>
             </button>
           </div>
         </div>
 
         {/* ========================================================
-            2. MULTILINGUAL SELECTOR BAR (8 Languages)
+            2. MULTILINGUAL SELECTOR BAR (8 Languages) - Desktop
            ======================================================== */}
-        <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3 print:hidden">
+        <div className="hidden sm:block bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3 print:hidden">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-slate-100">
             <div className="flex items-center gap-2">
               <Languages className="w-4 h-4 text-red-600" />
@@ -808,9 +1521,9 @@ export const GlobalInvoiceHub: React.FC = () => {
         </div>
 
         {/* ========================================================
-            3. DEDICATED CONTROL SUITE (Invoice No, Title, 50+ Countries & Details)
+            3. DEDICATED CONTROL SUITE (Invoice No, Title, 50+ Countries & Details) - Desktop
            ======================================================== */}
-        <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs space-y-4 print:hidden">
+        <div className="hidden sm:block bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs space-y-4 print:hidden">
           
           {/* Controls Tabs */}
           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
@@ -2221,13 +2934,199 @@ export const GlobalInvoiceHub: React.FC = () => {
           </div>
         </div>
 
+        {/* ========================================================
+            BOTTOM DUAL ACTION BAR (100% Hidden in Print/PDF)
+           ======================================================== */}
+        <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4 print:hidden">
+          <div className="flex items-center gap-2 text-xs text-slate-600">
+            <ShieldCheck className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+            <span>
+              <strong>Zero-Database Guarantee:</strong> Drafts, custom rates &amp; buyer records are stored exclusively in your browser&apos;s LocalStorage.
+            </span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2.5 w-full sm:w-auto justify-end">
+            {/* Duplicate Button */}
+            <button
+              type="button"
+              onClick={handleDuplicateInvoice}
+              className="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-amber-50 hover:text-amber-800 hover:border-amber-300 text-slate-700 border border-slate-200 font-bold text-xs flex items-center gap-1.5 cursor-pointer transition-colors shadow-2xs"
+              title="Duplicate current invoice with next sequence number"
+            >
+              <Copy className="w-3.5 h-3.5 text-amber-500" />
+              <span>Duplicate Invoice</span>
+            </button>
+
+            {/* Local Storage History Button */}
+            <button
+              type="button"
+              onClick={() => setShowHistoryModal(true)}
+              className="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-emerald-50 hover:text-emerald-800 hover:border-emerald-300 text-slate-700 border border-slate-200 font-bold text-xs flex items-center gap-1.5 cursor-pointer transition-colors shadow-2xs"
+              title="View all drafts saved to browser LocalStorage"
+            >
+              <History className="w-3.5 h-3.5 text-emerald-600" />
+              <span>History ({invoiceHistory.length})</span>
+            </button>
+
+            {/* Primary Download PDF Button */}
+            <button
+              type="button"
+              onClick={() => window.print()}
+              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center gap-2 shadow-sm cursor-pointer transition-all"
+              title="Download clean ISO 216 A4 PDF invoice"
+            >
+              <Download className="w-4 h-4" />
+              <span>Download PDF</span>
+            </button>
+          </div>
+        </div>
+
         {/* Semantically Optimized Technical Article, FAQs & Generated High-Res Mockup (Hidden during print) */}
         <div className="print:hidden">
           <ToolArticleGuideSection toolId="invoice" />
         </div>
       </div>
+
+      {/* ========================================================
+          LOCAL STORAGE INVOICE HISTORY MODAL
+         ======================================================== */}
+      {showHistoryModal && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-xs animate-fadeIn print:hidden"
+        >
+          <div className="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-2xl w-full max-h-[85vh] flex flex-col overflow-hidden animate-scaleUp">
+            {/* Modal Header */}
+            <div className="p-5 sm:p-6 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center font-bold">
+                  <History className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+                    <span>Local Storage Invoice History</span>
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                      {invoiceHistory.length} Saved
+                    </span>
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-0.5">
+                    Saved strictly to your local browser memory. Data never leaves your device.
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowHistoryModal(false)}
+                className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+                aria-label="Close invoice history modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Modal Body: List of Invoices */}
+            <div className="p-5 sm:p-6 overflow-y-auto space-y-3 flex-1">
+              {invoiceHistory.length === 0 ? (
+                <div className="text-center py-12 space-y-3">
+                  <div className="w-12 h-12 rounded-2xl bg-slate-100 text-slate-400 mx-auto flex items-center justify-center">
+                    <FileText className="w-6 h-6" />
+                  </div>
+                  <h4 className="text-sm font-bold text-slate-800">No Invoices Saved in History Yet</h4>
+                  <p className="text-xs text-slate-500 max-w-sm mx-auto">
+                    Click &ldquo;Duplicate Invoice&rdquo; or &ldquo;Save Draft&rdquo; in the toolbar to save your current invoice to your device&apos;s LocalStorage.
+                  </p>
+                </div>
+              ) : (
+                invoiceHistory.map((rec) => (
+                  <div
+                    key={rec.id}
+                    className="p-4 rounded-2xl border border-slate-200 hover:border-blue-400 hover:bg-blue-50/20 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 group"
+                  >
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono font-bold text-xs text-slate-900 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
+                          {rec.invoiceNumber}
+                        </span>
+                        <span className="text-xs font-semibold text-slate-600">
+                          {rec.invoiceTitle}
+                        </span>
+                        <span className="text-[10px] text-slate-400">
+                          {rec.invoiceDate}
+                        </span>
+                      </div>
+                      <div className="text-xs text-slate-700 font-medium">
+                        Billed to: <span className="text-slate-900 font-bold">{rec.buyerName || 'Unnamed Client'}</span>
+                      </div>
+                      <div className="text-[11px] text-slate-500 flex items-center gap-2">
+                        <span>{rec.itemsCount} line items</span>
+                        <span>·</span>
+                        <span className="font-bold text-emerald-700">
+                          Total: {rec.currencySymbol} {rec.grandTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} {rec.currency}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2 pt-2 sm:pt-0 border-t sm:border-t-0 border-slate-100 justify-end">
+                      <button
+                        type="button"
+                        onClick={() => handleRestoreFromHistory(rec)}
+                        className="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs cursor-pointer transition-colors shadow-2xs"
+                      >
+                        Load Draft
+                      </button>
+                      <button
+                        type="button"
+                        onClick={(e) => handleDeleteHistoryItem(rec.id, e)}
+                        className="p-1.5 rounded-xl text-slate-400 hover:text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
+                        title="Delete this record"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+
+            {/* Modal Footer */}
+            <div className="p-4 sm:p-5 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                {invoiceHistory.length > 0 && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={handleExportBackup}
+                      className="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-2xs"
+                    >
+                      <FileDown className="w-3.5 h-3.5 text-blue-600" />
+                      <span>Export JSON Backup</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleClearHistory}
+                      className="px-3 py-1.5 rounded-xl text-slate-400 hover:text-red-600 hover:bg-red-50 text-xs font-semibold cursor-pointer transition-colors"
+                    >
+                      Clear All History
+                    </button>
+                  </>
+                )}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setShowHistoryModal(false)}
+                className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs cursor-pointer shadow-xs transition-colors ml-auto"
+              >
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default GlobalInvoiceHub;
+
