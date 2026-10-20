@@ -19,6 +19,7 @@ import {
 import { AiTripPlannerTool } from './AiTripPlannerTool';
 import { COMPANY_INFO } from '../data/content';
 import { OptimizedImage } from './common/OptimizedImage';
+import { DynamicBreadcrumb } from './common/DynamicBreadcrumb';
 import tripPlannerMockup from '../assets/images/Ai Trip Planner.jpg';
 import tripPlannerMockupWebp from '../assets/images/Ai Trip Planner.webp';
 
@@ -34,20 +35,16 @@ export const AiTravelGuidePage: React.FC<AiTravelGuidePageProps> = ({
   return (
     <article className="min-h-screen bg-slate-950 text-slate-100 pt-24 pb-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto space-y-10">
-        {/* Breadcrumbs */}
-        <nav aria-label="Breadcrumbs" className="flex items-center gap-2 text-xs text-slate-400">
-          <button onClick={() => onNavigatePage('home')} className="hover:text-white cursor-pointer">
-            Home
-          </button>
-          <ChevronRight className="w-3 h-3 text-slate-600" />
-          <button onClick={() => onNavigatePage('guides')} className="hover:text-white cursor-pointer">
-            Guides
-          </button>
-          <ChevronRight className="w-3 h-3 text-slate-600" />
-          <span className="text-teal-400 font-semibold" aria-current="page">
-            AI Tools for Travel Itinerary
-          </span>
-        </nav>
+        {/* Dynamic Breadcrumbs */}
+        <DynamicBreadcrumb
+          segments={[
+            { label: 'Home', page: 'home' },
+            { label: 'Guides', page: 'guides' },
+            { label: 'AI Tools for Travel Itinerary', isCurrent: true },
+          ]}
+          onNavigatePage={(p) => onNavigatePage(p)}
+          variant="dark"
+        />
 
         {/* Article Header */}
         <header className="space-y-4 border-b border-slate-800 pb-8">

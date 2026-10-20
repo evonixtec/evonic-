@@ -15,6 +15,7 @@ import {
 import { AiTripPlannerTool } from './AiTripPlannerTool';
 import { COMPANY_INFO } from '../data/content';
 import { ToolArticleGuideSection } from './common/ToolArticleGuideSection';
+import { DynamicBreadcrumb } from './common/DynamicBreadcrumb';
 
 interface AiTripPlannerStandalonePageProps {
   onNavigatePage: (page: string) => void;
@@ -28,20 +29,14 @@ export const AiTripPlannerStandalonePage: React.FC<AiTripPlannerStandalonePagePr
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 pt-24 pb-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto space-y-10">
-        {/* Breadcrumb */}
-        <nav aria-label="Breadcrumbs" className="flex items-center gap-2 text-xs text-slate-400">
-          <button onClick={() => onNavigatePage('home')} className="hover:text-white cursor-pointer">
-            Home
-          </button>
-          <ChevronRight className="w-3 h-3 text-slate-600" />
-          <button onClick={() => onNavigatePage('tools')} className="hover:text-white cursor-pointer">
-            Tools
-          </button>
-          <ChevronRight className="w-3 h-3 text-slate-600" />
-          <span className="text-teal-400 font-semibold" aria-current="page">
-            AI Trip Planner
-          </span>
-        </nav>
+        {/* Dynamic Breadcrumb */}
+        <DynamicBreadcrumb
+          currentToolId="ai-trip-planner"
+          currentTitle="AI Trip Planner"
+          category="Travel Tech"
+          onNavigatePage={(p) => onNavigatePage(p)}
+          variant="dark"
+        />
 
         {/* 150-Word SEO Intro Header */}
         <header className="space-y-4 border-b border-slate-800 pb-8">

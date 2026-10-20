@@ -1653,6 +1653,11 @@ export function applyPageSEO(
   // Dynamically inject Schema.org JSON-LD @graph for the route
   const structuredData = generateRouteStructuredData(pageId);
   updateSubpageStructuredData(structuredData);
+
+  // Ping IndexNow search engine protocol for public pages and tools
+  if (pageId !== 'admin') {
+    pingIndexNow(canonicalUrl).catch(() => {});
+  }
 }
 
 /**
@@ -1729,4 +1734,141 @@ export function applyBlogPostSEO(blog: BlogPost) {
     '@context': 'https://schema.org',
     '@graph': [breadcrumb, LOCAL_BUSINESS_SCHEMA, articleSchema],
   });
+
+  // Automatically ping search engines via IndexNow protocol for instant indexing
+  pingIndexNow(canonicalUrl).catch(() => {});
 }
+
+/**
+ * ============================================================================
+ * INDEXNOW PROTOCOL IMPLEMENTATION
+ * Direct search engine notification protocol (Microsoft Bing, Yandex, Seznam, Naver)
+ * Key verification file: /7b3e1a8f9c0245d6812e947158ca92e4.txt
+ * ============================================================================
+ */
+export const INDEXNOW_KEY = '7b3e1a8f9c0245d6812e947158ca92e4';
+export const INDEXNOW_HOST = 'www.evonixtec.com';
+export const INDEXNOW_KEY_LOCATION = `${BASE_URL}/${INDEXNOW_KEY}.txt`;
+const INDEXNOW_CACHE_KEY = 'evonix_indexnow_cache_v1';
+
+interface IndexNowCacheMap {
+  [url: string]: number; // timestamp of last ping
+}
+
+/**
+ * Decides whether a URL should be submitted (throttled to max 1 ping per 24 hours per URL)
+ */
+function shouldPingUrl(url: string): boolean {
+  if (typeof window === 'undefined') return false;
+  try {
+    const raw = localStorage.getItem(INDEXNOW_CACHE_KEY);
+    if (!raw) return true;
+    const cache: IndexNowCacheMap = JSON.parse(raw);
+    const lastPing = cache[url];
+    if (!lastPing) return true;
+    const oneDayMs = 24 * 60 * 60 * 1000;
+    return Date.now() - lastPing > oneDayMs;
+  } catch {
+    return true;
+  }
+}
+
+/**
+ * Persists ping timestamp to localStorage
+ */
+function markUrlsAsPinged(urls: string[]) {
+  if (typeof window === 'undefined') return;
+  try {
+    const raw = localStorage.getItem(INDEXNOW_CACHE_KEY);
+    const cache: IndexNowCacheMap = raw ? JSON.parse(raw) : {};
+    const now = Date.now();
+    for (const u of urls) {
+      cache[u] = now;
+    }
+    localStorage.setItem(INDEXNOW_CACHE_KEY, JSON.stringify(cache));
+  } catch {
+    // Ignore storage errors in private browsing
+  }
+}
+
+/**
+ * Pings IndexNow endpoints for one or more published URLs.
+ * Works seamlessly in client-side environments without blocking user execution.
+ */
+export async function pingIndexNow(urls: string | string[]): Promise<boolean> {
+  const urlList = (Array.isArray(urls) ? urls : [urls])
+    .map((u) => (u.startsWith('http') ? u : `${BASE_URL}${u.startsWith('/') ? u : `/${u}`}`))
+    .filter(shouldPingUrl);
+
+  if (urlList.length === 0) {
+    return false;
+  }
+
+  const payload = {
+    host: INDEXNOW_HOST,
+    key: INDEXNOW_KEY,
+    keyLocation: INDEXNOW_KEY_LOCATION,
+    urlList,
+  };
+
+  let submitted = false;
+
+  // 1. Primary IndexNow Central API (broadcasts to Bing, Yandex, etc.)
+  try {
+    await fetch('https://api.indexnow.org/indexnow', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+      body: JSON.stringify(payload),
+      mode: 'no-cors',
+    });
+    submitted = true;
+  } catch {
+    // Continue to fallback
+  }
+
+  // 2. Secondary Bing Direct Endpoint
+  try {
+    await fetch('https://www.bing.com/indexnow', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+      body: JSON.stringify(payload),
+      mode: 'no-cors',
+    });
+    submitted = true;
+  } catch {
+    // Continue to fallback
+  }
+
+  // 3. Image Beacon Fallback for single URLs in restricted network modes
+  if (urlList.length === 1 && typeof Image !== 'undefined') {
+    try {
+      const getEndpoint = `https://api.indexnow.org/indexnow?url=${encodeURIComponent(
+        urlList[0]
+      )}&key=${INDEXNOW_KEY}&keyLocation=${encodeURIComponent(INDEXNOW_KEY_LOCATION)}`;
+      const beacon = new Image();
+      beacon.src = getEndpoint;
+      submitted = true;
+    } catch {
+      // Ignore
+    }
+  }
+
+  if (submitted) {
+    markUrlsAsPinged(urlList);
+  }
+
+  return submitted;
+}
+
+/**
+ * Submits all blog posts to IndexNow protocol in a batch
+ */
+export async function submitAllBlogPostsToIndexNow(posts: BlogPost[]): Promise<boolean> {
+  const urls = posts.map((p) => `${BASE_URL}/blog/${p.slug}`);
+  return pingIndexNow(urls);
+}
+

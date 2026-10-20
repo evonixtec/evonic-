@@ -33,6 +33,7 @@ import {
 import { COMPANY_INFO } from '../data/content';
 import { NavPageId } from './Navbar';
 import { updateCanonicalLink } from '../lib/seo';
+import { DynamicBreadcrumb } from './common/DynamicBreadcrumb';
 
 interface LocalClusterLandingPageProps {
   initialCity?: LocalCity['slug'];
@@ -239,27 +240,20 @@ export const LocalClusterLandingPage: React.FC<LocalClusterLandingPageProps> = (
 
   return (
     <div className="bg-slate-50 min-h-screen text-slate-900 pb-20 pt-8">
-      {/* 1. Breadcrumbs & Regional Triangle Header */}
+      {/* 1. Dynamic Breadcrumbs & Regional Triangle Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <nav className="flex items-center text-xs text-slate-500 gap-1.5 py-3 overflow-x-auto whitespace-nowrap">
-          <button
-            onClick={() => onNavigatePage('home')}
-            className="hover:text-red-600 transition-colors cursor-pointer"
-          >
-            Home
-          </button>
-          <span>/</span>
-          <button
-            onClick={() => onNavigatePage('services')}
-            className="hover:text-red-600 transition-colors cursor-pointer"
-          >
-            Sialkot Industrial Triangle
-          </button>
-          <span>/</span>
-          <span className="font-bold text-slate-800">{currentCity.name}</span>
-          <span>/</span>
-          <span className="text-red-600 font-bold">{currentService.shortName}</span>
-        </nav>
+        <div className="py-2">
+          <DynamicBreadcrumb
+            segments={[
+              { label: 'Home', page: 'home' },
+              { label: 'Sialkot Industrial Triangle', page: 'locations' },
+              { label: currentCity.name, onClick: () => handleCityChange(currentCity.slug) },
+              { label: currentService.shortName, isCurrent: true },
+            ]}
+            onNavigatePage={(p) => onNavigatePage(p as NavPageId)}
+            variant="light"
+          />
+        </div>
 
         {/* 2. Interactive Cluster Switcher Controls (Instant Local Filtering) */}
         <div className="bg-white rounded-3xl p-4 sm:p-6 shadow-sm border border-slate-200 mt-2 mb-8">

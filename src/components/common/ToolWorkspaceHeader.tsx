@@ -23,6 +23,7 @@ import {
   Plane
 } from 'lucide-react';
 import { ALL_TOOL_INTEGRATIONS } from '../../lib/toolIntegrations';
+import { DynamicBreadcrumb } from './DynamicBreadcrumb';
 
 export interface ToolNavDefinition {
   id: string;
@@ -201,6 +202,7 @@ interface ToolWorkspaceHeaderProps {
   icon: React.ReactNode;
   onNavigateTool: (toolId: string) => void;
   onNavigateToolsHub: () => void;
+  onNavigateHome?: () => void;
   onReset?: () => void;
   onLoadSampleData?: () => void;
   onCopySummary?: () => void;
@@ -216,6 +218,7 @@ export const ToolWorkspaceHeader: React.FC<ToolWorkspaceHeaderProps> = ({
   icon,
   onNavigateTool,
   onNavigateToolsHub,
+  onNavigateHome,
   onReset,
   onLoadSampleData,
   onCopySummary,
@@ -255,24 +258,33 @@ export const ToolWorkspaceHeader: React.FC<ToolWorkspaceHeaderProps> = ({
                 <Grid className="w-5 h-5 text-red-400 group-hover:scale-110 transition-transform" />
               </button>
 
-              <div>
-                {/* Breadcrumb & Unboxed Metadata */}
+              <div className="min-w-0">
+                {/* Dynamic Breadcrumb & Metadata Badges */}
                 <div className="flex flex-wrap items-center gap-2 text-xs text-slate-400">
-                  <button
-                    onClick={onNavigateToolsHub}
-                    className="hover:text-red-400 transition-colors font-medium cursor-pointer"
-                  >
-                    Online Web Tools
-                  </button>
-                  <span aria-hidden="true">/</span>
-                  <span className="text-slate-400">{toolCategory}</span>
-                  <span aria-hidden="true">·</span>
-                  <span className="text-emerald-400 flex items-center gap-1 font-mono text-[11px]">
+                  <DynamicBreadcrumb
+                    currentToolId={currentToolId}
+                    category={toolCategory}
+                    currentTitle={toolTitle}
+                    onNavigatePage={(targetPage) => {
+                      if (targetPage === 'home') {
+                        if (onNavigateHome) onNavigateHome();
+                        else onNavigateTool('home');
+                      } else if (targetPage === 'tools') {
+                        onNavigateToolsHub();
+                      } else {
+                        onNavigateTool(targetPage);
+                      }
+                    }}
+                    variant="dark"
+                    className="py-0"
+                  />
+                  <span aria-hidden="true" className="text-slate-600 hidden sm:inline">·</span>
+                  <span className="text-emerald-400 flex items-center gap-1 font-mono text-[11px] shrink-0">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                     <span>100% Client-Side Engine</span>
                   </span>
                   {isMobileCore && (
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-950/90 text-emerald-300 border border-emerald-800 text-[10px] font-bold">
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-950/90 text-emerald-300 border border-emerald-800 text-[10px] font-bold shrink-0">
                       <Smartphone className="w-3 h-3 text-emerald-400" />
                       <span>Mobile App Core Tool</span>
                     </span>

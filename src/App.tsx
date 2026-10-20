@@ -5,38 +5,43 @@ import { ScrollProgressBar } from './components/ScrollProgressBar';
 import { Navbar, NavPageId } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { HeroSlider } from './components/HeroSlider';
-import { AboutUs } from './components/AboutUs';
-import { Services } from './components/Services';
-import { Technologies } from './components/Technologies';
-import { GlobalReach } from './components/GlobalReach';
-import { WhyChooseUs } from './components/WhyChooseUs';
-import { Portfolio } from './components/Portfolio';
-import { Testimonials } from './components/Testimonials';
-import { GoogleReviewsSection } from './components/GoogleReviewsSection';
-import { LaptopRepairEstimator } from './components/LaptopRepairEstimator';
-import { FAQ } from './components/FAQ';
-import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
-import FooterLinks from './components/FooterLinks';
-import PolicyModal, { type PolicyType } from './components/PolicyModal';
+import { type PolicyType } from './components/PolicyModal';
 import { SecurityAlertToast } from './components/SecurityAlertToast';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
 import { PageHeaderBanner } from './components/common/PageHeaderBanner';
-import { HomeServicesPreview } from './components/home/HomeServicesPreview';
-import { HomeAboutPreview } from './components/home/HomeAboutPreview';
-import { HomePortfolioPreview } from './components/home/HomePortfolioPreview';
-import { HomeShopPreview } from './components/home/HomeShopPreview';
-import { HomeToolsGrid } from './components/home/HomeToolsGrid';
 import { COMPANY_INFO } from './data/content';
 import { initAntiCopyShield, initializeConsoleShield } from './lib/security';
 import { applyPageSEO } from './lib/seo';
-import { ToolsHub } from './components/ToolsHub';
 import { ToolWorkspaceHeader } from './components/common/ToolWorkspaceHeader';
 import { MobileBottomNav } from './components/MobileBottomNav';
 import { PWAInstallBanner } from './components/PWAInstallBanner';
 import { LocalCity, ClusterService, LOCAL_CITIES, CLUSTER_SERVICES } from './data/localClusters';
 import { MessageSquare, Phone, ArrowUp, ArrowRight, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2, FileText, Barcode, Printer, Boxes, SlidersHorizontal, Calculator, Clock, Wifi, Globe } from 'lucide-react';
 import { isToolPage } from './lib/toolUtils';
+
+// Aggressive Code Splitting: Lazy-loaded below-the-fold home preview sections to boost Core Web Vitals
+const HomeServicesPreview = lazy(() => import('./components/home/HomeServicesPreview').then(m => ({ default: m.HomeServicesPreview })));
+const HomeAboutPreview = lazy(() => import('./components/home/HomeAboutPreview').then(m => ({ default: m.HomeAboutPreview })));
+const HomePortfolioPreview = lazy(() => import('./components/home/HomePortfolioPreview').then(m => ({ default: m.HomePortfolioPreview })));
+const HomeShopPreview = lazy(() => import('./components/home/HomeShopPreview').then(m => ({ default: m.HomeShopPreview })));
+const HomeToolsGrid = lazy(() => import('./components/home/HomeToolsGrid').then(m => ({ default: m.HomeToolsGrid })));
+const LaptopRepairEstimator = lazy(() => import('./components/LaptopRepairEstimator').then(m => ({ default: m.LaptopRepairEstimator })));
+const GoogleReviewsSection = lazy(() => import('./components/GoogleReviewsSection').then(m => ({ default: m.GoogleReviewsSection })));
+const WhyChooseUs = lazy(() => import('./components/WhyChooseUs').then(m => ({ default: m.WhyChooseUs })));
+const Testimonials = lazy(() => import('./components/Testimonials').then(m => ({ default: m.Testimonials })));
+const FAQ = lazy(() => import('./components/FAQ').then(m => ({ default: m.FAQ })));
+
+// Lazy-loaded dedicated subpages & utility panels
+const AboutUs = lazy(() => import('./components/AboutUs').then(m => ({ default: m.AboutUs })));
+const Services = lazy(() => import('./components/Services').then(m => ({ default: m.Services })));
+const Technologies = lazy(() => import('./components/Technologies').then(m => ({ default: m.Technologies })));
+const GlobalReach = lazy(() => import('./components/GlobalReach').then(m => ({ default: m.GlobalReach })));
+const Portfolio = lazy(() => import('./components/Portfolio').then(m => ({ default: m.Portfolio })));
+const ContactSection = lazy(() => import('./components/ContactSection').then(m => ({ default: m.ContactSection })));
+const ToolsHub = lazy(() => import('./components/ToolsHub').then(m => ({ default: m.ToolsHub })));
+const FooterLinks = lazy(() => import('./components/FooterLinks'));
+const PolicyModal = lazy(() => import('./components/PolicyModal'));
 
 // Lazy-loaded heavy tools, calculators and modals to reduce main bundle and speed up initial page render
 const GlobalInvoiceHub = lazy(() => import('./components/GlobalInvoiceHub').then(m => ({ default: m.GlobalInvoiceHub })));
@@ -1691,15 +1696,21 @@ export default function App() {
             onOpenPolicy={(type) => setActivePolicyModal(type)}
           />
           {/* Main Template Shell Bottom Layer: 146 Interconnected Internal URLs */}
-          <FooterLinks />
+          <Suspense fallback={null}>
+            <FooterLinks />
+          </Suspense>
         </>
       )}
 
-      {/* Corporate Policy Modal (Privacy, Terms & Refund) */}
-      <PolicyModal
-        policyType={activePolicyModal}
-        onClose={() => setActivePolicyModal(null)}
-      />
+      {/* Corporate Policy Modal (Privacy, Terms & Refund) - On-demand lazy load */}
+      {activePolicyModal && (
+        <Suspense fallback={null}>
+          <PolicyModal
+            policyType={activePolicyModal}
+            onClose={() => setActivePolicyModal(null)}
+          />
+        </Suspense>
+      )}
 
       {/* Anti-Copy and Security Alert Notification Toast */}
       <SecurityAlertToast

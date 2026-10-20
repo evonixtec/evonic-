@@ -1,6 +1,7 @@
 import React from 'react';
-import { Sparkles, ArrowRight, ChevronRight, Home, MessageSquare } from 'lucide-react';
+import { Sparkles, ArrowRight, MessageSquare } from 'lucide-react';
 import { COMPANY_INFO } from '../../data/content';
+import { DynamicBreadcrumb, BreadcrumbSegment } from './DynamicBreadcrumb';
 
 interface PageHeaderBannerProps {
   title: string;
@@ -10,6 +11,7 @@ interface PageHeaderBannerProps {
   onNavigateHome: () => void;
   onOpenQuote?: () => void;
   ctaText?: string;
+  segments?: BreadcrumbSegment[];
 }
 
 export const PageHeaderBanner: React.FC<PageHeaderBannerProps> = ({
@@ -20,22 +22,20 @@ export const PageHeaderBanner: React.FC<PageHeaderBannerProps> = ({
   onNavigateHome,
   onOpenQuote,
   ctaText = 'Get Free Quote',
+  segments,
 }) => {
   return (
     <div className="pt-24 pb-12 sm:pt-28 sm:pb-16 bg-gradient-to-b from-slate-100 via-slate-50 to-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-xs text-slate-500 mb-4" aria-label="Breadcrumb">
-          <button
-            onClick={onNavigateHome}
-            className="flex items-center gap-1 hover:text-red-600 transition-colors font-semibold cursor-pointer"
-          >
-            <Home className="w-3.5 h-3.5" />
-            <span>Home</span>
-          </button>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-          <span className="font-bold text-slate-900">{breadcrumbCurrent}</span>
-        </nav>
+        {/* Dynamic Breadcrumb with Schema.org & responsive styling */}
+        <div className="mb-4">
+          <DynamicBreadcrumb
+            currentTitle={breadcrumbCurrent}
+            segments={segments}
+            onNavigatePage={() => onNavigateHome()}
+            variant="light"
+          />
+        </div>
 
         {/* Content */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
