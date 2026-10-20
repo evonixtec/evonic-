@@ -26,8 +26,8 @@ export interface EvonixLogoProps {
 }
 
 /**
- * Official EVONIX Emblem SVG Mark
- * Features the signature crimson red faceted delta emblem (#C81D25).
+ * Official EVONIX Emblem Mark
+ * Uses the exact official PNG logo image uploaded by the user without any modification.
  */
 export const EvonixMark: React.FC<{
   className?: string;
@@ -35,48 +35,14 @@ export const EvonixMark: React.FC<{
   title?: string;
 }> = ({ className = 'w-9 h-9', size, title = 'evonix official emblem' }) => {
   return (
-    <svg
-      viewBox="0 0 100 90"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
+    <img
+      src="/logo.png"
+      alt={title}
+      className={`object-contain inline-block flex-shrink-0 ${className}`}
       style={size ? { width: size, height: size } : undefined}
-      aria-label={title}
-      role="img"
-    >
-      <title>{title}</title>
-      <defs>
-        <linearGradient id="evonixRedGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#DC2626" />
-          <stop offset="50%" stopColor="#C81D25" />
-          <stop offset="100%" stopColor="#991B1B" />
-        </linearGradient>
-      </defs>
-      {/* Main Faceted Ribbon / Outer Delta */}
-      <path
-        d="M 16 10 
-           L 9 22 
-           L 44 86 
-           L 54 86 
-           L 66 62 
-           L 55 62 
-           L 49 74 
-           L 22 24 
-           L 58 24 
-           L 62 16 
-           L 65 10 
-           Z"
-        fill="url(#evonixRedGlow)"
-      />
-      {/* Upper-Right Floating Facet */}
-      <path
-        d="M 69 10 
-           L 91 10 
-           L 80 32 
-           Z"
-        fill="url(#evonixRedGlow)"
-      />
-    </svg>
+      loading="eager"
+      decoding="async"
+    />
   );
 };
 

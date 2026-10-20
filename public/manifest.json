@@ -12,6 +12,12 @@
   "categories": ["business", "utilities", "shopping", "productivity"],
   "icons": [
     {
+      "src": "/logo.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
       "src": "/logo-small.svg",
       "sizes": "192x192 512x512",
       "type": "image/svg+xml",

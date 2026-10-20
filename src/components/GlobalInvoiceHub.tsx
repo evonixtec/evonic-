@@ -234,6 +234,25 @@ export const GlobalInvoiceHub: React.FC = () => {
   const [mobileMode, setMobileMode] = useState<'editor' | 'preview'>('editor');
   const [mobileScale, setMobileScale] = useState<'fit' | 'medium' | 'full'>('fit');
   const [mobileAccordion, setMobileAccordion] = useState<'items' | 'buyer' | 'terms' | 'config' | null>('items');
+  const [computedMobileScale, setComputedMobileScale] = useState<number>(0.52);
+
+  // Dynamic mobile screen width computation for seamless zero-clipping preview
+  useEffect(() => {
+    const updateScale = () => {
+      if (typeof window !== 'undefined') {
+        const availableWidth = window.innerWidth - 24;
+        if (availableWidth < 720) {
+          const scale = Math.max(0.38, Math.min(0.95, availableWidth / 720));
+          setComputedMobileScale(scale);
+        } else {
+          setComputedMobileScale(1);
+        }
+      }
+    };
+    updateScale();
+    window.addEventListener('resize', updateScale);
+    return () => window.removeEventListener('resize', updateScale);
+  }, []);
 
   // Active Controls Tab
   const [activeControlsTab, setActiveControlsTab] = useState<'invoice-meta' | 'company' | 'banking' | 'terms-quotation' | 'stamp-signature'>('invoice-meta');
@@ -591,6 +610,14 @@ export const GlobalInvoiceHub: React.FC = () => {
       quotationNotes,
     }
   });
+
+  // Fast PDF download & print trigger with Chrome mobile and desktop guidance
+  const handleDownloadPdf = () => {
+    setSavedNotification("Generating A4 PDF. In Chrome, choose 'Save as PDF' to download to your device.");
+    setTimeout(() => {
+      window.print();
+    }, 120);
+  };
 
   // Duplicate current invoice: clone items, auto-increment number, set date to today, save to history
   const handleDuplicateInvoice = () => {
@@ -957,7 +984,7 @@ export const GlobalInvoiceHub: React.FC = () => {
               {/* Primary Download PDF Button */}
               <button
                 type="button"
-                onClick={() => window.print()}
+                onClick={handleDownloadPdf}
                 className="w-full px-5 py-3 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg hover:shadow-indigo-500/25 cursor-pointer transition-all transform active:scale-95"
                 title="Download or Print Instant ISO 216 A4 PDF without website chrome"
               >
@@ -1467,7 +1494,7 @@ export const GlobalInvoiceHub: React.FC = () => {
             </button>
             <button
               type="button"
-              onClick={() => window.print()}
+              onClick={handleDownloadPdf}
               className="py-3 px-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-xs flex items-center justify-center gap-2 shadow-sm cursor-pointer"
             >
               <Download className="w-4 h-4" />
@@ -2233,12 +2260,60 @@ export const GlobalInvoiceHub: React.FC = () => {
             5. EXECUTIVE COMMERCIAL INVOICE CANVAS (A4 Format)
             Designed with top-tier international banking & export hierarchy!
            ======================================================== */}
-        <div
-          id="invoice-print-canvas"
-          dir={isRtl ? 'rtl' : 'ltr'}
-          className="bg-white rounded-2xl border border-slate-200 shadow-xl overflow-hidden print:border-none print:shadow-none print:rounded-none print:m-0 text-slate-900"
-          style={isRtl ? { fontFamily: `'Noto Sans Arabic', 'Amiri', 'Jameel Noori Nastaleeq', 'Segoe UI', Tahoma, sans-serif` } : undefined}
-        >
+        <div className={`${mobileMode === 'editor' ? 'hidden sm:block' : 'block'} print:block transition-all`}>
+          {/* Mobile Preview Top Scale Bar */}
+          <div className="block sm:hidden print:hidden bg-slate-900 text-white p-3 rounded-2xl border border-slate-800 shadow-md mb-3 space-y-2">
+            <div className="flex items-center justify-between">
+              <button
+                type="button"
+                onClick={() => setMobileMode('editor')}
+                className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs flex items-center gap-1.5 cursor-pointer"
+              >
+                <Smartphone className="w-3.5 h-3.5 text-emerald-400" />
+                <span>← Back to Form</span>
+              </button>
+              <div className="flex items-center gap-1 text-[11px] font-bold">
+                <span className="text-slate-400">Scale:</span>
+                <button
+                  type="button"
+                  onClick={() => setMobileScale('fit')}
+                  className={`px-2.5 py-1 rounded-lg cursor-pointer ${mobileScale === 'fit' ? 'bg-blue-600 text-white font-black' : 'bg-slate-800 text-slate-300'}`}
+                >
+                  Fit Screen
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setMobileScale('full')}
+                  className={`px-2.5 py-1 rounded-lg cursor-pointer ${mobileScale === 'full' ? 'bg-blue-600 text-white font-black' : 'bg-slate-800 text-slate-300'}`}
+                >
+                  100%
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            className={
+              mobileMode === 'preview' && mobileScale === 'fit'
+                ? 'overflow-hidden max-w-none transition-transform'
+                : 'overflow-x-auto'
+            }
+            style={
+              mobileMode === 'preview' && mobileScale === 'fit'
+                ? {
+                    transform: `scale(${computedMobileScale})`,
+                    transformOrigin: 'top center',
+                    marginBottom: `-${Math.round((1 - computedMobileScale) * 100)}%`,
+                  }
+                : undefined
+            }
+          >
+            <div
+              id="invoice-print-canvas"
+              dir={isRtl ? 'rtl' : 'ltr'}
+              className="bg-white rounded-2xl border border-slate-200 shadow-xl overflow-hidden print:border-none print:shadow-none print:rounded-none print:m-0 text-slate-900 min-w-[700px] sm:min-w-0"
+              style={isRtl ? { fontFamily: `'Noto Sans Arabic', 'Amiri', 'Jameel Noori Nastaleeq', 'Segoe UI', Tahoma, sans-serif` } : undefined}
+            >
           
           {/* Top Luxury Accent Strip */}
           <div className="h-2 bg-gradient-to-r from-red-600 via-slate-900 to-red-600" />
@@ -2933,6 +3008,8 @@ export const GlobalInvoiceHub: React.FC = () => {
             </div>
           </div>
         </div>
+        </div>
+        </div>
 
         {/* ========================================================
             BOTTOM DUAL ACTION BAR (100% Hidden in Print/PDF)
@@ -2971,7 +3048,7 @@ export const GlobalInvoiceHub: React.FC = () => {
             {/* Primary Download PDF Button */}
             <button
               type="button"
-              onClick={() => window.print()}
+              onClick={handleDownloadPdf}
               className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center gap-2 shadow-sm cursor-pointer transition-all"
               title="Download clean ISO 216 A4 PDF invoice"
             >
@@ -2985,6 +3062,58 @@ export const GlobalInvoiceHub: React.FC = () => {
         <div className="print:hidden">
           <ToolArticleGuideSection toolId="invoice" />
         </div>
+      </div>
+
+      {/* ========================================================
+          STICKY MOBILE BOTTOM QUICK DOCK (sm:hidden, print:hidden)
+         ======================================================== */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 sm:hidden bg-slate-950/95 backdrop-blur-md border-t border-slate-800 p-2.5 pb-[max(0.625rem,env(safe-area-inset-bottom))] shadow-2xl print:hidden flex items-center justify-between gap-2">
+        <button
+          type="button"
+          onClick={() => setMobileMode(mobileMode === 'editor' ? 'preview' : 'editor')}
+          className="flex-1 py-2 rounded-xl bg-slate-800 text-slate-200 font-bold text-xs flex items-center justify-center gap-1.5 border border-slate-700 active:scale-95 transition-transform cursor-pointer"
+        >
+          {mobileMode === 'editor' ? (
+            <>
+              <Eye className="w-3.5 h-3.5 text-blue-400" />
+              <span>A4 View</span>
+            </>
+          ) : (
+            <>
+              <Smartphone className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Edit Form</span>
+            </>
+          )}
+        </button>
+
+        <button
+          type="button"
+          onClick={handleAddItem}
+          className="py-2 px-3 rounded-xl bg-slate-800 text-slate-200 font-bold text-xs flex items-center justify-center gap-1 border border-slate-700 active:scale-95 transition-transform cursor-pointer"
+          title="Add Item"
+        >
+          <Plus className="w-3.5 h-3.5 text-emerald-400" />
+          <span>Item</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={handleDuplicateInvoice}
+          className="py-2 px-3 rounded-xl bg-slate-800 text-amber-300 font-bold text-xs flex items-center justify-center gap-1 border border-amber-500/30 active:scale-95 transition-transform cursor-pointer"
+          title="Duplicate"
+        >
+          <Copy className="w-3.5 h-3.5 text-amber-400" />
+          <span>Clone</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={handleDownloadPdf}
+          className="flex-1 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-black text-xs flex items-center justify-center gap-1.5 shadow-md active:scale-95 transition-transform cursor-pointer"
+        >
+          <Download className="w-3.5 h-3.5" />
+          <span>PDF</span>
+        </button>
       </div>
 
       {/* ========================================================
