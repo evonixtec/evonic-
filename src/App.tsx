@@ -1374,9 +1374,9 @@ export default function App() {
           <div className="space-y-0">
             <ToolWorkspaceHeader
               currentToolId="tiktok-shop-fee-calculator"
-              toolTitle="TikTok Shop Fee Calculator"
+              toolTitle="TikTok Shop Fee Calculator UK & Pakistan 2026 - Commission & VAT"
               toolCategory="E-Commerce & Ads"
-              toolDescription="Calculate TikTok Shop platform commission, affiliate margins, logistics costs, and net merchant payout."
+              toolDescription="Calculate TikTok Shop UK 9% commission, 20% VAT deductions, and Pakistan cross-border seller margins."
               icon={<SlidersHorizontal className="w-5 h-5 text-pink-500" />}
               onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
               onNavigateToolsHub={() => navigateToPage('tools')}

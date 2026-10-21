@@ -11,7 +11,7 @@ export interface SialkotArea {
   description: string;
 }
 
-export const SIALKOT_AREAS: SialkotArea[] = [
+const SIALKOT_AREAS: SialkotArea[] = [
   {
     id: 'kotli-behram',
     name: 'Kotli Behram, Sialkot, Pakistan',

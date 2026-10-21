@@ -36,7 +36,7 @@ export interface ToolNavDefinition {
   isMobileCore?: boolean;
 }
 
-export const ALL_TOOLS_DIRECTORY: ToolNavDefinition[] = [
+const ALL_TOOLS_DIRECTORY: ToolNavDefinition[] = [
   {
     id: 'invoice',
     name: 'Global Micro-Invoice Generator',
@@ -69,7 +69,7 @@ export const ALL_TOOLS_DIRECTORY: ToolNavDefinition[] = [
   },
   {
     id: 'tiktok-shop-fee-calculator',
-    name: 'TikTok Shop Fee Calculator',
+    name: 'TikTok Shop Fee Calculator UK & Pakistan 2026 - Commission & VAT',
     shortName: 'TikTok Shop',
     category: 'ecommerce-growth',
     categoryLabel: 'E-Commerce',

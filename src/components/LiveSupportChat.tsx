@@ -44,7 +44,7 @@ export interface DutyEngineer {
 // 12:00 - 16:00: Ayesha Malik
 // 16:00 - 20:00: Engr. Hamza Tariq
 // 20:00 - 24:00: Rabia Noor
-export const DUTY_ENGINEERS: DutyEngineer[] = [
+const DUTY_ENGINEERS: DutyEngineer[] = [
   {
     id: 'rabia',
     name: 'Rabia Noor',
@@ -92,7 +92,7 @@ export const DUTY_ENGINEERS: DutyEngineer[] = [
 ];
 
 // Determine active duty engineer based on current 4-hour time block
-export function getActiveDutyEngineer(): DutyEngineer {
+function getActiveDutyEngineer(): DutyEngineer {
   const hour = new Date().getHours();
   const slot = Math.floor(hour / 4);
   const cycle = [0, 3, 1, 2, 1, 0];
@@ -101,7 +101,7 @@ export function getActiveDutyEngineer(): DutyEngineer {
 }
 
 // Time-aware greeting helper: Good morning / Good afternoon / Good evening
-export function getTimeGreeting(lang: 'english' | 'urdu'): string {
+function getTimeGreeting(lang: 'english' | 'urdu'): string {
   const hour = new Date().getHours();
   if (lang === 'english') {
     if (hour >= 5 && hour < 12) return 'Good morning';
@@ -150,7 +150,7 @@ interface UserConversationState {
 }
 
 // Extract human name if the user provided one (e.g. "Raza", "My name is Raza", "Muhammad Raza", "رضا")
-export function extractUserName(text: string): string | null {
+function extractUserName(text: string): string | null {
   const cleaned = text.trim();
 
   // Pattern A: "my name is Raza", "i am Raza", "this is Raza", "mera naam Raza hai", "mera nam Raza", "nam Raza"
@@ -196,7 +196,7 @@ export function extractUserName(text: string): string | null {
 // Strict pure language detector:
 // - English if user greets with "hi", "hello", "hey", or English phrases
 // - Urdu if user writes Urdu script or Roman Urdu phrases ("kya", "kesa", "kese", "masla", "theek", etc.)
-export function detectMessageLanguage(text: string): 'pure_english' | 'pure_urdu' {
+function detectMessageLanguage(text: string): 'pure_english' | 'pure_urdu' {
   // If Urdu script present
   if (/[\u0600-\u06FF]/.test(text)) {
     return 'pure_urdu';

@@ -756,6 +756,35 @@ pages.push({
 });
 
 pages.push({
+  route: 'tiktok-shop-fee-calculator',
+  title: 'TikTok Shop Fee Calculator UK & Pakistan 2026 - Commission & VAT | evonix',
+  description: 'Calculate TikTok Shop UK 9% commission fees, 20% VAT deductions, and Pakistan cross-border seller profits. Includes creator affiliate margins, shipping fees, and live net payout breakdown for 2026.',
+  canonical: `${DOMAIN}/tiktok-shop-fee-calculator`,
+  heading: 'TikTok Shop Fee Calculator UK & Pakistan 2026 - Commission & VAT',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'TikTok Shop Fee Calculator', url: '/tiktok-shop-fee-calculator' }],
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        Calculate exact TikTok Shop UK 9% commission, 20% VAT on platform fees, and Pakistan cross-border exporter net profits.
+      </p>
+      <div class="space-y-4">
+        <h2 class="text-xl font-bold text-white">TikTok Shop UK Commission Rates</h2>
+        <p class="text-sm text-slate-300">TikTok Shop UK standard commission is 9.0%, with reduced 5% rate for electronics and seller task missions. Standard 20% VAT applies to fees.</p>
+      </div>
+      <div class="space-y-4">
+        <h2 class="text-xl font-bold text-white">Seller Profitability Factors</h2>
+        <p class="text-sm text-slate-300">Actionable strategies for optimizing net profit on TikTok Shop:</p>
+        <ul class="list-disc list-inside space-y-2 text-sm text-slate-300">
+          <li><strong>Managing Storage Fees:</strong> Keep inventory turns under 30 to 45 days. FBT and 3PL warehouses double monthly storage charges on aged inventory past 60 days.</li>
+          <li><strong>Understanding Return Rates:</strong> Viral impulse buys face 12% to 22% returns. Build an 8% to 10% return reserve buffer into retail prices to avoid margin erosion.</li>
+          <li><strong>Selecting Fulfillment Partners:</strong> Compare Fulfilled by TikTok (FBT) for fast-delivery badges with seller self-shipping via Royal Mail or Evri for lightweight parcels.</li>
+        </ul>
+      </div>
+    </div>
+  `
+});
+
+pages.push({
   route: 'ai-tools-name-for-travel-itinerary',
   title: 'Tools Required for Artificial Intelligence: 10 Best AI Tools Name for Travel Itinerary [2026 Tested]',
   description: 'What are the best AI tools for travel planning in 2026? Find top 10 AI tools name, tools required for AI trip planning, flights & vacation planning + FREE tool.',

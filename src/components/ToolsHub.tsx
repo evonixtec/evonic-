@@ -52,7 +52,7 @@ export interface WebToolDefinition {
   mobileCoreOrder?: number;
 }
 
-export const TOOLS_COLLECTION: WebToolDefinition[] = [
+const TOOLS_COLLECTION: WebToolDefinition[] = [
   // 0. TREND INTELLIGENCE SUITE (V15 Master Build - Featured)
   {
     id: 'trend-intelligence-suite',
