@@ -82,14 +82,30 @@ const AdminPortal = lazy(() => import('./components/AdminPortal').then(m => ({ d
 const DoorstepSupportPage = lazy(() => import('./components/DoorstepSupportPage').then(m => ({ default: m.DoorstepSupportPage })));
 const SialkotExportErpPage = lazy(() => import('./components/SialkotExportErpPage').then(m => ({ default: m.SialkotExportErpPage })));
 const GuidelinesPage = lazy(() => import('./components/GuidelinesPage').then(m => ({ default: m.GuidelinesPage })));
-const EbaySaleCalculator = lazy(() => import('./components/EbaySaleCalculator'));
-const TikTokShopCalculator = lazy(() => import('./components/TikTokShopCalculator'));
-const AmazonFbaCalculator = lazy(() => import('./components/AmazonFbaCalculator'));
-const ShopifyFeeCalculator = lazy(() => import('./components/ShopifyFeeCalculator'));
-const StripeFeeCalculator = lazy(() => import('./components/StripeFeeCalculator'));
-const TemuSellerCalculator = lazy(() => import('./components/TemuSellerCalculator'));
-const InstallationGuidePage = lazy(() => import('./components/InstallationGuidePage').then(m => ({ default: m.InstallationGuidePage })));
-const TrendIntelligenceSuite = lazy(() => import('./components/TrendIntelligenceSuite'));
+// Resilient dynamic import helper with automatic retry for lazy chunks
+const lazyWithRetry = <T extends React.ComponentType<any>>(
+  factory: () => Promise<{ default: T } | any>
+): React.LazyExoticComponent<T> =>
+  lazy<T>(async () => {
+    try {
+      const module = await factory();
+      return { default: (module.default || module.TikTokShopCalculator || Object.values(module)[0]) as T };
+    } catch (error) {
+      console.warn('Initial chunk load failed, retrying once...', error);
+      await new Promise((r) => setTimeout(r, 250));
+      const retryModule = await factory();
+      return { default: (retryModule.default || retryModule.TikTokShopCalculator || Object.values(retryModule)[0]) as T };
+    }
+  });
+
+const EbaySaleCalculator = lazyWithRetry(() => import('./components/EbaySaleCalculator'));
+const TikTokShopCalculator = lazyWithRetry(() => import('./components/TikTokShopCalculator'));
+const AmazonFbaCalculator = lazyWithRetry(() => import('./components/AmazonFbaCalculator'));
+const ShopifyFeeCalculator = lazyWithRetry(() => import('./components/ShopifyFeeCalculator'));
+const StripeFeeCalculator = lazyWithRetry(() => import('./components/StripeFeeCalculator'));
+const TemuSellerCalculator = lazyWithRetry(() => import('./components/TemuSellerCalculator'));
+const InstallationGuidePage = lazyWithRetry<React.FC<{ onNavigatePage?: (page: any) => void }>>(() => import('./components/InstallationGuidePage').then(m => ({ default: m.InstallationGuidePage })));
+const TrendIntelligenceSuite = lazyWithRetry(() => import('./components/TrendIntelligenceSuite'));
 
 // Loading spinner fallback for lazy chunks
 const LazyLoaderFallback: React.FC = () => (
@@ -795,7 +811,8 @@ export default function App() {
             }}
             className="w-full pb-16 lg:pb-0"
           >
-            <Suspense fallback={<LazyLoaderFallback />}>
+            <ErrorBoundary>
+              <Suspense fallback={<LazyLoaderFallback />}>
               {/* ========================================================
                   PAGE 1: HOME PAGE (Concise, Curated & Beautiful)
                  ======================================================== */}
@@ -1689,7 +1706,8 @@ export default function App() {
           <TrendIntelligenceSuite />
         )}
             </Suspense>
-          </motion.div>
+          </ErrorBoundary>
+        </motion.div>
         </AnimatePresence>
       </main>
 

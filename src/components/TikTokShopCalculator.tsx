@@ -1278,3 +1278,5 @@ export default function TikTokShopCalculator() {
     </div>
   );
 }
+
+export { TikTokShopCalculator };
