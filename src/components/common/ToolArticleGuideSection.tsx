@@ -194,6 +194,25 @@ export const ToolArticleGuideSection: React.FC<ToolArticleGuideSectionProps> = (
         </article>
 
         {/* ========================================================
+            COMMUNITY DISCUSSION (MICRO-INVOICE GENERATOR ONLY)
+           ======================================================== */}
+        {(toolId === 'invoice' || toolId === 'micro-invoice-generator') && (
+          <section aria-label="Community Discussion" className="space-y-3">
+            <div className="community-box">
+              <h3>Discussed on Reddit r/AISEOInsider</h3>
+              <p>Our GEO-ready invoice schema was reviewed by AI SEO experts.</p>
+              <a
+                href="https://www.reddit.com/r/AISEOInsider/comments/1xb85id/i_built_a_free_microinvoice_tool_for_geoaeo_it/"
+                target="_blank"
+                rel="noopener"
+              >
+                View Discussion on Reddit →
+              </a>
+            </div>
+          </section>
+        )}
+
+        {/* ========================================================
             FREQUENTLY ASKED QUESTIONS (FAQS) ACCORDION
            ======================================================== */}
         <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-2xs space-y-4">

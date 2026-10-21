@@ -261,11 +261,17 @@ export default function App() {
     }
 
     if (
+      path === 'tools/micro-invoice-generator' ||
+      path === 'micro-invoice-generator' ||
+      path === 'tools/invoice' ||
       path === 'invoice' ||
       path === 'invoice-generator' ||
       path === 'invoice-hub' ||
       path === 'invoicing' ||
       path === 'invoices' ||
+      path.startsWith('tools/micro-invoice-generator') ||
+      path.startsWith('micro-invoice-generator') ||
+      path.startsWith('tools/invoice') ||
       path.startsWith('invoice/') ||
       path.startsWith('invoice-generator/')
     ) {

@@ -63,3 +63,42 @@
   background: rgba(0, 212, 255, 0.3);
   border-radius: 9999px;
 }
+
+/* Community Discussion Card */
+.community-box {
+  background: #ffffff;
+  border: 1px solid #fed7aa;
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+}
+
+.community-box h3 {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 0.375rem;
+}
+
+.community-box p {
+  font-size: 0.875rem;
+  color: #475569;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.community-box a {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #ea580c;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: color 0.15s ease;
+}
+
+.community-box a:hover {
+  color: #c2410c;
+}
+

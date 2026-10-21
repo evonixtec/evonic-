@@ -59,6 +59,12 @@
     <priority>0.95</priority>
   </url>
   <url>
+    <loc>https://www.evonixtec.com/tools/micro-invoice-generator</loc>
+    <lastmod>2026-10-17T10:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
     <loc>https://www.evonixtec.com/ecommerce-calculator</loc>
     <lastmod>2026-10-17T10:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -975,5 +981,11 @@
     <lastmod>2025-04-07T10:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.reddit.com/r/AISEOInsider/comments/1xb85id/i_built_a_free_microinvoice_tool_for_geoaeo_it/</loc>
+    <lastmod>2026-10-17T10:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
 </urlset>

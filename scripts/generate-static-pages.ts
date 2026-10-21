@@ -744,6 +744,13 @@ pages.push({
       <p class="text-base sm:text-lg text-slate-200">
         Generate professional PDF invoices with barcodes, multi-currency calculations, and zero remote data storage.
       </p>
+      <div class="community-box my-6">
+        <h3 class="text-lg font-bold text-white mb-2">Discussed on Reddit r/AISEOInsider</h3>
+        <p class="text-sm text-slate-300 mb-3">Our GEO-ready invoice schema was reviewed by AI SEO experts.</p>
+        <a href="https://www.reddit.com/r/AISEOInsider/comments/1xb85id/i_built_a_free_microinvoice_tool_for_geoaeo_it/" target="_blank" rel="noopener" class="text-orange-400 hover:text-orange-300 font-bold underline">
+          View Discussion on Reddit →
+        </a>
+      </div>
     </div>
   `
 });
@@ -1243,6 +1250,8 @@ const aliasRedirects = [
   { route: 'blog', redirectTo: 'guides', canonical: `${DOMAIN}/guides`, title: 'Tech Blog Archive | EVONIX Sialkot' },
   { route: 'guide', redirectTo: 'guides', canonical: `${DOMAIN}/guides`, title: 'Technical Guides | EVONIX Sialkot' },
   { route: 'invoice-generator', redirectTo: 'invoice', canonical: `${DOMAIN}/invoice`, title: 'Invoice Generator | EVONIX Sialkot' },
+  { route: 'tools/micro-invoice-generator', redirectTo: 'invoice', canonical: `${DOMAIN}/invoice`, title: 'Micro-Invoice Generator | EVONIX Sialkot' },
+  { route: 'micro-invoice-generator', redirectTo: 'invoice', canonical: `${DOMAIN}/invoice`, title: 'Micro-Invoice Generator | EVONIX Sialkot' },
   { route: 'margin-calculator', redirectTo: 'ecommerce-calculator', canonical: `${DOMAIN}/ecommerce-calculator`, title: 'Margin Calculator | EVONIX Sialkot' },
 ];
 
