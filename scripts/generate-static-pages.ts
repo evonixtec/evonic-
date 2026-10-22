@@ -20,6 +20,9 @@ interface StaticPageDef {
   bodyHtml: string;
   isRedirect?: boolean;
   redirectTo?: string;
+  ogImage?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
 }
 
 // Convert markdown-like content to clean semantic HTML
@@ -760,6 +763,9 @@ pages.push({
   title: 'TikTok Shop Fee Calculator UK 9% & US 6%/8% - 2026 Commission Calculator | evonix',
   description: 'Calculate TikTok Shop UK 9% commission (VAT inclusive), US 6% official & 8% reported referral fees, EU 9% rates, and Pakistan cross-border seller margins. Live 2026 payout breakdown.',
   canonical: `${DOMAIN}/tiktok-shop-fee-calculator`,
+  ogImage: `${DOMAIN}/og-images/tiktok-shop-og.jpg`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
   heading: 'TikTok Shop Fee Calculator UK 9% & US 6%/8% - 2026 Commission Calculator',
   breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'TikTok Shop Fee Calculator', url: '/tiktok-shop-fee-calculator' }],
   bodyHtml: `
@@ -799,6 +805,136 @@ pages.push({
       </div>
     </div>
   `
+});
+
+pages.push({
+  route: 'amazon-fba-fee-calculator',
+  title: 'Amazon FBA Fee Calculator 2026 - Profit, Referral, Fulfillment + Fuel Surcharge',
+  description: '2026 updated Amazon FBA Fee Calculator. Calculate referral fee (8-45%), FBA fulfillment fee, 3.5% fuel surcharge, Oct 15 - Jan 14 peak fee $0.32, storage, inbound placement & net profit.',
+  canonical: `${DOMAIN}/amazon-fba-fee-calculator`,
+  ogImage: `${DOMAIN}/images/amazon-fba-fee-calculator-2026.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  heading: 'Amazon FBA Fee Calculator 2026 - Profit, Referral, Fulfillment + Fuel Surcharge',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Amazon FBA Calculator', url: '/amazon-fba-fee-calculator' }],
+  schemaType: 'FAQPage',
+  schemaJson: {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is the Amazon FBA fee in 2026?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'In 2026, Amazon FBA fee includes category referral fee (8% to 45%, min $0.30), size-tier pick and pack fee ($3.22 to $5.50+), a 3.5% fuel surcharge on fulfillment, and Q4 peak surcharges ($0.32 avg).'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'What is the 3.5% fuel surcharge on Amazon FBA?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Amazon applies a 3.5% fuel and logistics surcharge on top of standard FBA fulfillment fees to account for rising carrier freight and diesel costs.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'What is Amazon Q4 peak season fulfillment fee?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Between Oct 15, 2026 and Jan 14, 2027, Amazon charges an additional holiday peak surcharge averaging +$0.32 per standard unit, along with higher cubic-foot storage rates ($2.40/cu ft).'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I calculate break-even ACoS for Amazon PPC?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Break-even ACoS equals your Net Profit Margin percentage before ad spend. If your margin is 28%, you can spend up to 28% of your sale price on ads without losing money.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'What is the Amazon low-inventory-level fee?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Amazon charges between $0.32 and $2.09 per unit if your inventory consistently falls below 28 days of historical supply relative to sales velocity.'
+        }
+      }
+    ]
+  },
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        2026 ke latest Amazon fee schedule ke mutabiq. Q4 Peak Season (Oct 15, 2026 - Jan 14, 2027) aur Fuel Surcharge 3.5% included hai.
+      </p>
+
+      <div class="space-y-4">
+        <h2 class="text-xl font-bold text-white">Amazon Referral Fee Schedule 2026</h2>
+        <p class="text-sm text-slate-300">Amazon charges a referral fee on every item sold. Most product categories carry a standard 15% rate, with a universal $0.30 minimum fee per unit.</p>
+        <p class="text-sm text-slate-300">Consumer electronics remain at 8%, while device accessories range up to 45%. Knowing your category percentage prevents costly pricing mistakes.</p>
+      </div>
+
+      <div class="space-y-4">
+        <h2 class="text-xl font-bold text-white">FBA Fulfillment Fees & 3.5% Fuel Surcharge</h2>
+        <p class="text-sm text-slate-300">Fulfillment fees cover pick, pack, shipping, and customer support. Starting April 17, 2026, Amazon applied a 3.5% fuel and logistics surcharge on all fulfillment rates.</p>
+        <p class="text-sm text-slate-300">Small standard goods under $10 enjoy low-price FBA rates at $3.22. Standard items between $10 and $50 start at $3.45 to $5.50 based on shipping weight.</p>
+      </div>
+
+      <div class="space-y-4">
+        <h2 class="text-xl font-bold text-white">Seller Profitability Factors (Peak Season & Storage)</h2>
+        <p class="text-sm text-slate-300">During the Q4 holiday window from Oct 15, 2026 to Jan 14, 2027, Amazon adds an average peak fee of $0.32 per unit. Monthly storage also triples from $0.78 to $2.40 per cubic foot.</p>
+        <p class="text-sm text-slate-300">Maintain at least 28 days of inventory supply to prevent low-inventory penalties. Keep fast turn rates to protect your cash flow.</p>
+      </div>
+
+      <div class="space-y-4 pt-4 border-t border-slate-800">
+        <h2 class="text-xl font-bold text-white">Frequently Asked Questions</h2>
+        <div class="space-y-3 text-sm text-slate-300">
+          <div>
+            <h3 class="font-bold text-white">What is the Amazon FBA fee in 2026?</h3>
+            <p class="text-slate-400">In 2026, Amazon FBA fee includes category referral fee (8% to 45%, min $0.30), size-tier pick & pack fee ($3.22 to $5.50+), a 3.5% fuel surcharge on fulfillment, and Q4 peak surcharges ($0.32 avg).</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-white">What is the 3.5% fuel surcharge on Amazon FBA?</h3>
+            <p class="text-slate-400">Amazon applies a 3.5% fuel and logistics surcharge on top of standard FBA fulfillment fees to account for rising carrier freight and diesel costs.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-white">What is Amazon Q4 peak season fulfillment fee?</h3>
+            <p class="text-slate-400">Between Oct 15, 2026 and Jan 14, 2027, Amazon charges an additional holiday peak surcharge averaging +$0.32 per standard unit, along with higher cubic-foot storage rates ($2.40/cu ft).</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-white">How do I calculate break-even ACoS for Amazon PPC?</h3>
+            <p class="text-slate-400">Break-even ACoS equals your Net Profit Margin percentage before ad spend. If your margin is 28%, you can spend up to 28% of your sale price on ads without losing money.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-white">What is the Amazon low-inventory-level fee?</h3>
+            <p class="text-slate-400">Amazon charges between $0.32 and $2.09 per unit if your inventory consistently falls below 28 days of historical supply relative to sales velocity.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
+        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
+        <p class="text-slate-400">Doorstep IT consultancy and Amazon cross-border seller support.</p>
+      </div>
+    </div>
+  `
+});
+
+pages.push({
+  route: 'amazon-fba-calculator',
+  title: 'Amazon FBA Fee Calculator 2026 - Profit, Referral, Fulfillment + Fuel Surcharge',
+  description: '2026 updated Amazon FBA Fee Calculator. Calculate referral fee (8-45%), FBA fulfillment fee, 3.5% fuel surcharge, Oct 15 - Jan 14 peak fee $0.32, storage, inbound placement & net profit.',
+  canonical: `${DOMAIN}/amazon-fba-fee-calculator`,
+  ogImage: `${DOMAIN}/images/amazon-fba-fee-calculator-2026.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  isRedirect: true,
+  redirectTo: 'amazon-fba-fee-calculator',
+  heading: 'Amazon FBA Fee Calculator 2026',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Amazon FBA Calculator', url: '/amazon-fba-fee-calculator' }],
+  bodyHtml: `<p class="text-slate-300">Redirecting to Amazon FBA Fee Calculator 2026...</p>`
 });
 
 pages.push({
@@ -1376,7 +1512,7 @@ function generateStaticPages() {
 
     // Canonical
     modifiedHtml = modifiedHtml.replace(
-      /<link\s+rel="canonical"\s+href=".*?"\s*\/?>/i,
+      /<link[^>]+rel="canonical"[^>]*\/?>/i,
       `<link rel="canonical" href="${page.canonical}" />`
     );
 
@@ -1393,6 +1529,54 @@ function generateStaticPages() {
       /<meta\s+property="og:url"\s+content=".*?"\s*\/?>/i,
       `<meta property="og:url" content="${page.canonical}" />`
     );
+
+    if (page.ogImage) {
+      if (/<meta\s+property="og:image"\s+content=".*?"\s*\/?>/i.test(modifiedHtml)) {
+        modifiedHtml = modifiedHtml.replace(
+          /<meta\s+property="og:image"\s+content=".*?"\s*\/?>/i,
+          `<meta property="og:image" content="${page.ogImage}" />`
+        );
+      } else {
+        modifiedHtml = modifiedHtml.replace(
+          '</head>',
+          `  <meta property="og:image" content="${page.ogImage}" />\n</head>`
+        );
+      }
+      if (page.ogImage.endsWith('.png')) {
+        modifiedHtml = modifiedHtml.replace(
+          /<meta\s+property="og:image:type"\s+content=".*?"\s*\/?>/i,
+          `<meta property="og:image:type" content="image/png" />`
+        );
+      }
+    }
+
+    if (page.ogImageWidth) {
+      if (/<meta\s+property="og:image:width"\s+content=".*?"\s*\/?>/i.test(modifiedHtml)) {
+        modifiedHtml = modifiedHtml.replace(
+          /<meta\s+property="og:image:width"\s+content=".*?"\s*\/?>/i,
+          `<meta property="og:image:width" content="${page.ogImageWidth}" />`
+        );
+      } else {
+        modifiedHtml = modifiedHtml.replace(
+          '</head>',
+          `  <meta property="og:image:width" content="${page.ogImageWidth}" />\n</head>`
+        );
+      }
+    }
+
+    if (page.ogImageHeight) {
+      if (/<meta\s+property="og:image:height"\s+content=".*?"\s*\/?>/i.test(modifiedHtml)) {
+        modifiedHtml = modifiedHtml.replace(
+          /<meta\s+property="og:image:height"\s+content=".*?"\s*\/?>/i,
+          `<meta property="og:image:height" content="${page.ogImageHeight}" />`
+        );
+      } else {
+        modifiedHtml = modifiedHtml.replace(
+          '</head>',
+          `  <meta property="og:image:height" content="${page.ogImageHeight}" />\n</head>`
+        );
+      }
+    }
 
     // Meta refresh for redirects
     if (page.isRedirect && page.redirectTo) {

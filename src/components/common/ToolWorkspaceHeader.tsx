@@ -79,12 +79,12 @@ const ALL_TOOLS_DIRECTORY: ToolNavDefinition[] = [
   },
   {
     id: 'amazon-fba-calculator',
-    name: 'Amazon FBA Fee & Profit Calculator',
-    shortName: 'Amazon FBA',
+    name: 'Amazon FBA Fee Calculator 2026 - Profit, Referral, Fulfillment + Fuel Surcharge',
+    shortName: 'Amazon FBA 2026',
     category: 'ecommerce-growth',
     categoryLabel: 'E-Commerce',
     icon: <Calculator className="w-4 h-4 text-amber-500" />,
-    badge: 'FBA & FBM',
+    badge: '2026 Rates',
     isMobileCore: true,
   },
   {

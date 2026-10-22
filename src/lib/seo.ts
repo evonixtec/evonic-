@@ -1063,22 +1063,26 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ],
   },
   'amazon-fba-calculator': {
-    title: 'Amazon FBA Calculator | FBA Fee & Profit Margin Utility',
+    title: 'Amazon FBA Fee Calculator 2026 - Profit, Referral, Fulfillment + Fuel Surcharge',
     description:
-      'Run the official Amazon FBA calculator to process FBA fee calculator metrics, referral tariffs, amazon seller calculator profiles, and exact profit margins.',
-    canonicalUrl: `${BASE_URL}/amazon-fba-calculator`,
-    ogTitle: 'Amazon FBA Calculator | FBA Fee & Profit Margin Utility',
+      '2026 updated Amazon FBA Fee Calculator. Calculate referral fee (8-45%), FBA fulfillment fee, 3.5% fuel surcharge, Oct 15 - Jan 14 peak fee $0.32, storage, inbound placement & net profit.',
+    canonicalUrl: `${BASE_URL}/amazon-fba-fee-calculator`,
+    ogTitle: 'Amazon FBA Fee Calculator 2026 - Profit, Referral, Fulfillment + Fuel Surcharge',
     ogDescription:
-      'Process FBA fee calculator metrics, referral tariffs, amazon seller calculator profiles, and exact profit margins.',
+      'Calculate Amazon FBA fees with 2026 rates: Referral, Fulfillment, Fuel 3.5%, Peak Season & Net Profit.',
     ogType: 'website',
-    ogImage: DEFAULT_OG_IMAGE,
+    ogImage: `${BASE_URL}/images/amazon-fba-fee-calculator-2026.png`,
     keywords: [
-      'amazon fba calculator',
-      'fba fee calculator',
+      'Amazon FBA Calculator',
+      'FBA profit calculator',
+      'Amazon referral fee',
+      'FBA fulfillment fee',
+      'Amazon storage fee',
+      'peak fee calculator 2026',
+      'amazon fuel surcharge calculator',
+      'amazon break-even acos calculator',
+      'fba fee calculator 2026',
       'amazon seller calculator',
-      'amazon profit calculator',
-      'amazon fba fees calculator',
-      'amazon fba profit margin calculator',
     ],
   },
   'shopify-fee-calculator': {
@@ -1610,6 +1614,8 @@ export function applyPageSEO(
       canonicalUrl = `${BASE_URL}/guidelines`;
     } else if (rawPath === '/factory-network-tester') {
       canonicalUrl = `${BASE_URL}/factory-network-tester`;
+    } else if (rawPath === '/amazon-fba-fee-calculator' || rawPath === '/amazon-fba-calculator') {
+      canonicalUrl = `${BASE_URL}/amazon-fba-fee-calculator`;
     }
   }
 
@@ -1636,6 +1642,8 @@ export function applyPageSEO(
   updateMetaTag('property', 'og:locale', 'en_PK');
   if (meta.ogImage) {
     updateMetaTag('property', 'og:image', meta.ogImage);
+    updateMetaTag('property', 'og:image:width', '1200');
+    updateMetaTag('property', 'og:image:height', '630');
   }
 
   // Twitter / X

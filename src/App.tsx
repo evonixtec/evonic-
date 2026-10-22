@@ -1429,9 +1429,9 @@ export default function App() {
           <div className="space-y-0">
             <ToolWorkspaceHeader
               currentToolId="amazon-fba-calculator"
-              toolTitle="Amazon FBA Fee & Profit Calculator"
+              toolTitle="Amazon FBA Fee Calculator 2026 - Profit, Referral, Fulfillment + Fuel Surcharge"
               toolCategory="E-Commerce & Export"
-              toolDescription="Calculate Amazon referral tariffs, pick and pack fulfillment costs, and monthly inventory storage charges."
+              toolDescription="Calculate referral fee (8-45%), FBA fulfillment fee, 3.5% fuel surcharge, Oct 15 - Jan 14 peak fee $0.32, storage, inbound placement & net profit."
               icon={<Calculator className="w-5 h-5 text-amber-500" />}
               onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
               onNavigateToolsHub={() => navigateToPage('tools')}
