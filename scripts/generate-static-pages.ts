@@ -757,19 +757,19 @@ pages.push({
 
 pages.push({
   route: 'tiktok-shop-fee-calculator',
-  title: 'TikTok Shop Fee Calculator UK & Pakistan 2026 - Commission & VAT | evonix',
-  description: 'Calculate TikTok Shop UK 9% commission fees, 20% VAT deductions, and Pakistan cross-border seller profits. Includes creator affiliate margins, shipping fees, and live net payout breakdown for 2026.',
+  title: 'TikTok Shop Fee Calculator UK 9% & US 6%/8% - 2026 Commission Calculator | evonix',
+  description: 'Calculate TikTok Shop UK 9% commission (VAT inclusive), US 6% official & 8% reported referral fees, EU 9% rates, and Pakistan cross-border seller margins. Live 2026 payout breakdown.',
   canonical: `${DOMAIN}/tiktok-shop-fee-calculator`,
-  heading: 'TikTok Shop Fee Calculator UK & Pakistan 2026 - Commission & VAT',
+  heading: 'TikTok Shop Fee Calculator UK 9% & US 6%/8% - 2026 Commission Calculator',
   breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'TikTok Shop Fee Calculator', url: '/tiktok-shop-fee-calculator' }],
   bodyHtml: `
     <div class="space-y-6 text-slate-300">
       <p class="text-base sm:text-lg text-slate-200">
-        Calculate exact TikTok Shop UK 9% commission, 20% VAT on platform fees, and Pakistan cross-border exporter net profits.
+        Calculate exact TikTok Shop UK 9% commission (VAT inclusive, no separate transaction fee), US 6% official / 8% reported rates, EU 9% standard, and Pakistan cross-border exporter net margins.
       </p>
       <div class="space-y-4">
         <h2 class="text-xl font-bold text-white">TikTok Shop UK Commission Rates</h2>
-        <p class="text-sm text-slate-300">TikTok Shop UK standard commission is 9.0%, with reduced 5% rate for electronics and seller task missions. Standard 20% VAT applies to fees.</p>
+        <p class="text-sm text-slate-300">TikTok Shop UK standard commission is 9.0% VAT-inclusive with no separate payment transaction fee. Electronics qualify for 5% during promotional seller missions.</p>
       </div>
       <div class="space-y-4">
         <h2 class="text-xl font-bold text-white">Seller Profitability Factors</h2>
@@ -779,6 +779,23 @@ pages.push({
           <li><strong>Understanding Return Rates:</strong> Viral impulse buys face 12% to 22% returns. Build an 8% to 10% return reserve buffer into retail prices to avoid margin erosion.</li>
           <li><strong>Selecting Fulfillment Partners:</strong> Compare Fulfilled by TikTok (FBT) for fast-delivery badges with seller self-shipping via Royal Mail or Evri for lightweight parcels.</li>
         </ul>
+      </div>
+      <div class="space-y-4 pt-4 border-t border-slate-800">
+        <h2 class="text-xl font-bold text-white">Frequently Asked Questions</h2>
+        <div class="space-y-3 text-sm text-slate-300">
+          <div>
+            <h3 class="font-bold text-white">What is TikTok Shop fee in UK 2026?</h3>
+            <p class="text-slate-400">9% VAT inclusive, with no separate payment transaction fee.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-white">What is TikTok Shop fee in US 2026?</h3>
+            <p class="text-slate-400">6% official standard fee (5% for selected jewelry), and 8% reported for newer categories and accounts since August 2026.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-white">Is there transaction fee on TikTok Shop?</h3>
+            <p class="text-slate-400">In the US, payment processing is bundled inside the referral fee. In the UK, there is no separate payment transaction fee charged to sellers.</p>
+          </div>
+        </div>
       </div>
     </div>
   `

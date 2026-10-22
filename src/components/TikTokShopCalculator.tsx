@@ -42,11 +42,11 @@ export interface TikTokRegionConfig {
 }
 
 const TIKTOK_REGIONS: Record<string, TikTokRegionConfig> = {
-  UK: { code: 'UK', name: 'United Kingdom (9% Standard)', currency: 'GBP', symbol: '£', defaultFeeRate: 9.0, fixedFee: 0.30 },
+  UK: { code: 'UK', name: 'United Kingdom (9% VAT-Inclusive)', currency: 'GBP', symbol: '£', defaultFeeRate: 9.0, fixedFee: 0.00 },
+  US: { code: 'US', name: 'United States (6% Official / 8% Reported)', currency: 'USD', symbol: '$', defaultFeeRate: 6.0, fixedFee: 0.00 },
   PK: { code: 'PK', name: 'Pakistan Exporter Hub (8% Referral)', currency: 'PKR', symbol: 'Rs. ', defaultFeeRate: 8.0, fixedFee: 50.0 },
-  US: { code: 'US', name: 'United States (6% Referral)', currency: 'USD', symbol: '$', defaultFeeRate: 6.0, fixedFee: 0.30 },
+  EU: { code: 'EU', name: 'European Union (9% Standard Since Jan 8, 2026)', currency: 'EUR', symbol: '€', defaultFeeRate: 9.0, fixedFee: 0.00 },
   AE: { code: 'AE', name: 'UAE / GCC (6% Referral)', currency: 'AED', symbol: 'AED ', defaultFeeRate: 6.0, fixedFee: 1.0 },
-  EU: { code: 'EU', name: 'European Union (5% Standard)', currency: 'EUR', symbol: '€', defaultFeeRate: 5.0, fixedFee: 0.35 },
 };
 
 // Verified seller reviews data
@@ -58,7 +58,7 @@ const INITIAL_REVIEWS = [
     storeType: 'Fashion & Apparel UK',
     rating: 5,
     date: 'October 18, 2026',
-    comment: 'The new 9% UK commission took a bite out of our margins on September 2. This calculator helped us re-calculate retail pricing and factor in 20% VAT on TikTok fees accurately.'
+    comment: 'The 9% UK commission is VAT-inclusive with zero separate transaction fees. This calculator helped us re-calculate retail pricing accurately.'
   },
   {
     id: 2,
@@ -76,7 +76,7 @@ const INITIAL_REVIEWS = [
     storeType: 'Health & Beauty Seller',
     rating: 5,
     date: 'October 9, 2026',
-    comment: 'Clear fee math! It correctly separates creator affiliate cuts from the 9% platform tariff and £0.30 processing cost. Essential tool for our Q4 planning.'
+    comment: 'Clear fee math! It correctly separates creator affiliate cuts from the 9% platform tariff with no separate transaction fee. Essential tool for our Q4 planning.'
   },
   {
     id: 4,
@@ -95,13 +95,14 @@ export default function TikTokShopCalculator() {
 
   // Inputs
   const [region, setRegion] = useState<string>('UK');
+  const [usFeeTier, setUsFeeTier] = useState<'6%' | '8%'>('6%');
   const [salePrice, setSalePrice] = useState<number>(25);
   const [shippingCharged, setShippingCharged] = useState<number>(3.5);
   const [productCost, setProductCost] = useState<number>(7);
   const [shippingCost, setShippingCost] = useState<number>(2.8);
   const [affiliateRate, setAffiliateRate] = useState<number>(10); // % creator commission
-  const [platformFeeRate, setPlatformFeeRate] = useState<number>(9.0); // % referral (UK 9%)
-  const [applyUkVat, setApplyUkVat] = useState<boolean>(true); // 20% VAT on platform fees
+  const [platformFeeRate, setPlatformFeeRate] = useState<number>(9.0); // % referral (UK 9% VAT-inclusive)
+  const [applyUkVat, setApplyUkVat] = useState<boolean>(true); // UK VAT on fees display
   const [adSpend, setAdSpend] = useState<number>(2);
   const [numOrders, setNumOrders] = useState<number>(1);
 
@@ -141,33 +142,45 @@ export default function TikTokShopCalculator() {
   const handleRegionChange = (newRegion: string) => {
     setRegion(newRegion);
     const cfg = TIKTOK_REGIONS[newRegion] || TIKTOK_REGIONS.UK;
-    setPlatformFeeRate(cfg.defaultFeeRate);
 
     if (newRegion === 'UK') {
+      setPlatformFeeRate(9.0);
       setSalePrice(25);
       setShippingCharged(3.5);
       setProductCost(7);
       setShippingCost(2.8);
       setApplyUkVat(true);
-    } else if (newRegion === 'PK') {
-      setSalePrice(4500);
-      setShippingCharged(350);
-      setProductCost(1800);
-      setShippingCost(400);
-      setApplyUkVat(false);
     } else if (newRegion === 'US') {
+      const rate = usFeeTier === '8%' ? 8.0 : 6.0;
+      setPlatformFeeRate(rate);
       setSalePrice(45);
       setShippingCharged(5);
       setProductCost(14);
       setShippingCost(4);
       setApplyUkVat(false);
+    } else if (newRegion === 'PK') {
+      setPlatformFeeRate(8.0);
+      setSalePrice(4500);
+      setShippingCharged(350);
+      setProductCost(1800);
+      setShippingCost(400);
+      setApplyUkVat(false);
+    } else if (newRegion === 'EU') {
+      setPlatformFeeRate(9.0);
+      setSalePrice(35);
+      setShippingCharged(4);
+      setProductCost(11);
+      setShippingCost(3.5);
+      setApplyUkVat(false);
     } else if (newRegion === 'AE') {
+      setPlatformFeeRate(cfg.defaultFeeRate);
       setSalePrice(120);
       setShippingCharged(15);
       setProductCost(40);
       setShippingCost(12);
       setApplyUkVat(false);
     } else {
+      setPlatformFeeRate(cfg.defaultFeeRate);
       setSalePrice(35);
       setShippingCharged(4);
       setProductCost(11);
@@ -182,12 +195,25 @@ export default function TikTokShopCalculator() {
     const crossBorderSurcharge = isCrossBorder ? (grossSale * 0.015) : 0;
     const computedReferral = baseReferral + crossBorderSurcharge;
     const computedAffiliate = (salePrice * (affiliateRate / 100));
-    const computedProcessing = (grossSale * 0.0212) + activeConfig.fixedFee;
 
-    // UK VAT: 20% on TikTok platform fees (referral + processing)
-    const computedVat = (region === 'UK' && applyUkVat) ? ((computedReferral + computedProcessing) * 0.20) : 0;
+    // Fee logic per official guidelines:
+    // UK: 9% VAT-inclusive, NO separate transaction fee.
+    // US: Bundled payment processing in referral fee (6% official / 8% reported), NO separate transaction fee.
+    // EU: 9% standard since Jan 8, 2026, NO separate transaction fee.
+    // PK / AE: Standard payment gateway / fixed processing.
+    const isUk = region === 'UK';
+    const isUs = region === 'US';
+    const isEu = region === 'EU';
 
-    const totalPlatformCharges = computedReferral + computedAffiliate + computedProcessing + computedVat;
+    const computedProcessing = (isUk || isUs || isEu)
+      ? 0
+      : (grossSale * 0.0212) + activeConfig.fixedFee;
+
+    // For UK, 9% is VAT-inclusive (20/120 portion is VAT: approx 1.50% of gross).
+    // In our total platform charges, computedReferral already covers the entire 9% VAT-inclusive platform commission.
+    const computedVat = isUk ? ((computedReferral * 20) / 120) : 0;
+
+    const totalPlatformCharges = computedReferral + computedAffiliate + computedProcessing;
     const totalCOGS = productCost + shippingCost + adSpend;
     const totalDeductions = totalPlatformCharges + totalCOGS;
 
@@ -203,9 +229,10 @@ export default function TikTokShopCalculator() {
     setNetProfit(computedNetProfit);
     setMargin(computedMargin);
 
-    const vatMultiplier = (region === 'UK' && applyUkVat) ? 1.20 : 1.0;
-    const variableRate = ((platformFeeRate / 100) * vatMultiplier) + (affiliateRate / 100) + (0.0212 * vatMultiplier) + (isCrossBorder ? 0.015 : 0);
-    const fixedCosts = (activeConfig.fixedFee * vatMultiplier) + totalCOGS;
+    const processingRate = (isUk || isUs || isEu) ? 0 : 0.0212;
+    const fixedRateProcessing = (isUk || isUs || isEu) ? 0 : activeConfig.fixedFee;
+    const variableRate = (platformFeeRate / 100) + (affiliateRate / 100) + processingRate + (isCrossBorder ? 0.015 : 0);
+    const fixedCosts = fixedRateProcessing + totalCOGS;
     setBreakEvenPrice(variableRate < 1 ? fixedCosts / (1 - variableRate) : 0);
   }, [salePrice, shippingCharged, productCost, shippingCost, affiliateRate, platformFeeRate, applyUkVat, adSpend, numOrders, isCrossBorder, region, activeConfig.fixedFee]);
 
@@ -301,13 +328,13 @@ export default function TikTokShopCalculator() {
           <div className="space-y-2">
             <div className="apple-badge">
               <ShoppingBag className="w-3.5 h-3.5 text-[#0071e3]" />
-              <span>TikTok Shop Seller Suite • UK 9% &amp; Pakistan 2026 Engine</span>
+              <span>TikTok Shop Seller Suite • UK 9% &amp; US 6%/8% Commission Engine</span>
             </div>
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#1d1d1f]">
-              TikTok Shop Fee Calculator UK &amp; Pakistan 2026 - Commission &amp; VAT
+              TikTok Shop Fee Calculator UK 9% &amp; US 6%/8% - 2026 Commission Calculator
             </h1>
             <p className="text-xs sm:text-sm text-[#86868b] leading-relaxed max-w-2xl">
-              Calculate exact TikTok Shop fees, UK 9% commission, 20% VAT on fees, creator affiliate cuts, and net merchant profits for UK and Pakistan seller accounts.
+              Calculate exact TikTok Shop fees: UK 9% commission (VAT-inclusive, no separate transaction fee), US 6% official &amp; 8% reported tiers, EU 9% rates, and Pakistan cross-border exporter net profits.
             </p>
           </div>
 
@@ -331,6 +358,58 @@ export default function TikTokShopCalculator() {
                 </button>
               )}
             </div>
+          </div>
+        </div>
+
+        {/* TOP CURRENCY SWITCHER (UK / US / PK MULTI-MARKET SELECTION) */}
+        <div className="apple-glass-box p-4 flex flex-wrap items-center justify-between gap-3 border border-black/8 shadow-xs">
+          <div className="flex items-center gap-2">
+            <Globe className="w-4 h-4 text-[#0071e3]" />
+            <span className="text-xs font-bold uppercase tracking-wider text-[#1d1d1f]">
+              Currency Switcher:
+            </span>
+          </div>
+          <div className="inline-flex flex-wrap items-center gap-1.5 p-1 bg-slate-100 rounded-xl">
+            <button
+              type="button"
+              onClick={() => handleRegionChange('UK')}
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                region === 'UK' ? 'bg-[#0071e3] text-white shadow-xs' : 'text-[#1d1d1f] hover:text-[#0071e3] hover:bg-white'
+              }`}
+            >
+              <span>🇬🇧 £ GBP</span>
+              <span className="text-[10px] opacity-80 font-normal">(UK 9% VAT-incl)</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => handleRegionChange('US')}
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                region === 'US' ? 'bg-[#0071e3] text-white shadow-xs' : 'text-[#1d1d1f] hover:text-[#0071e3] hover:bg-white'
+              }`}
+            >
+              <span>🇺🇸 $ USD</span>
+              <span className="text-[10px] opacity-80 font-normal">(US 6% / 8%)</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => handleRegionChange('PK')}
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                region === 'PK' ? 'bg-[#0071e3] text-white shadow-xs' : 'text-[#1d1d1f] hover:text-[#0071e3] hover:bg-white'
+              }`}
+            >
+              <span>🇵🇰 PKR</span>
+              <span className="text-[10px] opacity-80 font-normal">(Pakistan 8%)</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => handleRegionChange('EU')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-1 ${
+                region === 'EU' ? 'bg-[#0071e3] text-white shadow-xs' : 'text-[#86868b] hover:text-[#1d1d1f] hover:bg-white'
+              }`}
+            >
+              <span>🇪🇺 € EUR</span>
+              <span className="text-[10px] opacity-80 font-normal">(EU 9%)</span>
+            </button>
           </div>
         </div>
 
@@ -388,12 +467,28 @@ export default function TikTokShopCalculator() {
                 </div>
               </div>
 
-              {/* Notice for UK 9% or Pakistan 8% */}
+              {/* Regional Policy Notices */}
               {region === 'UK' && (
                 <div className="p-3 rounded-xl bg-blue-50/80 border border-blue-200/80 text-blue-900 text-xs flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
                   <span>
-                    <strong>UK Fee Update:</strong> TikTok Shop UK base commission is 9.0% (increased from 5.0%). Standard 20% VAT applies to platform fees.
+                    <strong>UK Fee Policy:</strong> TikTok Shop UK commission is <strong>9.0% VAT-inclusive</strong> with <strong>no separate transaction fee</strong>.
+                  </span>
+                </div>
+              )}
+              {region === 'US' && (
+                <div className="p-3 rounded-xl bg-amber-50/80 border border-amber-200/80 text-amber-900 text-xs flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0" />
+                  <span>
+                    <strong>US Fee Policy:</strong> Official rate is <strong>6.0%</strong> (5% jewelry); <strong>8.0% reported</strong> for newer categories from August 2026. Payment processing is bundled.
+                  </span>
+                </div>
+              )}
+              {region === 'EU' && (
+                <div className="p-3 rounded-xl bg-purple-50/80 border border-purple-200/80 text-purple-900 text-xs flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-purple-600 shrink-0" />
+                  <span>
+                    <strong>EU Fee Policy:</strong> Standard commission is <strong>9.0%</strong> since Jan 8, 2026 (updated from 5.0%), with no separate transaction fee.
                   </span>
                 </div>
               )}
@@ -403,6 +498,50 @@ export default function TikTokShopCalculator() {
                   <span>
                     <strong>Pakistan Exporter Hub:</strong> 8.0% platform referral fee + Payoneer/Wise cross-border payout remittance support.
                   </span>
+                </div>
+              )}
+
+              {/* US 6% / 8% Toggle */}
+              {region === 'US' && (
+                <div className="p-3.5 rounded-xl bg-amber-50/90 border border-amber-200/90 space-y-2">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div>
+                      <span className="text-xs font-bold text-amber-950 block">US Commission Rate Tier</span>
+                      <span className="text-[11px] text-amber-800">
+                        Official table is 6% (5% jewelry); 8% reported active for newer categories from August 2026.
+                      </span>
+                    </div>
+                    <div className="inline-flex p-1 bg-white rounded-xl border border-amber-300 gap-1 shrink-0">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setUsFeeTier('6%');
+                          setPlatformFeeRate(6.0);
+                        }}
+                        className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                          usFeeTier === '6%'
+                            ? 'bg-[#0071e3] text-white shadow-xs'
+                            : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100'
+                        }`}
+                      >
+                        Official 6%
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setUsFeeTier('8%');
+                          setPlatformFeeRate(8.0);
+                        }}
+                        className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                          usFeeTier === '8%'
+                            ? 'bg-[#0071e3] text-white shadow-xs'
+                            : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100'
+                        }`}
+                      >
+                        Reported 8%
+                      </button>
+                    </div>
+                  </div>
                 </div>
               )}
 
@@ -457,7 +596,7 @@ export default function TikTokShopCalculator() {
                     className="apple-input w-full font-mono text-sm font-bold text-[#0071e3]"
                   />
                   <span className="text-[10px] text-slate-500 mt-0.5 block">
-                    {region === 'UK' ? 'UK Standard: 9.0%' : region === 'PK' ? 'PK Referral: 8.0%' : 'US Base: 6.0%'}
+                    {region === 'UK' ? 'UK: 9.0% (VAT-Inclusive)' : region === 'PK' ? 'PK Referral: 8.0%' : region === 'US' ? (usFeeTier === '8%' ? 'US Reported: 8.0%' : 'US Official: 6.0%') : 'EU Standard: 9.0%'}
                   </span>
                 </div>
                 <div>
@@ -484,26 +623,20 @@ export default function TikTokShopCalculator() {
                 </div>
               </div>
 
-              {/* UK VAT Toggle */}
+              {/* UK VAT Notice */}
               {region === 'UK' && (
                 <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-3">
                   <div className="space-y-0.5">
                     <span className="text-xs font-bold text-slate-900 block">
-                      UK VAT on TikTok Shop Fees (20%)
+                      UK VAT on TikTok Shop Fees (Included in 9%)
                     </span>
                     <span className="text-[11px] text-slate-500 block">
-                      TikTok UK charges 20% VAT on referral &amp; transaction fees unless reverse charged.
+                      TikTok UK 9% commission is VAT-inclusive. No separate payment processing transaction fee is charged.
                     </span>
                   </div>
-                  <label className="relative inline-flex items-center cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={applyUkVat}
-                      onChange={(e) => setApplyUkVat(e.target.checked)}
-                      className="sr-only peer"
-                    />
-                    <div className="w-11 h-6 bg-slate-200 peer-focus:outline-hidden rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#0071e3]" />
-                  </label>
+                  <div className="text-xs font-bold text-[#0071e3] px-2.5 py-1 bg-white rounded-lg border border-slate-200">
+                    VAT-Inclusive
+                  </div>
                 </div>
               )}
 
@@ -621,7 +754,9 @@ export default function TikTokShopCalculator() {
               {/* Deductions Breakdown */}
               <div className="space-y-2.5 text-xs">
                 <div className="apple-metric-row">
-                  <span className="apple-metric-label">TikTok Referral Fee ({platformFeeRate}%):</span>
+                  <span className="apple-metric-label">
+                    TikTok Referral Fee ({platformFeeRate}%){region === 'UK' ? ' (VAT-Inclusive)' : ''}:
+                  </span>
                   <span className="apple-metric-val">{activeConfig.symbol}{referralFee.toFixed(2)}</span>
                 </div>
                 <div className="apple-metric-row">
@@ -629,12 +764,14 @@ export default function TikTokShopCalculator() {
                   <span className="apple-metric-val">{activeConfig.symbol}{affiliateFee.toFixed(2)}</span>
                 </div>
                 <div className="apple-metric-row">
-                  <span className="apple-metric-label">Payment Processing (2.12% + fixed):</span>
+                  <span className="apple-metric-label">
+                    Payment Processing {region === 'UK' ? '(No Separate Fee)' : region === 'US' ? '(Bundled in Fee)' : region === 'EU' ? '(No Separate Fee)' : '(2.12% + fixed)'}:
+                  </span>
                   <span className="apple-metric-val">{activeConfig.symbol}{processingFee.toFixed(2)}</span>
                 </div>
-                {region === 'UK' && applyUkVat && (
-                  <div className="apple-metric-row text-orange-700">
-                    <span className="apple-metric-label">UK VAT on Platform Fees (20%):</span>
+                {region === 'UK' && (
+                  <div className="apple-metric-row text-blue-700">
+                    <span className="apple-metric-label">UK VAT Included (20/120 portion):</span>
                     <span className="apple-metric-val font-semibold">{activeConfig.symbol}{vatFee.toFixed(2)}</span>
                   </div>
                 )}
@@ -1087,12 +1224,16 @@ export default function TikTokShopCalculator() {
             <div className="space-y-2.5">
               {[
                 {
-                  q: 'What is the new TikTok Shop UK commission fee in 2026?',
-                  a: 'TikTok Shop UK increased its base commission from 5% to 9% starting September 2024. Electronics and sellers finishing Seller Task Missions may qualify for a reduced 5% rate.'
+                  q: 'What is TikTok Shop fee in UK 2026?',
+                  a: '9% VAT inclusive. TikTok Shop UK standard commission is 9.0% with no separate payment transaction fee.'
                 },
                 {
-                  q: 'Does TikTok Shop charge VAT on seller fees in the UK?',
-                  a: 'Yes, HMRC requires 20% VAT on TikTok platform referral and processing fees. VAT-registered sellers can reclaim this through their standard VAT return.'
+                  q: 'What is TikTok Shop fee in US 2026?',
+                  a: '6% official standard fee (5% for selected fine jewelry), and 8% reported for newer accounts and categories active from August 2026.'
+                },
+                {
+                  q: 'Is there transaction fee on TikTok Shop?',
+                  a: 'In the US, payment processing is bundled inside the referral fee. In the UK, there is no separate payment transaction fee charged to sellers.'
                 },
                 {
                   q: 'What are the TikTok Shop seller fees for Pakistan exporters?',
@@ -1104,7 +1245,7 @@ export default function TikTokShopCalculator() {
                 },
                 {
                   q: 'Is this TikTok Shop Fee Calculator free?',
-                  a: 'Yes, this web calculator is 100% free with unlimited calculations for UK, Pakistan, US, and international merchants.'
+                  a: 'Yes, this web calculator is 100% free with unlimited calculations for UK, US, Pakistan, and EU merchants.'
                 }
               ].map((item, idx) => (
                 <div key={idx} className="apple-result-box p-4">

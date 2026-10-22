@@ -1035,18 +1035,21 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ],
   },
   'tiktok-shop-fee-calculator': {
-    title: 'TikTok Shop Fee Calculator UK & Pakistan 2026 - Commission & VAT | evonix',
+    title: 'TikTok Shop Fee Calculator UK 9% & US 6%/8% - 2026 Commission Calculator | evonix',
     description:
-      'Calculate TikTok Shop UK 9% commission fees, 20% VAT deductions, and Pakistan cross-border seller profits. Includes creator affiliate margins, shipping fees, and live net payout breakdown for 2026.',
+      'Calculate TikTok Shop UK 9% commission (VAT inclusive), US 6% official & 8% reported fees, EU 9% rates, and Pakistan cross-border seller margins. Complete 2026 payout breakdown.',
     canonicalUrl: `${BASE_URL}/tiktok-shop-fee-calculator`,
-    ogTitle: 'TikTok Shop Fee Calculator UK & Pakistan 2026 - Commission & VAT',
+    ogTitle: 'TikTok Shop Fee Calculator UK 9% & Pakistan 2026',
     ogDescription:
-      'Updated for UK 9% commission and Pakistan seller accounts. Calculate exact TikTok Shop referral fees, VAT, creator commissions, and net profit margins.',
+      'Updated for UK 9% commission, US 6%/8% toggle, and Pakistan seller accounts. Calculate exact TikTok Shop referral fees, VAT, creator commissions, and net profit margins.',
     ogType: 'website',
-    ogImage: DEFAULT_OG_IMAGE,
+    ogImage: 'https://www.evonixtec.com/og-images/tiktok-shop-og.jpg',
     keywords: [
-      'tiktok shop fee calculator uk & pakistan 2026 - commission & vat',
-      'tiktok shop fee calculator uk',
+      'TikTok Shop Fee Calculator UK 9% & US 6%/8% - 2026 Commission Calculator',
+      'tiktok shop fee calculator uk 9%',
+      'tiktok shop fee calculator us 6% 8%',
+      'tiktok shop fee in uk 2026',
+      'tiktok shop fee in us 2026',
       'tiktok shop commission calculator pakistan',
       'tiktok shop 9% commission fee uk',
       'tiktok shop uk seller fees vat',

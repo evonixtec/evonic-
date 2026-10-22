@@ -121,17 +121,7 @@ const blogRoutes = ALL_BLOGS.map((blog) => ({
   priority: '0.8',
 }));
 
-// 7. Community Discussion & External Knowledge References
-const communityDiscussionRoutes = [
-  {
-    loc: 'https://www.reddit.com/r/AISEOInsider/comments/1xb85id/i_built_a_free_microinvoice_tool_for_geoaeo_it/',
-    lastmod: DEFAULT_LASTMOD,
-    changefreq: 'weekly',
-    priority: '0.85',
-  },
-];
-
-// Compile XML Sitemap
+// Compile XML Sitemap (evonixtec.com internal URLs only for Search Console compliance)
 const allEntries = [
   ...coreRoutes.map((r) => ({ ...r, lastmod: DEFAULT_LASTMOD })),
   ...subCategoryRoutes.map((r) => ({ ...r, lastmod: DEFAULT_LASTMOD })),
@@ -139,7 +129,6 @@ const allEntries = [
   ...locationClusterRoutes.map((r) => ({ ...r, lastmod: DEFAULT_LASTMOD })),
   ...policyRoutes.map((r) => ({ ...r, lastmod: DEFAULT_LASTMOD })),
   ...blogRoutes,
-  ...communityDiscussionRoutes,
 ];
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
