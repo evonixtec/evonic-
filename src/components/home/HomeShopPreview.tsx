@@ -96,3 +96,5 @@ export const HomeShopPreview: React.FC<HomeShopPreviewProps> = ({
     </section>
   );
 };
+
+export default HomeShopPreview;

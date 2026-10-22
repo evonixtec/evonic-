@@ -20,12 +20,12 @@ import { LocalCity, ClusterService, LOCAL_CITIES, CLUSTER_SERVICES } from './dat
 import { MessageSquare, Phone, ArrowUp, ArrowRight, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2, FileText, Barcode, Printer, Boxes, SlidersHorizontal, Calculator, Clock, Wifi, Globe } from 'lucide-react';
 import { isToolPage } from './lib/toolUtils';
 
-// Aggressive Code Splitting: Lazy-loaded below-the-fold home preview sections to boost Core Web Vitals
-const HomeServicesPreview = lazy(() => import('./components/home/HomeServicesPreview').then(m => ({ default: m.HomeServicesPreview })));
-const HomeAboutPreview = lazy(() => import('./components/home/HomeAboutPreview').then(m => ({ default: m.HomeAboutPreview })));
-const HomePortfolioPreview = lazy(() => import('./components/home/HomePortfolioPreview').then(m => ({ default: m.HomePortfolioPreview })));
-const HomeShopPreview = lazy(() => import('./components/home/HomeShopPreview').then(m => ({ default: m.HomeShopPreview })));
-const HomeToolsGrid = lazy(() => import('./components/home/HomeToolsGrid').then(m => ({ default: m.HomeToolsGrid })));
+// Statically imported home sections for instant render and zero dynamic import fetch failures
+import { HomeServicesPreview } from './components/home/HomeServicesPreview';
+import { HomeAboutPreview } from './components/home/HomeAboutPreview';
+import { HomePortfolioPreview } from './components/home/HomePortfolioPreview';
+import { HomeShopPreview } from './components/home/HomeShopPreview';
+import { HomeToolsGrid } from './components/home/HomeToolsGrid';
 const LaptopRepairEstimator = lazy(() => import('./components/LaptopRepairEstimator').then(m => ({ default: m.LaptopRepairEstimator })));
 const GoogleReviewsSection = lazy(() => import('./components/GoogleReviewsSection').then(m => ({ default: m.GoogleReviewsSection })));
 const WhyChooseUs = lazy(() => import('./components/WhyChooseUs').then(m => ({ default: m.WhyChooseUs })));
@@ -82,7 +82,7 @@ const AdminPortal = lazy(() => import('./components/AdminPortal').then(m => ({ d
 const DoorstepSupportPage = lazy(() => import('./components/DoorstepSupportPage').then(m => ({ default: m.DoorstepSupportPage })));
 const SialkotExportErpPage = lazy(() => import('./components/SialkotExportErpPage').then(m => ({ default: m.SialkotExportErpPage })));
 const GuidelinesPage = lazy(() => import('./components/GuidelinesPage').then(m => ({ default: m.GuidelinesPage })));
-// Resilient dynamic import helper with automatic retry for lazy chunks
+// Resilient dynamic import helper with automatic retry and graceful fallback for lazy chunks
 const lazyWithRetry = <T extends React.ComponentType<any>>(
   factory: () => Promise<{ default: T } | any>
 ): React.LazyExoticComponent<T> =>
@@ -91,10 +91,30 @@ const lazyWithRetry = <T extends React.ComponentType<any>>(
       const module = await factory();
       return { default: (module.default || module.TikTokShopCalculator || Object.values(module)[0]) as T };
     } catch (error) {
-      console.warn('Initial chunk load failed, retrying once...', error);
-      await new Promise((r) => setTimeout(r, 250));
-      const retryModule = await factory();
-      return { default: (retryModule.default || retryModule.TikTokShopCalculator || Object.values(retryModule)[0]) as T };
+      console.warn('Initial chunk load failed, retrying...', error);
+      try {
+        await new Promise((r) => setTimeout(r, 400));
+        const retryModule = await factory();
+        return { default: (retryModule.default || retryModule.TikTokShopCalculator || Object.values(retryModule)[0]) as T };
+      } catch (retryErr) {
+        console.error('Dynamic module load failed after retry:', retryErr);
+        const FallbackView: React.FC = () => (
+          <div className="py-20 px-4 text-center max-w-md mx-auto space-y-4">
+            <div className="p-6 bg-slate-50 border border-slate-200 rounded-2xl shadow-xs space-y-3">
+              <h3 className="text-base font-bold text-slate-800">Module Update In Progress</h3>
+              <p className="text-xs text-slate-600">This tool was updated. Please refresh to load the latest release.</p>
+              <button
+                type="button"
+                onClick={() => window.location.reload()}
+                className="px-5 py-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 cursor-pointer shadow-xs"
+              >
+                Reload Component
+              </button>
+            </div>
+          </div>
+        );
+        return { default: FallbackView as unknown as T };
+      }
     }
   });
 

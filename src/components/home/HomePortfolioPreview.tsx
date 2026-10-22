@@ -101,3 +101,5 @@ export const HomePortfolioPreview: React.FC<HomePortfolioPreviewProps> = ({
     </section>
   );
 };
+
+export default HomePortfolioPreview;

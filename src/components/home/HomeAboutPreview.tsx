@@ -128,3 +128,5 @@ export const HomeAboutPreview: React.FC<HomeAboutPreviewProps> = ({
     </section>
   );
 };
+
+export default HomeAboutPreview;

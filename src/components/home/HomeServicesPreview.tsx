@@ -336,3 +336,5 @@ export const HomeServicesPreview: React.FC<HomeServicesPreviewProps> = ({
     </section>
   );
 };
+
+export default HomeServicesPreview;
