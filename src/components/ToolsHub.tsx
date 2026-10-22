@@ -244,6 +244,46 @@ const TOOLS_COLLECTION: WebToolDefinition[] = [
   },
 
   {
+    id: 'etsy-fee-calculator',
+    navTarget: 'etsy-fee-calculator',
+    name: 'Etsy Fee & Profit Calculator 2026',
+    shortName: 'Etsy Fee Calc',
+    category: 'ecommerce-growth',
+    categoryLabel: 'E-Commerce & Export',
+    regionFocus: 'Global',
+    description: 'Calculate Etsy $0.20 listing renewal fees, 6.5% transaction cut, payment processing, Offsite Ads, and net profit margins.',
+    highlights: [
+      '$0.20 per item listing renewal fee schedule',
+      '6.5% transaction cut on item sale price and shipping charged',
+      'Etsy Payments 3.0% + $0.25 processing fee calculations',
+      'Optional 15% / 12% Offsite Ads simulator and margin protector',
+    ],
+    techSpec: 'Etsy 2026 Grid · Offsite Ads Algorithm · Net Margin Engine',
+    icon: <Calculator className="w-6 h-6 text-orange-600" />,
+    accentColor: 'border-orange-200 hover:border-orange-400 group-hover:bg-orange-50/50',
+  },
+
+  {
+    id: 'amazon-fbm-calculator',
+    navTarget: 'amazon-fbm-calculator',
+    name: 'Amazon FBM Fee & Profit Calculator 2026',
+    shortName: 'Amazon FBM Calc',
+    category: 'ecommerce-growth',
+    categoryLabel: 'E-Commerce & Export',
+    regionFocus: 'Global',
+    description: 'Fulfilled by Merchant: calculate category referral fees (8-15%), self-ship carrier rates, packaging, and break-even ACoS.',
+    highlights: [
+      'Category referral cut with $0.30 minimum fee floor',
+      'Merchant self-ship carrier and packaging cost breakdown',
+      'Zero Amazon FBA fulfillment and monthly storage expenses',
+      'Break-even ACoS % solver for Amazon PPC campaigns',
+    ],
+    techSpec: 'Amazon FBM 2026 Tariffs · Self-Ship Model · Break-Even ACoS Solver',
+    icon: <Calculator className="w-6 h-6 text-blue-600" />,
+    accentColor: 'border-blue-200 hover:border-blue-400 group-hover:bg-blue-50/50',
+  },
+
+  {
     id: 'sialkot-export-erp',
     navTarget: 'sialkot-export-erp',
     name: 'Sialkot Export ERP & Production Tracker',

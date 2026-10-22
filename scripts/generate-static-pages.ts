@@ -740,6 +740,9 @@ pages.push({
   title: 'Global Zero-Database Enterprise Invoice Hub | EVONIX Technologies',
   description: '100% free client-side invoice generator. Multi-country tax calculation, Code128 barcode engine, amount in words, and local privacy persistence for global freelancers.',
   canonical: `${DOMAIN}/invoice`,
+  ogImage: `${DOMAIN}/images/micro-invoice-generator-2026.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
   heading: 'Global Zero-Database Enterprise Invoice Hub',
   breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Invoice Hub', url: '/invoice' }],
   bodyHtml: `
@@ -763,7 +766,7 @@ pages.push({
   title: 'TikTok Shop Fee Calculator UK 9% & US 6%/8% - 2026 Commission Calculator | evonix',
   description: 'Calculate TikTok Shop UK 9% commission (VAT inclusive), US 6% official & 8% reported referral fees, EU 9% rates, and Pakistan cross-border seller margins. Live 2026 payout breakdown.',
   canonical: `${DOMAIN}/tiktok-shop-fee-calculator`,
-  ogImage: `${DOMAIN}/og-images/tiktok-shop-og.jpg`,
+  ogImage: `${DOMAIN}/images/tiktok-shop-fee-calculator-2026.png`,
   ogImageWidth: 1200,
   ogImageHeight: 630,
   heading: 'TikTok Shop Fee Calculator UK 9% & US 6%/8% - 2026 Commission Calculator',
@@ -935,6 +938,420 @@ pages.push({
   heading: 'Amazon FBA Fee Calculator 2026',
   breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Amazon FBA Calculator', url: '/amazon-fba-fee-calculator' }],
   bodyHtml: `<p class="text-slate-300">Redirecting to Amazon FBA Fee Calculator 2026...</p>`
+});
+
+pages.push({
+  route: 'ebay-fee-calculator',
+  title: 'eBay Fee & Profit Calculator 2026 | Accurate Seller Margins | evonix',
+  description: 'Free eBay fee and profit calculator. Calculate final value fees, promoted ads, shipping costs, and net margins across US, UK, Germany, UAE, and Pakistan.',
+  canonical: `${DOMAIN}/ebay-fee-calculator`,
+  ogImage: `${DOMAIN}/images/ebay-fee-calculator-2026.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  heading: 'eBay Fee & Profit Calculator 2026',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'eBay Fee Calculator', url: '/ebay-fee-calculator' }],
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        Calculate exact eBay final value fees (13.25% standard), promoted listing ad spend, carrier shipping costs, and net seller payout across global currencies.
+      </p>
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
+        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
+        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
+      </div>
+    </div>
+  `
+});
+
+pages.push({
+  route: 'shopify-fee-calculator',
+  title: 'Shopify Fee Calculator 2026 | Payments & Plan Profit Engine | evonix',
+  description: 'Calculate platform billing costs via our Shopify fee calculator. Track shopify profit calculator projections, transaction fees, and payment channels.',
+  canonical: `${DOMAIN}/shopify-fee-calculator`,
+  ogImage: `${DOMAIN}/images/shopify-fee-calculator-2026.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  heading: 'Shopify Fee & Profit Margin Calculator 2026',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Shopify Fee Calculator', url: '/shopify-fee-calculator' }],
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        Analyze Shopify Payments processing rates (2.9% + 30¢), third-party gateway transaction surcharges, and monthly subscription plan amortization.
+      </p>
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
+        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
+        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
+      </div>
+    </div>
+  `
+});
+
+pages.push({
+  route: 'etsy-fee-calculator',
+  title: 'Etsy Fee & Profit Calculator 2026 - Listing, Transaction & Offsite Ads | evonix',
+  description: '2026 updated Etsy fee and profit calculator. Calculate $0.20 listing renewal, 6.5% transaction cut, payment processing, Offsite Ads, and net profit margins.',
+  canonical: `${DOMAIN}/etsy-fee-calculator`,
+  ogImage: `${DOMAIN}/images/etsy-fee-calculator-2026.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  heading: 'Etsy Fee & Profit Calculator 2026',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Etsy Fee Calculator', url: '/etsy-fee-calculator' }],
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        Calculate exact Etsy listing renewals ($0.20), 6.5% transaction cut on item and shipping, payment processing fees (3% + 25¢), and Offsite Ads profit cushion.
+      </p>
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
+        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
+        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
+      </div>
+    </div>
+  `
+});
+
+pages.push({
+  route: 'amazon-fbm-calculator',
+  title: 'Amazon FBM Fee & Profit Calculator 2026 - Merchant Shipping & Referral Fees | evonix',
+  description: '2026 Amazon FBM (Fulfilled by Merchant) fee calculator. Calculate category referral fees (8-15%), merchant self-shipping, packaging, PPC CAC, and net profit margins.',
+  canonical: `${DOMAIN}/amazon-fbm-calculator`,
+  ogImage: `${DOMAIN}/images/amazon-fbm-calculator-2026.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  heading: 'Amazon FBM Fee & Profit Calculator 2026',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Amazon FBM Calculator', url: '/amazon-fbm-calculator' }],
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        Compute Amazon Fulfilled by Merchant (FBM) unit economics: category referral cut, self-ship carrier rates, packaging materials, and break-even ACoS.
+      </p>
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
+        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
+        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
+      </div>
+    </div>
+  `
+});
+
+pages.push({
+  route: 'stripe-fee-calculator',
+  title: 'Stripe Fee Calculator 2026 | Transaction Fee & Net Payout Tool | evonix',
+  description: 'Run our advanced Stripe fee calculator to analyze stripe transaction fee calculator tiers, processing margins, and reverse payment logic instantly.',
+  canonical: `${DOMAIN}/stripe-fee-calculator`,
+  ogImage: `${DOMAIN}/images/stripe-fee-calculator-2026.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  heading: 'Stripe Fee & Net Payout Calculator 2026',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Stripe Fee Calculator', url: '/stripe-fee-calculator' }],
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        Analyze Stripe 2.9% + 30¢ domestic processing, international credit card surcharges, and reverse payment calculations instantly.
+      </p>
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
+        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
+        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
+      </div>
+    </div>
+  `
+});
+
+pages.push({
+  route: 'temu-seller-calculator',
+  title: 'Temu Seller Calculator 2026 | Fee & Profit Margin Calculator | evonix',
+  description: 'Use the real Temu seller calculator to process temu fee calculator rows, commission profiles, supply chain costs, and net margins instantly.',
+  canonical: `${DOMAIN}/temu-seller-calculator`,
+  ogImage: `${DOMAIN}/images/temu-seller-calculator-2026.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  heading: 'Temu Seller Profit & Margin Calculator 2026',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Temu Seller Calculator', url: '/temu-seller-calculator' }],
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        Compute cross-border wholesale unit economics, platform commissions, air freight logistics, and return loss buffers on Temu.
+      </p>
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
+        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
+        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
+      </div>
+    </div>
+  `
+});
+
+pages.push({
+  route: 'ecommerce-calculator',
+  title: 'E-Commerce Profit & Courier Shipping Margin Calculator | evonix',
+  description: 'Free zero-database e-commerce margin calculator. Real-time Leopards, TCS, Trax, PostEx courier tariffs, COD handling charges, marketing CAC, and RTO return loss simulator.',
+  canonical: `${DOMAIN}/ecommerce-calculator`,
+  ogImage: `${DOMAIN}/images/ecommerce-calculator-2026.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  heading: 'E-Commerce Profit & Courier Tariff Calculator',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'E-Commerce Calculator', url: '/ecommerce-calculator' }],
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        Calculate courier shipping tariffs across Leopards, TCS, Trax, and PostEx, COD fee percentages, ad CAC break-evens, and RTO return loss cushions in Pakistan.
+      </p>
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
+        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
+        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
+      </div>
+    </div>
+  `
+});
+
+pages.push({
+  route: 'cbm-calculator',
+  title: 'Export CBM & Volumetric Shipping Cargo Calculator | evonix',
+  description: 'Free B2B export CBM calculator. Instant Cubic Meters computations, DHL/FedEx and air cargo volumetric weights, and 20ft/40ft ocean container space utilization.',
+  canonical: `${DOMAIN}/cbm-calculator`,
+  ogImage: `${DOMAIN}/images/cbm-calculator-2026.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  heading: 'Export CBM & Volumetric Freight Calculator',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'CBM Calculator', url: '/cbm-calculator' }],
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        Calculate master carton volume in Cubic Meters (CBM), air freight dimensional weights (divisor 5000 / 6000), and 20ft/40ft container capacity.
+      </p>
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
+        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
+        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
+      </div>
+    </div>
+  `
+});
+
+pages.push({
+  route: 'developer-cost-calculator',
+  title: 'Dedicated Developer Cost Calculator - Save 70% | evonix',
+  description: 'Calculate cost to hire dedicated developers via evonix Technologies Sialkot. Senior dev at $22/hr vs $80/hr in USA. Save $111k/year. Get CVs in 24h.',
+  canonical: `${DOMAIN}/hire-dedicated-developer-cost-calculator-pune-india`,
+  ogImage: `${DOMAIN}/images/developer-cost-calculator-2026.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  heading: 'Dedicated Developer Cost Calculator - Save 70%',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Developer Cost Calculator', url: '/hire-dedicated-developer-cost-calculator-pune-india' }],
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        Compare the total compensation cost of US and UK software engineers ($80/hr) with vetted senior offshore developers ($22/hr) from Evonix Technologies Sialkot.
+      </p>
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
+        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
+        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
+      </div>
+    </div>
+  `
+});
+
+pages.push({
+  route: 'ai-visibility-checker',
+  title: 'Website E-E-A-T & AI Visibility Checker | evonix',
+  description: 'Free client-side Google E-E-A-T & Generative Engine Optimization (GEO) checker. Audit your domain readiness for ChatGPT, Claude, and Google AI Overviews.',
+  canonical: `${DOMAIN}/ai-visibility-checker`,
+  ogImage: `${DOMAIN}/images/ai-visibility-checker-2026.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  heading: 'Website E-E-A-T & AI Visibility Checker',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'AI Visibility Checker', url: '/ai-visibility-checker' }],
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        Audit your domain readiness for generative search engines, ChatGPT citations, Claude answers, and Google AI Overview summaries with client-side analysis.
+      </p>
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
+        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
+        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
+      </div>
+    </div>
+  `
+});
+
+pages.push({
+  route: 'tools/ai-trip-planner',
+  title: 'AI Trip Planner: Free Day-by-Day Vacation Itinerary Generator | EVONIX',
+  description: 'Free AI travel itinerary generator. Enter your destination, budget, and days to generate an instant day-wise vacation schedule with food spots, costs & transit advice.',
+  canonical: `${DOMAIN}/tools/ai-trip-planner`,
+  ogImage: `${DOMAIN}/images/ai-trip-planner-2026.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  heading: 'AI Trip Planner & Vacation Itinerary Generator',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'AI Trip Planner', url: '/tools/ai-trip-planner' }],
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        Generate custom day-wise travel itineraries, estimated budgets, restaurant recommendations, and transit guidance for any city worldwide.
+      </p>
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
+        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
+        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
+      </div>
+    </div>
+  `
+});
+
+pages.push({
+  route: 'uk-eu-vat-calculator',
+  title: 'UK & EU VAT Reverse Charge & VAT MOSS Engine | evonix',
+  description: 'Automate HMRC Section 55A and EU Directive 2006/112/EC 0% reverse charge VAT exemptions and statutory invoice clauses for international B2B exporters.',
+  canonical: `${DOMAIN}/uk-eu-vat-calculator`,
+  ogImage: `${DOMAIN}/images/uk-eu-vat-calculator-2026.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  heading: 'UK & EU VAT Reverse Charge & Exemption Engine',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'UK & EU VAT Calculator', url: '/uk-eu-vat-calculator' }],
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        Determine cross-border B2B 0% reverse charge VAT exemptions, statutory HMRC Section 55A invoice wording, and EU Directive compliance.
+      </p>
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
+        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
+        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
+      </div>
+    </div>
+  `
+});
+
+pages.push({
+  route: 'us-duty-nexus-estimator',
+  title: 'US Customs Tariff & Section 321 De Minimis Calculator | evonix',
+  description: 'Calculate US CBP tariffs, verify the $800 duty-free Section 321 entry eligibility, and estimate landed costs for US buyers.',
+  canonical: `${DOMAIN}/us-duty-nexus-estimator`,
+  ogImage: `${DOMAIN}/images/us-duty-nexus-estimator-2026.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  heading: 'US Customs Tariff & Section 321 Calculator',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'US Duty Nexus Estimator', url: '/us-duty-nexus-estimator' }],
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        Verify $800 duty-free Section 321 de minimis eligibility, HTS code tariffs, and total US landed import costs for Pakistani exporters.
+      </p>
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
+        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
+        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
+      </div>
+    </div>
+  `
+});
+
+pages.push({
+  route: 'ce-ukca-compliance-generator',
+  title: 'UKCA & CE Declaration of Conformity (DoC) Generator | evonix',
+  description: 'Generate audited technical Declaration of Conformity documents for CE Marking (EU MDR Class I) and UKCA tenders.',
+  canonical: `${DOMAIN}/ce-ukca-compliance-generator`,
+  ogImage: `${DOMAIN}/images/ce-ukca-compliance-generator-2026.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  heading: 'UKCA & CE Declaration of Conformity Generator',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'CE & UKCA Compliance', url: '/ce-ukca-compliance-generator' }],
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        Create compliant Declarations of Conformity for EU MDR 2017/745 Class I medical devices, sports equipment, and UKCA tenders.
+      </p>
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
+        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
+        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
+      </div>
+    </div>
+  `
+});
+
+pages.push({
+  route: 'export-barcode-studio',
+  title: 'Export Barcode Label Studio – GS1-128 & Carton Labels | evonix',
+  description: 'Generate compliant thermal shipping carton barcode labels for surgical instruments, sports goods, and leather exports. 4x6 direct thermal, GS1-128, and Code 128 vector rendering.',
+  canonical: `${DOMAIN}/export-barcode-studio`,
+  ogImage: `${DOMAIN}/images/export-barcode-studio-2026.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  heading: 'Export Barcode Label Studio (GS1-128 & Code 128)',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Export Barcode Studio', url: '/export-barcode-studio' }],
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        Generate outer shipping carton barcode labels for Sialkot export manufacturing. 4x6 inch direct thermal printable with GS1 application identifiers.
+      </p>
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
+        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
+        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
+      </div>
+    </div>
+  `
+});
+
+pages.push({
+  route: 'printer-diagnostics',
+  title: 'Thermal Receipt & POS Printer Diagnostic Engine | evonix',
+  description: 'Interactive step-by-step troubleshooter for 80mm ESC/POS thermal printers, paper jams, blurred barcodes, cutter lockups, and Windows POS driver issues.',
+  canonical: `${DOMAIN}/printer-diagnostics`,
+  ogImage: `${DOMAIN}/images/printer-diagnostics-2026.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  heading: 'Thermal Receipt & POS Printer Diagnostic Engine',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Printer Diagnostics', url: '/printer-diagnostics' }],
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        Troubleshoot 80mm ESC/POS commercial receipt printers, auto-cutter lockups, paper feed errors, and printhead degradation.
+      </p>
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
+        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
+        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
+      </div>
+    </div>
+  `
+});
+
+pages.push({
+  route: 'factory-network-tester',
+  title: 'Factory ERP & Customs Network Latency Benchmark | evonix',
+  description: 'Benchmark factory premise network latency, SQL server database sync times, and WeBOC customs gateway ping stability in Sialkot export industrial zones.',
+  canonical: `${DOMAIN}/factory-network-tester`,
+  ogImage: `${DOMAIN}/images/factory-network-tester-2026.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  heading: 'Factory ERP & Customs Network Latency Benchmark',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Factory Network Tester', url: '/factory-network-tester' }],
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        Benchmark LAN and WAN latency, database sync jitter, and WeBOC customs gateway connection stability across Sialkot industrial factories.
+      </p>
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
+        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
+        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
+      </div>
+    </div>
+  `
+});
+
+pages.push({
+  route: 'live-repair-tracker',
+  title: 'Live RMA Bench Repair Status Tracker | evonix',
+  description: 'Track your diagnostic bench repair ticket in real-time. Check motherboard micro-soldering progress, standby current logs, and 90-day warranty certificates in Sialkot.',
+  canonical: `${DOMAIN}/live-repair-tracker`,
+  ogImage: `${DOMAIN}/images/live-repair-tracker-2026.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  heading: 'Live RMA Bench Repair Status Tracker',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Live Repair Tracker', url: '/live-repair-tracker' }],
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        Track real-time hardware laboratory diagnostic progress, standby current readings, chip-level micro-soldering, and 90-day warranty status.
+      </p>
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
+        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
+        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
+      </div>
+    </div>
+  `
 });
 
 pages.push({
@@ -1511,10 +1928,17 @@ function generateStaticPages() {
     );
 
     // Canonical
-    modifiedHtml = modifiedHtml.replace(
-      /<link[^>]+rel="canonical"[^>]*\/?>/i,
-      `<link rel="canonical" href="${page.canonical}" />`
-    );
+    if (/<link[^>]+rel="canonical"[^>]*\/?>/i.test(modifiedHtml)) {
+      modifiedHtml = modifiedHtml.replace(
+        /<link[^>]+rel="canonical"[^>]*\/?>/i,
+        `<link rel="canonical" href="${page.canonical}" />`
+      );
+    } else {
+      modifiedHtml = modifiedHtml.replace(
+        '</head>',
+        `  <link rel="canonical" href="${page.canonical}" />\n</head>`
+      );
+    }
 
     // OpenGraph
     modifiedHtml = modifiedHtml.replace(
@@ -1543,10 +1967,17 @@ function generateStaticPages() {
         );
       }
       if (page.ogImage.endsWith('.png')) {
-        modifiedHtml = modifiedHtml.replace(
-          /<meta\s+property="og:image:type"\s+content=".*?"\s*\/?>/i,
-          `<meta property="og:image:type" content="image/png" />`
-        );
+        if (/<meta\s+property="og:image:type"\s+content=".*?"\s*\/?>/i.test(modifiedHtml)) {
+          modifiedHtml = modifiedHtml.replace(
+            /<meta\s+property="og:image:type"\s+content=".*?"\s*\/?>/i,
+            `<meta property="og:image:type" content="image/png" />`
+          );
+        } else {
+          modifiedHtml = modifiedHtml.replace(
+            '</head>',
+            `  <meta property="og:image:type" content="image/png" />\n</head>`
+          );
+        }
       }
     }
 

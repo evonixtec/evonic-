@@ -124,6 +124,8 @@ const AmazonFbaCalculator = lazyWithRetry(() => import('./components/AmazonFbaCa
 const ShopifyFeeCalculator = lazyWithRetry(() => import('./components/ShopifyFeeCalculator'));
 const StripeFeeCalculator = lazyWithRetry(() => import('./components/StripeFeeCalculator'));
 const TemuSellerCalculator = lazyWithRetry(() => import('./components/TemuSellerCalculator'));
+const EtsyFeeCalculator = lazyWithRetry(() => import('./components/EtsyFeeCalculator'));
+const AmazonFbmCalculator = lazyWithRetry(() => import('./components/AmazonFbmCalculator'));
 const InstallationGuidePage = lazyWithRetry<React.FC<{ onNavigatePage?: (page: any) => void }>>(() => import('./components/InstallationGuidePage').then(m => ({ default: m.InstallationGuidePage })));
 const TrendIntelligenceSuite = lazyWithRetry(() => import('./components/TrendIntelligenceSuite'));
 
@@ -377,6 +379,27 @@ export default function App() {
       path.startsWith('temu-calculator')
     ) {
       return 'temu-seller-calculator';
+    }
+
+    if (
+      path === 'etsy-fee-calculator' ||
+      path === 'etsy-calculator' ||
+      path === 'etsy-fee' ||
+      path.startsWith('etsy-fee') ||
+      path.startsWith('etsy-calculator')
+    ) {
+      return 'etsy-fee-calculator';
+    }
+
+    if (
+      path === 'amazon-fbm-calculator' ||
+      path === 'amazon-fbm' ||
+      path === 'fbm-calculator' ||
+      path === 'fbm-fee-calculator' ||
+      path.startsWith('amazon-fbm') ||
+      path.startsWith('fbm-')
+    ) {
+      return 'amazon-fbm-calculator';
     }
 
     if (
@@ -1491,6 +1514,42 @@ export default function App() {
               onNavigateToolsHub={() => navigateToPage('tools')}
             />
             <TemuSellerCalculator />
+          </div>
+        )}
+
+        {/* ========================================================
+            PAGE: ETSY FEE & PROFIT CALCULATOR
+           ======================================================== */}
+        {currentPage === 'etsy-fee-calculator' && (
+          <div className="space-y-0">
+            <ToolWorkspaceHeader
+              currentToolId="etsy-fee-calculator"
+              toolTitle="Etsy Fee & Profit Calculator 2026"
+              toolCategory="E-Commerce & Export"
+              toolDescription="Calculate exact listing renewals, 6.5% transaction cut, payment processing, and net profit payout."
+              icon={<Calculator className="w-5 h-5 text-orange-500" />}
+              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+              onNavigateToolsHub={() => navigateToPage('tools')}
+            />
+            <EtsyFeeCalculator />
+          </div>
+        )}
+
+        {/* ========================================================
+            PAGE: AMAZON FBM CALCULATOR
+           ======================================================== */}
+        {currentPage === 'amazon-fbm-calculator' && (
+          <div className="space-y-0">
+            <ToolWorkspaceHeader
+              currentToolId="amazon-fbm-calculator"
+              toolTitle="Amazon FBM Fee & Profit Calculator 2026"
+              toolCategory="E-Commerce & Export"
+              toolDescription="Fulfilled by Merchant: category referral fees, merchant shipping tariffs, and net seller payout."
+              icon={<Calculator className="w-5 h-5 text-blue-500" />}
+              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+              onNavigateToolsHub={() => navigateToPage('tools')}
+            />
+            <AmazonFbmCalculator />
           </div>
         )}
 

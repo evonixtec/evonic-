@@ -635,7 +635,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'Create invoice in browser, data never leaves your device. Free multi-currency commercial invoices for freelancers and exporters with automatic tax calculations and instant A4 PDF.',
     ogType: 'website',
-    ogImage: DEFAULT_OG_IMAGE,
+    ogImage: `${BASE_URL}/images/micro-invoice-generator-2026.png`,
     canonicalUrl: `${BASE_URL}/invoice`,
     keywords: [
       'invoice generator',
@@ -666,7 +666,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'Calculate unit economics, multi-courier rates, COD handling fees, break-even targets, and Pakistani return rate risk cushions with zero remote database tracking.',
     ogType: 'website',
-    ogImage: `${BASE_URL}/images/E-Commerce_Profit_and_Loss.jpg`,
+    ogImage: `${BASE_URL}/images/ecommerce-calculator-2026.png`,
     canonicalUrl: `${BASE_URL}/ecommerce-calculator`,
     keywords: [
       'E-Commerce_Profit_and_Loss',
@@ -692,7 +692,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'Compute carton volume in CBM, air cargo dimensional weights, and container packing capacity instantly with zero remote database tracking.',
     ogType: 'website',
-    ogImage: `${BASE_URL}/images/Compute_industrial_cargo.jpg`,
+    ogImage: `${BASE_URL}/images/cbm-calculator-2026.png`,
     canonicalUrl: `${BASE_URL}/cbm-calculator`,
     keywords: [
       'Compute_industrial_cargo',
@@ -717,7 +717,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'Calculate cost to hire dedicated developers via evonix Technologies Sialkot. Senior dev at $22/hr vs $80/hr in USA. Save $111k/year. Get CVs in 24h.',
     ogType: 'website',
-    ogImage: `${BASE_URL}/images/Developer_cost_calculator.jpg`,
+    ogImage: `${BASE_URL}/images/developer-cost-calculator-2026.png`,
     canonicalUrl: `${BASE_URL}/hire-dedicated-developer-cost-calculator-pune-india`,
     keywords: [
       'Developer_cost_calculator',
@@ -741,7 +741,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'Free client-side Google E-E-A-T & Generative Engine Optimization (GEO) checker. Audit your domain readiness for ChatGPT, Claude, and Google AI Overviews.',
     ogType: 'website',
-    ogImage: `${BASE_URL}/images/GEO_and_E-E-A-T_Diagnostic.jpg`,
+    ogImage: `${BASE_URL}/images/ai-visibility-checker-2026.png`,
     canonicalUrl: `${BASE_URL}/ai-visibility-checker`,
     keywords: [
       'ai visibility checker',
@@ -786,7 +786,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'Compliant outer carton thermal barcode generator for Sialkot exporters. GS1-128, Code 128, and instant 203 DPI thermal printing.',
     ogType: 'website',
-    ogImage: DEFAULT_OG_IMAGE,
+    ogImage: `${BASE_URL}/images/export-barcode-studio-2026.png`,
     canonicalUrl: `${BASE_URL}/export-barcode-studio`,
     keywords: [
       'export barcode label studio',
@@ -806,7 +806,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'Live RMA tracking for motherboard, laptop, and printer repairs in Sialkot. Real-time technician bench notes and voltage readings.',
     ogType: 'website',
-    ogImage: DEFAULT_OG_IMAGE,
+    ogImage: `${BASE_URL}/images/live-repair-tracker-2026.png`,
     canonicalUrl: `${BASE_URL}/live-repair-tracker`,
     keywords: [
       'live repair tracker',
@@ -825,7 +825,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'Diagnose and fix thermal receipt printer defects, cutter jams, and ESC/POS communication errors with interactive decision trees.',
     ogType: 'website',
-    ogImage: DEFAULT_OG_IMAGE,
+    ogImage: `${BASE_URL}/images/printer-diagnostics-2026.png`,
     canonicalUrl: `${BASE_URL}/printer-diagnostics`,
     keywords: [
       'thermal printer diagnostic tool',
@@ -844,7 +844,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'Real-time network latency, jitter, and packet loss tester for Sialkot export manufacturing factories and customs portals.',
     ogType: 'website',
-    ogImage: DEFAULT_OG_IMAGE,
+    ogImage: `${BASE_URL}/images/factory-network-tester-2026.png`,
     canonicalUrl: `${BASE_URL}/factory-network-tester`,
     keywords: [
       'factory network latency test',
@@ -886,7 +886,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'Free AI travel itinerary generator. Enter your destination, budget, and days to generate an instant day-wise vacation schedule with food spots, costs & transit advice.',
     ogType: 'website',
-    ogImage: `${BASE_URL}/images/Ai%20Trip%20Planner.jpg`,
+    ogImage: `${BASE_URL}/images/ai-trip-planner-2026.png`,
     canonicalUrl: `${BASE_URL}/tools/ai-trip-planner`,
     keywords: [
       'Ai Trip Planner',
@@ -970,7 +970,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'Calculate eBay seller fees, promoted listings, and net profits accurately with live currency conversions.',
     ogType: 'website',
-    ogImage: DEFAULT_OG_IMAGE,
+    ogImage: `${BASE_URL}/images/ebay-fee-calculator-2026.png`,
     keywords: [
       'ebay fee calculator',
       'ebay profit calculator',
@@ -989,7 +989,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'HMRC Section 55A and EU Directive 2006/112/EC reverse charge calculator with automated compliance notes.',
     ogType: 'website',
-    ogImage: DEFAULT_OG_IMAGE,
+    ogImage: `${BASE_URL}/images/uk-eu-vat-calculator-2026.png`,
     keywords: [
       'uk eu vat calculator',
       'vat reverse charge calculator',
@@ -1007,7 +1007,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'US CBP customs tariffs, Section 321 $800 de minimis qualification, and landed cost calculator.',
     ogType: 'website',
-    ogImage: DEFAULT_OG_IMAGE,
+    ogImage: `${BASE_URL}/images/us-duty-nexus-estimator-2026.png`,
     keywords: [
       'us duty nexus calculator',
       'section 321 de minimis calculator',
@@ -1025,7 +1025,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'Create compliant CE and UKCA declarations of conformity for international tenders.',
     ogType: 'website',
-    ogImage: DEFAULT_OG_IMAGE,
+    ogImage: `${BASE_URL}/images/ce-ukca-compliance-generator-2026.png`,
     keywords: [
       'ce ukca compliance generator',
       'declaration of conformity generator',
@@ -1043,7 +1043,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'Updated for UK 9% commission, US 6%/8% toggle, and Pakistan seller accounts. Calculate exact TikTok Shop referral fees, VAT, creator commissions, and net profit margins.',
     ogType: 'website',
-    ogImage: 'https://www.evonixtec.com/og-images/tiktok-shop-og.jpg',
+    ogImage: `${BASE_URL}/images/tiktok-shop-fee-calculator-2026.png`,
     keywords: [
       'TikTok Shop Fee Calculator UK 9% & US 6%/8% - 2026 Commission Calculator',
       'tiktok shop fee calculator uk 9%',
@@ -1094,7 +1094,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'Calculate platform billing costs via our Shopify fee calculator. Track shopify profit calculator projections, transaction fees, and payment channels.',
     ogType: 'website',
-    ogImage: DEFAULT_OG_IMAGE,
+    ogImage: `${BASE_URL}/images/shopify-fee-calculator-2026.png`,
     keywords: [
       'shopify fee calculator',
       'shopify profit calculator',
@@ -1113,7 +1113,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'Analyze stripe transaction fee calculator tiers, processing margins, and reverse payment logic instantly.',
     ogType: 'website',
-    ogImage: DEFAULT_OG_IMAGE,
+    ogImage: `${BASE_URL}/images/stripe-fee-calculator-2026.png`,
     keywords: [
       'stripe fee calculator',
       'stripe fees calculator',
@@ -1132,7 +1132,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogDescription:
       'Process temu fee calculator rows, commission profiles, supply chain costs, and net margins instantly.',
     ogType: 'website',
-    ogImage: DEFAULT_OG_IMAGE,
+    ogImage: `${BASE_URL}/images/temu-seller-calculator-2026.png`,
     keywords: [
       'temu seller calculator',
       'temu fee calculator',
@@ -1140,6 +1140,47 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'temu profit calculator',
       'temu commission calculator',
       'temu seller margin calculator',
+    ],
+  },
+  'etsy-fee-calculator': {
+    title: 'Etsy Fee & Profit Calculator 2026 - Listing, Transaction & Offsite Ads',
+    description:
+      '2026 updated Etsy fee and profit calculator. Calculate $0.20 listing renewal, 6.5% transaction cut, payment processing, Offsite Ads, and net profit margins.',
+    canonicalUrl: `${BASE_URL}/etsy-fee-calculator`,
+    ogTitle: 'Etsy Fee & Profit Calculator 2026 - Listing, Transaction & Offsite Ads',
+    ogDescription:
+      'Calculate exact Etsy seller fees with 2026 rates: $0.20 listing, 6.5% transaction, payment processing, and net profit margin.',
+    ogType: 'website',
+    ogImage: `${BASE_URL}/images/etsy-fee-calculator-2026.png`,
+    keywords: [
+      'etsy fee calculator',
+      'etsy profit calculator',
+      'etsy fees 2026',
+      'etsy transaction fee',
+      'etsy payment processing fee',
+      'etsy offsite ads fee calculator',
+      'etsy seller calculator pakistan',
+      'etsy profit margin calculator',
+    ],
+  },
+  'amazon-fbm-calculator': {
+    title: 'Amazon FBM Fee & Profit Calculator 2026 - Merchant Shipping & Referral Fees',
+    description:
+      '2026 Amazon FBM (Fulfilled by Merchant) fee calculator. Calculate category referral fees (8-15%), merchant self-shipping, packaging, PPC CAC, and net profit margins.',
+    canonicalUrl: `${BASE_URL}/amazon-fbm-calculator`,
+    ogTitle: 'Amazon FBM Fee & Profit Calculator 2026 - Merchant Shipping & Referral Fees',
+    ogDescription:
+      'Calculate Amazon FBM fees with 2026 rates: category referral cut, self-ship carrier rates, packaging, and net profit payout.',
+    ogType: 'website',
+    ogImage: `${BASE_URL}/images/amazon-fbm-calculator-2026.png`,
+    keywords: [
+      'amazon fbm calculator',
+      'amazon fbm fee calculator',
+      'amazon fulfilled by merchant calculator',
+      'amazon fbm profit calculator',
+      'amazon referral fee calculator',
+      'fbm vs fba calculator',
+      'amazon seller calculator 2026',
     ],
   },
   'installation-guide': {
@@ -1616,6 +1657,16 @@ export function applyPageSEO(
       canonicalUrl = `${BASE_URL}/factory-network-tester`;
     } else if (rawPath === '/amazon-fba-fee-calculator' || rawPath === '/amazon-fba-calculator') {
       canonicalUrl = `${BASE_URL}/amazon-fba-fee-calculator`;
+    } else if (rawPath === '/etsy-fee-calculator' || rawPath === '/etsy-calculator') {
+      canonicalUrl = `${BASE_URL}/etsy-fee-calculator`;
+    } else if (rawPath === '/amazon-fbm-calculator' || rawPath === '/amazon-fbm-fee-calculator' || rawPath === '/fbm-calculator') {
+      canonicalUrl = `${BASE_URL}/amazon-fbm-calculator`;
+    } else if (rawPath === '/ebay-fee-calculator' || rawPath === '/ebay-calculator') {
+      canonicalUrl = `${BASE_URL}/ebay-fee-calculator`;
+    } else if (rawPath === '/shopify-fee-calculator' || rawPath === '/shopify-calculator') {
+      canonicalUrl = `${BASE_URL}/shopify-fee-calculator`;
+    } else if (rawPath === '/tiktok-shop-fee-calculator' || rawPath === '/tiktok-shop') {
+      canonicalUrl = `${BASE_URL}/tiktok-shop-fee-calculator`;
     }
   }
 
@@ -1644,6 +1695,7 @@ export function applyPageSEO(
     updateMetaTag('property', 'og:image', meta.ogImage);
     updateMetaTag('property', 'og:image:width', '1200');
     updateMetaTag('property', 'og:image:height', '630');
+    updateMetaTag('property', 'og:image:type', meta.ogImage.endsWith('.png') ? 'image/png' : 'image/jpeg');
   }
 
   // Twitter / X

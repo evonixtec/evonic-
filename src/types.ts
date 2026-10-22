@@ -28,6 +28,8 @@ export type NavPageId =
   | 'shopify-fee-calculator'
   | 'stripe-fee-calculator'
   | 'temu-seller-calculator'
+  | 'etsy-fee-calculator'
+  | 'amazon-fbm-calculator'
   | 'installation-guide'
   | 'admin'
   | 'doorstep-support'
