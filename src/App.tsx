@@ -26,11 +26,11 @@ import { HomeAboutPreview } from './components/home/HomeAboutPreview';
 import { HomePortfolioPreview } from './components/home/HomePortfolioPreview';
 import { HomeShopPreview } from './components/home/HomeShopPreview';
 import { HomeToolsGrid } from './components/home/HomeToolsGrid';
+import FAQ from './components/FAQ';
 const LaptopRepairEstimator = lazy(() => import('./components/LaptopRepairEstimator').then(m => ({ default: m.LaptopRepairEstimator })));
 const GoogleReviewsSection = lazy(() => import('./components/GoogleReviewsSection').then(m => ({ default: m.GoogleReviewsSection })));
 const WhyChooseUs = lazy(() => import('./components/WhyChooseUs').then(m => ({ default: m.WhyChooseUs })));
 const Testimonials = lazy(() => import('./components/Testimonials').then(m => ({ default: m.Testimonials })));
-const FAQ = lazy(() => import('./components/FAQ').then(m => ({ default: m.FAQ })));
 
 // Lazy-loaded dedicated subpages & utility panels
 const AboutUs = lazy(() => import('./components/AboutUs').then(m => ({ default: m.AboutUs })));

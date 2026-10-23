@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { HelpCircle, ChevronDown, Search, Sparkles, MessageSquare, PhoneCall } from 'lucide-react';
 import { FAQ_ITEMS, COMPANY_INFO } from '../data/content';
 import { FaqItem, SectionId } from '../types';
@@ -44,7 +44,7 @@ export const FAQ: React.FC<FAQProps> = ({ onOpenQuote, onNavigateSection }) => {
     };
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Inject or update in document head for maximum crawler and Googlebot compatibility
     let scriptTag = document.getElementById('faq-rich-snippet-schema') as HTMLScriptElement;
     if (!scriptTag) {
@@ -226,3 +226,5 @@ export const FAQ: React.FC<FAQProps> = ({ onOpenQuote, onNavigateSection }) => {
     </section>
   );
 };
+
+export default FAQ;
