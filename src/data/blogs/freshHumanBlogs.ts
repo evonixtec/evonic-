@@ -140,28 +140,31 @@ Written by **Raza - Lead POS Engineer at EVONIXTEC**. With 20+ years of enterpri
   {
     id: 'blog-5-new-calculators-coming-soon',
     slug: '5-new-calculators-coming-soon',
-    title: 'Coming Soon: 5 New Professional Fee Calculators - Launching This Week',
+    title: 'Special Launch Offer: All Evonix E-Commerce Calculators Are Live & 100% Free',
     category: 'software-dev',
     categoryLabel: 'E-Commerce Software & Utilities',
-    excerpt: 'After the huge success of our eBay Calculator, we are launching 5 more powerful tools - TikTok Shop, Amazon FBA, Shopify, Stripe & Temu Calculators for Windows & Mac.',
+    excerpt: 'All Evonix calculators - eBay, TikTok Shop, Amazon FBA, Shopify, Stripe, Temu, Etsy, and Amazon FBM - are now 100% free with no payment or license keys required.',
     readTime: '3 min read',
-    publishedDate: '2026-10-17T10:00:00+00:00',
+    publishedDate: '2026-10-23T10:00:00+00:00',
     author: {
       name: 'Raza Ahmed',
       role: 'Head of E-Commerce Engineering',
     },
     tags: [
+      'Free E-Commerce Tools',
       'eBay Calculator',
       'TikTok Shop Calculator',
       'Amazon FBA Calculator',
       'Shopify Fee Calculator',
       'Stripe Fee Calculator',
       'Temu Seller Calculator',
-      'Offline Desktop Software'
+      'Etsy Fee Calculator',
+      'Amazon FBM Calculator'
     ],
-    metaTitle: 'Coming Soon: 5 New Professional Fee Calculators - Launching This Week',
-    metaDescription: 'After the huge success of our eBay Calculator, we are launching 5 more powerful tools - TikTok Shop, Amazon FBA, Shopify, Stripe & Temu Calculators for Windows & Mac.',
+    metaTitle: 'Special Launch Offer: All Evonix E-Commerce Calculators Are Live & 100% Free',
+    metaDescription: 'All Evonix calculators - eBay, TikTok Shop, Amazon FBA, Shopify, Stripe, Temu, Etsy, and Amazon FBM - are now 100% free with no payment or license keys required.',
     targetKeywords: [
+      'free ecommerce calculator',
       'tiktok shop fee calculator',
       'amazon fba calculator',
       'shopify fee calculator',
@@ -175,39 +178,30 @@ Written by **Raza - Lead POS Engineer at EVONIXTEC**. With 20+ years of enterpri
       { label: 'Shopify Calculator', targetSection: 'shopify-fee-calculator', anchorText: 'Open Shopify Fee Calculator' },
       { label: 'Stripe Calculator', targetSection: 'stripe-fee-calculator', anchorText: 'Open Stripe Fee Calculator' },
       { label: 'Temu Calculator', targetSection: 'temu-seller-calculator', anchorText: 'Open Temu Seller Calculator' },
-      { label: 'Installation Guide', targetSection: 'installation-guide', anchorText: 'View Desktop Setup Guide' }
+      { label: 'Etsy Calculator', targetSection: 'etsy-fee-calculator', anchorText: 'Open Etsy Fee Calculator' },
+      { label: 'Amazon FBM Calculator', targetSection: 'amazon-fbm-calculator', anchorText: 'Open Amazon FBM Calculator' }
     ],
     content: `
-We are excited to announce that after the huge success of our eBay Calculator, we are now launching 5 more powerful tools for online sellers!
+We are excited to announce our Special Launch Promotion! All Evonix calculators and business workstations are now officially live and 100% free to use.
 
-Our development team is currently in the final testing phase. All 5 new tools will be available as offline desktop software for both Windows and Mac. Here is what is coming very soon:
+Under this special launch promotion, you get full access to all professional calculation modes, reports, and ledger exports at zero cost. There are no subscription fees, no credit card checks, and no license key locks required.
 
-1. TikTok Shop Fee Calculator - Coming Soon
-Our advanced tiktok shop fee calculator is designed for TikTok sellers. Whether you are searching for tiktok seller calculator, tiktok shop commission calculator, tiktok shop profit calculator, tiktok shop margin calculator, or need complete tiktok shop fees explained, this one tool will calculate everything with 100% accuracy.
+Here is the complete lineup of free calculators available right now:
 
-2. Amazon FBA Calculator - Coming Soon
-The ultimate amazon fba calculator for every Amazon seller. This powerful tool includes a precise fba fee calculator, amazon seller calculator, amazon profit calculator, amazon fba fees calculator, and amazon fba profit margin calculator to give you exact net profit before you sell.
+1. TikTok Shop Fee Calculator - 100% Free
+Our advanced TikTok shop fee calculator is designed for UK, US, and cross-border sellers. It calculates 9% UK commission, US tiered rates, VAT deductions, affiliate cuts, and net seller profits.
 
-3. Shopify Fee Calculator - Coming Soon
-For Shopify store owners, our new shopify fee calculator is almost ready. It will include a complete shopify profit calculator, shopify transaction fee calculator, shopify profit margin calculator, shopify payment calculator, and a full shopify fees calculator.
+2. Amazon FBA & FBM Calculators - 100% Free
+Calculate category referral fees, FBA pick and pack costs, 3.5% fuel surcharges, Q4 peak season rates, and merchant self-shipping margins.
 
-4. Stripe Fee Calculator - Coming Soon
-Our most requested tool is here. The new stripe fee calculator supports all your needs - stripe fees calculator, stripe transaction fee calculator, stripe payment fee calculator, stripe processing fee calculator, and stripe commission calculator with both forward and reverse calculation logic.
+3. Shopify & Stripe Fee Calculators - 100% Free
+Calculate Shopify subscription plan costs, payment gateway rates, domestic and international credit card fees, and reverse calculation logic.
 
-5. Temu Seller Calculator - Coming Soon
-Specially built for Temu sellers, our new temu seller calculator is on the way. It will feature a detailed temu fee calculator, temu seller fee calculator, temu profit calculator, temu commission calculator, and temu seller margin calculator.
+4. eBay, Etsy & Temu Seller Calculators - 100% Free
+Calculate marketplace cuts, listing renewal fees, promoted ad spends, and break-even pricing across multiple global currencies.
 
-All 5 tools will be officially live on these pages:
-- /tiktok-shop-fee-calculator
-- /amazon-fba-calculator
-- /shopify-fee-calculator
-- /stripe-fee-calculator
-- /temu-seller-calculator
-
-Important Note for Mobile Users:
-For Mobile Users (Android / iPhone): This is a desktop software (Windows/Mac). On mobile, you can use our online web version of the calculator. The downloadable offline version is only for Windows and Mac.
-
-Stay tuned, official launch is just a few days away!
+Special Launch Offer Details:
+Enjoy 100% free access across all tools on Evonix. No payment, credit card, or license keys are required.
 `
   },
   {

@@ -34,6 +34,8 @@ import {
   isToolMostPopular
 } from '../lib/toolUsageTracker';
 
+import SpecialOfferBanner from './common/SpecialOfferBanner';
+
 export interface WebToolDefinition {
   id: string;
   navTarget: NavPageId | string;
@@ -312,12 +314,12 @@ const TOOLS_COLLECTION: WebToolDefinition[] = [
     category: 'diagnostics-lab',
     categoryLabel: 'Diagnostics Lab',
     regionFocus: 'Global',
-    description: 'Step by step installation manual for our offline desktop tools with Hardware ID (HWID) activation.',
+    description: 'Step by step installation manual for our offline desktop tools with zero fees under our launch offer.',
     highlights: [
-      'Offline hardware ID (HWID) binding without internet dependency',
-      'Windows (.exe) and macOS (.dmg) installation walk-through',
-      'One-time lifetime license verification via local cryptographic hash',
+      'Offline desktop software installation walk-through for Windows and Mac',
+      'Special launch offer: 100% free unlocked access without fees',
       'Zero monthly subscription fees and lifetime local data storage',
+      'Instant local calculation without requiring internet connectivity',
     ],
     techSpec: 'Offline HWID Cryptographic Engine · Windows & Mac Binaries',
     icon: <Wrench className="w-6 h-6 text-purple-600" />,
@@ -636,6 +638,9 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
     <>
       <div className="w-full bg-slate-50 min-h-screen py-8 sm:py-14 text-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          {/* Special Launch Offer Banner */}
+          <SpecialOfferBanner />
+
           {/* 1. Header */}
           <div className="text-center max-w-3xl mx-auto space-y-4">
             <div className="flex items-center justify-center gap-2 text-xs text-slate-500">

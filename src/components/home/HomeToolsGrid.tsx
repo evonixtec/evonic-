@@ -153,9 +153,9 @@ const FEATURED_TOOLS: CoreToolPreview[] = [
     id: 'installation-guide',
     name: 'Desktop Hardware Key & Setup Guide',
     category: 'Offline Tools',
-    badge: 'Windows & Mac Setup',
-    description: 'Step by step installation manual for our offline desktop tools with Hardware ID (HWID) activation.',
-    metric: 'HWID Offline Protection',
+    badge: '100% Free Access',
+    description: 'Step by step installation manual for our offline desktop tools with zero fees under our launch offer.',
+    metric: '100% Free Launch Offer',
     icon: <Wrench className="w-5 h-5 text-[#0071e3]" />,
   },
 ];

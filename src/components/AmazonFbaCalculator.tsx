@@ -20,6 +20,10 @@ import {
   Phone
 } from 'lucide-react';
 import { getHardwareDeviceId, activateLicenseKey, isToolUnlocked } from '../lib/licenseSystem';
+import SpecialOfferBanner from './common/SpecialOfferBanner';
+
+// Preserved payment setting for future monetization reactivation
+export const PAYONEER_PAYMENT_URL = 'https://link.payoneer.com/Token?t=92EF253542CE4D4DA2F32B91E7DB463F&src=pl';
 
 export type ActiveTab = 'simple' | 'advanced' | 'professional';
 
@@ -395,6 +399,9 @@ Calculated via EVONIX Technologies: https://www.evonixtec.com/amazon-fba-fee-cal
 
       <div className="py-8 sm:py-12 bg-[#f8fafc] min-h-screen text-slate-900 font-sans">
         <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          {/* Special Launch Offer Banner */}
+          <SpecialOfferBanner toolName="Amazon FBA Fee Calculator" />
+
           {/* Top Banner Notice */}
           <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 shadow-xs flex items-start gap-3">
             <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
@@ -445,24 +452,14 @@ Calculated via EVONIX Technologies: https://www.evonixtec.com/amazon-fba-fee-cal
                 </div>
               </div>
 
-              {/* HWID & Pro Status */}
+              {/* Special Offer & Pro Status */}
               <div className="flex items-center gap-2">
                 <span className="text-[11px] font-mono text-slate-500 bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-200">
                   ID: {currentDeviceId.slice(0, 8)}
                 </span>
-                {isProUnlocked ? (
-                  <span className="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200">
-                    Pro Active
-                  </span>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => setShowPayModal(true)}
-                    className="text-[11px] font-bold px-3 py-1 rounded-lg bg-[#0071e3] hover:bg-blue-600 text-white cursor-pointer transition-colors shadow-xs"
-                  >
-                    $20 Lifetime Key
-                  </button>
-                )}
+                <span className="text-[11px] font-bold px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  100% Free Pro Active
+                </span>
               </div>
             </div>
           </div>
@@ -1119,15 +1116,20 @@ Calculated via EVONIX Technologies: https://www.evonixtec.com/amazon-fba-fee-cal
                     <span>Verify &amp; Unlock License</span>
                   </button>
 
-                  <div className="pt-2 text-center">
+                  <div className="pt-2 text-center space-y-1">
                     <a
-                      href="https://link.payoneer.com/Token?t=92EF253542CE4D4DA2F32B91E7DB463F&src=pl"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs text-[#0071e3] hover:underline font-semibold"
+                      href={PAYONEER_PAYMENT_URL}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        alert('🎉 Special Launch Offer Active: All Evonix calculators and tools are currently 100% free! No payment or license key required.');
+                      }}
+                      className="text-xs text-[#0071e3] hover:underline font-semibold block"
                     >
-                      Don&apos;t have a key? Buy $20 Lifetime License via Payoneer
+                      Special Offer: 100% Free Access Active (No Payment Required)
                     </a>
+                    <p className="text-[11px] text-emerald-600 font-bold">
+                      ✓ Full Pro features unlocked for everyone
+                    </p>
                   </div>
                 </div>
               </div>

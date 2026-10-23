@@ -742,9 +742,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <span className="text-base flex items-center justify-center flex-shrink-0">💻</span>
                       <div className="flex-1 min-w-0">
                         <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
-                          Desktop Setup &amp; HWID Guide
+                          Desktop Setup &amp; Tools Guide
                         </div>
-                        <div className="text-[10px] text-slate-500">Windows (.exe) &amp; Mac (.dmg) activation</div>
+                        <div className="text-[10px] text-slate-500">Windows (.exe) &amp; Mac (.dmg) free setup</div>
                       </div>
                       <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-slate-200 text-slate-800">Guide</span>
                     </a>
@@ -1372,7 +1372,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     }`}
                   >
                     <div className="flex items-center gap-2">
-                      <span>💻 Desktop Setup &amp; HWID Guide</span>
+                      <span>💻 Desktop Setup &amp; Tools Guide</span>
                     </div>
                     <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-slate-200 text-slate-800">Guide</span>
                   </a>

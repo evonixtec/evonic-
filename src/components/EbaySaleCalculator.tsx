@@ -19,6 +19,7 @@ import {
   QrCode,
   Calculator
 } from 'lucide-react';
+import SpecialOfferBanner from './common/SpecialOfferBanner';
 
 // 1. Centralized Immutable Presets Registry Configuration
 export type EbayRegion = "US" | "UK" | "DE" | "AU" | "CA" | "AE" | "PK" | "FR" | "IT" | "ES";
@@ -56,12 +57,8 @@ export default function EbaySaleCalculator() {
   const activeTimelineString = "May 2026 Fiscal Cycle";
   // Operational Modes Tabs State
   const [activeTab, setActiveTab] = useState<ActiveTab>("simple");
-  const [isProUnlocked, setIsProUnlocked] = useState<boolean>(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('evonix_pro_unlocked') === 'true';
-    }
-    return false;
-  });
+  // 100% Free Unlocked under Special Launch Offer
+  const [isProUnlocked, setIsProUnlocked] = useState<boolean>(true);
 
   // Core Calculator Input States
   const [region, setRegion] = useState<EbayRegion>("US");
@@ -414,37 +411,21 @@ export default function EbaySaleCalculator() {
         }}
       />
       
+      {/* Special Launch Offer Banner */}
+      <SpecialOfferBanner toolName="eBay Fee Calculator" className="mb-6 print:hidden" />
+
       {/* 10-COUNTRY SELECTION FLAG CARDS GRID */}
       <div className="bg-white p-4 rounded-xl border border-slate-200/60 shadow-sm mb-6 print:hidden">
         <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
           <span className="bg-blue-600 text-white font-mono text-[9px] px-2.5 py-0.5 rounded-full uppercase font-bold tracking-wider">
             EVONIXTEC SUITE Fees Updated: May 2026
           </span>
-          {isProUnlocked ? (
-            <div className="flex items-center gap-2">
-              <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 flex items-center gap-1">
-                <Sparkles className="w-3 h-3 text-emerald-600" />
-                <span>$20 PRO ACTIVE</span>
-              </span>
-              <button
-                type="button"
-                onClick={handleLockPro}
-                title="Deactivate and relock this device"
-                className="text-[10px] text-slate-400 hover:text-slate-600 underline cursor-pointer"
-              >
-                (Deactivate)
-              </button>
-            </div>
-          ) : (
-            <button
-              type="button"
-              onClick={() => setShowPayModal(true)}
-              className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 flex items-center gap-1 transition-all cursor-pointer"
-            >
-              <Lock className="w-3 h-3 text-amber-600" />
-              <span>Unlock Pro ($20)</span>
-            </button>
-          )}
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 flex items-center gap-1">
+              <Sparkles className="w-3 h-3 text-emerald-600" />
+              <span>100% FREE PRO ACTIVE</span>
+            </span>
+          </div>
         </div>
 
         <div className="grid grid-cols-5 md:grid-cols-10 gap-2 mt-3 text-center">
@@ -1256,13 +1237,14 @@ export default function EbaySaleCalculator() {
               <div className="space-y-2 pt-1">
                 <a
                   href={PAYMENT_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-3.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-blue-600/20 cursor-pointer flex items-center justify-center gap-2 text-center"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    alert('🎉 Special Launch Offer Active: All Evonix calculators and tools are currently 100% free! No payment or license key required.');
+                  }}
+                  className="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-emerald-600/20 cursor-pointer flex items-center justify-center gap-2 text-center"
                 >
-                  <CreditCard className="w-4 h-4" />
-                  <span>Pay $20 with Payoneer - Get Pro Key</span>
-                  <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+                  <Sparkles className="w-4 h-4" />
+                  <span>Special Offer Active: 100% Free (No Payment Needed)</span>
                 </a>
               </div>
 
@@ -1271,16 +1253,16 @@ export default function EbaySaleCalculator() {
                 <div className="inline-block p-2 bg-white rounded-xl border border-slate-200 shadow-xs">
                   <img
                     src={`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(PAYMENT_URL)}&margin=4`}
-                    alt="Scan & Pay $20 via Payoneer"
+                    alt="Scan & Pay via Payoneer"
                     className="w-32 h-32 mx-auto rounded-lg object-contain"
                   />
                 </div>
                 <div>
-                  <span className="font-black text-slate-900 text-xs block uppercase tracking-wide">
-                    Scan &amp; Pay $20
+                  <span className="font-black text-emerald-700 text-xs block uppercase tracking-wide">
+                    100% Free Access Activated
                   </span>
                   <p className="text-[11px] text-slate-500 mt-0.5">
-                    Scan with your mobile camera or banking app to pay $20.
+                    No payment or license key is required during the 60-day launch promotion.
                   </p>
                 </div>
               </div>

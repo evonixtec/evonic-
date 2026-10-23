@@ -12,6 +12,7 @@ import {
   HelpCircle,
   ChevronDown
 } from 'lucide-react';
+import SpecialOfferBanner from './common/SpecialOfferBanner';
 
 export type FbmCurrency = 'USD' | 'GBP' | 'PKR';
 
@@ -111,6 +112,10 @@ Calculated via EVONIX Technologies: https://www.evonixtec.com/amazon-fbm-calcula
 
   const faqs = [
     {
+      q: 'Is this Amazon FBM Calculator free to use?',
+      a: 'Yes! All Evonix calculators and business tools are 100% free under our Special Launch Offer. You have unlimited calculations with no payments or license keys required.',
+    },
+    {
       q: 'What is Amazon FBM (Fulfilled by Merchant)?',
       a: 'With FBM, you list products on Amazon but store, pack, and ship orders yourself or through your own third-party logistics partner.',
     },
@@ -131,6 +136,9 @@ Calculated via EVONIX Technologies: https://www.evonixtec.com/amazon-fbm-calcula
   return (
     <div className="py-8 sm:py-12 bg-slate-50 min-h-screen text-slate-900 font-sans">
       <main className="max-w-5xl mx-auto px-4 sm:px-6 space-y-8">
+        {/* Special Launch Offer Banner */}
+        <SpecialOfferBanner toolName="Amazon FBM Calculator" />
+
         {/* Notice Banner */}
         <div className="p-4 rounded-2xl bg-blue-50 border border-blue-200 text-blue-950 flex items-start gap-3 shadow-xs">
           <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />

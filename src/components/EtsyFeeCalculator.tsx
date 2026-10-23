@@ -11,6 +11,7 @@ import {
   HelpCircle,
   ChevronDown
 } from 'lucide-react';
+import SpecialOfferBanner from './common/SpecialOfferBanner';
 
 export type EtsyCurrency = 'USD' | 'GBP' | 'PKR';
 
@@ -137,6 +138,10 @@ Calculated via EVONIX Technologies: https://www.evonixtec.com/etsy-fee-calculato
 
   const faqs = [
     {
+      q: 'Is this Etsy Fee Calculator free to use?',
+      a: 'Yes! All Evonix calculators and business tools are 100% free under our Special Launch Offer. You have unlimited calculations with no payments or license keys required.',
+    },
+    {
       q: 'What are the main Etsy fees in 2026?',
       a: 'Etsy charges a $0.20 listing fee per item, a 6.5% transaction fee on total price including shipping, and a payment processing fee of 3% + $0.25.',
     },
@@ -157,6 +162,9 @@ Calculated via EVONIX Technologies: https://www.evonixtec.com/etsy-fee-calculato
   return (
     <div className="py-8 sm:py-12 bg-slate-50 min-h-screen text-slate-900 font-sans">
       <main className="max-w-5xl mx-auto px-4 sm:px-6 space-y-8">
+        {/* Special Launch Offer Banner */}
+        <SpecialOfferBanner toolName="Etsy Fee Calculator" />
+
         {/* Notice Banner */}
         <div className="p-4 rounded-2xl bg-orange-50 border border-orange-200 text-orange-950 flex items-start gap-3 shadow-xs">
           <AlertCircle className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />

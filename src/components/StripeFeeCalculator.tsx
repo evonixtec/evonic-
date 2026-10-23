@@ -25,6 +25,10 @@ import {
   DollarSign
 } from 'lucide-react';
 import { getHardwareDeviceId, activateLicenseKey, isToolUnlocked } from '../lib/licenseSystem';
+import SpecialOfferBanner from './common/SpecialOfferBanner';
+
+// Preserved payment setting for future monetization reactivation
+export const PAYONEER_PAYMENT_URL = 'https://link.payoneer.com/Token?t=92EF253542CE4D4DA2F32B91E7DB463F&src=pl';
 
 export type ActiveTab = 'simple' | 'advanced' | 'professional';
 export type CalcDirection = 'forward' | 'reverse';
@@ -175,23 +179,8 @@ export default function StripeFeeCalculator() {
           </div>
         </div>
 
-        {/* User Guide Link */}
-        <div className="text-center">
-          <a
-            href="/installation-guide"
-            onClick={(e) => {
-              if (!e.ctrlKey && !e.metaKey && !e.shiftKey) {
-                e.preventDefault();
-                window.history.pushState({}, '', '/installation-guide');
-                window.dispatchEvent(new PopStateEvent('popstate'));
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }
-            }}
-            className="font-bold text-sm tracking-wide inline-flex items-center gap-1.5 text-blue-600 hover:text-blue-700 underline cursor-pointer"
-          >
-            <span>View Offline Desktop Installation &amp; Single Key Activation Guide</span>
-          </a>
-        </div>
+        {/* Special Launch Offer Banner */}
+        <SpecialOfferBanner toolName="Stripe Fee Calculator" />
 
         {/* Master Header Card */}
         <div className="apple-glass-box p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -209,23 +198,14 @@ export default function StripeFeeCalculator() {
           </div>
 
           <div className="flex flex-col items-start md:items-end gap-2">
-            <span className="text-xs text-[#86868b] font-medium">Single License Key HWID Lock</span>
+            <span className="text-xs text-[#86868b] font-medium">Special Launch Offer</span>
             <div className="flex items-center gap-2">
               <span className="text-xs font-mono font-bold px-3 py-1 rounded-xl bg-white border border-slate-200">
                 {currentDeviceId}
               </span>
-              {isProUnlocked ? (
-                <span className="text-xs font-bold px-3 py-1 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200">
-                  Pro Active
-                </span>
-              ) : (
-                <button
-                  onClick={() => setShowPayModal(true)}
-                  className="px-3.5 py-1 bg-[#0071e3] hover:bg-[#0077ed] text-white font-semibold text-xs rounded-xl shadow-xs cursor-pointer transition-colors"
-                >
-                  $20 Lifetime
-                </button>
-              )}
+              <span className="text-xs font-bold px-3 py-1 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200">
+                100% Free Pro Active
+              </span>
             </div>
           </div>
         </div>
@@ -624,15 +604,20 @@ export default function StripeFeeCalculator() {
                   <span>Verify &amp; Unlock License</span>
                 </button>
 
-                <div className="pt-2 text-center">
+                <div className="pt-2 text-center space-y-1">
                   <a
-                    href="https://link.payoneer.com/Token?t=92EF253542CE4D4DA2F32B91E7DB463F&src=pl"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-[#0071e3] hover:underline font-semibold"
+                    href={PAYONEER_PAYMENT_URL}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      alert('🎉 Special Launch Offer Active: All Evonix calculators and tools are currently 100% free! No payment or license key required.');
+                    }}
+                    className="text-xs text-[#0071e3] hover:underline font-semibold block"
                   >
-                    Don't have a key? Buy $20 Lifetime License via Payoneer
+                    Special Offer: 100% Free Access Active (No Payment Required)
                   </a>
+                  <p className="text-[11px] text-emerald-600 font-bold">
+                    ✓ Full Pro features unlocked for everyone
+                  </p>
                 </div>
               </div>
             </div>

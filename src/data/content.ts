@@ -518,4 +518,12 @@ export const FAQ_ITEMS: FaqItem[] = [
     answer:
       'Yes. We build custom B2B web catalogs, quotation request engines, and internal production tracking systems designed specifically for sports goods, surgical instruments, and leather exporters in Sialkot.',
   },
+  {
+    id: 'faq-free-calculators',
+    category: 'pricing',
+    highlightBadge: '100% Free Tools',
+    question: 'Are all Evonix online calculators and eCommerce tools free to use?',
+    answer:
+      'Yes! Under our Special Launch Offer, all 20+ Evonix fee calculators, export tools, and shipping workstations are 100% free with unlimited calculations. There are no payment requirements, no credit card checks, and no license key locks needed.',
+  },
 ];

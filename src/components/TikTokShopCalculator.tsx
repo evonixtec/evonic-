@@ -29,6 +29,10 @@ import {
   HelpCircle
 } from 'lucide-react';
 import { getHardwareDeviceId, activateLicenseKey, isToolUnlocked } from '../lib/licenseSystem';
+import SpecialOfferBanner from './common/SpecialOfferBanner';
+
+// Preserved payment setting for future monetization reactivation
+export const PAYONEER_PAYMENT_URL = 'https://link.payoneer.com/Token?t=92EF253542CE4D4DA2F32B91E7DB463F&src=pl';
 
 export type ActiveTab = 'simple' | 'advanced' | 'professional';
 
@@ -309,7 +313,9 @@ export default function TikTokShopCalculator() {
   return (
     <div className="py-8 sm:py-10 bg-[#f5f5f7] min-h-screen text-[#1d1d1f] font-[-apple-system,BlinkMacSystemFont,'SF_Pro_Text','Helvetica_Neue',sans-serif]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        
+        {/* Special Launch Offer Banner */}
+        <SpecialOfferBanner toolName="TikTok Shop Fee Calculator" />
+
         {/* Mobile Warning Banner */}
         <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 shadow-xs flex items-start gap-3">
           <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
@@ -339,24 +345,14 @@ export default function TikTokShopCalculator() {
           </div>
 
           <div className="flex flex-col items-start md:items-end gap-2 shrink-0">
-            <span className="text-xs text-[#86868b] font-medium">Single License Key HWID Lock</span>
+            <span className="text-xs text-[#86868b] font-medium">Special Launch Offer</span>
             <div className="flex items-center gap-2">
               <span className="text-xs font-mono font-bold px-3 py-1 rounded-xl bg-white border border-slate-200">
                 {currentDeviceId}
               </span>
-              {isProUnlocked ? (
-                <span className="text-xs font-bold px-3 py-1 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200">
-                  Pro Active
-                </span>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => setShowPayModal(true)}
-                  className="px-3.5 py-1 bg-[#0071e3] hover:bg-[#0077ed] text-white font-semibold text-xs rounded-xl shadow-xs cursor-pointer transition-colors"
-                >
-                  $20 Lifetime
-                </button>
-              )}
+              <span className="text-xs font-bold px-3 py-1 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200">
+                100% Free Pro Active
+              </span>
             </div>
           </div>
         </div>
@@ -1400,15 +1396,20 @@ export default function TikTokShopCalculator() {
                   <span>Verify &amp; Unlock License</span>
                 </button>
 
-                <div className="pt-2 text-center">
+                <div className="pt-2 text-center space-y-1">
                   <a
-                    href="https://link.payoneer.com/Token?t=92EF253542CE4D4DA2F32B91E7DB463F&src=pl"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-[#0071e3] hover:underline font-semibold"
+                    href={PAYONEER_PAYMENT_URL}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      alert('🎉 Special Launch Offer Active: All Evonix calculators and tools are currently 100% free! No payment or license key required.');
+                    }}
+                    className="text-xs text-[#0071e3] hover:underline font-semibold block"
                   >
-                    Don't have a key? Buy $20 Lifetime License via Payoneer
+                    Special Offer: 100% Free Access Active (No Payment Required)
                   </a>
+                  <p className="text-[11px] text-emerald-600 font-bold">
+                    ✓ Full Pro features unlocked for everyone
+                  </p>
                 </div>
               </div>
             </div>

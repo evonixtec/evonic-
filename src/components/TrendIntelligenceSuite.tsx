@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import SpecialOfferBanner from './common/SpecialOfferBanner';
 
 // ==========================================
 // EVONIX TECHNOLOGIES - V15 MASTER BUILD
-// STATUS: PAUSED & LOCKED - PAYONEER PHASE 1
+// STATUS: 100% FREE SPECIAL LAUNCH OFFER
 // BRAND: Evonix Technologies
-// TIMELINE: October 2026
+// TIMELINE: 2026
 // ==========================================
+
+export const PAYONEER_PAYMENT_URL = 'https://link.payoneer.com/Token?t=92EF253542CE4D4DA2F32B91E7DB463F&src=pl';
 
 type PlatformData = { volume?: number; trend?: number; sold?: number; score?: number };
 
@@ -155,6 +158,9 @@ export default function TrendIntelligenceSuite() {
   return (
     <div className="p-4 sm:p-6 bg-[#f5f5f7] min-h-screen text-[#1d1d1f] font-sans">
       <div className="max-w-6xl mx-auto">
+        {/* Special Launch Offer Banner */}
+        <SpecialOfferBanner toolName="Trend Intelligence Suite" className="mb-6" />
+
         {alertNotice && (
           <div className="mb-4 p-3 bg-amber-500 text-white rounded-xl text-center text-sm font-bold shadow-md animate-in fade-in duration-200">
             {alertNotice}
@@ -165,10 +171,10 @@ export default function TrendIntelligenceSuite() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
               <h2 className="text-xl sm:text-2xl font-bold text-[#1d1d1f]">🚀 Evonix Technologies - V15 Master Build</h2>
-              <p className="text-xs text-gray-500 mt-1">6 Core Modules + 3 Enterprise Upgrades + Payoneer Phase 1 | PAUSED & LOCKED | October 2026</p>
+              <p className="text-xs text-emerald-600 font-bold mt-1">6 Core Modules + 3 Enterprise Upgrades • 100% Free Special Launch Offer Active</p>
             </div>
-            <span className="self-start sm:self-auto text-[10px] font-mono px-2.5 py-1 bg-blue-50 text-blue-700 rounded-full font-bold border border-blue-200">
-              Trend Intelligence Suite
+            <span className="self-start sm:self-auto text-[10px] font-mono px-2.5 py-1 bg-emerald-50 text-emerald-700 rounded-full font-bold border border-emerald-200">
+              100% Free Pro
             </span>
           </div>
 
@@ -235,14 +241,16 @@ export default function TrendIntelligenceSuite() {
                 <div><b>$22</b> = 100 Keywords + CSV Matrix / mo</div>
               </div>
 
-              {/* ================= PAYONEER ACTIVE PAYWALL BUTTON BLOCK ================= */}
+              {/* ================= PAYONEER PRESERVED BUTTON BLOCK ================= */}
               <a
-                href="https://link.payoneer.com/Token?t=92EF253542CE4D4DA2F32B91E7DB463F&src=pl"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase py-3 px-6 rounded-xl w-full tracking-wider shadow-md transition block text-center cursor-pointer"
+                href={PAYONEER_PAYMENT_URL}
+                onClick={(e) => {
+                  e.preventDefault();
+                  alert('🎉 Special Launch Offer Active: Trend Intelligence Suite and all Evonix tools are currently 100% free! No payment or key required.');
+                }}
+                className="mt-2 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs uppercase py-3 px-6 rounded-xl w-full tracking-wider shadow-md transition block text-center cursor-pointer"
               >
-                Pay $22 with Payoneer - Get Pro Key
+                Special Offer: 100% Free (No Payment Needed)
               </a>
 
               <button

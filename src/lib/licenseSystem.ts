@@ -33,30 +33,24 @@ export function getHardwareDeviceId(): string {
 }
 
 /**
- * Checks if a specific tool is unlocked on this device
+ * PAYMENT CONFIGURATION (PRESERVED FOR FUTURE MONETIZATION ACTIVATION)
+ * Set isPaymentActive to true when ready to re-enable Payoneer checkout.
  */
-export function isToolUnlocked(toolId: FeeToolId): boolean {
-  if (typeof window === 'undefined') return false;
-  
-  // Legacy global unlock check
-  if (localStorage.getItem('evonix_pro_unlocked') === 'true') {
-    return true;
-  }
-  
-  // Per-tool or bundle map check
-  try {
-    const raw = localStorage.getItem('evonix_unlocked_tools');
-    if (raw) {
-      const list: string[] = JSON.parse(raw);
-      if (list.includes('all') || list.includes('bundle') || list.includes(toolId)) {
-        return true;
-      }
-    }
-  } catch {
-    // ignore json error
-  }
-  
-  return false;
+export const PAYMENT_CONFIG = {
+  payoneerUrl: 'https://link.payoneer.com/Token?t=92EF253542CE4D4DA2F32B91E7DB463F&src=pl',
+  priceUsd: 20,
+  isPaymentActive: false, // Currently disabled for Special Launch Offer
+  offerTitle: 'Special Launch Offer: 100% Free Access (60 Days Free)',
+  offerSubtitle: 'All calculators and business tools are currently 100% free with no payment, no credit card, and no key required.',
+};
+
+/**
+ * Checks if a specific tool is unlocked on this device.
+ * Under our Special Launch Offer, all tools are 100% free and unlocked for everyone!
+ */
+export function isToolUnlocked(_toolId?: FeeToolId): boolean {
+  // Always true: All tools are 100% free! No license key or payment gate needed.
+  return true;
 }
 
 /**

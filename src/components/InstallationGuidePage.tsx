@@ -19,6 +19,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import { getHardwareDeviceId } from '../lib/licenseSystem';
+import SpecialOfferBanner from './common/SpecialOfferBanner';
 
 export interface InstallationGuidePageProps {
   onNavigatePage?: (page: any) => void;
@@ -38,7 +39,9 @@ export const InstallationGuidePage: React.FC<InstallationGuidePageProps> = ({ on
   return (
     <div className="py-12 bg-[#f5f5f7] min-h-screen text-[#1d1d1f] font-[-apple-system,BlinkMacSystemFont,'SF_Pro_Text','Helvetica_Neue',sans-serif]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        
+        {/* Special Launch Offer Banner */}
+        <SpecialOfferBanner />
+
         {/* Mobile Warning Banner - Strictly Required */}
         <div className="p-4 sm:p-5 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 shadow-xs flex items-start gap-3">
           <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
