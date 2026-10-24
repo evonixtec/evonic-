@@ -28,6 +28,7 @@ import {
 } from 'lucide-react';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { isToolPage } from '../lib/toolUtils';
+import { isToolsSubdomain, getMainAgencyDomainUrl, getToolsDomainUrl } from '../lib/domainUtils';
 
 import { NavPageId } from '../types';
 export type { NavPageId };
@@ -37,6 +38,7 @@ interface NavbarProps {
   onNavigatePage: (page: NavPageId, subTarget?: string) => void;
   onOpenQuote: (serviceType?: string) => void;
   onOpenSearch: () => void;
+  isToolsSubdomain?: boolean;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -44,7 +46,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   onNavigatePage,
   onOpenQuote,
   onOpenSearch,
+  isToolsSubdomain: isToolsSubdomainProp,
 }) => {
+  const isSub = isToolsSubdomainProp !== undefined ? isToolsSubdomainProp : isToolsSubdomain();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -119,21 +123,41 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex items-center justify-between gap-3">
           {/* Brand Logo with 3D Nano Tagline */}
           <button
-            onClick={() => handlePageSelect('home')}
+            onClick={() => {
+              if (isSub) {
+                handlePageSelect('tools');
+              } else {
+                handlePageSelect('home');
+              }
+            }}
             className="flex items-center gap-2.5 group cursor-pointer transition-all duration-200 hover:scale-[1.02] flex-shrink-0"
-            aria-label="evonix Home"
+            aria-label={isSub ? "evonix Tools Workstation" : "evonix Home"}
           >
             <div className="relative p-1 rounded-xl transition-all duration-300 group-hover:drop-shadow-[0_4px_12px_rgba(220,38,38,0.3)]">
               <EvonixLogo size="md" forceTheme="light" />
             </div>
             <div className="hidden sm:flex flex-col text-left pl-2.5 border-l border-slate-200/90">
-              <span className="text-[10px] font-black uppercase tracking-wider text-red-600 leading-tight flex items-center gap-1.5">
-                <span>Dubai Heritage</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
-              </span>
-              <span className="text-[9px] font-extrabold text-slate-500 uppercase tracking-widest leading-tight mt-0.5">
-                Sialkot Tech Hub
-              </span>
+              {isSub ? (
+                <>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-blue-600 leading-tight flex items-center gap-1.5">
+                    <span>Tools Workstation</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
+                  </span>
+                  <span className="text-[9px] font-extrabold text-slate-500 uppercase tracking-widest leading-tight mt-0.5">
+                    tools.evonixtec.com
+                  </span>
+                </>
+              ) : (
+                <>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-red-600 leading-tight flex items-center gap-1.5">
+                    <span>Dubai Heritage</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
+                  </span>
+                  <span className="text-[9px] font-extrabold text-slate-500 uppercase tracking-widest leading-tight mt-0.5">
+                    Software House &amp; AI
+                  </span>
+                </>
+              )}
             </div>
           </button>
 
@@ -251,173 +275,61 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </div>
               )}
             </div>
-
-            {/* 3. Hardware & Shop Dropdown (2-Column Clean Mega-Menu) */}
-            <div
-              className="relative"
-              onMouseEnter={() => setActiveDropdown('shop')}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <button
-                onClick={() => handlePageSelect('shop')}
-                className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1 cursor-pointer ${
-                  currentPage === 'shop'
-                    ? 'text-red-700 bg-gradient-to-b from-red-50 to-rose-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(220,38,38,0.12)] border border-red-200/80'
-                    : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
-                }`}
-                aria-expanded={activeDropdown === 'shop'}
-              >
-                <span>Hardware & Shop</span>
-                <ChevronDown
-                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    activeDropdown === 'shop' ? 'rotate-180 text-red-600' : 'text-slate-400'
+            {/* 3. Agency Domain Navigation (Clean B2B Software House) */}
+            {!isSub && (
+              <>
+                {/* Portfolio */}
+                <button
+                  onClick={() => handlePageSelect('portfolio')}
+                  className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                    currentPage === 'portfolio'
+                      ? 'text-red-700 bg-red-50/90 font-bold shadow-2xs border border-red-200/60'
+                      : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
                   }`}
-                />
-              </button>
+                >
+                  Portfolio
+                </button>
 
-              {activeDropdown === 'shop' && (
-                <div className="absolute top-full left-0 w-[540px] pt-1.5 z-50">
-                  <div className="bg-white/98 backdrop-blur-2xl rounded-2xl shadow-[0_20px_45px_-10px_rgba(0,0,0,0.14),0_0_0_1px_rgba(0,0,0,0.06)] border border-slate-200 p-3">
-                    <div className="grid grid-cols-2 gap-3">
-                      {/* Left: Hardware Catalog */}
-                      <div className="space-y-1">
-                        <div className="px-2.5 py-1 text-[10px] font-black text-slate-500 uppercase tracking-wider flex items-center justify-between border-b border-slate-100 pb-1.5 mb-1">
-                          <span>Equipment Catalog</span>
-                          <span className="text-emerald-600 font-bold">With Warranty</span>
-                        </div>
+                {/* Free Tools Subdomain Bridge */}
+                <a
+                  href={getToolsDomainUrl()}
+                  className="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-700 hover:text-slate-900 hover:bg-slate-100/80 group"
+                  title="22+ Free E-Commerce, Export & Freight Calculators on tools.evonixtec.com"
+                >
+                  <span>Free Tools</span>
+                  <span className="text-[9px] bg-red-100 text-red-700 group-hover:bg-red-600 group-hover:text-white transition-colors px-1.5 py-0.5 rounded-md font-bold flex items-center gap-0.5">
+                    <span>22+ Free</span>
+                    <ArrowRight className="w-2.5 h-2.5" />
+                  </span>
+                </a>
+              </>
+            )}
 
-                        <button
-                          onClick={() => handlePageSelect('shop', 'pos-terminals')}
-                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-2.5 cursor-pointer group"
-                        >
-                          <div className="p-1.5 rounded-lg bg-slate-100 text-slate-600 group-hover:bg-red-50 group-hover:text-red-600 transition-colors">
-                            <ShoppingBag className="w-3.5 h-3.5" />
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-slate-900 group-hover:text-red-600">
-                              POS Touch Terminals
-                            </div>
-                            <div className="text-[10px] text-slate-500">Retail, Restaurant & Grocery</div>
-                          </div>
-                        </button>
+            {/* Tools Subdomain Header Controls */}
+            {isSub && (
+              <>
+                <a
+                  href={getMainAgencyDomainUrl()}
+                  className="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white flex items-center gap-1.5 transition-colors shadow-2xs mr-1"
+                >
+                  <span>← Agency Home</span>
+                </a>
 
-                        <button
-                          onClick={() => handlePageSelect('shop', 'printers')}
-                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-2.5 cursor-pointer group"
-                        >
-                          <div className="p-1.5 rounded-lg bg-slate-100 text-slate-600 group-hover:bg-red-50 group-hover:text-red-600 transition-colors">
-                            <Printer className="w-3.5 h-3.5" />
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-slate-900 group-hover:text-red-600">
-                              Thermal Printers & Scanners
-                            </div>
-                            <div className="text-[10px] text-slate-500">80mm Receipts & 2D Readers</div>
-                          </div>
-                        </button>
-
-                        <button
-                          onClick={() => handlePageSelect('shop', 'laptops')}
-                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-2.5 cursor-pointer group"
-                        >
-                          <div className="p-1.5 rounded-lg bg-slate-100 text-slate-600 group-hover:bg-red-600 group-hover:text-white transition-colors">
-                            <Laptop className="w-3.5 h-3.5" />
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-slate-900 group-hover:text-red-600">
-                              Business Laptops & PCs
-                            </div>
-                            <div className="text-[10px] text-slate-500">Imported Dell, HP & Lenovo</div>
-                          </div>
-                        </button>
-
-                        <div className="pt-2">
-                          <button
-                            onClick={() => handlePageSelect('shop')}
-                            className="w-full py-1.5 px-3 rounded-lg bg-slate-50 hover:bg-red-50 text-center text-[11px] font-bold text-red-600 hover:text-red-700 flex items-center justify-center gap-1 cursor-pointer transition-colors border border-slate-200"
-                          >
-                            <span>Browse All Hardware</span>
-                            <ArrowRight className="w-3 h-3" />
-                          </button>
-                        </div>
-                      </div>
-
-                      {/* Right: Diagnostic Lab Tools */}
-                      <div className="space-y-1 border-l border-slate-100 pl-3">
-                        <div className="px-2.5 py-1 text-[10px] font-black text-slate-500 uppercase tracking-wider flex items-center justify-between border-b border-slate-100 pb-1.5 mb-1">
-                          <span>Diagnostic Lab Bench</span>
-                          <span className="text-red-600 font-bold">Interactive</span>
-                        </div>
-
-                        <button
-                          onClick={() => handlePageSelect('home', 'live-repair-tracker')}
-                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-2.5 cursor-pointer group"
-                        >
-                          <div className="p-1.5 rounded-lg bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                            <Wrench className="w-3.5 h-3.5" />
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-slate-900 group-hover:text-emerald-700 flex items-center gap-1.5">
-                              <span>Live RMA Repair Tracker</span>
-                              <span className="text-[8px] bg-emerald-100 text-emerald-800 px-1 py-0.2 rounded font-bold">Live</span>
-                            </div>
-                            <div className="text-[10px] text-slate-500">Track bench test logs & status</div>
-                          </div>
-                        </button>
-
-                        <button
-                          onClick={() => handlePageSelect('home', 'hardware-repair-gallery')}
-                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-2.5 cursor-pointer group"
-                        >
-                          <div className="p-1.5 rounded-lg bg-amber-50 text-amber-600 group-hover:bg-amber-600 group-hover:text-white transition-colors">
-                            <Cpu className="w-3.5 h-3.5" />
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-slate-900 group-hover:text-amber-700">
-                              Micro-Soldering Slider
-                            </div>
-                            <div className="text-[10px] text-slate-500">Before & After bench inspection</div>
-                          </div>
-                        </button>
-
-                        <button
-                          onClick={() => handlePageSelect('home', 'blink-beep-identifier')}
-                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-2.5 cursor-pointer group"
-                        >
-                          <div className="p-1.5 rounded-lg bg-red-50 text-red-600 group-hover:bg-red-600 group-hover:text-white transition-colors">
-                            <Wrench className="w-3.5 h-3.5" />
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-slate-900 group-hover:text-red-700 flex items-center gap-1.5">
-                              <span>Blink & Beep Decoder</span>
-                              <span className="text-[8px] bg-red-100 text-red-700 px-1 py-0.2 rounded font-bold">Tool</span>
-                            </div>
-                            <div className="text-[10px] text-slate-500">Dell, HP & Lenovo BIOS tones</div>
-                          </div>
-                        </button>
-
-                        <button
-                          onClick={() => handlePageSelect('home', 'thermal-inspector')}
-                          className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-2.5 cursor-pointer group"
-                        >
-                          <div className="p-1.5 rounded-lg bg-purple-50 text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors">
-                            <Sparkles className="w-3.5 h-3.5" />
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-slate-900 group-hover:text-purple-700">
-                              FLIR Thermal Hotspot
-                            </div>
-                            <div className="text-[10px] text-slate-500">Infrared short-circuit view</div>
-                          </div>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
+                <button
+                  onClick={() => handlePageSelect('tools')}
+                  className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                    currentPage === 'tools'
+                      ? 'text-blue-700 bg-blue-50 font-bold border border-blue-200'
+                      : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
+                  }`}
+                >
+                  All Tools (22+)
+                </button>
+              </>
+            )}
 
             {/* 4. UNIFIED DYNAMIC DROPDOWN MENU ENGINE: WEB TOOLS PORTFOLIO */}
+            {isSub && (
             <div
               className="relative"
               onMouseEnter={() => setActiveDropdown('tools')}
@@ -878,6 +790,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </div>
               )}
             </div>
+            )}
 
             {/* 6. Company Dropdown (Consolidated with About, Sialkot Lab & Regional Hubs) */}
             <div
@@ -1037,14 +950,24 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Mobile Accordion Menu */}
         {mobileMenuOpen && (
           <div className="lg:hidden mt-2 pt-2 pb-4 border-t border-slate-200 max-h-[80vh] overflow-y-auto space-y-1.5 animate-fadeIn">
-            {/* Home */}
+            {/* Tools Subdomain Mobile Return Link */}
+            {isSub && (
+              <a
+                href={getMainAgencyDomainUrl()}
+                className="w-full text-center p-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs flex items-center justify-center gap-1.5 mb-2 shadow-xs"
+              >
+                <span>← Back to evonixtec.com (Main Agency)</span>
+              </a>
+            )}
+
+            {/* Home (Agency Domain) or Tools Hub (Tools Subdomain) */}
             <button
-              onClick={() => handlePageSelect('home')}
+              onClick={() => handlePageSelect(isSub ? 'tools' : 'home')}
               className={`w-full text-left px-3.5 py-2 rounded-xl text-sm font-bold flex items-center justify-between ${
-                currentPage === 'home' ? 'bg-red-50 text-red-600' : 'text-slate-800 hover:bg-slate-100'
+                (isSub ? currentPage === 'tools' : currentPage === 'home') ? 'bg-red-50 text-red-600' : 'text-slate-800 hover:bg-slate-100'
               }`}
             >
-              <span>Home</span>
+              <span>{isSub ? 'All Tools Hub' : 'Home'}</span>
             </button>
 
             {/* Services with expandable sub-items */}
@@ -1093,63 +1016,17 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </div>
 
-            {/* Hardware & Shop with expandable sub-items */}
-            <div className="rounded-xl border border-slate-200 overflow-hidden bg-white">
+            {/* Portfolio Link for Agency Domain */}
+            {!isSub && (
               <button
-                onClick={() =>
-                  setMobileExpandedSection(mobileExpandedSection === 'shop' ? null : 'shop')
-                }
-                className="w-full text-left px-3.5 py-2.5 text-sm font-bold text-slate-800 flex items-center justify-between bg-slate-50"
+                onClick={() => handlePageSelect('portfolio')}
+                className={`w-full text-left px-3.5 py-2 rounded-xl text-sm font-bold flex items-center justify-between ${
+                  currentPage === 'portfolio' ? 'bg-red-50 text-red-600' : 'text-slate-800 hover:bg-slate-100'
+                }`}
               >
-                <span>Hardware & Shop</span>
-                <ChevronDown
-                  className={`w-4 h-4 transition-transform ${
-                    mobileExpandedSection === 'shop' ? 'rotate-180 text-red-600' : ''
-                  }`}
-                />
+                <span>Portfolio &amp; Case Studies</span>
               </button>
-
-              {mobileExpandedSection === 'shop' && (
-                <div className="p-2 space-y-1 bg-white border-t border-slate-100 text-xs">
-                  <button
-                    onClick={() => handlePageSelect('shop', 'pos-terminals')}
-                    className="w-full text-left p-2 rounded-lg text-slate-700 hover:bg-slate-50 font-medium"
-                  >
-                    • POS Touch Terminals & Barcode Scanners
-                  </button>
-                  <button
-                    onClick={() => handlePageSelect('shop', 'printers')}
-                    className="w-full text-left p-2 rounded-lg text-slate-700 hover:bg-slate-50 font-medium"
-                  >
-                    • Thermal Receipt Printers
-                  </button>
-                  <button
-                    onClick={() => handlePageSelect('shop', 'laptops')}
-                    className="w-full text-left p-2 rounded-lg text-slate-700 hover:bg-slate-50 font-medium"
-                  >
-                    • Imported Laptops & PC Workstations
-                  </button>
-                  <button
-                    onClick={() => handlePageSelect('home', 'live-repair-tracker')}
-                    className="w-full text-left p-2 rounded-lg text-red-700 bg-red-50/50 hover:bg-red-100/50 font-bold"
-                  >
-                    • Live RMA Repair & Bench Tracker
-                  </button>
-                  <button
-                    onClick={() => handlePageSelect('home', 'hardware-repair-gallery')}
-                    className="w-full text-left p-2 rounded-lg text-slate-700 hover:bg-slate-50 font-medium"
-                  >
-                    • Before & After Micro-Soldering Gallery
-                  </button>
-                  <button
-                    onClick={() => handlePageSelect('shop')}
-                    className="w-full text-left p-2 text-red-600 font-bold hover:underline"
-                  >
-                    → Open Full Shop Catalog
-                  </button>
-                </div>
-              )}
-            </div>
+            )}
 
             {/* About Us */}
             <button
@@ -1161,7 +1038,23 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span>About Us (Dubai Heritage)</span>
             </button>
 
-            {/* UNIFIED WEB TOOLS PORTFOLIO ACCORDION FOR MOBILE */}
+            {/* Free Tools Subdomain Bridge for Mobile (Agency Domain) */}
+            {!isSub && (
+              <a
+                href={getToolsDomainUrl()}
+                className="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between text-slate-800 hover:bg-slate-100 bg-red-50/50 border border-red-100 transition-colors"
+              >
+                <div className="flex items-center gap-2">
+                  <span>🛠️ Free Tools Workstation</span>
+                </div>
+                <span className="px-2 py-0.5 bg-red-600 text-white text-[10px] rounded-full font-bold flex items-center gap-1">
+                  <span>22+ Tools ↗</span>
+                </span>
+              </a>
+            )}
+
+            {/* UNIFIED WEB TOOLS PORTFOLIO ACCORDION FOR MOBILE (Tools Subdomain Only) */}
+            {isSub && (
             <div className="border border-slate-200/80 rounded-2xl overflow-hidden bg-slate-50/50">
               <button
                 onClick={() => setMobileExpandedSection(mobileExpandedSection === 'tools' ? null : 'tools')}
@@ -1479,6 +1372,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </div>
               )}
             </div>
+            )}
 
 
             {/* Contact */}

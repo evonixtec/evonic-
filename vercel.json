@@ -1,8 +1,34 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/((?!api/).*)",
       "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/tools/:path*",
+      "has": [{ "type": "host", "value": "evonixtec.com" }],
+      "destination": "https://tools.evonixtec.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/tools/:path*",
+      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
+      "destination": "https://tools.evonixtec.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/tools",
+      "has": [{ "type": "host", "value": "evonixtec.com" }],
+      "destination": "https://tools.evonixtec.com",
+      "permanent": true
+    },
+    {
+      "source": "/tools",
+      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
+      "destination": "https://tools.evonixtec.com",
+      "permanent": true
     }
   ],
   "headers": [

@@ -19,6 +19,7 @@ import { PWAInstallBanner } from './components/PWAInstallBanner';
 import { LocalCity, ClusterService, LOCAL_CITIES, CLUSTER_SERVICES } from './data/localClusters';
 import { MessageSquare, Phone, ArrowUp, ArrowRight, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2, FileText, Barcode, Printer, Boxes, SlidersHorizontal, Calculator, Clock, Wifi, Globe } from 'lucide-react';
 import { isToolPage } from './lib/toolUtils';
+import { isToolsSubdomain, getMainAgencyDomainUrl, getToolsDomainUrl } from './lib/domainUtils';
 
 // Statically imported home sections for instant render and zero dynamic import fetch failures
 import { HomeServicesPreview } from './components/home/HomeServicesPreview';
@@ -507,20 +508,30 @@ export default function App() {
 
   // Read initial page from clean URL pathname (with hash backward compatibility)
   const getInitialPage = (): NavPageId => {
+    const isToolsHost = isToolsSubdomain();
     if (typeof window !== 'undefined') {
       const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
       if (path) {
-        return resolvePageFromPath(path);
+        const resolved = resolvePageFromPath(path);
+        if (isToolsHost && resolved === 'home') {
+          return 'tools';
+        }
+        return resolved;
       }
       const hash = window.location.hash.replace('#', '').toLowerCase();
       if (hash) {
-        return resolvePageFromPath(hash);
+        const resolved = resolvePageFromPath(hash);
+        if (isToolsHost && resolved === 'home') {
+          return 'tools';
+        }
+        return resolved;
       }
     }
-    return 'home';
+    return isToolsHost ? 'tools' : 'home';
   };
 
   const [currentPage, setCurrentPage] = useState<NavPageId>(getInitialPage);
+  const [isToolsMode, setIsToolsMode] = useState<boolean>(isToolsSubdomain);
   const [clusterParams, setClusterParams] = useState(parseLocationFromPath);
   const [isQuoteOpen, setIsQuoteOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
@@ -618,11 +629,18 @@ export default function App() {
         if (path === 'locations' || path.startsWith('location')) {
           setClusterParams(parseLocationFromPath());
         }
-        setCurrentPage(resolvePageFromPath(path));
+        const resolved = resolvePageFromPath(path);
+        if (isToolsSubdomain() && resolved === 'home') {
+          setCurrentPage('tools');
+        } else {
+          setCurrentPage(resolved);
+        }
       } else if (hash) {
         const resolved = resolvePageFromPath(hash);
         if (resolved !== 'home') {
           setCurrentPage(resolved);
+        } else if (isToolsSubdomain()) {
+          setCurrentPage('tools');
         } else {
           // If hash points to an element id on home page, scroll to it
           setCurrentPage('home');
@@ -637,7 +655,7 @@ export default function App() {
           }, 150);
         }
       } else {
-        setCurrentPage('home');
+        setCurrentPage(isToolsSubdomain() ? 'tools' : 'home');
       }
     };
 
@@ -678,6 +696,12 @@ export default function App() {
 
   // Navigate to dedicated page with clean URL path (e.g. /services, /portfolio, /shop)
   const navigateToPage = (page: NavPageId | string, subTarget?: string) => {
+    // If on main domain (evonixtec.com) and user clicks tools, redirect to tools.evonixtec.com
+    if (page === 'tools' && !isToolsSubdomain() && typeof window !== 'undefined' && window.location.hostname.includes('evonixtec.com')) {
+      window.location.href = 'https://tools.evonixtec.com';
+      return;
+    }
+
     const SPECIALIZED_SECTION_MAP: Record<string, string> = {
       'sialkot-it-services': 'services',
       'laptop-repairing-sialkot': 'laptop-repair-estimator',
@@ -832,12 +856,32 @@ export default function App() {
       {/* Mobile App Install Notification Banner */}
       <PWAInstallBanner />
 
+      {/* Tools Subdomain Workstation Notice */}
+      {isToolsMode && (
+        <aside aria-label="Tools Workstation Notice" className="bg-slate-950 text-slate-100 text-xs py-2 px-4 border-b border-slate-800 flex items-center justify-between flex-wrap gap-2 relative z-50 print:hidden">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="font-bold text-white tracking-wide">tools.evonixtec.com</span>
+            <span className="text-slate-400 hidden sm:inline">— Free Enterprise Calculators &amp; Export Workstations (No Signup)</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <a
+              href={getMainAgencyDomainUrl()}
+              className="text-xs font-bold text-red-400 hover:text-red-300 flex items-center gap-1 transition-colors"
+            >
+              <span>← Back to evonixtec.com (Main Agency)</span>
+            </a>
+          </div>
+        </aside>
+      )}
+
       {/* 1. Header Menu & Navigation (Compact, Customized with Sub-Categories) */}
       <Navbar
         currentPage={currentPage}
         onNavigatePage={navigateToPage}
         onOpenQuote={() => handleOpenQuote('General Inquiry')}
         onOpenSearch={() => setIsSearchOpen(true)}
+        isToolsSubdomain={isToolsMode}
       />
 
       {/* Main Content Area: Renders Dedicated Page View (with mobile dock clearance & Framer Motion entrance) */}
@@ -857,166 +901,125 @@ export default function App() {
             <ErrorBoundary>
               <Suspense fallback={<LazyLoaderFallback />}>
               {/* ========================================================
-                  PAGE 1: HOME PAGE (Concise, Curated & Beautiful)
+                  PAGE 1: TOOLS SUBDOMAIN WORKSTATION (tools.evonixtec.com)
                  ======================================================== */}
-          {currentPage === 'home' && (
-          <div className="space-y-0">
-            {/* 1a. Flagship Interactive Hero Slider with Touch-Swipe & Cross-Fade Visuals */}
-            <HeroSlider
-              onOpenQuote={(service) => handleOpenQuote(service || 'Website Development')}
-              onNavigate={(section) => {
-                if (section === 'services') navigateToPage('services');
-                else if (section === 'portfolio') navigateToPage('portfolio');
-                else if (section === 'contact') navigateToPage('contact');
-                else if (section === 'about') navigateToPage('about');
-                else if (section === 'shop') navigateToPage('shop');
-                else navigateToPage('home');
-              }}
-              onOpenSearch={() => setIsSearchOpen(true)}
-            />
-
-            {/* 1b. Hero 3-Pillar Interactive Capabilities Matrix */}
-            <Hero
-              onOpenQuote={(service) => handleOpenQuote(service || 'Website Development')}
-              onNavigate={(section) => {
-                if (section === 'services') navigateToPage('services');
-                else if (section === 'portfolio') navigateToPage('portfolio');
-                else if (section === 'contact') navigateToPage('contact');
-                else if (section === 'about') navigateToPage('about');
-                else if (section === 'shop') navigateToPage('shop');
-                else navigateToPage('home');
-              }}
-              onOpenSearch={() => setIsSearchOpen(true)}
-            />
-
-            {/* 1b. Concise Core Services Preview */}
-            <HomeServicesPreview
-              onNavigateToServices={() => navigateToPage('services')}
-              onOpenQuote={handleOpenQuote}
-            />
-
-            {/* 1c. Concise About Us Highlight (Dubai 20+ Yrs Heritage Teaser) */}
-            <HomeAboutPreview
-              onNavigateToAbout={() => navigateToPage('about')}
-              onOpenQuote={() => handleOpenQuote('General Consultation')}
-            />
-
-            {/* 1d. Concise Portfolio Preview (Top 3 UAE Client Deployments) */}
-            <HomePortfolioPreview
-              onNavigateToPortfolio={() => navigateToPage('portfolio')}
-              onOpenQuote={handleOpenQuote}
-            />
-
-            {/* 1e. Concise Hardware Shop Preview */}
-            <HomeShopPreview
-              onNavigateToShop={() => navigateToPage('shop')}
-              onInquireProduct={(productName) =>
-                handleOpenQuote(`Hardware Inquiry: ${productName}`)
-              }
-            />
-
-            {/* 1e-2. Apple Liquid Glass Online Web Tools Grid */}
-            <HomeToolsGrid
-              onLaunchTool={(toolId) => navigateToPage(toolId)}
-              onNavigateToToolsHub={() => navigateToPage('tools')}
-            />
-
-            {/* 1f. Sialkot Doorstep IT & Emergency Support Banner */}
-            <section className="py-14 bg-gradient-to-r from-red-600 via-red-700 to-red-800 text-white">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
-                  <div className="space-y-2 text-center lg:text-left">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 text-white text-xs font-bold uppercase tracking-wider backdrop-blur-xs">
-                      <MapPin className="w-3.5 h-3.5 text-white" />
-                      <span>Direct On-Site Dispatch Across Sialkot</span>
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-                      Need An Engineer At Your Office, Factory, or Home Today?
-                    </h3>
-                    <p className="text-red-100 text-xs sm:text-sm max-w-2xl leading-relaxed">
-                      Our certified field technicians cover Paris Road, Sialkot Cantt, Small Industrial Estate, Sambrial, Daska Road, and surrounding export sectors. Rapid arrival within 60 minutes for critical POS or network outages.
-                    </p>
-                  </div>
-
-                  <div className="flex flex-wrap items-center justify-center gap-3 flex-shrink-0">
-                    <button
-                      onClick={() => handleOpenQuote('Doorstep Sialkot On-Site IT Visit')}
-                      className="px-6 py-3.5 rounded-xl bg-white text-red-700 hover:bg-slate-100 font-extrabold text-xs sm:text-sm shadow-md transition-all cursor-pointer flex items-center gap-2"
-                    >
-                      <Wrench className="w-4 h-4 text-red-600" />
-                      <span>Book On-Site Engineer Visit</span>
-                    </button>
-
-                    <a
-                      href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello evonix, I urgently need an on-site IT technician in Sialkot.')}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-5 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center gap-2"
-                    >
-                      <MessageSquare className="w-4 h-4" />
-                      <span>WhatsApp Urgent IT</span>
-                    </a>
-                  </div>
+              {isToolsMode && (currentPage === 'home' || currentPage === 'tools') && (
+                <div className="space-y-0">
+                  <ToolsHub
+                    onLaunchTool={(target) => navigateToPage(target as NavPageId)}
+                    onNavigateHome={() => {
+                      window.location.href = getMainAgencyDomainUrl();
+                    }}
+                  />
                 </div>
-              </div>
-            </section>
+              )}
 
-            {/* 1g. Sialkot Citywide Direct On-Site Coverage Finder */}
-            <SialkotAreaCoverage
-              onOpenQuote={handleOpenQuote}
-              onNavigatePage={navigateToPage}
-            />
+              {/* ========================================================
+                  PAGE 1: MAIN DOMAIN B2B SOFTWARE HOUSE (evonixtec.com)
+                 ======================================================== */}
+              {!isToolsMode && currentPage === 'home' && (
+                <div className="space-y-0">
+                  {/* 1a. Flagship Interactive Hero Slider with Touch-Swipe & Cross-Fade Visuals */}
+                  <HeroSlider
+                    onOpenQuote={(service) => handleOpenQuote(service || 'Website Development')}
+                    onNavigate={(section) => {
+                      if (section === 'services') navigateToPage('services');
+                      else if (section === 'portfolio') navigateToPage('portfolio');
+                      else if (section === 'contact') navigateToPage('contact');
+                      else if (section === 'about') navigateToPage('about');
+                      else navigateToPage('home');
+                    }}
+                    onOpenSearch={() => setIsSearchOpen(true)}
+                  />
 
-            {/* 1h. Live RMA Repair Ticket & Bench Diagnostics Tracker */}
-            <LiveRepairTracker onOpenQuote={handleOpenQuote} />
+                  {/* 1b. Hero 3-Pillar Interactive Capabilities Matrix */}
+                  <Hero
+                    onOpenQuote={(service) => handleOpenQuote(service || 'Website Development')}
+                    onNavigate={(section) => {
+                      if (section === 'services') navigateToPage('services');
+                      else if (section === 'portfolio') navigateToPage('portfolio');
+                      else if (section === 'contact') navigateToPage('contact');
+                      else if (section === 'about') navigateToPage('about');
+                      else navigateToPage('home');
+                    }}
+                    onOpenSearch={() => setIsSearchOpen(true)}
+                  />
 
-            {/* 1i. Interactive Hardware & Laptop Diagnostic Cost Estimator */}
-            <LaptopRepairEstimator onOpenQuote={handleOpenQuote} />
+                  {/* 1c. Concise Core Services Preview */}
+                  <HomeServicesPreview
+                    onNavigateToServices={() => navigateToPage('services')}
+                    onOpenQuote={handleOpenQuote}
+                  />
 
-            {/* 1j. Interactive Before & After Hardware Micro-Soldering Gallery */}
-            <HardwareBeforeAfterGallery onOpenQuote={handleOpenQuote} />
+                  {/* 1d. Concise About Us Highlight (Dubai 20+ Yrs Heritage Teaser) */}
+                  <HomeAboutPreview
+                    onNavigateToAbout={() => navigateToPage('about')}
+                    onOpenQuote={() => handleOpenQuote('General Consultation')}
+                  />
 
-            {/* 1k. Laptop BIOS Blink & Beep Code Decoder Tool */}
-            <HardwareBlinkBeepIdentifier />
+                  {/* 1e. Concise Portfolio Preview (Top 3 UAE Client Deployments) */}
+                  <HomePortfolioPreview
+                    onNavigateToPortfolio={() => navigateToPage('portfolio')}
+                    onOpenQuote={handleOpenQuote}
+                  />
 
-            {/* 1l. FLIR Infrared Thermal Hotspot Short-Circuit Inspector */}
-            <ThermalHotspotInspector />
+                  {/* 1f. Sialkot Export Industry ERP & Custom Software Suite */}
+                  <SialkotIndustrialSolutions onOpenQuote={handleOpenQuote} />
 
-            {/* 1l-2. LaserJet & Thermal Printer Troubleshooter */}
-            <PrinterDiagnosticTroubleshooter onOpenQuote={handleOpenQuote} />
+                  {/* 1g. Interactive Web & POS Software Project Cost Calculator */}
+                  <ProjectCostCalculator
+                    onOpenQuote={handleOpenQuote}
+                    onNavigatePage={(page) => navigateToPage(page as NavPageId)}
+                  />
 
-            {/* 1m. Interactive Motherboard Power Sequence & PCB Voltage Simulator */}
-            <PCBPowerSequenceSimulator onOpenQuote={handleOpenQuote} />
+                  {/* 1h. High-Converting B2B Subdomain Bridge: Dedicated Free Tools Workstation */}
+                  <section className="py-14 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white relative overflow-hidden border-y border-slate-800">
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(220,38,38,0.18),transparent_65%)] pointer-events-none" />
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                      <div className="flex flex-col lg:flex-row items-center justify-between gap-8 p-8 sm:p-10 rounded-3xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-2xl">
+                        <div className="space-y-3 text-center lg:text-left">
+                          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-600/20 text-red-400 text-xs font-bold uppercase tracking-wider border border-red-500/30">
+                            <Sparkles className="w-3.5 h-3.5 text-red-400" />
+                            <span>Dedicated Subdomain: tools.evonixtec.com</span>
+                          </div>
+                          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white">
+                            Looking for our 22+ Free E-Commerce &amp; Export Calculators?
+                          </h3>
+                          <p className="text-slate-300 text-xs sm:text-sm max-w-2xl leading-relaxed">
+                            We moved our complete collection of business tools—including Amazon FBA, eBay profit formulas, TikTok Shop calculators, export CBM engines, and global invoicing—to our dedicated workstation at <strong className="text-white">tools.evonixtec.com</strong>. Always 100% free with zero paywalls.
+                          </p>
+                          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-1 text-xs text-slate-400">
+                            <span className="flex items-center gap-1.5 text-emerald-400">
+                              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                              <span>100% Free Forever</span>
+                            </span>
+                            <span>·</span>
+                            <span className="flex items-center gap-1.5 text-blue-400">
+                              <ShieldCheck className="w-4 h-4 text-blue-400" />
+                              <span>Zero Signup Required</span>
+                            </span>
+                            <span>·</span>
+                            <span className="flex items-center gap-1.5 text-amber-400">
+                              <Boxes className="w-4 h-4 text-amber-400" />
+                              <span>22+ Calculators</span>
+                            </span>
+                          </div>
+                        </div>
 
-            {/* 1m-2. evonix AI Hardware Diagnostics & Multimeter Test Point Simulator */}
-            <AiHardwareDiagnosticBoard
-              onOpenIntakePass={(fault) => {
-                setSelectedServiceForQuote(fault || 'Component-Level Motherboard Repair');
-                setIsIntakePassOpen(true);
-              }}
-              onOpenQuote={handleOpenQuote}
-            />
-
-            {/* 1n. CPU / GPU Thermal Throttling & Paste Degradation Calculator */}
-            <ThermalLifecyclePredictor onOpenQuote={handleOpenQuote} />
-
-            {/* 1o. Sialkot Export Industry ERP & Custom Software Suite */}
-            <SialkotIndustrialSolutions onOpenQuote={handleOpenQuote} />
-
-            {/* 1p. Sialkot Export Factory ERP & Network Latency Benchmark */}
-            <FactoryNetworkLatencyTester />
-
-            {/* 1p-2. Sialkot Export Barcode & Thermal Shipping Label Studio */}
-            <ExportBarcodeLabelGenerator onOpenQuote={handleOpenQuote} />
-
-            {/* 1q. Local Edge Offline LAN Sync Engine Simulator */}
-            <OfflineDataSyncEngine />
-
-            {/* 1o. Interactive Web & POS Software Project Cost Calculator */}
-            <ProjectCostCalculator
-              onOpenQuote={handleOpenQuote}
-              onNavigatePage={(page) => navigateToPage(page as NavPageId)}
-            />
+                        <div className="flex flex-col sm:flex-row items-center gap-3 flex-shrink-0">
+                          <a
+                            href={getToolsDomainUrl()}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-7 py-4 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-black text-sm shadow-xl shadow-red-600/30 transition-all flex items-center gap-2.5 group cursor-pointer hover:scale-[1.02] active:scale-100"
+                          >
+                            <span>Open tools.evonixtec.com</span>
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
 
             {/* 1m. Why Choose Us (Dubai Quality & Component Diagnostics) */}
             <WhyChooseUs />

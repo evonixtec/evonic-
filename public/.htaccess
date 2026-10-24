@@ -7,12 +7,21 @@
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+  # ========================================================
+  # 301 SEO REDIRECTS FOR TOOLS SUBDOMAIN MIGRATION
+  # If tools are hosted on dedicated subdomain tools.evonixtec.com,
+  # these rules preserve 100% Google SEO link juice and eliminate 404s
+  # ========================================================
+  # RewriteCond %{HTTP_HOST} ^(www\.)?evonixtec\.com$ [NC]
+  # RewriteRule ^tools/?$ https://tools.evonixtec.com/ [R=301,L]
+  # RewriteRule ^(ebay-fee-calculator|amazon-fba-calculator|tiktok-shop-fee-calculator|shopify-fee-calculator|stripe-fee-calculator|temu-seller-calculator|etsy-fee-calculator|amazon-fbm-calculator|cbm-calculator|ecommerce-calculator|invoice|trend-intelligence-suite|uk-eu-vat-calculator|us-duty-nexus-estimator|ce-ukca-compliance-generator|ai-visibility-checker|developer-cost-calculator)(.*)$ https://tools.evonixtec.com/$1$2 [R=301,L]
+
   # Don't rewrite files or directories that exist
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   
-  # Rewrite all other URLs to index.html with 200 status
+  # Rewrite all other URLs to index.html with 200 status (SPA Fallback)
   RewriteRule . /index.html [L]
 </IfModule>
 

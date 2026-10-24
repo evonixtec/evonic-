@@ -163,12 +163,15 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
               <div className="flex items-center justify-between">
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <span className="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-red-600 text-white uppercase tracking-wide">
-                      📱 5 Core Mobile Tools
+                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-blue-600 text-white uppercase tracking-wide">
+                      tools.evonixtec.com
+                    </span>
+                    <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
+                      100% Free
                     </span>
                   </div>
                   <h3 className="text-base font-extrabold text-slate-900 mt-1">
-                    Mobile Application Workstations
+                    Free Online Tools &amp; Calculators
                   </h3>
                 </div>
                 <button

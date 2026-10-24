@@ -168,31 +168,31 @@ export const HomeToolsGrid: React.FC<HomeToolsGridProps> = ({
     <section id="home-tools-grid" className="py-16 md:py-24 apple-tool-layout text-[#1d1d1f] border-b border-black/[0.06]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
-        {/* Apple-Style Section Header */}
+        {/* Dedicated Subdomain Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-3 max-w-2xl">
             <div className="inline-flex items-center gap-2">
-              <span className="apple-badge flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Apple Liquid Glass Suite • Online Web Utilities</span>
+              <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold font-mono tracking-wide flex items-center gap-1.5 border border-blue-200">
+                <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+                <span>tools.evonixtec.com • Free Standalone Portal</span>
               </span>
             </div>
             
-            <h2 className="apple-tool-title text-3xl sm:text-4xl lg:text-5xl">
-              Enterprise Web Tools &amp; Calculators
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+              Free E-Commerce &amp; Export Calculators
             </h2>
 
-            <p className="apple-tool-subtitle text-sm sm:text-base leading-relaxed">
-              Engineered with our approved Apple-style liquid glass design system. Completely client-side, zero server latency, and built to empower exporters, e-commerce stores, and technical teams.
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              We host our 20+ free business calculators on a dedicated workstation hub. Free for online sellers, freelancers, and exporters. No sign-up required.
             </p>
           </div>
 
           <button
             type="button"
             onClick={onNavigateToToolsHub}
-            className="apple-calculate-btn w-auto py-3 px-6 text-sm flex items-center gap-2 shrink-0 shadow-md"
+            className="w-auto py-3 px-6 text-sm font-bold rounded-xl bg-slate-900 hover:bg-slate-800 text-white flex items-center gap-2 shrink-0 shadow-md cursor-pointer transition-all"
           >
-            <span>View All 14+ Tools</span>
+            <span>Open All 20+ Free Tools</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>

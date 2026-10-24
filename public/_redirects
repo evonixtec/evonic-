@@ -1,1 +1,11 @@
+# Netlify / Cloudflare Pages 301 Redirect Rules for Tools Migration
+# If migrating tools to tools.evonixtec.com, uncomment these lines to preserve SEO traffic:
+# /tools/*    https://tools.evonixtec.com/:splat    301!
+# /ebay-fee-calculator    https://tools.evonixtec.com/ebay-fee-calculator    301!
+# /amazon-fba-calculator    https://tools.evonixtec.com/amazon-fba-calculator    301!
+# /tiktok-shop-fee-calculator    https://tools.evonixtec.com/tiktok-shop-fee-calculator    301!
+# /shopify-fee-calculator    https://tools.evonixtec.com/shopify-fee-calculator    301!
+# /invoice    https://tools.evonixtec.com/invoice    301!
+
+# SPA Catch-all (Default 200)
 /*    /index.html   200

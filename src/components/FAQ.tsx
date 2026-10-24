@@ -197,27 +197,34 @@ export const FAQ: React.FC<FAQProps> = ({ onOpenQuote, onNavigateSection }) => {
         {/* Still Have Questions CTA */}
         <div className="mt-12 bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 text-center shadow-2xs">
           <h3 className="text-base sm:text-lg font-bold text-slate-900">
-            Have a custom requirement or question not listed here?
+            Got a question? Call us. We reply in 2 hours.
           </h3>
           <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-md mx-auto">
-            Our engineering desk is available directly on WhatsApp for instantaneous assistance.
+            Speak directly with our technical team in Sialkot for fast support.
           </p>
           <div className="mt-4 flex flex-wrap justify-center gap-3">
             <a
-              href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello evonix, I have a specific question about your IT services.')}`}
+              href={`tel:${COMPANY_INFO.contact.phoneRaw}`}
+              className="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm transition-colors flex items-center gap-2 shadow-2xs"
+            >
+              <PhoneCall className="w-4 h-4 text-emerald-400" />
+              <span>Call {COMPANY_INFO.contact.phoneDisplay}</span>
+            </a>
+            <a
+              href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello evonix, I have a question about your services.')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm transition-colors flex items-center gap-2 shadow-2xs"
             >
               <MessageSquare className="w-4 h-4" />
-              <span>Ask on WhatsApp</span>
+              <span>WhatsApp Us</span>
             </a>
             {onOpenQuote && (
               <button
                 onClick={() => onOpenQuote('General Inquiry')}
-                className="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-red-600 text-white font-bold text-xs sm:text-sm transition-colors cursor-pointer"
+                className="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm transition-colors cursor-pointer"
               >
-                Request Custom Callback
+                Request Callback
               </button>
             )}
           </div>

@@ -651,22 +651,22 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
                 Home
               </button>
               <span aria-hidden="true">/</span>
-              <span className="font-semibold text-slate-800">Online Web Tools Portfolio</span>
+              <span className="font-mono font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">tools.evonixtec.com</span>
               <span aria-hidden="true">·</span>
-              <span className="text-emerald-700 font-medium">12 Workstations</span>
+              <span className="text-emerald-700 font-medium">Free Standalone Workstations</span>
             </div>
 
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-red-100 via-amber-100 to-emerald-100 border border-slate-200 text-xs font-bold text-slate-800">
-              <Sparkles className="w-3.5 h-3.5 text-red-600" />
-              <span>UK, US, Europe &amp; Global Trade Engines</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-bold text-blue-800">
+              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+              <span>tools.evonixtec.com • Dedicated Workstations Hub</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-              Online Web Tools &amp; International Trade Workstations
+              Free E-Commerce, Export &amp; Trade Calculators
             </h1>
 
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              Zero-database business utilities, export shipping barcode engines, freight CBM calculators, and UK/US/EU trade compliance tools built by <strong>evonix</strong> in Kotli Behram, Sialkot. Every tool runs 100% locally in your browser with automatic local usage tracking and complete client-side data privacy.
+              Our dedicated workstation portal for sellers, exporters, and freelancers. 100% free browser tools with zero signup and complete client-side data privacy.
             </p>
 
             <div className="inline-flex flex-wrap items-center justify-center gap-x-4 gap-y-1 pt-1 text-xs text-slate-500">
