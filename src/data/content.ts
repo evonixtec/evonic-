@@ -426,7 +426,7 @@ export const SHOP_PRODUCTS: ShopProduct[] = [
     imageAlt: 'Workgroup laser printer for office and factory paperwork in Sialkot',
   },
   {
-    id: 'prod-business-laptop-thinkpad',
+    id: 'prod-business-laptop-enterprise',
     name: 'Imported Enterprise Business Laptop (Core i5 / i7)',
     category: 'Laptops & PCs',
     condition: 'Certified Refurbished (UAE Import)',

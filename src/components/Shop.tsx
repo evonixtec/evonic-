@@ -242,6 +242,24 @@ Please share current price & delivery/setup availability.`;
               </p>
             </div>
           </div>
+
+          {/* Legal Notice & Trademark Disclaimer */}
+          <div className="mt-12 p-4 sm:p-5 bg-slate-50 border border-slate-200 rounded-2xl text-left max-w-4xl mx-auto">
+            <div className="flex items-start gap-3">
+              <Shield className="w-5 h-5 text-slate-500 shrink-0 mt-0.5" />
+              <div className="text-2xs sm:text-xs text-slate-500 leading-relaxed space-y-1.5">
+                <p className="font-bold text-slate-700">
+                  Legal Notice &amp; Brand Trademark Disclaimer
+                </p>
+                <p>
+                  All brand names, product model designations, and registered trademarks (including Intel, HP, Dell, Lenovo, Epson, Samsung, and others) mentioned on this website belong to their respective trademark owners. References are strictly descriptive for hardware compatibility, parts identification, and specifications.
+                </p>
+                <p>
+                  evonix technologies operates as an independent IT software agency, workstation engineering lab, and hardware supplier. All product visuals are either original digital assets or royalty-free licensed illustrations.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
