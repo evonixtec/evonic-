@@ -1,5 +1,6 @@
 import React from 'react';
 import { COMPANY_INFO, SERVICES } from '../data/content';
+import { getMainAgencyDomainUrl, getToolsDomainUrl, getStoreDomainUrl } from '../lib/domainUtils';
 import { SectionId } from '../types';
 import { EvonixLogo } from './EvonixLogo';
 import {
@@ -569,6 +570,76 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                 </span>
               </a>
             ))}
+          </div>
+        </div>
+
+        {/* 3b. Evonix Ecosystem Domains (Main Agency, Tools Workstation, Hardware Store) */}
+        <div className="py-6 border-b border-slate-800/80 mb-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+            <div>
+              <span className="text-[10px] font-black uppercase tracking-widest text-red-500 block">
+                Official Multi-Domain Architecture
+              </span>
+              <h4 className="text-sm font-black text-white">
+                Evonix Technologies Web Ecosystem
+              </h4>
+            </div>
+            <span className="text-xs text-slate-400">
+              Synchronized cross-domain network on high-speed Vercel Edge
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+            <a
+              href={getMainAgencyDomainUrl()}
+              className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-red-500/50 hover:bg-slate-850 transition-all group block"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-white group-hover:text-red-400 transition-colors">
+                  evonixtec.com
+                </span>
+                <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-red-950 text-red-400 border border-red-800/80">
+                  Main Agency
+                </span>
+              </div>
+              <p className="text-[11px] text-slate-400 mt-1">
+                B2B Software Engineering, Web Development &amp; Enterprise AI Solutions
+              </p>
+            </a>
+
+            <a
+              href={getToolsDomainUrl()}
+              className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 hover:bg-slate-850 transition-all group block"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-white group-hover:text-blue-400 transition-colors">
+                  tools.evonixtec.com
+                </span>
+                <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-blue-950 text-blue-400 border border-blue-800/80">
+                  Free Workstation
+                </span>
+              </div>
+              <p className="text-[11px] text-slate-400 mt-1">
+                22+ Free E-Commerce, eBay, Amazon FBA, CBM &amp; Export Fee Calculators
+              </p>
+            </a>
+
+            <a
+              href={getStoreDomainUrl()}
+              className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 hover:bg-slate-850 transition-all group block"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-white group-hover:text-amber-400 transition-colors">
+                  store.evonixtec.com
+                </span>
+                <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800/80">
+                  Hardware Store
+                </span>
+              </div>
+              <p className="text-[11px] text-slate-400 mt-1">
+                Certified IT Hardware, POS Billing Counters, Thermal Printers &amp; Laptops
+              </p>
+            </a>
           </div>
         </div>
 

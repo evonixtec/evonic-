@@ -1,5 +1,5 @@
 // Curated Comprehensive 150+ ISO 4217 Global Currency Matrix
-// Enables seamless multi-currency invoicing for international trade, freelancing, and small businesses.
+// Enables smooth multi-currency invoicing for international trade, freelancing, and small businesses.
 
 export interface WorldCurrency {
   code: string;

@@ -107,26 +107,25 @@ export const Hero: React.FC<HeroProps> = ({
 
           {/* Master Headline */}
           <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 max-w-4xl leading-[1.12]">
-            Transforming Ideas into{' '}
+            Dubai-Standard Engineering &amp;{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-rose-600 to-red-700 drop-shadow-xs">
-              High-Performance
-            </span>{' '}
-            Digital & Hardware Solutions
+              Enterprise Solutions
+            </span>
           </h1>
 
           {/* Subheading */}
           <p className="mt-5 text-base sm:text-xl text-slate-600 max-w-3xl leading-relaxed font-normal">
-            Specializing in modern custom <strong className="text-slate-800 font-bold">Web Development</strong>, enterprise <strong className="text-slate-800 font-bold">Software & POS Systems</strong>, and certified <strong className="text-slate-800 font-bold">Laptop & Printer Repairing</strong> in Sialkot with two decades of Dubai multinational experience.
+            Specializing in modern custom <strong className="text-slate-800 font-bold">Web Development</strong>, enterprise <strong className="text-slate-800 font-bold">Software &amp; POS Systems</strong>, and scalable <strong className="text-slate-800 font-bold">Cloud &amp; AI Architectures</strong> backed by two decades of multinational Dubai engineering pedigree.
           </p>
 
           {/* Primary Action Buttons with 3D Depth */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <button
-              onClick={() => onOpenQuote()}
+              onClick={() => onOpenQuote('Enterprise Software Consultancy')}
               className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-700 hover:to-rose-700 text-white font-extrabold text-sm sm:text-base shadow-[0_8px_25px_rgba(220,38,38,0.35)] hover:shadow-[0_12px_32px_rgba(220,38,38,0.45)] transition-all flex items-center gap-2 cursor-pointer hover:-translate-y-0.5 active:translate-y-0 border-t border-white/20"
             >
               <Sparkles className="w-4 h-4 text-amber-200" />
-              <span>Request Free Consultation</span>
+              <span>Request Enterprise Quote</span>
               <ArrowRight className="w-4 h-4 ml-1" />
             </button>
 
@@ -134,8 +133,8 @@ export const Hero: React.FC<HeroProps> = ({
               onClick={() => onNavigate('services')}
               className="px-5 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm sm:text-base border border-slate-700 shadow-md transition-all flex items-center gap-2 hover:-translate-y-0.5 cursor-pointer"
             >
-              <Wrench className="w-4 h-4 text-red-500" />
-              <span>View Core Services</span>
+              <Code2 className="w-4 h-4 text-red-500" />
+              <span>View B2B Services</span>
             </button>
 
             <button
@@ -266,8 +265,8 @@ export const Hero: React.FC<HeroProps> = ({
                     03
                   </div>
                   <div>
-                    <h3 className="text-xs font-bold text-slate-900">Sialkot On-Site & Remote</h3>
-                    <p className="text-[11px] text-slate-500">Physical technicians & 24/7 remote monitoring</p>
+                    <h3 className="text-xs font-bold text-slate-900">Dedicated B2B Architecture</h3>
+                    <p className="text-[11px] text-slate-500">Direct senior architects &amp; 24/7 mission-critical monitoring</p>
                   </div>
                 </div>
               </div>
@@ -280,25 +279,25 @@ export const Hero: React.FC<HeroProps> = ({
           <div className="bg-white border border-slate-200/90 border-t-4 border-t-red-600 rounded-2xl p-5 text-center shadow-[0_8px_20px_-4px_rgba(220,38,38,0.12)] hover:-translate-y-1 transition-all">
             <div className="text-3xl sm:text-4xl font-black text-red-600">20+</div>
             <div className="text-xs sm:text-sm font-bold text-slate-900 mt-1">Years Experience</div>
-            <div className="text-[11px] text-slate-500 font-medium">Dubai & International Standards</div>
+            <div className="text-[11px] text-slate-500 font-medium">Dubai &amp; International Standards</div>
           </div>
 
           <div className="bg-white border border-slate-200/90 border-t-4 border-t-blue-600 rounded-2xl p-5 text-center shadow-[0_8px_20px_-4px_rgba(37,99,235,0.12)] hover:-translate-y-1 transition-all">
             <div className="text-3xl sm:text-4xl font-black text-slate-900">500+</div>
-            <div className="text-xs sm:text-sm font-bold text-slate-900 mt-1">Projects Delivered</div>
-            <div className="text-[11px] text-slate-500 font-medium">Websites, POS & IT Systems</div>
+            <div className="text-xs sm:text-sm font-bold text-slate-900 mt-1">Enterprise Deployments</div>
+            <div className="text-[11px] text-slate-500 font-medium">Web Applications, ERP &amp; Cloud</div>
           </div>
 
           <div className="bg-white border border-slate-200/90 border-t-4 border-t-emerald-600 rounded-2xl p-5 text-center shadow-[0_8px_20px_-4px_rgba(16,185,129,0.12)] hover:-translate-y-1 transition-all">
-            <div className="text-3xl sm:text-4xl font-black text-emerald-600">100%</div>
-            <div className="text-xs sm:text-sm font-bold text-slate-900 mt-1">Genuine Parts</div>
-            <div className="text-[11px] text-slate-500 font-medium">Original Laptop & Printer Spares</div>
+            <div className="text-3xl sm:text-4xl font-black text-emerald-600">99.9%</div>
+            <div className="text-xs sm:text-sm font-bold text-slate-900 mt-1">Uptime SLA</div>
+            <div className="text-[11px] text-slate-500 font-medium">Mission-Critical Cloud Reliability</div>
           </div>
 
           <div className="bg-white border border-slate-200/90 border-t-4 border-t-amber-500 rounded-2xl p-5 text-center shadow-[0_8px_20px_-4px_rgba(245,158,11,0.12)] hover:-translate-y-1 transition-all">
             <div className="text-3xl sm:text-4xl font-black text-amber-600">24/7</div>
-            <div className="text-xs sm:text-sm font-bold text-slate-900 mt-1">Priority Support</div>
-            <div className="text-[11px] text-slate-500 font-medium">WhatsApp & Sialkot Doorstep</div>
+            <div className="text-xs sm:text-sm font-bold text-slate-900 mt-1">Enterprise SLA Support</div>
+            <div className="text-[11px] text-slate-500 font-medium">Direct Senior Architect Escalation</div>
           </div>
         </div>
       </div>

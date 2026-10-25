@@ -260,18 +260,35 @@ export const Navbar: React.FC<NavbarProps> = ({
                     </button>
 
                     <button
-                      onClick={() => handlePageSelect('services', 'hardware-repair')}
+                      onClick={() => handlePageSelect('services', 'ai-automation')}
                       className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
                     >
-                      <div className="p-1.5 rounded-lg bg-amber-50 text-amber-600 group-hover:bg-amber-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
-                        <Wrench className="w-3.5 h-3.5" />
+                      <div className="p-1.5 rounded-lg bg-purple-50 text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+                        <Sparkles className="w-3.5 h-3.5" />
                       </div>
                       <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
-                          Hardware & Printer Repairing
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-purple-600 transition-colors">
+                          Enterprise AI &amp; Automation
                         </div>
                         <div className="text-[10px] text-slate-500 line-clamp-1">
-                          Chip-Level Diagnostics & Motherboard Lab
+                          Autonomous LLM Pipelines &amp; RAG Systems
+                        </div>
+                      </div>
+                    </button>
+
+                    <button
+                      onClick={() => handlePageSelect('services', 'cloud-architecture')}
+                      className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
+                    >
+                      <div className="p-1.5 rounded-lg bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+                        <Cpu className="w-3.5 h-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                          Cloud &amp; Scalable Architecture
+                        </div>
+                        <div className="text-[10px] text-slate-500 line-clamp-1">
+                          Distributed Microservices &amp; 99.9% Uptime
                         </div>
                       </div>
                     </button>
@@ -1067,10 +1084,16 @@ export const Navbar: React.FC<NavbarProps> = ({
                     • Custom Software & Retail POS
                   </button>
                   <button
-                    onClick={() => handlePageSelect('services', 'hardware-repair')}
+                    onClick={() => handlePageSelect('services', 'ai-automation')}
                     className="w-full text-left p-2 rounded-lg text-slate-700 hover:bg-slate-50 font-medium"
                   >
-                    • Computer, Laptop & Printer Repairing
+                    • Enterprise AI &amp; Automation
+                  </button>
+                  <button
+                    onClick={() => handlePageSelect('services', 'cloud-architecture')}
+                    className="w-full text-left p-2 rounded-lg text-slate-700 hover:bg-slate-50 font-medium"
+                  >
+                    • Cloud &amp; Scalable Architecture
                   </button>
                   <button
                     onClick={() => handlePageSelect('services')}

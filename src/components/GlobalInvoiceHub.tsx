@@ -236,7 +236,7 @@ export const GlobalInvoiceHub: React.FC = () => {
   const [mobileAccordion, setMobileAccordion] = useState<'items' | 'buyer' | 'terms' | 'config' | null>('items');
   const [computedMobileScale, setComputedMobileScale] = useState<number>(0.52);
 
-  // Dynamic mobile screen width computation for seamless zero-clipping preview
+  // Dynamic mobile screen width computation for smooth zero-clipping preview
   useEffect(() => {
     const updateScale = () => {
       if (typeof window !== 'undefined') {
