@@ -28,7 +28,7 @@ import {
 } from 'lucide-react';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { isToolPage } from '../lib/toolUtils';
-import { isToolsSubdomain, getMainAgencyDomainUrl, getToolsDomainUrl } from '../lib/domainUtils';
+import { isToolsSubdomain, isStoreSubdomain, getMainAgencyDomainUrl, getToolsDomainUrl, getStoreDomainUrl } from '../lib/domainUtils';
 
 import { NavPageId } from '../types';
 export type { NavPageId };
@@ -39,6 +39,7 @@ interface NavbarProps {
   onOpenQuote: (serviceType?: string) => void;
   onOpenSearch: () => void;
   isToolsSubdomain?: boolean;
+  isStoreSubdomain?: boolean;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -47,8 +48,11 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenQuote,
   onOpenSearch,
   isToolsSubdomain: isToolsSubdomainProp,
+  isStoreSubdomain: isStoreSubdomainProp,
 }) => {
-  const isSub = isToolsSubdomainProp !== undefined ? isToolsSubdomainProp : isToolsSubdomain();
+  const isSubTools = isToolsSubdomainProp !== undefined ? isToolsSubdomainProp : isToolsSubdomain();
+  const isSubStore = isStoreSubdomainProp !== undefined ? isStoreSubdomainProp : isStoreSubdomain();
+  const isSub = isSubTools;
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -137,7 +141,17 @@ export const Navbar: React.FC<NavbarProps> = ({
               <EvonixLogo size="md" forceTheme="light" />
             </div>
             <div className="hidden sm:flex flex-col text-left pl-2.5 border-l border-slate-200/90">
-              {isSub ? (
+              {isSubStore ? (
+                <>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-amber-600 leading-tight flex items-center gap-1.5">
+                    <span>Hardware Store</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
+                  </span>
+                  <span className="text-[9px] font-extrabold text-slate-500 uppercase tracking-widest leading-tight mt-0.5">
+                    store.evonixtec.com
+                  </span>
+                </>
+              ) : isSubTools ? (
                 <>
                   <span className="text-[10px] font-black uppercase tracking-wider text-blue-600 leading-tight flex items-center gap-1.5">
                     <span>Tools Workstation</span>
@@ -276,7 +290,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </div>
             {/* 3. Agency Domain Navigation (Clean B2B Software House) */}
-            {!isSub && (
+            {!isSubTools && !isSubStore && (
               <>
                 {/* Portfolio */}
                 <button
@@ -302,11 +316,24 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <ArrowRight className="w-2.5 h-2.5" />
                   </span>
                 </a>
+
+                {/* Store Subdomain Bridge */}
+                <a
+                  href={getStoreDomainUrl()}
+                  className="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-700 hover:text-slate-900 hover:bg-slate-100/80 group"
+                  title="Certified IT Hardware, POS Terminals & Enterprise Laptops on store.evonixtec.com"
+                >
+                  <span>Hardware Store</span>
+                  <span className="text-[9px] bg-amber-100 text-amber-800 group-hover:bg-amber-600 group-hover:text-white transition-colors px-1.5 py-0.5 rounded-md font-bold flex items-center gap-0.5">
+                    <span>Store</span>
+                    <ArrowRight className="w-2.5 h-2.5" />
+                  </span>
+                </a>
               </>
             )}
 
             {/* Tools Subdomain Header Controls */}
-            {isSub && (
+            {isSubTools && (
               <>
                 <a
                   href={getMainAgencyDomainUrl()}
@@ -325,6 +352,45 @@ export const Navbar: React.FC<NavbarProps> = ({
                 >
                   All Tools (22+)
                 </button>
+
+                <a
+                  href={getStoreDomainUrl()}
+                  className="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-700 hover:text-slate-900 hover:bg-slate-100/80 group"
+                >
+                  <span>Hardware Store</span>
+                  <span className="text-[9px] bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded font-bold">Store</span>
+                </a>
+              </>
+            )}
+
+            {/* Store Subdomain Header Controls */}
+            {isSubStore && (
+              <>
+                <a
+                  href={getMainAgencyDomainUrl()}
+                  className="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white flex items-center gap-1.5 transition-colors shadow-2xs mr-1"
+                >
+                  <span>← Agency Home</span>
+                </a>
+
+                <button
+                  onClick={() => handlePageSelect('shop')}
+                  className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                    currentPage === 'shop'
+                      ? 'text-amber-800 bg-amber-50 font-bold border border-amber-200'
+                      : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
+                  }`}
+                >
+                  Hardware Catalog
+                </button>
+
+                <a
+                  href={getToolsDomainUrl()}
+                  className="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-700 hover:text-slate-900 hover:bg-slate-100/80 group"
+                >
+                  <span>Free Tools (22+)</span>
+                  <span className="text-[9px] bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-bold">Tools</span>
+                </a>
               </>
             )}
 
@@ -1038,17 +1104,59 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span>About Us (Dubai Heritage)</span>
             </button>
 
-            {/* Free Tools Subdomain Bridge for Mobile (Agency Domain) */}
-            {!isSub && (
+            {/* Subdomain Bridges for Mobile (Agency Domain) */}
+            {!isSubTools && !isSubStore && (
+              <>
+                <a
+                  href={getToolsDomainUrl()}
+                  className="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between text-slate-800 hover:bg-slate-100 bg-blue-50/50 border border-blue-100 transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                    <span>🛠️ Free Tools Workstation</span>
+                  </div>
+                  <span className="px-2 py-0.5 bg-blue-600 text-white text-[10px] rounded-full font-bold flex items-center gap-1">
+                    <span>tools.evonixtec.com ↗</span>
+                  </span>
+                </a>
+
+                <a
+                  href={getStoreDomainUrl()}
+                  className="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between text-slate-800 hover:bg-slate-100 bg-amber-50/50 border border-amber-100 transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                    <span>🛒 Hardware &amp; POS Store</span>
+                  </div>
+                  <span className="px-2 py-0.5 bg-amber-600 text-white text-[10px] rounded-full font-bold flex items-center gap-1">
+                    <span>store.evonixtec.com ↗</span>
+                  </span>
+                </a>
+              </>
+            )}
+
+            {isSubTools && (
+              <a
+                href={getStoreDomainUrl()}
+                className="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between text-slate-800 hover:bg-slate-100 bg-amber-50/50 border border-amber-100 transition-colors"
+              >
+                <div className="flex items-center gap-2">
+                  <span>🛒 Hardware &amp; POS Store</span>
+                </div>
+                <span className="px-2 py-0.5 bg-amber-600 text-white text-[10px] rounded-full font-bold">
+                  <span>store.evonixtec.com ↗</span>
+                </span>
+              </a>
+            )}
+
+            {isSubStore && (
               <a
                 href={getToolsDomainUrl()}
-                className="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between text-slate-800 hover:bg-slate-100 bg-red-50/50 border border-red-100 transition-colors"
+                className="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between text-slate-800 hover:bg-slate-100 bg-blue-50/50 border border-blue-100 transition-colors"
               >
                 <div className="flex items-center gap-2">
                   <span>🛠️ Free Tools Workstation</span>
                 </div>
-                <span className="px-2 py-0.5 bg-red-600 text-white text-[10px] rounded-full font-bold flex items-center gap-1">
-                  <span>22+ Tools ↗</span>
+                <span className="px-2 py-0.5 bg-blue-600 text-white text-[10px] rounded-full font-bold">
+                  <span>tools.evonixtec.com ↗</span>
                 </span>
               </a>
             )}

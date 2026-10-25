@@ -477,7 +477,7 @@ If you manufacture surgical instruments, sports apparel, motorcycling gear, or e
 When a procurement manager in Frankfurt, London, or Dallas clicks on your catalog link, they are browsing on corporate laptops with strict security firewalls or high-speed mobile networks. If your website takes 8 to 12 seconds to load because it is choked with 45 unoptimized WordPress plugins, stock video banners, and uncompressed 5MB JPEG images, they click the back button and visit your competitor on the next Google result.
 
 ### The 3-Second Golden Window
-Google’s Core Web Vitals research shows that if a mobile page takes longer than 3 seconds to load, over 53% of visits are abandoned. Furthermore, Google’s search algorithms now heavily penalize slow websites, pushing them down to page 3 or 4 where nobody ever looks.
+Google’s Core Web Vitals research shows that if a mobile page takes longer than 3 seconds to load, over 53% of visits are abandoned. At the same time, Google’s search algorithms heavily penalize slow websites, pushing them down to page 3 or 4 where nobody ever looks.
 
 ### What Makes a Modern High-Performance Website?
 1. **Next-Generation Image Formats:** Converting high-resolution product photos to modern WebP or AVIF formats reduces file size by 75% while keeping metal reflections and stitching crystal clear.

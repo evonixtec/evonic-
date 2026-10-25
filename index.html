@@ -12,27 +12,36 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="format-detection" content="telephone=no" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta http-equiv="Content-Security-Policy" content="connect-src 'self' https://formsubmit.co https://*.googleapis.com https://open.er-api.com" />
+    <meta http-equiv="Content-Security-Policy" content="connect-src 'self' https://formsubmit.co https://*.googleapis.com https://open.er-api.com https://vitals.vercel-insights.com" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <title>evonix technologies – IT Consultancy & Hardware Maintenance Services in Sialkot</title>
-    <meta name="description" content="Leading IT consultancy and industrial hardware maintenance services in Sialkot. Enterprise website engineering, retail POS systems, and factory IT support backed by 20+ years Dubai expertise." />
-    <meta name="keywords" content="IT consultancy Sialkot, hardware maintenance services Sialkot, industrial hardware maintenance Sialkot, IT company in Sialkot, factory IT infrastructure Sialkot, IT maintenance contract Sialkot, best software house in Sialkot, computer repair Sialkot, laptop repairing Sialkot Cantt, IT solutions Paris Road Sialkot, Dubai IT experience Pakistan" />
-    <link rel="canonical" id="canonical-url" href="https://www.evonixtec.com/" />
+    <title>evonix technologies – Dubai-Standard Engineering &amp; Enterprise Solutions</title>
+    <meta name="description" content="Premier B2B software engineering agency and enterprise solutions provider. High-performance custom web applications, multi-branch POS software, and AI solutions engineered to Dubai standards." />
+    <meta name="keywords" content="B2B software agency, enterprise software solutions, Dubai software engineering, custom web applications, POS software, AI solutions, export ERP software, evonix technologies" />
+    <link rel="canonical" id="canonical-url" href="https://evonixtec.com/" />
     <script>
       (function() {
         try {
+          var h = window.location.hostname.toLowerCase();
           var p = window.location.pathname.replace(/\/+$/, '') || '';
-          var c = 'https://www.evonixtec.com' + (p ? p : '/');
+          var base = 'https://evonixtec.com';
+          if (h === 'tools.evonixtec.com' || h.startsWith('tools.')) {
+            base = 'https://tools.evonixtec.com';
+          } else if (h === 'store.evonixtec.com' || h.startsWith('store.')) {
+            base = 'https://store.evonixtec.com';
+          }
+          var c = base + (p ? p : '/');
           var l = document.getElementById('canonical-url') || document.querySelector('link[rel="canonical"]');
           if (l) { l.setAttribute('href', c); }
         } catch(e) {}
       })();
     </script>
+    <!-- Vercel Web Analytics & Speed Insights -->
+    <script defer src="/_vercel/insights/script.js"></script>
     <!-- Brand Nano Taglines & Identity Directives -->
-    <meta name="tagline" content="Dubai Precision Engineering • Sialkot Tech Hub" />
+    <meta name="tagline" content="Dubai Precision Engineering • Enterprise Solutions" />
     <meta name="brand" content="evonix technologies" />
     <meta name="author" content="evonix technologies" />
-    <meta name="application-name" content="evonix Sialkot" />
+    <meta name="application-name" content="evonix Enterprise" />
     <meta name="apple-mobile-web-app-title" content="evonix" />
     <!-- Robots & Crawler Directives for Google Search Console -->
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -46,22 +55,22 @@
     <meta name="p:domain_verify" content="d839b2b6c6035d84b871d86dacc82364" />
     <meta name="p:domain_verify" content="d839b2b6c035d84b871d86dacc82364" />
     <!-- Open Graph / Social Sharing (High-Resolution 1200x630 JPG) -->
-    <meta property="og:url" content="https://www.evonixtec.com/" />
+    <meta property="og:url" content="https://evonixtec.com/" />
     <meta property="og:site_name" content="evonix technologies" />
-    <meta property="og:title" content="evonix technologies – IT Consultancy & Hardware Maintenance Services in Sialkot" />
-    <meta property="og:description" content="Industrial IT consultancy, hardware maintenance services, custom software, and chip-level computer repairs in Sialkot backed by 20+ years Dubai engineering excellence." />
+    <meta property="og:title" content="evonix technologies – Dubai-Standard Engineering &amp; Enterprise Solutions" />
+    <meta property="og:description" content="Premier B2B software engineering agency and enterprise solutions provider. High-performance custom web applications, multi-branch POS software, and AI solutions engineered to Dubai standards." />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_PK" />
-    <meta property="og:image" content="https://www.evonixtec.com/og-image.jpg" />
+    <meta property="og:image" content="https://evonixtec.com/og-image.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="evonix technologies IT Consultancy and Hardware Maintenance in Sialkot" />
+    <meta property="og:image:alt" content="evonix technologies Dubai-Standard Engineering and Enterprise Solutions" />
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="evonix technologies – IT Consultancy & Hardware Maintenance Services in Sialkot" />
-    <meta name="twitter:description" content="Industrial IT consultancy, hardware maintenance services, custom software, and chip-level computer repairs in Sialkot backed by 20+ years Dubai engineering excellence." />
-    <meta name="twitter:image" content="https://www.evonixtec.com/og-image.jpg" />
+    <meta name="twitter:title" content="evonix technologies – Dubai-Standard Engineering &amp; Enterprise Solutions" />
+    <meta name="twitter:description" content="Premier B2B software engineering agency and enterprise solutions provider. High-performance custom web applications, multi-branch POS software, and AI solutions engineered to Dubai standards." />
+    <meta name="twitter:image" content="https://evonixtec.com/og-image.jpg" />
     <!-- Sialkot Local Geotargeting Meta Tags -->
     <meta name="geo.region" content="PK-PB" />
     <meta name="geo.placename" content="Sialkot" />

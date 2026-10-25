@@ -31,17 +31,17 @@ export const Hero: React.FC<HeroProps> = ({
   onNavigate,
   onOpenSearch,
 }) => {
-  const [activeTab, setActiveTab] = useState<'web' | 'software' | 'hardware'>('web');
+  const [activeTab, setActiveTab] = useState<'web' | 'software' | 'ai'>('web');
 
   const pillars = {
     web: {
-      title: 'Web & Digital Graphics',
+      title: 'Web & Enterprise Platforms',
       badge: 'High-Performance & Modern UI/UX',
-      desc: 'Next-generation web applications, bespoke e-commerce platforms, corporate branding, and lightning-fast SEO architectures engineered to international Dubai standards.',
+      desc: 'Next-generation web applications, bespoke e-commerce platforms, corporate portals, and lightning-fast architectures engineered to international Dubai standards.',
       features: [
         'Next.js & React High-Speed Engineering',
         'Custom E-Commerce & Multi-Currency Gateways',
-        'Corporate Identity, Graphics & UI/UX Design',
+        'Corporate Identity, High-Converting UI/UX Design',
         'Search Engine Optimization (SEO) & 99+ Core Vitals',
       ],
       ctaService: 'Website Development',
@@ -49,9 +49,9 @@ export const Hero: React.FC<HeroProps> = ({
       color: 'border-red-200 bg-red-50/40 text-red-600',
     },
     software: {
-      title: 'Software & POS Development',
+      title: 'Software & POS Systems',
       badge: 'Enterprise & Retail Automation',
-      desc: 'Solid custom Point of Sale (POS) systems, inventory management, ERP solutions, and FBR-compliant digital invoicing engineered for retail, wholesale, and export manufacturers.',
+      desc: 'High-availability Point of Sale (POS) systems, inventory management, ERP solutions, and FBR-compliant digital invoicing engineered for retail, wholesale, and export manufacturers.',
       features: [
         'Retail & Wholesale POS with Barcode Automation',
         'FBR Digital Invoicing & Fiscal Tax Compliance',
@@ -62,19 +62,19 @@ export const Hero: React.FC<HeroProps> = ({
       buttonText: 'Get POS System Demo',
       color: 'border-blue-200 bg-blue-50/40 text-blue-600',
     },
-    hardware: {
-      title: 'Laptop, Printer & Hardware Repair',
-      badge: 'Certified Chip-Level Diagnostics',
-      desc: 'Sialkot’s premier chip-level diagnostic and repairing lab for gaming laptops, Apple MacBooks, office workstations, thermal receipt printers, and laser printers with genuine parts.',
+    ai: {
+      title: 'Enterprise AI & Cloud Architecture',
+      badge: 'Intelligent Workflows & Machine Learning',
+      desc: 'Bespoke AI integrations, custom autonomous agent pipelines, LLM-powered business automation, and high-load cloud architectures designed to enterprise security standards.',
       features: [
-        'BGA Motherboard Chip-Level Micro-Soldering',
-        'Laser & Thermal Receipt Printer Maintenance',
-        'MacBook & Laptop Screen, Battery & Keyboard Swaps',
-        'Doorstep On-Site Business IT Support in Sialkot',
+        'Custom LLM Agents & Automated Operations',
+        'High-Scale Cloud Infrastructure (AWS / GCP / Cloudflare)',
+        'Enterprise Knowledge Graphs & Semantic Vector Search',
+        'Client-Side Data Privacy & Zero Data Leak Protocols',
       ],
-      ctaService: 'Computer, Laptop & Printer Repairing',
-      buttonText: 'Book Hardware Repair',
-      color: 'border-emerald-200 bg-emerald-50/40 text-emerald-600',
+      ctaService: 'Enterprise AI & Cloud Architecture',
+      buttonText: 'Consult on AI Solutions',
+      color: 'border-purple-200 bg-purple-50/40 text-purple-600',
     },
   };
 
@@ -177,15 +177,15 @@ export const Hero: React.FC<HeroProps> = ({
             </button>
 
             <button
-              onClick={() => setActiveTab('hardware')}
+              onClick={() => setActiveTab('ai')}
               className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 cursor-pointer ${
-                activeTab === 'hardware'
-                  ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-md shadow-emerald-500/30 scale-[1.02]'
+                activeTab === 'ai'
+                  ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md shadow-purple-500/30 scale-[1.02]'
                   : 'bg-slate-100 text-slate-700 hover:bg-slate-200/80 hover:text-slate-900'
               }`}
             >
-              <Wrench className="w-4 h-4" />
-              <span>3. Hardware & Repairing</span>
+              <Sparkles className="w-4 h-4" />
+              <span>3. Enterprise AI &amp; Cloud</span>
             </button>
           </div>
 

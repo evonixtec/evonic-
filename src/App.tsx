@@ -19,7 +19,7 @@ import { PWAInstallBanner } from './components/PWAInstallBanner';
 import { LocalCity, ClusterService, LOCAL_CITIES, CLUSTER_SERVICES } from './data/localClusters';
 import { MessageSquare, Phone, ArrowUp, ArrowRight, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2, FileText, Barcode, Printer, Boxes, SlidersHorizontal, Calculator, Clock, Wifi, Globe } from 'lucide-react';
 import { isToolPage } from './lib/toolUtils';
-import { isToolsSubdomain, getMainAgencyDomainUrl, getToolsDomainUrl } from './lib/domainUtils';
+import { isToolsSubdomain, isStoreSubdomain, getMainAgencyDomainUrl, getToolsDomainUrl, getStoreDomainUrl } from './lib/domainUtils';
 
 // Statically imported home sections for instant render and zero dynamic import fetch failures
 import { HomeServicesPreview } from './components/home/HomeServicesPreview';
@@ -509,12 +509,16 @@ export default function App() {
   // Read initial page from clean URL pathname (with hash backward compatibility)
   const getInitialPage = (): NavPageId => {
     const isToolsHost = isToolsSubdomain();
+    const isStoreHost = isStoreSubdomain();
     if (typeof window !== 'undefined') {
       const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
       if (path) {
         const resolved = resolvePageFromPath(path);
         if (isToolsHost && resolved === 'home') {
           return 'tools';
+        }
+        if (isStoreHost && resolved === 'home') {
+          return 'shop';
         }
         return resolved;
       }
@@ -524,14 +528,20 @@ export default function App() {
         if (isToolsHost && resolved === 'home') {
           return 'tools';
         }
+        if (isStoreHost && resolved === 'home') {
+          return 'shop';
+        }
         return resolved;
       }
     }
-    return isToolsHost ? 'tools' : 'home';
+    if (isToolsHost) return 'tools';
+    if (isStoreHost) return 'shop';
+    return 'home';
   };
 
   const [currentPage, setCurrentPage] = useState<NavPageId>(getInitialPage);
   const [isToolsMode, setIsToolsMode] = useState<boolean>(isToolsSubdomain);
+  const [isStoreMode, setIsStoreMode] = useState<boolean>(isStoreSubdomain);
   const [clusterParams, setClusterParams] = useState(parseLocationFromPath);
   const [isQuoteOpen, setIsQuoteOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
@@ -875,6 +885,25 @@ export default function App() {
         </aside>
       )}
 
+      {/* Store Subdomain Notice */}
+      {isStoreMode && (
+        <aside aria-label="Store Subdomain Notice" className="bg-slate-950 text-slate-100 text-xs py-2 px-4 border-b border-slate-800 flex items-center justify-between flex-wrap gap-2 relative z-50 print:hidden">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+            <span className="font-bold text-white tracking-wide">store.evonixtec.com</span>
+            <span className="text-slate-400 hidden sm:inline">— Certified IT Hardware, POS Terminals, Thermal Printers &amp; Imported Laptops</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <a
+              href={getMainAgencyDomainUrl()}
+              className="text-xs font-bold text-red-400 hover:text-red-300 flex items-center gap-1 transition-colors"
+            >
+              <span>← Back to evonixtec.com (Main Agency)</span>
+            </a>
+          </div>
+        </aside>
+      )}
+
       {/* 1. Header Menu & Navigation (Compact, Customized with Sub-Categories) */}
       <Navbar
         currentPage={currentPage}
@@ -882,6 +911,7 @@ export default function App() {
         onOpenQuote={() => handleOpenQuote('General Inquiry')}
         onOpenSearch={() => setIsSearchOpen(true)}
         isToolsSubdomain={isToolsMode}
+        isStoreSubdomain={isStoreMode}
       />
 
       {/* Main Content Area: Renders Dedicated Page View (with mobile dock clearance & Framer Motion entrance) */}
@@ -901,6 +931,15 @@ export default function App() {
             <ErrorBoundary>
               <Suspense fallback={<LazyLoaderFallback />}>
               {/* ========================================================
+                  PAGE 0: STORE SUBDOMAIN (store.evonixtec.com)
+                 ======================================================== */}
+              {isStoreMode && (currentPage === 'home' || currentPage === 'shop') && (
+                <div className="space-y-0">
+                  <Shop onInquireProduct={(prod) => handleOpenQuote(`Inquiry: ${prod}`)} />
+                </div>
+              )}
+
+              {/* ========================================================
                   PAGE 1: TOOLS SUBDOMAIN WORKSTATION (tools.evonixtec.com)
                  ======================================================== */}
               {isToolsMode && (currentPage === 'home' || currentPage === 'tools') && (
@@ -915,9 +954,9 @@ export default function App() {
               )}
 
               {/* ========================================================
-                  PAGE 1: MAIN DOMAIN B2B SOFTWARE HOUSE (evonixtec.com)
+                  PAGE 2: MAIN DOMAIN B2B SOFTWARE HOUSE (evonixtec.com)
                  ======================================================== */}
-              {!isToolsMode && currentPage === 'home' && (
+              {!isToolsMode && !isStoreMode && currentPage === 'home' && (
                 <div className="space-y-0">
                   {/* 1a. Flagship Interactive Hero Slider with Touch-Swipe & Cross-Fade Visuals */}
                   <HeroSlider
@@ -972,15 +1011,16 @@ export default function App() {
                     onNavigatePage={(page) => navigateToPage(page as NavPageId)}
                   />
 
-                  {/* 1h. High-Converting B2B Subdomain Bridge: Dedicated Free Tools Workstation */}
+                  {/* 1h. High-Converting B2B Subdomain Bridges: Free Tools Workstation & Hardware Store */}
                   <section className="py-14 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white relative overflow-hidden border-y border-slate-800">
                     <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(220,38,38,0.18),transparent_65%)] pointer-events-none" />
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
+                      {/* Card 1: tools.evonixtec.com */}
                       <div className="flex flex-col lg:flex-row items-center justify-between gap-8 p-8 sm:p-10 rounded-3xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-2xl">
                         <div className="space-y-3 text-center lg:text-left">
-                          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-600/20 text-red-400 text-xs font-bold uppercase tracking-wider border border-red-500/30">
-                            <Sparkles className="w-3.5 h-3.5 text-red-400" />
-                            <span>Dedicated Subdomain: tools.evonixtec.com</span>
+                          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-600/20 text-blue-400 text-xs font-bold uppercase tracking-wider border border-blue-500/30">
+                            <Sparkles className="w-3.5 h-3.5 text-blue-400" />
+                            <span>Tools Subdomain: tools.evonixtec.com</span>
                           </div>
                           <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white">
                             Looking for our 22+ Free E-Commerce &amp; Export Calculators?
@@ -1011,9 +1051,53 @@ export default function App() {
                             href={getToolsDomainUrl()}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="px-7 py-4 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-black text-sm shadow-xl shadow-red-600/30 transition-all flex items-center gap-2.5 group cursor-pointer hover:scale-[1.02] active:scale-100"
+                            className="px-7 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-sm shadow-xl shadow-blue-600/30 transition-all flex items-center gap-2.5 group cursor-pointer hover:scale-[1.02] active:scale-100"
                           >
                             <span>Open tools.evonixtec.com</span>
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          </a>
+                        </div>
+                      </div>
+
+                      {/* Card 2: store.evonixtec.com */}
+                      <div className="flex flex-col lg:flex-row items-center justify-between gap-8 p-8 sm:p-10 rounded-3xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-2xl">
+                        <div className="space-y-3 text-center lg:text-left">
+                          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-600/20 text-amber-400 text-xs font-bold uppercase tracking-wider border border-amber-500/30">
+                            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                            <span>Store Subdomain: store.evonixtec.com</span>
+                          </div>
+                          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white">
+                            Looking for Certified IT Hardware, POS Units &amp; Laptops?
+                          </h3>
+                          <p className="text-slate-300 text-xs sm:text-sm max-w-2xl leading-relaxed">
+                            Hardware sales, retail touchscreen billing counters, thermal receipt printers, imported office laptops, and lab repairs have been migrated to <strong className="text-white">store.evonixtec.com</strong> with direct warranty &amp; doorstep delivery.
+                          </p>
+                          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-1 text-xs text-slate-400">
+                            <span className="flex items-center gap-1.5 text-emerald-400">
+                              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                              <span>Warranty Included</span>
+                            </span>
+                            <span>·</span>
+                            <span className="flex items-center gap-1.5 text-amber-400">
+                              <ShieldCheck className="w-4 h-4 text-amber-400" />
+                              <span>Tested Genuine Units</span>
+                            </span>
+                            <span>·</span>
+                            <span className="flex items-center gap-1.5 text-cyan-400">
+                              <Clock className="w-4 h-4 text-cyan-400" />
+                              <span>Same-Day Sialkot Dispatch</span>
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex flex-col sm:flex-row items-center gap-3 flex-shrink-0">
+                          <a
+                            href={getStoreDomainUrl()}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-7 py-4 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-black text-sm shadow-xl shadow-amber-600/30 transition-all flex items-center gap-2.5 group cursor-pointer hover:scale-[1.02] active:scale-100"
+                          >
+                            <span>Open store.evonixtec.com</span>
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                           </a>
                         </div>

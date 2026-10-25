@@ -64,8 +64,10 @@ User-agent: Bytespider
 Allow: /
 
 # Sitemaps and AI Machine-Readable Specifications
-Sitemap: https://www.evonixtec.com/sitemap.xml
+Sitemap: https://evonixtec.com/sitemap.xml
+Sitemap: https://tools.evonixtec.com/sitemap.xml
+Sitemap: https://store.evonixtec.com/sitemap.xml
 # LLM Knowledge Base Endpoints:
-# https://www.evonixtec.com/llms.txt
-# https://www.evonixtec.com/llms-full.txt
-# https://www.evonixtec.com/ai-catalog.json
+# https://evonixtec.com/llms.txt
+# https://evonixtec.com/llms-full.txt
+# https://evonixtec.com/ai-catalog.json
