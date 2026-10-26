@@ -93,20 +93,20 @@ export const FAQ: React.FC<FAQProps> = ({ onOpenQuote, onNavigateSection }) => {
     <section id="faq" className="py-20 md:py-28 bg-slate-50 border-b border-slate-200">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+        <div className="max-w-3xl mb-12 space-y-3 text-left">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-xs font-bold text-red-700">
             <HelpCircle className="w-3.5 h-3.5 text-red-600" />
             Frequently Asked Questions
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1E1E1E] tracking-tight">
             Clear Answers to Your Questions
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 text-sm sm:text-base leading-[1.55] text-left">
             Everything you need to know about our Dubai technical pedigree, local Sialkot visits, hardware warranties, and POS software deployments.
           </p>
 
           {/* Search bar */}
-          <div className="pt-4 max-w-md mx-auto relative">
+          <div className="pt-4 max-w-md relative">
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               id="faq-search-input"
@@ -115,12 +115,12 @@ export const FAQ: React.FC<FAQProps> = ({ onOpenQuote, onNavigateSection }) => {
               placeholder="Search frequently asked questions..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-slate-300 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-red-500 shadow-2xs"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-slate-300 text-xs sm:text-sm text-[#1E1E1E] placeholder-slate-400 focus:outline-none focus:border-red-500 shadow-2xs"
             />
           </div>
 
           {/* Category Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 pt-3">
+          <div className="flex flex-wrap gap-2 pt-3">
             {categories.map((cat) => (
               <button
                 key={cat.id}
@@ -155,7 +155,7 @@ export const FAQ: React.FC<FAQProps> = ({ onOpenQuote, onNavigateSection }) => {
                 itemScope
                 itemProp="mainEntity"
                 itemType="https://schema.org/Question"
-                className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-2xs transition-all"
+                className="bg-white border border-slate-200 rounded-[20px] overflow-hidden shadow-2xs transition-all"
               >
                 <button
                   onClick={() => toggleAccordion(faq.id)}
@@ -163,7 +163,7 @@ export const FAQ: React.FC<FAQProps> = ({ onOpenQuote, onNavigateSection }) => {
                   aria-expanded={isOpen}
                 >
                   <div className="flex items-center gap-3">
-                    <span itemProp="name" className="text-sm sm:text-base font-bold text-slate-900">
+                    <span itemProp="name" className="text-sm sm:text-base font-bold text-[#1E1E1E]">
                       {faq.question}
                     </span>
                     {faq.highlightBadge && (
@@ -184,7 +184,7 @@ export const FAQ: React.FC<FAQProps> = ({ onOpenQuote, onNavigateSection }) => {
                     itemScope
                     itemProp="acceptedAnswer"
                     itemType="https://schema.org/Answer"
-                    className="px-5 sm:px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100"
+                    className="px-5 sm:px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-[1.55] text-left border-t border-slate-100"
                   >
                     <p itemProp="text">{faq.answer}</p>
                   </div>
@@ -194,35 +194,39 @@ export const FAQ: React.FC<FAQProps> = ({ onOpenQuote, onNavigateSection }) => {
           })}
         </div>
 
-        {/* Still Have Questions CTA */}
-        <div className="mt-12 bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 text-center shadow-2xs">
-          <h3 className="text-base sm:text-lg font-bold text-slate-900">
-            Got a question? Call us. We reply in 2 hours.
-          </h3>
-          <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-md mx-auto">
-            Speak directly with our technical team in Sialkot for fast support.
-          </p>
-          <div className="mt-4 flex flex-wrap justify-center gap-3">
-            <a
-              href={`tel:${COMPANY_INFO.contact.phoneRaw}`}
-              className="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm transition-colors flex items-center gap-2 shadow-2xs"
-            >
-              <PhoneCall className="w-4 h-4 text-emerald-400" />
-              <span>Call {COMPANY_INFO.contact.phoneDisplay}</span>
-            </a>
+        {/* Still Have Questions CTA - Nested corners: p-6 (24px) + inner 12px = 36px outer */}
+        <div className="mt-12 bg-white border border-slate-200 rounded-[28px] p-6 sm:p-8 text-left shadow-2xs flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="space-y-1">
+            <h3 className="text-base sm:text-lg font-bold text-[#1E1E1E]">
+              Got a question? Call us. We reply in 2 hours.
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 leading-[1.55] max-w-md">
+              Speak directly with our technical team in Sialkot for fast support and consultation.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
+            {/* Single Primary Action: Red WhatsApp Button */}
             <a
               href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello evonix, I have a question about your services.')}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm transition-colors flex items-center gap-2 shadow-2xs"
+              className="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm transition-all flex items-center gap-2 shadow-sm"
             >
               <MessageSquare className="w-4 h-4" />
               <span>WhatsApp Us</span>
             </a>
+            {/* Secondary Action: Subtle outline */}
+            <a
+              href={`tel:${COMPANY_INFO.contact.phoneRaw}`}
+              className="px-4 py-2.5 rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold text-xs sm:text-sm transition-colors flex items-center gap-2"
+            >
+              <PhoneCall className="w-4 h-4 text-slate-500" />
+              <span>Call Us</span>
+            </a>
             {onOpenQuote && (
               <button
                 onClick={() => onOpenQuote('General Inquiry')}
-                className="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm transition-colors cursor-pointer"
+                className="px-4 py-2.5 rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold text-xs sm:text-sm transition-colors cursor-pointer"
               >
                 Request Callback
               </button>

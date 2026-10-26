@@ -201,7 +201,7 @@ export const Hero3D: React.FC = () => {
         <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
           <a
             href="#contact"
-            className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#00D4FF] via-cyan-300 to-[#A855F7] text-black font-bold text-sm sm:text-base hover:opacity-95 shadow-[0_0_35px_rgba(0,212,255,0.45)] hover:shadow-[0_0_50px_rgba(0,212,255,0.7)] transition-all flex items-center gap-2"
+            className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#00D4FF] via-cyan-300 to-[#A855F7] text-[#1E1E1E] font-bold text-sm sm:text-base hover:opacity-95 shadow-[0_0_35px_rgba(0,212,255,0.45)] hover:shadow-[0_0_50px_rgba(0,212,255,0.7)] transition-all flex items-center gap-2"
           >
             <span>Start Your Project</span>
             <ArrowRight className="w-4 h-4" />

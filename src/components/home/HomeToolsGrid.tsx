@@ -169,8 +169,8 @@ export const HomeToolsGrid: React.FC<HomeToolsGridProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
         {/* Dedicated Subdomain Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div className="space-y-3 max-w-2xl">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 text-left">
+          <div className="space-y-3 max-w-2xl text-left">
             <div className="inline-flex items-center gap-2">
               <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold font-mono tracking-wide flex items-center gap-1.5 border border-blue-200">
                 <Sparkles className="w-3.5 h-3.5 text-blue-600" />
@@ -178,11 +178,11 @@ export const HomeToolsGrid: React.FC<HomeToolsGridProps> = ({
               </span>
             </div>
             
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-black text-[#1E1E1E] tracking-tight text-left">
               Free E-Commerce &amp; Export Calculators
             </h2>
 
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-600 text-sm sm:text-base leading-[1.55] text-left">
               We host our 20+ free business calculators on a dedicated workstation hub. Free for online sellers, freelancers, and exporters. No sign-up required.
             </p>
           </div>
@@ -202,41 +202,41 @@ export const HomeToolsGrid: React.FC<HomeToolsGridProps> = ({
           {FEATURED_TOOLS.map((tool) => (
             <div
               key={tool.id}
-              className="apple-glass-box p-6 flex flex-col justify-between space-y-5 hover:-translate-y-1 transition-all group"
+              className="apple-glass-box p-6 rounded-[28px] flex flex-col justify-between space-y-5 hover:-translate-y-1 transition-all group text-left"
             >
-              <div className="space-y-3.5">
+              <div className="space-y-3.5 text-left">
                 {/* Header row with Icon and Badge */}
                 <div className="flex items-start justify-between gap-3">
-                  <div className="w-11 h-11 rounded-2xl bg-white border border-black/[0.08] shadow-xs flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                  <div className="w-11 h-11 rounded-xl bg-white border border-black/[0.08] shadow-xs flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                     {tool.icon}
                   </div>
-                  <span className="text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-black/[0.04] text-[#1d1d1f] border border-black/[0.06]">
+                  <span className="text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-black/[0.04] text-[#1E1E1E] border border-black/[0.06]">
                     {tool.category}
                   </span>
                 </div>
 
-                <div>
-                  <h3 className="text-base font-bold text-[#1d1d1f] tracking-tight group-hover:text-[#0071e3] transition-colors">
+                <div className="text-left">
+                  <h3 className="text-base font-bold text-[#1E1E1E] tracking-tight group-hover:text-[#0071e3] transition-colors text-left">
                     {tool.name}
                   </h3>
-                  <span className="text-[11px] font-mono text-[#0071e3] font-semibold block mt-0.5">
+                  <span className="text-[11px] font-mono text-[#0071e3] font-semibold block mt-0.5 text-left">
                     {tool.badge}
                   </span>
                 </div>
 
-                <p className="text-xs text-[#86868b] leading-relaxed line-clamp-3">
+                <p className="text-xs text-[#52525B] leading-[1.55] line-clamp-3 text-left">
                   {tool.description}
                 </p>
               </div>
 
-              {/* Bottom Launch Button */}
-              <div className="pt-3 border-t border-black/[0.06] space-y-2.5">
-                <div className="flex items-center justify-between text-[11px] text-[#86868b]">
+              {/* Bottom Launch Button: Single Primary Action */}
+              <div className="pt-3 border-t border-black/[0.06] space-y-2.5 text-left">
+                <div className="flex items-center justify-between text-[11px] text-[#52525B]">
                   <span className="flex items-center gap-1">
                     <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
                     <span>Zero Data Harvest</span>
                   </span>
-                  <span className="font-mono text-[#1d1d1f] font-medium">
+                  <span className="font-mono text-[#1E1E1E] font-medium">
                     {tool.metric}
                   </span>
                 </div>
@@ -255,16 +255,16 @@ export const HomeToolsGrid: React.FC<HomeToolsGridProps> = ({
         </div>
 
         {/* Bottom Feature Guarantee Strip */}
-        <div className="apple-result-box p-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-white border border-black/[0.08] shadow-xs flex items-center justify-center shrink-0 text-[#0071e3]">
+        <div className="apple-result-box p-6 rounded-[24px] flex flex-col md:flex-row items-center justify-between gap-4 text-left">
+          <div className="flex items-center gap-3 text-left">
+            <div className="w-10 h-10 rounded-xl bg-white border border-black/[0.08] shadow-xs flex items-center justify-center shrink-0 text-[#0071e3]">
               <Zap className="w-5 h-5" />
             </div>
-            <div>
-              <h4 className="text-sm font-semibold text-[#1d1d1f]">
+            <div className="text-left">
+              <h4 className="text-sm font-semibold text-[#1E1E1E] text-left">
                 Sub-Second In-Browser Execution
               </h4>
-              <p className="text-xs text-[#86868b] mt-0.5">
+              <p className="text-xs text-[#52525B] mt-0.5 leading-[1.55] text-left">
                 All algorithms run entirely client-side. No API wait times, no data leakage, and 100% privacy protected.
               </p>
             </div>
@@ -274,10 +274,10 @@ export const HomeToolsGrid: React.FC<HomeToolsGridProps> = ({
             <button
               type="button"
               onClick={onNavigateToToolsHub}
-              className="py-2.5 px-4 rounded-xl bg-white hover:bg-slate-50 border border-black/[0.08] text-[#1d1d1f] font-semibold text-xs flex items-center gap-1.5 transition-colors shadow-xs cursor-pointer"
+              className="py-2.5 px-4 rounded-xl bg-white hover:bg-slate-50 border border-black/[0.08] text-[#1E1E1E] font-semibold text-xs flex items-center gap-1.5 transition-colors shadow-xs cursor-pointer"
             >
               <span>View Full Tools Catalog</span>
-              <ExternalLink className="w-3.5 h-3.5 text-[#86868b]" />
+              <ExternalLink className="w-3.5 h-3.5 text-[#52525B]" />
             </button>
           </div>
         </div>

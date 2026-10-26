@@ -10,6 +10,11 @@ export interface BlogInternalLink {
   description?: string;
 }
 
+export interface BlogFAQ {
+  question: string;
+  answer: string;
+}
+
 export interface BlogPost {
   id: string;
   slug: string;
@@ -31,4 +36,5 @@ export interface BlogPost {
   imageUrl?: string;
   imageAlt?: string;
   content: string;
+  faqs?: BlogFAQ[];
 }

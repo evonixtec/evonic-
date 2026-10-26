@@ -60,7 +60,7 @@ export const StandaloneExportModal: React.FC<StandaloneExportModalProps> = ({ is
         <div className="flex flex-wrap items-center gap-3">
           <button
             onClick={handleCopy}
-            className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#00D4FF] to-[#A855F7] text-black font-bold text-xs font-mono flex items-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(0,212,255,0.3)]"
+            className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#00D4FF] to-[#A855F7] text-[#1E1E1E] font-bold text-xs font-mono flex items-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(0,212,255,0.3)]"
           >
             {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
             <span>{copied ? 'Code Copied to Clipboard!' : 'Copy Full HTML Code'}</span>

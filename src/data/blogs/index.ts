@@ -27,6 +27,12 @@ const RAW_BLOGS: BlogPost[] = [
 
 export const ALL_BLOGS: BlogPost[] = RAW_BLOGS.map(enrichBlogPost);
 
+// B2B Software blogs for the main website (evonixtec.com)
+export const B2B_BLOGS: BlogPost[] = ALL_BLOGS.filter((b) => b.category !== 'hardware-repair');
+
+// Hardware & repair blogs shifted to the store subdomain (store.evonixtec.com)
+export const HARDWARE_STORE_BLOGS: BlogPost[] = ALL_BLOGS.filter((b) => b.category === 'hardware-repair');
+
 export interface BlogCategoryMeta {
   id: BlogCategory | 'all';
   label: string;
@@ -34,36 +40,51 @@ export interface BlogCategoryMeta {
   description: string;
 }
 
-export const BLOG_CATEGORIES: BlogCategoryMeta[] = [
+// B2B Software categories for main agency site
+export const B2B_BLOG_CATEGORIES: BlogCategoryMeta[] = [
   {
     id: 'all',
-    label: 'All Articles',
-    count: ALL_BLOGS.length,
-    description: 'View our complete library of 80+ technical guides, Daska Road & Rangpura field case studies, and diagnostic insights.',
-  },
-  {
-    id: 'web-graphics',
-    label: 'Web & Graphic Design',
-    count: ALL_BLOGS.filter((b) => b.category === 'web-graphics').length,
-    description: 'Modern UI/UX design, responsive layouts, typography, brand identities, and high-conversion frontend engineering.',
+    label: 'All B2B Articles',
+    count: B2B_BLOGS.length,
+    description: 'Technical guides on custom enterprise software, export portals, POS systems, and cloud architecture.',
   },
   {
     id: 'software-dev',
-    label: 'Software & POS Development',
-    count: ALL_BLOGS.filter((b) => b.category === 'software-dev').length,
-    description: 'Custom ERPs, retail POS architectures, cloud databases, offline-first sync, and enterprise business automation.',
+    label: 'Software & POS Systems',
+    count: B2B_BLOGS.filter((b) => b.category === 'software-dev').length,
+    description: 'Custom ERP systems, retail POS setups, cloud databases, and offline business workflows.',
   },
   {
-    id: 'hardware-repair',
-    label: 'Laptop & Printer Repair',
-    count: ALL_BLOGS.filter((b) => b.category === 'hardware-repair').length,
-    description: 'Motherboard chip-level diagnostics, thermal printer maintenance, laser fusers, SSD speedups, and hardware lab practices.',
+    id: 'web-graphics',
+    label: 'Web & Mobile Engineering',
+    count: B2B_BLOGS.filter((b) => b.category === 'web-graphics').length,
+    description: 'Modern web platforms, responsive user interfaces, export catalogs, and fast frontend engineering.',
   },
 ];
 
-export function getBlogsByCategory(category: BlogCategory | 'all'): BlogPost[] {
-  if (category === 'all') return ALL_BLOGS;
-  return ALL_BLOGS.filter((b) => b.category === category);
+// Hardware & diagnostic categories for store site
+export const STORE_BLOG_CATEGORIES: BlogCategoryMeta[] = [
+  {
+    id: 'all',
+    label: 'All Hardware Guides',
+    count: HARDWARE_STORE_BLOGS.length,
+    description: 'Motherboard diagnostics, thermal printer fixes, billing counter setups, and hardware lab guides.',
+  },
+  {
+    id: 'hardware-repair',
+    label: 'Laptop & Printer Hardware',
+    count: HARDWARE_STORE_BLOGS.length,
+    description: 'Chip-level repairs, thermal paste servicing, laser fusers, SSD upgrades, and workshop walk-throughs.',
+  },
+];
+
+// Default categories pool for backward compatibility
+export const BLOG_CATEGORIES: BlogCategoryMeta[] = B2B_BLOG_CATEGORIES;
+
+export function getBlogsByCategory(category: BlogCategory | 'all', onlyB2B = true): BlogPost[] {
+  const pool = onlyB2B ? B2B_BLOGS : ALL_BLOGS;
+  if (category === 'all') return pool;
+  return pool.filter((b) => b.category === category);
 }
 
 export function getBlogBySlug(slug: string): BlogPost | undefined {

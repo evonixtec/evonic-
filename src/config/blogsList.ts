@@ -5,6 +5,7 @@ export interface GlobalBlogItem {
 }
 
 export const GLOBAL_BLOGS_DATA: GlobalBlogItem[] = [
+  { name: "Bespoke Enterprise Software vs ERPs", path: "/blog/bespoke-enterprise-software-vs-commercial-erps" },
   { name: "POS Software in Sialkot Guide", path: "/blog/pos-software-in-sialkot" },
   { name: "Sialkot Export Factory ERP Guide", path: "/blog/sialkot-export-factory-erp-customs-weboc-power-surge-protection" },
   { name: "Offline-First POS Software Guide", path: "/blog/offline-first-pos-software-why-shops-need-it" },

@@ -250,7 +250,7 @@ export const ThermalHotspotInspector: React.FC = () => {
                           isShort
                             ? 'bg-red-600 text-white border-white animate-bounce'
                             : isSelected
-                            ? 'bg-amber-500 text-black border-white'
+                            ? 'bg-amber-500 text-[#1E1E1E] border-white'
                             : 'bg-slate-800/90 text-slate-200 border-slate-600'
                         }`}
                       >

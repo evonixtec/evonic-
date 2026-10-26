@@ -217,7 +217,7 @@ export const TechOrbit3D: React.FC = () => {
                     onClick={() => setSelectedTech(tech.name)}
                     className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all ${
                       selectedTech === tech.name
-                        ? 'bg-gradient-to-r from-[#00D4FF] to-[#A855F7] text-black font-bold shadow-[0_0_15px_rgba(0,212,255,0.4)]'
+                        ? 'bg-gradient-to-r from-[#00D4FF] to-[#A855F7] text-[#1E1E1E] font-bold shadow-[0_0_15px_rgba(0,212,255,0.4)]'
                         : 'bg-white/5 border border-white/10 text-slate-300 hover:border-cyan-500/50 hover:text-white'
                     }`}
                   >

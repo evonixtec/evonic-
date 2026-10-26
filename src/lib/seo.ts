@@ -1799,9 +1799,28 @@ export function applyBlogPostSEO(blog: BlogPost) {
     keywords: blog.targetKeywords.join(', '),
   };
 
+  const graphElements: any[] = [breadcrumb, LOCAL_BUSINESS_SCHEMA, articleSchema];
+
+  // Nested FAQ Schema when blog includes FAQs
+  if (blog.faqs && blog.faqs.length > 0) {
+    const faqSchema = {
+      '@type': 'FAQPage',
+      '@id': `${canonicalUrl}#faq`,
+      mainEntity: blog.faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+    };
+    graphElements.push(faqSchema);
+  }
+
   updateSubpageStructuredData({
     '@context': 'https://schema.org',
-    '@graph': [breadcrumb, LOCAL_BUSINESS_SCHEMA, articleSchema],
+    '@graph': graphElements,
   });
 
   // Automatically ping search engines via IndexNow protocol for instant indexing

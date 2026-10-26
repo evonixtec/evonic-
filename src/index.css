@@ -1,12 +1,36 @@
 @import "tailwindcss";
 @import "./common.css";
 
+:root {
+  --apple-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "SF Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --apple-crystal-bg: #f8fafc;
+  --apple-near-black: #1e1e1e;
+  --apple-red-primary: #dc2626;
+  --apple-red-hover: #b91c1c;
+}
+
 @layer base {
   body {
-    background-color: #0a0a0f;
-    color: #f8fafc;
-    font-family: 'Sora', sans-serif;
+    background-color: #f8fafc;
+    color: #1e1e1e;
+    font-family: var(--apple-font);
+    line-height: 1.55;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* FLUXFIT Typography & Readability: Left-align body text and set line-height 1.4 to 1.6 */
+  p, li, blockquote, dd, dt, article p, .prose p, .blog-content p, .product-desc {
+    text-align: left;
+    line-height: 1.55;
+    color: #1e1e1e;
+  }
+
+  /* FLUXFIT No Pure Black Rule: Enforce soft near-black #1E1E1E on headings */
+  h1, h2, h3, h4, h5, h6 {
+    color: #1e1e1e;
+    letter-spacing: -0.02em;
   }
 }
 

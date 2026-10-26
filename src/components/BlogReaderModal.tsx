@@ -21,6 +21,7 @@ import {
 import { BlogPost, getRelatedBlogs, ALL_BLOGS } from '../data/blogs';
 import { SectionId } from '../types';
 import { EvonixMark } from './EvonixLogo';
+import { getStoreDomainUrl } from '../lib/domainUtils';
 
 interface BlogReaderModalProps {
   blog: BlogPost | null;
@@ -172,7 +173,7 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.96, y: 20 }}
           transition={{ duration: 0.25 }}
-          className="relative w-full max-w-4xl bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden flex flex-col max-h-[92vh]"
+          className="relative w-full max-w-4xl bg-white rounded-[32px] sm:rounded-[40px] shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[92vh]"
         >
           {/* Top Bar */}
           <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50 sticky top-0 z-20">
@@ -190,7 +191,7 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
             <div className="flex items-center gap-2">
               <button
                 onClick={handleShare}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-xl border border-slate-200 hover:bg-slate-100 text-slate-700 transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-xl border border-slate-200 hover:bg-slate-100 text-[#1E1E1E] transition-colors cursor-pointer"
                 title="Copy Link"
               >
                 {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Share2 className="w-3.5 h-3.5" />}
@@ -199,7 +200,7 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
 
               <button
                 onClick={onClose}
-                className="p-2 text-slate-400 hover:text-slate-700 rounded-xl hover:bg-slate-100 transition-colors cursor-pointer"
+                className="p-2 text-slate-400 hover:text-[#1E1E1E] rounded-xl hover:bg-slate-100 transition-colors cursor-pointer"
                 aria-label="Close reader"
               >
                 <X className="w-5 h-5" />
@@ -208,17 +209,31 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
           </div>
 
           {/* Article Scroll Body */}
-          <div className="p-6 sm:p-10 overflow-y-auto space-y-8 font-sans">
+          <div className="p-6 sm:p-8 overflow-y-auto space-y-8 font-sans">
             {/* Article Header */}
-            <div className="space-y-4 border-b border-slate-200 pb-6">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            <div className="space-y-4 border-b border-slate-200 pb-6 text-left">
+              {blog.category === 'hardware-repair' && (
+                <div className="p-3.5 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-between text-xs text-amber-900">
+                  <span className="font-semibold text-left">
+                    Evonix Hardware Store &amp; Lab Article • Hosted on store.evonixtec.com
+                  </span>
+                  <a
+                    href={getStoreDomainUrl(`/blog/${blog.slug}`)}
+                    className="inline-flex items-center gap-1 font-bold text-amber-800 hover:text-amber-900 underline"
+                  >
+                    <span>Store View</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+              )}
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E1E1E] tracking-tight leading-tight text-left">
                 {blog.title}
               </h1>
 
-              <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500">
+              <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500 text-left">
                 <span className="flex items-center gap-1.5">
                   <User className="w-4 h-4 text-red-600" />
-                  <span className="font-semibold text-slate-800">{blog.author.name}</span>
+                  <span className="font-semibold text-[#1E1E1E]">{blog.author.name}</span>
                   <span>({blog.author.role})</span>
                 </span>
                 <span className="flex items-center gap-1.5">
@@ -236,7 +251,7 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
                 {blog.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-[11px] font-medium px-2.5 py-0.5 rounded-md bg-slate-100 text-slate-600"
+                    className="text-[11px] font-medium px-2.5 py-0.5 rounded-md bg-slate-100 text-[#1E1E1E]"
                   >
                     #{tag}
                   </span>
@@ -245,20 +260,20 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
             </div>
 
             {/* Excerpt Lead */}
-            <div className="p-5 rounded-2xl bg-slate-50 border-l-4 border-red-600 text-sm sm:text-base text-slate-700 font-medium leading-relaxed">
+            <div className="p-6 rounded-[20px] bg-slate-50 border-l-4 border-red-600 text-sm sm:text-base text-[#1E1E1E] font-medium leading-[1.6] text-left">
               {blog.excerpt}
             </div>
 
             {/* Unique Relevant Hero Visual Image */}
             {blog.imageUrl && (
-              <div className="relative w-full rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 shadow-sm group">
+              <div className="relative w-full rounded-[20px] overflow-hidden border border-slate-200 bg-slate-100 shadow-sm group">
                 <img
                   src={blog.imageUrl}
                   alt={blog.imageAlt || blog.title}
                   className="w-full h-auto max-h-[380px] object-cover"
                 />
                 {blog.imageAlt && (
-                  <div className="px-4 py-2.5 bg-slate-50 border-t border-slate-200 text-xs text-slate-500 italic flex items-center justify-between">
+                  <div className="px-4 py-2.5 bg-slate-50 border-t border-slate-200 text-xs text-slate-500 italic flex items-center justify-between text-left">
                     <span>{blog.imageAlt}</span>
                     <span className="text-[10px] font-mono text-slate-400">evonix lab documentation</span>
                   </div>
@@ -267,7 +282,7 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
             )}
 
             {/* Human-Crafted Content Renderer (Zero AI artifacts) */}
-            <div className="max-w-none text-slate-800 leading-relaxed space-y-5 text-sm sm:text-base">
+            <div className="max-w-none text-[#1E1E1E] leading-[1.6] space-y-6 text-sm sm:text-base text-left">
               {(() => {
                 // Split content into clean logical blocks
                 const rawBlocks = blog.content.trim().split(/\n\s*\n/);
@@ -280,7 +295,7 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
                   if (trimmed.startsWith('```') || trimmed.includes('Diagnostic Log') || trimmed.includes('Rail Resistance:')) {
                     const cleanCode = trimmed.replace(/```[a-z]*\n?/g, '').replace(/```/g, '').trim();
                     return (
-                      <div key={bIdx} className="my-5 rounded-2xl bg-slate-900 text-slate-100 p-5 font-mono text-xs sm:text-sm border border-slate-800 shadow-md">
+                      <div key={bIdx} className="my-6 rounded-[24px] bg-slate-900 text-slate-100 p-6 font-mono text-xs sm:text-sm border border-slate-800 shadow-md text-left">
                         <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-800 text-slate-400">
                           <span className="flex items-center gap-2">
                             <Terminal className="w-4 h-4 text-emerald-400" />
@@ -288,7 +303,7 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
                           </span>
                           <span className="text-[11px] text-emerald-400 font-medium">evonix verified</span>
                         </div>
-                        <pre className="whitespace-pre-wrap leading-relaxed overflow-x-auto text-emerald-300/90 font-mono">
+                        <pre className="whitespace-pre-wrap leading-[1.6] overflow-x-auto text-emerald-300/90 font-mono text-left">
                           {cleanCode}
                         </pre>
                       </div>
@@ -302,13 +317,13 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
                     const clientLine = lines.find(l => l.includes('Client:') || l.includes('Director') || l.includes('CEO') || l.includes('Manager') || l.includes('Partner') || l.includes('Chairman')) || '';
 
                     return (
-                      <div key={bIdx} className="my-6 p-6 rounded-2xl bg-gradient-to-br from-amber-50/70 via-white to-slate-50 border border-amber-200/80 shadow-xs relative">
+                      <div key={bIdx} className="my-6 p-6 rounded-[24px] bg-gradient-to-br from-amber-50/70 via-white to-slate-50 border border-amber-200/80 shadow-xs relative text-left">
                         <div className="flex items-center justify-between mb-3">
                           <div className="flex items-center gap-1.5 text-amber-500">
                             {[...Array(5)].map((_, sIdx) => (
                               <Star key={sIdx} className="w-4 h-4 fill-amber-400 text-amber-400" />
                             ))}
-                            <span className="ml-2 text-xs font-bold text-slate-800">5.0 / 5.0</span>
+                            <span className="ml-2 text-xs font-bold text-[#1E1E1E]">5.0 / 5.0</span>
                           </div>
                           <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 flex items-center gap-1">
                             <CheckCircle2 className="w-3 h-3" />
@@ -317,17 +332,17 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
                         </div>
 
                         {quoteLine && (
-                          <div className="relative pl-6 py-1">
+                          <div className="relative pl-6 py-1 text-left">
                             <Quote className="w-5 h-5 text-amber-300 absolute left-0 top-0 -scale-x-100" />
-                            <p className="text-slate-800 text-sm sm:text-base font-normal italic leading-relaxed">
+                            <p className="text-[#1E1E1E] text-sm sm:text-base font-normal italic leading-[1.6] text-left">
                               {quoteLine.replace(/^"|"$/g, '').replace(/[*_~`>—]/g, '')}
                             </p>
                           </div>
                         )}
 
                         {clientLine && (
-                          <div className="mt-4 pt-3 border-t border-amber-100 flex items-center justify-between text-xs text-slate-600">
-                            <span className="font-semibold text-slate-900">
+                          <div className="mt-4 pt-3 border-t border-amber-100 flex items-center justify-between text-xs text-slate-600 text-left">
+                            <span className="font-semibold text-[#1E1E1E]">
                               {clientLine.replace(/^Client:\s*/, '').replace(/[*_~`>—]/g, '')}
                             </span>
                             <span className="text-[11px] text-slate-500">Sialkot Field Audit</span>
@@ -341,31 +356,41 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
                   const lines = trimmed.split('\n');
                   const firstLine = lines[0].trim();
 
-                  // Heading detection
-                  if (firstLine.startsWith('### ') || firstLine.startsWith('#### ') || (lines.length === 1 && firstLine.length < 90 && !firstLine.endsWith('.'))) {
+                  // Heading detection (strict semantic H2 vs H3)
+                  const isH2 = firstLine.startsWith('## ') && !firstLine.startsWith('### ');
+                  const isH3 = firstLine.startsWith('### ') || firstLine.startsWith('#### ');
+                  const isImplicitHeading = lines.length === 1 && firstLine.length < 90 && !firstLine.endsWith('.') && !firstLine.startsWith('-');
+
+                  if (isH2 || isH3 || isImplicitHeading) {
                     const cleanTitle = firstLine.replace(/^#{1,4}\s*/, '').replace(/[*_~`>—]/g, '').trim();
                     const remainingLines = lines.slice(1);
 
                     return (
-                      <div key={bIdx} className="space-y-3 pt-2">
-                        <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight border-b border-slate-100 pb-2">
-                          {cleanTitle}
-                        </h2>
+                      <div key={bIdx} className="space-y-3 pt-2 text-left">
+                        {isH3 ? (
+                          <h3 className="text-lg sm:text-xl font-bold text-[#1E1E1E] tracking-tight text-left">
+                            {cleanTitle}
+                          </h3>
+                        ) : (
+                          <h2 className="text-xl sm:text-2xl font-bold text-[#1E1E1E] tracking-tight border-b border-slate-100 pb-2 text-left">
+                            {cleanTitle}
+                          </h2>
+                        )}
                         {remainingLines.length > 0 && (
-                          <div className="space-y-2">
+                          <div className="space-y-3 text-left">
                             {remainingLines.map((rLine, rIdx) => {
                               const rTrimmed = rLine.trim();
                               if (!rTrimmed) return null;
                               if (rTrimmed.startsWith('- ') || rTrimmed.startsWith('* ') || /^\d+\.\s/.test(rTrimmed)) {
                                 return (
-                                  <div key={rIdx} className="flex items-start gap-2.5 text-slate-700 pl-1">
+                                  <div key={rIdx} className="flex items-start gap-2.5 text-[#1E1E1E] pl-1 text-left">
                                     <span className="w-1.5 h-1.5 rounded-full bg-red-600 mt-2 flex-shrink-0" />
-                                    <span className="leading-relaxed">{renderInlineText(rTrimmed, handleInternalLinkClick)}</span>
+                                    <span className="leading-[1.6] text-left">{renderInlineText(rTrimmed, handleInternalLinkClick)}</span>
                                   </div>
                                 );
                               }
                               return (
-                                <p key={rIdx} className="text-slate-700 leading-relaxed">
+                                <p key={rIdx} className="text-[#1E1E1E] leading-[1.6] text-left">
                                   {renderInlineText(rTrimmed, handleInternalLinkClick)}
                                 </p>
                               );
@@ -379,14 +404,14 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
                   // 4. Bullet / Numbered Lists
                   if (lines.every(l => !l.trim() || l.trim().startsWith('- ') || l.trim().startsWith('* ') || /^\d+\.\s/.test(l.trim()))) {
                     return (
-                      <ul key={bIdx} className="space-y-2.5 pl-2 my-3 text-slate-700">
+                      <ul key={bIdx} className="space-y-3 pl-2 my-4 text-[#1E1E1E] text-left">
                         {lines.map((it, iIdx) => {
                           const cleanItem = it.replace(/^[-*•\d.]\s*/, '').trim();
                           if (!cleanItem) return null;
                           return (
-                            <li key={iIdx} className="flex items-start gap-2.5">
+                            <li key={iIdx} className="flex items-start gap-2.5 text-left">
                               <span className="w-1.5 h-1.5 rounded-full bg-red-600 mt-2 flex-shrink-0" />
-                              <span className="leading-relaxed">
+                              <span className="leading-[1.6] text-left">
                                 {renderInlineText(cleanItem, handleInternalLinkClick)}
                               </span>
                             </li>
@@ -398,7 +423,7 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
 
                   // 5. Standard paragraph
                   return (
-                    <p key={bIdx} className="text-slate-700 leading-relaxed">
+                    <p key={bIdx} className="text-[#1E1E1E] leading-[1.6] text-left">
                       {renderInlineText(trimmed, handleInternalLinkClick)}
                     </p>
                   );
@@ -406,35 +431,63 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
               })()}
             </div>
 
+            {/* Structured FAQ Section (Rendered with Semantic Schema H2/H3 Alignment) */}
+            {blog.faqs && blog.faqs.length > 0 && (
+              <div className="space-y-4 pt-4 border-t border-slate-200 text-left">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-xl bg-red-100 text-red-700 flex items-center justify-center font-black text-sm">
+                    ?
+                  </div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-[#1E1E1E] tracking-tight text-left">
+                    Frequently Asked Questions
+                  </h2>
+                </div>
+                <div className="space-y-3">
+                  {blog.faqs.map((faq, fIdx) => (
+                    <div key={fIdx} className="p-5 rounded-[20px] bg-slate-50 border border-slate-200 space-y-2 text-left">
+                      <h3 className="text-sm sm:text-base font-bold text-[#1E1E1E] flex items-start gap-2 text-left">
+                        <span className="text-red-600 font-extrabold flex-shrink-0">Q:</span>
+                        <span>{faq.question}</span>
+                      </h3>
+                      <p className="text-xs sm:text-sm text-[#1E1E1E] leading-[1.6] pl-5 text-left">
+                        {renderInlineText(faq.answer, handleInternalLinkClick)}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Prominent Sialkot Export Barcode Label Studio Internal Link Card */}
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-slate-700 text-white shadow-md flex flex-col sm:flex-row items-center justify-between gap-5">
-              <div className="flex items-start gap-3.5">
+            <div className="p-6 rounded-[28px] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-slate-700 text-white shadow-md flex flex-col sm:flex-row items-center justify-between gap-6 text-left">
+              <div className="flex items-start gap-4">
                 <div className="p-3 rounded-xl bg-red-600/20 border border-red-500/30 text-red-400 flex-shrink-0">
                   <Barcode className="w-6 h-6" />
                 </div>
-                <div className="space-y-1">
+                <div className="space-y-1 text-left">
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-red-500/20 text-red-300 border border-red-500/30 font-mono">
                       FREE B2B EXPORT TOOL
                     </span>
                     <span className="text-xs text-slate-400">GS1-128 &amp; Code128</span>
                   </div>
-                  <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                  <h3 className="text-base sm:text-lg font-bold text-white tracking-tight text-left">
                     Sialkot Export Barcode &amp; Shipping Carton Label Studio
                   </h3>
-                  <p className="text-xs text-slate-300 max-w-xl leading-relaxed">
+                  <p className="text-xs text-slate-300 max-w-xl leading-[1.6] text-left">
                     Create compliant thermal shipping labels, outer carton barcodes, and destination manifests for Sialkot surgical, leather, and sports consignments with instant zero-database printing.
                   </p>
                 </div>
               </div>
 
+              {/* Single Primary Red Action */}
               <button
                 type="button"
                 onClick={() => {
                   onClose();
                   onNavigateSection('export-barcode-studio');
                 }}
-                className="whitespace-nowrap px-5 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center gap-2 cursor-pointer flex-shrink-0"
+                className="whitespace-nowrap px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-red-600/30 hover:shadow-red-600/50 transition-all flex items-center gap-2 cursor-pointer flex-shrink-0"
               >
                 <span>Open Barcode Studio</span>
                 <ArrowRight className="w-4 h-4" />
@@ -443,14 +496,14 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
 
             {/* Contextual Architecture & Service Internal Links Grid */}
             {blog.internalLinks && blog.internalLinks.length > 0 && (
-              <div className="space-y-3 pt-2">
+              <div className="space-y-3 pt-2 text-left">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
                     Recommended Technical Architectures &amp; Tools
                   </span>
                   <span className="text-[11px] text-slate-400 font-mono">internal documentation</span>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {blog.internalLinks.map((link, lIdx) => (
                     <button
                       key={lIdx}
@@ -462,13 +515,13 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
                           onOpenQuoteModal(link.label);
                         }
                       }}
-                      className="p-4 rounded-xl border border-slate-200 hover:border-red-300 hover:bg-red-50/40 transition-all text-left flex items-center justify-between group cursor-pointer bg-white shadow-2xs"
+                      className="p-4 rounded-[20px] border border-slate-200 hover:border-red-300 hover:bg-red-50/40 transition-all text-left flex items-center justify-between group cursor-pointer bg-white shadow-2xs"
                     >
                       <div className="pr-3">
                         <span className="text-[11px] font-bold text-red-600 block">
                           {link.label}
                         </span>
-                        <span className="text-xs font-semibold text-slate-800 group-hover:text-red-700 transition-colors block mt-0.5">
+                        <span className="text-xs font-semibold text-[#1E1E1E] group-hover:text-red-700 transition-colors block mt-0.5">
                           {link.anchorText}
                         </span>
                         {link.description && (
@@ -485,18 +538,20 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
             )}
 
             {/* evonix Engineering Consultation Banner */}
-            <div className="p-6 rounded-2xl bg-red-50 border border-red-200 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div>
+            <div className="p-6 rounded-[28px] bg-red-50 border border-red-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-left">
+              <div className="text-left">
                 <span className="text-xs font-semibold text-red-600 block">
                   evonix enterprise solutions
                 </span>
-                <h3 className="text-base sm:text-lg font-bold text-slate-900 mt-0.5">
+                <h3 className="text-base sm:text-lg font-bold text-[#1E1E1E] mt-0.5 text-left">
                   Need professional execution for this technical architecture?
                 </h3>
-                <p className="text-xs text-slate-600 mt-1">
+                <p className="text-xs text-slate-600 mt-1 leading-[1.6] text-left">
                   Connect with our Dubai &amp; Sialkot engineering teams for dedicated consulting or doorstep hardware repair.
                 </p>
               </div>
+
+              {/* Single Primary Red Action */}
               <button
                 type="button"
                 onClick={() => {
@@ -506,7 +561,7 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
                     onOpenQuoteModal(blog.title);
                   }
                 }}
-                className="whitespace-nowrap px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm shadow-2xs transition-colors flex items-center gap-1.5 cursor-pointer"
+                className="whitespace-nowrap px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-red-600/25 transition-colors flex items-center gap-1.5 cursor-pointer flex-shrink-0"
               >
                 <span>Contact evonix</span>
                 <ArrowRight className="w-4 h-4" />
@@ -515,8 +570,8 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
 
             {/* Related Articles Section */}
             {related.length > 0 && (
-              <div className="border-t border-slate-200 pt-8 space-y-4">
-                <div className="flex items-center gap-2 text-slate-900 font-bold text-lg">
+              <div className="border-t border-slate-200 pt-8 space-y-4 text-left">
+                <div className="flex items-center gap-2 text-[#1E1E1E] font-bold text-lg">
                   <BookOpen className="w-5 h-5 text-red-600" />
                   <span>Related Technical Case Studies</span>
                 </div>
@@ -525,17 +580,17 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
                     <button
                       key={rel.id}
                       onClick={() => onSelectBlog(rel)}
-                      className="p-4 rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all text-left flex flex-col justify-between group cursor-pointer"
+                      className="p-4 rounded-[20px] border border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all text-left flex flex-col justify-between group cursor-pointer"
                     >
                       <div>
                         <span className="text-[10px] font-semibold text-red-600 uppercase">
                           {rel.categoryLabel}
                         </span>
-                        <h4 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-red-600 transition-colors line-clamp-2 mt-1">
+                        <h4 className="text-xs sm:text-sm font-bold text-[#1E1E1E] group-hover:text-red-600 transition-colors line-clamp-2 mt-1 text-left">
                           {rel.title}
                         </h4>
                       </div>
-                      <span className="text-[11px] text-slate-400 mt-3 block">
+                      <span className="text-[11px] text-slate-500 mt-3 block">
                         {rel.readTime}
                       </span>
                     </button>

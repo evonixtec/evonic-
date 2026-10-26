@@ -96,7 +96,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ onApplyEstim
                     onClick={() => setPlatform(item.id as any)}
                     className={`p-3 rounded-xl text-xs font-medium text-center transition-all ${
                       platform === item.id
-                        ? 'bg-gradient-to-tr from-[#00D4FF] to-[#A855F7] text-black font-bold shadow-[0_0_15px_rgba(0,212,255,0.4)]'
+                        ? 'bg-gradient-to-tr from-[#00D4FF] to-[#A855F7] text-[#1E1E1E] font-bold shadow-[0_0_15px_rgba(0,212,255,0.4)]'
                         : 'bg-white/5 border border-white/10 text-slate-300 hover:border-cyan-500/40 hover:text-white'
                     }`}
                   >
@@ -147,7 +147,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ onApplyEstim
                     <div className="text-xs font-bold text-white">Three.js 3D Viewport</div>
                     <div className="text-[10px] text-slate-400">Interactive WebGL spatial graphics</div>
                   </div>
-                  <div className={`w-5 h-5 rounded-md flex items-center justify-center ${spatial3d ? 'bg-[#00D4FF] text-black' : 'border border-white/20'}`}>
+                  <div className={`w-5 h-5 rounded-md flex items-center justify-center ${spatial3d ? 'bg-[#00D4FF] text-[#1E1E1E]' : 'border border-white/20'}`}>
                     {spatial3d && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                   </div>
                 </button>
@@ -164,7 +164,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ onApplyEstim
                     <div className="text-xs font-bold text-white">AI Agents / Gemini API</div>
                     <div className="text-[10px] text-slate-400">Autonomous workflow & RAG integration</div>
                   </div>
-                  <div className={`w-5 h-5 rounded-md flex items-center justify-center ${aiIntegration ? 'bg-[#A855F7] text-black' : 'border border-white/20'}`}>
+                  <div className={`w-5 h-5 rounded-md flex items-center justify-center ${aiIntegration ? 'bg-[#A855F7] text-[#1E1E1E]' : 'border border-white/20'}`}>
                     {aiIntegration && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                   </div>
                 </button>
@@ -215,7 +215,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ onApplyEstim
 
             <button
               onClick={handleTransferToContact}
-              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#00D4FF] to-[#A855F7] text-black font-bold text-xs uppercase tracking-wider hover:opacity-95 shadow-[0_0_25px_rgba(0,212,255,0.4)] transition-all flex items-center justify-center gap-2"
+              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#00D4FF] to-[#A855F7] text-[#1E1E1E] font-bold text-xs uppercase tracking-wider hover:opacity-95 shadow-[0_0_25px_rgba(0,212,255,0.4)] transition-all flex items-center justify-center gap-2"
             >
               <span>Lock This Scope In Inquiry</span>
               <ArrowRight className="w-4 h-4" />

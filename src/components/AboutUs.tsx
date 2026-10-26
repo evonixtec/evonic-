@@ -8,28 +8,28 @@ export const AboutUs: React.FC = () => {
     <section id="about" className="py-20 md:py-28 bg-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <div className="max-w-3xl mb-16 space-y-3 text-left">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-xs font-bold text-red-700">
             <Award className="w-3.5 h-3.5 text-red-600" />
-            20+ Years Proven Excellence
+            <span>20+ Years Proven Excellence</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1E1E1E] tracking-tight text-left">
             {COMPANY_INFO.about.title}
           </h2>
 
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 text-sm sm:text-base leading-[1.55] text-left">
             Bridging international Gulf technical standards with dedicated local on-site support in Sialkot, Pakistan.
           </p>
         </div>
 
         {/* Story & Heritage Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16 text-left">
           {/* Left Column: Visual Dubai Heritage Showcase */}
-          <div className="lg:col-span-7 bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8 flex flex-col justify-between shadow-2xs">
-            <div className="space-y-6">
+          <div className="lg:col-span-7 bg-slate-50 border border-slate-200 rounded-[28px] p-6 sm:p-8 flex flex-col justify-between shadow-2xs text-left">
+            <div className="space-y-6 text-left">
               {/* Image banner */}
-              <div className="relative rounded-xl overflow-hidden aspect-[21/9] border border-slate-200 shadow-xs">
+              <div className="relative rounded-[20px] overflow-hidden aspect-[21/9] border border-slate-200 shadow-xs">
                 <img
                   src={heroDubai}
                   alt="evonix Dubai 20-Year Heritage - International IT Partner in Sialkot Pakistan"
@@ -53,26 +53,26 @@ export const AboutUs: React.FC = () => {
                 </div>
               </div>
 
-              <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
-                  Our Story & International Journey
+              <div className="text-left">
+                <h3 className="text-xl sm:text-2xl font-bold text-[#1E1E1E] text-left">
+                  Our Story &amp; International Journey
                 </h3>
-                <p className="text-slate-600 text-sm sm:text-base mt-3 leading-relaxed">
+                <p className="text-slate-600 text-sm sm:text-base mt-3 leading-[1.55] text-left">
                   {COMPANY_INFO.about.story}
                 </p>
-                <p className="text-slate-600 text-sm sm:text-base mt-2 leading-relaxed">
+                <p className="text-slate-600 text-sm sm:text-base mt-2 leading-[1.55] text-left">
                   After two decades delivering enterprise-level IT infrastructure, custom retail systems, and precision hardware solutions across Dubai and the UAE, our leadership returned home to establish evonix in Sialkot. We offer local manufacturers, exporters, and merchants the identical high-caliber digital engineering they previously had to seek overseas.
                 </p>
               </div>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-slate-200 grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <div className="mt-8 pt-6 border-t border-slate-200 grid grid-cols-2 sm:grid-cols-3 gap-4 text-left">
               <div>
                 <span className="block text-2xl font-black text-red-600">2004</span>
                 <span className="text-xs text-slate-500 font-medium">Dubai IT Roots</span>
               </div>
               <div>
-                <span className="block text-2xl font-black text-slate-900">500+</span>
+                <span className="block text-2xl font-black text-[#1E1E1E]">500+</span>
                 <span className="text-xs text-slate-500 font-medium">Delivered Deployments</span>
               </div>
               <div>
@@ -83,33 +83,33 @@ export const AboutUs: React.FC = () => {
           </div>
 
           {/* Right Column: Mission & Vision */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-xs">
+          <div className="lg:col-span-5 flex flex-col gap-6 text-left">
+            <div className="bg-white border border-slate-200 rounded-[24px] p-6 sm:p-8 shadow-xs text-left">
               <div className="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center mb-4">
                 <Target className="w-5 h-5" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900">Our Mission</h3>
-              <p className="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">
+              <h3 className="text-lg font-bold text-[#1E1E1E] text-left">Our Mission</h3>
+              <p className="text-slate-600 text-xs sm:text-sm mt-2 leading-[1.55] text-left">
                 {COMPANY_INFO.about.mission}
               </p>
             </div>
 
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-xs">
+            <div className="bg-white border border-slate-200 rounded-[24px] p-6 sm:p-8 shadow-xs text-left">
               <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
                 <Compass className="w-5 h-5" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900">Our Vision</h3>
-              <p className="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">
+              <h3 className="text-lg font-bold text-[#1E1E1E] text-left">Our Vision</h3>
+              <p className="text-slate-600 text-xs sm:text-sm mt-2 leading-[1.55] text-left">
                 {COMPANY_INFO.about.vision}
               </p>
             </div>
 
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-xs">
+            <div className="bg-white border border-slate-200 rounded-[24px] p-6 sm:p-8 shadow-xs text-left">
               <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4">
                 <Shield className="w-5 h-5" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900">Enterprise Integrity</h3>
-              <p className="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">
+              <h3 className="text-lg font-bold text-[#1E1E1E] text-left">Enterprise Integrity</h3>
+              <p className="text-slate-600 text-xs sm:text-sm mt-2 leading-[1.55] text-left">
                 Written warranties on all hardware repairs, clean non-proprietary codebase delivery for software clients, and zero vendor lock-in.
               </p>
             </div>
