@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { SHOP_PRODUCTS, COMPANY_INFO } from '../data/content';
 import { ShopProduct } from '../types';
 import { OptimizedImage } from './common/OptimizedImage';
@@ -23,6 +23,13 @@ import {
   Monitor,
   PhoneCall,
   Percent,
+  Clock,
+  Flame,
+  CheckCircle2,
+  TrendingDown,
+  Calculator,
+  SlidersHorizontal,
+  ChevronDown,
 } from 'lucide-react';
 
 interface ShopProps {
@@ -33,41 +40,94 @@ export const Shop: React.FC<ShopProps> = ({ onInquireProduct }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedBrand, setSelectedBrand] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  // Mode switch: 'b2c' shows 20% discounted prices; 'b2b' strictly hides all product prices on profile
+  // Mode switch: 'b2c' shows 20% discounted prices in PKR; 'b2b' strictly hides all product prices on profile
   const [shopMode, setShopMode] = useState<'b2c' | 'b2b'>('b2c');
   const [activeModalProduct, setActiveModalProduct] = useState<ShopProduct | null>(null);
+  const [displayCount, setDisplayCount] = useState<number>(24);
+
+  // Custom price calculator state for comparing Daraz/Market rate
+  const [calculatorInput, setCalculatorInput] = useState<string>('90000');
+
+  // Real-time Countdown Timer for 20% OFF Flash Promo
+  const [timeLeft, setTimeLeft] = useState({
+    hours: 8,
+    minutes: 42,
+    seconds: 15,
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev.seconds > 0) {
+          return { ...prev, seconds: prev.seconds - 1 };
+        } else if (prev.minutes > 0) {
+          return { ...prev, minutes: 59, seconds: 59 };
+        } else if (prev.hours > 0) {
+          return { hours: prev.hours - 1, minutes: 59, seconds: 59 };
+        } else {
+          return { hours: 12, minutes: 0, seconds: 0 };
+        }
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   const categories = [
-    { id: 'all', label: 'All Equipment', count: SHOP_PRODUCTS.length },
+    { id: 'all', label: 'All Hardware', count: SHOP_PRODUCTS.length },
     {
       id: 'Laptops & PCs',
-      label: 'Laptops (20+ Models)',
+      label: 'Laptops (25 Models)',
       count: SHOP_PRODUCTS.filter((p) => p.category === 'Laptops & PCs').length,
     },
     {
+      id: 'Desktops & Workstations',
+      label: 'Desktops & Towers (10)',
+      count: SHOP_PRODUCTS.filter((p) => p.category === 'Desktops & Workstations').length,
+    },
+    {
       id: 'Printers & Scanners',
-      label: 'Printers & Receipt Units',
+      label: 'Printers & Receipts (10)',
       count: SHOP_PRODUCTS.filter((p) => p.category === 'Printers & Scanners').length,
     },
     {
       id: 'POS Hardware',
-      label: 'POS Terminals & Scanners',
+      label: 'POS & Billing (10)',
       count: SHOP_PRODUCTS.filter((p) => p.category === 'POS Hardware').length,
     },
     {
-      id: 'Upgrades & Accessories',
-      label: 'SSD Upgrades & Supplies',
-      count: SHOP_PRODUCTS.filter((p) => p.category === 'Upgrades & Accessories').length,
+      id: 'RAM Upgrades',
+      label: 'RAM Upgrades (12)',
+      count: SHOP_PRODUCTS.filter((p) => p.category === 'RAM Upgrades').length,
+    },
+    {
+      id: 'SSD & Storage',
+      label: 'SSD Solid State (14)',
+      count: SHOP_PRODUCTS.filter((p) => p.category === 'SSD & Storage').length,
+    },
+    {
+      id: 'Hard Disk Drives (HDD)',
+      label: 'Hard Drives HDD (8)',
+      count: SHOP_PRODUCTS.filter((p) => p.category === 'Hard Disk Drives (HDD)').length,
+    },
+    {
+      id: 'Keyboards & Mice',
+      label: 'Keyboards & Mice (10)',
+      count: SHOP_PRODUCTS.filter((p) => p.category === 'Keyboards & Mice').length,
+    },
+    {
+      id: 'Spare Parts & Accessories',
+      label: 'Chargers & Parts (10)',
+      count: SHOP_PRODUCTS.filter((p) => p.category === 'Spare Parts & Accessories').length,
     },
   ];
 
   const laptopBrands = [
-    { id: 'all', label: 'All Laptop Brands' },
-    { id: 'HP', label: 'HP (5)' },
-    { id: 'Dell', label: 'Dell (5)' },
-    { id: 'Lenovo', label: 'Lenovo ThinkPad (5)' },
+    { id: 'all', label: 'All Brands' },
+    { id: 'HP', label: 'HP (7)' },
+    { id: 'Dell', label: 'Dell (6)' },
+    { id: 'Lenovo', label: 'Lenovo (6)' },
     { id: 'Sony VAIO', label: 'Sony VAIO (2)' },
-    { id: 'Apple', label: 'Apple MacBooks (2)' },
+    { id: 'Apple', label: 'Apple (2)' },
     { id: 'Asus', label: 'Asus (2)' },
     { id: 'Acer', label: 'Acer (1)' },
   ];
@@ -95,6 +155,39 @@ export const Shop: React.FC<ShopProps> = ({ onInquireProduct }) => {
     });
   }, [selectedCategory, selectedBrand, searchQuery]);
 
+  const visibleProducts = useMemo(() => {
+    return filteredProducts.slice(0, displayCount);
+  }, [filteredProducts, displayCount]);
+
+  // Schema.org ItemList & Product structured data for Google SEO
+  const shopJsonLd = useMemo(() => {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: 'Evonix Technologies Hardware & Laptops Store Sialkot',
+      description: 'Dubai direct import business laptops, printers, POS terminals, and computer parts in Sialkot with 20% discount in Pakistani Rupees.',
+      url: 'https://store.evonixtec.com',
+      numberOfItems: SHOP_PRODUCTS.length,
+      itemListElement: SHOP_PRODUCTS.slice(0, 30).map((prod, idx) => ({
+        '@type': 'ListItem',
+        position: idx + 1,
+        item: {
+          '@type': 'Product',
+          name: prod.name,
+          description: prod.description,
+          image: prod.imageUrl ? `https://store.evonixtec.com${prod.imageUrl}` : undefined,
+          offers: {
+            '@type': 'Offer',
+            priceCurrency: 'PKR',
+            price: prod.discountedPrice || 50000,
+            availability: 'https://schema.org/InStock',
+            priceValidUntil: '2027-12-31',
+          },
+        },
+      })),
+    };
+  }, []);
+
   const generateWhatsAppLink = (product: ShopProduct) => {
     let priceText = '';
     if (shopMode === 'b2c' && product.discountedPrice) {
@@ -104,7 +197,7 @@ export const Shop: React.FC<ShopProps> = ({ onInquireProduct }) => {
     }
 
     const text = `Hello evonix team,
-I would like to inquire about this hardware:
+I want to order this hardware in Sialkot:
 Product: ${product.name}
 Model/Specs: ${product.processor || product.specs[0]}
 ${product.storage ? `Storage: ${product.storage}` : ''}
@@ -112,49 +205,121 @@ ${product.ram ? `RAM: ${product.ram}` : ''}
 ${priceText}
 Condition: ${product.condition}
 
-Please confirm stock availability and doorstep delivery in Sialkot.`;
+Please confirm stock and doorstep delivery time in Sialkot.`;
     return `https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(text)}`;
   };
 
+  // Calculator comparison calculations
+  const parsedCalcPrice = parseInt(calculatorInput.replace(/[^0-9]/g, ''), 10) || 90000;
+  const calcEvonixPrice = Math.round(parsedCalcPrice * 0.8);
+  const calcSavings = parsedCalcPrice - calcEvonixPrice;
+
   return (
     <section id="shop" className="py-16 md:py-24 bg-white border-b border-slate-200">
+      {/* Dynamic SEO Schema Markup */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(shopJsonLd) }}
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-4xl mb-10 space-y-3 text-left">
+        <div className="max-w-4xl mb-8 space-y-3 text-left">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-xs font-bold text-red-700">
             <ShoppingBag className="w-3.5 h-3.5 text-red-600" />
-            <span>Direct Dubai Hardware Import • Sialkot Lab Tested</span>
+            <span>Dubai Direct Import • 100+ Hardware Items in Sialkot</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#1E1E1E] tracking-tight text-left">
-            Hardware &amp; Equipment Store
+            Hardware, Laptops &amp; Equipment Store
           </h1>
 
           <p className="text-slate-600 text-sm sm:text-base leading-[1.55] text-left">
-            We import certified business laptops, POS billing terminals, and high-speed printers directly from Dubai corporate fleets. Every unit undergoes 40-point hardware testing in our Sialkot lab before delivery.
+            All prices in Pakistani Rupees (PKR). We stock certified business laptops, tower desktops, high-speed printers, RAM, and SSD upgrades with written warranties in Sialkot.
           </p>
         </div>
 
-        {/* 20% Discount Banner & B2C vs B2B Mode Switcher */}
-        <div className="mb-10 p-6 sm:p-8 bg-slate-50 border border-slate-200 rounded-[28px] shadow-2xs text-left">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        {/* ========================================================
+            POSTER 1: LIVE 20% OFF FLASH PROMO WITH COUNTDOWN TIMER
+           ======================================================== */}
+        <div className="mb-10 p-6 sm:p-8 bg-gradient-to-br from-red-600 via-red-700 to-red-800 text-white rounded-[28px] shadow-lg relative overflow-hidden text-left">
+          <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.18),transparent_70%)] pointer-events-none" />
+
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative z-10">
             <div className="space-y-2 max-w-2xl">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-600 text-white text-xs font-bold shadow-xs">
-                <Percent className="w-3.5 h-3.5" />
-                <span>20% Below Market Rate Guarantee</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-xs text-white text-xs font-bold uppercase tracking-wider">
+                <Flame className="w-4 h-4 text-amber-300 animate-pulse" />
+                <span>Special Flash Offer • Promo Code: DUBAI20</span>
               </div>
-              <h2 className="text-xl sm:text-2xl font-black text-[#1E1E1E] tracking-tight">
-                Direct Import Rates with Zero Middleman Fees
+
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white leading-tight">
+                20% OFF Direct Dubai Import Flash Sale
               </h2>
-              <p className="text-xs sm:text-sm text-slate-600 leading-[1.55]">
-                We buy directly in bulk from UAE enterprise off-lease auctions. You get clean Grade-A hardware at prices 20% lower than typical local shops in Pakistan.
+
+              <p className="text-xs sm:text-sm text-red-100 leading-[1.55]">
+                Direct Dubai imports with zero middlemen. Every laptop, printer, and SSD is priced 20% lower than Daraz and local Pakistan retail.
               </p>
             </div>
 
-            {/* Profile Mode Toggle */}
+            {/* Live Ticking Countdown Clock */}
+            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-[20px] p-4 sm:p-5 text-center shrink-0">
+              <div className="flex items-center justify-center gap-1.5 text-xs font-bold text-amber-300 uppercase tracking-wider mb-2">
+                <Clock className="w-4 h-4 animate-spin text-amber-300" style={{ animationDuration: '6s' }} />
+                <span>Offer Closes In:</span>
+              </div>
+
+              <div className="flex items-center justify-center gap-2 sm:gap-3">
+                <div className="bg-black/40 border border-white/15 px-3 py-2 rounded-xl min-w-[56px]">
+                  <span className="text-xl sm:text-2xl font-black text-white font-mono block">
+                    {String(timeLeft.hours).padStart(2, '0')}
+                  </span>
+                  <span className="text-[10px] text-red-200 uppercase font-bold">Hours</span>
+                </div>
+
+                <span className="text-2xl font-black text-white">:</span>
+
+                <div className="bg-black/40 border border-white/15 px-3 py-2 rounded-xl min-w-[56px]">
+                  <span className="text-xl sm:text-2xl font-black text-white font-mono block">
+                    {String(timeLeft.minutes).padStart(2, '0')}
+                  </span>
+                  <span className="text-[10px] text-red-200 uppercase font-bold">Mins</span>
+                </div>
+
+                <span className="text-2xl font-black text-white">:</span>
+
+                <div className="bg-black/40 border border-white/15 px-3 py-2 rounded-xl min-w-[56px]">
+                  <span className="text-xl sm:text-2xl font-black text-amber-300 font-mono block">
+                    {String(timeLeft.seconds).padStart(2, '0')}
+                  </span>
+                  <span className="text-[10px] text-red-200 uppercase font-bold">Secs</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ========================================================
+            POSTER 2: B2C VS B2B PROFILE TOGGLE + MARKET SAVINGS BANNER
+           ======================================================== */}
+        <div className="mb-10 p-6 sm:p-8 bg-slate-50 border border-slate-200 rounded-[28px] shadow-2xs text-left">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div className="space-y-2 max-w-2xl">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 text-white text-xs font-bold">
+                <Shield className="w-3.5 h-3.5 text-emerald-400" />
+                <span>40-Point Sialkot Lab Test &amp; Written Bench Warranty</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-black text-[#1E1E1E] tracking-tight">
+                Compare Prices with Daraz &amp; Local Pakistan Market
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-[1.55]">
+                Example: A laptop selling for PKR 90,000 on Daraz costs only PKR 72,000 at our Sialkot lab. You save PKR 18,000 instantly.
+              </p>
+            </div>
+
+            {/* Profile Mode Switcher */}
             <div className="bg-white p-2 rounded-[20px] border border-slate-200 shadow-2xs shrink-0">
               <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 px-2">
-                Catalog Mode:
+                Catalog Display Mode:
               </div>
               <div className="flex items-center gap-2">
                 <button
@@ -167,7 +332,7 @@ Please confirm stock availability and doorstep delivery in Sialkot.`;
                   }`}
                 >
                   <UserCheck className="w-3.5 h-3.5" />
-                  <span>B2C Store (20% OFF Prices)</span>
+                  <span>B2C Store (20% OFF in PKR)</span>
                 </button>
 
                 <button
@@ -183,11 +348,59 @@ Please confirm stock availability and doorstep delivery in Sialkot.`;
                   <span>B2B Corporate Profile (No Prices)</span>
                 </button>
               </div>
+
               {shopMode === 'b2b' && (
                 <p className="text-[11px] text-slate-500 mt-2 px-2 leading-tight">
-                  B2B Profile Mode active: Prices hidden on products. RFQ quotes provided on request.
+                  B2B Profile Mode active: Prices hidden on products. RFQ provided on request.
                 </p>
               )}
+            </div>
+          </div>
+        </div>
+
+        {/* ========================================================
+            POSTER 3: INTERACTIVE 20% SAVINGS ESTIMATOR
+           ======================================================== */}
+        <div className="mb-10 p-6 bg-slate-100/80 border border-slate-200 rounded-[24px] text-left">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-red-600 shrink-0 shadow-2xs">
+                <Calculator className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="text-sm sm:text-base font-black text-[#1E1E1E]">
+                  Quick 20% Savings Calculator
+                </h4>
+                <p className="text-xs text-slate-600">
+                  Enter any Daraz or market price to see your Evonix discounted rate.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400">
+                  PKR
+                </span>
+                <input
+                  type="number"
+                  aria-label="Enter market price in PKR"
+                  value={calculatorInput}
+                  onChange={(e) => setCalculatorInput(e.target.value)}
+                  placeholder="90000"
+                  className="pl-12 pr-3 py-2 w-36 rounded-xl bg-white border border-slate-300 text-xs font-bold text-[#1E1E1E] focus:outline-none focus:border-red-500 shadow-2xs"
+                />
+              </div>
+
+              <div className="bg-white px-4 py-2 rounded-xl border border-slate-200 text-xs">
+                <span className="text-slate-500 block text-[10px]">Your Evonix Price:</span>
+                <span className="font-black text-red-600 text-sm">PKR {calcEvonixPrice.toLocaleString()}</span>
+              </div>
+
+              <div className="bg-emerald-50 px-4 py-2 rounded-xl border border-emerald-200 text-xs text-emerald-800">
+                <span className="block text-[10px] text-emerald-600 font-bold">You Save:</span>
+                <span className="font-black text-sm">PKR {calcSavings.toLocaleString()} (20% OFF)</span>
+              </div>
             </div>
           </div>
         </div>
@@ -195,15 +408,18 @@ Please confirm stock availability and doorstep delivery in Sialkot.`;
         {/* Search & Category Filter Toolbar */}
         <div className="mb-8 space-y-4">
           <div className="flex flex-col md:flex-row items-stretch md:items-center gap-4">
-            {/* Search input */}
+            {/* Search Input */}
             <div className="relative flex-1">
               <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type="text"
-                aria-label="Search laptops, processors, generation, printers or parts"
-                placeholder="Search Core i5, i7, 11th Gen, 12th Gen, Dell, HP, ThinkPad, Printers..."
+                aria-label="Search 100+ hardware products, laptops, RAM, SSD, or printers"
+                placeholder="Search across 100+ products: Core i5, i7, 11th Gen, DDR4, SSD 512GB, HP, Dell, ThinkPad, Thermal Printers..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setDisplayCount(24);
+                }}
                 className="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-[#1E1E1E] placeholder-slate-400 focus:outline-none focus:border-red-500 shadow-2xs"
               />
               {searchQuery && (
@@ -216,46 +432,49 @@ Please confirm stock availability and doorstep delivery in Sialkot.`;
               )}
             </div>
 
-            {/* Quick status counter */}
+            {/* Total Item Count */}
             <div className="text-xs text-slate-500 font-semibold shrink-0">
-              Showing <span className="font-bold text-[#1E1E1E]">{filteredProducts.length}</span> verified units
+              Showing <span className="font-bold text-[#1E1E1E]">{filteredProducts.length}</span> of {SHOP_PRODUCTS.length} hardware units
             </div>
           </div>
 
-          {/* Main Category Tabs */}
+          {/* Main Category Tabs (All 9 Hardware Categories) */}
           <div className="flex flex-wrap gap-2">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => {
                   setSelectedCategory(cat.id);
+                  setDisplayCount(24);
                   if (cat.id !== 'Laptops & PCs' && cat.id !== 'all') {
                     setSelectedBrand('all');
                   }
                 }}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                   selectedCategory === cat.id
                     ? 'bg-red-600 text-white shadow-2xs'
                     : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
                 <span>{cat.label}</span>
-                <span className="ml-1.5 opacity-80 text-[11px]">({cat.count})</span>
               </button>
             ))}
           </div>
 
-          {/* Laptop Brand Sub-filters (when Laptops or All is active) */}
+          {/* Laptop Brand Sub-filters (shown when Laptops or All is active) */}
           {(selectedCategory === 'all' || selectedCategory === 'Laptops & PCs') && (
             <div className="p-3 bg-slate-50 border border-slate-200 rounded-[20px] flex items-center gap-2 overflow-x-auto text-left">
               <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider shrink-0 px-2">
-                Brand Filter:
+                Laptop Brand:
               </span>
               <div className="flex items-center gap-1.5 flex-nowrap">
                 {laptopBrands.map((brand) => (
                   <button
                     key={brand.id}
-                    onClick={() => setSelectedBrand(brand.id)}
+                    onClick={() => {
+                      setSelectedBrand(brand.id);
+                      setDisplayCount(24);
+                    }}
                     className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
                       selectedBrand === brand.id
                         ? 'bg-slate-900 text-white font-bold'
@@ -270,9 +489,9 @@ Please confirm stock availability and doorstep delivery in Sialkot.`;
           )}
         </div>
 
-        {/* Product Grid (Fluid, 100% Responsive Grid Rows) */}
+        {/* Product Grid (100% Fluid & Responsive Grid Rows) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProducts.map((product) => {
+          {visibleProducts.map((product) => {
             const hasDiscount = Boolean(product.discountedPrice && product.marketPrice);
 
             return (
@@ -460,6 +679,19 @@ Please confirm stock availability and doorstep delivery in Sialkot.`;
           })}
         </div>
 
+        {/* Load More Button for 100+ Products */}
+        {visibleProducts.length < filteredProducts.length && (
+          <div className="mt-12 text-center">
+            <button
+              onClick={() => setDisplayCount((prev) => prev + 24)}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm shadow-sm transition-all cursor-pointer"
+            >
+              <span>Load More Hardware ({filteredProducts.length - visibleProducts.length} Remaining)</span>
+              <ChevronDown className="w-4 h-4" />
+            </button>
+          </div>
+        )}
+
         {/* Empty Search Result Fallback */}
         {filteredProducts.length === 0 && (
           <div className="py-16 text-center bg-slate-50 border border-slate-200 rounded-[28px] max-w-xl mx-auto p-8">
@@ -490,7 +722,7 @@ Please confirm stock availability and doorstep delivery in Sialkot.`;
               </div>
               <h3 className="text-sm sm:text-base font-bold text-[#1E1E1E]">20% Direct Dubai Savings</h3>
               <p className="text-xs text-slate-600 leading-[1.55]">
-                Direct Dubai import cut out third-party middleman markups. You save 20% on every unit.
+                Direct Dubai import cuts out third-party markups. You save 20% on every single unit.
               </p>
             </div>
 
