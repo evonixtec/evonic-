@@ -17,7 +17,7 @@ import { ToolWorkspaceHeader } from './components/common/ToolWorkspaceHeader';
 import { MobileBottomNav } from './components/MobileBottomNav';
 import { PWAInstallBanner } from './components/PWAInstallBanner';
 import { LocalCity, ClusterService, LOCAL_CITIES, CLUSTER_SERVICES } from './data/localClusters';
-import { MessageSquare, Phone, ArrowUp, ArrowRight, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2, FileText, Barcode, Printer, Boxes, SlidersHorizontal, Calculator, Clock, Wifi, Globe } from 'lucide-react';
+import { MessageSquare, Phone, ArrowUp, ArrowRight, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2, FileText, Barcode, Printer, Boxes, SlidersHorizontal, Calculator, Clock, Wifi, Globe, Code, FileCheck } from 'lucide-react';
 import { isToolPage } from './lib/toolUtils';
 import { isToolsSubdomain, isStoreSubdomain, getMainAgencyDomainUrl, getToolsDomainUrl, getStoreDomainUrl } from './lib/domainUtils';
 
@@ -129,6 +129,8 @@ const EtsyFeeCalculator = lazyWithRetry(() => import('./components/EtsyFeeCalcul
 const AmazonFbmCalculator = lazyWithRetry(() => import('./components/AmazonFbmCalculator'));
 const InstallationGuidePage = lazyWithRetry<React.FC<{ onNavigatePage?: (page: any) => void }>>(() => import('./components/InstallationGuidePage').then(m => ({ default: m.InstallationGuidePage })));
 const TrendIntelligenceSuite = lazyWithRetry(() => import('./components/TrendIntelligenceSuite'));
+const SchemaGenerator = lazyWithRetry(() => import('./components/SchemaGenerator'));
+const HsCodeLookup = lazyWithRetry(() => import('./components/HsCodeLookup'));
 
 // Loading spinner fallback for lazy chunks
 const LazyLoaderFallback: React.FC = () => (
@@ -411,6 +413,32 @@ export default function App() {
       path.startsWith('installation-guide')
     ) {
       return 'installation-guide';
+    }
+
+    if (
+      path === 'schema-generator' ||
+      path === 'json-ld-generator' ||
+      path === 'schema' ||
+      path === 'jsonld' ||
+      path === 'json-ld-schema-generator' ||
+      path === 'advanced-json-ld-schema-markup-generator' ||
+      path.startsWith('schema-generator') ||
+      path.startsWith('json-ld')
+    ) {
+      return 'schema-generator';
+    }
+
+    if (
+      path === 'hs-code-lookup' ||
+      path === 'hs-code' ||
+      path === 'custom-duty-lookup' ||
+      path === 'duty-lookup' ||
+      path === 'hscode' ||
+      path === 'global-hs-code-custom-duty-lookup-engine' ||
+      path.startsWith('hs-code') ||
+      path.startsWith('custom-duty')
+    ) {
+      return 'hs-code-lookup';
     }
 
     if (
@@ -1647,6 +1675,42 @@ export default function App() {
           <InstallationGuidePage
             onNavigatePage={(page) => navigateToPage(page as NavPageId)}
           />
+        )}
+
+        {/* ========================================================
+            PAGE: ADVANCED JSON-LD SCHEMA MARKUP GENERATOR
+           ======================================================== */}
+        {currentPage === 'schema-generator' && (
+          <div className="space-y-0">
+            <ToolWorkspaceHeader
+              currentToolId="schema-generator"
+              toolTitle="Advanced JSON-LD Schema Markup Generator"
+              toolCategory="AEO, SEO & Development"
+              toolDescription="Generate valid JSON-LD structured data for Local Business, FAQs, Products, and Software. Optimized for Google AI Overviews."
+              icon={<Code className="w-5 h-5 text-red-500" />}
+              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+              onNavigateToolsHub={() => navigateToPage('tools')}
+            />
+            <SchemaGenerator />
+          </div>
+        )}
+
+        {/* ========================================================
+            PAGE: GLOBAL HS CODE & CUSTOM DUTY LOOKUP ENGINE
+           ======================================================== */}
+        {currentPage === 'hs-code-lookup' && (
+          <div className="space-y-0">
+            <ToolWorkspaceHeader
+              currentToolId="hs-code-lookup"
+              toolTitle="Global HS Code & Custom Duty Lookup Engine"
+              toolCategory="Business & Export"
+              toolDescription="Harmonized System (HS) code finder and estimated import duty calculator for Sialkot exporters and global e-commerce."
+              icon={<FileCheck className="w-5 h-5 text-blue-500" />}
+              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+              onNavigateToolsHub={() => navigateToPage('tools')}
+            />
+            <HsCodeLookup />
+          </div>
         )}
 
         {/* ========================================================

@@ -22,7 +22,9 @@ import {
   Cloud,
   Flame,
   Plus,
-  Plane
+  Plane,
+  Code,
+  FileCheck
 } from 'lucide-react';
 import { NavPageId } from '../types';
 import tripPlannerMockup from '../assets/images/Ai Trip Planner.jpg';
@@ -77,6 +79,54 @@ const TOOLS_COLLECTION: WebToolDefinition[] = [
     accentColor: 'border-blue-300 hover:border-blue-500 group-hover:bg-blue-50/50',
     isMobileCore: true,
     mobileCoreOrder: 1,
+  },
+
+  // ADVANCED JSON-LD SCHEMA MARKUP GENERATOR
+  {
+    id: 'schema-generator',
+    navTarget: 'schema-generator',
+    name: 'Advanced JSON-LD Schema Markup Generator',
+    shortName: 'Schema Generator',
+    category: 'business-export',
+    categoryLabel: 'AEO, SEO & Development',
+    regionFocus: 'Global',
+    isPopular: true,
+    description: 'Generate valid JSON-LD structured data for Local Business, FAQs, Products, and Software. Optimized for Google AI Overviews and SEO rich snippets.',
+    highlights: [
+      'LocalBusiness, FAQPage, Product & SoftwareApplication schemas',
+      'Real-time JSON syntax generation & instant copy to clipboard',
+      'Google Rich Results test integration & clean .jsonld file download',
+      'Optimized for search rankings and rich snippet visibility',
+    ],
+    techSpec: 'Schema.org Standard · Zero Database · Instant Client-Side Export',
+    icon: <Code className="w-6 h-6 text-red-600" />,
+    accentColor: 'border-red-200 hover:border-red-400 group-hover:bg-red-50/50',
+    isMobileCore: true,
+    mobileCoreOrder: 2,
+  },
+
+  // GLOBAL HS CODE & CUSTOM DUTY LOOKUP ENGINE
+  {
+    id: 'hs-code-lookup',
+    navTarget: 'hs-code-lookup',
+    name: 'Global HS Code & Custom Duty Lookup Engine',
+    shortName: 'HS Code & Duty Lookup',
+    category: 'business-export',
+    categoryLabel: 'Business & Export',
+    regionFocus: 'Global',
+    isPopular: true,
+    description: 'Harmonized System (HS) code finder and estimated import duty calculator for Sialkot exporters and global e-commerce across USA, EU, UK, and UAE.',
+    highlights: [
+      '6 to 8-digit HS codes for Leather, Surgical, Sports, Gloves, and IT',
+      'Estimated customs tariffs and VAT rules for USA, EU, UK, and UAE',
+      'US Section 321 duty-free clearance logic for orders under $800',
+      'Mandatory export documentation checklist and Sialkot chamber notes',
+    ],
+    techSpec: 'WCO HS Tariff Nomenclature · Section 321 Solver · SCCI Export Protocol',
+    icon: <FileCheck className="w-6 h-6 text-blue-600" />,
+    accentColor: 'border-blue-200 hover:border-blue-400 group-hover:bg-blue-50/50',
+    isMobileCore: true,
+    mobileCoreOrder: 3,
   },
 
   // 1. GLOBAL MICRO-INVOICE GENERATOR (Core Mobile Tool #1)

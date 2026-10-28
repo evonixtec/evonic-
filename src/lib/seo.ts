@@ -1219,6 +1219,46 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'evonix technologies v15',
     ],
   },
+  'schema-generator': {
+    title: 'Advanced JSON-LD Schema Markup Generator | Evonix Tools',
+    description:
+      'Generate valid JSON-LD structured data for Local Business, FAQs, and Products instantly. Optimized for Google AI Overviews and SEO.',
+    canonicalUrl: `${BASE_URL}/schema-generator`,
+    ogTitle: 'Advanced JSON-LD Schema Markup Generator | Evonix Tools',
+    ogDescription:
+      'Create search-engine-ready structured data instantly for better AEO & SEO rankings and Google rich snippets.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    keywords: [
+      'json ld schema markup generator',
+      'schema generator tool',
+      'local business schema generator',
+      'faq schema generator',
+      'product schema generator',
+      'google rich results schema',
+      'ai overviews schema',
+    ],
+  },
+  'hs-code-lookup': {
+    title: 'Global HS Code & Custom Duty Lookup Engine | Evonix Tools',
+    description:
+      'Accurate Harmonized System (HS) code finder and estimated import duty calculator for Sialkot exporters and global e-commerce across USA, EU, UK, and UAE.',
+    canonicalUrl: `${BASE_URL}/hs-code-lookup`,
+    ogTitle: 'Global HS Code & Custom Duty Lookup Engine | Evonix Tools',
+    ogDescription:
+      'Quickly find export commodity codes and estimate customs tariffs for USA, EU, UK, and UAE.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    keywords: [
+      'hs code lookup engine',
+      'custom duty lookup',
+      'export hs codes sialkot',
+      'section 321 duty calculator',
+      'us import duty calculator',
+      'eu gsp duty tariff',
+      'leather surgical sports hs code',
+    ],
+  },
 };
 
 /**

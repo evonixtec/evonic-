@@ -45,6 +45,9 @@ export const isToolPage = (page?: string | null): boolean => {
     'trip-planner',
     'planner',
     'admin',
+    'lookup',
+    'hs-code',
+    'schema',
   ];
 
   return toolIdentifiers.some((identifier) => normalized.includes(identifier));

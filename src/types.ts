@@ -35,7 +35,9 @@ export type NavPageId =
   | 'doorstep-support'
   | 'sialkot-export-erp'
   | 'guidelines'
-  | 'trend-intelligence-suite';
+  | 'trend-intelligence-suite'
+  | 'schema-generator'
+  | 'hs-code-lookup';
 
 export type PageId = NavPageId;
 
