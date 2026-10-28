@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { getWebpSource, isWebPFormat } from '../../lib/imageOptimization';
-import { ImageOff } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Laptop, Printer, Monitor, HardDrive, Cpu, Package } from 'lucide-react';
 
 export interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
   alt: string;
   webpSrc?: string;
   fallbackSrc?: string;
-  aspectRatio?: string; // e.g. "aspect-video", "aspect-[16/9]", "aspect-[4/3]", "aspect-square"
+  aspectRatio?: string; // e.g. "aspect-video", "aspect-[16/10]", "aspect-square"
   containerClassName?: string;
-  priority?: boolean; // When true: eager loading & high fetch priority for LCP images
+  priority?: boolean;
   zoomOnHover?: boolean;
   badge?: string;
   badgeColor?: 'red' | 'blue' | 'emerald' | 'amber' | 'slate';
@@ -20,7 +19,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   alt,
   webpSrc,
   fallbackSrc,
-  aspectRatio = 'aspect-video',
+  aspectRatio = 'aspect-[16/10]',
   containerClassName = '',
   className = '',
   priority = false,
@@ -29,25 +28,54 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   badgeColor = 'red',
   ...rest
 }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [hasError, setHasError] = useState(false);
-  const [currentSrc, setCurrentSrc] = useState(src);
+  const [currentSrc, setCurrentSrc] = useState<string>(src);
+  const [errorCount, setErrorCount] = useState<number>(0);
+  const [isLoaded, setIsLoaded] = useState<boolean>(true);
+  const imgRef = useRef<HTMLImageElement>(null);
 
-  React.useEffect(() => {
+  // Determine smart fallback based on product keywords
+  const getSmartFallback = (): string => {
+    if (fallbackSrc) return fallbackSrc;
+    const lower = (alt + ' ' + src).toLowerCase();
+    if (lower.includes('printer') || lower.includes('receipt') || lower.includes('tsc')) {
+      return '/images/shop/shop_laser_printer.jpg';
+    }
+    if (lower.includes('desktop') || lower.includes('tower') || lower.includes('pc') || lower.includes('optiplex')) {
+      return '/images/shop/shop_desktop_pc.jpg';
+    }
+    if (lower.includes('pos') || lower.includes('touch') || lower.includes('scanner') || lower.includes('barcode')) {
+      return '/images/shop/shop_pos_touchscreen.jpg';
+    }
+    if (lower.includes('ram') || lower.includes('ssd') || lower.includes('hdd') || lower.includes('drive')) {
+      return '/images/shop/shop_nvme_ssd.jpg';
+    }
+    return '/images/shop/shop_business_laptop.jpg';
+  };
+
+  useEffect(() => {
     setCurrentSrc(src);
-    setIsLoaded(false);
-    setHasError(false);
+    setErrorCount(0);
+    setIsLoaded(true);
   }, [src]);
 
-  // Derive WebP source if explicitly provided or CDN convertible
-  const fallback = fallbackSrc || src;
-  const resolvedWebp = webpSrc || (isWebPFormat(currentSrc) ? currentSrc : getWebpSource(currentSrc));
+  useEffect(() => {
+    if (imgRef.current?.complete) {
+      setIsLoaded(true);
+    }
+  }, [currentSrc]);
 
   const handleImageError = () => {
-    if (currentSrc !== fallback && fallback) {
-      setCurrentSrc(fallback);
+    if (errorCount === 0) {
+      // First attempt: try smart local photographic fallback
+      setErrorCount(1);
+      setCurrentSrc(getSmartFallback());
+    } else if (errorCount === 1) {
+      // Second attempt: try universal laptop hero photo
+      setErrorCount(2);
+      setCurrentSrc('/images/shop/shop_business_laptop.jpg');
     } else {
-      setHasError(true);
+      // Final fallback reached
+      setErrorCount(3);
     }
   };
 
@@ -59,55 +87,54 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
     slate: 'bg-slate-900 text-white',
   }[badgeColor];
 
+  // Helper icon for category if all image loads fail
+  const renderCategoryIcon = () => {
+    const lower = alt.toLowerCase();
+    if (lower.includes('printer')) return <Printer className="w-10 h-10 text-red-600" />;
+    if (lower.includes('desktop')) return <Monitor className="w-10 h-10 text-red-600" />;
+    if (lower.includes('ram') || lower.includes('ssd')) return <HardDrive className="w-10 h-10 text-red-600" />;
+    if (lower.includes('processor') || lower.includes('chip')) return <Cpu className="w-10 h-10 text-red-600" />;
+    if (lower.includes('laptop')) return <Laptop className="w-10 h-10 text-red-600" />;
+    return <Package className="w-10 h-10 text-red-600" />;
+  };
+
   return (
     <div
-      className={`relative overflow-hidden bg-slate-900 ${aspectRatio} ${containerClassName} ${
+      className={`relative overflow-hidden bg-slate-100 ${aspectRatio} ${containerClassName} ${
         zoomOnHover ? 'group' : ''
       }`}
     >
-      {/* Loading Skeleton Shimmer */}
-      {!isLoaded && !hasError && (
-        <div className="absolute inset-0 z-0 bg-slate-800/80 animate-pulse flex items-center justify-center">
-          <div className="w-8 h-8 rounded-full border-2 border-slate-600 border-t-red-600 animate-spin opacity-70" />
-        </div>
-      )}
-
-      {/* Resilient Error Fallback State - High-Tech Blueprint Mockup */}
-      {hasError ? (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-300 p-6 text-center border border-slate-800">
-          <div className="w-14 h-14 rounded-2xl bg-red-600/10 border border-red-500/20 flex items-center justify-center mb-3">
-            <ImageOff className="w-6 h-6 text-red-400 opacity-80" />
+      {errorCount >= 3 ? (
+        /* Clean Apple Crystal White fallback card if image totally unavailable */
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-slate-50 to-slate-100 p-6 text-center border border-slate-200">
+          <div className="w-14 h-14 rounded-2xl bg-white shadow-2xs border border-slate-200 flex items-center justify-center mb-3">
+            {renderCategoryIcon()}
           </div>
-          <p className="text-xs font-semibold text-slate-200 line-clamp-1 max-w-md mb-1">{alt}</p>
-          <span className="text-[11px] font-mono text-slate-400">
-            Interactive Diagnostic Engine • Ready In Browser Runtime
+          <p className="text-xs font-bold text-[#1E1E1E] line-clamp-1 max-w-xs mb-1">{alt}</p>
+          <span className="text-[10px] font-semibold text-red-600 bg-red-50 border border-red-200 px-2 py-0.5 rounded-full">
+            Dubai Certified Stock • Tested in Lab
           </span>
         </div>
       ) : (
-        /* Modern Picture Element with WebP Source & Fallback */
-        <picture className="w-full h-full block">
-          {resolvedWebp && resolvedWebp !== currentSrc && (
-            <source type="image/webp" srcSet={resolvedWebp} />
-          )}
-          <img
-            src={currentSrc}
-            alt={alt}
-            loading={priority ? 'eager' : 'lazy'}
-            decoding="async"
-            fetchPriority={priority ? 'high' : 'low'}
-            onLoad={() => setIsLoaded(true)}
-            onError={handleImageError}
-            className={`w-full h-full object-cover transition-all duration-500 ease-out ${
-              isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-98'
-            } ${zoomOnHover ? 'group-hover:scale-105' : ''} ${className}`}
-            {...rest}
-          />
-        </picture>
+        /* Image Element - always opacity-100 and clearly visible */
+        <img
+          ref={imgRef}
+          src={currentSrc}
+          alt={alt}
+          loading={priority ? 'eager' : 'lazy'}
+          decoding="async"
+          onLoad={() => setIsLoaded(true)}
+          onError={handleImageError}
+          className={`w-full h-full object-cover transition-transform duration-300 ease-out ${
+            zoomOnHover ? 'group-hover:scale-105' : ''
+          } opacity-100 ${className}`}
+          {...rest}
+        />
       )}
 
       {/* Optional Badge Overlay */}
       {badge && (
-        <div className="absolute top-3 left-3 z-10">
+        <div className="absolute top-3 left-3 z-10 pointer-events-none">
           <span
             className={`inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-xs ${badgeColorClasses}`}
           >
@@ -115,13 +142,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
           </span>
         </div>
       )}
-
-      {/* WebP Indicator for Search & SEO */}
-      <div className="absolute bottom-2 right-2 z-10 pointer-events-none opacity-0 group-hover:opacity-80 transition-opacity">
-        <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-black/60 text-emerald-400 backdrop-blur-xs">
-          OPTIMIZED • ISO READY
-        </span>
-      </div>
     </div>
   );
 };
+
