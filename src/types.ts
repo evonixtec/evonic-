@@ -78,6 +78,18 @@ export interface ShopProduct {
   category: string;
   condition: string;
   priceEstimate: string;
+  marketPrice?: number;
+  discountedPrice?: number;
+  discountPercentage?: number;
+  savingAmount?: number;
+  brand?: string;
+  processor?: string;
+  generation?: string;
+  ram?: string;
+  storage?: string;
+  display?: string;
+  graphics?: string;
+  batteryHealth?: string;
   description: string;
   specs: string[];
   warranty: string;
@@ -85,6 +97,7 @@ export interface ShopProduct {
   imageUrl?: string;
   imageWebp?: string;
   imageAlt?: string;
+  featuredBadge?: string;
 }
 
 export interface PortfolioCategory {

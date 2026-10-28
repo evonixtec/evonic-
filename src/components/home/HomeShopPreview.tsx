@@ -77,18 +77,18 @@ export const HomeShopPreview: React.FC<HomeShopPreviewProps> = ({
                 </div>
               </div>
 
-              {/* Price & Single Primary Action */}
+              {/* B2B Profile: No retail price on profile display */}
               <div className="p-6 pt-0 border-t border-slate-200 mt-2 flex items-center justify-between">
                 <div>
-                  <span className="text-[10px] uppercase font-bold text-red-600 block">Pricing</span>
-                  <span className="text-xs font-extrabold text-[#1E1E1E]">{prod.priceEstimate}</span>
+                  <span className="text-[10px] uppercase font-bold text-slate-500 block">Corporate Profile</span>
+                  <span className="text-xs font-extrabold text-[#1E1E1E]">Quote on Request</span>
                 </div>
                 {/* Single Primary Red Button Rule */}
                 <button
                   onClick={() => onInquireProduct(prod.name)}
                   className="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-md shadow-red-600/25 transition-all cursor-pointer"
                 >
-                  Inquire / Quote
+                  Inquire B2B Quote
                 </button>
               </div>
             </div>
