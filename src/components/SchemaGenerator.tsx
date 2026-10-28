@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Code,
   Copy,
@@ -6,7 +6,6 @@ import {
   Download,
   ExternalLink,
   Sparkles,
-  FileCode,
   Building2,
   HelpCircle,
   Package,
@@ -15,17 +14,31 @@ import {
   Plus,
   Trash2,
   RefreshCw,
+  FolderTree,
+  ChevronRight,
+  Home,
 } from 'lucide-react';
 
-export type SchemaType = 'LocalBusiness' | 'FAQPage' | 'Product' | 'SoftwareApplication' | 'Organization';
+export type SchemaType =
+  | 'LocalBusiness'
+  | 'FAQPage'
+  | 'Product'
+  | 'SoftwareApplication'
+  | 'Organization'
+  | 'BreadcrumbList';
 
 interface FaqItem {
   question: string;
   answer: string;
 }
 
+interface BreadcrumbItem {
+  name: string;
+  item: string;
+}
+
 export const SchemaGenerator: React.FC = () => {
-  const [schemaType, setSchemaType] = useState<SchemaType>('LocalBusiness');
+  const [schemaType, setSchemaType] = useState<SchemaType>('BreadcrumbList');
   const [copied, setCopied] = useState<boolean>(false);
 
   // Common Entity Fields
@@ -57,7 +70,7 @@ export const SchemaGenerator: React.FC = () => {
 
   // SoftwareApplication Specific
   const [operatingSystem, setOperatingSystem] = useState<string>('Web, Windows, macOS, Android');
-  const [applicationCategory, setApplicationCategory] = useState<string>('BusinessApplication');
+  const [applicationCategory, setApplicationCategory] = useState<string>('DeveloperApplication');
 
   // FAQPage Specific
   const [faqs, setFaqs] = useState<FaqItem[]>([
@@ -74,6 +87,66 @@ export const SchemaGenerator: React.FC = () => {
       answer: 'Yes. All calculators on Evonix tools are 100% free with no login needed.',
     },
   ]);
+
+  // BreadcrumbList Specific (pre-filled with the exact items specified)
+  const [breadcrumbs, setBreadcrumbs] = useState<BreadcrumbItem[]>([
+    {
+      name: 'Home',
+      item: 'https://tools.evonixtec.com/',
+    },
+    {
+      name: 'Web Tools',
+      item: 'https://tools.evonixtec.com/tools',
+    },
+    {
+      name: 'AEO SEO & Development',
+      item: 'https://tools.evonixtec.com/schema-generator',
+    },
+  ]);
+
+  // Inject exact breadcrumb schema into document head on mount
+  useEffect(() => {
+    const scriptId = 'evonix-schema-generator-breadcrumb-ld';
+    let script = document.getElementById(scriptId) as HTMLScriptElement | null;
+    if (!script) {
+      script = document.createElement('script');
+      script.id = scriptId;
+      script.type = 'application/ld+json';
+      document.head.appendChild(script);
+    }
+
+    const breadcrumbPayload = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://tools.evonixtec.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Web Tools',
+          item: 'https://tools.evonixtec.com/tools',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'AEO SEO & Development',
+          item: 'https://tools.evonixtec.com/schema-generator',
+        },
+      ],
+    };
+
+    script.textContent = JSON.stringify(breadcrumbPayload, null, 2);
+
+    return () => {
+      const el = document.getElementById(scriptId);
+      if (el) el.remove();
+    };
+  }, []);
 
   // Handle Add FAQ
   const handleAddFaq = () => {
@@ -93,6 +166,30 @@ export const SchemaGenerator: React.FC = () => {
     setFaqs(updated);
   };
 
+  // Handle Add Breadcrumb
+  const handleAddBreadcrumb = () => {
+    setBreadcrumbs([
+      ...breadcrumbs,
+      {
+        name: 'New Page',
+        item: `https://tools.evonixtec.com/step-${breadcrumbs.length + 1}`,
+      },
+    ]);
+  };
+
+  // Handle Remove Breadcrumb
+  const handleRemoveBreadcrumb = (index: number) => {
+    if (breadcrumbs.length <= 1) return;
+    setBreadcrumbs(breadcrumbs.filter((_, i) => i !== index));
+  };
+
+  // Handle Update Breadcrumb
+  const handleUpdateBreadcrumb = (index: number, field: 'name' | 'item', value: string) => {
+    const updated = [...breadcrumbs];
+    updated[index][field] = value;
+    setBreadcrumbs(updated);
+  };
+
   // Preset quick fill for test demo
   const handleLoadSample = () => {
     setEntityName('Evonix Technologies');
@@ -109,10 +206,30 @@ export const SchemaGenerator: React.FC = () => {
     setSku('EVX-POS-80MM');
     setProductPrice('12500');
     setPriceCurrency('PKR');
+    setBreadcrumbs([
+      { name: 'Home', item: 'https://tools.evonixtec.com/' },
+      { name: 'Web Tools', item: 'https://tools.evonixtec.com/tools' },
+      { name: 'AEO SEO & Development', item: 'https://tools.evonixtec.com/schema-generator' },
+    ]);
   };
 
   // Generate clean schema object
   const generatedSchema = useMemo(() => {
+    if (schemaType === 'BreadcrumbList') {
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: breadcrumbs
+          .filter((b) => b.name.trim().length > 0)
+          .map((b, idx) => ({
+            '@type': 'ListItem',
+            position: idx + 1,
+            name: b.name.trim(),
+            item: b.item.trim(),
+          })),
+      };
+    }
+
     if (schemaType === 'LocalBusiness') {
       return {
         '@context': 'https://schema.org',
@@ -242,6 +359,7 @@ export const SchemaGenerator: React.FC = () => {
     operatingSystem,
     applicationCategory,
     faqs,
+    breadcrumbs,
   ]);
 
   const jsonString = useMemo(() => {
@@ -275,6 +393,31 @@ export const SchemaGenerator: React.FC = () => {
   return (
     <div className="bg-[#F8F9FA] text-[#1E1E1E] min-h-screen py-8 sm:py-12 px-4 sm:px-6 lg:px-8 font-sans">
       <div className="max-w-6xl mx-auto space-y-8">
+        {/* Visual Breadcrumb Navigation (Apple Crystal White Theme) */}
+        <nav
+          aria-label="Breadcrumb"
+          className="flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-600 bg-white px-4 py-2.5 rounded-xl border border-slate-200 shadow-2xs text-left"
+        >
+          <a
+            href="https://tools.evonixtec.com/"
+            className="flex items-center gap-1 text-slate-700 hover:text-red-600 transition-colors"
+          >
+            <Home className="w-3.5 h-3.5 text-slate-500" />
+            <span>Home</span>
+          </a>
+          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+          <a
+            href="https://tools.evonixtec.com/tools"
+            className="text-slate-700 hover:text-red-600 transition-colors"
+          >
+            Web Tools
+          </a>
+          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+          <span className="text-slate-700">AEO SEO &amp; Development</span>
+          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+          <span className="text-red-600 font-bold">Schema Generator</span>
+        </nav>
+
         {/* Header Block (8pt spacing, left-aligned) */}
         <div className="bg-white p-6 sm:p-8 rounded-[24px] border border-slate-200 shadow-2xs text-left">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -315,6 +458,7 @@ export const SchemaGenerator: React.FC = () => {
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                   {(
                     [
+                      { id: 'BreadcrumbList', label: 'Breadcrumbs', icon: FolderTree },
                       { id: 'LocalBusiness', label: 'Local Business', icon: Building2 },
                       { id: 'FAQPage', label: 'FAQ Page', icon: HelpCircle },
                       { id: 'Product', label: 'Product', icon: Package },
@@ -344,7 +488,75 @@ export const SchemaGenerator: React.FC = () => {
               </div>
 
               {/* Dynamic Form Fields based on Type */}
-              {schemaType === 'FAQPage' ? (
+              {schemaType === 'BreadcrumbList' ? (
+                /* Breadcrumb Builder */
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                      Breadcrumb Hierarchy ({breadcrumbs.length} Levels)
+                    </label>
+                    <button
+                      type="button"
+                      onClick={handleAddBreadcrumb}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold cursor-pointer"
+                    >
+                      <Plus className="w-3.5 h-3.5" />
+                      <span>Add Level</span>
+                    </button>
+                  </div>
+
+                  <div className="space-y-4 max-h-[460px] overflow-y-auto pr-1">
+                    {breadcrumbs.map((b, idx) => (
+                      <div key={idx} className="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="text-[11px] font-bold text-slate-600 uppercase flex items-center gap-1.5">
+                            <span className="w-5 h-5 rounded-full bg-red-600 text-white flex items-center justify-center text-[10px] font-mono font-bold">
+                              {idx + 1}
+                            </span>
+                            Position {idx + 1}
+                          </span>
+                          {breadcrumbs.length > 1 && (
+                            <button
+                              type="button"
+                              onClick={() => handleRemoveBreadcrumb(idx)}
+                              className="text-slate-400 hover:text-red-600 p-1 cursor-pointer"
+                              title="Delete breadcrumb level"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          )}
+                        </div>
+
+                        <div>
+                          <label className="block text-[10px] font-bold text-slate-500 uppercase mb-0.5">
+                            Breadcrumb Name
+                          </label>
+                          <input
+                            type="text"
+                            value={b.name}
+                            onChange={(e) => handleUpdateBreadcrumb(idx, 'name', e.target.value)}
+                            placeholder="e.g. Home, Web Tools, Category"
+                            className="w-full p-2.5 rounded-lg border border-slate-200 bg-white text-xs text-[#1E1E1E] focus:outline-none focus:border-red-500 font-medium"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-[10px] font-bold text-slate-500 uppercase mb-0.5">
+                            Target Absolute URL
+                          </label>
+                          <input
+                            type="url"
+                            value={b.item}
+                            onChange={(e) => handleUpdateBreadcrumb(idx, 'item', e.target.value)}
+                            placeholder="https://tools.evonixtec.com/..."
+                            className="w-full p-2.5 rounded-lg border border-slate-200 bg-white text-xs text-[#1E1E1E] focus:outline-none focus:border-red-500 font-mono"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : schemaType === 'FAQPage' ? (
                 /* FAQ Builder */
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
@@ -599,7 +811,7 @@ export const SchemaGenerator: React.FC = () => {
                             type="text"
                             value={applicationCategory}
                             onChange={(e) => setApplicationCategory(e.target.value)}
-                            placeholder="BusinessApplication"
+                            placeholder="DeveloperApplication"
                             className="w-full p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs text-[#1E1E1E] focus:outline-none focus:border-red-500"
                           />
                         </div>

@@ -1339,6 +1339,12 @@ function generateRouteStructuredData(pageId: NavPageId): object {
     breadcrumbItems.push({ name: 'Tech Blogs & Guides', url: `${BASE_URL}/guides` });
   } else if (pageId === 'contact') {
     breadcrumbItems.push({ name: 'Contact & On-Site Support', url: `${BASE_URL}/contact` });
+  } else if (pageId === 'schema-generator') {
+    breadcrumbItems.push({ name: 'Web Tools', url: `${BASE_URL}/tools` });
+    breadcrumbItems.push({ name: 'AEO SEO & Development', url: `${BASE_URL}/schema-generator` });
+  } else if (pageId === 'hs-code-lookup') {
+    breadcrumbItems.push({ name: 'Web Tools', url: `${BASE_URL}/tools` });
+    breadcrumbItems.push({ name: 'Business & Export', url: `${BASE_URL}/hs-code-lookup` });
   }
 
   graph.push(buildBreadcrumbSchema(breadcrumbItems));
