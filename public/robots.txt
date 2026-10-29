@@ -1,21 +1,11 @@
-# robots.txt for evonix technologies (https://www.evonixtec.com)
-# Full crawler permissions for standard search engines, AI models, and Cloud agents.
+# robots.txt for evonix technologies (https://evonixtec.com)
+# Full crawler permissions for standard search engines, AI models, and answer engines.
 
 User-agent: *
 Disallow: /admin
 Disallow: /admin/
 Disallow: /dashboard
 Disallow: /portal
-Allow: /
-
-# OpenAI / ChatGPT Crawlers & Search Agents
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: OAI-SearchBot
 Allow: /
 
 # Google Search & Google AI (Gemini / AI Overviews)
@@ -28,6 +18,26 @@ Allow: /
 User-agent: Googlebot-Image
 Allow: /
 
+# Microsoft Bing & Copilot
+User-agent: Bingbot
+Allow: /
+
+User-agent: msnbot
+Allow: /
+
+User-agent: BingPreview
+Allow: /
+
+# OpenAI / ChatGPT Crawlers & Search Agents
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
 # Anthropic Claude Crawlers
 User-agent: ClaudeBot
 Allow: /
@@ -38,7 +48,7 @@ Allow: /
 User-agent: anthropic-ai
 Allow: /
 
-# Perplexity AI Crawler
+# Perplexity AI Search Crawler
 User-agent: PerplexityBot
 Allow: /
 
@@ -49,24 +59,27 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-# Microsoft Bing & Copilot
-User-agent: Bingbot
+# Meta AI & Open Knowledge Crawlers
+User-agent: Meta-ExternalAgent
 Allow: /
 
-User-agent: msnbot
+User-agent: Cohere-ai
 Allow: /
 
-# Other Knowledge Base Crawlers
 User-agent: CCBot
 Allow: /
 
 User-agent: Bytespider
 Allow: /
 
-# Sitemaps and AI Machine-Readable Specifications
+User-agent: Diffbot
+Allow: /
+
+# Sitemaps (HTTPS)
 Sitemap: https://evonixtec.com/sitemap.xml
 Sitemap: https://tools.evonixtec.com/sitemap.xml
 Sitemap: https://store.evonixtec.com/sitemap.xml
+
 # LLM Knowledge Base Endpoints:
 # https://evonixtec.com/llms.txt
 # https://evonixtec.com/llms-full.txt

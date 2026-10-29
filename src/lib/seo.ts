@@ -1722,13 +1722,12 @@ export function applyPageSEO(
   // Primary Meta & Robots Directives
   updateMetaTag('name', 'description', meta.description);
   updateMetaTag('name', 'keywords', meta.keywords.join(', '));
-  if (pageId === 'admin') {
-    updateMetaTag('name', 'robots', 'noindex, nofollow, noarchive');
-    updateMetaTag('name', 'googlebot', 'noindex, nofollow');
-  } else {
-    updateMetaTag('name', 'robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-    updateMetaTag('name', 'googlebot', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-  }
+  // Universal Indexation Directives: No noindex tags allowed anywhere
+  updateMetaTag('name', 'robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+  updateMetaTag('name', 'googlebot', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+  updateMetaTag('name', 'bingbot', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+  updateMetaTag('name', 'google-extended', 'index, follow');
+  updateMetaTag('name', 'gptbot', 'index, follow');
 
   // Open Graph
   updateMetaTag('property', 'og:title', meta.ogTitle);
