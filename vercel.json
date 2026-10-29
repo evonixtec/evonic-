@@ -88,6 +88,150 @@
       "has": [{ "type": "host", "value": "www.evonixtec.com" }],
       "destination": "https://store.evonixtec.com",
       "permanent": true
+    },
+    {
+      "source": "/services/doorstep-support/:path*",
+      "has": [{ "type": "host", "value": "evonixtec.com" }],
+      "destination": "https://store.evonixtec.com/services/doorstep-support",
+      "permanent": true
+    },
+    {
+      "source": "/services/doorstep-support/:path*",
+      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
+      "destination": "https://store.evonixtec.com/services/doorstep-support",
+      "permanent": true
+    },
+    {
+      "source": "/services/doorstep-support",
+      "has": [{ "type": "host", "value": "evonixtec.com" }],
+      "destination": "https://store.evonixtec.com/services/doorstep-support",
+      "permanent": true
+    },
+    {
+      "source": "/services/doorstep-support",
+      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
+      "destination": "https://store.evonixtec.com/services/doorstep-support",
+      "permanent": true
+    },
+    {
+      "source": "/doorstep-support/:path*",
+      "has": [{ "type": "host", "value": "evonixtec.com" }],
+      "destination": "https://store.evonixtec.com/services/doorstep-support",
+      "permanent": true
+    },
+    {
+      "source": "/doorstep-support/:path*",
+      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
+      "destination": "https://store.evonixtec.com/services/doorstep-support",
+      "permanent": true
+    },
+    {
+      "source": "/doorstep-support",
+      "has": [{ "type": "host", "value": "evonixtec.com" }],
+      "destination": "https://store.evonixtec.com/services/doorstep-support",
+      "permanent": true
+    },
+    {
+      "source": "/doorstep-support",
+      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
+      "destination": "https://store.evonixtec.com/services/doorstep-support",
+      "permanent": true
+    },
+    {
+      "source": "/live-repair-tracker/:path*",
+      "has": [{ "type": "host", "value": "evonixtec.com" }],
+      "destination": "https://store.evonixtec.com/tracker",
+      "permanent": true
+    },
+    {
+      "source": "/live-repair-tracker/:path*",
+      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
+      "destination": "https://store.evonixtec.com/tracker",
+      "permanent": true
+    },
+    {
+      "source": "/live-repair-tracker",
+      "has": [{ "type": "host", "value": "evonixtec.com" }],
+      "destination": "https://store.evonixtec.com/tracker",
+      "permanent": true
+    },
+    {
+      "source": "/live-repair-tracker",
+      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
+      "destination": "https://store.evonixtec.com/tracker",
+      "permanent": true
+    },
+    {
+      "source": "/repair-tracker/:path*",
+      "has": [{ "type": "host", "value": "evonixtec.com" }],
+      "destination": "https://store.evonixtec.com/tracker",
+      "permanent": true
+    },
+    {
+      "source": "/repair-tracker/:path*",
+      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
+      "destination": "https://store.evonixtec.com/tracker",
+      "permanent": true
+    },
+    {
+      "source": "/repair-tracker",
+      "has": [{ "type": "host", "value": "evonixtec.com" }],
+      "destination": "https://store.evonixtec.com/tracker",
+      "permanent": true
+    },
+    {
+      "source": "/repair-tracker",
+      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
+      "destination": "https://store.evonixtec.com/tracker",
+      "permanent": true
+    },
+    {
+      "source": "/printer-diagnostics/:path*",
+      "has": [{ "type": "host", "value": "evonixtec.com" }],
+      "destination": "https://store.evonixtec.com",
+      "permanent": true
+    },
+    {
+      "source": "/printer-diagnostics/:path*",
+      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
+      "destination": "https://store.evonixtec.com",
+      "permanent": true
+    },
+    {
+      "source": "/printer-diagnostics",
+      "has": [{ "type": "host", "value": "evonixtec.com" }],
+      "destination": "https://store.evonixtec.com",
+      "permanent": true
+    },
+    {
+      "source": "/printer-diagnostics",
+      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
+      "destination": "https://store.evonixtec.com",
+      "permanent": true
+    },
+    {
+      "source": "/printer-troubleshooter/:path*",
+      "has": [{ "type": "host", "value": "evonixtec.com" }],
+      "destination": "https://store.evonixtec.com",
+      "permanent": true
+    },
+    {
+      "source": "/printer-troubleshooter",
+      "has": [{ "type": "host", "value": "evonixtec.com" }],
+      "destination": "https://store.evonixtec.com",
+      "permanent": true
+    },
+    {
+      "source": "/bench-intake-pass/:path*",
+      "has": [{ "type": "host", "value": "evonixtec.com" }],
+      "destination": "https://store.evonixtec.com/tracker",
+      "permanent": true
+    },
+    {
+      "source": "/bench-intake-pass",
+      "has": [{ "type": "host", "value": "evonixtec.com" }],
+      "destination": "https://store.evonixtec.com/tracker",
+      "permanent": true
     }
   ],
   "headers": [

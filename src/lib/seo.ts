@@ -13,7 +13,9 @@ export interface PageMetadata {
   structuredData?: object;
 }
 
-const BASE_URL = 'https://www.evonixtec.com';
+const BASE_URL = 'https://evonixtec.com';
+const STORE_BASE_URL = 'https://store.evonixtec.com';
+const TOOLS_BASE_URL = 'https://tools.evonixtec.com';
 const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.jpg`;
 
 /**
@@ -23,14 +25,14 @@ export const LOCAL_BUSINESS_SCHEMA = {
   '@type': 'LocalBusiness',
   '@id': `${BASE_URL}/#business`,
   name: 'evonix technologies',
-  alternateName: 'evonix IT & Laptop Diagnostics Lab',
+  alternateName: 'evonix Technologies – Enterprise Software & AI House',
   image: DEFAULT_OG_IMAGE,
   url: `${BASE_URL}/`,
   telephone: '+92 326 324 4002',
   email: 'evonixtec@gmail.com',
-  priceRange: 'PKR 1500 - PKR 85000',
+  priceRange: 'PKR 50000 - PKR 1500000',
   currenciesAccepted: 'PKR, USD, AED, EUR',
-  paymentAccepted: 'Cash, Bank Transfer, EasyPaisa, JazzCash, Raast',
+  paymentAccepted: 'Bank Transfer, Wire, Credit Card, Raast',
   hasMap: 'https://maps.google.com/?q=Kotli+Behram+Sialkot+Pakistan',
   address: {
     '@type': 'PostalAddress',
@@ -56,7 +58,6 @@ export const LOCAL_BUSINESS_SCHEMA = {
   areaServed: [
     { '@type': 'City', name: 'Sialkot' },
     { '@type': 'AdministrativeArea', name: 'Kotli Behram Sialkot' },
-    { '@type': 'AdministrativeArea', name: 'Kotli Behram Sialkot' },
     { '@type': 'AdministrativeArea', name: 'Sialkot Cantt' },
     { '@type': 'AdministrativeArea', name: 'Paris Road Sialkot' },
     { '@type': 'AdministrativeArea', name: 'Daska Road Sialkot' },
@@ -67,16 +68,16 @@ export const LOCAL_BUSINESS_SCHEMA = {
     { '@type': 'Country', name: 'United Arab Emirates' },
   ],
   knowsAbout: [
-    'IT Consultancy',
-    'Hardware Maintenance Services',
-    'Industrial Factory IT Systems',
-    'Chip-Level Motherboard Repair',
-    'Retail POS Systems',
-    'Custom Web Development',
-    'Industrial Network Engineering',
+    'Enterprise Software Engineering',
+    'Custom Industrial ERP Systems',
+    'Cloud Architecture & Microservices',
+    'Autonomous AI Automation Pipelines',
+    'High-Throughput Web Applications',
+    'Export Manufacturing Supply Chain Software',
+    'WeBOC Customs & Tax Integration',
   ],
   description:
-    'Premier IT consultancy and industrial hardware maintenance services in Sialkot, delivering enterprise website engineering, custom retail POS systems, and chip-level motherboard & printer repair backed by 20+ years Dubai international experience.',
+    'Premier B2B enterprise software engineering agency and cloud consultancy in Sialkot, delivering high-performance custom web applications, industrial ERP systems, and private AI automation backed by 20+ years Dubai international experience.',
 };
 
 /**
@@ -148,22 +149,22 @@ export const INDIVIDUAL_SERVICES_SCHEMAS = [
   },
   {
     '@type': 'Service',
-    '@id': `${BASE_URL}/services#laptop-repair`,
-    name: 'Laptop & Desktop Motherboard Chip-Level Micro-Soldering Repair',
-    serviceType: 'Computer Hardware Diagnostic & Repair',
-    category: 'Hardware Repair',
+    '@id': `${BASE_URL}/services#enterprise-software`,
+    name: 'Bespoke Enterprise Software & Microservices Architecture',
+    serviceType: 'Enterprise Software Development & Systems Architecture',
+    category: 'Enterprise Software',
     description:
-      'Precision chip-level motherboard troubleshooting, 19V rail short-circuit injection, BGA chip rework, liquid damage ultrasonic cleaning, and cracked display replacement in Sialkot.',
+      'High-throughput distributed systems, event-driven microservices, sub-second latency transactional databases, and resilient API gateways engineered to Dubai standards.',
     provider: { '@id': `${BASE_URL}/#business` },
     areaServed: [
       { '@type': 'AdministrativeArea', name: 'Paris Road Sialkot' },
       { '@type': 'AdministrativeArea', name: 'Sialkot Cantt' },
       { '@type': 'AdministrativeArea', name: 'Daska Road' },
     ],
-    termsOfService: `${BASE_URL}/warranty-policy`,
+    termsOfService: `${BASE_URL}/terms-and-conditions`,
     offers: {
       '@type': 'Offer',
-      price: '2500',
+      price: '150000',
       priceCurrency: 'PKR',
       priceValidUntil: '2026-12-31',
       availability: 'https://schema.org/InStock',
@@ -171,17 +172,17 @@ export const INDIVIDUAL_SERVICES_SCHEMAS = [
   },
   {
     '@type': 'Service',
-    '@id': `${BASE_URL}/services#printer-repair`,
-    name: 'LaserJet & Thermal Receipt Printer Repair Sialkot',
-    serviceType: 'Office Equipment & Printer Maintenance',
-    category: 'Printer Servicing',
+    '@id': `${BASE_URL}/services#ai-solutions`,
+    name: 'Private AI Automation & Intelligent Agent Pipelines',
+    serviceType: 'Artificial Intelligence & Machine Learning Engineering',
+    category: 'AI Solutions',
     description:
-      'HP LaserJet 50.1/50.4 fuser error restoration, repeating defect distance roller replacement (OPC drum, PCR, fuser sleeve), and retail 80mm POS auto-cutter jam repairs.',
+      'Private enterprise LLM integration, intelligent document extraction, export invoice validation, and predictive manufacturing workflow automation.',
     provider: { '@id': `${BASE_URL}/#business` },
     areaServed: { '@type': 'City', name: 'Sialkot' },
     offers: {
       '@type': 'Offer',
-      price: '1500',
+      price: '120000',
       priceCurrency: 'PKR',
       priceValidUntil: '2026-12-31',
       availability: 'https://schema.org/InStock',
@@ -426,59 +427,47 @@ export const INDIVIDUAL_PRODUCTS_SCHEMAS = [
  */
 export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   home: {
-    title: 'evonix technologies – IT Consultancy & Hardware Maintenance Services in Sialkot',
+    title: 'evonix technologies – Enterprise Software, AI Solutions & Cloud Architecture',
     description:
-      'Leading IT consultancy and industrial hardware maintenance services in Sialkot. Enterprise website engineering, retail POS systems, and factory IT support backed by 20+ years Dubai expertise.',
-    ogTitle: 'evonix technologies – IT Consultancy & Hardware Maintenance Services in Sialkot',
+      'Premier B2B software engineering agency and enterprise solutions provider. High-performance custom web applications, multi-branch industrial ERPs, and private AI pipelines engineered to Dubai standards.',
+    ogTitle: 'evonix technologies – Enterprise Software, AI Solutions & Cloud Architecture',
     ogDescription:
-      'Industrial IT consultancy, hardware maintenance services, custom software, and chip-level computer repairs in Sialkot backed by 20+ years Dubai engineering excellence.',
+      'B2B software engineering, high-availability cloud architecture, and Sialkot industrial export ERPs backed by 20+ years Dubai technology leadership.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalUrl: `${BASE_URL}/`,
     keywords: [
-      'IT consultancy Sialkot',
-      'hardware maintenance services Sialkot',
-      'industrial hardware maintenance Sialkot',
-      'IT company in Sialkot',
-      'factory IT infrastructure Sialkot',
-      'IT maintenance contract Sialkot',
-      'best software house in Sialkot',
-      'website development Sialkot',
-      'custom software development Sialkot',
-      'retail POS system Sialkot',
-      'computer repair in Sialkot',
-      'laptop repairing Sialkot Cantt',
-      'IT solutions Paris Road Sialkot',
-      'Dubai IT experience in Pakistan',
+      'enterprise software Sialkot',
+      'B2B software engineering',
+      'custom ERP software Sialkot',
+      'AI solutions Sialkot',
+      'cloud architecture Sialkot',
+      'software house in Sialkot',
+      'export manufacturing ERP',
+      'Dubai software expertise',
+      'evonix technologies',
     ],
   },
 
   services: {
-    title: 'IT Consultancy & Hardware Maintenance Services Sialkot | evonix',
+    title: 'Enterprise Software & Cloud Technology Solutions | evonix',
     description:
-      'Premier IT consultancy & industrial hardware maintenance services in Sialkot: enterprise factory networks, AMC server support, custom POS, and motherboard repair.',
-    ogTitle: 'IT Consultancy & Hardware Maintenance Services in Sialkot – evonix',
+      'Premier B2B software engineering & industrial solutions: high-availability distributed systems, custom export ERPs, private AI pipelines, and cloud architecture.',
+    ogTitle: 'Enterprise Software & Cloud Engineering Services – evonix',
     ogDescription:
-      'Full-suite industrial IT consultancy, hardware maintenance contracts, POS software, and motherboard repair with 20+ years Dubai technical excellence.',
+      'Full-suite enterprise software development, manufacturing ERPs, WeBOC customs integration, and private AI automation with 20+ years Dubai technical excellence.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalUrl: `${BASE_URL}/services`,
     keywords: [
-      'IT consultancy Sialkot',
-      'hardware maintenance services Sialkot',
-      'industrial hardware maintenance Sialkot',
-      'IT maintenance contract AMC Sialkot',
-      'factory IT support Sialkot',
-      'IT services in Sialkot',
-      'web development Sialkot',
-      'website design company Sialkot',
-      'custom POS software Sialkot',
-      'point of sale retail Sialkot',
-      'laptop repairing Sialkot',
-      'printer repairing Sialkot',
-      'motherboard chip level repair Sialkot',
-      'CCTV camera installation Sialkot',
-      'doorstep IT support Sialkot',
+      'enterprise software services',
+      'custom software development Sialkot',
+      'export ERP software Sialkot',
+      'B2B web development',
+      'cloud architecture',
+      'AI automation pipelines',
+      'software consultancy Sialkot',
+      'Sialkot manufacturing ERP',
     ],
   },
 
@@ -504,24 +493,22 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   shop: {
-    title: 'IT Hardware & POS Shop Sialkot – Laptops & Printers | evonix',
+    title: 'IT Hardware, POS Systems & Laptops | store.evonixtec.com',
     description:
-      'Buy business laptops, touch POS terminals, 80mm thermal receipt printers, and barcode scanners in Sialkot with local warranty and doorstep setup. Order today.',
-    ogTitle: 'IT Hardware & POS Shop Sialkot – Laptops, Printers & Scanners',
+      'Buy business laptops, touch POS terminals, 80mm thermal receipt printers, and barcode scanners with local warranty and doorstep setup on store.evonixtec.com.',
+    ogTitle: 'IT Hardware & POS Shop – store.evonixtec.com',
     ogDescription:
-      'Imported commercial laptops, touch POS machines, thermal receipt printers, and barcode scanners available in Sialkot with local technical warranty.',
+      'Imported commercial laptops, touch POS machines, thermal receipt printers, and barcode scanners on store.evonixtec.com.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
-    canonicalUrl: `${BASE_URL}/shop`,
+    canonicalUrl: `${STORE_BASE_URL}/shop`,
     keywords: [
       'buy laptop in Sialkot',
       'business laptop Sialkot',
-      'refurbished laptops Sialkot Paris Road',
       'POS machine price in Sialkot',
       'thermal receipt printer Sialkot',
       'barcode scanner Sialkot',
       'touch screen POS terminal Sialkot',
-      'computer hardware shop Sialkot',
     ],
   },
 
@@ -908,10 +895,10 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     keywords: ['admin security', 'internal portal'],
   },
   'doorstep-support': {
-    title: 'Doorstep IT Support & On-Site Hardware Repair Sialkot | evonix',
+    title: 'Doorstep IT Support & On-Site Hardware Repair | store.evonixtec.com',
     description:
-      'Emergency doorstep IT engineer dispatch in Sialkot, Sambrial, Daska & Wazirabad. 45-min arrival for factory POS, server crashes, and network failure.',
-    canonicalUrl: `${BASE_URL}/services/doorstep-support`,
+      'Emergency doorstep IT engineer dispatch in Sialkot, Sambrial, Daska & Wazirabad. 45-min arrival for factory POS, server crashes, and network failure on store.evonixtec.com.',
+    canonicalUrl: `${STORE_BASE_URL}/services/doorstep-support`,
     ogTitle: 'Doorstep IT Support & On-Site Hardware Repair in Sialkot',
     ogDescription:
       'Fast on-site tech support in Sialkot. Certified engineers reach your shop or factory within 45 minutes.',
@@ -1688,31 +1675,36 @@ export function applyPageSEO(
   // Determine exact self-referential canonical URL
   let canonicalUrl = overrideCanonicalUrl || meta.canonicalUrl;
   if (!overrideCanonicalUrl && typeof window !== 'undefined') {
+    const hostname = window.location.hostname.toLowerCase();
     const rawPath = window.location.pathname.replace(/\/+$/, '') || '/';
-    if (rawPath === '/locations/wazirabad' || rawPath === '/location/wazirabad') {
-      canonicalUrl = `${BASE_URL}/locations/wazirabad`;
-    } else if (rawPath === '/locations/sambrial' || rawPath === '/location/sambrial') {
-      canonicalUrl = `${BASE_URL}/locations/sambrial`;
-    } else if (rawPath === '/services/doorstep-support' || rawPath === '/doorstep-support') {
-      canonicalUrl = `${BASE_URL}/services/doorstep-support`;
-    } else if (rawPath === '/sialkot-export-erp') {
-      canonicalUrl = `${BASE_URL}/sialkot-export-erp`;
-    } else if (rawPath === '/guidelines') {
-      canonicalUrl = `${BASE_URL}/guidelines`;
-    } else if (rawPath === '/factory-network-tester') {
-      canonicalUrl = `${BASE_URL}/factory-network-tester`;
-    } else if (rawPath === '/amazon-fba-fee-calculator' || rawPath === '/amazon-fba-calculator') {
-      canonicalUrl = `${BASE_URL}/amazon-fba-fee-calculator`;
-    } else if (rawPath === '/etsy-fee-calculator' || rawPath === '/etsy-calculator') {
-      canonicalUrl = `${BASE_URL}/etsy-fee-calculator`;
-    } else if (rawPath === '/amazon-fbm-calculator' || rawPath === '/amazon-fbm-fee-calculator' || rawPath === '/fbm-calculator') {
-      canonicalUrl = `${BASE_URL}/amazon-fbm-calculator`;
-    } else if (rawPath === '/ebay-fee-calculator' || rawPath === '/ebay-calculator') {
-      canonicalUrl = `${BASE_URL}/ebay-fee-calculator`;
-    } else if (rawPath === '/shopify-fee-calculator' || rawPath === '/shopify-calculator') {
-      canonicalUrl = `${BASE_URL}/shopify-fee-calculator`;
-    } else if (rawPath === '/tiktok-shop-fee-calculator' || rawPath === '/tiktok-shop') {
-      canonicalUrl = `${BASE_URL}/tiktok-shop-fee-calculator`;
+    const isStore = hostname === 'store.evonixtec.com' || hostname.startsWith('store.') || window.location.search.includes('subdomain=store');
+    const isTools = hostname === 'tools.evonixtec.com' || hostname.startsWith('tools.') || window.location.search.includes('subdomain=tools');
+
+    if (isStore) {
+      // Strict self-referencing absolute canonicals for store.evonixtec.com
+      canonicalUrl = `${STORE_BASE_URL}${rawPath === '/' ? '' : rawPath}`;
+    } else if (isTools) {
+      // Strict self-referencing absolute canonicals for tools.evonixtec.com
+      canonicalUrl = `${TOOLS_BASE_URL}${rawPath === '/' ? '' : rawPath}`;
+    } else {
+      // Strict self-referencing absolute canonicals for evonixtec.com (main enterprise domain)
+      if (rawPath === '/locations/wazirabad' || rawPath === '/location/wazirabad') {
+        canonicalUrl = `${BASE_URL}/locations/wazirabad`;
+      } else if (rawPath === '/locations/sambrial' || rawPath === '/location/sambrial') {
+        canonicalUrl = `${BASE_URL}/locations/sambrial`;
+      } else if (rawPath === '/sialkot-export-erp') {
+        canonicalUrl = `${BASE_URL}/sialkot-export-erp`;
+      } else if (rawPath === '/guidelines') {
+        canonicalUrl = `${BASE_URL}/guidelines`;
+      } else if (rawPath === '/factory-network-tester') {
+        canonicalUrl = `${BASE_URL}/factory-network-tester`;
+      } else if (rawPath === '/schema-generator') {
+        canonicalUrl = `${BASE_URL}/schema-generator`;
+      } else if (rawPath === '/hs-code-lookup') {
+        canonicalUrl = `${BASE_URL}/hs-code-lookup`;
+      } else {
+        canonicalUrl = `${BASE_URL}${rawPath === '/' ? '/' : rawPath}`;
+      }
     }
   }
 
