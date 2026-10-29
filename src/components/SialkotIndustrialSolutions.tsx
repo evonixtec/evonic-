@@ -187,19 +187,19 @@ export const SialkotIndustrialSolutions: React.FC<SialkotIndustrialSolutionsProp
   const IconComponent = currentVertical.icon;
 
   return (
-    <section id="sialkot-industrial-solutions" className="py-16 sm:py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="sialkot-industrial-solutions" className="py-20 sm:py-24 bg-[#F8F9FA] border-b border-slate-200">
+      <div id="sialkot-industrial-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 text-slate-800 text-xs font-bold uppercase tracking-wider mb-4 border border-slate-200">
-            <Factory className="w-3.5 h-3.5 text-red-600" />
-            <span>Sialkot Export Manufacturing Systems</span>
+        <div className="text-left max-w-3xl mb-12">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 text-white text-xs font-bold uppercase tracking-wider mb-4 border border-slate-800">
+            <Factory className="w-3.5 h-3.5 text-amber-400" />
+            <span>Dedicated Sialkot Industrial Section</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Tailored ERP & Industrial Software for Sialkot Exporters
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#1E1E1E] tracking-tight">
+            Industrial ERP &amp; Supply Chain Hub for Sialkot Exporters
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
-            Standard foreign ERPs do not understand Sialkot piece-rate labor, Daska Road forging tolerances, Sambrial ball pressure logs, or Chamber of Commerce export manifests. We build fast, offline-first systems specifically engineered for our hometown industry.
+          <p className="mt-3 text-sm sm:text-base text-slate-600 leading-[1.55]">
+            Off-the-shelf foreign ERP packages fail on Sialkot piece-rate labor, Daska Road forging tolerances, Sambrial ball pressure logs, and SCCI customs manifests. We engineer dedicated, offline-first production software designed for Sialkot’s three flagship export verticals.
           </p>
         </div>
 

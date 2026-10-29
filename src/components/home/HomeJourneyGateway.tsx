@@ -1,20 +1,19 @@
 import React from 'react';
 import {
-  Wrench,
   Code2,
-  ExternalLink,
-  Laptop,
-  Monitor,
-  Printer,
-  ShieldCheck,
-  Clock,
-  ArrowRight,
   Factory,
   Globe,
   Database,
-  Calculator,
-  MapPin,
-  Sparkles
+  ShieldCheck,
+  CheckCircle2,
+  ArrowRight,
+  Sparkles,
+  Server,
+  Layers,
+  Cpu,
+  Scissors,
+  Trophy,
+  Shield
 } from 'lucide-react';
 import { NavPageId } from '../../types';
 
@@ -27,193 +26,185 @@ export const HomeJourneyGateway: React.FC<HomeJourneyGatewayProps> = ({
   onNavigatePage,
   onOpenQuote,
 }) => {
+  const scrollToIndustrialSection = () => {
+    const el = document.getElementById('sialkot-industrial-solutions');
+    if (el) {
+      const navOffset = 80;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+    } else {
+      onNavigatePage('sialkot-export-erp');
+    }
+  };
+
   return (
-    <section className="py-12 bg-white border-b border-slate-200">
+    <section className="py-16 bg-[#F8F9FA] border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-xs font-bold uppercase tracking-wider mb-3">
-            <span>Select Your Business Need</span>
+        <div className="text-left max-w-3xl mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 text-red-700 text-xs font-bold uppercase tracking-wider mb-3">
+            <Sparkles className="w-3.5 h-3.5 text-red-600" />
+            <span>Dedicated Client Pathways</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
-            Two Clear Services. Zero Confusion.
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#1E1E1E] tracking-tight">
+            Select Your Strategic Technology Path
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base mt-2">
-            Choose what fits your urgent requirement today. We keep local hardware repairs and corporate software separate.
+          <p className="text-slate-600 text-sm sm:text-base mt-2.5 leading-[1.55]">
+            We provide specialized engineering solutions separated by operational domain. Choose between our international corporate software practice and our dedicated Sialkot manufacturing export hub.
           </p>
         </div>
 
-        {/* 2 Main Funnels Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-8">
-          {/* Funnel 1: Local Hardware & POS Setup (Primary Cash Flow) */}
-          <div className="relative rounded-3xl border-2 border-red-200 bg-gradient-to-b from-red-50/50 via-white to-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:shadow-xl hover:border-red-400 transition-all group">
-            <div className="space-y-5">
-              <div className="flex items-center justify-between">
-                <span className="px-3 py-1 rounded-full bg-red-600 text-white text-[11px] font-black uppercase tracking-wider">
-                  Primary Local Service
+        {/* 2 Dedicated Distinct Pathways (Nested Radius: Outer 36px, Inner 16px, Padding 24px) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          
+          {/* Pathway 1: International Enterprise Software & AI Architecture */}
+          <div className="rounded-[36px] border border-slate-200 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-red-300 transition-all text-left">
+            <div className="space-y-6 text-left">
+              <div className="flex items-center justify-between text-left">
+                <span className="px-3 py-1 rounded-full bg-red-50 text-red-700 text-[11px] font-black uppercase tracking-wider border border-red-200">
+                  Global &amp; UAE Enterprises
                 </span>
-                <span className="inline-flex items-center gap-1 text-xs font-bold text-slate-500">
-                  <MapPin className="w-3.5 h-3.5 text-red-600" />
-                  Sialkot & Punjab
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500">
+                  <Globe className="w-3.5 h-3.5 text-red-600" />
+                  Dubai Standard
                 </span>
               </div>
 
-              <div className="flex items-start gap-4">
+              <div className="flex items-start gap-4 text-left">
                 <div className="p-3.5 rounded-2xl bg-red-600 text-white flex-shrink-0 shadow-md">
-                  <Wrench className="w-7 h-7" />
-                </div>
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-black text-slate-900 group-hover:text-red-600 transition-colors">
-                    Hardware, Laptop & POS Repair
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 mt-1">
-                    Chip-level motherboard repair, thermal printers, barcode scanners, and fast on-site IT dispatch.
-                  </p>
-                </div>
-              </div>
-
-              {/* Service Quick Points */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 border-t border-slate-100">
-                <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
-                  <ShieldCheck className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                  <span>90-Day Repair Warranty</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
-                  <Clock className="w-4 h-4 text-red-600 flex-shrink-0" />
-                  <span>60-Min On-Site Dispatch</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
-                  <Laptop className="w-4 h-4 text-blue-600 flex-shrink-0" />
-                  <span>No Fix, No Diagnostic Fee</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
-                  <Printer className="w-4 h-4 text-purple-600 flex-shrink-0" />
-                  <span>Thermal & Laser Printer Bench</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Actions */}
-            <div className="pt-6 mt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center gap-3">
-              <button
-                onClick={() => onNavigatePage('doorstep-support')}
-                className="w-full sm:flex-1 py-3 px-5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <span>Book On-Site IT Engineer</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-
-              <button
-                onClick={() => onNavigatePage('shop')}
-                className="w-full sm:w-auto py-3 px-4 rounded-xl bg-white hover:bg-slate-100 text-slate-800 font-bold text-xs sm:text-sm border border-slate-200 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
-              >
-                <Monitor className="w-4 h-4 text-slate-600" />
-                <span>POS & Hardware Store</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Funnel 2: Software, Web & Export Factory ERP (Secondary Professional Tier) */}
-          <div className="relative rounded-3xl border-2 border-blue-200 bg-gradient-to-b from-blue-50/50 via-white to-white p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:shadow-xl hover:border-blue-400 transition-all group">
-            <div className="space-y-5">
-              <div className="flex items-center justify-between">
-                <span className="px-3 py-1 rounded-full bg-blue-600 text-white text-[11px] font-black uppercase tracking-wider">
-                  Corporate Tier
-                </span>
-                <span className="inline-flex items-center gap-1 text-xs font-bold text-slate-500">
-                  <Factory className="w-3.5 h-3.5 text-blue-600" />
-                  Sialkot Exporters & Global
-                </span>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="p-3.5 rounded-2xl bg-blue-600 text-white flex-shrink-0 shadow-md">
                   <Code2 className="w-7 h-7" />
                 </div>
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-black text-slate-900 group-hover:text-blue-600 transition-colors">
-                    Custom Software & Export ERP
+                <div className="text-left">
+                  <h3 className="text-xl sm:text-2xl font-black text-[#1E1E1E]">
+                    Enterprise Software &amp; AI Solutions
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 mt-1">
-                    B2B web applications, WeBOC packing lists, offline factory sync, and tailored business software.
+                  <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-[1.55]">
+                    For multinational firms, SaaS providers, and corporate directors requiring sub-second database transactions, multi-tenant cloud platforms, and private autonomous AI agents.
                   </p>
                 </div>
               </div>
 
-              {/* Service Quick Points */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 border-t border-slate-100">
-                <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
-                  <Factory className="w-4 h-4 text-blue-600 flex-shrink-0" />
-                  <span>Surgical & Leather Job Cards</span>
+              {/* Architectural Capabilities */}
+              <div className="space-y-2.5 pt-4 border-t border-slate-100 text-left">
+                <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500 font-bold">
+                  Core Architecture Deliverables
                 </div>
-                <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
-                  <Globe className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                  <span>Modern Web & Next.js Systems</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
-                  <Database className="w-4 h-4 text-purple-600 flex-shrink-0" />
-                  <span>Offline LAN Sync Without Cloud</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
-                  <ShieldCheck className="w-4 h-4 text-slate-700 flex-shrink-0" />
-                  <span>Dubai 20-Year Quality Standard</span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 text-left">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                    <span>Next.js &amp; React Web Engines</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 text-left">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                    <span>Private LLM Agent Pipelines</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 text-left">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                    <span>Multi-Branch Cloud POS &amp; ERP</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 text-left">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                    <span>Sub-Second Latency SLAs</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Actions */}
+            {/* Actions: Single Primary Red Button + Secondary Specs Button */}
             <div className="pt-6 mt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center gap-3">
               <button
-                onClick={() => onNavigatePage('sialkot-export-erp')}
-                className="w-full sm:flex-1 py-3 px-5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+                onClick={() => onOpenQuote('Enterprise Software Architecture Consultation')}
+                className="w-full sm:flex-1 py-3.5 px-6 rounded-xl bg-red-600 hover:bg-red-700 text-white font-black text-xs sm:text-sm shadow-md shadow-red-600/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
-                <span>View Sialkot Export ERP</span>
+                <span>Schedule Architecture Review</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
               <button
                 onClick={() => onNavigatePage('services')}
-                className="w-full sm:w-auto py-3 px-4 rounded-xl bg-white hover:bg-slate-100 text-slate-800 font-bold text-xs sm:text-sm border border-slate-200 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                className="w-full sm:w-auto py-3.5 px-5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs sm:text-sm transition-colors cursor-pointer"
               >
-                <Code2 className="w-4 h-4 text-slate-600" />
-                <span>Web Services</span>
+                <span>View B2B Services</span>
               </button>
             </div>
           </div>
-        </div>
 
-        {/* Dedicated Free Tools Subdomain Banner (Segregates calculators from core agency branding) */}
-        <div className="rounded-2xl border border-slate-200 bg-slate-900 text-white p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-5 shadow-sm">
-          <div className="flex items-center gap-4 text-center md:text-left">
-            <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-amber-400 flex-shrink-0">
-              <Calculator className="w-6 h-6" />
-            </div>
-            <div>
-              <div className="flex items-center justify-center md:justify-start gap-2">
-                <span className="px-2 py-0.5 rounded-md bg-amber-400 text-slate-950 text-[10px] font-black uppercase tracking-wider">
-                  Dedicated Portal
+          {/* Pathway 2: Sialkot Industrial Manufacturing & Export ERP Hub */}
+          <div className="rounded-[36px] border border-slate-200 bg-white p-6 sm:p-8 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-slate-400 transition-all text-left">
+            <div className="space-y-6 text-left">
+              <div className="flex items-center justify-between text-left">
+                <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-[11px] font-black uppercase tracking-wider border border-slate-300">
+                  Sialkot Industrial Zone
                 </span>
-                <span className="text-xs font-mono text-slate-400">tools.evonixtec.com</span>
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500">
+                  <Factory className="w-3.5 h-3.5 text-slate-700" />
+                  SIE 1 &amp; 2, Daska Road, Sambrial
+                </span>
               </div>
-              <h4 className="text-base sm:text-lg font-bold text-white mt-1">
-                Looking for Free Online Calculators?
-              </h4>
-              <p className="text-xs text-slate-300">
-                20+ free e-commerce, Amazon FBA, eBay, and export billing tools. Completely free to use.
-              </p>
+
+              <div className="flex items-start gap-4 text-left">
+                <div className="p-3.5 rounded-2xl bg-slate-900 text-white flex-shrink-0 shadow-md">
+                  <Factory className="w-7 h-7" />
+                </div>
+                <div className="text-left">
+                  <h3 className="text-xl sm:text-2xl font-black text-[#1E1E1E]">
+                    Sialkot Industrial Export ERP
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-[1.55]">
+                    For factory owners in Surgical Instruments, Sports Goods, and Leather Apparel requiring raw material batch tracking, worker piece-rate payroll, and WeBOC customs packing lists.
+                  </p>
+                </div>
+              </div>
+
+              {/* Industry Pillars */}
+              <div className="space-y-2.5 pt-4 border-t border-slate-100 text-left">
+                <div className="text-[10px] font-mono uppercase tracking-wider text-slate-500 font-bold">
+                  Sialkot Manufacturing Verticals
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 text-left">
+                    <Scissors className="w-4 h-4 text-red-600 flex-shrink-0" />
+                    <span>Surgical: FDA &amp; CE Batch Logs</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 text-left">
+                    <Trophy className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                    <span>Sports: Ball Pressure &amp; Stitchers</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 text-left">
+                    <Shield className="w-4 h-4 text-amber-600 flex-shrink-0" />
+                    <span>Leather: Tannery Drum Yields</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 text-left">
+                    <Database className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                    <span>Offline LAN Server (Zero Internet Drops)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Actions: Single Primary Red Button + Secondary ERP Page Button */}
+            <div className="pt-6 mt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center gap-3">
+              <button
+                onClick={scrollToIndustrialSection}
+                className="w-full sm:flex-1 py-3.5 px-6 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-black text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>View Industrial ERP Section</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+
+              <button
+                onClick={() => onNavigatePage('sialkot-export-erp')}
+                className="w-full sm:w-auto py-3.5 px-5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs sm:text-sm transition-colors cursor-pointer"
+              >
+                <span>Full Industry Dossier</span>
+              </button>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 flex-shrink-0 w-full md:w-auto">
-            <button
-              onClick={() => onNavigatePage('tools')}
-              className="w-full md:w-auto px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs sm:text-sm transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
-            >
-              <span>Open Tools Workstation</span>
-              <ExternalLink className="w-4 h-4" />
-            </button>
-          </div>
         </div>
+
       </div>
     </section>
   );

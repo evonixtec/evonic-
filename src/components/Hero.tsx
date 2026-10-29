@@ -107,34 +107,45 @@ export const Hero: React.FC<HeroProps> = ({
 
           {/* Master Headline */}
           <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 max-w-4xl leading-[1.12]">
-            Dubai-Standard Engineering &amp;{' '}
+            Enterprise Software,{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-rose-600 to-red-700 drop-shadow-xs">
-              Enterprise Solutions
-            </span>
+              AI Solutions
+            </span>{' '}
+            &amp; B2B Engineering
           </h1>
 
           {/* Subheading */}
           <p className="mt-5 text-base sm:text-xl text-slate-600 max-w-3xl leading-relaxed font-normal">
-            Specializing in modern custom <strong className="text-slate-800 font-bold">Web Development</strong>, enterprise <strong className="text-slate-800 font-bold">Software &amp; POS Systems</strong>, and scalable <strong className="text-slate-800 font-bold">Cloud &amp; AI Architectures</strong> backed by two decades of multinational Dubai engineering pedigree.
+            Architected to international Dubai standards. We build high-throughput web platforms, bespoke manufacturing ERP systems, and autonomous AI pipelines for global enterprises and export manufacturers.
           </p>
 
           {/* Primary Action Buttons with 3D Depth */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <button
-              onClick={() => onOpenQuote('Enterprise Software Consultancy')}
+              onClick={() => onOpenQuote('Enterprise Software Architecture Consultation')}
               className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-700 hover:to-rose-700 text-white font-extrabold text-sm sm:text-base shadow-[0_8px_25px_rgba(220,38,38,0.35)] hover:shadow-[0_12px_32px_rgba(220,38,38,0.45)] transition-all flex items-center gap-2 cursor-pointer hover:-translate-y-0.5 active:translate-y-0 border-t border-white/20"
             >
               <Sparkles className="w-4 h-4 text-amber-200" />
-              <span>Request Enterprise Quote</span>
+              <span>Schedule Architecture Review</span>
               <ArrowRight className="w-4 h-4 ml-1" />
             </button>
 
             <button
-              onClick={() => onNavigate('services')}
+              onClick={() => {
+                const el = document.getElementById('sialkot-industrial-section');
+                if (el) {
+                  const navOffset = 80;
+                  const elementPosition = el.getBoundingClientRect().top;
+                  const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+                  window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                } else {
+                  onNavigate('services');
+                }
+              }}
               className="px-5 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm sm:text-base border border-slate-700 shadow-md transition-all flex items-center gap-2 hover:-translate-y-0.5 cursor-pointer"
             >
               <Code2 className="w-4 h-4 text-red-500" />
-              <span>View B2B Services</span>
+              <span>Sialkot Industrial ERP Hub</span>
             </button>
 
             <button
@@ -142,7 +153,7 @@ export const Hero: React.FC<HeroProps> = ({
               className="px-5 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-sm sm:text-base border border-slate-300 shadow-2xs hover:shadow-xs transition-all flex items-center gap-2 cursor-pointer hover:-translate-y-0.5"
             >
               <Layers className="w-4 h-4 text-red-600" />
-              <span>View Tech Blogs & Case Studies</span>
+              <span>Technical Insights &amp; Case Studies</span>
             </button>
           </div>
         </div>

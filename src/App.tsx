@@ -27,6 +27,8 @@ import { HomeAboutPreview } from './components/home/HomeAboutPreview';
 import { HomePortfolioPreview } from './components/home/HomePortfolioPreview';
 import { HomeShopPreview } from './components/home/HomeShopPreview';
 import { HomeToolsGrid } from './components/home/HomeToolsGrid';
+import { HomeJourneyGateway } from './components/home/HomeJourneyGateway';
+import { HomeRegionalLabHub } from './components/home/HomeRegionalLabHub';
 import FAQ from './components/FAQ';
 const LaptopRepairEstimator = lazy(() => import('./components/LaptopRepairEstimator').then(m => ({ default: m.LaptopRepairEstimator })));
 const GoogleReviewsSection = lazy(() => import('./components/GoogleReviewsSection').then(m => ({ default: m.GoogleReviewsSection })));
@@ -988,7 +990,7 @@ export default function App() {
                 <div className="space-y-0">
                   {/* 1a. Flagship Interactive Hero Slider with Touch-Swipe & Cross-Fade Visuals */}
                   <HeroSlider
-                    onOpenQuote={(service) => handleOpenQuote(service || 'Website Development')}
+                    onOpenQuote={(service) => handleOpenQuote(service || 'Enterprise Software Architecture Consultation')}
                     onNavigate={(section) => {
                       if (section === 'services') navigateToPage('services');
                       else if (section === 'portfolio') navigateToPage('portfolio');
@@ -999,9 +1001,15 @@ export default function App() {
                     onOpenSearch={() => setIsSearchOpen(true)}
                   />
 
-                  {/* 1b. Hero 3-Pillar Interactive Capabilities Matrix */}
+                  {/* 1b. Distinct Client Pathways (Corporate B2B Software vs Sialkot Industrial ERP) */}
+                  <HomeJourneyGateway
+                    onNavigatePage={navigateToPage}
+                    onOpenQuote={handleOpenQuote}
+                  />
+
+                  {/* 1c. Hero 3-Pillar Interactive Capabilities Matrix */}
                   <Hero
-                    onOpenQuote={(service) => handleOpenQuote(service || 'Website Development')}
+                    onOpenQuote={(service) => handleOpenQuote(service || 'Enterprise Software Architecture Consultation')}
                     onNavigate={(section) => {
                       if (section === 'services') navigateToPage('services');
                       else if (section === 'portfolio') navigateToPage('portfolio');
@@ -1012,25 +1020,25 @@ export default function App() {
                     onOpenSearch={() => setIsSearchOpen(true)}
                   />
 
-                  {/* 1c. Concise Core Services Preview */}
+                  {/* 1d. Concise Core Services Preview */}
                   <HomeServicesPreview
                     onNavigateToServices={() => navigateToPage('services')}
                     onOpenQuote={handleOpenQuote}
                   />
 
-                  {/* 1d. Concise About Us Highlight (Dubai 20+ Yrs Heritage Teaser) */}
+                  {/* 1e. Concise About Us Highlight (Dubai 20+ Yrs Heritage Teaser) */}
                   <HomeAboutPreview
                     onNavigateToAbout={() => navigateToPage('about')}
                     onOpenQuote={() => handleOpenQuote('General Consultation')}
                   />
 
-                  {/* 1e. Concise Portfolio Preview (Top 3 UAE Client Deployments) */}
+                  {/* 1f. Concise Portfolio Preview (Top 3 UAE Client Deployments) */}
                   <HomePortfolioPreview
                     onNavigateToPortfolio={() => navigateToPage('portfolio')}
                     onOpenQuote={handleOpenQuote}
                   />
 
-                  {/* 1f. Sialkot Export Industry ERP & Custom Software Suite */}
+                  {/* 1g. Sialkot Export Industry ERP & Custom Software Suite */}
                   <SialkotIndustrialSolutions onOpenQuote={handleOpenQuote} />
 
                   {/* 1g. Interactive Web & POS Software Project Cost Calculator */}
@@ -1133,8 +1141,14 @@ export default function App() {
                     </div>
                   </section>
 
-            {/* 1m. Why Choose Us (Dubai Quality & Component Diagnostics) */}
-            <WhyChooseUs />
+                  {/* 1i. Dedicated Regional IT Support & Hardware Diagnostic Lab (Cleanly Separated) */}
+                  <HomeRegionalLabHub
+                    onNavigatePage={navigateToPage}
+                    onOpenQuote={handleOpenQuote}
+                  />
+
+                  {/* 1j. Why Choose Us (Dubai Quality & Engineering Rigor) */}
+                  <WhyChooseUs />
 
             {/* 1h. Genuine Google Business Reviews */}
             <GoogleReviewsSection />

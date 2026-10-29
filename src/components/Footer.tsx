@@ -125,7 +125,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
           <div className="lg:col-span-4 space-y-4">
             <EvonixLogo size="md" forceTheme="dark" />
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm mt-3">
-              evonix brings two decades of enterprise engineering and hardware diagnostic experience from Dubai, UAE to Sialkot, Pakistan.
+              evonix delivers two decades of enterprise software engineering, autonomous AI workflows, and industrial manufacturing ERP systems from Dubai, UAE to Sialkot, Pakistan.
             </p>
 
             {/* Badges */}
@@ -175,7 +175,24 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                   onClick={() => onNavigate('services')}
                   className="hover:text-red-400 transition-colors text-left cursor-pointer"
                 >
-                  Industrial IT Consultancy
+                  Enterprise Software Engineering
+                </button>
+              </li>
+              <li>
+                <a
+                  href="/sialkot-export-erp"
+                  onClick={(e) => { e.preventDefault(); onNavigate('sialkot-export-erp'); }}
+                  className="hover:text-red-400 transition-colors text-left cursor-pointer block font-semibold text-slate-200"
+                >
+                  Sialkot Export Industrial ERP
+                </a>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('services')}
+                  className="hover:text-red-400 transition-colors text-left cursor-pointer"
+                >
+                  Enterprise AI &amp; Cloud Pipelines
                 </button>
               </li>
               <li>
@@ -183,31 +200,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                   onClick={() => onNavigate('services')}
                   className="hover:text-red-400 transition-colors text-left cursor-pointer"
                 >
-                  Hardware AMC Maintenance
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('services')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer"
-                >
-                  B2B Export Web Platforms
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('services')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer"
-                >
-                  Retail & FBR POS Systems
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('services')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer"
-                >
-                  Laptop Micro-Soldering
+                  Retail &amp; FBR POS Systems
                 </button>
               </li>
               <li>

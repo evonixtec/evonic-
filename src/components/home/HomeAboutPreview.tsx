@@ -31,7 +31,7 @@ export const HomeAboutPreview: React.FC<HomeAboutPreviewProps> = ({
             </h2>
 
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              Founded on strict enterprise engineering methodologies in the United Arab Emirates, <strong className="text-white">{COMPANY_INFO.name}</strong> brings two decades of hands-on experience in high-availability enterprise networks, bespoke ERP software, retail point-of-sale systems, and component-level electronics restoration to Pakistan.
+              Founded on strict enterprise engineering methodologies in the United Arab Emirates, <strong className="text-white">{COMPANY_INFO.name}</strong> brings two decades of hands-on experience in high-availability enterprise networks, bespoke ERP software, retail point-of-sale systems, and scalable cloud architectures to Pakistan.
             </p>
 
             {/* 3 Value Pillars */}
@@ -39,19 +39,19 @@ export const HomeAboutPreview: React.FC<HomeAboutPreviewProps> = ({
               <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
                 <ShieldCheck className="w-5 h-5 text-red-500 mb-1.5" />
                 <h3 className="text-xs font-bold text-white">UAE Quality Standards</h3>
-                <p className="text-[11px] text-slate-400 mt-0.5">Strict quality controls and zero-downtime protocols.</p>
+                <p className="text-[11px] text-slate-400 mt-0.5">Strict quality controls and sub-second latency.</p>
               </div>
 
               <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
                 <Cpu className="w-5 h-5 text-cyan-400 mb-1.5" />
-                <h3 className="text-xs font-bold text-white">Micro-Soldering Lab</h3>
-                <p className="text-[11px] text-slate-400 mt-0.5">Motherboard chip repair with microscope accuracy.</p>
+                <h3 className="text-xs font-bold text-white">Bespoke Architecture</h3>
+                <p className="text-[11px] text-slate-400 mt-0.5">Custom software eliminating off-the-shelf bottlenecks.</p>
               </div>
 
               <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
                 <Clock className="w-5 h-5 text-emerald-400 mb-1.5" />
-                <h3 className="text-xs font-bold text-white">Doorstep Dispatch</h3>
-                <p className="text-[11px] text-slate-400 mt-0.5">On-site engineers across all Sialkot industrial zones.</p>
+                <h3 className="text-xs font-bold text-white">High-Availability SLA</h3>
+                <p className="text-[11px] text-slate-400 mt-0.5">Continuous uptime and direct senior architect escalation.</p>
               </div>
             </div>
 
