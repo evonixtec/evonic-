@@ -1,86 +1,31 @@
-# robots.txt for evonix technologies (https://evonixtec.com)
-# Full crawler permissions for standard search engines, AI models, and answer engines.
-
 User-agent: *
-Disallow: /admin
+Allow: /
+Disallow: /api/
 Disallow: /admin/
-Disallow: /dashboard
-Disallow: /portal
-Allow: /
 
-# Google Search & Google AI (Gemini / AI Overviews)
-User-agent: Googlebot
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Googlebot-Image
-Allow: /
-
-# Microsoft Bing & Copilot
-User-agent: Bingbot
-Allow: /
-
-User-agent: msnbot
-Allow: /
-
-User-agent: BingPreview
-Allow: /
-
-# OpenAI / ChatGPT Crawlers & Search Agents
 User-agent: GPTBot
 Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
+Disallow: /api/
+Disallow: /admin/
 
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /api/
+Disallow: /admin/
 
-# Anthropic Claude Crawlers
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Claude-Web
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
-# Perplexity AI Search Crawler
 User-agent: PerplexityBot
 Allow: /
+Disallow: /api/
+Disallow: /admin/
 
-# Apple AI & Siri Knowledge Crawlers
-User-agent: Applebot
+User-agent: ClaudeBot
 Allow: /
+Disallow: /api/
+Disallow: /admin/
 
-User-agent: Applebot-Extended
+User-agent: Google-Extended
 Allow: /
+Disallow: /api/
+Disallow: /admin/
 
-# Meta AI & Open Knowledge Crawlers
-User-agent: Meta-ExternalAgent
-Allow: /
-
-User-agent: Cohere-ai
-Allow: /
-
-User-agent: CCBot
-Allow: /
-
-User-agent: Bytespider
-Allow: /
-
-User-agent: Diffbot
-Allow: /
-
-# Sitemaps (HTTPS)
-Sitemap: https://evonixtec.com/sitemap.xml
-Sitemap: https://tools.evonixtec.com/sitemap.xml
-Sitemap: https://store.evonixtec.com/sitemap.xml
-
-# LLM Knowledge Base Endpoints:
-# https://evonixtec.com/llms.txt
-# https://evonixtec.com/llms-full.txt
-# https://evonixtec.com/ai-catalog.json
+Sitemap: https://www.evonixtec.com/sitemap.xml

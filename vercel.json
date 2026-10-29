@@ -1,4 +1,6 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
     {
@@ -18,219 +20,104 @@
   ],
   "redirects": [
     {
-      "source": "/tools/:path*",
-      "has": [{ "type": "host", "value": "evonixtec.com" }],
-      "destination": "https://tools.evonixtec.com/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/tools/:path*",
-      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
-      "destination": "https://tools.evonixtec.com/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/tools",
-      "has": [{ "type": "host", "value": "evonixtec.com" }],
-      "destination": "https://tools.evonixtec.com",
-      "permanent": true
-    },
-    {
-      "source": "/tools",
-      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
-      "destination": "https://tools.evonixtec.com",
-      "permanent": true
-    },
-    {
-      "source": "/shop/:path*",
-      "has": [{ "type": "host", "value": "evonixtec.com" }],
-      "destination": "https://store.evonixtec.com/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/shop/:path*",
-      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
-      "destination": "https://store.evonixtec.com/:path*",
-      "permanent": true
-    },
-    {
       "source": "/shop",
-      "has": [{ "type": "host", "value": "evonixtec.com" }],
       "destination": "https://store.evonixtec.com",
       "permanent": true
     },
     {
-      "source": "/shop",
-      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
-      "destination": "https://store.evonixtec.com",
-      "permanent": true
-    },
-    {
-      "source": "/store/:path*",
-      "has": [{ "type": "host", "value": "evonixtec.com" }],
-      "destination": "https://store.evonixtec.com/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/store/:path*",
-      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
+      "source": "/shop/:path*",
       "destination": "https://store.evonixtec.com/:path*",
       "permanent": true
     },
     {
       "source": "/store",
-      "has": [{ "type": "host", "value": "evonixtec.com" }],
       "destination": "https://store.evonixtec.com",
       "permanent": true
     },
     {
-      "source": "/store",
-      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
+      "source": "/store/:path*",
+      "destination": "https://store.evonixtec.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/services/doorstep-support",
       "destination": "https://store.evonixtec.com",
       "permanent": true
     },
     {
       "source": "/services/doorstep-support/:path*",
-      "has": [{ "type": "host", "value": "evonixtec.com" }],
-      "destination": "https://store.evonixtec.com/services/doorstep-support",
-      "permanent": true
-    },
-    {
-      "source": "/services/doorstep-support/:path*",
-      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
-      "destination": "https://store.evonixtec.com/services/doorstep-support",
-      "permanent": true
-    },
-    {
-      "source": "/services/doorstep-support",
-      "has": [{ "type": "host", "value": "evonixtec.com" }],
-      "destination": "https://store.evonixtec.com/services/doorstep-support",
-      "permanent": true
-    },
-    {
-      "source": "/services/doorstep-support",
-      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
-      "destination": "https://store.evonixtec.com/services/doorstep-support",
-      "permanent": true
-    },
-    {
-      "source": "/doorstep-support/:path*",
-      "has": [{ "type": "host", "value": "evonixtec.com" }],
-      "destination": "https://store.evonixtec.com/services/doorstep-support",
-      "permanent": true
-    },
-    {
-      "source": "/doorstep-support/:path*",
-      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
-      "destination": "https://store.evonixtec.com/services/doorstep-support",
-      "permanent": true
-    },
-    {
-      "source": "/doorstep-support",
-      "has": [{ "type": "host", "value": "evonixtec.com" }],
-      "destination": "https://store.evonixtec.com/services/doorstep-support",
-      "permanent": true
-    },
-    {
-      "source": "/doorstep-support",
-      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
-      "destination": "https://store.evonixtec.com/services/doorstep-support",
-      "permanent": true
-    },
-    {
-      "source": "/live-repair-tracker/:path*",
-      "has": [{ "type": "host", "value": "evonixtec.com" }],
-      "destination": "https://store.evonixtec.com/tracker",
-      "permanent": true
-    },
-    {
-      "source": "/live-repair-tracker/:path*",
-      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
-      "destination": "https://store.evonixtec.com/tracker",
-      "permanent": true
-    },
-    {
-      "source": "/live-repair-tracker",
-      "has": [{ "type": "host", "value": "evonixtec.com" }],
-      "destination": "https://store.evonixtec.com/tracker",
-      "permanent": true
-    },
-    {
-      "source": "/live-repair-tracker",
-      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
-      "destination": "https://store.evonixtec.com/tracker",
-      "permanent": true
-    },
-    {
-      "source": "/repair-tracker/:path*",
-      "has": [{ "type": "host", "value": "evonixtec.com" }],
-      "destination": "https://store.evonixtec.com/tracker",
-      "permanent": true
-    },
-    {
-      "source": "/repair-tracker/:path*",
-      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
-      "destination": "https://store.evonixtec.com/tracker",
-      "permanent": true
-    },
-    {
-      "source": "/repair-tracker",
-      "has": [{ "type": "host", "value": "evonixtec.com" }],
-      "destination": "https://store.evonixtec.com/tracker",
-      "permanent": true
-    },
-    {
-      "source": "/repair-tracker",
-      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
-      "destination": "https://store.evonixtec.com/tracker",
-      "permanent": true
-    },
-    {
-      "source": "/printer-diagnostics/:path*",
-      "has": [{ "type": "host", "value": "evonixtec.com" }],
       "destination": "https://store.evonixtec.com",
       "permanent": true
     },
     {
-      "source": "/printer-diagnostics/:path*",
-      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
+      "source": "/doorstep-support",
+      "destination": "https://store.evonixtec.com",
+      "permanent": true
+    },
+    {
+      "source": "/doorstep-support/:path*",
+      "destination": "https://store.evonixtec.com",
+      "permanent": true
+    },
+    {
+      "source": "/live-repair-tracker",
+      "destination": "https://store.evonixtec.com",
+      "permanent": true
+    },
+    {
+      "source": "/live-repair-tracker/:path*",
+      "destination": "https://store.evonixtec.com",
+      "permanent": true
+    },
+    {
+      "source": "/repair-tracker",
+      "destination": "https://store.evonixtec.com",
+      "permanent": true
+    },
+    {
+      "source": "/repair-tracker/:path*",
       "destination": "https://store.evonixtec.com",
       "permanent": true
     },
     {
       "source": "/printer-diagnostics",
-      "has": [{ "type": "host", "value": "evonixtec.com" }],
       "destination": "https://store.evonixtec.com",
       "permanent": true
     },
     {
-      "source": "/printer-diagnostics",
-      "has": [{ "type": "host", "value": "www.evonixtec.com" }],
-      "destination": "https://store.evonixtec.com",
-      "permanent": true
-    },
-    {
-      "source": "/printer-troubleshooter/:path*",
-      "has": [{ "type": "host", "value": "evonixtec.com" }],
+      "source": "/printer-diagnostics/:path*",
       "destination": "https://store.evonixtec.com",
       "permanent": true
     },
     {
       "source": "/printer-troubleshooter",
-      "has": [{ "type": "host", "value": "evonixtec.com" }],
+      "destination": "https://store.evonixtec.com",
+      "permanent": true
+    },
+    {
+      "source": "/printer-troubleshooter/:path*",
+      "destination": "https://store.evonixtec.com",
+      "permanent": true
+    },
+    {
+      "source": "/bench-intake-pass",
       "destination": "https://store.evonixtec.com",
       "permanent": true
     },
     {
       "source": "/bench-intake-pass/:path*",
-      "has": [{ "type": "host", "value": "evonixtec.com" }],
-      "destination": "https://store.evonixtec.com/tracker",
+      "destination": "https://store.evonixtec.com",
       "permanent": true
     },
     {
-      "source": "/bench-intake-pass",
-      "has": [{ "type": "host", "value": "evonixtec.com" }],
-      "destination": "https://store.evonixtec.com/tracker",
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "evonixtec.com"
+        }
+      ],
+      "destination": "https://www.evonixtec.com/:path*",
       "permanent": true
     }
   ],
@@ -238,13 +125,26 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "X-XSS-Protection", "value": "1; mode=block" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(self)" },
-        { "key": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains; preload" },
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://formsubmit.co https://*.googleapis.com https://open.er-api.com; frame-ancestors 'self';" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains"
+        }
       ]
     }
   ]
