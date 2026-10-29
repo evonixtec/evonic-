@@ -819,39 +819,39 @@ export const Navbar: React.FC<NavbarProps> = ({
                     </button>
 
                     <span className="block px-3 py-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider border-t border-slate-100 mt-2 pt-2 pb-1 mb-1">
-                      Hardware Diagnostics Lab
+                      Enterprise Dev &amp; Customs
                     </span>
 
                     <button
-                      onClick={() => handlePageSelect('live-repair-tracker')}
+                      onClick={() => handlePageSelect('schema-generator')}
                       className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
-                        currentPage === 'live-repair-tracker' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
+                        currentPage === 'schema-generator' ? 'bg-red-50 text-red-700 font-bold' : 'hover:bg-slate-50'
                       }`}
                     >
-                      <span className="text-base flex items-center justify-center flex-shrink-0">⏱️</span>
+                      <span className="text-base flex items-center justify-center flex-shrink-0">⚡</span>
                       <div className="flex-1 min-w-0">
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
-                          Live RMA Repair Tracker
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-600 truncate">
+                          JSON-LD Schema Generator
                         </div>
-                        <div className="text-[10px] text-slate-500">Track bench diagnosis & warranty</div>
+                        <div className="text-[10px] text-slate-500">AEO structured data &amp; Rich Snippets</div>
                       </div>
-                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">Live</span>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">AEO</span>
                     </button>
 
                     <button
-                      onClick={() => handlePageSelect('printer-diagnostics')}
+                      onClick={() => handlePageSelect('hs-code-lookup')}
                       className={`w-full text-left p-2 rounded-xl transition-colors flex items-center gap-2.5 cursor-pointer group ${
-                        currentPage === 'printer-diagnostics' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
+                        currentPage === 'hs-code-lookup' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50'
                       }`}
                     >
-                      <span className="text-base flex items-center justify-center flex-shrink-0">🖨️</span>
+                      <span className="text-base flex items-center justify-center flex-shrink-0">📦</span>
                       <div className="flex-1 min-w-0">
                         <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 truncate">
-                          Printer Diagnostic Engine
+                          Export HS Code Finder
                         </div>
-                        <div className="text-[10px] text-slate-500">Thermal receipt & ESC/POS cutter errors</div>
+                        <div className="text-[10px] text-slate-500">Customs tariff mapping for Sialkot</div>
                       </div>
-                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-orange-100 text-orange-700">Bench</span>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-700">HS</span>
                     </button>
 
                     <button
@@ -1466,27 +1466,27 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </button>
 
                   <button
-                    onClick={() => handlePageSelect('live-repair-tracker')}
+                    onClick={() => handlePageSelect('schema-generator')}
                     className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
-                      currentPage === 'live-repair-tracker' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                      currentPage === 'schema-generator' ? 'bg-red-50 text-red-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
                     }`}
                   >
                     <div className="flex items-center gap-2">
-                      <span>⏱️ Live RMA Bench Repair Tracker</span>
+                      <span>⚡ JSON-LD Schema Generator</span>
                     </div>
-                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">Live</span>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700">AEO</span>
                   </button>
 
                   <button
-                    onClick={() => handlePageSelect('printer-diagnostics')}
+                    onClick={() => handlePageSelect('hs-code-lookup')}
                     className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between ${
-                      currentPage === 'printer-diagnostics' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
+                      currentPage === 'hs-code-lookup' ? 'bg-blue-50 text-blue-700 font-bold' : 'hover:bg-slate-50 text-slate-700'
                     }`}
                   >
                     <div className="flex items-center gap-2">
-                      <span>🖨️ Printer Hardware Troubleshooter</span>
+                      <span>📦 Export HS Code Finder</span>
                     </div>
-                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-orange-100 text-orange-700">Bench</span>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-700">HS</span>
                   </button>
 
                   <button

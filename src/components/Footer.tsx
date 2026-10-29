@@ -205,38 +205,23 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               </li>
               <li>
                 <a
-                  href="/services/doorstep-support"
-                  onClick={(e) => { e.preventDefault(); onNavigate('doorstep-support'); }}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-emerald-400 font-semibold block"
+                  href={getStoreDomainUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-amber-400 transition-colors text-left text-amber-300 font-semibold flex items-center gap-1"
                 >
-                  Doorstep IT Support Sialkot →
+                  <span>Hardware &amp; POS Store (store.evonixtec.com) ↗</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="/sialkot-export-erp"
-                  onClick={(e) => { e.preventDefault(); onNavigate('sialkot-export-erp'); }}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-purple-400 font-semibold block"
+                  href={getStoreDomainUrl('/doorstep-support')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-emerald-400 transition-colors text-left text-emerald-300 font-semibold flex items-center gap-1"
                 >
-                  Sialkot Export ERP Suite →
+                  <span>Doorstep Support (store.evonixtec.com) ↗</span>
                 </a>
-              </li>
-              <li>
-                <a
-                  href="/guidelines"
-                  onClick={(e) => { e.preventDefault(); onNavigate('guidelines'); }}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-cyan-400 font-semibold block"
-                >
-                  IT &amp; Hardware Guidelines →
-                </a>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('shop')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-slate-300 font-semibold"
-                >
-                  POS Hardware Store →
-                </button>
               </li>
             </ul>
           </div>
@@ -320,11 +305,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               </li>
               <li>
                 <a
-                  href="/live-repair-tracker"
-                  onClick={(e) => { e.preventDefault(); onNavigate('live-repair-tracker'); }}
+                  href="/schema-generator"
+                  onClick={(e) => { e.preventDefault(); onNavigate('schema-generator'); }}
                   className="hover:text-red-400 transition-colors text-left cursor-pointer text-slate-300 flex items-center gap-1"
                 >
-                  <span>Live RMA Repair Tracker</span>
+                  <span>JSON-LD Schema Generator</span>
+                  <span className="text-[9px] bg-emerald-600 text-white px-1.5 py-0.2 rounded font-black">AEO</span>
                 </a>
               </li>
             </ul>
@@ -352,7 +338,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                     onClick={() => onNavigate('portfolio')}
                     className="hover:text-red-400 transition-colors text-left cursor-pointer block"
                   >
-                    Custom Software & POS Case Studies
+                    Custom Software &amp; POS Case Studies
                   </button>
                 </li>
                 <li>
@@ -378,7 +364,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             <div className="space-y-2 pt-2 border-t border-slate-800/80">
               <h3 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
                 <BookOpen className="w-3.5 h-3.5 text-red-500" />
-                <span>Tech Blogs & Case Studies</span>
+                <span>Technical Insights &amp; Case Studies</span>
               </h3>
               <ul className="space-y-1.5 text-slate-400">
                 <li>
@@ -386,7 +372,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                     onClick={() => onNavigate('guides')}
                     className="hover:text-red-400 transition-colors text-left cursor-pointer block"
                   >
-                    80+ Engineering & Repair Guides
+                    Enterprise Software Architecture Guides
                   </button>
                 </li>
                 <li>
@@ -394,7 +380,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                     onClick={() => onNavigate('guides')}
                     className="hover:text-red-400 transition-colors text-left cursor-pointer block"
                   >
-                    Sialkot Field Repair Case Studies
+                    Sialkot Export Manufacturing ERP Audits
                   </button>
                 </li>
                 <li>
@@ -402,7 +388,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                     onClick={() => onNavigate('guides')}
                     className="hover:text-red-400 transition-colors text-left cursor-pointer block"
                   >
-                    Hardware Micro-Soldering Tutorials
+                    Autonomous AI Pipeline Case Studies
                   </button>
                 </li>
                 <li>
@@ -410,26 +396,26 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                     onClick={() => onNavigate('guides')}
                     className="text-red-400 font-bold hover:underline transition-colors flex items-center gap-1 pt-0.5 cursor-pointer"
                   >
-                    <span>Open Tech Blogs & Guides →</span>
+                    <span>Open Case Studies &amp; Articles →</span>
                   </button>
                 </li>
               </ul>
             </div>
           </div>
 
-          {/* Column 5: Lab Address & Contact Desk (2 cols on lg) */}
+          {/* Column 5: Headquarters & Contact Desk (2 cols on lg) */}
           <div className="lg:col-span-2 space-y-3">
             <h3 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
               <Building2 className="w-3.5 h-3.5 text-red-500" />
-              <span>Lab & Desk</span>
+              <span>Headquarters &amp; Hub</span>
             </h3>
             <div className="space-y-2.5 text-slate-400">
-              {/* Styled Kotli Behram Card */}
+              {/* Styled Sialkot Tech Hub Card */}
               <div className="p-3 rounded-xl bg-slate-900 border border-slate-700/80 text-slate-200 leading-snug space-y-1.5 shadow-sm">
                 <div className="flex items-center justify-between">
                   <span className="text-red-400 font-extrabold text-[11px] uppercase tracking-wider flex items-center gap-1">
                     <MapPin className="w-3 h-3 text-red-500" />
-                    <span>Kotli Behram Lab Desk</span>
+                    <span>Sialkot Engineering Hub</span>
                   </span>
                   <span className="text-[10px] text-slate-400 font-mono">Sialkot</span>
                 </div>
@@ -438,7 +424,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                 </p>
                 <div className="inline-flex items-center gap-1 text-[10px] text-emerald-400 font-bold bg-emerald-950/80 border border-emerald-800/80 px-2 py-0.5 rounded">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>15-Min Doorstep Dispatch</span>
+                  <span>24/7 Enterprise SLA Support</span>
                 </div>
               </div>
 

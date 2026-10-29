@@ -25,12 +25,8 @@ import { isToolsSubdomain, isStoreSubdomain, getMainAgencyDomainUrl, getToolsDom
 import { HomeServicesPreview } from './components/home/HomeServicesPreview';
 import { HomeAboutPreview } from './components/home/HomeAboutPreview';
 import { HomePortfolioPreview } from './components/home/HomePortfolioPreview';
-import { HomeShopPreview } from './components/home/HomeShopPreview';
-import { HomeToolsGrid } from './components/home/HomeToolsGrid';
 import { HomeJourneyGateway } from './components/home/HomeJourneyGateway';
-import { HomeRegionalLabHub } from './components/home/HomeRegionalLabHub';
 import FAQ from './components/FAQ';
-const LaptopRepairEstimator = lazy(() => import('./components/LaptopRepairEstimator').then(m => ({ default: m.LaptopRepairEstimator })));
 const GoogleReviewsSection = lazy(() => import('./components/GoogleReviewsSection').then(m => ({ default: m.GoogleReviewsSection })));
 const WhyChooseUs = lazy(() => import('./components/WhyChooseUs').then(m => ({ default: m.WhyChooseUs })));
 const Testimonials = lazy(() => import('./components/Testimonials').then(m => ({ default: m.Testimonials })));
@@ -62,18 +58,10 @@ const KeywordMappingHub = lazy(() => import('./components/KeywordMappingHub').th
 const CentralizedSeoDashboard = lazy(() => import('./components/CentralizedSeoDashboard').then(m => ({ default: m.CentralizedSeoDashboard })));
 const LiveRepairTracker = lazy(() => import('./components/LiveRepairTracker').then(m => ({ default: m.LiveRepairTracker })));
 const SialkotIndustrialSolutions = lazy(() => import('./components/SialkotIndustrialSolutions').then(m => ({ default: m.SialkotIndustrialSolutions })));
-const HardwareBeforeAfterGallery = lazy(() => import('./components/HardwareBeforeAfterGallery').then(m => ({ default: m.HardwareBeforeAfterGallery })));
-const PCBPowerSequenceSimulator = lazy(() => import('./components/PCBPowerSequenceSimulator').then(m => ({ default: m.PCBPowerSequenceSimulator })));
-const ThermalLifecyclePredictor = lazy(() => import('./components/ThermalLifecyclePredictor').then(m => ({ default: m.ThermalLifecyclePredictor })));
-const OfflineDataSyncEngine = lazy(() => import('./components/OfflineDataSyncEngine').then(m => ({ default: m.OfflineDataSyncEngine })));
-const HardwareBlinkBeepIdentifier = lazy(() => import('./components/HardwareBlinkBeepIdentifier').then(m => ({ default: m.HardwareBlinkBeepIdentifier })));
-const ThermalHotspotInspector = lazy(() => import('./components/ThermalHotspotInspector').then(m => ({ default: m.ThermalHotspotInspector })));
 const FactoryNetworkLatencyTester = lazy(() => import('./components/FactoryNetworkLatencyTester').then(m => ({ default: m.FactoryNetworkLatencyTester })));
-const BenchIntakePass = lazy(() => import('./components/BenchIntakePass').then(m => ({ default: m.BenchIntakePass })));
 const ExportBarcodeLabelGenerator = lazy(() => import('./components/ExportBarcodeLabelGenerator').then(m => ({ default: m.ExportBarcodeLabelGenerator })));
 const PrinterDiagnosticTroubleshooter = lazy(() => import('./components/PrinterDiagnosticTroubleshooter').then(m => ({ default: m.PrinterDiagnosticTroubleshooter })));
 const LocalClusterLandingPage = lazy(() => import('./components/LocalClusterLandingPage').then(m => ({ default: m.LocalClusterLandingPage })));
-const AiHardwareDiagnosticBoard = lazy(() => import('./components/AiHardwareDiagnosticBoard').then(m => ({ default: m.AiHardwareDiagnosticBoard })));
 const Shop = lazy(() => import('./components/Shop').then(m => ({ default: m.Shop })));
 const BlogHub = lazy(() => import('./components/BlogHub').then(m => ({ default: m.BlogHub })));
 const QuoteModal = lazy(() => import('./components/QuoteModal').then(m => ({ default: m.QuoteModal })));
@@ -544,6 +532,11 @@ export default function App() {
       const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
       if (path) {
         const resolved = resolvePageFromPath(path);
+        // Strict subdomain routing: Redirect hardware traffic to store.evonixtec.com
+        if (!isStoreHost && (resolved === 'doorstep-support' || resolved === 'shop' || resolved === 'live-repair-tracker' || resolved === 'printer-diagnostics')) {
+          window.location.href = getStoreDomainUrl(resolved === 'doorstep-support' ? '/doorstep-support' : '/shop');
+          return 'home';
+        }
         if (isToolsHost && resolved === 'home') {
           return 'tools';
         }
@@ -555,6 +548,10 @@ export default function App() {
       const hash = window.location.hash.replace('#', '').toLowerCase();
       if (hash) {
         const resolved = resolvePageFromPath(hash);
+        if (!isStoreHost && (resolved === 'doorstep-support' || resolved === 'shop' || resolved === 'live-repair-tracker' || resolved === 'printer-diagnostics')) {
+          window.location.href = getStoreDomainUrl(resolved === 'doorstep-support' ? '/doorstep-support' : '/shop');
+          return 'home';
+        }
         if (isToolsHost && resolved === 'home') {
           return 'tools';
         }
@@ -575,7 +572,6 @@ export default function App() {
   const [clusterParams, setClusterParams] = useState(parseLocationFromPath);
   const [isQuoteOpen, setIsQuoteOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
-  const [isIntakePassOpen, setIsIntakePassOpen] = useState<boolean>(false);
   const [activePolicyModal, setActivePolicyModal] = useState<PolicyType>(null);
   const [selectedServiceForQuote, setSelectedServiceForQuote] = useState<string>('Website Development');
   const [securityAlert, setSecurityAlert] = useState<string | null>(null);
@@ -646,9 +642,8 @@ export default function App() {
       // Check specialized industrial home sections
       const SPECIALIZED_SECTION_MAP: Record<string, string> = {
         'sialkot-it-services': 'services',
-        'laptop-repairing-sialkot': 'laptop-repair-estimator',
         'pos-software-sialkot': 'sialkot-industrial-solutions',
-        'thermal-hotspot-inspector': 'thermal-inspector',
+        'sialkot-export-erp': 'sialkot-industrial-solutions',
       };
 
       if (SPECIALIZED_SECTION_MAP[path]) {
@@ -670,6 +665,11 @@ export default function App() {
           setClusterParams(parseLocationFromPath());
         }
         const resolved = resolvePageFromPath(path);
+        // Strict subdomain routing: Redirect hardware traffic to store.evonixtec.com
+        if (!isStoreSubdomain() && (resolved === 'doorstep-support' || resolved === 'shop' || resolved === 'live-repair-tracker' || resolved === 'printer-diagnostics')) {
+          window.location.href = getStoreDomainUrl(resolved === 'doorstep-support' ? '/doorstep-support' : '/shop');
+          return;
+        }
         if (isToolsSubdomain() && resolved === 'home') {
           setCurrentPage('tools');
         } else {
@@ -736,6 +736,12 @@ export default function App() {
 
   // Navigate to dedicated page with clean URL path (e.g. /services, /portfolio, /shop)
   const navigateToPage = (page: NavPageId | string, subTarget?: string) => {
+    // If on main domain and user clicks hardware/shop/doorstep-support, redirect strictly to store.evonixtec.com
+    if (!isStoreMode && (page === 'doorstep-support' || page === 'shop' || page === 'live-repair-tracker' || page === 'printer-diagnostics')) {
+      window.location.href = getStoreDomainUrl(page === 'doorstep-support' ? '/doorstep-support' : '/shop');
+      return;
+    }
+
     // If on main domain (evonixtec.com) and user clicks tools, redirect to tools.evonixtec.com
     if (page === 'tools' && !isToolsSubdomain() && typeof window !== 'undefined' && window.location.hostname.includes('evonixtec.com')) {
       window.location.href = 'https://tools.evonixtec.com';
@@ -744,12 +750,8 @@ export default function App() {
 
     const SPECIALIZED_SECTION_MAP: Record<string, string> = {
       'sialkot-it-services': 'services',
-      'laptop-repairing-sialkot': 'laptop-repair-estimator',
-      'laptop-repair-estimator': 'laptop-repair-estimator',
       'pos-software-sialkot': 'sialkot-industrial-solutions',
-      'thermal-hotspot-inspector': 'thermal-inspector',
-      'thermal-inspector': 'thermal-inspector',
-      'pcb-power-simulator': 'pcb-power-simulator',
+      'sialkot-export-erp': 'sialkot-industrial-solutions',
     };
 
     if (SPECIALIZED_SECTION_MAP[page as string]) {
@@ -1141,13 +1143,7 @@ export default function App() {
                     </div>
                   </section>
 
-                  {/* 1i. Dedicated Regional IT Support & Hardware Diagnostic Lab (Cleanly Separated) */}
-                  <HomeRegionalLabHub
-                    onNavigatePage={navigateToPage}
-                    onOpenQuote={handleOpenQuote}
-                  />
-
-                  {/* 1j. Why Choose Us (Dubai Quality & Engineering Rigor) */}
+                  {/* 1i. Why Choose Us (Dubai Quality & Engineering Rigor) */}
                   <WhyChooseUs />
 
             {/* 1h. Genuine Google Business Reviews */}
@@ -1177,11 +1173,11 @@ export default function App() {
           <div className="space-y-0">
             <PageHeaderBanner
               breadcrumbCurrent="Our Services"
-              badgeText="Comprehensive IT Capabilities"
-              title="Enterprise Services & Technology Solutions"
-              subtitle="Two decades of Dubai high-availability systems engineering delivered in Sialkot, Pakistan. From enterprise e-commerce portals to custom retail ERPs and chip-level motherboard restoration."
+              badgeText="Enterprise Software Engineering"
+              title="Enterprise Services &amp; Technology Solutions"
+              subtitle="Two decades of Dubai high-availability systems engineering delivered in Sialkot, Pakistan. From high-throughput web applications to multi-tenant cloud platforms, bespoke industrial ERPs, and private AI automation pipelines."
               onNavigateHome={() => navigateToPage('home')}
-              onOpenQuote={() => handleOpenQuote('General Services Inquiry')}
+              onOpenQuote={() => handleOpenQuote('Enterprise Software Architecture Inquiry')}
             />
 
             {/* Full Detailed Services Section */}
@@ -1193,26 +1189,8 @@ export default function App() {
             {/* Sialkot Export Industry ERP & Custom Software Suite */}
             <SialkotIndustrialSolutions onOpenQuote={handleOpenQuote} />
 
-            {/* Live RMA Repair Ticket & Bench Diagnostics Tracker */}
-            <LiveRepairTracker onOpenQuote={handleOpenQuote} />
-
-            {/* Interactive Hardware & Laptop Diagnostic Cost Estimator */}
-            <LaptopRepairEstimator onOpenQuote={handleOpenQuote} />
-
-            {/* Interactive Before & After Hardware Micro-Soldering Gallery */}
-            <HardwareBeforeAfterGallery onOpenQuote={handleOpenQuote} />
-
-            {/* Laptop BIOS Blink & Beep Code Decoder Tool */}
-            <HardwareBlinkBeepIdentifier />
-
-            {/* FLIR Infrared Thermal Hotspot Short-Circuit Inspector */}
-            <ThermalHotspotInspector />
-
-            {/* LaserJet & Thermal Printer Troubleshooter */}
-            <PrinterDiagnosticTroubleshooter onOpenQuote={handleOpenQuote} />
-
             {/* Technologies We Use (Tech Stack Badges) */}
-            <Technologies onExploreService={(svc) => handleOpenQuote(svc || 'Website Development')} />
+            <Technologies onExploreService={(svc) => handleOpenQuote(svc || 'Enterprise Software Development')} />
 
             {/* Centralized SEO Dashboard: Keyword Mapping & Health Tracking */}
             <CentralizedSeoDashboard onNavigatePage={navigateToPage} />
@@ -1317,27 +1295,52 @@ export default function App() {
         )}
 
         {/* ========================================================
-            PAGE 4: DEDICATED HARDWARE & SHOP PAGE
+            PAGE 4: DEDICATED HARDWARE & SHOP PAGE (store.evonixtec.com)
            ======================================================== */}
         {currentPage === 'shop' && (
-          <div className="space-y-0">
-            <PageHeaderBanner
-              breadcrumbCurrent="Hardware & Shop"
-              badgeText="Original & Tested Commercial Hardware"
-              title="IT Hardware, POS Systems & Equipment Shop"
-              subtitle="Imported Dell/HP/Lenovo business laptops, heavy-duty 80mm thermal receipt printers, 2D barcode scanners, and all-in-one capacitive touch POS terminals with localized Sialkot warranties."
-              onNavigateHome={() => navigateToPage('home')}
-              onOpenQuote={() => handleOpenQuote('Hardware Bulk Procurement Inquiry')}
-              ctaText="Inquire Bulk Hardware"
-            />
+          isStoreMode ? (
+            <div className="space-y-0">
+              <PageHeaderBanner
+                breadcrumbCurrent="Hardware & Shop"
+                badgeText="Original & Tested Commercial Hardware"
+                title="IT Hardware, POS Systems & Equipment Shop"
+                subtitle="Imported Dell/HP/Lenovo business laptops, heavy-duty 80mm thermal receipt printers, 2D barcode scanners, and all-in-one capacitive touch POS terminals with localized Sialkot warranties."
+                onNavigateHome={() => navigateToPage('home')}
+                onOpenQuote={() => handleOpenQuote('Hardware Bulk Procurement Inquiry')}
+                ctaText="Inquire Bulk Hardware"
+              />
 
-            {/* Full Shop Catalog Component */}
-            <Shop
-              onInquireProduct={(productName) =>
-                handleOpenQuote(`Hardware / Shop Inquiry: ${productName}`)
-              }
-            />
-          </div>
+              {/* Full Shop Catalog Component */}
+              <Shop
+                onInquireProduct={(productName) =>
+                  handleOpenQuote(`Hardware / Shop Inquiry: ${productName}`)
+                }
+              />
+            </div>
+          ) : (
+            <div className="py-24 text-center max-w-lg mx-auto px-4 space-y-4">
+              <div className="p-8 bg-white border border-slate-200 rounded-3xl shadow-sm space-y-4 text-left">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-bold border border-amber-200">
+                  <span>store.evonixtec.com</span>
+                </div>
+                <h3 className="text-xl font-bold text-[#1E1E1E]">
+                  Hardware Store Migrated to store.evonixtec.com
+                </h3>
+                <p className="text-xs text-slate-600 leading-[1.55]">
+                  Our catalog of imported business laptops, thermal receipt printers, and barcode scanners has been segregated to our dedicated hardware storefront.
+                </p>
+                <div className="pt-2">
+                  <a
+                    href={getStoreDomainUrl('/shop')}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs shadow-md transition-all cursor-pointer"
+                  >
+                    <span>Proceed to store.evonixtec.com</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          )
         )}
 
         {/* ========================================================
@@ -1821,47 +1824,97 @@ export default function App() {
         )}
 
         {/* ========================================================
-            PAGE 16: LIVE RMA BENCH REPAIR TRACKER
+            PAGE 16: LIVE RMA BENCH REPAIR TRACKER (store.evonixtec.com)
            ======================================================== */}
         {currentPage === 'live-repair-tracker' && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="live-repair-tracker"
-              toolTitle="Live RMA Bench Repair Tracker"
-              toolCategory="Hardware Diagnostics"
-              toolDescription="Track motherboard micro-soldering progress, standby current readings, and 90-day warranty ticket status."
-              icon={<Clock className="w-5 h-5 text-emerald-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <div className="py-8 bg-slate-900 min-h-screen text-white">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <LiveRepairTracker onOpenQuote={handleOpenQuote} />
+          isStoreMode ? (
+            <div className="space-y-0">
+              <ToolWorkspaceHeader
+                currentToolId="live-repair-tracker"
+                toolTitle="Live RMA Bench Repair Tracker"
+                toolCategory="Hardware Diagnostics"
+                toolDescription="Track motherboard micro-soldering progress, standby current readings, and 90-day warranty ticket status."
+                icon={<Clock className="w-5 h-5 text-emerald-500" />}
+                onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+                onNavigateToolsHub={() => navigateToPage('tools')}
+              />
+              <div className="py-8 bg-slate-900 min-h-screen text-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <LiveRepairTracker onOpenQuote={handleOpenQuote} />
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="py-24 text-center max-w-lg mx-auto px-4 space-y-4">
+              <div className="p-8 bg-white border border-slate-200 rounded-3xl shadow-sm space-y-4 text-left">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-bold border border-amber-200">
+                  <span>store.evonixtec.com</span>
+                </div>
+                <h3 className="text-xl font-bold text-[#1E1E1E]">
+                  Hardware Repair Tracker Migrated to store.evonixtec.com
+                </h3>
+                <p className="text-xs text-slate-600 leading-[1.55]">
+                  Hardware diagnostics, RMA ticket status, and repair tracking are segregated to our dedicated store domain.
+                </p>
+                <div className="pt-2">
+                  <a
+                    href={getStoreDomainUrl()}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs shadow-md transition-all cursor-pointer"
+                  >
+                    <span>Proceed to store.evonixtec.com</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          )
         )}
 
         {/* ========================================================
-            PAGE 17: THERMAL RECEIPT & BARCODE PRINTER DIAGNOSTICS
+            PAGE 17: THERMAL RECEIPT & BARCODE PRINTER DIAGNOSTICS (store.evonixtec.com)
            ======================================================== */}
         {currentPage === 'printer-diagnostics' && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="printer-diagnostics"
-              toolTitle="Thermal Receipt Printer Diagnostic Engine"
-              toolCategory="Hardware Diagnostics"
-              toolDescription="Interactive diagnostics for HP paper jams, torn fuser sleeves, and thermal receipt auto-cutter errors."
-              icon={<Printer className="w-5 h-5 text-orange-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <div className="py-8 bg-slate-900 min-h-screen text-white">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <PrinterDiagnosticTroubleshooter onOpenQuote={handleOpenQuote} />
+          isStoreMode ? (
+            <div className="space-y-0">
+              <ToolWorkspaceHeader
+                currentToolId="printer-diagnostics"
+                toolTitle="Thermal Receipt Printer Diagnostic Engine"
+                toolCategory="Hardware Diagnostics"
+                toolDescription="Interactive diagnostics for HP paper jams, torn fuser sleeves, and thermal receipt auto-cutter errors."
+                icon={<Printer className="w-5 h-5 text-orange-500" />}
+                onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
+                onNavigateToolsHub={() => navigateToPage('tools')}
+              />
+              <div className="py-8 bg-slate-900 min-h-screen text-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <PrinterDiagnosticTroubleshooter onOpenQuote={handleOpenQuote} />
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="py-24 text-center max-w-lg mx-auto px-4 space-y-4">
+              <div className="p-8 bg-white border border-slate-200 rounded-3xl shadow-sm space-y-4 text-left">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-bold border border-amber-200">
+                  <span>store.evonixtec.com</span>
+                </div>
+                <h3 className="text-xl font-bold text-[#1E1E1E]">
+                  Printer Diagnostic Engine Migrated to store.evonixtec.com
+                </h3>
+                <p className="text-xs text-slate-600 leading-[1.55]">
+                  Thermal receipt printer diagnostics and hardware troubleshooting are segregated to our dedicated store domain.
+                </p>
+                <div className="pt-2">
+                  <a
+                    href={getStoreDomainUrl()}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs shadow-md transition-all cursor-pointer"
+                  >
+                    <span>Proceed to store.evonixtec.com</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          )
         )}
 
         {/* ========================================================
@@ -1872,7 +1925,7 @@ export default function App() {
             <ToolWorkspaceHeader
               currentToolId="factory-network-tester"
               toolTitle="Factory ERP & Customs Latency Benchmark"
-              toolCategory="Hardware Diagnostics"
+              toolCategory="Export ERP & Network Architecture"
               toolDescription="Test factory premise latency bottlenecks, SQL database lag, and WeBOC customs gateway ping stability."
               icon={<Wifi className="w-5 h-5 text-teal-500" />}
               onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
@@ -1914,13 +1967,38 @@ export default function App() {
         )}
 
         {/* ========================================================
-            PAGE 22: DOORSTEP SUPPORT & EMERGENCY DISPATCH HUB
+            PAGE 22: DOORSTEP SUPPORT & EMERGENCY DISPATCH HUB (store.evonixtec.com)
            ======================================================== */}
         {currentPage === 'doorstep-support' && (
-          <DoorstepSupportPage
-            onNavigatePage={(page, subTarget) => navigateToPage(page as NavPageId, subTarget)}
-            onOpenQuote={handleOpenQuote}
-          />
+          isStoreMode ? (
+            <DoorstepSupportPage
+              onNavigatePage={(page, subTarget) => navigateToPage(page as NavPageId, subTarget)}
+              onOpenQuote={handleOpenQuote}
+            />
+          ) : (
+            <div className="py-24 text-center max-w-lg mx-auto px-4 space-y-4">
+              <div className="p-8 bg-white border border-slate-200 rounded-3xl shadow-sm space-y-4 text-left">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 text-red-700 text-xs font-bold border border-red-200">
+                  <span>store.evonixtec.com</span>
+                </div>
+                <h3 className="text-xl font-bold text-[#1E1E1E]">
+                  Doorstep Hardware Support on store.evonixtec.com
+                </h3>
+                <p className="text-xs text-slate-600 leading-[1.55]">
+                  On-site IT technician dispatches, motherboard diagnostics, and printer servicing are exclusively hosted on our dedicated hardware portal.
+                </p>
+                <div className="pt-2">
+                  <a
+                    href={getStoreDomainUrl('/doorstep-support')}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-black text-xs shadow-md transition-all cursor-pointer"
+                  >
+                    <span>Proceed to store.evonixtec.com/doorstep-support</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          )
         )}
 
         {/* ========================================================
@@ -2017,16 +2095,6 @@ export default function App() {
         </Suspense>
       )}
 
-      {/* Official Free Bench Intake Pass Generator Dialog */}
-      {isIntakePassOpen && (
-        <Suspense fallback={null}>
-          <BenchIntakePass
-            isOpen={isIntakePassOpen}
-            onClose={() => setIsIntakePassOpen(false)}
-            defaultDevice={selectedServiceForQuote}
-          />
-        </Suspense>
-      )}
 
       {/* Native App-Style Mobile Bottom Navigation Dock (Thumb Reach) */}
       <MobileBottomNav
@@ -2039,15 +2107,6 @@ export default function App() {
       {/* Desktop Floating Action Buttons (Hidden on all Tool Pages to keep workspace 100% focused) */}
       {!isToolPage(currentPage) && (
         <div className="hidden lg:flex fixed bottom-6 right-6 z-40 flex-col items-end gap-2.5 print:hidden">
-          {/* Free Bench Pass Trigger */}
-          <button
-            onClick={() => setIsIntakePassOpen(true)}
-            className="group flex items-center gap-2 px-3.5 py-2.5 rounded-full bg-red-600 hover:bg-red-700 text-white font-semibold text-xs shadow-xl shadow-red-600/30 hover:shadow-red-600/50 hover:scale-105 transition-all cursor-pointer"
-            title="Print Free Bench Intake Pass"
-          >
-            <FileText className="w-4 h-4" />
-            <span className="hidden sm:inline">Free Bench Pass</span>
-          </button>
 
           {/* Quick Search Floating Trigger */}
           <button

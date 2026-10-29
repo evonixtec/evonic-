@@ -100,17 +100,17 @@ export const HomeAboutPreview: React.FC<HomeAboutPreviewProps> = ({
                 </div>
                 <div>
                   <h3 className="text-sm font-bold text-white">Commercial Projects Delivered</h3>
-                  <p className="text-xs text-slate-400 mt-0.5">Corporate portals, POS installations, and factory networks.</p>
+                  <p className="text-xs text-slate-400 mt-0.5">Corporate portals, bespoke ERP backbones, and cloud architectures.</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-sm flex-shrink-0">
-                  100%
+                  99.9%
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-white">Component-Level Diagnostics</h3>
-                  <p className="text-xs text-slate-400 mt-0.5">BGA rework, microscopic soldering & clean-room printer servicing.</p>
+                  <h3 className="text-sm font-bold text-white">Uptime &amp; SLA Commitment</h3>
+                  <p className="text-xs text-slate-400 mt-0.5">High-availability cloud infrastructure with sub-second transaction speed.</p>
                 </div>
               </div>
             </div>

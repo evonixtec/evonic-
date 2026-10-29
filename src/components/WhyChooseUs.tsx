@@ -20,54 +20,54 @@ export const WhyChooseUs: React.FC = () => {
     {
       icon: <Globe className="w-6 h-6 text-red-600" />,
       title: '20+ Years International Expertise',
-      description: 'Senior technology architects with two decades of experience designing software and IT infrastructure for multinational enterprises in Dubai and the GCC.',
+      description: 'Senior technology architects with two decades of experience designing enterprise software and cloud infrastructure for multinational firms in Dubai and GCC corridors.',
       badge: 'Dubai Proven',
     },
     {
       icon: <DollarSign className="w-6 h-6 text-emerald-600" />,
-      title: 'Transparent Localized Pricing',
-      description: 'World-class tech delivered at competitive Pakistani Rupee rates. Fixed milestones, itemized quotes, zero hidden charges.',
+      title: 'Milestone-Based Transparent Pricing',
+      description: 'Fixed milestone pricing with itemized deliverables, written contracts, and clear sprint commitments. Zero unexpected licensing or hidden surcharges.',
       badge: 'Zero Surprises',
     },
     {
       icon: <Zap className="w-6 h-6 text-amber-600" />,
-      title: 'Agile & Rapid Turnaround',
-      description: 'Fast deployment cycles, 24-48 hour diagnostic turnarounds for laptop repairs, and real-time WhatsApp project progress updates.',
-      badge: 'Fast Delivery',
+      title: 'Sub-Second High Throughput',
+      description: 'Engineered for extreme performance with sub-second database query execution, Redis caching layers, and high-frequency transaction capacity.',
+      badge: 'High Speed',
     },
     {
-      icon: <Home className="w-6 h-6 text-blue-600" />,
-      title: 'Doorstep On-Site IT in Sialkot',
-      description: 'Physical field support across all major commercial zones in Sialkot including Paris Road, Defense Road, Sambrial, and Daska.',
-      badge: 'At Your Door',
+      icon: <ShieldCheck className="w-6 h-6 text-blue-600" />,
+      title: '99.9% Production SLA Support',
+      description: 'Continuous production uptime monitoring, automated failover architecture, and direct senior architect escalation for mission-critical operations.',
+      badge: 'Enterprise SLA',
     },
   ];
 
   const comparisons = [
     {
       feature: 'Engineering Standards',
-      evonix: 'Dubai (UAE) corporate enterprise standard',
-      others: 'Unverified ad-hoc freelance methods',
+      evonix: 'Dubai (UAE) corporate enterprise software standard',
+      others: 'Unverified ad-hoc freelance scripts',
     },
     {
-      feature: 'Hardware Repair Components',
-      evonix: '100% genuine OEM chips, screens & parts',
-      others: 'Cheap duplicate or refurbished pulls',
+      feature: 'Architecture & Scalability',
+      evonix: 'Bespoke microservices, Next.js & multi-tenant cloud',
+      others: 'Rigid bloated templates & vendor lock-in',
     },
     {
-      feature: 'Post-Delivery Warranty',
-      evonix: 'Written warranty & dedicated SLA support',
-      others: 'No written guarantee after delivery',
+      feature: 'Production SLA & Support',
+      evonix: 'Written 99.9% uptime SLA & dedicated senior architects',
+      others: 'No written guarantee after launch',
     },
     {
-      feature: 'Code Ownership & Freedom',
-      evonix: '100% full source code ownership delivered',
+      feature: 'Code Ownership & IP',
+      evonix: '100% full source code and intellectual property ownership',
       others: 'Proprietary lock-ins & recurring hostage fees',
     },
     {
-      feature: 'Sialkot Doorstep Support',
-      evonix: 'On-site factory, clinic & office visits',
-      others: 'Must bring hardware to far-off shops',
+      feature: 'Sialkot Industrial Integration',
+      evonix: 'Native offline LAN sync, WeBOC customs & factory barcode logs',
+      others: 'Generic commercial software packages',
     },
   ];
 
