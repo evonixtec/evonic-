@@ -37,6 +37,7 @@ ${urls
 // ==========================================
 const mainCoreRoutes = [
   { loc: `${DOMAIN_MAIN}/`, changefreq: 'daily', priority: '1.0', lastmod: CURRENT_TIMESTAMP },
+  { loc: `${DOMAIN_MAIN}/installation-guide`, changefreq: 'weekly', priority: '0.85', lastmod: CURRENT_TIMESTAMP },
   { loc: `${DOMAIN_MAIN}/schema-generator`, changefreq: 'weekly', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
   { loc: `${DOMAIN_MAIN}/hs-code-lookup`, changefreq: 'weekly', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
   { loc: `${DOMAIN_MAIN}/services`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },

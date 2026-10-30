@@ -20,6 +20,11 @@
   ],
   "redirects": [
     {
+      "source": "/pos-software-in-sialkot",
+      "destination": "/blog/pos-software-in-sialkot",
+      "permanent": true
+    },
+    {
       "source": "/shop",
       "destination": "https://store.evonixtec.com",
       "permanent": true

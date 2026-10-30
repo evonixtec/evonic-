@@ -1433,6 +1433,42 @@ pages.push({
   `
 });
 
+pages.push({
+  route: 'installation-guide',
+  title: 'PWA Web App Installation Guide (Desktop & Mobile) | evonix',
+  description: 'How to install and run evonix enterprise web apps and offline tools natively on Windows, macOS, Android, and iOS without an app store.',
+  canonical: `${DOMAIN}/installation-guide`,
+  heading: 'Enterprise Web App & Offline Tool Installation Guide',
+  subheading: 'Native Desktop & Mobile Setup Without App Store Downloads',
+  breadcrumb: [
+    { name: 'Home', url: '/' },
+    { name: 'Guides', url: '/guides' },
+    { name: 'Installation Guide', url: '/installation-guide' }
+  ],
+  bodyHtml: `
+    <article class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg leading-relaxed">
+        evonix web apps and POS utilities run as Progressive Web Applications (PWA). You can install them directly to your Windows desktop, macOS dock, Android home screen, or iPhone.
+      </p>
+      <h2 class="text-2xl font-bold text-white mt-8 mb-4">Installation Instructions</h2>
+      <ul class="space-y-3">
+        <li class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+          <strong class="text-white block mb-1">Chrome or Edge on Windows / macOS:</strong>
+          Click the install icon in your browser address bar or open the menu and choose &quot;Install App&quot;.
+        </li>
+        <li class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+          <strong class="text-white block mb-1">Safari on iOS / iPhone:</strong>
+          Tap the Share button at the bottom of the screen, scroll down, and select &quot;Add to Home Screen&quot;.
+        </li>
+        <li class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+          <strong class="text-white block mb-1">Android Chrome:</strong>
+          Tap the three dots in the top right corner and tap &quot;Add to Home screen&quot; or &quot;Install app&quot;.
+        </li>
+      </ul>
+    </article>
+  `
+});
+
 // Policies
 pages.push({
   route: 'privacy-policy',
