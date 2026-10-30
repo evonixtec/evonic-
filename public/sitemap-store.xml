@@ -5,307 +5,271 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://store.evonixtec.com/</loc>
-    <lastmod>2026-10-29T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://store.evonixtec.com/shop</loc>
-    <lastmod>2026-10-29T10:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.95</priority>
-  </url>
-  <url>
-    <loc>https://store.evonixtec.com/services/doorstep-support</loc>
-    <lastmod>2026-10-29T10:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://store.evonixtec.com/tracker</loc>
-    <lastmod>2026-10-29T10:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
     <loc>https://store.evonixtec.com/pos-terminals</loc>
-    <lastmod>2026-10-29T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/printers</loc>
-    <lastmod>2026-10-29T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/laptops</loc>
-    <lastmod>2026-10-29T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/hardware-repair</loc>
-    <lastmod>2026-10-29T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://store.evonixtec.com/services/doorstep-support</loc>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/laptop-repairing-sialkot</loc>
-    <lastmod>2026-10-29T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/live-repair-tracker</loc>
-    <lastmod>2026-10-29T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/bench-intake-pass</loc>
-    <lastmod>2026-10-29T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/printer-troubleshooter</loc>
-    <lastmod>2026-10-29T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/thermal-hotspot-inspector</loc>
-    <lastmod>2026-10-29T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://store.evonixtec.com/locations/daska/hardware-maintenance</loc>
-    <lastmod>2026-10-25T10:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://store.evonixtec.com/locations/daska/laptop-repair</loc>
-    <lastmod>2026-10-25T10:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://store.evonixtec.com/locations/sambrial/hardware-maintenance</loc>
-    <lastmod>2026-10-25T10:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://store.evonixtec.com/locations/sambrial/laptop-repair</loc>
-    <lastmod>2026-10-25T10:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://store.evonixtec.com/locations/wazirabad/hardware-maintenance</loc>
-    <lastmod>2026-10-25T10:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://store.evonixtec.com/locations/wazirabad/laptop-repair</loc>
-    <lastmod>2026-10-25T10:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
     <loc>https://store.evonixtec.com/blog/thermal-receipt-printer-skipping-lines-faded-print-fix</loc>
-    <lastmod>2026-03-28T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/laptop-fan-loud-sudden-shutdown-thermal-paste-guide</loc>
-    <lastmod>2026-03-25T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/desktop-pc-wont-turn-on-after-power-cut-bench-checks</loc>
-    <lastmod>2026-03-22T10:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://store.evonixtec.com/blog/offline-first-pos-software-why-shops-need-it</loc>
-    <lastmod>2026-03-20T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/doorstep-laptop-repair-daska-road-sialkot-surgical-export</loc>
-    <lastmod>2025-02-05T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/thermal-receipt-printer-repair-rangpura-sialkot-retail</loc>
-    <lastmod>2025-03-02T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/laptop-broken-hinge-chassis-repair-rangpura-sialkot</loc>
-    <lastmod>2025-03-14T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/macbook-display-retina-screen-replacement-daska-road-sialkot</loc>
-    <lastmod>2025-04-03T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/laptop-nvme-ssd-ram-speedup-daska-road-sialkot-factories</loc>
-    <lastmod>2025-04-16T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/heavy-duty-laser-printer-repair-daska-road-sialkot-factories</loc>
-    <lastmod>2025-04-29T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/liquid-damage-ultrasonic-cleaning-laptop-rangpura-sialkot</loc>
-    <lastmod>2025-05-18T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://store.evonixtec.com/blog/annual-it-maintenance-contract-amc-sialkot-factories</loc>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/dell-latitude-hp-elitebook-type-c-charging-repair-sialkot</loc>
-    <lastmod>2025-07-25T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/xprinter-black-copper-thermal-receipt-printer-cutter-repair-guide</loc>
-    <lastmod>2025-08-12T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/hp-laserjet-thermal-printer-repeating-defect-distance-repair-sialkot</loc>
-    <lastmod>2026-01-28T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/diagnosing-laptop-motherboard-short-circuits-chip-level</loc>
-    <lastmod>2025-01-18T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/thermal-paste-replacement-heatsink-cleaning-prevent-throttling</loc>
-    <lastmod>2025-01-24T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/liquid-spill-emergency-protocol-water-damaged-laptops</loc>
-    <lastmod>2025-01-29T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/thermal-receipt-printer-troubleshooting-jams-faded-print</loc>
-    <lastmod>2025-02-03T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/laser-printer-maintenance-drums-toner-fuser-rollers</loc>
-    <lastmod>2025-02-07T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/ssd-vs-hdd-upgrades-10x-speed-transformation-old-pcs</loc>
-    <lastmod>2025-02-11T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/laptop-screen-replacement-30pin-vs-40pin-edp-panels</loc>
-    <lastmod>2025-02-15T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/fixing-corrupted-bios-uefi-hardware-programmer-flashing</loc>
-    <lastmod>2025-02-19T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/power-ic-dc-jack-repair-laptops-wont-turn-on</loc>
-    <lastmod>2025-02-23T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/ram-compatibility-dual-channel-optimization-workstations</loc>
-    <lastmod>2025-02-27T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/diagnosing-laptop-battery-failure-cells-bms-calibration</loc>
-    <lastmod>2025-03-03T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://store.evonixtec.com/blog/industrial-pc-cnc-controller-maintenance-factories</loc>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/network-printer-setup-static-ip-print-server-routing</loc>
-    <lastmod>2025-03-11T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/hard-drive-data-recovery-rescuing-inaccessible-files</loc>
-    <lastmod>2025-03-15T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/overcoming-blue-screen-of-death-hardware-vs-drivers</loc>
-    <lastmod>2025-03-19T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/laptop-hinge-repair-structural-plastic-reinforcement</loc>
-    <lastmod>2025-03-23T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/gpu-reballing-vs-reflowing-permanent-bga-repair</loc>
-    <lastmod>2025-03-27T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/static-electricity-esd-protection-cleanroom-repair-labs</loc>
-    <lastmod>2025-03-31T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://store.evonixtec.com/blog/preventative-maintenance-checklist-corporate-office-it</loc>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://store.evonixtec.com/blog/zero-charge-diagnostic-policy-why-lab-testing-must-precede-quotes</loc>
-    <lastmod>2025-04-07T10:00:00+00:00</lastmod>
+    <lastmod>2026-10-30T09:20:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>

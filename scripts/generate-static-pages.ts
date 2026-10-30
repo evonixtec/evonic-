@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { ALL_BLOGS } from '../src/data/blogs';
 import { LOCAL_CITIES, CLUSTER_SERVICES } from '../src/data/localClusters';
-import { COMPANY_INFO, SERVICES, PORTFOLIO_DATA, SHOP_PRODUCTS, FAQ_ITEMS } from '../src/data/content';
+import { COMPANY_INFO, SERVICES, PORTFOLIO_DATA, FAQ_ITEMS } from '../src/data/content';
 
 const DIST_DIR = path.resolve(process.cwd(), 'dist');
 const DOMAIN = 'https://www.evonixtec.com';
@@ -104,7 +104,7 @@ function buildSeoHeader(currentRoute: string): string {
           <a href="/services" class="hover:text-teal-400">Services</a>
           <a href="/guides" class="hover:text-teal-400">Guides</a>
           <a href="/portfolio" class="hover:text-teal-400">Portfolio</a>
-          <a href="/shop" class="hover:text-teal-400">Shop</a>
+          <a href="https://store.evonixtec.com" class="hover:text-teal-400">Hardware Store</a>
           <a href="/locations" class="hover:text-teal-400">Locations</a>
           <a href="/about" class="hover:text-teal-400">About</a>
           <a href="/contact" class="hover:text-teal-400">Contact</a>
@@ -139,14 +139,13 @@ function buildSeoFooter(): string {
         </div>
 
         <div>
-          <h3 class="text-white font-bold text-base mb-3">Core Services</h3>
+          <h3 class="text-white font-bold text-base mb-3">Enterprise Services</h3>
           <ul class="space-y-2 text-xs text-slate-400">
             <li><a href="/services/web-development" class="hover:text-teal-400">Custom Website Development</a></li>
             <li><a href="/services/software-pos" class="hover:text-teal-400">Retail &amp; Export POS Systems</a></li>
-            <li><a href="/services/hardware-repair" class="hover:text-teal-400">Chip-Level Motherboard Repair</a></li>
-            <li><a href="/services/doorstep-support" class="hover:text-teal-400">Doorstep IT Dispatch</a></li>
             <li><a href="/sialkot-export-erp" class="hover:text-teal-400">Sialkot Export Factory ERP</a></li>
-            <li><a href="/laptop-repairing-sialkot" class="hover:text-teal-400">Laptop Repairing Sialkot</a></li>
+            <li><a href="/services" class="hover:text-teal-400">Cloud Architecture &amp; Microservices</a></li>
+            <li><a href="https://store.evonixtec.com" class="hover:text-teal-400">Hardware &amp; Equipment Store &rarr;</a></li>
           </ul>
         </div>
 
@@ -325,8 +324,7 @@ pages.push({
         <div class="flex flex-wrap gap-3">
           <a href="/services/web-development" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-teal-400 text-sm font-semibold">Web Development</a>
           <a href="/services/software-pos" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-teal-400 text-sm font-semibold">Software &amp; POS Systems</a>
-          <a href="/services/hardware-repair" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-teal-400 text-sm font-semibold">Hardware Repair</a>
-          <a href="/services/doorstep-support" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-teal-400 text-sm font-semibold">Doorstep Field Support</a>
+          <a href="/sialkot-export-erp" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-teal-400 text-sm font-semibold">Export Factory ERP</a>
         </div>
       </div>
     </div>
@@ -348,20 +346,6 @@ const subServices = [
     description: 'Offline-first POS billing systems, barcode inventory tracking, and custom manufacturing ERP software for Sialkot.',
     heading: 'Retail & Export POS Software Solutions',
     features: ['Offline-First Local SQLite/Cloud Sync', '80mm Thermal Receipt Printing', 'Barcode Scanning & Stock Deductions', 'Cashier Rights & Daily Z-Reports']
-  },
-  {
-    route: 'services/hardware-repair',
-    title: 'Chip-Level Motherboard & Hardware Repair Lab | EVONIX Sialkot',
-    description: 'BGA rework, micro-soldering, blown MOSFET repair, and thermal servicing for business laptops and industrial PCs.',
-    heading: 'Chip-Level Motherboard & Hardware Repair Lab',
-    features: ['Component-Level Bench Testing', 'Short Circuit Detection with FLIR Thermal Imaging', 'Genuine Replacement ICs & MOSFETs', 'Zero-Fee Diagnostic Policy']
-  },
-  {
-    route: 'services/doorstep-support',
-    title: 'Doorstep IT Support & Emergency Field Dispatch | EVONIX Sialkot',
-    description: '15-to-60 minute on-site corporate technician dispatch across Sialkot City, Cantt, Paris Road, and factory zones.',
-    heading: 'Doorstep IT Support & Emergency Field Dispatch',
-    features: ['Rapid Dispatch to Paris Road & Cantt', 'Emergency Network Cable & Router Fixes', 'Thermal Receipt Printer Setup', 'Workstation Virus Removal & SSD Upgrades']
   }
 ];
 
@@ -495,141 +479,7 @@ pages.push({
   `
 });
 
-// Shop & Sub-categories
-pages.push({
-  route: 'shop',
-  title: 'IT Hardware, POS Systems & Equipment Catalog | EVONIX Sialkot',
-  description: 'Imported business laptops, 80mm thermal receipt printers, 2D barcode scanners, and all-in-one touch POS terminals with warranty.',
-  canonical: `${DOMAIN}/shop`,
-  heading: 'IT Hardware & POS Equipment Catalog',
-  subheading: 'Verified Business Equipment with Local Warranty Support',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Shop', url: '/shop' }],
-  bodyHtml: `
-    <div class="space-y-8 text-slate-300">
-      <p class="text-base sm:text-lg leading-relaxed">
-        Tested and certified computer hardware, retail POS terminals, and barcode peripherals ready for dispatch in Sialkot.
-      </p>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        ${SHOP_PRODUCTS.map(prod => `
-          <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
-            <span class="text-xs font-bold text-teal-400 uppercase">${escapeHtml(prod.category)}</span>
-            <h2 class="text-lg font-bold text-white">${escapeHtml(prod.name)}</h2>
-            <p class="text-xs text-slate-400">${escapeHtml(prod.description)}</p>
-            <div class="pt-2 text-xs text-slate-300 space-y-1">
-              <div><strong>Warranty:</strong> ${escapeHtml(prod.warranty || '3 Months')}</div>
-              <div><strong>Condition:</strong> ${escapeHtml(prod.condition || 'Tested Grade-A')}</div>
-              <div class="text-teal-400 font-bold">${escapeHtml(prod.priceEstimate || 'Contact for price')}</div>
-            </div>
-          </div>
-        `).join('')}
-      </div>
-
-      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
-        <h3 class="text-lg font-bold text-white mb-3">Browse Equipment Categories</h3>
-        <div class="flex flex-wrap gap-3">
-          <a href="/shop/pos-terminals" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-teal-400 text-sm font-semibold">POS Terminals</a>
-          <a href="/shop/printers" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-teal-400 text-sm font-semibold">Thermal &amp; Barcode Printers</a>
-          <a href="/shop/laptops" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-teal-400 text-sm font-semibold">Business Laptops</a>
-        </div>
-      </div>
-    </div>
-  `
-});
-
-const shopSubPages = [
-  {
-    route: 'shop/pos-terminals',
-    title: 'All-In-One Touchscreen POS Terminals | EVONIX Hardware Sialkot',
-    description: 'Commercial capacitive touch POS terminals with Intel Core processors and local warranty support in Sialkot.',
-    heading: 'Touchscreen POS Terminals for Retail & Hospitality'
-  },
-  {
-    route: 'shop/printers',
-    title: '80mm Thermal Receipt & Barcode Printers | EVONIX Sialkot',
-    description: 'High-speed 260mm/s auto-cutter thermal receipt printers and heavy-duty industrial shipping label printers.',
-    heading: '80mm Thermal Receipt & Barcode Label Printers'
-  },
-  {
-    route: 'shop/laptops',
-    title: 'Business Laptops & High-Performance Workstations | EVONIX Sialkot',
-    description: 'Tested Grade-A Dell Latitude and HP EliteBook corporate laptops configured for business and export accounting.',
-    heading: 'Business Laptops & Corporate Workstations'
-  }
-];
-
-shopSubPages.forEach((sp) => {
-  pages.push({
-    route: sp.route,
-    title: sp.title,
-    description: sp.description,
-    canonical: `${DOMAIN}/${sp.route}`,
-    heading: sp.heading,
-    breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Shop', url: '/shop' }, { name: sp.heading, url: `/${sp.route}` }],
-    bodyHtml: `
-      <div class="space-y-6 text-slate-300">
-        <p class="text-base sm:text-lg text-slate-200">
-          ${sp.description}
-        </p>
-        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
-          <h2 class="text-xl font-bold text-white mb-2">Got a question? Call us.</h2>
-          <p class="text-sm text-slate-400 mb-4">We reply in 2 hours with available stock and pricing.</p>
-          <a href="/contact" class="px-6 py-3 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-sm inline-block">
-            Contact Sales Desk
-          </a>
-        </div>
-      </div>
-    `
-  });
-});
-
-// Specialized interactive tools and Sialkot landings
-pages.push({
-  route: 'sialkot-it-services',
-  title: 'Sialkot IT Services & Industrial Hardware Maintenance | EVONIX',
-  description: 'Comprehensive IT consultancy, industrial hardware AMC, and network infrastructure maintenance for export factories in Sialkot.',
-  canonical: `${DOMAIN}/sialkot-it-services`,
-  heading: 'Sialkot IT Services & Factory Infrastructure',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Sialkot IT Services', url: '/sialkot-it-services' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Complete enterprise technology support designed for Sialkot export manufacturing factories.
-      </p>
-      <h2 class="text-2xl font-bold text-white">Services for Sialkot Factories</h2>
-      <ul class="space-y-2 text-sm">
-        <li>&bull; Dual-fiber internet failover and router configuration</li>
-        <li>&bull; Secure local Synology NAS backup setup</li>
-        <li>&bull; Annual IT Maintenance Contracts (AMC) with dedicated engineers</li>
-        <li>&bull; Zero-delay doorstep dispatch to Sambrial, Daska Road, and Cantt</li>
-      </ul>
-    </div>
-  `
-});
-
-pages.push({
-  route: 'laptop-repairing-sialkot',
-  title: 'Laptop Repairing in Sialkot – Chip-Level Lab | EVONIX',
-  description: 'BGA chip-level micro-soldering, motherboard repairs, screen replacement, and thermal servicing in Sialkot with genuine parts.',
-  canonical: `${DOMAIN}/laptop-repairing-sialkot`,
-  heading: 'Laptop Repairing in Sialkot – Chip-Level Lab',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Laptop Repairing Sialkot', url: '/laptop-repairing-sialkot' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Professional laptop and MacBook motherboard repair bench located at Kotli Behram, Paris Road Sialkot.
-      </p>
-      <h2 class="text-2xl font-bold text-white">Common Bench Repairs</h2>
-      <ul class="space-y-2 text-sm">
-        <li>&bull; Dead laptop power rail troubleshooting (19V, 3.3V, 5V rails)</li>
-        <li>&bull; Broken hinge and structural plastic chassis reconstruction</li>
-        <li>&bull; Screen replacement (30-pin and 40-pin eDP LED panels)</li>
-        <li>&bull; Liquid damage ultrasonic cleaning and corrosion removal</li>
-      </ul>
-    </div>
-  `
-});
-
+// Enterprise B2B software and tools landings
 pages.push({
   route: 'pos-software-sialkot',
   title: 'Point of Sale (POS) Software Sialkot | Retail & ERP | EVONIX',
@@ -679,22 +529,6 @@ pages.push({
 });
 
 pages.push({
-  route: 'printer-troubleshooter',
-  title: 'LaserJet & Thermal Receipt Printer Diagnostic Studio | EVONIX',
-  description: 'Interactive defect ruler, error code decoder, and repair guide for HP LaserJet and 80mm thermal receipt printers.',
-  canonical: `${DOMAIN}/printer-troubleshooter`,
-  heading: 'LaserJet & Thermal Printer Troubleshooter',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Printer Troubleshooter', url: '/printer-troubleshooter' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Diagnose repetitive drum defects, paper feed jams, and faded thermal receipts instantly.
-      </p>
-    </div>
-  `
-});
-
-pages.push({
   route: 'factory-network-tester',
   title: 'Export Factory Network Latency & Bandwidth Benchmark | EVONIX',
   description: 'Interactive industrial network latency tester for export factories and ERP database synchronization across Sialkot.',
@@ -714,22 +548,6 @@ pages.push({
           <li>&bull; Daska Road Leather &amp; Sports Goods Hybrid Cloud Sync</li>
         </ul>
       </div>
-    </div>
-  `
-});
-
-pages.push({
-  route: 'live-repair-tracker',
-  title: 'Live RMA Repair Ticket & Bench Diagnostics Tracker | EVONIX',
-  description: 'Check real-time hardware repair diagnostics, component sourcing, and testing progress for your lab tickets in Sialkot.',
-  canonical: `${DOMAIN}/live-repair-tracker`,
-  heading: 'Live Repair Ticket & Bench Diagnostics Tracker',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Repair Tracker', url: '/live-repair-tracker' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Track your motherboard repair ticket, parts sourcing status, and quality testing progress live.
-      </p>
     </div>
   `
 });
