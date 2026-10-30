@@ -25,6 +25,26 @@
       "permanent": true
     },
     {
+      "source": "/pos-software-sialkot",
+      "destination": "/services/software-pos",
+      "permanent": true
+    },
+    {
+      "source": "/sialkot-it-services",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/locations/:city/hardware-maintenance",
+      "destination": "https://store.evonixtec.com/hardware-repair",
+      "permanent": true
+    },
+    {
+      "source": "/locations/:city/laptop-repair",
+      "destination": "https://store.evonixtec.com/laptop-repairing-sialkot",
+      "permanent": true
+    },
+    {
       "source": "/shop",
       "destination": "https://store.evonixtec.com",
       "permanent": true
