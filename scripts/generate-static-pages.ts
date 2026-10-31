@@ -23,6 +23,7 @@ interface StaticPageDef {
   ogImage?: string;
   ogImageWidth?: number;
   ogImageHeight?: number;
+  robots?: string;
 }
 
 // Convert markdown-like content to clean semantic HTML
@@ -1526,16 +1527,16 @@ pages.push({
   `
 });
 
-// Matrix of City & Services
+// Matrix of City & Services (Strictly Enterprise Software, POS & IT Consultancy on www)
 const citySlugs = Object.keys(LOCAL_CITIES) as (keyof typeof LOCAL_CITIES)[];
-const serviceSlugs = Object.keys(CLUSTER_SERVICES) as (keyof typeof CLUSTER_SERVICES)[];
+const enterpriseLocationServices: (keyof typeof CLUSTER_SERVICES)[] = ['it-consultancy', 'web-development', 'pos-systems'];
 
 citySlugs.forEach((city) => {
   const cityData = LOCAL_CITIES[city];
   pages.push({
     route: `locations/${city}`,
-    title: `${cityData.name} IT Services & Hardware Maintenance | EVONIX`,
-    description: `Rapid 30-45 minute on-site IT support and diagnostic lab services for businesses in ${cityData.name}.`,
+    title: `${cityData.name} IT Services & Enterprise Software | EVONIX`,
+    description: `Rapid 30-45 minute on-site IT support and software engineering for businesses in ${cityData.name}.`,
     canonical: `${DOMAIN}/locations/${city}`,
     heading: `${cityData.name} IT Services & Industrial Support`,
     breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Locations', url: '/locations' }, { name: cityData.name, url: `/locations/${city}` }],
@@ -1544,17 +1545,23 @@ citySlugs.forEach((city) => {
         <p class="text-base sm:text-lg text-slate-200">${escapeHtml(cityData.tagline)}</p>
         <h2 class="text-xl font-bold text-white mt-6 mb-3">Available Services in ${cityData.name}</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          ${serviceSlugs.map(svc => `
+          ${enterpriseLocationServices.map(svc => `
             <a href="/locations/${city}/${svc}" class="p-4 rounded-xl bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-200 hover:text-teal-400 text-sm font-semibold transition-colors">
               ${escapeHtml(CLUSTER_SERVICES[svc].name)}
             </a>
           `).join('')}
+          <a href="https://store.evonixtec.com/hardware-repair" class="p-4 rounded-xl bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-200 hover:text-teal-400 text-sm font-semibold transition-colors">
+            Hardware Maintenance &amp; Repair &rarr;
+          </a>
+          <a href="https://store.evonixtec.com/laptop-repairing-sialkot" class="p-4 rounded-xl bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-200 hover:text-teal-400 text-sm font-semibold transition-colors">
+            Chip-Level Laptop Repair &rarr;
+          </a>
         </div>
       </div>
     `
   });
 
-  serviceSlugs.forEach((svc) => {
+  enterpriseLocationServices.forEach((svc) => {
     const serviceData = CLUSTER_SERVICES[svc];
     pages.push({
       route: `locations/${city}/${svc}`,
@@ -1693,6 +1700,35 @@ ALL_BLOGS.forEach((blog) => {
   });
 });
 
+// Standalone Promotional Campaign (Strictly noindex, nofollow)
+pages.push({
+  route: 'starter',
+  title: 'November Business Web Starter Pack | Evonix Technologies',
+  description: 'Limited November business web design offer for Pakistani businesses and exporters.',
+  canonical: `${DOMAIN}/starter`,
+  heading: 'November Business Web Starter Pack',
+  subheading: 'Limited November Offer — Strictly Limited to 10 Slots',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Starter Pack', url: '/starter' }],
+  robots: 'noindex, nofollow',
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        Upgrade from basic business cards and social pages to a high-speed, modern web presence tailored for Sialkot, Punjab businesses, and exporters.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+          <h3 class="text-xl font-bold text-white mb-2">Starter Website — PKR 20,000</h3>
+          <p class="text-xs text-slate-400 mb-4">1-3 Pages High-Converting Business Portfolio. Turnaround: 3-4 Days.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900 border border-blue-500/50">
+          <h3 class="text-xl font-bold text-white mb-2">Full Business Suite — PKR 30,000</h3>
+          <p class="text-xs text-emerald-400 mb-4">All-Inclusive: Free .com Domain + Cloud Hosting for 1 Year. Turnaround: 4-5 Days.</p>
+        </div>
+      </div>
+    </div>
+  `
+});
+
 // ==========================================
 // 3. Non-Canonical Aliases (with Instant Meta Redirect)
 // ==========================================
@@ -1791,6 +1827,22 @@ function generateStaticPages() {
       modifiedHtml = modifiedHtml.replace(
         '</head>',
         `  <link rel="canonical" href="${page.canonical}" />\n</head>`
+      );
+    }
+
+    // Robots directive override (e.g. noindex for promotional pages)
+    if (page.robots) {
+      modifiedHtml = modifiedHtml.replace(
+        /<meta\s+name="robots"\s+content=".*?"\s*\/?>/i,
+        `<meta name="robots" content="${page.robots}" />`
+      );
+      modifiedHtml = modifiedHtml.replace(
+        /<meta\s+name="googlebot"\s+content=".*?"\s*\/?>/i,
+        `<meta name="googlebot" content="${page.robots}" />`
+      );
+      modifiedHtml = modifiedHtml.replace(
+        /<meta\s+name="bingbot"\s+content=".*?"\s*\/?>/i,
+        `<meta name="bingbot" content="${page.robots}" />`
       );
     }
 

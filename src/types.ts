@@ -37,7 +37,8 @@ export type NavPageId =
   | 'guidelines'
   | 'trend-intelligence-suite'
   | 'schema-generator'
-  | 'hs-code-lookup';
+  | 'hs-code-lookup'
+  | 'starter';
 
 export type PageId = NavPageId;
 

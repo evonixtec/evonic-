@@ -73,6 +73,7 @@ const AdminPortal = lazy(() => import('./components/AdminPortal').then(m => ({ d
 const DoorstepSupportPage = lazy(() => import('./components/DoorstepSupportPage').then(m => ({ default: m.DoorstepSupportPage })));
 const SialkotExportErpPage = lazy(() => import('./components/SialkotExportErpPage').then(m => ({ default: m.SialkotExportErpPage })));
 const GuidelinesPage = lazy(() => import('./components/GuidelinesPage').then(m => ({ default: m.GuidelinesPage })));
+const StarterPromoPage = lazy(() => import('./pages/StarterPromoPage').then(m => ({ default: m.StarterPromoPage })));
 // Resilient dynamic import helper with automatic retry and graceful fallback for lazy chunks
 const lazyWithRetry = <T extends React.ComponentType<any>>(
   factory: () => Promise<{ default: T } | any>
@@ -151,6 +152,10 @@ export default function App() {
   const resolvePageFromPath = (rawPath: string): NavPageId => {
     const path = rawPath.replace(/^\/+|\/+$/g, '').toLowerCase();
     if (!path) return 'home';
+
+    if (path === 'starter' || path === 'starter-pack' || path.startsWith('starter/')) {
+      return 'starter';
+    }
 
     if (
       path === 'services/doorstep-support' ||
@@ -875,6 +880,14 @@ export default function App() {
     setSelectedServiceForQuote(serviceType);
     setIsQuoteOpen(true);
   };
+
+  if (currentPage === 'starter') {
+    return (
+      <Suspense fallback={<LazyLoaderFallback />}>
+        <StarterPromoPage />
+      </Suspense>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white text-slate-900 flex flex-col selection:bg-red-500/20 selection:text-red-700 font-sans">

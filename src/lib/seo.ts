@@ -1246,6 +1246,16 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'leather surgical sports hs code',
     ],
   },
+  starter: {
+    title: 'November Business Web Starter Pack | Evonix Technologies',
+    description: 'Limited November business web design offer for Pakistani businesses and exporters.',
+    canonicalUrl: `${BASE_URL}/starter`,
+    ogTitle: 'November Business Web Starter Pack | Evonix Technologies',
+    ogDescription: 'Limited November business web design offer for Pakistani businesses and exporters.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    keywords: ['web design offer', 'starter pack', 'evonix promo'],
+  },
 };
 
 /**
@@ -1714,12 +1724,18 @@ export function applyPageSEO(
   // Primary Meta & Robots Directives
   updateMetaTag('name', 'description', meta.description);
   updateMetaTag('name', 'keywords', meta.keywords.join(', '));
-  // Universal Indexation Directives: No noindex tags allowed anywhere
-  updateMetaTag('name', 'robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-  updateMetaTag('name', 'googlebot', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-  updateMetaTag('name', 'bingbot', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
-  updateMetaTag('name', 'google-extended', 'index, follow');
-  updateMetaTag('name', 'gptbot', 'index, follow');
+  if (pageId === 'starter') {
+    updateMetaTag('name', 'robots', 'noindex, nofollow');
+    updateMetaTag('name', 'googlebot', 'noindex, nofollow');
+    updateMetaTag('name', 'bingbot', 'noindex, nofollow');
+  } else {
+    // Universal Indexation Directives: No noindex tags allowed anywhere on public pages
+    updateMetaTag('name', 'robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+    updateMetaTag('name', 'googlebot', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+    updateMetaTag('name', 'bingbot', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+    updateMetaTag('name', 'google-extended', 'index, follow');
+    updateMetaTag('name', 'gptbot', 'index, follow');
+  }
 
   // Open Graph
   updateMetaTag('property', 'og:title', meta.ogTitle);
