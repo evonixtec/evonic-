@@ -383,8 +383,11 @@ export default function App() {
       path === 'etsy-fee-calculator' ||
       path === 'etsy-calculator' ||
       path === 'etsy-fee' ||
+      path === 'etsyfeepro' ||
+      path === 'etsy-fee-pro' ||
       path.startsWith('etsy-fee') ||
-      path.startsWith('etsy-calculator')
+      path.startsWith('etsy-calculator') ||
+      path.startsWith('etsyfeepro')
     ) {
       return 'etsy-fee-calculator';
     }

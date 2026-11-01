@@ -807,19 +807,57 @@ pages.push({
 
 pages.push({
   route: 'etsy-fee-calculator',
-  title: 'Etsy Fee & Profit Calculator 2026 - Listing, Transaction & Offsite Ads | evonix',
-  description: '2026 updated Etsy fee and profit calculator. Calculate $0.20 listing renewal, 6.5% transaction cut, payment processing, Offsite Ads, and net profit margins.',
+  title: 'EtsyFeePro: Etsy Fee & Payoneer Profit Calculator 2026 | EVONIX',
+  description: 'Calculate exact Etsy fees ($0.20 listing, 6.5% transaction, 3-4.5% payment), 15% offsite ads with $100 order cap, and Payoneer banking deductions. Live currency converter.',
   canonical: `${DOMAIN}/etsy-fee-calculator`,
   ogImage: `${DOMAIN}/images/etsy-fee-calculator-2026.png`,
   ogImageWidth: 1200,
   ogImageHeight: 630,
-  heading: 'Etsy Fee & Profit Calculator 2026',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Etsy Fee Calculator', url: '/etsy-fee-calculator' }],
+  heading: 'EtsyFeePro: Etsy Fee & Payoneer Profit Engine 2026',
+  subheading: 'Precise Etsy Fees, Offsite Ads $100 Cap & Cross-Border Payoneer Cash Payout Matrix',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'EtsyFeePro Calculator', url: '/etsy-fee-calculator' }],
+  schemaType: 'FAQPage',
+  schemaJson: {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What are the real Etsy fees per sale in 2026?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Etsy charges a $0.20 fixed listing fee, 6.5% transaction fee on item price and shipping, payment processing fees (3.0% + $0.25 in the US, up to 4.5% + $0.30 for international Payoneer accounts), and optional 15% offsite ads.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'What is the Etsy Offsite Ads $100 fee cap?',
+        answer: 'When a buyer clicks an external ad and buys within 30 days, Etsy deducts 15% (or 12% for shops over $10k/yr). However, Etsy officially caps this fee at $100 on any single order.'
+      },
+      {
+        '@type': 'Question',
+        name: 'How much does Payoneer deduct when withdrawing Etsy funds?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Payoneer deducts a 0.5% inflow receiving fee, an estimated 2.0% wholesale FX spread below the live interbank rate, and a flat $1.50 local bank wire fee per withdrawal.'
+        }
+      }
+    ]
+  },
   bodyHtml: `
     <div class="space-y-6 text-slate-300">
       <p class="text-base sm:text-lg text-slate-200">
-        Calculate exact Etsy listing renewals ($0.20), 6.5% transaction cut on item and shipping, payment processing fees (3% + 25¢), and Offsite Ads profit cushion.
+        Calculate exact Etsy listing renewals ($0.20), 6.5% transaction cut on item and shipping, payment processing fees (3% + 25¢), 15% Offsite Ads with official $100 order cap, and multi-stage Payoneer cross-border banking deductions.
       </p>
+      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+        <h2 class="text-lg font-bold text-white">EtsyFeePro Features &amp; Capabilities</h2>
+        <ul class="space-y-2 text-sm text-slate-400">
+          <li>&bull; <strong>Precise Etsy Fee Engine:</strong> Listing fee ($0.20), 6.5% transaction, country-specific payment processing, and regulatory operating fees.</li>
+          <li>&bull; <strong>Official $100 Offsite Ads Cap:</strong> Automatically limits 15% or 12% ad fees to the maximum $100 limit.</li>
+          <li>&bull; <strong>Cross-Border Payoneer Deductions:</strong> Calculates inflow 0.5%, FX spread 2%, and local bank wire flat fee $1.50.</li>
+          <li>&bull; <strong>Target Price Solver:</strong> Solves required selling prices for 20% Safe, 35% Growth, and 50% Brand profit margins.</li>
+        </ul>
+      </div>
       <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
         <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
         <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>

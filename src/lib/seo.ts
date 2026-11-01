@@ -1130,24 +1130,27 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ],
   },
   'etsy-fee-calculator': {
-    title: 'Etsy Fee & Profit Calculator 2026 - Listing, Transaction & Offsite Ads',
+    title: 'EtsyFeePro: Etsy Fee & Payoneer Profit Calculator 2026 | EVONIX',
     description:
-      '2026 updated Etsy fee and profit calculator. Calculate $0.20 listing renewal, 6.5% transaction cut, payment processing, Offsite Ads, and net profit margins.',
+      'Calculate exact Etsy fees ($0.20 listing, 6.5% transaction, 3-4.5% payment), 15% offsite ads with $100 order cap, and Payoneer banking deductions. Live currency converter.',
     canonicalUrl: `${BASE_URL}/etsy-fee-calculator`,
-    ogTitle: 'Etsy Fee & Profit Calculator 2026 - Listing, Transaction & Offsite Ads',
+    ogTitle: 'EtsyFeePro: Etsy Fee & Payoneer Profit Calculator 2026',
     ogDescription:
-      'Calculate exact Etsy seller fees with 2026 rates: $0.20 listing, 6.5% transaction, payment processing, and net profit margin.',
+      'Calculate exact Etsy fees, $0.20 listing, 6.5% transaction, payment processing, 15% offsite ads with $100 cap, and Payoneer net bank deposit.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/etsy-fee-calculator-2026.png`,
     keywords: [
       'etsy fee calculator',
+      'etsyfeepro',
       'etsy profit calculator',
+      'etsy payoneer fee calculator',
       'etsy fees 2026',
       'etsy transaction fee',
       'etsy payment processing fee',
       'etsy offsite ads fee calculator',
       'etsy seller calculator pakistan',
       'etsy profit margin calculator',
+      'etsy cross border profit',
     ],
   },
   'amazon-fbm-calculator': {

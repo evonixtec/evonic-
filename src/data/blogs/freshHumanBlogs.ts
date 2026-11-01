@@ -594,4 +594,188 @@ For the complete technical breakdown, read our travel tools guide:
 👉 **[Lock In Your Dubai Hotel Room Now - Save Up to 60% on Trip.com](https://www.trip.com/hotels/list?city=220&display=Dubai&optionId=220&optionType=City&optionName=Dubai&Allianceid=10929626&SID=332911573&trip_sub1=&trip_sub3=D20154955)**
     `,
   },
+  {
+    id: 'blog-etsy-fee-calculator-payoneer-profit-blueprint-2026',
+    slug: 'etsy-fee-calculator-payoneer-profit-blueprint-2026',
+    title: 'Etsy Fee Calculator & Payoneer Profit Blueprint 2026: Real Net Payout for International Sellers',
+    category: 'software-dev',
+    categoryLabel: 'E-Commerce & Cross-Border Selling',
+    excerpt: 'Calculate real Etsy fees, listing costs, 15% offsite ads with the $100 cap, and Payoneer FX spread. Know your exact net bank deposit before pricing.',
+    readTime: '4 min read',
+    publishedDate: '2026-11-01',
+    author: {
+      name: 'Raza Muhammad',
+      role: 'Cross-Border E-Commerce & Systems Lead',
+    },
+    tags: [
+      'Etsy Fee Calculator',
+      'Payoneer Deductions',
+      'Etsy Fees 2026',
+      'Cross Border Selling',
+      'Offsite Ads 15 Percent',
+      'Etsy Pakistan Sellers',
+      'Net Profit Calculator'
+    ],
+    metaTitle: 'Etsy Fee Calculator 2026 - Payoneer Net Payout & Profit Formula | EVONIX',
+    metaDescription: 'Calculate exact Etsy fees, $0.20 listing, 6.5% transaction, payment processing, 15% offsite ads cap ($100), and Payoneer bank deductions. Free live tool.',
+    targetKeywords: [
+      'etsy fee calculator',
+      'etsy fee calculator 2026',
+      'etsy payoneer fee calculator',
+      'etsy profit calculator',
+      'etsy offsite ads fee cap'
+    ],
+    imageUrl: '/images/etsy-fee-calculator-2026.png',
+    imageAlt: 'Etsy Fee Pro Calculator and Payoneer Cross Border Profit Blueprint 2026',
+    internalLinks: [
+      {
+        label: 'EtsyFeePro Interactive Calculator',
+        targetSection: 'etsy-fee-calculator',
+        anchorText: 'Open Live EtsyFeePro Calculator',
+        toolPage: 'etsy-fee-calculator',
+        description: 'Test live Etsy orders with Payoneer multi-stage banking deductions and target price matrix.'
+      },
+      {
+        label: 'Global Invoice Hub',
+        targetSection: 'invoice',
+        anchorText: 'Create Free Export PDF Invoices',
+        toolPage: 'invoice',
+        description: 'Generate commercial export invoices with zero database storage.'
+      },
+      {
+        label: 'Stripe Fee Calculator',
+        targetSection: 'stripe-fee-calculator',
+        anchorText: 'Check Stripe Payment Processing Fees',
+        toolPage: 'stripe-fee-calculator',
+        description: 'Calculate international credit card transaction rates.'
+      },
+      {
+        label: 'TikTok Shop Fee Calculator',
+        targetSection: 'tiktok-shop-fee-calculator',
+        anchorText: 'Compare TikTok Shop Commissions',
+        toolPage: 'tiktok-shop-fee-calculator',
+        description: 'Compare UK 9% and US referral commissions.'
+      }
+    ],
+    faqs: [
+      {
+        question: 'What are the total Etsy fees per sale in 2026?',
+        answer: 'Etsy charges a $0.20 listing fee, a 6.5% transaction fee on item price plus shipping, and a payment processing fee (typically 3% + $0.25 in the US, 4% + £0.20 in the UK, or 4.5% + $0.30 for international Payoneer accounts).'
+      },
+      {
+        question: 'What is the Etsy Offsite Ads $100 fee cap?',
+        answer: 'When a buyer clicks an ad on Google or Facebook and orders within 30 days, Etsy takes 15% (or 12% for shops earning over $10,000 per year). By official Etsy rule, this fee cannot exceed $100 on any single order.'
+      },
+      {
+        question: 'How much does Payoneer take from an Etsy payout?',
+        answer: 'Payoneer deducts a 0.5% inflow receiving fee, an approximate 2.0% currency conversion markup below the interbank rate, and a flat $1.50 local bank transfer fee per withdrawal.'
+      },
+      {
+        question: 'How do I avoid losing money on Etsy free shipping?',
+        answer: 'Never offer free shipping without adding the courier cost into your retail price. If your courier charges $14 for international DHL or FedEx, add at least $15 to $18 to cover the shipping and the 6.5% Etsy transaction fee.'
+      }
+    ],
+    content: `
+Selling on Etsy looks simple at first glance. Most people think Etsy only takes 6.5 percent.
+
+That is only part of the story. In real life, fees add up fast.
+
+When you sell an item, Etsy takes four to five different fees. If you sell from Pakistan or outside the US, Payoneer takes another cut too.
+
+👉 **[Launch Live EtsyFeePro Calculator & Check Your Real Payout](/etsy-fee-calculator)**
+
+---
+
+## 1. The Real List of Etsy Fees in 2026
+
+Here is what Etsy takes on every single order:
+
+- **Listing Fee:** $0.20 fixed per item when listed or renewed.
+- **Transaction Fee:** 6.5% of the total amount (item price plus shipping).
+- **Payment Processing Fee:** 3.0% to 4.5% plus a small fixed charge.
+- **Offsite Ads Fee:** 12% or 15% if the customer came from Google or social media ads.
+- **Regulatory Operating Fee:** 0.32% to 0.47% for sellers in the UK and Europe.
+
+When you add these together, Etsy takes between 10% and 25% of your money.
+
+---
+
+## 2. The $100 Offsite Ads Rule Every Seller Must Know
+
+Did you know Etsy runs ads for your items on Google and Facebook automatically?
+
+If someone buys through that ad within 30 days, Etsy takes a 15% extra fee. If your shop made over $10,000 last year, this fee is 12% and cannot be turned off.
+
+There is good news though. Etsy has an official rule: this ad fee has a maximum cap of $100 per order.
+
+Even if you sell a luxury leather jacket for $1,200, Etsy will only take $100 for ads, not $180.
+
+Our [EtsyFeePro Calculator](/etsy-fee-calculator) automatically checks this $100 cap for you.
+
+---
+
+## 3. The Hidden Payoneer Deductions for International Sellers
+
+If you sell from Pakistan, India, or regions without direct domestic Etsy bank deposits, Etsy pays you through Payoneer.
+
+Payoneer deducts money in three steps before it reaches your local bank:
+
+1. **Inflow Fee:** Payoneer takes 0.5% when receiving money from Etsy.
+2. **Wholesale FX Spread:** Payoneer converts USD to PKR or local currency at about 2.0% below the real market rate.
+3. **Local Bank Transfer Fee:** Payoneer charges a flat $1.50 per withdrawal.
+
+On a $200 order, you lose around $7 to $9 in banking fees alone.
+
+---
+
+## 4. Benchmark Table: Exact Cash in Local Bank
+
+Here is what you actually receive in your bank after all Etsy fees and Payoneer deductions:
+
+| Order Gross | Etsy Deductions (~10%) | Payoneer & FX (2.5%) | Local Bank Flat Wire | Net Cash in Bank (USD) | Cash in PKR (Rate 279.5) |
+|---|---|---|---|---|---|
+| **$100.00** | -$9.95 | -$2.25 | -$1.50 | **$86.30** | **Rs 24,120** |
+| **$200.00** | -$19.45 | -$4.51 | -$1.50 | **$174.54** | **Rs 48,784** |
+| **$250.00** | -$24.20 | -$5.65 | -$1.50 | **$218.65** | **Rs 61,113** |
+| **$300.00** | -$28.95 | -$6.78 | -$1.50 | **$262.77** | **Rs 73,444** |
+| **$500.00** | -$47.95 | -$11.30 | -$1.50 | **$439.25** | **Rs 122,770** |
+
+*Note: Calculations assume regular sales without offsite ads.*
+
+---
+
+## 5. How to Stop Losing Money on Free Shipping
+
+Many sellers turn on free shipping because Etsy gives better search rankings.
+
+Then they pay $15 to DHL or FedEx, but they only charged $35 for the item. Their entire profit disappears.
+
+Always use this simple formula:
+
+**Target Selling Price = (Product Cost + Real Courier Cost + $0.20) / (1 - Total Fee Percentage - Desired Profit Margin)**
+
+You can find your target price in seconds using our [Free EtsyFeePro Calculator](/etsy-fee-calculator).
+
+---
+
+## Frequently Asked Questions
+
+### What are the total Etsy fees per sale in 2026?
+Etsy charges a $0.20 listing fee, 6.5% transaction fee on item price plus shipping, and a payment processing fee of 3% to 4.5%.
+
+### What is the Etsy Offsite Ads $100 cap?
+Etsy caps the offsite ads fee at $100 per single order, no matter how expensive the product is.
+
+### How much does Payoneer deduct when sending funds to Pakistan?
+Payoneer takes 0.5% inflow fee, about 2.0% currency exchange markup, and a flat $1.50 wire fee per withdrawal.
+
+### Should I offer Free Shipping on Etsy?
+Only if your profit margin is over 40% after building courier fees into your retail price.
+
+---
+
+Got a question about setting up payment gateways or building custom export software? Call us. We reply in 2 hours.
+    `,
+  },
 ];
+
