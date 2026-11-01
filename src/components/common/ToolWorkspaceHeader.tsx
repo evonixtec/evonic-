@@ -243,7 +243,7 @@ export const ToolWorkspaceHeader: React.FC<ToolWorkspaceHeaderProps> = ({
 
   return (
     <>
-      <div className="w-full bg-slate-900 border-b border-slate-800 text-white select-none print:hidden">
+      <div className="w-full bg-slate-900 border-b border-slate-800 text-white select-none print:hidden pt-16 sm:pt-20">
         {/* 1. Main Tool Workspace App Bar */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">

@@ -52,11 +52,23 @@ const mainCoreRoutes = [
   { loc: `${DOMAIN_MAIN}/about`, changefreq: 'weekly', priority: '0.85', lastmod: CURRENT_TIMESTAMP },
   { loc: `${DOMAIN_MAIN}/contact`, changefreq: 'daily', priority: '0.90', lastmod: CURRENT_TIMESTAMP },
   { loc: `${DOMAIN_MAIN}/locations`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
+  { loc: `${DOMAIN_MAIN}/sialkot-it-services`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
+  { loc: `${DOMAIN_MAIN}/pos-software-sialkot`, changefreq: 'weekly', priority: '0.90', lastmod: CURRENT_TIMESTAMP },
+  { loc: `${DOMAIN_MAIN}/export-barcode-studio`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
+  { loc: `${DOMAIN_MAIN}/stripe-fee-calculator`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
+  { loc: `${DOMAIN_MAIN}/shopify-fee-calculator`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
+  { loc: `${DOMAIN_MAIN}/cbm-calculator`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
+  { loc: `${DOMAIN_MAIN}/etsy-fee-calculator`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
+  { loc: `${DOMAIN_MAIN}/tools/micro-invoice-generator`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
+  { loc: `${DOMAIN_MAIN}/services/doorstep-support`, changefreq: 'weekly', priority: '0.90', lastmod: CURRENT_TIMESTAMP },
+  { loc: `${DOMAIN_MAIN}/shop/laptops`, changefreq: 'weekly', priority: '0.85', lastmod: CURRENT_TIMESTAMP },
+  { loc: `${DOMAIN_MAIN}/shop/printers`, changefreq: 'weekly', priority: '0.85', lastmod: CURRENT_TIMESTAMP },
+  { loc: `${DOMAIN_MAIN}/shop/pos-terminals`, changefreq: 'weekly', priority: '0.85', lastmod: CURRENT_TIMESTAMP },
 ];
 
 const citySlugs = Object.keys(LOCAL_CITIES) as (keyof typeof LOCAL_CITIES)[];
-// Restrict location services strictly to enterprise software, web engineering, and POS
-const enterpriseLocationServices = ['it-consultancy', 'web-development', 'pos-systems'];
+// Full location services including regional hubs, IT consultancy, POS, and diagnostics
+const enterpriseLocationServices = ['it-consultancy', 'web-development', 'pos-systems', 'hardware-maintenance', 'laptop-repair'];
 
 const mainLocationRoutes: { loc: string; changefreq: string; priority: string; lastmod: string }[] = [];
 
@@ -88,7 +100,7 @@ const policyRoutes = [
   { loc: `${DOMAIN_MAIN}/data-safety`, changefreq: 'monthly', priority: '0.5', lastmod: CURRENT_TIMESTAMP },
 ];
 
-// Only B2B software, export ERP, and AI engineering blogs
+// All technical blogs and field guides
 const mainBlogRoutes = B2B_BLOGS.map((blog) => ({
   loc: `${DOMAIN_MAIN}/blog/${blog.slug}`,
   lastmod: CURRENT_TIMESTAMP,

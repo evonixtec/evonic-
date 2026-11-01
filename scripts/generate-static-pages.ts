@@ -386,6 +386,128 @@ subServices.forEach((ss) => {
   });
 });
 
+// Sialkot IT Services Landing
+pages.push({
+  route: 'sialkot-it-services',
+  title: 'IT Services in Sialkot | Enterprise Software, POS & Web Engineering | EVONIX',
+  description: 'Top IT services in Sialkot. Custom website engineering, retail POS systems, and factory software backed by 20+ years Dubai international experience.',
+  canonical: `${DOMAIN}/sialkot-it-services`,
+  heading: 'IT Services & Software Engineering in Sialkot',
+  subheading: 'Two Decades of Dubai Systems Experience Delivered in Sialkot, Pakistan',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Services', url: '/services' }, { name: 'Sialkot IT Services', url: '/sialkot-it-services' }],
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg leading-relaxed text-slate-200">
+        We build fast business websites, retail POS systems, and export ERP software for Sialkot businesses.
+      </p>
+
+      <div class="p-6 rounded-2xl bg-slate-900 border border-teal-500/30">
+        <h3 class="text-xl font-bold text-white mb-2">Got a question? Call us.</h3>
+        <p class="text-sm text-slate-300 mb-4">We reply in 2 hours with direct technician support.</p>
+        <a href="tel:${COMPANY_INFO.contact.phoneRaw}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-sm">
+          Call ${COMPANY_INFO.contact.phoneDisplay}
+        </a>
+      </div>
+    </div>
+  `
+});
+
+// Doorstep Support Landings
+['services/doorstep-support', 'doorstep-support'].forEach((routePath) => {
+  pages.push({
+    route: routePath,
+    title: 'Doorstep IT Support & Emergency Field Dispatch Sialkot | EVONIX',
+    description: 'Rapid 30-45 minute doorstep IT support across Sialkot. On-site retail POS setup, thermal printer fix, and network troubleshooting.',
+    canonical: `${DOMAIN}/${routePath}`,
+    heading: 'Doorstep IT Support in Sialkot',
+    subheading: 'Rapid 30-45 Minute Field Technician Dispatch',
+    breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Services', url: '/services' }, { name: 'Doorstep Support', url: `/${routePath}` }],
+    bodyHtml: `
+      <div class="space-y-6 text-slate-300">
+        <p class="text-base sm:text-lg leading-relaxed text-slate-200">
+          A certified technician visits your office or shop within 30 to 45 minutes across Sialkot.
+        </p>
+
+        <div class="p-6 rounded-2xl bg-slate-900 border border-teal-500/30">
+          <h3 class="text-xl font-bold text-white mb-2">Got a question? Call us.</h3>
+          <p class="text-sm text-slate-300 mb-4">We reply in 2 hours with direct technician dispatch.</p>
+          <a href="tel:${COMPANY_INFO.contact.phoneRaw}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-sm">
+            Call ${COMPANY_INFO.contact.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    `
+  });
+});
+
+// Shop Subcategories
+const shopCategoryPages = [
+  {
+    route: 'shop/laptops',
+    title: 'Certified Business Laptops in Sialkot | EVONIX Hardware Store',
+    description: 'Certified Grade-A business laptops (Dell Latitude, Lenovo ThinkPad, HP EliteBook) tested with 90-day warranty in Sialkot.',
+    heading: 'Business Laptops in Sialkot',
+  },
+  {
+    route: 'shop/printers',
+    title: 'POS Thermal Receipt & Barcode Printers in Sialkot | EVONIX',
+    description: 'Heavy-duty 80mm ESC/POS thermal receipt printers and 4x6 direct thermal barcode label printers for retail and exporters in Sialkot.',
+    heading: 'Thermal Receipt & Barcode Printers',
+  },
+  {
+    route: 'shop/pos-terminals',
+    title: 'All-in-One Touchscreen POS Billing Machines | EVONIX Sialkot',
+    description: 'Commercial touchscreen POS terminals, heavy cash drawers, and high-speed barcode scanners with on-site setup in Sialkot.',
+    heading: 'Touchscreen POS Terminals & Billing Machines',
+  }
+];
+
+shopCategoryPages.forEach((sc) => {
+  pages.push({
+    route: sc.route,
+    title: sc.title,
+    description: sc.description,
+    canonical: `${DOMAIN}/${sc.route}`,
+    heading: sc.heading,
+    breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Hardware Store', url: '/shop' }, { name: sc.heading, url: `/${sc.route}` }],
+    bodyHtml: `
+      <div class="space-y-6 text-slate-300">
+        <p class="text-base sm:text-lg text-slate-200">${escapeHtml(sc.description)}</p>
+
+        <div class="p-6 rounded-2xl bg-slate-900 border border-teal-500/30">
+          <h3 class="text-xl font-bold text-white mb-2">Got a question? Call us.</h3>
+          <p class="text-sm text-slate-300 mb-4">We reply in 2 hours with stock availability and doorstep delivery.</p>
+          <a href="tel:${COMPANY_INFO.contact.phoneRaw}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-sm">
+            Call ${COMPANY_INFO.contact.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    `
+  });
+});
+
+// Micro Invoice Generator Canonical Page
+pages.push({
+  route: 'tools/micro-invoice-generator',
+  title: 'Global Micro-Invoice Generator & Code128 Barcode Maker | EVONIX',
+  description: 'Free client-side zero-database micro-invoice generator with Code128 vector barcode and multi-currency formatting for Pakistani exporters.',
+  canonical: `${DOMAIN}/tools/micro-invoice-generator`,
+  heading: 'Global Micro-Invoice Generator & Code128 Studio',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Micro-Invoice Generator', url: '/tools/micro-invoice-generator' }],
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        Generate compliant commercial invoices and export packing lists directly in your browser. 100% private with no database storage.
+      </p>
+
+      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
+        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
+        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
+      </div>
+    </div>
+  `
+});
+
 // Portfolio
 pages.push({
   route: 'portfolio',
@@ -1565,9 +1687,9 @@ pages.push({
   `
 });
 
-// Matrix of City & Services (Strictly Enterprise Software, POS & IT Consultancy on www)
+// Matrix of City & Services (All Regional Hubs & Diagnostic Centers)
 const citySlugs = Object.keys(LOCAL_CITIES) as (keyof typeof LOCAL_CITIES)[];
-const enterpriseLocationServices: (keyof typeof CLUSTER_SERVICES)[] = ['it-consultancy', 'web-development', 'pos-systems'];
+const enterpriseLocationServices: (keyof typeof CLUSTER_SERVICES)[] = Object.keys(CLUSTER_SERVICES) as (keyof typeof CLUSTER_SERVICES)[];
 
 citySlugs.forEach((city) => {
   const cityData = LOCAL_CITIES[city];
@@ -1777,8 +1899,6 @@ const aliasRedirects = [
   { route: 'blog', redirectTo: 'guides', canonical: `${DOMAIN}/guides`, title: 'Tech Blog Archive | EVONIX Sialkot' },
   { route: 'guide', redirectTo: 'guides', canonical: `${DOMAIN}/guides`, title: 'Technical Guides | EVONIX Sialkot' },
   { route: 'invoice-generator', redirectTo: 'invoice', canonical: `${DOMAIN}/invoice`, title: 'Invoice Generator | EVONIX Sialkot' },
-  { route: 'tools/micro-invoice-generator', redirectTo: 'invoice', canonical: `${DOMAIN}/invoice`, title: 'Micro-Invoice Generator | EVONIX Sialkot' },
-  { route: 'micro-invoice-generator', redirectTo: 'invoice', canonical: `${DOMAIN}/invoice`, title: 'Micro-Invoice Generator | EVONIX Sialkot' },
   { route: 'margin-calculator', redirectTo: 'ecommerce-calculator', canonical: `${DOMAIN}/ecommerce-calculator`, title: 'Margin Calculator | EVONIX Sialkot' },
 ];
 

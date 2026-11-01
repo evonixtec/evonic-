@@ -208,7 +208,15 @@ export default function App() {
       return 'guides';
     }
 
-    if (path === 'services' || path.startsWith('services/') || path === 'service') {
+    if (
+      path === 'sialkot-it-services' ||
+      path.startsWith('sialkot-it-services') ||
+      path === 'pos-software-sialkot' ||
+      path.startsWith('pos-software-sialkot') ||
+      path === 'services' ||
+      path.startsWith('services/') ||
+      path === 'service'
+    ) {
       return 'services';
     }
 

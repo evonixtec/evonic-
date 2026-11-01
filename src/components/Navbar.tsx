@@ -114,7 +114,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header
       id="main-navbar"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 print:hidden ${
+      className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 print:hidden max-w-full overflow-x-clip ${
         isScrolled
           ? 'bg-white/95 backdrop-blur-[12px] shadow-[0_12px_32px_-4px_rgba(0,0,0,0.08),0_4px_6px_-2px_rgba(0,0,0,0.03)] border-b border-slate-200/80 py-2'
           : 'bg-white/90 backdrop-blur-[12px] shadow-[0_8px_24px_-4px_rgba(0,0,0,0.05)] border-b border-slate-200/60 py-2.5'
@@ -123,8 +123,8 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* 3D Top Metallic / Radiant Shimmer Line */}
       <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-red-600 via-rose-500 via-amber-500 to-red-600 shadow-[0_1px_8px_rgba(220,38,38,0.4)] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-3">
+      <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
+        <div className="flex items-center justify-between gap-1.5 sm:gap-2 lg:gap-3 w-full min-w-0">
           {/* Brand Logo with 3D Nano Tagline */}
           <button
             onClick={() => {
@@ -134,13 +134,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                 handlePageSelect('home');
               }
             }}
-            className="flex items-center gap-2.5 group cursor-pointer transition-all duration-200 hover:scale-[1.02] flex-shrink-0"
+            className="flex items-center gap-2 group cursor-pointer transition-all duration-200 hover:scale-[1.02] flex-shrink-0"
             aria-label={isSub ? "evonix Tools Workstation" : "evonix Home"}
           >
             <div className="relative p-1 rounded-xl transition-all duration-300 group-hover:drop-shadow-[0_4px_12px_rgba(220,38,38,0.3)]">
               <EvonixLogo size="md" forceTheme="light" />
             </div>
-            <div className="hidden sm:flex flex-col text-left pl-2.5 border-l border-slate-200/90">
+            <div className="hidden xl:flex flex-col text-left pl-2.5 border-l border-slate-200/90">
               {isSubStore ? (
                 <>
                   <span className="text-[10px] font-black uppercase tracking-wider text-amber-600 leading-tight flex items-center gap-1.5">
@@ -178,13 +178,13 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Desktop Navigation Links with Clean Professional Grouping */}
           <nav
             ref={dropdownRef}
-            className="hidden lg:flex items-center gap-1 xl:gap-1.5"
+            className="hidden lg:flex items-center gap-0.5 xl:gap-1.5 min-w-0"
             aria-label="Main Navigation"
           >
             {/* 1. Home Link */}
             <button
               onClick={() => handlePageSelect('home')}
-              className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+              className={`px-2 xl:px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
                 currentPage === 'home'
                   ? 'text-red-700 bg-red-50/90 font-bold shadow-2xs border border-red-200/60'
                   : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
@@ -201,7 +201,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <button
                 onClick={() => handlePageSelect('services')}
-                className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1 cursor-pointer ${
+                className={`px-2 xl:px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap ${
                   currentPage === 'services'
                     ? 'text-red-700 bg-gradient-to-b from-red-50 to-rose-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(220,38,38,0.12)] border border-red-200/80'
                     : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
@@ -312,7 +312,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 {/* Portfolio */}
                 <button
                   onClick={() => handlePageSelect('portfolio')}
-                  className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                  className={`px-2 xl:px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
                     currentPage === 'portfolio'
                       ? 'text-red-700 bg-red-50/90 font-bold shadow-2xs border border-red-200/60'
                       : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
@@ -324,11 +324,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                 {/* Free Tools Subdomain Bridge */}
                 <a
                   href={getToolsDomainUrl()}
-                  className="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-700 hover:text-slate-900 hover:bg-slate-100/80 group"
+                  className="px-2 xl:px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-all flex items-center gap-1 xl:gap-1.5 text-slate-700 hover:text-slate-900 hover:bg-slate-100/80 group whitespace-nowrap"
                   title="22+ Free E-Commerce, Export & Freight Calculators on tools.evonixtec.com"
                 >
                   <span>Free Tools</span>
-                  <span className="text-[9px] bg-red-100 text-red-700 group-hover:bg-red-600 group-hover:text-white transition-colors px-1.5 py-0.5 rounded-md font-bold flex items-center gap-0.5">
+                  <span className="hidden xl:inline-flex text-[9px] bg-red-100 text-red-700 group-hover:bg-red-600 group-hover:text-white transition-colors px-1.5 py-0.5 rounded-md font-bold items-center gap-0.5">
                     <span>22+ Free</span>
                     <ArrowRight className="w-2.5 h-2.5" />
                   </span>
@@ -337,11 +337,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                 {/* Store Subdomain Bridge */}
                 <a
                   href={getStoreDomainUrl()}
-                  className="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 text-slate-700 hover:text-slate-900 hover:bg-slate-100/80 group"
+                  className="px-2 xl:px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-all flex items-center gap-1 xl:gap-1.5 text-slate-700 hover:text-slate-900 hover:bg-slate-100/80 group whitespace-nowrap"
                   title="Certified IT Hardware, POS Terminals & Enterprise Laptops on store.evonixtec.com"
                 >
                   <span>Hardware Store</span>
-                  <span className="text-[9px] bg-amber-100 text-amber-800 group-hover:bg-amber-600 group-hover:text-white transition-colors px-1.5 py-0.5 rounded-md font-bold flex items-center gap-0.5">
+                  <span className="hidden xl:inline-flex text-[9px] bg-amber-100 text-amber-800 group-hover:bg-amber-600 group-hover:text-white transition-colors px-1.5 py-0.5 rounded-md font-bold items-center gap-0.5">
                     <span>Store</span>
                     <ArrowRight className="w-2.5 h-2.5" />
                   </span>
@@ -883,7 +883,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <button
                 onClick={() => handlePageSelect('about')}
-                className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1 cursor-pointer ${
+                className={`px-2 xl:px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap ${
                   currentPage === 'about' || currentPage === 'locations'
                     ? 'text-red-700 bg-gradient-to-b from-red-50 to-rose-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(220,38,38,0.12)] border border-red-200/80'
                     : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
@@ -959,7 +959,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* 7. Contact Link */}
             <button
               onClick={() => handlePageSelect('contact')}
-              className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+              className={`px-2 xl:px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
                 currentPage === 'contact'
                   ? 'text-red-700 bg-gradient-to-b from-red-50 to-rose-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(220,38,38,0.12)] border border-red-200/80'
                   : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
@@ -970,32 +970,34 @@ export const Navbar: React.FC<NavbarProps> = ({
           </nav>
 
           {/* Right Action CTAs */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
 
             {/* Search Trigger with 3D tactile finish (Hidden on all Tool Pages) */}
             {!isToolPage(currentPage) && (
               <button
                 onClick={onOpenSearch}
                 aria-label="Search Services, Portfolio and Tools (Ctrl+K)"
-                className="flex items-center gap-1.5 px-3 py-1.5 min-h-[38px] rounded-xl bg-slate-100/90 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-200 shadow-2xs transition-all cursor-pointer"
+                className="flex items-center gap-1.5 px-2.5 xl:px-3 py-1.5 min-h-[38px] rounded-xl bg-slate-100/90 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-200 shadow-2xs transition-all cursor-pointer shrink-0"
                 title="Search Services, Portfolio & Shop (Ctrl+K)"
               >
                 <Search className="w-3.5 h-3.5 text-slate-500" />
-                <span className="hidden xl:inline">Search</span>
-                <kbd className="hidden sm:inline-block px-1.5 py-0.2 text-[10px] font-mono text-slate-500 bg-white border border-slate-200 rounded shadow-2xs">
+                <span className="hidden 2xl:inline">Search</span>
+                <kbd className="hidden 2xl:inline-block px-1.5 py-0.2 text-[10px] font-mono text-slate-500 bg-white border border-slate-200 rounded shadow-2xs">
                   ⌘K
                 </kbd>
               </button>
             )}
 
             {/* Light / Dark Mode Theme Switcher */}
-            <ThemeSwitcher variant="icon" />
+            <div className="shrink-0">
+              <ThemeSwitcher variant="icon" />
+            </div>
 
             {/* 3D Radiant Specular Free Quote Button */}
             <button
               onClick={() => onOpenQuote()}
               aria-label="Request a Free Technical Quote"
-              className="px-3.5 sm:px-4.5 py-1.5 sm:py-2 min-h-[40px] rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-600 active:from-red-700 active:to-rose-700 text-white font-extrabold text-xs sm:text-sm transition-all shadow-[inset_0_1.5px_0_rgba(255,255,255,0.4),0_6px_20px_rgba(220,38,38,0.4)] hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.5),0_8px_25px_rgba(220,38,38,0.5)] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer flex items-center gap-1.5 flex-shrink-0 border-t border-white/30"
+              className="px-3 xl:px-4.5 py-1.5 sm:py-2 min-h-[38px] sm:min-h-[40px] rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-600 active:from-red-700 active:to-rose-700 text-white font-extrabold text-xs xl:text-sm transition-all shadow-[inset_0_1.5px_0_rgba(255,255,255,0.4),0_6px_20px_rgba(220,38,38,0.4)] hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.5),0_8px_25px_rgba(220,38,38,0.5)] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer flex items-center gap-1.5 flex-shrink-0 border-t border-white/30 whitespace-nowrap"
             >
               <Sparkles className="w-3.5 h-3.5 text-amber-200 animate-pulse" />
               <span>Free Quote</span>
