@@ -87,6 +87,11 @@ export const FAQ: React.FC<FAQProps> = ({ onOpenQuote, onNavigateSection }) => {
       label: 'Software, POS & Hardware Repair',
       count: FAQ_ITEMS.filter((f) => f.category === 'software-hardware').length,
     },
+    {
+      id: 'ecommerce-etsy',
+      label: 'Etsy & E-Commerce FAQ',
+      count: FAQ_ITEMS.filter((f) => f.category === 'ecommerce-etsy').length,
+    },
   ];
 
   return (

@@ -443,4 +443,53 @@ export const FAQ_ITEMS: FaqItem[] = [
     answer:
       'Yes! Under our Special Launch Offer, all 20+ Evonix fee calculators, export tools, and shipping workstations are 100% free with unlimited calculations. There are no payment requirements, no credit card checks, and no license key locks needed.',
   },
+  {
+    id: 'faq-how-to-start-etsy-shop',
+    category: 'ecommerce-etsy',
+    highlightBadge: 'Etsy 2026 Guide',
+    question: 'How to start an Etsy shop in 2026?',
+    answer:
+      'Starting an Etsy shop is simple. You first decide what handmade, vintage, or custom crafted goods you want to sell. Next, set up your payment account like Payoneer or a UK business bank, and create your first product listings with clear photos. Calculate seller fees beforehand with our free Etsy Fee Calculator.',
+  },
+  {
+    id: 'faq-etsy-course',
+    category: 'ecommerce-etsy',
+    highlightBadge: 'Etsy Course Advice',
+    question: 'Do I need to pay for an expensive Etsy course to make sales?',
+    answer:
+      'No, you do not need an expensive Etsy course. Most paid courses repeat basic information that is free in the Etsy Seller Handbook and YouTube. You learn faster by publishing test listings, researching real buyer search terms, and pricing items accurately.',
+  },
+  {
+    id: 'faq-is-etsy-safe-to-buy-from',
+    category: 'ecommerce-etsy',
+    highlightBadge: 'Buyer Protection',
+    question: 'Is Etsy safe to buy from for international customers?',
+    answer:
+      'Yes, Etsy is very safe to buy from worldwide. Etsy uses strong buyer protection that refunds your money if an order arrives damaged or fails to arrive. Payments go through secure encrypted gateways, so sellers never see your card or bank details.',
+  },
+  {
+    id: 'faq-ali-express',
+    category: 'ecommerce-etsy',
+    highlightBadge: 'AliExpress Rules',
+    question: 'Can I dropship products from Ali Express directly on Etsy?',
+    answer:
+      'No, direct dropshipping from Ali Express to Etsy is strictly against Etsy policy. Etsy requires goods to be handmade, unique craft supplies, or vintage items older than 20 years. If Etsy detects mass-produced factory items, they will close your shop permanently.',
+  },
+  {
+    id: 'faq-etsy-uk-only',
+    category: 'ecommerce-etsy',
+    highlightBadge: 'UK Market Focus',
+    question: 'What is Etsy UK only and why do sellers prefer the UK market?',
+    answer:
+      'Etsy UK only means selling specifically inside the United Kingdom market with domestic Royal Mail shipping and GBP currency. Many international sellers prefer the UK because it offers Etsy Payments support, lower return rates, and high buyer purchasing power.',
+  },
+  {
+    id: 'faq-etsy-uk-only-account-open',
+    category: 'ecommerce-etsy',
+    highlightBadge: 'UK Account Setup',
+    question: 'How does Etsy UK only account open work for non-UK residents?',
+    answer:
+      'For an Etsy UK only account open, overseas sellers register a legal UK Ltd company through UK Companies House. Next, open a verified UK business bank account with Wise or Payoneer, and submit genuine company paperwork to Etsy. Avoid fake details or VPNs.',
+  },
 ];
+

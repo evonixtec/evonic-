@@ -6,9 +6,11 @@ import { HARDWARE_REPAIR_BLOGS } from './hardwareRepairBlogs';
 import { SIALKOT_FIELD_BLOGS } from './sialkotFieldBlogs';
 import { NICHE_AND_AI_BLOGS } from './nicheAiBlogs';
 
+import { ETSY_ADSENSE_BLOGS } from './etsyAdsenseBlog';
 import { enrichBlogPost } from '../../lib/blogImages';
 
 export * from './types';
+export { ETSY_ADSENSE_BLOGS } from './etsyAdsenseBlog';
 export { FRESH_HUMAN_BLOGS } from './freshHumanBlogs';
 export { WEB_GRAPHICS_BLOGS } from './webGraphicsBlogs';
 export { SOFTWARE_DEV_BLOGS } from './softwareDevBlogs';
@@ -17,6 +19,7 @@ export { SIALKOT_FIELD_BLOGS } from './sialkotFieldBlogs';
 export { NICHE_AND_AI_BLOGS } from './nicheAiBlogs';
 
 const RAW_BLOGS: BlogPost[] = [
+  ...ETSY_ADSENSE_BLOGS,
   ...NICHE_AND_AI_BLOGS,
   ...FRESH_HUMAN_BLOGS,
   ...SIALKOT_FIELD_BLOGS,
