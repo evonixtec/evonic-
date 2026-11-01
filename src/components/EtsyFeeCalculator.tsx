@@ -380,9 +380,9 @@ Generated via evonixtec.com/etsy-fee-calculator`;
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-extrabold text-base sm:text-lg text-white tracking-tight">
-                  EtsyFeePro
-                </span>
+                <h1 className="font-extrabold text-base sm:text-lg text-white tracking-tight">
+                  EtsyFeePro — Etsy Fee &amp; Payoneer Profit Calculator
+                </h1>
                 <span className="px-2 py-0.5 text-[10px] font-mono uppercase font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30">
                   2026 Engine
                 </span>

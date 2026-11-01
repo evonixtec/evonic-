@@ -427,10 +427,10 @@ export const INDIVIDUAL_PRODUCTS_SCHEMAS = [
  */
 export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   home: {
-    title: 'evonix technologies – Enterprise Software, AI Solutions & Cloud Architecture',
+    title: 'evonix technologies – Enterprise Software & Cloud AI',
     description:
       'Premier B2B software engineering agency and enterprise solutions provider. High-performance custom web applications, multi-branch industrial ERPs, and private AI pipelines engineered to Dubai standards.',
-    ogTitle: 'evonix technologies – Enterprise Software, AI Solutions & Cloud Architecture',
+    ogTitle: 'evonix technologies – Enterprise Software & Cloud AI',
     ogDescription:
       'B2B software engineering, high-availability cloud architecture, and Sialkot industrial export ERPs backed by 20+ years Dubai technology leadership.',
     ogType: 'website',
@@ -564,7 +564,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   contact: {
-    title: 'Contact IT Consultants Sialkot – Kotli Behram & Paris Road | evonix',
+    title: 'Contact IT Consultants Sialkot – Kotli Behram | evonix',
     description:
       'Got a question? Call us. We reply in 2 hours. Doorstep IT support in Kotli Behram, Paris Road, and Sialkot Cantt. Free bench diagnosis.',
     ogTitle: 'Contact evonix – IT Support in Kotli Behram & Paris Road Sialkot',
@@ -591,10 +591,10 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   locations: {
-    title: 'Local IT Services Hub – Daska, Sambrial & Wazirabad | evonix technologies',
+    title: 'Local IT Services Hub – Daska & Sambrial | evonix',
     description:
       'Doorstep industrial IT consultancy, hardware maintenance, retail POS systems, and chip-level motherboard repair across Daska, Sambrial, and Wazirabad with 25-45 min field dispatch.',
-    ogTitle: 'evonix Local Hubs – Daska, Sambrial & Wazirabad On-Site IT Support',
+    ogTitle: 'evonix Local Hubs – Daska, Sambrial & Wazirabad IT Support',
     ogDescription:
       'High-priority industrial IT engineering, WeBOC server maintenance, and laptop repair across the Sialkot-Daska-Sambrial-Wazirabad industrial corridor.',
     ogType: 'website',
@@ -615,10 +615,10 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   invoice: {
-    title: 'Free Global Micro-Invoice Generator - No Signup, 150+ Currencies, Instant PDF | evonix',
+    title: 'Free Global Invoice Generator – Multi-Currency PDF | evonix',
     description:
       'Free online invoice generator for freelance billing and small business invoicing. Create multi-currency commercial invoices in browser with paper-style editor, automatic tax calculation, and instant A4 PDF download. No signup required.',
-    ogTitle: 'Free Global Micro-Invoice Generator - No Signup, 150+ Currencies, Instant PDF',
+    ogTitle: 'Free Global Invoice Generator – Multi-Currency PDF',
     ogDescription:
       'Create invoice in browser, data never leaves your device. Free multi-currency commercial invoices for freelancers and exporters with automatic tax calculations and instant A4 PDF.',
     ogType: 'website',
@@ -646,10 +646,10 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   'ecommerce-calculator': {
-    title: 'E-Commerce Profit & Courier Shipping Margin Calculator | evonix Technologies',
+    title: 'E-Commerce Profit & Courier Shipping Calculator | evonix',
     description:
       'Free zero-database e-commerce margin calculator. Real-time Leopards, TCS, Trax, PostEx courier tariffs, COD handling charges, marketing CAC, and RTO return loss simulator.',
-    ogTitle: 'E-Commerce Margin & Courier Tariff Calculator | evonix Technologies',
+    ogTitle: 'E-Commerce Margin & Courier Tariff Calculator | evonix',
     ogDescription:
       'Calculate unit economics, multi-courier rates, COD handling fees, break-even targets, and Pakistani return rate risk cushions with zero remote database tracking.',
     ogType: 'website',
@@ -672,10 +672,10 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   'cbm-calculator': {
-    title: 'Export CBM & Volumetric Shipping Cargo Calculator | evonix Technologies',
+    title: 'Export CBM & Volumetric Cargo Calculator | evonix',
     description:
       'Free B2B export CBM calculator. Instant Cubic Meters computations, DHL/FedEx and air cargo volumetric weights, and 20ft/40ft ocean container space utilization.',
-    ogTitle: 'Export CBM & Freight Volumetric Weight Engine | evonix Technologies',
+    ogTitle: 'Export CBM & Freight Volumetric Engine | evonix',
     ogDescription:
       'Compute carton volume in CBM, air cargo dimensional weights, and container packing capacity instantly with zero remote database tracking.',
     ogType: 'website',
@@ -843,10 +843,10 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   'ai-travel-tools': {
-    title: 'Tools Required for Artificial Intelligence: 10 Best AI Tools Name for Travel Itinerary [2026 Tested]',
+    title: '10 Best AI Tools for Travel Planning [2026] | evonix',
     description:
       'What are the best AI tools for travel planning in 2026? Find top 10 AI tools name, tools required for AI trip planning, flights & vacation planning + FREE tool.',
-    ogTitle: 'Tools Required for Artificial Intelligence: 10 Best AI Tools Name for Travel Itinerary [2026 Tested]',
+    ogTitle: '10 Best AI Tools for Travel Planning [2026] | evonix',
     ogDescription:
       'What are the best AI tools for travel planning in 2026? Find top 10 AI tools name, tools required for AI trip planning, flights & vacation planning + FREE tool.',
     ogType: 'article',
@@ -866,10 +866,10 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   'ai-trip-planner': {
-    title: 'AI Trip Planner: Free Day-by-Day Vacation Itinerary Generator | EVONIX',
+    title: 'AI Trip Planner: Day-by-Day Vacation Generator | EVONIX',
     description:
       'Free AI travel itinerary generator. Enter your destination, budget, and days to generate an instant day-wise vacation schedule with food spots, costs & transit advice.',
-    ogTitle: 'AI Trip Planner: Free Day-by-Day Vacation Itinerary Generator',
+    ogTitle: 'AI Trip Planner: Day-by-Day Vacation Generator',
     ogDescription:
       'Free AI travel itinerary generator. Enter your destination, budget, and days to generate an instant day-wise vacation schedule with food spots, costs & transit advice.',
     ogType: 'website',
@@ -895,7 +895,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     keywords: ['admin security', 'internal portal'],
   },
   'doorstep-support': {
-    title: 'Doorstep IT Support & On-Site Hardware Repair | store.evonixtec.com',
+    title: 'Doorstep IT Support & Hardware Repair | store.evonixtec.com',
     description:
       'Emergency doorstep IT engineer dispatch in Sialkot, Sambrial, Daska & Wazirabad. 45-min arrival for factory POS, server crashes, and network failure on store.evonixtec.com.',
     canonicalUrl: `${STORE_BASE_URL}/services/doorstep-support`,
@@ -913,7 +913,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ],
   },
   'sialkot-export-erp': {
-    title: 'Sialkot Export Manufacturing ERP & WeBOC Cloud Billing Suite | evonix',
+    title: 'Export Manufacturing ERP & WeBOC Cloud Suite | evonix',
     description:
       'Industrial ERP software for Sialkot surgical, leather, and sports exporters. Complete batch traceability, multi-currency invoicing, and WeBOC customs sync.',
     canonicalUrl: `${BASE_URL}/sialkot-export-erp`,
@@ -949,7 +949,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ],
   },
   'ebay-fee-calculator': {
-    title: 'eBay Fee & Profit Calculator 2026 | Accurate Seller Margins | evonix',
+    title: 'eBay Fee & Profit Calculator 2026 | evonix',
     description:
       'Free eBay fee and profit calculator. Calculate final value fees, promoted ads, shipping costs, and net margins across US, UK, Germany, UAE, and Pakistan.',
     canonicalUrl: `${BASE_URL}/ebay-fee-calculator`,
@@ -1022,11 +1022,11 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ],
   },
   'tiktok-shop-fee-calculator': {
-    title: 'TikTok Shop Fee Calculator UK 9% & US 6%/8% - 2026 Commission Calculator | evonix',
+    title: 'TikTok Shop Fee & Commission Calculator 2026 | evonix',
     description:
       'Calculate TikTok Shop UK 9% commission (VAT inclusive), US 6% official & 8% reported fees, EU 9% rates, and Pakistan cross-border seller margins. Complete 2026 payout breakdown.',
     canonicalUrl: `${BASE_URL}/tiktok-shop-fee-calculator`,
-    ogTitle: 'TikTok Shop Fee Calculator UK 9% & Pakistan 2026',
+    ogTitle: 'TikTok Shop Fee & Commission Calculator 2026 | evonix',
     ogDescription:
       'Updated for UK 9% commission, US 6%/8% toggle, and Pakistan seller accounts. Calculate exact TikTok Shop referral fees, VAT, creator commissions, and net profit margins.',
     ogType: 'website',
@@ -1050,11 +1050,11 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ],
   },
   'amazon-fba-calculator': {
-    title: 'Amazon FBA Fee Calculator 2026 - Profit, Referral, Fulfillment + Fuel Surcharge',
+    title: 'Amazon FBA Fee & Profit Calculator 2026 | evonix',
     description:
       '2026 updated Amazon FBA Fee Calculator. Calculate referral fee (8-45%), FBA fulfillment fee, 3.5% fuel surcharge, Oct 15 - Jan 14 peak fee $0.32, storage, inbound placement & net profit.',
     canonicalUrl: `${BASE_URL}/amazon-fba-fee-calculator`,
-    ogTitle: 'Amazon FBA Fee Calculator 2026 - Profit, Referral, Fulfillment + Fuel Surcharge',
+    ogTitle: 'Amazon FBA Fee & Profit Calculator 2026 | evonix',
     ogDescription:
       'Calculate Amazon FBA fees with 2026 rates: Referral, Fulfillment, Fuel 3.5%, Peak Season & Net Profit.',
     ogType: 'website',
@@ -1130,11 +1130,11 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ],
   },
   'etsy-fee-calculator': {
-    title: 'EtsyFeePro: Etsy Fee & Payoneer Profit Calculator 2026 | EVONIX',
+    title: 'Etsy Fee & Payoneer Profit Calculator | EtsyFeePro',
     description:
       'Calculate exact Etsy fees ($0.20 listing, 6.5% transaction, 3-4.5% payment), 15% offsite ads with $100 order cap, and Payoneer banking deductions. Live currency converter.',
     canonicalUrl: `${BASE_URL}/etsy-fee-calculator`,
-    ogTitle: 'EtsyFeePro: Etsy Fee & Payoneer Profit Calculator 2026',
+    ogTitle: 'Etsy Fee & Payoneer Profit Calculator | EtsyFeePro',
     ogDescription:
       'Calculate exact Etsy fees, $0.20 listing, 6.5% transaction, payment processing, 15% offsite ads with $100 cap, and Payoneer net bank deposit.',
     ogType: 'website',
@@ -1154,11 +1154,11 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ],
   },
   'amazon-fbm-calculator': {
-    title: 'Amazon FBM Fee & Profit Calculator 2026 - Merchant Shipping & Referral Fees',
+    title: 'Amazon FBM Fee & Profit Calculator 2026 | evonix',
     description:
       '2026 Amazon FBM (Fulfilled by Merchant) fee calculator. Calculate category referral fees (8-15%), merchant self-shipping, packaging, PPC CAC, and net profit margins.',
     canonicalUrl: `${BASE_URL}/amazon-fbm-calculator`,
-    ogTitle: 'Amazon FBM Fee & Profit Calculator 2026 - Merchant Shipping & Referral Fees',
+    ogTitle: 'Amazon FBM Fee & Profit Calculator 2026 | evonix',
     ogDescription:
       'Calculate Amazon FBM fees with 2026 rates: category referral cut, self-ship carrier rates, packaging, and net profit payout.',
     ogType: 'website',
@@ -1174,7 +1174,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ],
   },
   'installation-guide': {
-    title: 'Desktop Software Installation & License Activation Guide | evonix',
+    title: 'Desktop Software & License Activation Guide | evonix',
     description:
       'Step-by-step installation guide for Windows 10/11 and macOS for Evonix fee calculators. Single key activation and hardware ID locking instructions.',
     canonicalUrl: `${BASE_URL}/installation-guide`,
@@ -1191,11 +1191,11 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ],
   },
   'trend-intelligence-suite': {
-    title: 'Trend Intelligence Suite V15 | Multi-Platform Trend Scoring | EVONIXTEC',
+    title: 'Trend Intelligence Suite V15 | Trend Scoring | EVONIXTEC',
     description:
       'Real-time multi-platform trend scoring engine across Google, Bing, eBay, YouTube, and Amazon with automated edge failover.',
     canonicalUrl: `${BASE_URL}/trend-intelligence-suite`,
-    ogTitle: 'Trend Intelligence Suite V15 | Evonix Technologies',
+    ogTitle: 'Trend Intelligence Suite V15 | EVONIXTEC',
     ogDescription:
       'Multi-platform keyword trend intelligence engine across Google, Bing, eBay, YouTube, and Amazon.',
     ogType: 'website',
@@ -1808,7 +1808,7 @@ export function applyBlogPostSEO(blog: BlogPost) {
     ].join(', ')
   );
 
-  updateMetaTag('property', 'og:title', `${blog.title} – evonix Sialkot`);
+  updateMetaTag('property', 'og:title', pageTitle);
   updateMetaTag('property', 'og:description', pageDesc);
   updateMetaTag('property', 'og:url', canonicalUrl);
   updateMetaTag('property', 'og:type', 'article');
@@ -1817,7 +1817,7 @@ export function applyBlogPostSEO(blog: BlogPost) {
   updateMetaTag('property', 'og:image', DEFAULT_OG_IMAGE);
 
   updateMetaTag('name', 'twitter:card', 'summary_large_image');
-  updateMetaTag('name', 'twitter:title', `${blog.title} – evonix Sialkot`);
+  updateMetaTag('name', 'twitter:title', pageTitle);
   updateMetaTag('name', 'twitter:description', pageDesc);
   updateMetaTag('name', 'twitter:image', DEFAULT_OG_IMAGE);
 

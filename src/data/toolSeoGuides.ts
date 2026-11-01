@@ -63,7 +63,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
   invoice: {
     toolId: 'invoice',
     title: 'Free Global Micro-Invoice Generator - No Signup, 150+ Currencies, Instant PDF',
-    metaTitle: 'Free Global Micro-Invoice Generator - No Signup, 150+ Currencies, Instant PDF | evonix',
+    metaTitle: 'Free Global Invoice Generator | Multi-Currency PDF',
     metaDescription: 'Free online invoice generator for freelance billing and small business invoicing. Create multi-currency commercial invoices in browser with paper-style editor, automatic tax calculation, and instant A4 PDF download. No signup required.',
     keywords: [
       'invoice generator',
@@ -155,7 +155,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
   'ecommerce-calculator': {
     toolId: 'ecommerce-calculator',
     title: 'E-Commerce Unit Economics: Modeling COD Remittance Cycles, Return Losses & ROAS',
-    metaTitle: 'E-Commerce Margin & COD Simulator | Courier Fees, RTO Loss & Breakeven ROAS',
+    metaTitle: 'E-Commerce Margin & COD Simulator | Courier Rates',
     metaDescription: 'Accurately model e-commerce profit margins, return to origin (RTO) courier penalties, customer acquisition cost (CAC), and target breakeven ROAS for digital retailers.',
     keywords: [
       'E-Commerce_Profit_and_Loss',
@@ -231,7 +231,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
   'cbm-calculator': {
     toolId: 'cbm-calculator',
     title: 'Precision CBM & Volumetric Freight Optimization: Air vs Sea Container Packing Limits',
-    metaTitle: 'B2B Industrial CBM & Freight Engine | 20ft 40ft Container Packing & Air Weight',
+    metaTitle: 'B2B Industrial CBM & Freight Engine | evonix',
     metaDescription: 'Calculate Cubic Meters (CBM), air express volumetric weight (1:5000 / 1:6000), and 20ft / 40ft High Cube container stuffing percentages for export cargo.',
     keywords: [
       'cbm cargo calculator',
@@ -305,7 +305,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
   'developer-cost-calculator': {
     toolId: 'developer-cost-calculator',
     title: 'Offshore Engineering Capital Efficiency: USA/UK In-House vs Dedicated Engineering Hubs',
-    metaTitle: 'Dedicated Developer Cost Calculator | Offshore Software Engineering Savings',
+    metaTitle: 'Dedicated Developer Cost Calculator | Save 70%',
     metaDescription: 'Benchmark software engineering hiring costs in the USA, UK, and UAE against dedicated offshore development squads in Sialkot with net annual savings projections.',
     keywords: [
       'developer hiring cost calculator',
@@ -368,7 +368,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
   'ai-visibility-checker': {
     toolId: 'ai-visibility-checker',
     title: 'Generative Engine Optimization (GEO): Structuring Brand Entities for AI Search Engines',
-    metaTitle: 'AI Visibility & GEO Readiness Auditor | Google AI Overviews & ChatGPT Schema',
+    metaTitle: 'AI Visibility & GEO Readiness Auditor | evonix',
     metaDescription: 'Audit your website for AI search engine visibility across Google AI Overviews, Perplexity, Claude, and ChatGPT Search. Analyze Schema.org entity graphs and E-E-A-T signals.',
     keywords: [
       'GEO_and_E-E-A-T_Diagnostic',
@@ -432,7 +432,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
   'export-barcode-studio': {
     toolId: 'export-barcode-studio',
     title: 'Industrial Thermal Labeling: GS1-128 & Code-128 Standards for Global Logistics',
-    metaTitle: 'Export Barcode Label Studio | GS1-128 & Code 128 Thermal 4x6 Carton Labels',
+    metaTitle: 'Export Barcode Label Studio – GS1-128 Labels',
     metaDescription: 'Generate compliant 4x6 inch direct thermal shipping labels with GS1-128 and Code 128 barcodes for surgical instruments, sports goods, and export cartons.',
     keywords: [
       'export barcode label studio',
@@ -475,7 +475,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
   'live-repair-tracker': {
     toolId: 'live-repair-tracker',
     title: 'Chip-Level Hardware Quality Control: Bench Testing, Standby Current & Logic Repairs',
-    metaTitle: 'Live RMA Bench Repair Tracker | Motherboard Micro-Soldering & Hardware QC',
+    metaTitle: 'Live RMA Bench Repair Status Tracker | evonix',
     metaDescription: 'Track hardware diagnostic tickets, logic board micro-soldering stages, DC power supply standby current readings, and 90-day warranty verification certificates.',
     keywords: [
       'rma hardware repair tracker',
@@ -518,7 +518,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
   'printer-diagnostics': {
     toolId: 'printer-diagnostics',
     title: 'Point-of-Sale Hardware Diagnostics: Resolving ESC/POS Cutter Jam & Thermal Head Errors',
-    metaTitle: 'Thermal Receipt Printer Diagnostics | ESC/POS Auto-Cutter & Printhead Troubleshooting',
+    metaTitle: 'Thermal Receipt & POS Printer Diagnostics | evonix',
     metaDescription: 'Diagnose 80mm and 58mm ESC/POS thermal receipt printers, USB/LAN connectivity dropouts, cutter lockups, and blurry barcode prints with step-by-step bench fixes.',
     keywords: [
       'thermal receipt printer diagnostics',
@@ -561,7 +561,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
   'factory-network-tester': {
     toolId: 'factory-network-tester',
     title: 'Industrial Premise Networking: Dual-WAN Failover, SQL Latency & Customs Portals',
-    metaTitle: 'Factory ERP & Customs Latency Benchmark | Dual-WAN & WeBOC Ping Stability',
+    metaTitle: 'Factory Network Latency & WeBOC Benchmark',
     metaDescription: 'Benchmark factory floor network responsiveness, SQL database sync latency, dual-WAN failover switchover speeds, and WeBOC customs portal connectivity.',
     keywords: [
       'factory network latency tester',
@@ -604,7 +604,7 @@ export const TOOL_SEO_GUIDES: Record<string, ToolSeoGuide> = {
   'ai-trip-planner': {
     toolId: 'ai-trip-planner',
     title: 'AI Trip Planner: Day-Wise Vacation Itinerary Generator & Travel Budget Engine',
-    metaTitle: 'Ai Trip Planner | Day-Wise Vacation Itinerary Generator & Budget Breakdown',
+    metaTitle: 'AI Trip Planner: Day-Wise Vacation Generator',
     metaDescription: 'Free AI trip planner generating day-wise travel itineraries, attraction timing, food spots, transit advice, and daily budget breakdowns in 30 seconds.',
     keywords: [
       'Ai Trip Planner',

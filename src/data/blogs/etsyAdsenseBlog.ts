@@ -4,7 +4,7 @@ export const ETSY_ADSENSE_BLOGS: BlogPost[] = [
   {
     id: 'blog-how-to-start-an-etsy-shop-uk-course-aliexpress-guide',
     slug: 'how-to-start-an-etsy-shop-uk-course-aliexpress-guide',
-    title: 'How to Start an Etsy Shop in 2026: UK Account Open, Courses & AliExpress Reality',
+    title: 'How to Start an Etsy Shop: UK Account Open & Course Guide',
     category: 'web-graphics',
     categoryLabel: 'E-Commerce & Global Export',
     excerpt: 'Step-by-step 2026 guide on how to start an etsy shop. Learn the truth about paid etsy course fees, whether ali express dropshipping works, buyer safety, and etsy uk only account open setup.',
@@ -26,7 +26,7 @@ export const ETSY_ADSENSE_BLOGS: BlogPost[] = [
       'Etsy UK Setup',
       'Online Export Business'
     ],
-    metaTitle: 'How to Start an Etsy Shop (2026): UK Account Open, Courses & AliExpress Guide',
+    metaTitle: 'Start Etsy Shop: UK Account Open, Courses & AliExpress',
     metaDescription: 'Complete 2026 guide on how to start an etsy shop. Learn why you do not need an etsy course, ali express dropshipping rules, and etsy uk only account open steps.',
     targetKeywords: [
       'how to start an etsy shop',

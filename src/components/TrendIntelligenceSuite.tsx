@@ -170,7 +170,7 @@ export default function TrendIntelligenceSuite() {
         <div className="bg-white rounded-[20px] p-6 shadow-sm border border-slate-200/80 mb-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-[#1d1d1f]">🚀 Evonix Technologies - V15 Master Build</h2>
+              <h1 className="text-xl sm:text-2xl font-bold text-[#1d1d1f]">Trend Intelligence Suite V15 — Multi-Platform Keyword Scoring</h1>
               <p className="text-xs text-emerald-600 font-bold mt-1">6 Core Modules + 3 Enterprise Upgrades • 100% Free Special Launch Offer Active</p>
             </div>
             <span className="self-start sm:self-auto text-[10px] font-mono px-2.5 py-1 bg-emerald-50 text-emerald-700 rounded-full font-bold border border-emerald-200">

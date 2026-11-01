@@ -1641,7 +1641,7 @@ export default function App() {
           <div className="space-y-0">
             <ToolWorkspaceHeader
               currentToolId="etsy-fee-calculator"
-              toolTitle="Etsy Fee & Profit Calculator 2026"
+              toolTitle="Etsy Fee & Payoneer Profit Calculator"
               toolCategory="E-Commerce & Export"
               toolDescription="Calculate exact listing renewals, 6.5% transaction cut, payment processing, and net profit payout."
               icon={<Calculator className="w-5 h-5 text-orange-500" />}
