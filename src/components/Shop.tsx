@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { SHOP_PRODUCTS, COMPANY_INFO } from '../data/content';
 import { ShopProduct } from '../types';
 import { OptimizedImage } from './common/OptimizedImage';
+import { ShopHeroVideoBanner } from './shop/ShopHeroVideoBanner';
 import {
   ShoppingBag,
   Laptop,
@@ -238,6 +239,19 @@ Please confirm stock and doorstep delivery time in Sialkot.`;
             All prices in Pakistani Rupees (PKR). We stock certified business laptops, tower desktops, high-speed printers, RAM, and SSD upgrades with written warranties in Sialkot.
           </p>
         </div>
+
+        {/* ========================================================
+            DYNAMIC 60FPS VIDEO BANNER CAROUSEL (4 CREATIVE BANNERS)
+            Laptops, POS Cashier Machines, Peripherals & NVMe Storage
+           ======================================================== */}
+        <ShopHeroVideoBanner
+          onSelectCategory={(catId) => {
+            setSelectedCategory(catId);
+            const el = document.getElementById('shop-inventory-grid');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
+          onInquireProduct={onInquireProduct}
+        />
 
         {/* ========================================================
             POSTER 1: LIVE 20% OFF FLASH PROMO WITH COUNTDOWN TIMER

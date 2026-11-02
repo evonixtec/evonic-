@@ -24,6 +24,7 @@ import { NavPageId } from '../types';
 import { incrementToolUsage } from '../lib/toolUsageTracker';
 
 import SpecialOfferBanner from './common/SpecialOfferBanner';
+import { ToolsHeroVideoBanner } from './tools/ToolsHeroVideoBanner';
 
 export interface WebToolDefinition {
   id: string;
@@ -754,6 +755,12 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
               </span>
             </div>
           </div>
+
+          {/* ========================================================
+              DYNAMIC 60FPS VIDEO BANNER CAROUSEL (4 TOOLS WORKSTATIONS)
+              Trend Suite, Global Invoices, CBM Cargo & Barcode Label Studio
+             ======================================================== */}
+          <ToolsHeroVideoBanner onLaunchTool={onLaunchTool} />
 
           {/* 2. Interactive Filter Tabs */}
           <div className="bg-white rounded-2xl border border-slate-200 p-3 sm:p-4 shadow-xs space-y-3">
