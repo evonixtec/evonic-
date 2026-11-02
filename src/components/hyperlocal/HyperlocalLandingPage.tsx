@@ -17,10 +17,15 @@ import {
   HelpCircle,
   Building2,
   Wrench,
-  DollarSign
+  Maximize2,
+  Package,
+  Activity,
+  FileText
 } from 'lucide-react';
 import { sialkotHardwareHub, LocalProduct } from '../../data/hyperlocalData';
 import { WhatsAppOrderButton } from './WhatsAppOrderButton';
+import { ProductDetailModal } from './ProductDetailModal';
+import { HyperlocalHeroBannerSlider } from './HyperlocalHeroBannerSlider';
 
 interface HyperlocalLandingPageProps {
   onNavigatePage?: (page: string) => void;
@@ -33,6 +38,9 @@ export const HyperlocalLandingPage: React.FC<HyperlocalLandingPageProps> = ({
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+  const [cardImageIndexMap, setCardImageIndexMap] = useState<Record<string, number>>({});
+  const [selectedModalProduct, setSelectedModalProduct] = useState<LocalProduct | null>(null);
+  const [showLivePharmacyDemo, setShowLivePharmacyDemo] = useState(false);
 
   const hub = sialkotHardwareHub;
 
@@ -41,6 +49,11 @@ export const HyperlocalLandingPage: React.FC<HyperlocalLandingPageProps> = ({
   const filteredProducts = selectedCategory === 'all'
     ? hub.featuredHardware
     : hub.featuredHardware.filter((p) => p.category === selectedCategory);
+
+  const handleCardImageSelect = (productId: string, index: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCardImageIndexMap((prev) => ({ ...prev, [productId]: index }));
+  };
 
   // Set document title & inject LocalBusiness JSON-LD schema
   useEffect(() => {
@@ -107,6 +120,8 @@ export const HyperlocalLandingPage: React.FC<HyperlocalLandingPageProps> = ({
             'name': item.name,
             'sku': item.sku,
             'category': item.category,
+            'image': item.images?.[0] ? `https://www.evonixtec.com${item.images[0]}` : undefined,
+            'description': item.description,
             'offers': {
               '@type': 'Offer',
               'price': item.pricePKR.replace(/[^0-9]/g, ''),
@@ -125,7 +140,6 @@ export const HyperlocalLandingPage: React.FC<HyperlocalLandingPageProps> = ({
     scriptTag.text = JSON.stringify(schemaData);
 
     return () => {
-      // Clean up schema on unmount if navigating elsewhere
       const existing = document.getElementById(schemaId);
       if (existing) {
         existing.remove();
@@ -136,22 +150,26 @@ export const HyperlocalLandingPage: React.FC<HyperlocalLandingPageProps> = ({
   const faqs = [
     {
       q: 'How fast is delivery for POS hardware in Sialkot?',
-      a: 'Orders placed before 4:00 PM are delivered directly to your shop or factory in Sialkot, Daska, or Sambrial within 2 to 4 hours via our local delivery fleet. Cash on Delivery (COD) is available upon receiving and testing the parcel.',
+      a: 'Orders placed before 4:00 PM are delivered directly to your shop, clinic, medical store, or factory in Sialkot, Daska, or Sambrial within 2 to 4 hours via our local delivery fleet. Cash on Delivery (COD) is available upon receiving and inspecting the hardware parcel.',
     },
     {
-      q: 'Can I physically inspect and test the thermal printer before buying?',
-      a: 'Yes, absolutely. You can visit our physical testing depot at Kotli Behram (Defense Road / Sialkot Bypass) to test print speeds, cutter mechanisms, and scanner decoders with your own laptop or sample invoices before purchase.',
+      q: 'Are these thermal printers and scanners suitable for medical stores and pharmacies?',
+      a: 'Yes, 100%. Our 80mm printers print sharp 6pt drug formulas, batch numbers, manufacturing/expiry dates, and doctor prescriptions compliant with DRAP guidelines. Our wireless 2D scanners decode tiny DataMatrix codes off medicine blister foil strips, curved syrup bottles, and mobile screens instantly without reflective glare.',
+    },
+    {
+      q: 'Can I physically inspect and test the hardware in my hands before buying?',
+      a: 'Yes, absolutely. You can visit our physical testing depot at Kotli Behram (Defense Road / Sialkot Bypass) to hold the hardware, feel the grip in your hand, test print speeds, cutter durability, and scanner decoders with your own laptop or sample medicine boxes.',
     },
     {
       q: 'What is your warranty policy in Sialkot?',
-      a: 'All our hardware comes with a 1-Year Local Replacement Warranty backed directly by our Sialkot engineering lab. Unlike online marketplaces where you have to courier items to Karachi or Lahore, you get immediate local support right here in Sialkot.',
+      a: 'All our hardware comes with a 1-Year Local Replacement Warranty backed directly by our Sialkot engineering lab. Unlike online marketplaces where you have to courier items to Karachi or Lahore, you get immediate local exchange and repair right here in Sialkot.',
     },
     {
-      q: 'Will these printers and scanners work with our existing retail or ERP software?',
-      a: 'Yes. All our printers run standard ESC/POS industry command sets and come with full Windows (7/8/10/11), Linux, and Android drivers. They work seamlessly with Candela, QuickBooks, Retail Pro, Evonix Export ERP, Excel, and custom web applications.',
+      q: 'Will these printers and scanners work with our existing retail or pharmacy software?',
+      a: 'Yes. All our printers run standard ESC/POS industry command sets and come with full Windows (7/8/10/11), Linux, and Android drivers. They work seamlessly with Candela Pharmacy, PharmaPOS, Medico, QuickBooks, Retail Pro, Evonix Export ERP, Excel, and custom web applications.',
     },
     {
-      q: 'Do you also supply thermal paper rolls and barcode labels?',
+      q: 'Do you also supply 80mm thermal paper rolls and 4x6 labels in bulk?',
       a: 'Yes. We stock high-sensitivity BPA-free 80mm x 70m thermal rolls, 58mm receipts, and 4x6" export shipping labels in carton quantities at direct wholesale depot rates.',
     },
   ];
@@ -170,7 +188,7 @@ export const HyperlocalLandingPage: React.FC<HyperlocalLandingPageProps> = ({
             <span className="font-bold text-white tracking-wide uppercase text-[11px] sm:text-xs">
               Sialkot B2B Depot Active:
             </span>
-            <span>Same-Day 2–4 Hour Dispatch across Sialkot City, Defense Rd, Paris Rd & Daska</span>
+            <span>Same-Day 2–4 Hour Dispatch across Sialkot City, Defense Rd, Paris Rd &amp; Daska</span>
           </div>
 
           <div className="flex items-center gap-4 text-[11px] font-semibold text-emerald-300">
@@ -181,7 +199,7 @@ export const HyperlocalLandingPage: React.FC<HyperlocalLandingPageProps> = ({
             <span className="hidden md:inline text-slate-600">|</span>
             <span className="flex items-center gap-1">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-              1-Year Sialkot Warranty
+              1-Year Sialkot Replacement Warranty
             </span>
           </div>
         </div>
@@ -220,8 +238,17 @@ export const HyperlocalLandingPage: React.FC<HyperlocalLandingPageProps> = ({
         </nav>
       </div>
 
-      {/* 3. HERO SECTION */}
-      <section className="relative overflow-hidden pt-6 pb-14 border-b border-slate-800">
+      {/* 2.5 DYNAMIC VIDEO-BACKGROUND HERO BANNER CAROUSEL (4 CREATIVE BANNERS) */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <HyperlocalHeroBannerSlider
+          onOpenReceiptDemo={() => setShowLivePharmacyDemo(true)}
+          whatsappNumber={hub.whatsappNumber}
+          contactPhone={hub.contactPhone}
+        />
+      </div>
+
+      {/* 3. HERO OVERVIEW SECTION */}
+      <section className="relative overflow-hidden pt-4 pb-12 border-b border-slate-800">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(16,185,129,0.08),transparent_50%)] pointer-events-none" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -237,7 +264,7 @@ export const HyperlocalLandingPage: React.FC<HyperlocalLandingPageProps> = ({
 
             <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
               Buy 80mm &amp; 58mm thermal receipt printers, wireless barcode scanners, and touch POS systems in Sialkot. 
-              Enjoy <strong className="text-emerald-400 font-semibold">1-year local replacement warranty</strong>, physical on-site testing at Kotli Behram, and <strong className="text-emerald-400 font-semibold">instant Same-Day Cash on Delivery</strong>.
+              Featuring <strong className="text-emerald-400 font-semibold">1-year local replacement warranty</strong>, physical on-site testing at Kotli Behram, ergonomic in-hand inspection, and <strong className="text-emerald-400 font-semibold">instant Same-Day Cash on Delivery</strong>.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -245,7 +272,7 @@ export const HyperlocalLandingPage: React.FC<HyperlocalLandingPageProps> = ({
                 href="#catalog"
                 className="px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-lg shadow-emerald-900/30 flex items-center gap-2 cursor-pointer"
               >
-                <span>Browse Local Stock</span>
+                <span>Browse Local Stock &amp; Photos</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
 
@@ -257,15 +284,13 @@ export const HyperlocalLandingPage: React.FC<HyperlocalLandingPageProps> = ({
                 <span>Call Depot: {hub.contactPhone}</span>
               </a>
 
-              {onOpenQuote && (
-                <button
-                  type="button"
-                  onClick={() => onOpenQuote('Sialkot Bulk POS Hardware Request')}
-                  className="px-5 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 font-semibold text-xs sm:text-sm transition-colors cursor-pointer"
-                >
-                  Request Bulk Quotation
-                </button>
-              )}
+              <button
+                type="button"
+                onClick={() => setShowLivePharmacyDemo(!showLivePharmacyDemo)}
+                className="px-5 py-3.5 rounded-xl bg-emerald-950/80 hover:bg-emerald-900 border border-emerald-500/40 text-emerald-300 font-semibold text-xs sm:text-sm transition-colors cursor-pointer flex items-center gap-2"
+              >
+                <span>🏥 Pharmacy Print Simulation</span>
+              </button>
             </div>
 
             {/* Quick Metrics Bar */}
@@ -279,8 +304,8 @@ export const HyperlocalLandingPage: React.FC<HyperlocalLandingPageProps> = ({
                 <span className="text-[11px] text-slate-400 font-medium">Local Warranty</span>
               </div>
               <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 text-left">
-                <span className="block text-xl font-black text-emerald-400">100%</span>
-                <span className="text-[11px] text-slate-400 font-medium">Pre-Tested Units</span>
+                <span className="block text-xl font-black text-emerald-400">3–4 Angles</span>
+                <span className="text-[11px] text-slate-400 font-medium">Genuine Photos</span>
               </div>
               <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 text-left">
                 <span className="block text-xl font-black text-emerald-400">COD</span>
@@ -291,12 +316,98 @@ export const HyperlocalLandingPage: React.FC<HyperlocalLandingPageProps> = ({
         </div>
       </section>
 
+      {/* SPECIAL MEDICAL PHARMACY RECEIPT CALLOUT (IF TOGGLED OR PROMINENT) */}
+      {showLivePharmacyDemo && (
+        <section className="py-8 bg-emerald-950/20 border-b border-emerald-500/30">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6">
+            <div className="p-6 rounded-3xl bg-slate-900 border border-emerald-500/40 space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold">
+                    ✚
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-white uppercase tracking-wider">
+                      Medical Pharmacy DRAP Invoicing Simulation
+                    </h3>
+                    <p className="text-xs text-slate-400">Sample invoice printed on Evonix 80mm ESC/POS High-Speed Thermal Unit</p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowLivePharmacyDemo(false)}
+                  className="text-xs text-slate-400 hover:text-white"
+                >
+                  Close ×
+                </button>
+              </div>
+
+              {/* Realistic Thermal Receipt Markup */}
+              <div className="p-5 rounded-2xl bg-white text-slate-900 font-mono text-xs max-w-sm mx-auto shadow-xl border border-slate-300 space-y-2.5">
+                <div className="text-center border-b border-dashed border-slate-400 pb-2.5">
+                  <div className="w-8 h-8 mx-auto rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xs mb-1">
+                    ✚
+                  </div>
+                  <h4 className="font-extrabold text-sm text-slate-900">AL-SHIFA PHARMACY &amp; MEDICAL STORE</h4>
+                  <p className="text-[10px] text-slate-600">Defense Road, Kotli Behram, Sialkot</p>
+                  <p className="text-[10px] text-slate-600">DRAP Lic: PB-SKT-4892 • Ph: +92 326 324 4002</p>
+                  <div className="pt-1 text-[9px] text-slate-500 flex justify-between">
+                    <span>Invoice #MED-8492</span>
+                    <span>Date: {new Date().toLocaleDateString()}</span>
+                  </div>
+                </div>
+
+                <div className="text-[10px] border-b border-dashed border-slate-300 pb-1.5 space-y-0.5">
+                  <div className="flex justify-between"><span>Patient: M. Usman</span><span>Age: 38Y</span></div>
+                  <div className="flex justify-between text-slate-500"><span>Doctor: Dr. A. Rauf (MBBS)</span><span>Counter: POS-01</span></div>
+                </div>
+
+                <div className="text-[10px] space-y-1.5 border-b border-dashed border-slate-400 pb-2">
+                  <div className="flex justify-between font-bold border-b border-slate-200 pb-0.5">
+                    <span>Medicine / Pack</span><span>Qty</span><span>Price</span>
+                  </div>
+                  <div>
+                    <div className="flex justify-between font-semibold"><span>Augmentin 625mg (GSK)</span><span>1x14</span><span>Rs. 480</span></div>
+                    <div className="text-[8px] text-slate-500">Batch: AUG-928 | Exp: 09/2028</div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between font-semibold"><span>Panadol Extra 500mg</span><span>2x10</span><span>Rs. 180</span></div>
+                    <div className="text-[8px] text-slate-500">Batch: PAN-104 | Exp: 12/2027</div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between font-semibold"><span>Brufen 400mg (Abbott)</span><span>1x30</span><span>Rs. 260</span></div>
+                    <div className="text-[8px] text-slate-500">Batch: BRF-551 | Exp: 05/2028</div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between font-semibold"><span>Surbex-Z Tablets</span><span>1x30</span><span>Rs. 500</span></div>
+                    <div className="text-[8px] text-slate-500">Batch: SBX-882 | Exp: 11/2027</div>
+                  </div>
+                </div>
+
+                <div className="text-[10px] space-y-0.5 border-b border-dashed border-slate-400 pb-2">
+                  <div className="flex justify-between"><span>Gross Total:</span><span>Rs. 1,420</span></div>
+                  <div className="flex justify-between text-emerald-700 font-semibold"><span>Medical Discount (5%):</span><span>- Rs. 70</span></div>
+                  <div className="flex justify-between font-bold text-xs text-slate-900 pt-1 border-t border-slate-300">
+                    <span>NET PAYABLE:</span><span>Rs. 1,350</span>
+                  </div>
+                </div>
+
+                <div className="text-center pt-1 space-y-1">
+                  <div className="font-mono text-[9px] tracking-widest text-slate-800">|||||||||| |||||||| ||||||||||||||||||</div>
+                  <p className="text-[8px] text-slate-500 font-sans">Printed via Evonix 80mm ESC/POS Thermal Head • Get Well Soon!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* 4. FOUR TRUST PILLARS */}
       <section className="py-12 bg-slate-900/50 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-10">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
-              Why Sialkot Retailers &amp; Exporters Choose Our Depot
+              Why Sialkot Retailers, Pharmacies &amp; Exporters Choose Us
             </h2>
             <p className="mt-2 text-sm text-slate-400">
               Eliminating the delays, broken promises, and shipping hassles of out-of-city vendors.
@@ -330,7 +441,7 @@ export const HyperlocalLandingPage: React.FC<HyperlocalLandingPageProps> = ({
               </div>
               <h3 className="text-base font-bold text-white">Physical Depot in Kotli Behram</h3>
               <p className="text-xs text-slate-400 leading-relaxed">
-                We are not a drop-shipper. Visit our physical test bench on Defense Road to see live demonstrations and sample test prints.
+                We are not a drop-shipper. Visit our physical test bench on Defense Road to see live demonstrations, hold devices in hand, and test print.
               </p>
             </div>
 
@@ -347,20 +458,20 @@ export const HyperlocalLandingPage: React.FC<HyperlocalLandingPageProps> = ({
         </div>
       </section>
 
-      {/* 5. HARDWARE INVENTORY CATALOG */}
+      {/* 5. HARDWARE INVENTORY CATALOG WITH 3-4 GENUINE PICTURES */}
       <section id="catalog" className="py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
             <div>
               <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-400 mb-1">
                 <Layers className="w-4 h-4" />
-                <span>Verified Ready Stock</span>
+                <span>Verified Ready Stock • Multi-Angle Photography</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
                 Available POS Hardware in Sialkot Depot
               </h2>
               <p className="text-xs sm:text-sm text-slate-400 mt-1">
-                All models are in-stock locally, pre-configured with ESC/POS drivers, and ready for immediate Same-Day dispatch.
+                Inspect genuine multi-angle hardware photography, ergonomic hand-fit details, and full specifications. Click any product to inspect all 4 high-res photos.
               </p>
             </div>
 
@@ -384,77 +495,161 @@ export const HyperlocalLandingPage: React.FC<HyperlocalLandingPageProps> = ({
 
           {/* Product Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProducts.map((product) => (
-              <div
-                key={product.id}
-                className="rounded-2xl bg-slate-900 border border-slate-800 hover:border-emerald-500/40 p-6 flex flex-col justify-between transition-all hover:shadow-xl hover:shadow-emerald-950/20 group"
-              >
-                <div>
-                  {/* Top Status & Category */}
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="px-2.5 py-1 rounded-md bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-[10px] font-extrabold uppercase tracking-wider flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                      In Stock • Sialkot Depot
-                    </span>
-                    <span className="text-[11px] font-mono text-slate-500 uppercase">
-                      SKU: {product.sku}
-                    </span>
-                  </div>
+            {filteredProducts.map((product) => {
+              const activeIndex = cardImageIndexMap[product.id] || 0;
+              const activeImg = product.images[activeIndex] || product.images[0];
 
-                  {/* Product Title */}
-                  <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors leading-snug">
-                    {product.name}
-                  </h3>
+              return (
+                <div
+                  key={product.id}
+                  className="rounded-2xl bg-slate-900 border border-slate-800 hover:border-emerald-500/40 p-5 sm:p-6 flex flex-col justify-between transition-all hover:shadow-xl hover:shadow-emerald-950/20 group"
+                >
+                  <div>
+                    {/* Top Status & SKU */}
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <span className="px-2.5 py-1 rounded-md bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-[10px] font-extrabold uppercase tracking-wider flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        In Stock • Sialkot Depot
+                      </span>
+                      <span className="text-[11px] font-mono text-slate-500 uppercase">
+                        SKU: {product.sku}
+                      </span>
+                    </div>
 
-                  {/* Price Tag */}
-                  <div className="mt-3 mb-4 flex items-baseline gap-2">
-                    <span className="text-2xl font-black text-emerald-400">
-                      {product.pricePKR}
-                    </span>
-                    <span className="text-xs text-slate-400">
-                      (Same-Day COD)
-                    </span>
-                  </div>
+                    {/* PRODUCT IMAGE GALLERY STRIP (3-4 PHOTOS) */}
+                    <div className="mb-4 space-y-2">
+                      <div 
+                        onClick={() => setSelectedModalProduct(product)}
+                        className="relative aspect-4/3 rounded-xl overflow-hidden bg-slate-950 border border-slate-800 cursor-pointer group/img"
+                        title="Click to view full photo gallery & specs"
+                      >
+                        <img
+                          src={activeImg}
+                          alt={`${product.name} angle ${activeIndex + 1}`}
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover/img:scale-105"
+                          onError={(e) => {
+                            (e.currentTarget as HTMLImageElement).src = '/images/shop/shop_thermal_printer.webp';
+                          }}
+                        />
 
-                  {/* Specs Bullets */}
-                  <div className="space-y-2 border-t border-slate-800/80 pt-4 mb-6">
-                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
-                      Key Specifications:
-                    </span>
-                    {product.specs.map((spec, sIdx) => (
-                      <div key={sIdx} className="flex items-start gap-2 text-xs text-slate-300">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
-                        <span>{spec}</span>
+                        {/* Expand Icon Hover Badge */}
+                        <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white font-bold text-xs backdrop-blur-[2px]">
+                          <Maximize2 className="w-4 h-4 text-emerald-400" />
+                          <span>Inspect 4 Photos &amp; Specs</span>
+                        </div>
+
+                        {/* Angle Counter */}
+                        <div className="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-slate-950/80 text-[10px] font-mono text-slate-300 border border-slate-800">
+                          Photo {activeIndex + 1}/{product.images.length}
+                        </div>
+
+                        {/* Medical Store Badge */}
+                        <div className="absolute top-2 right-2 px-2 py-0.5 rounded bg-emerald-950/90 border border-emerald-500/50 text-[10px] font-bold text-emerald-300">
+                          ✚ Pharmacy Ready
+                        </div>
                       </div>
-                    ))}
-                  </div>
-                </div>
 
-                {/* Footer Action & Direct WhatsApp Button */}
-                <div className="space-y-3 pt-4 border-t border-slate-800">
-                  <WhatsAppOrderButton
-                    product={product}
-                    whatsappNumber={hub.whatsappNumber}
-                    buttonText="Order via WhatsApp (Instant COD)"
-                  />
-                  
-                  <div className="flex items-center justify-between text-[11px] text-slate-400 px-1">
-                    <span>Warranty: 1 Year Local</span>
-                    <span>Dispatch: 2–4 Hours</span>
+                      {/* 4 Clickable Mini Thumbnails */}
+                      <div className="grid grid-cols-4 gap-1.5">
+                        {product.images.map((thumb, tIdx) => (
+                          <button
+                            key={tIdx}
+                            type="button"
+                            onClick={(e) => handleCardImageSelect(product.id, tIdx, e)}
+                            className={`relative aspect-square rounded-lg overflow-hidden border transition-all cursor-pointer bg-slate-950 ${
+                              activeIndex === tIdx
+                                ? 'border-emerald-500 ring-2 ring-emerald-500/30'
+                                : 'border-slate-800 opacity-60 hover:opacity-100 hover:border-slate-700'
+                            }`}
+                          >
+                            <img
+                              src={thumb}
+                              alt=""
+                              className="w-full h-full object-cover"
+                            />
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Product Title */}
+                    <h3 
+                      onClick={() => setSelectedModalProduct(product)}
+                      className="text-base sm:text-lg font-bold text-white group-hover:text-emerald-300 transition-colors leading-snug cursor-pointer"
+                    >
+                      {product.name}
+                    </h3>
+
+                    {/* Price Tag */}
+                    <div className="mt-2 mb-3 flex items-baseline gap-2">
+                      <span className="text-2xl font-black text-emerald-400">
+                        {product.pricePKR}
+                      </span>
+                      <span className="text-xs text-slate-400">
+                        (Same-Day COD)
+                      </span>
+                    </div>
+
+                    {/* Description Snippet */}
+                    <p className="text-xs text-slate-400 line-clamp-2 mb-3">
+                      {product.description}
+                    </p>
+
+                    {/* Hand Ergonomics Tag */}
+                    <div className="mb-4 p-2 rounded-lg bg-slate-950 border border-slate-800/80 text-[11px] text-slate-300 flex items-center gap-1.5">
+                      <Activity className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                      <span className="truncate">{product.ergonomics}</span>
+                    </div>
+
+                    {/* Specs Bullets */}
+                    <div className="space-y-1.5 border-t border-slate-800/80 pt-3 mb-5">
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
+                        Core Highlights:
+                      </span>
+                      {product.specs.slice(0, 4).map((spec, sIdx) => (
+                        <div key={sIdx} className="flex items-start gap-1.5 text-xs text-slate-300">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                          <span className="truncate">{spec}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Footer Action & Direct WhatsApp Button */}
+                  <div className="space-y-2 pt-3 border-t border-slate-800">
+                    <button
+                      type="button"
+                      onClick={() => setSelectedModalProduct(product)}
+                      className="w-full py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-colors cursor-pointer flex items-center justify-center gap-1.5"
+                    >
+                      <Maximize2 className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>Inspect 4 Photos &amp; Detailed Specs</span>
+                    </button>
+
+                    <WhatsAppOrderButton
+                      product={product}
+                      whatsappNumber={hub.whatsappNumber}
+                      buttonText="Order via WhatsApp (Instant COD)"
+                    />
+                    
+                    <div className="flex items-center justify-between text-[10px] text-slate-400 px-1 pt-1">
+                      <span>Warranty: 1 Year Local</span>
+                      <span>Dispatch: 2–4 Hours</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Sialkot Bulk Corporate Orders Note */}
           <div className="mt-10 p-6 rounded-2xl bg-gradient-to-r from-slate-900 to-emerald-950/40 border border-emerald-500/30 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="space-y-1 text-center sm:text-left">
               <h4 className="text-base font-bold text-white">
-                Equipping a Chain of Stores or Industrial Factory in Sialkot?
+                Equipping a Chain of Pharmacies or Industrial Factory in Sialkot?
               </h4>
               <p className="text-xs sm:text-sm text-slate-400">
-                We offer bulk corporate pricing, GST/NTN invoices, and on-site multi-counter installation packages.
+                We offer bulk corporate pricing, GST/NTN invoices, and on-site multi-counter installation packages across Sialkot division.
               </p>
             </div>
             {onOpenQuote && (
@@ -485,7 +680,7 @@ export const HyperlocalLandingPage: React.FC<HyperlocalLandingPageProps> = ({
                   Visit Our Sialkot Testing &amp; Hardware Lab
                 </h2>
                 <p className="text-sm text-slate-300 mt-2 leading-relaxed">
-                  Bring your business laptop or billing software to test print alignment, auto-cutter speed, and barcode sensitivity before you buy.
+                  Bring your business laptop, medicine packages, or billing software to test print alignment, auto-cutter speed, and barcode sensitivity in your own hands before purchasing.
                 </p>
               </div>
 
@@ -590,7 +785,7 @@ export const HyperlocalLandingPage: React.FC<HyperlocalLandingPageProps> = ({
               <div className="p-3.5 rounded-xl bg-slate-900 border border-emerald-500/20 text-xs text-slate-300 space-y-1">
                 <span className="font-bold text-white block">Cash on Delivery Policy:</span>
                 <p className="text-slate-400 text-[11px] leading-relaxed">
-                  Our rider brings the sealed hardware directly to your counter. You can inspect the package, power on the test unit, and pay cash directly.
+                  Our rider brings the sealed hardware directly to your counter. You can inspect the package, hold the hardware in hand, test the unit, and pay cash directly.
                 </p>
               </div>
             </div>
@@ -611,7 +806,7 @@ export const HyperlocalLandingPage: React.FC<HyperlocalLandingPageProps> = ({
               Sialkot POS Hardware FAQs
             </h2>
             <p className="text-xs sm:text-sm text-slate-400 mt-1">
-              Common questions answered about delivery timelines, drivers, and local warranty in Sialkot.
+              Common questions answered about delivery timelines, drivers, medical store compatibility, and local warranty in Sialkot.
             </p>
           </div>
 
@@ -680,6 +875,15 @@ export const HyperlocalLandingPage: React.FC<HyperlocalLandingPageProps> = ({
           </div>
         </div>
       </section>
+
+      {/* 9. INTERACTIVE PRODUCT DETAIL MODAL */}
+      {selectedModalProduct && (
+        <ProductDetailModal
+          product={selectedModalProduct}
+          onClose={() => setSelectedModalProduct(null)}
+          whatsappNumber={hub.whatsappNumber}
+        />
+      )}
 
     </div>
   );

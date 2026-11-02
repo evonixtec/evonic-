@@ -557,37 +557,53 @@ pages.push({
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
-        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
-          <span class="px-2.5 py-1 rounded bg-emerald-950 text-emerald-400 text-xs font-bold uppercase">In Stock Locally</span>
-          <h3 class="text-xl font-bold text-white">80mm Thermal Receipt Printer (USB + LAN)</h3>
+        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+          <div class="aspect-4/3 rounded-xl overflow-hidden bg-slate-950 border border-slate-800">
+            <img src="/images/shop/printer_thermal_receipt.webp" alt="80mm Thermal Receipt Printer" class="w-full h-full object-cover" />
+          </div>
+          <span class="px-2.5 py-1 rounded bg-emerald-950 text-emerald-400 text-xs font-bold uppercase">In Stock Locally • Sialkot Depot</span>
+          <h3 class="text-xl font-bold text-white">80mm Thermal Receipt Printer (Auto-Cutter, USB + LAN)</h3>
           <p class="text-emerald-400 font-extrabold text-2xl">Rs. 18,500</p>
-          <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
-            <li>260mm/s High Speed Auto-Cutter (1.5M Cuts)</li>
-            <li>Dual USB + LAN / Ethernet Interface</li>
-            <li>Standard ESC/POS Command Compatibility</li>
-            <li>RJ11 Cash Drawer Port (24V Pulse)</li>
-            <li>1-Year Local Sialkot Replacement Warranty</li>
-          </ul>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Heavy-duty 80mm direct thermal POS receipt printer for retail pharmacies, supermarkets, and export billing counters. Ultra-fast 260mm/s print speed, 1.5M cut guillotine auto-cutter, dual USB and LAN Ethernet connectivity.
+          </p>
+          <div class="space-y-1.5 text-xs text-slate-300">
+            <span class="font-bold text-white block">Medical Store &amp; Pharmacy Features:</span>
+            <ul class="space-y-1 list-disc list-inside text-slate-400">
+              <li>Prints clear drug formulas, batch numbers, manufacturing/expiry dates</li>
+              <li>Built-in QR code &amp; barcode printing compliant with DRAP guidelines</li>
+              <li>High-density 203 DPI resolution ensures tiny 6pt dosage text is razor sharp</li>
+              <li>RJ11 24V port triggers auto-kick on cash drawer upon invoice completion</li>
+            </ul>
+          </div>
         </div>
 
-        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
-          <span class="px-2.5 py-1 rounded bg-emerald-950 text-emerald-400 text-xs font-bold uppercase">In Stock Locally</span>
+        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+          <div class="aspect-4/3 rounded-xl overflow-hidden bg-slate-950 border border-slate-800">
+            <img src="/images/shop/pos_barcode_scanner.webp" alt="Handheld 1D/2D Wireless Barcode Scanner" class="w-full h-full object-cover" />
+          </div>
+          <span class="px-2.5 py-1 rounded bg-emerald-950 text-emerald-400 text-xs font-bold uppercase">In Stock Locally • Sialkot Depot</span>
           <h3 class="text-xl font-bold text-white">Handheld 1D/2D Wireless Barcode Scanner</h3>
           <p class="text-emerald-400 font-extrabold text-2xl">Rs. 9,500</p>
-          <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
-            <li>2.4G Wireless + Bluetooth 5.0 Dual Mode</li>
-            <li>Reads QR Codes, Damaged Labels & Mobile Screens</li>
-            <li>Up to 100m Open Transmission Range</li>
-            <li>1.8m Concrete Drop Resistance</li>
-            <li>1-Year Local Sialkot Replacement Warranty</li>
-          </ul>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Professional commercial-grade 1D/2D wireless CMOS barcode imager scanner. Reads QR codes, DataMatrix, PDF417, and standard 1D barcodes from reflective medicine foil blister packs, curved syrup bottles, and mobile screens.
+          </p>
+          <div class="space-y-1.5 text-xs text-slate-300">
+            <span class="font-bold text-white block">Ergonomics &amp; Pharmacy Benefits:</span>
+            <ul class="space-y-1 list-disc list-inside text-slate-400">
+              <li>Balanced ergonomic pistol grip (185g) prevents wrist fatigue</li>
+              <li>Zero-glare illumination reads glossy medicine foil packaging</li>
+              <li>Dual beep and LED confirmation feedback in busy pharmacy environments</li>
+              <li>1.8m concrete drop resistance with shock-absorbent TPU rubber bumper</li>
+            </ul>
+          </div>
         </div>
       </div>
 
       <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
         <h2 class="text-xl font-bold text-white">Physical Walk-In Depot in Sialkot</h2>
         <p class="text-sm text-slate-300">
-          Visit our physical testing bench at <strong>Kotli Behram, Defense Road / Sialkot Bypass, Sialkot (51310)</strong> to test hardware compatibility with your software before purchasing.
+          Visit our physical testing bench at <strong>Kotli Behram, Defense Road / Sialkot Bypass, Sialkot (51310)</strong> to hold the hardware, feel the grip in your hand, test print speeds, and verify compatibility with your software before purchasing.
         </p>
         <div class="pt-2 flex flex-wrap gap-4 text-xs font-semibold text-teal-400">
           <span>Phone: +92 326 324 4002</span>
