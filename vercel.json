@@ -14,6 +14,22 @@
       "destination": "/sitemap-store.xml"
     },
     {
+      "source": "/tools",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/tools/:path*",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/tool",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/tool/:path*",
+      "destination": "/index.html"
+    },
+    {
       "source": "/((?!api/).*)",
       "destination": "/index.html"
     }

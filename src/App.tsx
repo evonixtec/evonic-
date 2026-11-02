@@ -179,16 +179,29 @@ export default function App() {
 
   // Universal page resolver for clean URLs, aliases, and legacy hashes
   const resolvePageFromPath = (rawPath: string): NavPageId => {
-    const path = rawPath.replace(/^\/+|\/+$/g, '').toLowerCase();
+    if (!rawPath) return 'home';
+    const path = rawPath.split('?')[0].split('#')[0].replace(/^\/+|\/+$/g, '').toLowerCase();
     if (!path) return 'home';
 
-    // 0. Dynamic /tools/[slug] resolution & tools hub
-    if (path === 'tools' || path === 'tools/' || path === 'all-tools' || path === 'web-tools' || path === 'tools-hub') {
+    // 0. Dynamic /tools/[slug] resolution, /tool fallback & tools hub aliases
+    if (
+      path === 'tools' ||
+      path === 'tool' ||
+      path === 'all-tools' ||
+      path === 'web-tools' ||
+      path === 'tools-hub' ||
+      path === 'online-tools' ||
+      path === 'tool-portfolio' ||
+      path === 'portfolio-tools'
+    ) {
       return 'tools';
     }
 
-    if (path.startsWith('tools/')) {
-      const toolSlugCandidate = path.slice('tools/'.length).trim();
+    if (path.startsWith('tools/') || path.startsWith('tool/')) {
+      const toolSlugCandidate = path.replace(/^(tools|tool)\//, '').replace(/\/+$/, '').trim();
+      if (!toolSlugCandidate) {
+        return 'tools';
+      }
       const resolvedMeta = resolveToolSlug(toolSlugCandidate);
       if (resolvedMeta) {
         const matched = Object.entries(PAGE_TO_TOOL_SLUG).find(([, s]) => s === resolvedMeta.slug);
@@ -196,6 +209,12 @@ export default function App() {
           return matched[0] as NavPageId;
         }
       }
+      // Direct NavPageId lookup (e.g. /tools/invoice or /tool/cbm-calculator)
+      if (PAGE_TO_TOOL_SLUG[toolSlugCandidate as NavPageId]) {
+        return toolSlugCandidate as NavPageId;
+      }
+      // Any subpath under /tools/ or /tool/ defaults to tools hub rather than home
+      return 'tools';
     }
 
     if (path === 'starter' || path === 'starter-pack' || path.startsWith('starter/')) {
@@ -556,20 +575,6 @@ export default function App() {
     }
 
     if (
-      path === 'tools' ||
-      path === 'web-tools' ||
-      path === 'online-tools' ||
-      path === 'tools-hub' ||
-      path === 'tool-portfolio' ||
-      path === 'portfolio-tools' ||
-      path === 'all-tools' ||
-      path.startsWith('tools/') ||
-      path.startsWith('web-tools/')
-    ) {
-      return 'tools';
-    }
-
-    if (
       path === 'admin' ||
       path === 'dashboard' ||
       path === 'portal' ||
@@ -590,7 +595,7 @@ export default function App() {
     const isToolsHost = isToolsSubdomain();
     const isStoreHost = isStoreSubdomain();
     if (typeof window !== 'undefined') {
-      const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+      const path = window.location.pathname.split('?')[0].split('#')[0].replace(/^\/+|\/+$/g, '').toLowerCase();
       if (path) {
         const resolved = resolvePageFromPath(path);
         if (isToolsHost && resolved === 'home') {
@@ -601,7 +606,7 @@ export default function App() {
         }
         return resolved;
       }
-      const hash = window.location.hash.replace('#', '').toLowerCase();
+      const hash = window.location.hash.replace('#', '').split('?')[0].replace(/^\/+|\/+$/g, '').toLowerCase();
       if (hash) {
         const resolved = resolvePageFromPath(hash);
         if (isToolsHost && resolved === 'home') {
@@ -645,8 +650,8 @@ export default function App() {
   // Clean URL synchronization: listen to browser back/forward buttons (popstate) and legacy hash
   useEffect(() => {
     const syncRouteFromLocation = () => {
-      const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
-      const hash = window.location.hash.replace('#', '').toLowerCase();
+      const path = window.location.pathname.split('?')[0].split('#')[0].replace(/^\/+|\/+$/g, '').toLowerCase();
+      const hash = window.location.hash.replace('#', '').split('?')[0].replace(/^\/+|\/+$/g, '').toLowerCase();
 
       // Check direct policy modal routes (Web & Google Play Store Compliance)
       if (
