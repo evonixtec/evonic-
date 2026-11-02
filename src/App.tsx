@@ -623,6 +623,11 @@ export default function App() {
     return 'home';
   };
 
+  if (typeof window !== 'undefined') {
+    console.log('CURRENT PATHNAME:', window.location.pathname);
+    console.log('INITIAL RESOLVED PAGE:', getInitialPage());
+  }
+
   const [currentPage, setCurrentPage] = useState<NavPageId>(getInitialPage);
   const [isToolsMode, setIsToolsMode] = useState<boolean>(isToolsSubdomain);
   const [isStoreMode, setIsStoreMode] = useState<boolean>(isStoreSubdomain);
@@ -722,6 +727,7 @@ export default function App() {
           setClusterParams(parseLocationFromPath());
         }
         const resolved = resolvePageFromPath(path);
+        console.log('SYNC ROUTE FROM LOCATION:', { path, resolved });
         if (isToolsSubdomain() && resolved === 'home') {
           setCurrentPage('tools');
         } else {

@@ -3,6 +3,7 @@ import path from 'path';
 import { ALL_BLOGS } from '../src/data/blogs';
 import { LOCAL_CITIES, CLUSTER_SERVICES } from '../src/data/localClusters';
 import { COMPANY_INFO, SERVICES, PORTFOLIO_DATA, FAQ_ITEMS } from '../src/data/content';
+import { toolsRegistry } from '../src/data/toolsRegistry';
 
 const DIST_DIR = path.resolve(process.cwd(), 'dist');
 const DOMAIN = 'https://www.evonixtec.com';
@@ -483,6 +484,139 @@ shopCategoryPages.forEach((sc) => {
         </div>
       </div>
     `
+  });
+});
+
+// ==========================================
+// Central Online Tools Directory Hub (/tools)
+// ==========================================
+pages.push({
+  route: 'tools',
+  title: 'Free E-Commerce, Export & Trade Calculators | EVONIX Technologies',
+  description: '100% free enterprise workstation portal for online sellers, exporters, and manufacturers. 26 browser tools with zero signup and complete client privacy.',
+  canonical: `${DOMAIN}/tools`,
+  heading: 'Free E-Commerce, Export & Trade Calculators',
+  subheading: '26 Free Online Workstations for Global Sellers, Exporters & POS Retailers',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Free Tools', url: '/tools' }],
+  bodyHtml: `
+    <div class="space-y-6 text-slate-300">
+      <p class="text-base sm:text-lg text-slate-200">
+        Our dedicated workstation portal for sellers, exporters, and freelancers. 100% free browser tools with zero signup and complete client-side data privacy.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+        <a href="/tools/etsy-fee-calculator" class="p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-teal-500 block">
+          <h3 class="text-white font-bold text-base">Etsy Fee &amp; Payoneer Profit Calculator</h3>
+          <p class="text-xs text-slate-400 mt-1">Calculate exact $0.20 listing renewal fees, 6.5% transaction cut, payment processing, and net profit margins.</p>
+        </a>
+        <a href="/tools/invoice-generator" class="p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-teal-500 block">
+          <h3 class="text-white font-bold text-base">Free POS Thermal Receipt &amp; Invoice Generator</h3>
+          <p class="text-xs text-slate-400 mt-1">Generate instant retail billing invoices and thermal receipts online for 80mm ESC/POS printers.</p>
+        </a>
+        <a href="/tools/export-cbm-calculator" class="p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-teal-500 block">
+          <h3 class="text-white font-bold text-base">B2B Industrial CBM &amp; Freight Engine</h3>
+          <p class="text-xs text-slate-400 mt-1">Precision cubic meters cargo space allocator and volumetric shipping weight engine.</p>
+        </a>
+        <a href="/tools/ebay-fee-calculator" class="p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-teal-500 block">
+          <h3 class="text-white font-bold text-base">eBay Fee &amp; Profit Calculator 2026</h3>
+          <p class="text-xs text-slate-400 mt-1">Calculate eBay marketplace final value fees, promoted ads, and international net payouts.</p>
+        </a>
+      </div>
+    </div>
+  `
+});
+
+// Alias: /tool -> /tools
+pages.push({
+  route: 'tool',
+  title: 'Free E-Commerce, Export & Trade Calculators | EVONIX Technologies',
+  description: '100% free enterprise workstation portal for online sellers, exporters, and manufacturers.',
+  canonical: `${DOMAIN}/tools`,
+  heading: 'Free E-Commerce, Export & Trade Calculators',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Free Tools', url: '/tools' }],
+  isRedirect: true,
+  redirectTo: 'tools',
+  bodyHtml: `<p class="text-slate-300">Redirecting to Free Tools Hub...</p>`
+});
+
+// All 24+ Consolidated Tools under /tools/[slug]
+Object.values(toolsRegistry).forEach((tool) => {
+  pages.push({
+    route: `tools/${tool.slug}`,
+    title: `${tool.metaTitle || tool.name} | EVONIX`,
+    description: tool.metaDescription,
+    canonical: `${DOMAIN}/tools/${tool.slug}`,
+    heading: tool.h1 || tool.name,
+    subheading: `${tool.category} · ${tool.targetAudience}`,
+    breadcrumb: [
+      { name: 'Home', url: '/' },
+      { name: 'Free Tools', url: '/tools' },
+      { name: tool.name, url: `/tools/${tool.slug}` },
+    ],
+    schemaType: 'WebApplication',
+    schemaJson: {
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name: tool.name,
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'All',
+      browserRequirements: 'Requires JavaScript and modern web browser',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+      description: tool.metaDescription,
+    },
+    bodyHtml: `
+      <div class="space-y-6 text-slate-300">
+        <p class="text-base sm:text-lg text-slate-200">
+          ${escapeHtml(tool.metaDescription)}
+        </p>
+
+        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+          <h2 class="text-xl font-bold text-white">How To Use</h2>
+          <ol class="list-decimal list-inside space-y-2 text-sm text-slate-300">
+            ${(tool.howToSteps || []).map((step) => `<li>${escapeHtml(step)}</li>`).join('')}
+          </ol>
+        </div>
+
+        ${
+          tool.hardwareCta
+            ? `
+          <div class="p-6 rounded-2xl bg-slate-900/80 border border-teal-500/30">
+            <h3 class="text-xl font-bold text-white mb-2">${escapeHtml(tool.hardwareCta.headline)}</h3>
+            <p class="text-sm text-slate-300 mb-4">${escapeHtml(tool.hardwareCta.subtext)}</p>
+            <a href="${tool.hardwareCta.targetUrl}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-sm">
+              ${escapeHtml(tool.hardwareCta.buttonText)}
+            </a>
+          </div>
+        `
+            : ''
+        }
+
+        ${
+          tool.faqs && tool.faqs.length > 0
+            ? `
+          <div class="space-y-4 pt-4 border-t border-slate-800">
+            <h2 class="text-xl font-bold text-white">Frequently Asked Questions</h2>
+            <div class="space-y-3 text-sm text-slate-300">
+              ${tool.faqs
+                .map(
+                  (f) => `
+                <div>
+                  <h3 class="font-bold text-white">${escapeHtml(f.q)}</h3>
+                  <p class="text-slate-400">${escapeHtml(f.a)}</p>
+                </div>
+              `
+                )
+                .join('')}
+            </div>
+          </div>
+        `
+            : ''
+        }
+      </div>
+    `,
   });
 });
 

@@ -292,7 +292,8 @@ export function initializeConsoleShield(): void {
       console.debug = () => {};
     }
 
-    console.clear();
+    // Do not wipe console so route resolution logs remain visible for debugging
+    // console.clear();
     const titleStyle =
       'color: #38bdf8; font-size: 20px; font-weight: 800; background: #020617; padding: 8px 16px; border-radius: 6px; border: 1px solid #0284c7;';
     const warningStyle = 'color: #f87171; font-size: 13px; font-weight: bold; margin-top: 6px;';
