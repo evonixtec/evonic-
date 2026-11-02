@@ -1,40 +1,26 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
-  Wrench,
   Sparkles,
   FileText,
-  Barcode,
-  Boxes,
   SlidersHorizontal,
   Calculator,
   Search,
-  Clock,
   Printer,
   Wifi,
   ArrowRight,
   ShieldCheck,
   CheckCircle2,
-  Lock,
-  Zap,
   Globe,
-  ExternalLink,
-  Smartphone,
-  Cloud,
-  Flame,
-  Plus,
   Plane,
   Code,
-  FileCheck
+  FileCheck,
+  Boxes,
+  Wrench,
+  Barcode,
+  Clock
 } from 'lucide-react';
 import { NavPageId } from '../types';
-import tripPlannerMockup from '../assets/images/Ai Trip Planner.jpg';
-import tripPlannerMockupWebp from '../assets/images/Ai Trip Planner.webp';
-import {
-  getAllToolUsage,
-  getToolUsageCount,
-  incrementToolUsage,
-  isToolMostPopular
-} from '../lib/toolUsageTracker';
+import { incrementToolUsage } from '../lib/toolUsageTracker';
 
 import SpecialOfferBanner from './common/SpecialOfferBanner';
 
@@ -623,51 +609,24 @@ interface ToolsHubProps {
 export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<
-    'all' | 'popular' | 'mobile-core-5' | 'ai-travel' | 'uk-eu' | 'usa' | 'business-export' | 'diagnostics-lab'
+    'all' | 'uk-eu' | 'usa' | 'business-export' | 'diagnostics-lab'
   >('all');
-  const [usageMap, setUsageMap] = useState<Record<string, number>>({});
-
-  // Load and listen to localStorage usage counts
-  useEffect(() => {
-    setUsageMap(getAllToolUsage());
-
-    const handleUpdate = () => {
-      setUsageMap(getAllToolUsage());
-    };
-
-    window.addEventListener('evonix_tool_usage_updated', handleUpdate);
-    return () => window.removeEventListener('evonix_tool_usage_updated', handleUpdate);
-  }, []);
 
   const handleLaunchWithTrack = (target: NavPageId | string, toolId: string) => {
     incrementToolUsage(toolId);
-    setUsageMap(getAllToolUsage());
     onLaunchTool(target);
-  };
-
-  const handleSimulateUse = (e: React.MouseEvent, toolId: string) => {
-    e.stopPropagation();
-    incrementToolUsage(toolId);
-    setUsageMap(getAllToolUsage());
   };
 
   const filteredTools = useMemo(() => {
     return TOOLS_COLLECTION.filter((tool) => {
-      const toolUsage = usageMap[tool.id] || 0;
       let matchesCategory = true;
 
-      if (selectedCategory === 'popular') {
-        matchesCategory = toolUsage > 5;
-      } else if (selectedCategory === 'mobile-core-5') {
-        matchesCategory = !!tool.isMobileCore;
-      } else if (selectedCategory === 'ai-travel') {
-        matchesCategory = tool.id === 'ai-trip-planner' || tool.categoryLabel.includes('Travel');
-      } else if (selectedCategory === 'uk-eu') {
+      if (selectedCategory === 'uk-eu') {
         matchesCategory = tool.regionFocus === 'UK/EU';
       } else if (selectedCategory === 'usa') {
         matchesCategory = tool.regionFocus === 'USA';
       } else if (selectedCategory === 'business-export') {
-        matchesCategory = tool.category === 'business-export' || tool.category === 'international-compliance';
+        matchesCategory = tool.category === 'business-export' || tool.category === 'international-compliance' || tool.category === 'ecommerce-growth';
       } else if (selectedCategory === 'diagnostics-lab') {
         matchesCategory = tool.category === 'diagnostics-lab';
       }
@@ -682,7 +641,7 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
 
       return matchesCategory && matchesSearch;
     });
-  }, [searchQuery, selectedCategory, usageMap]);
+  }, [searchQuery, selectedCategory]);
 
   return (
     <>
@@ -701,14 +660,14 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
                 Home
               </button>
               <span aria-hidden="true">/</span>
-              <span className="font-mono font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">tools.evonixtec.com</span>
+              <span className="font-mono font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">evonixtec.com/tools</span>
               <span aria-hidden="true">·</span>
-              <span className="text-emerald-700 font-medium">Free Standalone Workstations</span>
+              <span className="text-emerald-700 font-medium">Enterprise Business Workstations</span>
             </div>
 
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-bold text-blue-800">
               <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-              <span>tools.evonixtec.com • Dedicated Workstations Hub</span>
+              <span>evonixtec.com/tools • Enterprise Tools Hub</span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
@@ -722,12 +681,12 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
             <div className="inline-flex flex-wrap items-center justify-center gap-x-4 gap-y-1 pt-1 text-xs text-slate-500">
               <span className="flex items-center gap-1.5 text-emerald-700 font-medium">
                 <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                <span>100% Client-Side Engine</span>
+                <span>Zero Cloud Latency &amp; Complete Client Privacy</span>
               </span>
               <span aria-hidden="true" className="hidden sm:inline">·</span>
-              <span className="flex items-center gap-1.5 text-amber-700 font-medium">
-                <Flame className="w-4 h-4 text-amber-600" />
-                <span>Live localStorage Usage Tracking</span>
+              <span className="flex items-center gap-1.5 text-blue-700 font-medium">
+                <Globe className="w-4 h-4 text-blue-600" />
+                <span>Global Compliance &amp; Tariff Matrices</span>
               </span>
               <span aria-hidden="true" className="hidden sm:inline">·</span>
               <span className="flex items-center gap-1.5 text-purple-700 font-medium">
@@ -767,46 +726,16 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
                   All Tools ({TOOLS_COLLECTION.length})
                 </button>
 
-                {/* MOST POPULAR FILTER (Used > 5 times) */}
                 <button
                   type="button"
-                  onClick={() => setSelectedCategory('popular')}
-                  className={`px-3 py-1.5 text-xs font-bold rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center gap-1 ${
-                    selectedCategory === 'popular'
-                      ? 'bg-amber-600 text-white shadow-xs font-extrabold ring-1 ring-amber-400'
-                      : 'bg-amber-50 text-amber-800 border border-amber-300 hover:bg-amber-100'
+                  onClick={() => setSelectedCategory('business-export')}
+                  className={`px-3 py-1.5 text-xs font-semibold rounded-xl transition-all cursor-pointer whitespace-nowrap ${
+                    selectedCategory === 'business-export'
+                      ? 'bg-slate-900 text-white shadow-2xs font-bold'
+                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                   }`}
                 >
-                  <Flame className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
-                  <span>🔥 Most Popular (&gt;5 uses)</span>
-                </button>
-
-                {/* THE 5 CORE MOBILE TOOLS */}
-                <button
-                  type="button"
-                  onClick={() => setSelectedCategory('mobile-core-5')}
-                  className={`px-3 py-1.5 text-xs font-bold rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
-                    selectedCategory === 'mobile-core-5'
-                      ? 'bg-red-600 text-white shadow-xs'
-                      : 'bg-red-50 text-red-700 border border-red-200 hover:bg-red-100'
-                  }`}
-                >
-                  <Smartphone className="w-3.5 h-3.5" />
-                  <span>📱 Mobile Core 5</span>
-                </button>
-
-                {/* AI TRAVEL PLANNER FILTER */}
-                <button
-                  type="button"
-                  onClick={() => setSelectedCategory('ai-travel')}
-                  className={`px-3 py-1.5 text-xs font-bold rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
-                    selectedCategory === 'ai-travel'
-                      ? 'bg-teal-600 text-white shadow-xs font-extrabold ring-1 ring-teal-400'
-                      : 'bg-teal-50 text-teal-800 border border-teal-300 hover:bg-teal-100'
-                  }`}
-                >
-                  <Plane className="w-3.5 h-3.5 text-teal-600" />
-                  <span>✈️ AI Trip Planner</span>
+                  Export &amp; B2B
                 </button>
 
                 {/* UK & EU TOOLS */}
@@ -837,73 +766,25 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
                   <span>🇺🇸 America (USA)</span>
                 </button>
 
+                {/* HARDWARE DIAGNOSTICS */}
                 <button
                   type="button"
-                  onClick={() => setSelectedCategory('business-export')}
+                  onClick={() => setSelectedCategory('diagnostics-lab')}
                   className={`px-3 py-1.5 text-xs font-semibold rounded-xl transition-all cursor-pointer whitespace-nowrap ${
-                    selectedCategory === 'business-export'
-                      ? 'bg-slate-900 text-white shadow-2xs'
+                    selectedCategory === 'diagnostics-lab'
+                      ? 'bg-slate-900 text-white shadow-2xs font-bold'
                       : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                   }`}
                 >
-                  Export &amp; B2B
+                  Hardware Diagnostics
                 </button>
               </div>
-            </div>
-          </div>
-
-          {/* Featured Top Tool: AI Trip Planner */}
-          <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-teal-950 via-slate-900 to-slate-950 border-2 border-teal-500/50 shadow-md text-white flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 overflow-hidden relative">
-            <div className="flex flex-col sm:flex-row items-start gap-5 flex-1">
-              {/* Tool Mockup Image Thumbnail */}
-              <div className="w-full sm:w-44 md:w-52 aspect-[16/9] rounded-xl overflow-hidden border border-teal-500/30 flex-shrink-0 bg-slate-950 shadow-inner group">
-                <picture>
-                  <source srcSet={tripPlannerMockupWebp} type="image/webp" />
-                  <img
-                    src={tripPlannerMockup}
-                    alt="Ai Trip Planner - Evonixtec Day-Wise Vacation Itinerary Generator"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                  />
-                </picture>
-              </div>
-
-              <div className="space-y-1.5 flex-1">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-teal-500/20 text-teal-300 border border-teal-500/30">
-                    Featured AI Tool
-                  </span>
-                  <span className="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-bold">
-                    100% Free · No Login
-                  </span>
-                </div>
-                <h3 className="text-base sm:text-lg font-bold text-white">
-                  Evonixtec AI Trip Planner &amp; Day-Wise Itinerary Generator
-                </h3>
-                <p className="text-xs text-slate-300 max-w-2xl leading-relaxed">
-                  Generate complete custom vacation schedules with daily food spots, activities, transit advice, and budget breakdowns in 30 seconds.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2.5 w-full lg:w-auto">
-              <button
-                type="button"
-                onClick={() => handleLaunchWithTrack('ai-trip-planner', 'ai-trip-planner')}
-                className="w-full lg:w-auto px-5 py-2.5 rounded-xl bg-teal-400 hover:bg-teal-300 text-slate-950 font-black text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
-              >
-                <span>Launch AI Trip Planner</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
             </div>
           </div>
 
           {/* 3. Tools Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredTools.map((tool) => {
-              const count = usageMap[tool.id] || 0;
-              const isPopular = count > 5;
-
               return (
                 <div
                   key={tool.id}
@@ -917,38 +798,14 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
                       </div>
                       <div className="text-right space-y-1">
                         <div className="flex items-center justify-end gap-1 flex-wrap">
-                          {/* DYNAMIC MOST POPULAR BADGE */}
-                          {isPopular && (
-                            <span className="inline-flex items-center gap-1 text-[9.5px] font-extrabold px-2 py-0.5 rounded-full bg-gradient-to-r from-amber-500 to-red-500 text-white shadow-xs animate-pulse">
-                              <Flame className="w-3 h-3 fill-white" />
-                              <span>Most Popular</span>
-                            </span>
-                          )}
-
-                          {tool.isMobileCore && (
-                            <span className="text-[9.5px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
-                              Mobile #{tool.mobileCoreOrder}
-                            </span>
-                          )}
-
                           {tool.regionFocus && (
                             <span className="text-[9.5px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
                               {tool.regionFocus}
                             </span>
                           )}
-                        </div>
-                        <div className="flex items-center justify-end gap-1.5">
-                          <span className="text-[10px] text-slate-500 font-mono">
-                            Used {count} times
+                          <span className="text-[9.5px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
+                            {tool.categoryLabel}
                           </span>
-                          <button
-                            type="button"
-                            onClick={(e) => handleSimulateUse(e, tool.id)}
-                            title="Log usage (+1)"
-                            className="p-0.5 rounded bg-slate-100 hover:bg-amber-100 text-slate-600 hover:text-amber-700 transition-colors"
-                          >
-                            <Plus className="w-3 h-3" />
-                          </button>
                         </div>
                       </div>
                     </div>

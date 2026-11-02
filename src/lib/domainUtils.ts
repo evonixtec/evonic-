@@ -60,7 +60,8 @@ export const getToolsDomainUrl = (path: string = ''): string => {
       return `${window.location.origin}${target}${target.includes('?') ? '&' : '?'}subdomain=tools`;
     }
   }
-  return `https://tools.evonixtec.com${cleanPath}`;
+  const prefix = cleanPath.startsWith('/tools') ? '' : '/tools';
+  return `https://www.evonixtec.com${prefix}${cleanPath}`;
 };
 
 export const getStoreDomainUrl = (path: string = ''): string => {

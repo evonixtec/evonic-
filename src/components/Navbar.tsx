@@ -157,7 +157,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
                   </span>
                   <span className="text-[9px] font-extrabold text-slate-500 uppercase tracking-widest leading-tight mt-0.5">
-                    tools.evonixtec.com
+                    evonixtec.com/tools
                   </span>
                 </>
               ) : (

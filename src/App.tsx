@@ -20,6 +20,8 @@ import { LocalCity, ClusterService, LOCAL_CITIES, CLUSTER_SERVICES } from './dat
 import { MessageSquare, Phone, ArrowUp, ArrowRight, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2, FileText, Barcode, Printer, Boxes, SlidersHorizontal, Calculator, Clock, Wifi, Globe, Code, FileCheck } from 'lucide-react';
 import { isToolPage } from './lib/toolUtils';
 import { isToolsSubdomain, isStoreSubdomain, getMainAgencyDomainUrl, getToolsDomainUrl, getStoreDomainUrl } from './lib/domainUtils';
+import { ToolDynamicPage } from './components/tools/ToolDynamicPage';
+import { resolveToolSlug, ToolMetadata } from './data/toolsRegistry';
 
 // Statically imported home sections for instant render and zero dynamic import fetch failures
 import { HomeServicesPreview } from './components/home/HomeServicesPreview';
@@ -131,6 +133,33 @@ const LazyLoaderFallback: React.FC = () => (
   </div>
 );
 
+export const PAGE_TO_TOOL_SLUG: Partial<Record<NavPageId, string>> = {
+  invoice: 'invoice-generator',
+  'export-barcode-studio': 'barcode-label-studio',
+  'cbm-calculator': 'export-cbm-calculator',
+  'ecommerce-calculator': 'ecommerce-margin-calculator',
+  'etsy-fee-calculator': 'etsy-fee-calculator',
+  'ebay-fee-calculator': 'ebay-fee-calculator',
+  'tiktok-shop-fee-calculator': 'tiktok-shop-fee-calculator',
+  'amazon-fba-calculator': 'amazon-fba-calculator',
+  'amazon-fbm-calculator': 'amazon-fbm-calculator',
+  'shopify-fee-calculator': 'shopify-fee-calculator',
+  'stripe-fee-calculator': 'stripe-fee-calculator',
+  'temu-seller-calculator': 'temu-seller-calculator',
+  'uk-eu-vat-calculator': 'uk-vat-calculator',
+  'us-duty-nexus-estimator': 'us-customs-duty-estimator',
+  'ce-ukca-compliance-generator': 'ce-ukca-compliance-generator',
+  'hs-code-lookup': 'hs-code-lookup',
+  'schema-generator': 'schema-generator',
+  'developer-cost-calculator': 'developer-cost-calculator',
+  'factory-network-tester': 'network-latency-tester',
+  'printer-diagnostics': 'printer-diagnostic-troubleshooter',
+  'live-repair-tracker': 'live-repair-tracker',
+  'ai-visibility-checker': 'ai-visibility-checker',
+  'trend-intelligence-suite': 'trend-intelligence-suite',
+  'ai-trip-planner': 'ai-trip-planner',
+};
+
 export default function App() {
   // Helper to extract city and service cluster from URL path
   const parseLocationFromPath = (): { city: LocalCity['slug']; service: ClusterService['slug'] } => {
@@ -152,6 +181,22 @@ export default function App() {
   const resolvePageFromPath = (rawPath: string): NavPageId => {
     const path = rawPath.replace(/^\/+|\/+$/g, '').toLowerCase();
     if (!path) return 'home';
+
+    // 0. Dynamic /tools/[slug] resolution & tools hub
+    if (path === 'tools' || path === 'tools/' || path === 'all-tools' || path === 'web-tools' || path === 'tools-hub') {
+      return 'tools';
+    }
+
+    if (path.startsWith('tools/')) {
+      const toolSlugCandidate = path.slice('tools/'.length).trim();
+      const resolvedMeta = resolveToolSlug(toolSlugCandidate);
+      if (resolvedMeta) {
+        const matched = Object.entries(PAGE_TO_TOOL_SLUG).find(([, s]) => s === resolvedMeta.slug);
+        if (matched) {
+          return matched[0] as NavPageId;
+        }
+      }
+    }
 
     if (path === 'starter' || path === 'starter-pack' || path.startsWith('starter/')) {
       return 'starter';
@@ -736,17 +781,11 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Navigate to dedicated page with clean URL path (e.g. /services, /portfolio, /shop)
+  // Navigate to dedicated page with clean URL path (e.g. /services, /portfolio, /shop, /tools/[slug])
   const navigateToPage = (page: NavPageId | string, subTarget?: string) => {
     // If on main domain and user clicks hardware/shop/doorstep-support, redirect strictly to store.evonixtec.com
-    if (!isStoreMode && (page === 'doorstep-support' || page === 'shop' || page === 'live-repair-tracker' || page === 'printer-diagnostics')) {
+    if (!isStoreMode && (page === 'doorstep-support' || page === 'shop')) {
       window.location.href = getStoreDomainUrl(page === 'doorstep-support' ? '/doorstep-support' : '/shop');
-      return;
-    }
-
-    // If on main domain (evonixtec.com) and user clicks tools, redirect to tools.evonixtec.com
-    if (page === 'tools' && !isToolsSubdomain() && typeof window !== 'undefined' && window.location.hostname.includes('evonixtec.com')) {
-      window.location.href = 'https://tools.evonixtec.com';
       return;
     }
 
@@ -773,12 +812,15 @@ export default function App() {
 
     setCurrentPage(page as NavPageId);
 
-    // Clean Path Format: /services, /portfolio, /shop, /about, /guides, /contact, or /
+    // Clean Path Format: /services, /portfolio, /shop, /about, /guides, /contact, /tools, or /tools/[slug]
     let cleanPath = page === 'home' ? '/' : `/${page}`;
-    if (page === 'ai-travel-tools') {
+    const toolSlug = PAGE_TO_TOOL_SLUG[page as NavPageId];
+    if (toolSlug) {
+      cleanPath = `/tools/${toolSlug}`;
+    } else if (page === 'tools') {
+      cleanPath = '/tools';
+    } else if (page === 'ai-travel-tools') {
       cleanPath = '/ai-tools-name-for-travel-itinerary';
-    } else if (page === 'ai-trip-planner') {
-      cleanPath = '/tools/ai-trip-planner';
     } else if (page === 'doorstep-support') {
       cleanPath = '/services/doorstep-support';
     } else if (page === 'sialkot-export-erp') {
@@ -890,6 +932,71 @@ export default function App() {
   const handleOpenQuote = (serviceType: string = 'Website Development') => {
     setSelectedServiceForQuote(serviceType);
     setIsQuoteOpen(true);
+  };
+
+  const renderActiveToolComponent = (page: NavPageId) => {
+    switch (page) {
+      case 'invoice':
+        return <GlobalInvoiceHub />;
+      case 'export-barcode-studio':
+        return <ExportBarcodeLabelGenerator onOpenQuote={handleOpenQuote} />;
+      case 'cbm-calculator':
+        return <CbmCalculator />;
+      case 'ecommerce-calculator':
+        return <EcommerceCalculator />;
+      case 'ebay-fee-calculator':
+        return <EbaySaleCalculator />;
+      case 'tiktok-shop-fee-calculator':
+        return <TikTokShopCalculator />;
+      case 'amazon-fba-calculator':
+        return <AmazonFbaCalculator />;
+      case 'shopify-fee-calculator':
+        return <ShopifyFeeCalculator />;
+      case 'stripe-fee-calculator':
+        return <StripeFeeCalculator />;
+      case 'temu-seller-calculator':
+        return <TemuSellerCalculator />;
+      case 'etsy-fee-calculator':
+        return <EtsyFeeCalculator />;
+      case 'amazon-fbm-calculator':
+        return <AmazonFbmCalculator />;
+      case 'schema-generator':
+        return <SchemaGenerator />;
+      case 'hs-code-lookup':
+        return <HsCodeLookup />;
+      case 'developer-cost-calculator':
+        return (
+          <DeveloperCostCalculator
+            onOpenQuote={handleOpenQuote}
+            onNavigatePage={(p) => navigateToPage(p as NavPageId)}
+          />
+        );
+      case 'ai-visibility-checker':
+        return <AiVisibilityChecker onOpenQuote={handleOpenQuote} />;
+      case 'uk-eu-vat-calculator':
+        return <UkEuVatCalculator />;
+      case 'us-duty-nexus-estimator':
+        return <UsDutyNexusEstimator />;
+      case 'ce-ukca-compliance-generator':
+        return <CeUkcaComplianceGenerator />;
+      case 'live-repair-tracker':
+        return <LiveRepairTracker onOpenQuote={handleOpenQuote} />;
+      case 'printer-diagnostics':
+        return <PrinterDiagnosticTroubleshooter onOpenQuote={handleOpenQuote} />;
+      case 'factory-network-tester':
+        return <FactoryNetworkLatencyTester onOpenQuote={handleOpenQuote} />;
+      case 'trend-intelligence-suite':
+        return <TrendIntelligenceSuite />;
+      case 'ai-trip-planner':
+        return (
+          <AiTripPlannerStandalonePage
+            onOpenQuote={() => handleOpenQuote('AI Travel Planner Custom Solution')}
+            onNavigatePage={(p) => navigateToPage(p as NavPageId)}
+          />
+        );
+      default:
+        return null;
+    }
   };
 
   if (currentPage === 'starter') {
@@ -1449,225 +1556,20 @@ export default function App() {
         )}
 
         {/* ========================================================
-            PAGE 10: DEDICATED GLOBAL ZERO-DATABASE ENTERPRISE INVOICE HUB
+            DYNAMIC TOOL ROUTE WRAPPER: /tools/[slug]
+            Consolidated 24 Enterprise Business Tools with JSON-LD,
+            Verified Hardware Store CTA, Breadcrumbs & FAQs
            ======================================================== */}
-        {currentPage === 'invoice' && (
-          <div className="space-y-0">
-            <div className="print:hidden">
-              <ToolWorkspaceHeader
-                currentToolId="invoice"
-                toolTitle="Free Global Micro-Invoice Generator - No Signup, 150+ Currencies, Instant PDF"
-                toolCategory="Business & Export"
-                toolDescription="Create invoice in browser, data never leaves your device. Designed for freelance billing and small business invoicing with 150+ currencies, paper-style editor, automatic tax calculation, and instant A4 PDF download."
-                icon={<FileText className="w-5 h-5 text-emerald-500" />}
-                onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-                onNavigateToolsHub={() => navigateToPage('tools')}
-              />
-            </div>
-            <GlobalInvoiceHub />
-          </div>
-        )}
-
-        {/* ========================================================
-            PAGE 11: EXPORT BARCODE LABEL STUDIO
-           ======================================================== */}
-        {currentPage === 'export-barcode-studio' && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="export-barcode-studio"
-              toolTitle="Export Barcode Label Studio"
-              toolCategory="Business & Export"
-              toolDescription="Generate compliant thermal shipping labels and outer carton barcodes for surgical, leather & sports exports."
-              icon={<Barcode className="w-5 h-5 text-red-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <div className="py-8 bg-slate-100 min-h-screen">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <ExportBarcodeLabelGenerator onOpenQuote={handleOpenQuote} />
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* ========================================================
-            PAGE 12: EXPORT CBM & VOLUMETRIC CARGO ENGINE
-           ======================================================== */}
-        {currentPage === 'cbm-calculator' && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="cbm-calculator"
-              toolTitle="B2B Industrial CBM & Freight Engine"
-              toolCategory="Business & Export"
-              toolDescription="Cubic Meters (CBM), Air Freight Volumetric Weights, and Container Capacity Estimator."
-              icon={<Boxes className="w-5 h-5 text-cyan-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <CbmCalculator />
-          </div>
-        )}
-
-        {/* ========================================================
-            PAGE 13: E-COMMERCE PROFIT & COURIER SHIPPING MARGIN CALCULATOR
-           ======================================================== */}
-        {currentPage === 'ecommerce-calculator' && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="ecommerce-calculator"
-              toolTitle="E-Commerce Margin & COD Simulator"
-              toolCategory="E-Commerce & Ads"
-              toolDescription="Calculate net profit margins, ad spend ROAS, multi-courier COD fees, and return loss simulations."
-              icon={<SlidersHorizontal className="w-5 h-5 text-amber-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <EcommerceCalculator />
-          </div>
-        )}
-
-        {/* ========================================================
-            PAGE: EBAY SALE & PROFIT FEE CALCULATOR
-           ======================================================== */}
-        {currentPage === 'ebay-fee-calculator' && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="ebay-fee-calculator"
-              toolTitle="eBay Fee & Profit Builder"
-              toolCategory="E-Commerce & Export"
-              toolDescription="Calculate accurate eBay marketplace final value fees, promoted ads, international tariffs, and net payout margins."
-              icon={<Calculator className="w-5 h-5 text-blue-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <EbaySaleCalculator />
-          </div>
-        )}
-
-        {/* ========================================================
-            PAGE: TIKTOK SHOP COMMISSION & FEE CALCULATOR
-           ======================================================== */}
-        {currentPage === 'tiktok-shop-fee-calculator' && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="tiktok-shop-fee-calculator"
-              toolTitle="TikTok Shop Fee Calculator UK & Pakistan 2026 - Commission & VAT"
-              toolCategory="E-Commerce & Ads"
-              toolDescription="Calculate TikTok Shop UK 9% commission, 20% VAT deductions, and Pakistan cross-border seller margins."
-              icon={<SlidersHorizontal className="w-5 h-5 text-pink-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <TikTokShopCalculator />
-          </div>
-        )}
-
-        {/* ========================================================
-            PAGE: AMAZON FBA REVENUE & PROFIT CALCULATOR
-           ======================================================== */}
-        {currentPage === 'amazon-fba-calculator' && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="amazon-fba-calculator"
-              toolTitle="Amazon FBA Fee Calculator 2026 - Profit, Referral, Fulfillment + Fuel Surcharge"
-              toolCategory="E-Commerce & Export"
-              toolDescription="Calculate referral fee (8-45%), FBA fulfillment fee, 3.5% fuel surcharge, Oct 15 - Jan 14 peak fee $0.32, storage, inbound placement & net profit."
-              icon={<Calculator className="w-5 h-5 text-amber-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <AmazonFbaCalculator />
-          </div>
-        )}
-
-        {/* ========================================================
-            PAGE: SHOPIFY PLAN & TRANSACTION FEE CALCULATOR
-           ======================================================== */}
-        {currentPage === 'shopify-fee-calculator' && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="shopify-fee-calculator"
-              toolTitle="Shopify Fee & Transaction Calculator"
-              toolCategory="E-Commerce & Ads"
-              toolDescription="Compare transaction fees across Basic, Shopify, and Advanced plans with external payment gateway rates."
-              icon={<SlidersHorizontal className="w-5 h-5 text-emerald-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <ShopifyFeeCalculator />
-          </div>
-        )}
-
-        {/* ========================================================
-            PAGE: STRIPE PAYMENT PROCESSING FEE CALCULATOR
-           ======================================================== */}
-        {currentPage === 'stripe-fee-calculator' && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="stripe-fee-calculator"
-              toolTitle="Stripe Payment Fee Calculator"
-              toolCategory="Business & Finance"
-              toolDescription="Calculate domestic and international Stripe credit card processing fees with forward and reverse payout logic."
-              icon={<Calculator className="w-5 h-5 text-indigo-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <StripeFeeCalculator />
-          </div>
-        )}
-
-        {/* ========================================================
-            PAGE: TEMU SELLER MARGIN & COMMISSION CALCULATOR
-           ======================================================== */}
-        {currentPage === 'temu-seller-calculator' && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="temu-seller-calculator"
-              toolTitle="Temu Seller Fee & Margin Calculator"
-              toolCategory="E-Commerce & Export"
-              toolDescription="Calculate Temu marketplace commissions, warehouse fulfillment expenses, and net profit yields."
-              icon={<SlidersHorizontal className="w-5 h-5 text-orange-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <TemuSellerCalculator />
-          </div>
-        )}
-
-        {/* ========================================================
-            PAGE: ETSY FEE & PROFIT CALCULATOR
-           ======================================================== */}
-        {currentPage === 'etsy-fee-calculator' && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="etsy-fee-calculator"
-              toolTitle="Etsy Fee & Payoneer Profit Calculator"
-              toolCategory="E-Commerce & Export"
-              toolDescription="Calculate exact listing renewals, 6.5% transaction cut, payment processing, and net profit payout."
-              icon={<Calculator className="w-5 h-5 text-orange-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <EtsyFeeCalculator />
-          </div>
-        )}
-
-        {/* ========================================================
-            PAGE: AMAZON FBM CALCULATOR
-           ======================================================== */}
-        {currentPage === 'amazon-fbm-calculator' && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="amazon-fbm-calculator"
-              toolTitle="Amazon FBM Fee & Profit Calculator 2026"
-              toolCategory="E-Commerce & Export"
-              toolDescription="Fulfilled by Merchant: category referral fees, merchant shipping tariffs, and net seller payout."
-              icon={<Calculator className="w-5 h-5 text-blue-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <AmazonFbmCalculator />
-          </div>
+        {PAGE_TO_TOOL_SLUG[currentPage] && (
+          <ToolDynamicPage
+            toolSlug={PAGE_TO_TOOL_SLUG[currentPage]!}
+            onNavigateHome={() => navigateToPage('home')}
+            onNavigateToolsHub={() => navigateToPage('tools')}
+            onNavigatePage={navigateToPage}
+            onOpenQuote={handleOpenQuote}
+          >
+            {renderActiveToolComponent(currentPage)}
+          </ToolDynamicPage>
         )}
 
         {/* ========================================================
@@ -1680,217 +1582,12 @@ export default function App() {
         )}
 
         {/* ========================================================
-            PAGE: ADVANCED JSON-LD SCHEMA MARKUP GENERATOR
-           ======================================================== */}
-        {currentPage === 'schema-generator' && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="schema-generator"
-              toolTitle="Advanced JSON-LD Schema Markup Generator"
-              toolCategory="AEO, SEO & Development"
-              toolDescription="Generate valid JSON-LD structured data for Local Business, FAQs, Products, and Software. Optimized for Google AI Overviews."
-              icon={<Code className="w-5 h-5 text-red-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <SchemaGenerator />
-          </div>
-        )}
-
-        {/* ========================================================
-            PAGE: GLOBAL HS CODE & CUSTOM DUTY LOOKUP ENGINE
-           ======================================================== */}
-        {currentPage === 'hs-code-lookup' && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="hs-code-lookup"
-              toolTitle="Global HS Code & Custom Duty Lookup Engine"
-              toolCategory="Business & Export"
-              toolDescription="Harmonized System (HS) code finder and estimated import duty calculator for Sialkot exporters and global e-commerce."
-              icon={<FileCheck className="w-5 h-5 text-blue-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <HsCodeLookup />
-          </div>
-        )}
-
-        {/* ========================================================
-            PAGE 14: DEDICATED DEVELOPER COST CALCULATOR
-           ======================================================== */}
-        {currentPage === 'developer-cost-calculator' && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="developer-cost-calculator"
-              toolTitle="Dedicated Developer Cost Calculator"
-              toolCategory="Business & Export"
-              toolDescription="Compare USA, UK & UAE developer salaries against dedicated offshore engineers with instant savings summary."
-              icon={<Calculator className="w-5 h-5 text-blue-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <DeveloperCostCalculator
-              onOpenQuote={handleOpenQuote}
-              onNavigatePage={(page) => navigateToPage(page as NavPageId)}
-            />
-          </div>
-        )}
-
-        {/* ========================================================
-            PAGE 15: WEBSITE E-E-A-T & AI VISIBILITY CHECKER
-           ======================================================== */}
-        {currentPage === 'ai-visibility-checker' && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="ai-visibility-checker"
-              toolTitle="AI Visibility & GEO Readiness Auditor"
-              toolCategory="Growth & SEO"
-              toolDescription="Client-side audit for ChatGPT, Claude, and Google AI Overviews visibility readiness & entity schema."
-              icon={<Search className="w-5 h-5 text-purple-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <AiVisibilityChecker onOpenQuote={handleOpenQuote} />
-          </div>
-        )}
-
-        {/* ========================================================
-            PAGE: UK & EU VAT REVERSE CHARGE CALCULATOR
-           ======================================================== */}
-        {currentPage === 'uk-eu-vat-calculator' && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="uk-eu-vat-calculator"
-              toolTitle="UK & EU VAT Reverse Charge & VAT MOSS Engine"
-              toolCategory="UK & Europe Compliance"
-              toolDescription="Automate HMRC Section 55A and EU Directive 2006/112/EC 0% reverse charge VAT exemptions and statutory invoice clauses."
-              icon={<Globe className="w-5 h-5 text-emerald-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <UkEuVatCalculator />
-          </div>
-        )}
-
-        {/* ========================================================
-            PAGE: US CUSTOMS TARIFF & SECTION 321 CALCULATOR
-           ======================================================== */}
-        {currentPage === 'us-duty-nexus-estimator' && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="us-duty-nexus-estimator"
-              toolTitle="US Customs Tariff & Section 321 De Minimis Calculator"
-              toolCategory="North America Trade"
-              toolDescription="Calculate US CBP tariffs, verify the $800 duty-free Section 321 clearance, and estimate landed costs for US buyers."
-              icon={<Globe className="w-5 h-5 text-blue-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <UsDutyNexusEstimator />
-          </div>
-        )}
-
-        {/* ========================================================
-            PAGE: UKCA & CE DECLARATION OF CONFORMITY GENERATOR
-           ======================================================== */}
-        {currentPage === 'ce-ukca-compliance-generator' && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="ce-ukca-compliance-generator"
-              toolTitle="UKCA & CE Declaration of Conformity (DoC) Generator"
-              toolCategory="UK & Europe Compliance"
-              toolDescription="Generate audited technical Declaration of Conformity documents for CE Marking (EU MDR Class I) and UKCA tenders."
-              icon={<Globe className="w-5 h-5 text-purple-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <CeUkcaComplianceGenerator />
-          </div>
-        )}
-
-        {/* ========================================================
-            PAGE 16: LIVE RMA BENCH REPAIR TRACKER (store.evonixtec.com)
-           ======================================================== */}
-        {currentPage === 'live-repair-tracker' && isStoreMode && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="live-repair-tracker"
-              toolTitle="Live RMA Bench Repair Tracker"
-              toolCategory="Hardware Diagnostics"
-              toolDescription="Track motherboard micro-soldering progress, standby current readings, and 90-day warranty ticket status."
-              icon={<Clock className="w-5 h-5 text-emerald-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <div className="py-8 bg-slate-900 min-h-screen text-white">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <LiveRepairTracker onOpenQuote={handleOpenQuote} />
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* ========================================================
-            PAGE 17: THERMAL RECEIPT & BARCODE PRINTER DIAGNOSTICS (store.evonixtec.com)
-           ======================================================== */}
-        {currentPage === 'printer-diagnostics' && isStoreMode && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="printer-diagnostics"
-              toolTitle="Thermal Receipt Printer Diagnostic Engine"
-              toolCategory="Hardware Diagnostics"
-              toolDescription="Interactive diagnostics for HP paper jams, torn fuser sleeves, and thermal receipt auto-cutter errors."
-              icon={<Printer className="w-5 h-5 text-orange-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <div className="py-8 bg-slate-900 min-h-screen text-white">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <PrinterDiagnosticTroubleshooter onOpenQuote={handleOpenQuote} />
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* ========================================================
-            PAGE 18: FACTORY ERP & CUSTOMS NETWORK LATENCY BENCHMARK
-           ======================================================== */}
-        {currentPage === 'factory-network-tester' && (
-          <div className="space-y-0">
-            <ToolWorkspaceHeader
-              currentToolId="factory-network-tester"
-              toolTitle="Factory ERP & Customs Latency Benchmark"
-              toolCategory="Export ERP & Network Architecture"
-              toolDescription="Test factory premise latency bottlenecks, SQL database lag, and WeBOC customs gateway ping stability."
-              icon={<Wifi className="w-5 h-5 text-teal-500" />}
-              onNavigateTool={(toolId) => navigateToPage(toolId as NavPageId)}
-              onNavigateToolsHub={() => navigateToPage('tools')}
-            />
-            <div className="py-8 bg-slate-900 min-h-screen text-white">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <FactoryNetworkLatencyTester onOpenQuote={handleOpenQuote} />
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* ========================================================
             PAGE 19: 10 BEST AI TOOLS FOR TRAVEL ITINERARY GUIDE
            ======================================================== */}
         {currentPage === 'ai-travel-tools' && (
           <AiTravelGuidePage
             onNavigatePage={(page) => navigateToPage(page as NavPageId)}
             onOpenQuote={() => handleOpenQuote('AI Travel Systems')}
-          />
-        )}
-
-        {/* ========================================================
-            PAGE 20: AI TRIP PLANNER STANDALONE TOOL
-           ======================================================== */}
-        {currentPage === 'ai-trip-planner' && (
-          <AiTripPlannerStandalonePage
-            onNavigatePage={(page) => navigateToPage(page as NavPageId)}
-            onOpenQuote={() => handleOpenQuote('AI Travel Planner Custom Solution')}
           />
         )}
 
@@ -1931,12 +1628,6 @@ export default function App() {
           />
         )}
 
-        {/* ========================================================
-            PAGE 25: TREND INTELLIGENCE SUITE (V15 MASTER BUILD)
-           ======================================================== */}
-        {currentPage === 'trend-intelligence-suite' && (
-          <TrendIntelligenceSuite />
-        )}
             </Suspense>
           </ErrorBoundary>
         </motion.div>
