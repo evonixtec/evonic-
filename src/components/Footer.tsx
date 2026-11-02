@@ -599,7 +599,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                 </span>
               </div>
               <p className="text-[11px] text-slate-400 mt-1">
-                22+ Free E-Commerce, eBay, Amazon FBA, CBM &amp; Export Fee Calculators
+                26 Free E-Commerce, eBay, Etsy, Amazon FBA, CBM &amp; Export Fee Calculators
               </p>
             </a>
 

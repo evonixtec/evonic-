@@ -1183,10 +1183,10 @@ export default function App() {
                             <span>Tools Subdomain: tools.evonixtec.com</span>
                           </div>
                           <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white">
-                            Looking for our 22+ Free E-Commerce &amp; Export Calculators?
+                            Looking for our 26 Free E-Commerce &amp; Export Calculators?
                           </h3>
                           <p className="text-slate-300 text-xs sm:text-sm max-w-2xl leading-relaxed">
-                            We moved our complete collection of business tools—including Amazon FBA, eBay profit formulas, TikTok Shop calculators, export CBM engines, and global invoicing—to our dedicated workstation at <strong className="text-white">tools.evonixtec.com</strong>. Always 100% free with zero paywalls.
+                            Access our complete workstation suite—including Etsy fee &amp; profit calculators, Amazon FBA &amp; FBM, eBay profit formulas, TikTok Shop calculators, export CBM engines, and global invoicing. Always 100% free with zero paywalls.
                           </p>
                           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-1 text-xs text-slate-400">
                             <span className="flex items-center gap-1.5 text-emerald-400">
@@ -1201,21 +1201,20 @@ export default function App() {
                             <span>·</span>
                             <span className="flex items-center gap-1.5 text-amber-400">
                               <Boxes className="w-4 h-4 text-amber-400" />
-                              <span>22+ Calculators</span>
+                              <span>26 Free Tools</span>
                             </span>
                           </div>
                         </div>
 
                         <div className="flex flex-col sm:flex-row items-center gap-3 flex-shrink-0">
-                          <a
-                            href={getToolsDomainUrl()}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                          <button
+                            type="button"
+                            onClick={() => navigateToPage('tools')}
                             className="px-7 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-sm shadow-xl shadow-blue-600/30 transition-all flex items-center gap-2.5 group cursor-pointer hover:scale-[1.02] active:scale-100"
                           >
-                            <span>Open tools.evonixtec.com</span>
+                            <span>Explore 26 Free Tools</span>
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                          </a>
+                          </button>
                         </div>
                       </div>
 

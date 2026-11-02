@@ -320,18 +320,23 @@ export const Navbar: React.FC<NavbarProps> = ({
                   Portfolio
                 </button>
 
-                {/* Free Tools Subdomain Bridge */}
-                <a
-                  href={getToolsDomainUrl()}
-                  className="px-2 xl:px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-all flex items-center gap-1 xl:gap-1.5 text-slate-700 hover:text-slate-900 hover:bg-slate-100/80 group whitespace-nowrap"
-                  title="22+ Free E-Commerce, Export & Freight Calculators on tools.evonixtec.com"
+                {/* Free Tools Directory Button (Instant Client-Side Navigation) */}
+                <button
+                  type="button"
+                  onClick={() => handlePageSelect('tools')}
+                  className={`px-2 xl:px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-all flex items-center gap-1 xl:gap-1.5 group whitespace-nowrap cursor-pointer ${
+                    isToolsActive
+                      ? 'text-red-700 bg-red-50/90 font-bold shadow-2xs border border-red-200/60'
+                      : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
+                  }`}
+                  title="26 Free E-Commerce, Export & Freight Calculators"
                 >
                   <span>Free Tools</span>
                   <span className="hidden xl:inline-flex text-[9px] bg-red-100 text-red-700 group-hover:bg-red-600 group-hover:text-white transition-colors px-1.5 py-0.5 rounded-md font-bold items-center gap-0.5">
-                    <span>22+ Free</span>
+                    <span>26 Free</span>
                     <ArrowRight className="w-2.5 h-2.5" />
                   </span>
-                </a>
+                </button>
 
                 {/* Store Subdomain Bridge */}
                 <a
@@ -1103,17 +1108,22 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Subdomain Bridges for Mobile (Agency Domain) */}
             {!isSubTools && !isSubStore && (
               <>
-                <a
-                  href={getToolsDomainUrl()}
-                  className="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between text-slate-800 hover:bg-slate-100 bg-blue-50/50 border border-blue-100 transition-colors"
+                <button
+                  type="button"
+                  onClick={() => handlePageSelect('tools')}
+                  className={`w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-bold flex items-center justify-between transition-colors cursor-pointer ${
+                    isToolsActive
+                      ? 'bg-red-50 text-red-700 border border-red-200'
+                      : 'text-slate-800 hover:bg-slate-100 bg-blue-50/50 border border-blue-100'
+                  }`}
                 >
                   <div className="flex items-center gap-2">
-                    <span>🛠️ Free Tools Workstation</span>
+                    <span>🛠️ 26 Free Business Tools</span>
                   </div>
-                  <span className="px-2 py-0.5 bg-blue-600 text-white text-[10px] rounded-full font-bold flex items-center gap-1">
-                    <span>tools.evonixtec.com ↗</span>
+                  <span className="px-2 py-0.5 bg-red-600 text-white text-[10px] rounded-full font-bold flex items-center gap-1">
+                    <span>Explore 26 Tools →</span>
                   </span>
-                </a>
+                </button>
 
                 <a
                   href={getStoreDomainUrl()}

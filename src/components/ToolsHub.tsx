@@ -17,7 +17,8 @@ import {
   Boxes,
   Wrench,
   Barcode,
-  Clock
+  Clock,
+  ShoppingCart
 } from 'lucide-react';
 import { NavPageId } from '../types';
 import { incrementToolUsage } from '../lib/toolUsageTracker';
@@ -606,35 +607,93 @@ interface ToolsHubProps {
   onNavigateHome: () => void;
 }
 
+export type ToolFilterCategory =
+  | 'all'
+  | 'ecommerce'
+  | 'export'
+  | 'uk-eu'
+  | 'usa'
+  | 'diagnostics'
+  | 'seo-ai';
+
 export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<
-    'all' | 'uk-eu' | 'usa' | 'business-export' | 'diagnostics-lab'
-  >('all');
+  const [selectedCategory, setSelectedCategory] = useState<ToolFilterCategory>('all');
 
   const handleLaunchWithTrack = (target: NavPageId | string, toolId: string) => {
     incrementToolUsage(toolId);
     onLaunchTool(target);
   };
 
+  const isEcommerceTool = (tool: WebToolDefinition) => {
+    return (
+      tool.id === 'etsy-fee-calculator' ||
+      tool.id === 'ebay-fee-calculator' ||
+      tool.id === 'tiktok-shop-fee-calculator' ||
+      tool.id === 'amazon-fba-calculator' ||
+      tool.id === 'amazon-fbm-calculator' ||
+      tool.id === 'shopify-fee-calculator' ||
+      tool.id === 'stripe-fee-calculator' ||
+      tool.id === 'temu-seller-calculator' ||
+      tool.id === 'ecommerce-calculator'
+    );
+  };
+
+  const isExportTool = (tool: WebToolDefinition) => {
+    return (
+      tool.id === 'invoice' ||
+      tool.id === 'hs-code-lookup' ||
+      tool.id === 'sialkot-export-erp' ||
+      tool.id === 'cbm-calculator' ||
+      tool.id === 'export-barcode-studio' ||
+      tool.id === 'developer-cost-calculator'
+    );
+  };
+
+  const isSeoAiTool = (tool: WebToolDefinition) => {
+    return (
+      tool.id === 'trend-intelligence-suite' ||
+      tool.id === 'schema-generator' ||
+      tool.id === 'ai-visibility-checker' ||
+      tool.id === 'ai-trip-planner'
+    );
+  };
+
+  const categoryCounts = useMemo(() => {
+    return {
+      all: TOOLS_COLLECTION.length,
+      ecommerce: TOOLS_COLLECTION.filter(isEcommerceTool).length,
+      export: TOOLS_COLLECTION.filter(isExportTool).length,
+      ukEu: TOOLS_COLLECTION.filter((t) => t.regionFocus === 'UK/EU').length,
+      usa: TOOLS_COLLECTION.filter((t) => t.regionFocus === 'USA').length,
+      diagnostics: TOOLS_COLLECTION.filter((t) => t.category === 'diagnostics-lab').length,
+      seoAi: TOOLS_COLLECTION.filter(isSeoAiTool).length,
+    };
+  }, []);
+
   const filteredTools = useMemo(() => {
     return TOOLS_COLLECTION.filter((tool) => {
       let matchesCategory = true;
 
-      if (selectedCategory === 'uk-eu') {
+      if (selectedCategory === 'ecommerce') {
+        matchesCategory = isEcommerceTool(tool);
+      } else if (selectedCategory === 'export') {
+        matchesCategory = isExportTool(tool);
+      } else if (selectedCategory === 'uk-eu') {
         matchesCategory = tool.regionFocus === 'UK/EU';
       } else if (selectedCategory === 'usa') {
         matchesCategory = tool.regionFocus === 'USA';
-      } else if (selectedCategory === 'business-export') {
-        matchesCategory = tool.category === 'business-export' || tool.category === 'international-compliance' || tool.category === 'ecommerce-growth';
-      } else if (selectedCategory === 'diagnostics-lab') {
+      } else if (selectedCategory === 'diagnostics') {
         matchesCategory = tool.category === 'diagnostics-lab';
+      } else if (selectedCategory === 'seo-ai') {
+        matchesCategory = isSeoAiTool(tool);
       }
 
       const q = searchQuery.toLowerCase().trim();
       const matchesSearch =
         !q ||
         tool.name.toLowerCase().includes(q) ||
+        tool.shortName.toLowerCase().includes(q) ||
         tool.description.toLowerCase().includes(q) ||
         tool.categoryLabel.toLowerCase().includes(q) ||
         tool.highlights.some((h) => h.toLowerCase().includes(q));
@@ -723,19 +782,35 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
                       : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                   }`}
                 >
-                  All Tools ({TOOLS_COLLECTION.length})
+                  All Tools ({categoryCounts.all})
                 </button>
 
+                {/* E-COMMERCE & MARKETPLACES */}
                 <button
                   type="button"
-                  onClick={() => setSelectedCategory('business-export')}
-                  className={`px-3 py-1.5 text-xs font-semibold rounded-xl transition-all cursor-pointer whitespace-nowrap ${
-                    selectedCategory === 'business-export'
+                  onClick={() => setSelectedCategory('ecommerce')}
+                  className={`px-3 py-1.5 text-xs font-bold rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center gap-1 ${
+                    selectedCategory === 'ecommerce'
+                      ? 'bg-amber-600 text-white shadow-xs'
+                      : 'bg-amber-50 text-amber-900 border border-amber-300 hover:bg-amber-100'
+                  }`}
+                >
+                  <ShoppingCart className="w-3.5 h-3.5 text-amber-600" />
+                  <span>🛒 E-Commerce &amp; Marketplaces ({categoryCounts.ecommerce})</span>
+                </button>
+
+                {/* EXPORT & B2B */}
+                <button
+                  type="button"
+                  onClick={() => setSelectedCategory('export')}
+                  className={`px-3 py-1.5 text-xs font-semibold rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center gap-1 ${
+                    selectedCategory === 'export'
                       ? 'bg-slate-900 text-white shadow-2xs font-bold'
                       : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                   }`}
                 >
-                  Export &amp; B2B
+                  <Boxes className="w-3.5 h-3.5 text-blue-600" />
+                  <span>Export &amp; B2B ({categoryCounts.export})</span>
                 </button>
 
                 {/* UK & EU TOOLS */}
@@ -749,7 +824,7 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
                   }`}
                 >
                   <Globe className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>🇬🇧 / 🇪🇺 UK &amp; Europe</span>
+                  <span>🇬🇧 / 🇪🇺 UK &amp; Europe ({categoryCounts.ukEu})</span>
                 </button>
 
                 {/* USA TOOLS */}
@@ -763,20 +838,35 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
                   }`}
                 >
                   <Globe className="w-3.5 h-3.5 text-blue-600" />
-                  <span>🇺🇸 America (USA)</span>
+                  <span>🇺🇸 America (USA) ({categoryCounts.usa})</span>
                 </button>
 
                 {/* HARDWARE DIAGNOSTICS */}
                 <button
                   type="button"
-                  onClick={() => setSelectedCategory('diagnostics-lab')}
-                  className={`px-3 py-1.5 text-xs font-semibold rounded-xl transition-all cursor-pointer whitespace-nowrap ${
-                    selectedCategory === 'diagnostics-lab'
+                  onClick={() => setSelectedCategory('diagnostics')}
+                  className={`px-3 py-1.5 text-xs font-semibold rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center gap-1 ${
+                    selectedCategory === 'diagnostics'
                       ? 'bg-slate-900 text-white shadow-2xs font-bold'
                       : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                   }`}
                 >
-                  Hardware Diagnostics
+                  <Wrench className="w-3.5 h-3.5 text-orange-600" />
+                  <span>Hardware &amp; Lab ({categoryCounts.diagnostics})</span>
+                </button>
+
+                {/* SEO & AI */}
+                <button
+                  type="button"
+                  onClick={() => setSelectedCategory('seo-ai')}
+                  className={`px-3 py-1.5 text-xs font-semibold rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center gap-1 ${
+                    selectedCategory === 'seo-ai'
+                      ? 'bg-purple-700 text-white shadow-xs font-bold'
+                      : 'bg-purple-50 text-purple-800 border border-purple-200 hover:bg-purple-100'
+                  }`}
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-purple-600" />
+                  <span>SEO &amp; AI Suite ({categoryCounts.seoAi})</span>
                 </button>
               </div>
             </div>
@@ -784,7 +874,28 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
 
           {/* 3. Tools Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredTools.map((tool) => {
+            {filteredTools.length === 0 ? (
+              <div className="col-span-full py-16 px-4 text-center bg-white rounded-3xl border border-slate-200 shadow-xs space-y-4">
+                <div className="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center mx-auto text-slate-400">
+                  <Search className="w-6 h-6" />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900">No matching business tools found</h3>
+                <p className="text-sm text-slate-500 max-w-md mx-auto">
+                  {searchQuery ? `We could not find any tools matching "${searchQuery}".` : 'No tools found in this category.'} Try a different keyword or reset your filters.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSearchQuery('');
+                    setSelectedCategory('all');
+                  }}
+                  className="px-5 py-2.5 bg-slate-900 hover:bg-red-600 text-white rounded-xl text-xs font-bold transition-all cursor-pointer shadow-xs inline-flex items-center gap-2"
+                >
+                  <span>Reset Filters &amp; Show All {categoryCounts.all} Tools</span>
+                </button>
+              </div>
+            ) : (
+              filteredTools.map((tool) => {
               return (
                 <div
                   key={tool.id}
@@ -849,7 +960,7 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
                   </div>
                 </div>
               );
-            })}
+            }))}
           </div>
 
           {/* Privacy & Standard Assurance */}

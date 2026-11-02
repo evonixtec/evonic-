@@ -213,14 +213,14 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
                               <span>Popular</span>
                             </span>
                           )}
-                          <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
-                            Core #{tool.order}
+                          <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-700">
+                            Enterprise Tool
                           </span>
                         </div>
                       </div>
                       <p className="text-[11px] text-slate-600 line-clamp-1">{tool.desc}</p>
                       <div className="flex items-center justify-between mt-2 pt-1 border-t border-slate-100 text-[10px]">
-                        <span className="text-slate-400 font-mono">100% Offline / Local</span>
+                        <span className="text-slate-500 font-medium">Zero Cloud Latency &amp; Privacy</span>
                         <span className="text-red-600 font-bold inline-flex items-center gap-0.5 group-hover:translate-x-0.5 transition-transform">
                           Open <ArrowRight className="w-3 h-3" />
                         </span>
