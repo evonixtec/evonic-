@@ -332,6 +332,34 @@ export const LocalClusterLandingPage: React.FC<LocalClusterLandingPageProps> = (
           </div>
         </div>
 
+        {/* Sialkot POS Hardware Depot Cross-Link Callout */}
+        <div className="mb-6 p-4 rounded-2xl bg-gradient-to-r from-emerald-50 to-teal-50/50 border border-emerald-200/80 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-xs">
+          <div className="flex items-center gap-3 text-left">
+            <span className="p-2.5 rounded-xl bg-emerald-600 text-white shrink-0 shadow-sm">
+              <Truck className="w-5 h-5" />
+            </span>
+            <div>
+              <span className="text-[11px] font-extrabold text-emerald-700 uppercase tracking-wide block">
+                Sialkot Central B2B Hardware Depot Active
+              </span>
+              <p className="text-xs sm:text-sm text-slate-800 font-bold">
+                Looking for 80mm thermal receipt printers, 2D wireless scanners &amp; touch POS systems with Same-Day Sialkot COD?
+              </p>
+            </div>
+          </div>
+          <a
+            href="/locations/sialkot/pos-hardware"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigatePage('sialkot-pos-hardware' as any);
+            }}
+            className="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider shrink-0 transition-all flex items-center gap-1.5 cursor-pointer shadow-md shadow-emerald-900/20"
+          >
+            <span>View Sialkot Depot Stock</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </a>
+        </div>
+
         {/* 3. Hero Section (Hyper-Local Authority & Direct Field Dispatch) */}
         <div className="bg-gradient-to-br from-slate-950 via-slate-900 to-red-950 text-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-800 relative overflow-hidden">
           {/* Subtle Ambient Background Lighting */}

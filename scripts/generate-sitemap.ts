@@ -52,6 +52,7 @@ const mainCoreRoutes = [
   { loc: `${DOMAIN_MAIN}/about`, changefreq: 'weekly', priority: '0.85', lastmod: CURRENT_TIMESTAMP },
   { loc: `${DOMAIN_MAIN}/contact`, changefreq: 'daily', priority: '0.90', lastmod: CURRENT_TIMESTAMP },
   { loc: `${DOMAIN_MAIN}/locations`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
+  { loc: `${DOMAIN_MAIN}/locations/sialkot/pos-hardware`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
   { loc: `${DOMAIN_MAIN}/sialkot-it-services`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
   { loc: `${DOMAIN_MAIN}/pos-software-sialkot`, changefreq: 'weekly', priority: '0.90', lastmod: CURRENT_TIMESTAMP },
   { loc: `${DOMAIN_MAIN}/export-barcode-studio`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },

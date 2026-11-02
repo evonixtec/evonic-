@@ -30,6 +30,10 @@
       "destination": "/index.html"
     },
     {
+      "source": "/locations/sialkot/pos-hardware",
+      "destination": "/index.html"
+    },
+    {
       "source": "/((?!api/).*)",
       "destination": "/index.html"
     }

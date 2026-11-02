@@ -4,6 +4,7 @@ import { GLOBAL_BLOGS_DATA } from '../config/blogsList';
 export default function FooterLinks() {
   // Sialkot Localized Sells & Service Branches Area Clusters Array
   const locationLinks = [
+    { name: "Sialkot POS Hardware Depot", path: "/locations/sialkot/pos-hardware" },
     { name: "Daska IT Support Node", path: "/locations/daska" },
     { name: "Daska Industrial Hardware", path: "/locations/daska/hardware-maintenance" },
     { name: "Daska POS & Inventory", path: "/locations/daska/pos-systems" },

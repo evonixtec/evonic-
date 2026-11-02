@@ -38,6 +38,7 @@ export type NavPageId =
   | 'trend-intelligence-suite'
   | 'schema-generator'
   | 'hs-code-lookup'
+  | 'sialkot-pos-hardware'
   | 'starter';
 
 export type PageId = NavPageId;

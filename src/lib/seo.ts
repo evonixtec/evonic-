@@ -1259,6 +1259,27 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ogImage: DEFAULT_OG_IMAGE,
     keywords: ['web design offer', 'starter pack', 'evonix promo'],
   },
+  'sialkot-pos-hardware': {
+    title: 'POS Hardware & Thermal Receipt Printers in Sialkot | Same-Day Dispatch',
+    description:
+      'Buy 80mm & 58mm thermal receipt printers, wireless barcode scanners, and touch POS systems in Sialkot. 1-year warranty, on-site testing, and instant COD.',
+    canonicalUrl: `${BASE_URL}/locations/sialkot/pos-hardware`,
+    ogTitle: 'POS Hardware & Thermal Receipt Printers in Sialkot | Same-Day Dispatch',
+    ogDescription:
+      '80mm/58mm thermal printers, 2D barcode scanners & touch POS machines in ready stock in Sialkot. Same-day COD delivery and 1-year local replacement warranty.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    keywords: [
+      'thermal printer sialkot',
+      'pos hardware sialkot',
+      'barcode scanner sialkot',
+      'receipt printer 80mm sialkot',
+      'touch pos machine sialkot',
+      'cash drawer sialkot',
+      'pos hardware depot kotli behram',
+      'pos printer same day delivery sialkot',
+    ],
+  },
 };
 
 /**

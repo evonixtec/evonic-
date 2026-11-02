@@ -488,6 +488,118 @@ shopCategoryPages.forEach((sc) => {
 });
 
 // ==========================================
+// Hyperlocal Stack: Sialkot B2B Hardware Depot
+// Route: /locations/sialkot/pos-hardware
+// ==========================================
+pages.push({
+  route: 'locations/sialkot/pos-hardware',
+  title: 'POS Hardware & Thermal Receipt Printers in Sialkot | Same-Day Dispatch',
+  description: 'Buy 80mm & 58mm thermal receipt printers, wireless barcode scanners, and touch POS systems in Sialkot. 1-year warranty, on-site testing, and instant COD.',
+  canonical: `${DOMAIN}/locations/sialkot/pos-hardware`,
+  schemaType: 'ComputerStore',
+  schemaJson: {
+    '@context': 'https://schema.org',
+    '@type': ['ComputerStore', 'LocalBusiness'],
+    name: 'Evonix Sialkot POS Hardware & Thermal Printer Depot',
+    description: 'Buy 80mm & 58mm thermal receipt printers, wireless barcode scanners, and touch POS systems in Sialkot. 1-year warranty, on-site testing, and instant COD.',
+    image: 'https://www.evonixtec.com/og-image.jpg',
+    url: `${DOMAIN}/locations/sialkot/pos-hardware`,
+    telephone: '+923263244002',
+    priceRange: 'PKR 8,500 - 68,000',
+    currenciesAccepted: 'PKR',
+    paymentAccepted: 'Cash on Delivery, Bank Transfer, JazzCash, EasyPaisa',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Kotli Behram',
+      addressLocality: 'Sialkot',
+      addressRegion: 'Punjab',
+      postalCode: '51310',
+      addressCountry: 'PK',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 32.4945,
+      longitude: 74.5229,
+    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        opens: '09:00',
+        closes: '20:00',
+      },
+    ],
+    areaServed: [
+      { '@type': 'City', name: 'Sialkot' },
+      { '@type': 'City', name: 'Daska' },
+      { '@type': 'City', name: 'Sambrial' },
+      { '@type': 'City', name: 'Ugoki' },
+      { '@type': 'City', name: 'Pasrur' },
+      { '@type': 'City', name: 'Wazirabad' },
+    ],
+  },
+  heading: 'POS Hardware & Thermal Receipt Printers in Sialkot',
+  subheading: 'Same-Day Doorstep Dispatch across Sialkot with 1-Year Local Replacement Warranty',
+  breadcrumb: [
+    { name: 'Home', url: '/' },
+    { name: 'Locations', url: '/locations' },
+    { name: 'Sialkot', url: '/locations/sialkot' },
+    { name: 'POS Hardware Depot', url: '/locations/sialkot/pos-hardware' },
+  ],
+  bodyHtml: `
+    <div class="space-y-8 text-slate-300">
+      <div class="p-6 rounded-2xl bg-gradient-to-r from-emerald-950/60 to-slate-900 border border-emerald-500/40">
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider block mb-1">Emergency Dispatch Active</span>
+        <h2 class="text-2xl font-bold text-white mb-2">Same-Day COD Delivery Across Sialkot (2–4 Hours)</h2>
+        <p class="text-slate-300 text-sm leading-relaxed">
+          Order 80mm thermal receipt printers, wireless 2D barcode scanners, capacitive touch POS machines, and auto-kick cash drawers before 4 PM for doorstep arrival today. Test before you pay.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+          <span class="px-2.5 py-1 rounded bg-emerald-950 text-emerald-400 text-xs font-bold uppercase">In Stock Locally</span>
+          <h3 class="text-xl font-bold text-white">80mm Thermal Receipt Printer (USB + LAN)</h3>
+          <p class="text-emerald-400 font-extrabold text-2xl">Rs. 18,500</p>
+          <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+            <li>260mm/s High Speed Auto-Cutter (1.5M Cuts)</li>
+            <li>Dual USB + LAN / Ethernet Interface</li>
+            <li>Standard ESC/POS Command Compatibility</li>
+            <li>RJ11 Cash Drawer Port (24V Pulse)</li>
+            <li>1-Year Local Sialkot Replacement Warranty</li>
+          </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+          <span class="px-2.5 py-1 rounded bg-emerald-950 text-emerald-400 text-xs font-bold uppercase">In Stock Locally</span>
+          <h3 class="text-xl font-bold text-white">Handheld 1D/2D Wireless Barcode Scanner</h3>
+          <p class="text-emerald-400 font-extrabold text-2xl">Rs. 9,500</p>
+          <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+            <li>2.4G Wireless + Bluetooth 5.0 Dual Mode</li>
+            <li>Reads QR Codes, Damaged Labels & Mobile Screens</li>
+            <li>Up to 100m Open Transmission Range</li>
+            <li>1.8m Concrete Drop Resistance</li>
+            <li>1-Year Local Sialkot Replacement Warranty</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+        <h2 class="text-xl font-bold text-white">Physical Walk-In Depot in Sialkot</h2>
+        <p class="text-sm text-slate-300">
+          Visit our physical testing bench at <strong>Kotli Behram, Defense Road / Sialkot Bypass, Sialkot (51310)</strong> to test hardware compatibility with your software before purchasing.
+        </p>
+        <div class="pt-2 flex flex-wrap gap-4 text-xs font-semibold text-teal-400">
+          <span>Phone: +92 326 324 4002</span>
+          <span>WhatsApp: +92 326 324 4002</span>
+          <span>Hours: Mon–Sat 9:00 AM – 8:00 PM</span>
+        </div>
+      </div>
+    </div>
+  `
+});
+
+// ==========================================
 // Central Online Tools Directory Hub (/tools)
 // ==========================================
 pages.push({

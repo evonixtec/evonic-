@@ -76,6 +76,7 @@ const DoorstepSupportPage = lazy(() => import('./components/DoorstepSupportPage'
 const SialkotExportErpPage = lazy(() => import('./components/SialkotExportErpPage').then(m => ({ default: m.SialkotExportErpPage })));
 const GuidelinesPage = lazy(() => import('./components/GuidelinesPage').then(m => ({ default: m.GuidelinesPage })));
 const StarterPromoPage = lazy(() => import('./pages/StarterPromoPage').then(m => ({ default: m.StarterPromoPage })));
+const HyperlocalLandingPage = lazy(() => import('./components/hyperlocal/HyperlocalLandingPage').then(m => ({ default: m.HyperlocalLandingPage })));
 // Resilient dynamic import helper with automatic retry and graceful fallback for lazy chunks
 const lazyWithRetry = <T extends React.ComponentType<any>>(
   factory: () => Promise<{ default: T } | any>
@@ -298,6 +299,18 @@ export default function App() {
 
     if (path === 'contact' || path.startsWith('contact/') || path === 'contact-us' || path === 'support') {
       return 'contact';
+    }
+
+    if (
+      path === 'locations/sialkot/pos-hardware' ||
+      path === 'location/sialkot/pos-hardware' ||
+      path === 'sialkot/pos-hardware' ||
+      path === 'pos-hardware-sialkot' ||
+      path === 'sialkot-pos-hardware' ||
+      path.startsWith('locations/sialkot/pos-hardware') ||
+      path.startsWith('location/sialkot/pos-hardware')
+    ) {
+      return 'sialkot-pos-hardware';
     }
 
     if (path === 'locations' || path === 'location' || path.startsWith('location/') || path.startsWith('locations/')) {
@@ -723,7 +736,7 @@ export default function App() {
       }
 
       if (path) {
-        if (path === 'locations' || path.startsWith('location')) {
+        if ((path === 'locations' || path.startsWith('location')) && !path.includes('pos-hardware')) {
           setClusterParams(parseLocationFromPath());
         }
         const resolved = resolvePageFromPath(path);
@@ -836,6 +849,8 @@ export default function App() {
       cleanPath = '/services/doorstep-support';
     } else if (page === 'sialkot-export-erp') {
       cleanPath = '/sialkot-export-erp';
+    } else if (page === 'sialkot-pos-hardware') {
+      cleanPath = '/locations/sialkot/pos-hardware';
     } else if (page === 'guidelines') {
       cleanPath = '/guidelines';
     } else if (page === 'locations' && subTarget) {
@@ -1549,6 +1564,19 @@ export default function App() {
               initialService={clusterParams.service}
               onOpenQuote={handleOpenQuote}
               onNavigatePage={navigateToPage}
+            />
+          </div>
+        )}
+
+        {/* ========================================================
+            HYPERLOCAL STACK: SIALKOT B2B HARDWARE DEPOT
+            Target: /locations/sialkot/pos-hardware
+           ======================================================== */}
+        {currentPage === 'sialkot-pos-hardware' && (
+          <div className="space-y-0">
+            <HyperlocalLandingPage
+              onNavigatePage={navigateToPage}
+              onOpenQuote={handleOpenQuote}
             />
           </div>
         )}
