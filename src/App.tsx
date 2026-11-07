@@ -10,6 +10,7 @@ import { type PolicyType } from './components/PolicyModal';
 import { SecurityAlertToast } from './components/SecurityAlertToast';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
 import { PageHeaderBanner } from './components/common/PageHeaderBanner';
+import { VideoBackground } from './components/common/VideoBackground';
 import { COMPANY_INFO } from './data/content';
 import { initAntiCopyShield, initializeConsoleShield } from './lib/security';
 import { applyPageSEO } from './lib/seo';
@@ -1110,6 +1111,18 @@ export default function App() {
                  ======================================================== */}
               {isStoreMode && (currentPage === 'home' || currentPage === 'shop') && (
                 <div className="space-y-0">
+                  <VideoBackground theme="hardware-circuit" overlayOpacity="medium">
+                    <PageHeaderBanner
+                      transparentBg
+                      breadcrumbCurrent="Hardware & Shop"
+                      badgeText="Original & Tested Commercial Hardware"
+                      title="IT Hardware, POS Systems & Equipment Shop"
+                      subtitle="Imported Dell/HP/Lenovo business laptops, heavy-duty 80mm thermal receipt printers, 2D barcode scanners, and all-in-one capacitive touch POS terminals with localized Sialkot warranties."
+                      onNavigateHome={() => navigateToPage('home')}
+                      onOpenQuote={() => handleOpenQuote('Hardware Bulk Procurement Inquiry')}
+                      ctaText="Inquire Bulk Hardware"
+                    />
+                  </VideoBackground>
                   <Shop onInquireProduct={(prod) => handleOpenQuote(`Inquiry: ${prod}`)} />
                 </div>
               )}
@@ -1133,18 +1146,21 @@ export default function App() {
                  ======================================================== */}
               {!isToolsMode && !isStoreMode && currentPage === 'home' && (
                 <div className="space-y-0">
-                  {/* 1a. Flagship Interactive Hero Slider with Touch-Swipe & Cross-Fade Visuals */}
-                  <HeroSlider
-                    onOpenQuote={(service) => handleOpenQuote(service || 'Enterprise Software Architecture Consultation')}
-                    onNavigate={(section) => {
-                      if (section === 'services') navigateToPage('services');
-                      else if (section === 'portfolio') navigateToPage('portfolio');
-                      else if (section === 'contact') navigateToPage('contact');
-                      else if (section === 'about') navigateToPage('about');
-                      else navigateToPage('home');
-                    }}
-                    onOpenSearch={() => setIsSearchOpen(true)}
-                  />
+                  {/* 1a. Flagship Interactive Hero Slider with Touch-Swipe & Cross-Fade Visuals & VideoBackground */}
+                  <VideoBackground theme="cyber-data" overlayOpacity="medium">
+                    <HeroSlider
+                      transparentBg
+                      onOpenQuote={(service) => handleOpenQuote(service || 'Enterprise Software Architecture Consultation')}
+                      onNavigate={(section) => {
+                        if (section === 'services') navigateToPage('services');
+                        else if (section === 'portfolio') navigateToPage('portfolio');
+                        else if (section === 'contact') navigateToPage('contact');
+                        else if (section === 'about') navigateToPage('about');
+                        else navigateToPage('home');
+                      }}
+                      onOpenSearch={() => setIsSearchOpen(true)}
+                    />
+                  </VideoBackground>
 
                   {/* 1b. Distinct Client Pathways (Corporate B2B Software vs Sialkot Industrial ERP) */}
                   <HomeJourneyGateway
@@ -1313,14 +1329,17 @@ export default function App() {
            ======================================================== */}
         {currentPage === 'services' && (
           <div className="space-y-0">
-            <PageHeaderBanner
-              breadcrumbCurrent="Our Services"
-              badgeText="Enterprise Software Engineering"
-              title="Enterprise Services &amp; Technology Solutions"
-              subtitle="Two decades of Dubai high-availability systems engineering delivered in Sialkot, Pakistan. From high-throughput web applications to multi-tenant cloud platforms, bespoke industrial ERPs, and private AI automation pipelines."
-              onNavigateHome={() => navigateToPage('home')}
-              onOpenQuote={() => handleOpenQuote('Enterprise Software Architecture Inquiry')}
-            />
+            <VideoBackground theme="tech-network" overlayOpacity="medium">
+              <PageHeaderBanner
+                transparentBg
+                breadcrumbCurrent="Our Services"
+                badgeText="Enterprise Software Engineering"
+                title="Enterprise Services & Technology Solutions"
+                subtitle="Two decades of Dubai high-availability systems engineering delivered in Sialkot, Pakistan. From high-throughput web applications to multi-tenant cloud platforms, bespoke industrial ERPs, and private AI automation pipelines."
+                onNavigateHome={() => navigateToPage('home')}
+                onOpenQuote={() => handleOpenQuote('Enterprise Software Architecture Inquiry')}
+              />
+            </VideoBackground>
 
             {/* Full Detailed Services Section */}
             <Services
@@ -1411,15 +1430,18 @@ export default function App() {
            ======================================================== */}
         {currentPage === 'portfolio' && (
           <div className="space-y-0">
-            <PageHeaderBanner
-              breadcrumbCurrent="Portfolio"
-              badgeText="Proven UAE & Dubai Track Record"
-              title="Valuable Client Deployments & Case Studies"
-              subtitle="Review high-volume e-commerce platforms, multi-currency trade portals, and enterprise retail POS systems delivered for leading corporations in Dubai, UAE and now Sialkot."
-              onNavigateHome={() => navigateToPage('home')}
-              onOpenQuote={() => handleOpenQuote('Confidential NDA Case Study Presentation')}
-              ctaText="Request NDA Case Studies"
-            />
+            <VideoBackground theme="corporate-blue" overlayOpacity="medium">
+              <PageHeaderBanner
+                transparentBg
+                breadcrumbCurrent="Portfolio"
+                badgeText="Proven UAE & Dubai Track Record"
+                title="Valuable Client Deployments & Case Studies"
+                subtitle="Review high-volume e-commerce platforms, multi-currency trade portals, and enterprise retail POS systems delivered for leading corporations in Dubai, UAE and now Sialkot."
+                onNavigateHome={() => navigateToPage('home')}
+                onOpenQuote={() => handleOpenQuote('Confidential NDA Case Study Presentation')}
+                ctaText="Request NDA Case Studies"
+              />
+            </VideoBackground>
 
             {/* Full Portfolio Component */}
             <Portfolio
@@ -1437,19 +1459,22 @@ export default function App() {
         )}
 
         {/* ========================================================
-            PAGE 4: DEDICATED HARDWARE & SHOP PAGE (store.evonixtec.com)
+            PAGE 4: DEDICATED HARDWARE & SHOP PAGE (store.evonixtec.com & /shop)
            ======================================================== */}
-        {currentPage === 'shop' && isStoreMode && (
+        {currentPage === 'shop' && (
           <div className="space-y-0">
-            <PageHeaderBanner
-              breadcrumbCurrent="Hardware & Shop"
-              badgeText="Original & Tested Commercial Hardware"
-              title="IT Hardware, POS Systems & Equipment Shop"
-              subtitle="Imported Dell/HP/Lenovo business laptops, heavy-duty 80mm thermal receipt printers, 2D barcode scanners, and all-in-one capacitive touch POS terminals with localized Sialkot warranties."
-              onNavigateHome={() => navigateToPage('home')}
-              onOpenQuote={() => handleOpenQuote('Hardware Bulk Procurement Inquiry')}
-              ctaText="Inquire Bulk Hardware"
-            />
+            <VideoBackground theme="hardware-circuit" overlayOpacity="medium">
+              <PageHeaderBanner
+                transparentBg
+                breadcrumbCurrent="Hardware & Shop"
+                badgeText="Original & Tested Commercial Hardware"
+                title="IT Hardware, POS Systems & Equipment Shop"
+                subtitle="Imported Dell/HP/Lenovo business laptops, heavy-duty 80mm thermal receipt printers, 2D barcode scanners, and all-in-one capacitive touch POS terminals with localized Sialkot warranties."
+                onNavigateHome={() => navigateToPage('home')}
+                onOpenQuote={() => handleOpenQuote('Hardware Bulk Procurement Inquiry')}
+                ctaText="Inquire Bulk Hardware"
+              />
+            </VideoBackground>
 
             {/* Full Shop Catalog Component */}
             <Shop
@@ -1465,15 +1490,18 @@ export default function App() {
            ======================================================== */}
         {currentPage === 'about' && (
           <div className="space-y-0">
-            <PageHeaderBanner
-              breadcrumbCurrent="About Us"
-              badgeText="20+ Years UAE Corporate Excellence"
-              title="About evonix & Our Dubai Heritage"
-              subtitle="Two decades of international engineering experience managing mission-critical IT infrastructure in Dubai, now translated into a high-precision diagnostic lab and tech hub in Sialkot, Pakistan."
-              onNavigateHome={() => navigateToPage('home')}
-              onOpenQuote={() => handleOpenQuote('Corporate Partnership')}
-              ctaText="Partner With Us"
-            />
+            <VideoBackground theme="corporate-blue" overlayOpacity="medium">
+              <PageHeaderBanner
+                transparentBg
+                breadcrumbCurrent="About Us"
+                badgeText="20+ Years UAE Corporate Excellence"
+                title="About evonix & Our Dubai Heritage"
+                subtitle="Two decades of international engineering experience managing mission-critical IT infrastructure in Dubai, now translated into a high-precision diagnostic lab and tech hub in Sialkot, Pakistan."
+                onNavigateHome={() => navigateToPage('home')}
+                onOpenQuote={() => handleOpenQuote('Corporate Partnership')}
+                ctaText="Partner With Us"
+              />
+            </VideoBackground>
 
             {/* Full About Us Details */}
             <AboutUs />
@@ -1494,15 +1522,18 @@ export default function App() {
            ======================================================== */}
         {currentPage === 'guides' && (
           <div className="space-y-0">
-            <PageHeaderBanner
-              breadcrumbCurrent="Tech Blogs & Case Studies"
-              badgeText="evonix Engineering Blogs & Knowledge Hub"
-              title="Official Tech Blogs, Hardware Guides & Field Case Studies"
-              subtitle="Practical, ground-level engineering blogs written by evonix technicians. Covers retail thermal printer troubleshooting, laptop overheating fixes, factory network sync, and chip-level motherboard restoration in Sialkot."
-              onNavigateHome={() => navigateToPage('home')}
-              onOpenQuote={() => handleOpenQuote('Technical Consultation')}
-              ctaText="Ask An Engineer"
-            />
+            <VideoBackground theme="tech-network" overlayOpacity="medium">
+              <PageHeaderBanner
+                transparentBg
+                breadcrumbCurrent="Tech Blogs & Case Studies"
+                badgeText="evonix Engineering Blogs & Knowledge Hub"
+                title="Official Tech Blogs, Hardware Guides & Field Case Studies"
+                subtitle="Practical, ground-level engineering blogs written by evonix technicians. Covers retail thermal printer troubleshooting, laptop overheating fixes, factory network sync, and chip-level motherboard restoration in Sialkot."
+                onNavigateHome={() => navigateToPage('home')}
+                onOpenQuote={() => handleOpenQuote('Technical Consultation')}
+                ctaText="Ask An Engineer"
+              />
+            </VideoBackground>
 
             {/* Blog Hub with 80+ SEO Guides */}
             <BlogHub
@@ -1538,15 +1569,18 @@ export default function App() {
            ======================================================== */}
         {currentPage === 'contact' && (
           <div className="space-y-0">
-            <PageHeaderBanner
-              breadcrumbCurrent="Contact & Support"
-              badgeText="Sialkot Service Lab & Office"
-              title="Contact evonix & Book On-Site Visit"
-              subtitle="Reach out to our engineering lab on Paris Road and Sialkot Cantt. Automatic GPS sensor pinpoints your location area in Sialkot with an instant tracking reference code dispatched to evonixtec@gmail.com."
-              onNavigateHome={() => navigateToPage('home')}
-              onOpenQuote={() => handleOpenQuote('Direct Sialkot Inquiry')}
-              ctaText="Get Free Quote"
-            />
+            <VideoBackground theme="cyber-data" overlayOpacity="medium">
+              <PageHeaderBanner
+                transparentBg
+                breadcrumbCurrent="Contact & Support"
+                badgeText="Sialkot Service Lab & Office"
+                title="Contact evonix & Book On-Site Visit"
+                subtitle="Reach out to our engineering lab on Paris Road and Sialkot Cantt. Automatic GPS sensor pinpoints your location area in Sialkot with an instant tracking reference code dispatched to evonixtec@gmail.com."
+                onNavigateHome={() => navigateToPage('home')}
+                onOpenQuote={() => handleOpenQuote('Direct Sialkot Inquiry')}
+                ctaText="Get Free Quote"
+              />
+            </VideoBackground>
 
             {/* Full Contact Section with GPS Sensor & Reference Code */}
             <ContactSection onOpenQuote={handleOpenQuote} />

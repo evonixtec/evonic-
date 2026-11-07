@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion, type Variants } from 'framer-motion';
 import { SERVICES, COMPANY_INFO } from '../../data/content';
 import { OptimizedImage } from '../common/OptimizedImage';
 import {
@@ -18,6 +19,34 @@ interface HomeServicesPreviewProps {
   onNavigateToServices: () => void;
   onOpenQuote: (serviceName?: string) => void;
 }
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.08,
+    },
+  },
+};
+
+const cardVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 28,
+    scale: 0.97,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
 
 export const HomeServicesPreview: React.FC<HomeServicesPreviewProps> = ({
   onNavigateToServices,
@@ -67,12 +96,20 @@ export const HomeServicesPreview: React.FC<HomeServicesPreviewProps> = ({
           </div>
         </div>
 
-        {/* 4 Main Core B2B Service Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        {/* 4 Main Core B2B Service Cards with Staggered Entrance Animation */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+        >
           {SERVICES.map((service) => (
-            <div
+            <motion.div
               key={service.id}
-              className="bg-white rounded-[28px] border border-slate-200 p-6 flex flex-col justify-between hover:shadow-xl hover:border-red-300 transition-all group text-left"
+              variants={cardVariants}
+              whileHover={{ y: -6, transition: { duration: 0.25, ease: 'easeOut' } }}
+              className="bg-white rounded-[28px] border border-slate-200 p-6 flex flex-col justify-between hover:shadow-xl hover:border-red-300 transition-shadow group text-left"
             >
               <div className="space-y-4 text-left">
                 {service.imageUrl && (
@@ -128,9 +165,9 @@ export const HomeServicesPreview: React.FC<HomeServicesPreviewProps> = ({
                   <ArrowRight className="w-3 h-3" />
                 </button>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Enterprise Technical Infrastructure & Architecture Matrix */}
         <div className="bg-white rounded-[36px] sm:rounded-[44px] border border-slate-200 p-6 sm:p-10 shadow-sm text-left">
@@ -154,9 +191,19 @@ export const HomeServicesPreview: React.FC<HomeServicesPreviewProps> = ({
             </div>
           </div>
 
-          {/* 4 Feature Pillars (Nested Radius Formula: Outer = Inner + Padding -> 12px + 16px = 28px) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
-            <div className="p-6 rounded-[28px] bg-slate-50 border border-slate-200 space-y-2.5 text-left">
+          {/* 4 Feature Pillars with Staggered Entrance Animation */}
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-40px' }}
+          >
+            <motion.div
+              variants={cardVariants}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className="p-6 rounded-[28px] bg-slate-50 border border-slate-200 space-y-2.5 text-left hover:border-blue-300 hover:bg-white hover:shadow-md transition-all"
+            >
               <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold">
                 <Globe className="w-5 h-5" />
               </div>
@@ -164,9 +211,13 @@ export const HomeServicesPreview: React.FC<HomeServicesPreviewProps> = ({
               <p className="text-xs text-slate-600 leading-[1.55] text-left">
                 Next.js 15, React Native, and TypeScript. Built for sub-second page loads, mobile responsiveness, and top Core Web Vitals.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="p-6 rounded-[28px] bg-slate-50 border border-slate-200 space-y-2.5 text-left">
+            <motion.div
+              variants={cardVariants}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className="p-6 rounded-[28px] bg-slate-50 border border-slate-200 space-y-2.5 text-left hover:border-red-300 hover:bg-white hover:shadow-md transition-all"
+            >
               <div className="w-10 h-10 rounded-xl bg-red-100 text-red-700 flex items-center justify-center font-bold">
                 <Cpu className="w-5 h-5" />
               </div>
@@ -174,9 +225,13 @@ export const HomeServicesPreview: React.FC<HomeServicesPreviewProps> = ({
               <p className="text-xs text-slate-600 leading-[1.55] text-left">
                 Offline-first multi-branch transaction engines, barcode inventory workflows, and digital accounting integrations.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="p-6 rounded-[28px] bg-slate-50 border border-slate-200 space-y-2.5 text-left">
+            <motion.div
+              variants={cardVariants}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className="p-6 rounded-[28px] bg-slate-50 border border-slate-200 space-y-2.5 text-left hover:border-purple-300 hover:bg-white hover:shadow-md transition-all"
+            >
               <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold">
                 <BrainCircuit className="w-5 h-5" />
               </div>
@@ -184,9 +239,13 @@ export const HomeServicesPreview: React.FC<HomeServicesPreviewProps> = ({
               <p className="text-xs text-slate-600 leading-[1.55] text-left">
                 Autonomous LLM ingestion pipelines, enterprise RAG search, and automated operational customer routing with zero data leakage.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="p-6 rounded-[28px] bg-slate-50 border border-slate-200 space-y-2.5 text-left">
+            <motion.div
+              variants={cardVariants}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className="p-6 rounded-[28px] bg-slate-50 border border-slate-200 space-y-2.5 text-left hover:border-emerald-300 hover:bg-white hover:shadow-md transition-all"
+            >
               <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
                 <Server className="w-5 h-5" />
               </div>
@@ -194,8 +253,8 @@ export const HomeServicesPreview: React.FC<HomeServicesPreviewProps> = ({
               <p className="text-xs text-slate-600 leading-[1.55] text-left">
                 Multi-region AWS/GCP architecture, containerized microservices, automated CI/CD pipelines, and 24/7 incident monitoring.
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Consultation CTA Banner */}
           <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-left">

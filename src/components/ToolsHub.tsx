@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { motion, type Variants } from 'framer-motion';
 import {
   Sparkles,
   FileText,
@@ -603,6 +604,34 @@ const TOOLS_COLLECTION: WebToolDefinition[] = [
   },
 ];
 
+const toolsGridVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05,
+      delayChildren: 0.04,
+    },
+  },
+};
+
+const toolCardVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 22,
+    scale: 0.98,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
 interface ToolsHubProps {
   onLaunchTool: (target: NavPageId | string) => void;
   onNavigateHome: () => void;
@@ -879,33 +908,40 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
             </div>
           </div>
 
-          {/* 3. Tools Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredTools.length === 0 ? (
-              <div className="col-span-full py-16 px-4 text-center bg-white rounded-3xl border border-slate-200 shadow-xs space-y-4">
-                <div className="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center mx-auto text-slate-400">
-                  <Search className="w-6 h-6" />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900">No matching business tools found</h3>
-                <p className="text-sm text-slate-500 max-w-md mx-auto">
-                  {searchQuery ? `We could not find any tools matching "${searchQuery}".` : 'No tools found in this category.'} Try a different keyword or reset your filters.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSearchQuery('');
-                    setSelectedCategory('all');
-                  }}
-                  className="px-5 py-2.5 bg-slate-900 hover:bg-red-600 text-white rounded-xl text-xs font-bold transition-all cursor-pointer shadow-xs inline-flex items-center gap-2"
-                >
-                  <span>Reset Filters &amp; Show All {categoryCounts.all} Tools</span>
-                </button>
+          {/* 3. Tools Grid with Framer Motion Staggered Animation */}
+          {filteredTools.length === 0 ? (
+            <div className="col-span-full py-16 px-4 text-center bg-white rounded-3xl border border-slate-200 shadow-xs space-y-4">
+              <div className="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center mx-auto text-slate-400">
+                <Search className="w-6 h-6" />
               </div>
-            ) : (
-              filteredTools.map((tool) => {
-              return (
-                <div
+              <h3 className="text-lg font-bold text-slate-900">No matching business tools found</h3>
+              <p className="text-sm text-slate-500 max-w-md mx-auto">
+                {searchQuery ? `We could not find any tools matching "${searchQuery}".` : 'No tools found in this category.'} Try a different keyword or reset your filters.
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  setSearchQuery('');
+                  setSelectedCategory('all');
+                }}
+                className="px-5 py-2.5 bg-slate-900 hover:bg-red-600 text-white rounded-xl text-xs font-bold transition-all cursor-pointer shadow-xs inline-flex items-center gap-2"
+              >
+                <span>Reset Filters &amp; Show All {categoryCounts.all} Tools</span>
+              </button>
+            </div>
+          ) : (
+            <motion.div
+              key={`${selectedCategory}-${searchQuery}`}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              variants={toolsGridVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              {filteredTools.map((tool) => (
+                <motion.div
                   key={tool.id}
+                  variants={toolCardVariants}
+                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
                   className={`bg-white rounded-2xl border transition-all duration-200 shadow-xs hover:shadow-md flex flex-col justify-between group overflow-hidden ${tool.accentColor}`}
                 >
                   <div className="p-5 sm:p-6 space-y-4">
@@ -965,10 +1001,10 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                     </button>
                   </div>
-                </div>
-              );
-            }))}
-          </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
 
           {/* Privacy & Standard Assurance */}
           <div className="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 border border-slate-800 space-y-4">

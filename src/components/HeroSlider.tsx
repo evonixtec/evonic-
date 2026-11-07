@@ -20,12 +20,14 @@ interface HeroSliderProps {
   onOpenQuote: (servicePrefill?: string) => void;
   onNavigate: (section: SectionId) => void;
   onOpenSearch?: () => void;
+  transparentBg?: boolean;
 }
 
 export const HeroSlider: React.FC<HeroSliderProps> = ({
   onOpenQuote,
   onNavigate,
   onOpenSearch,
+  transparentBg = false,
 }) => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -121,7 +123,9 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
   return (
     <section
       id="hero-slider-section"
-      className="relative min-h-[92vh] flex items-center pt-24 sm:pt-28 pb-16 overflow-hidden bg-slate-950 select-none"
+      className={`relative min-h-[92vh] flex items-center pt-24 sm:pt-28 pb-16 overflow-hidden select-none ${
+        transparentBg ? 'bg-transparent' : 'bg-slate-950'
+      }`}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
@@ -135,7 +139,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
           <div
             key={slide.id}
             className={`absolute inset-0 transition-opacity duration-1000 ease-in-out pointer-events-none ${
-              isActive ? 'opacity-100 z-0' : 'opacity-0 -z-10'
+              isActive ? (transparentBg ? 'opacity-70 z-0' : 'opacity-100 z-0') : 'opacity-0 -z-10'
             }`}
           >
             {/* Slide Image */}
