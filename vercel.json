@@ -45,6 +45,26 @@
       "permanent": true
     },
     {
+      "source": "/guidelines",
+      "destination": "/guides",
+      "permanent": true
+    },
+    {
+      "source": "/locations/paris-road",
+      "destination": "/locations/sialkot/pos-hardware",
+      "permanent": true
+    },
+    {
+      "source": "/locations/khadim-ali-road",
+      "destination": "/locations/sialkot/pos-hardware",
+      "permanent": true
+    },
+    {
+      "source": "/blog/structuring-entity-schema-node-mapping-generative-ai-visibility",
+      "destination": "/guides",
+      "permanent": true
+    },
+    {
       "source": "/pos-software-sialkot",
       "destination": "/services/software-pos",
       "permanent": true
