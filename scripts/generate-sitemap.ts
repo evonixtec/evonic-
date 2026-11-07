@@ -2,14 +2,15 @@ import fs from 'fs';
 import path from 'path';
 import { B2B_BLOGS, HARDWARE_STORE_BLOGS } from '../src/data/blogs';
 import { LOCAL_CITIES } from '../src/data/localClusters';
+import { toolsRegistry } from '../src/data/toolsRegistry';
 
 const DOMAIN_MAIN = 'https://www.evonixtec.com';
 const DOMAIN_TOOLS = 'https://tools.evonixtec.com';
 const DOMAIN_STORE = 'https://store.evonixtec.com';
 
 // Current standardized UTC ISO timestamp for search engines
-const CURRENT_TIMESTAMP = '2026-10-30T09:20:00+00:00';
-const TODAY = '2026-10-30';
+const CURRENT_TIMESTAMP = new Date().toISOString();
+const TODAY = CURRENT_TIMESTAMP.split('T')[0];
 
 function buildSitemapXml(urls: { loc: string; lastmod?: string; changefreq: string; priority: string }[]): string {
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -32,14 +33,12 @@ ${urls
 }
 
 // ==========================================
-// 1. SITEMAP 1: www.evonixtec.com (Main Enterprise B2B Agency)
-// Strictly NO hardware, repair, shop, or doorstep support URLs.
+// 1. SITEMAP 1: www.evonixtec.com (Main Enterprise B2B Agency & Canonical Tools)
+// 100% 200-OK canonical URLs. Strictly NO 301 redirect URLs.
 // ==========================================
 const mainCoreRoutes = [
   { loc: `${DOMAIN_MAIN}/`, changefreq: 'daily', priority: '1.0', lastmod: CURRENT_TIMESTAMP },
-  { loc: `${DOMAIN_MAIN}/installation-guide`, changefreq: 'weekly', priority: '0.85', lastmod: CURRENT_TIMESTAMP },
-  { loc: `${DOMAIN_MAIN}/schema-generator`, changefreq: 'weekly', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
-  { loc: `${DOMAIN_MAIN}/hs-code-lookup`, changefreq: 'weekly', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
+  { loc: `${DOMAIN_MAIN}/tools`, changefreq: 'daily', priority: '1.0', lastmod: CURRENT_TIMESTAMP },
   { loc: `${DOMAIN_MAIN}/services`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
   { loc: `${DOMAIN_MAIN}/services/web-development`, changefreq: 'weekly', priority: '0.90', lastmod: CURRENT_TIMESTAMP },
   { loc: `${DOMAIN_MAIN}/services/software-pos`, changefreq: 'weekly', priority: '0.90', lastmod: CURRENT_TIMESTAMP },
@@ -53,23 +52,19 @@ const mainCoreRoutes = [
   { loc: `${DOMAIN_MAIN}/contact`, changefreq: 'daily', priority: '0.90', lastmod: CURRENT_TIMESTAMP },
   { loc: `${DOMAIN_MAIN}/locations`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
   { loc: `${DOMAIN_MAIN}/locations/sialkot/pos-hardware`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
-  { loc: `${DOMAIN_MAIN}/sialkot-it-services`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
-  { loc: `${DOMAIN_MAIN}/pos-software-sialkot`, changefreq: 'weekly', priority: '0.90', lastmod: CURRENT_TIMESTAMP },
-  { loc: `${DOMAIN_MAIN}/export-barcode-studio`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
-  { loc: `${DOMAIN_MAIN}/stripe-fee-calculator`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
-  { loc: `${DOMAIN_MAIN}/shopify-fee-calculator`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
-  { loc: `${DOMAIN_MAIN}/cbm-calculator`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
-  { loc: `${DOMAIN_MAIN}/etsy-fee-calculator`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
-  { loc: `${DOMAIN_MAIN}/tools/micro-invoice-generator`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
-  { loc: `${DOMAIN_MAIN}/services/doorstep-support`, changefreq: 'weekly', priority: '0.90', lastmod: CURRENT_TIMESTAMP },
-  { loc: `${DOMAIN_MAIN}/shop/laptops`, changefreq: 'weekly', priority: '0.85', lastmod: CURRENT_TIMESTAMP },
-  { loc: `${DOMAIN_MAIN}/shop/printers`, changefreq: 'weekly', priority: '0.85', lastmod: CURRENT_TIMESTAMP },
-  { loc: `${DOMAIN_MAIN}/shop/pos-terminals`, changefreq: 'weekly', priority: '0.85', lastmod: CURRENT_TIMESTAMP },
+  { loc: `${DOMAIN_MAIN}/installation-guide`, changefreq: 'weekly', priority: '0.85', lastmod: CURRENT_TIMESTAMP },
+  // All canonical 24+ tools from central tools registry under /tools/[slug]
+  ...Object.values(toolsRegistry).map((tool) => ({
+    loc: `${DOMAIN_MAIN}/tools/${tool.slug}`,
+    changefreq: 'daily',
+    priority: '0.95',
+    lastmod: CURRENT_TIMESTAMP,
+  })),
 ];
 
 const citySlugs = Object.keys(LOCAL_CITIES) as (keyof typeof LOCAL_CITIES)[];
-// Full location services including regional hubs, IT consultancy, POS, and diagnostics
-const enterpriseLocationServices = ['it-consultancy', 'web-development', 'pos-systems', 'hardware-maintenance', 'laptop-repair'];
+// Agency 200-OK location services only (hardware repair routes live on store.evonixtec.com)
+const enterpriseLocationServices = ['it-consultancy', 'web-development', 'pos-systems'];
 
 const mainLocationRoutes: { loc: string; changefreq: string; priority: string; lastmod: string }[] = [];
 

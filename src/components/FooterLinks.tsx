@@ -6,32 +6,32 @@ export default function FooterLinks() {
   const locationLinks = [
     { name: "Sialkot POS Hardware Depot", path: "/locations/sialkot/pos-hardware" },
     { name: "Daska IT Support Node", path: "/locations/daska" },
-    { name: "Daska Industrial Hardware", path: "/locations/daska/hardware-maintenance" },
+    { name: "Daska Industrial Hardware", path: "https://store.evonixtec.com/hardware-repair" },
     { name: "Daska POS & Inventory", path: "/locations/daska/pos-systems" },
-    { name: "Sambrial Laptop Repair", path: "/locations/sambrial/laptop-repair" },
+    { name: "Sambrial Laptop Repair", path: "https://store.evonixtec.com/laptop-repairing-sialkot" },
     { name: "Sambrial Export Zone", path: "/locations/sambrial" },
     { name: "Sambrial IT Consultancy", path: "/locations/sambrial/it-consultancy" },
     { name: "Wazirabad Tech Hub", path: "/locations/wazirabad" },
     { name: "Wazirabad Web Portals", path: "/locations/wazirabad/web-development" },
-    { name: "Wazirabad Hardware Care", path: "/locations/wazirabad/hardware-maintenance" },
+    { name: "Wazirabad Hardware Care", path: "https://store.evonixtec.com/hardware-repair" },
     { name: "Wazirabad POS Solutions", path: "/locations/wazirabad/pos-systems" },
   ];
 
-  // International Premium High-CPC Finance Calculators Web Tools
+  // International Premium High-CPC Finance Calculators Web Tools (Canonical Paths)
   const toolLinks = [
-    { name: "eBay Fee & Profit Builder", path: "/ebay-fee-calculator" },
-    { name: "TikTok Shop Fee Calculator", path: "/tiktok-shop-fee-calculator" },
-    { name: "Amazon FBA Fee Calculator", path: "/amazon-fba-calculator" },
-    { name: "Shopify Fee Calculator", path: "/shopify-fee-calculator" },
-    { name: "Stripe Processing Fee Calculator", path: "/stripe-fee-calculator" },
-    { name: "Temu Seller Fee Calculator", path: "/temu-seller-calculator" },
+    { name: "eBay Fee & Profit Builder", path: "/tools/ebay-fee-calculator" },
+    { name: "TikTok Shop Fee Calculator", path: "/tools/tiktok-shop-fee-calculator" },
+    { name: "Amazon FBA Fee Calculator", path: "/tools/amazon-fba-calculator" },
+    { name: "Shopify Fee Calculator", path: "/tools/shopify-fee-calculator" },
+    { name: "Stripe Processing Fee Calculator", path: "/tools/stripe-fee-calculator" },
+    { name: "Temu Seller Fee Calculator", path: "/tools/temu-seller-calculator" },
     { name: "Sialkot Export ERP Suite", path: "/sialkot-export-erp" },
-    { name: "Trend Intelligence Suite", path: "/trend-intelligence-suite" },
-    { name: "Global Invoice Generator", path: "/invoice" },
-    { name: "E-Commerce Margin Calculator", path: "/ecommerce-calculator" },
-    { name: "B2B Packing CBM Engine", path: "/cbm-calculator" },
-    { name: "Developer Sourcing Calculator", path: "/hire-dedicated-developer-cost-calculator" },
-    { name: "Website AI Visibility Checker", path: "/ai-visibility-checker" },
+    { name: "Trend Intelligence Suite", path: "/tools/trend-intelligence-suite" },
+    { name: "Global Invoice Generator", path: "/tools/invoice-generator" },
+    { name: "E-Commerce Margin Calculator", path: "/tools/ecommerce-margin-calculator" },
+    { name: "B2B Packing CBM Engine", path: "/tools/export-cbm-calculator" },
+    { name: "Developer Sourcing Calculator", path: "/tools/developer-cost-calculator" },
+    { name: "Website AI Visibility Checker", path: "/tools/ai-visibility-checker" },
     { name: "Desktop Software Setup Guide", path: "/installation-guide" },
   ];
 
