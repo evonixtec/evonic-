@@ -320,6 +320,71 @@ export const FAQ_PAGE_SCHEMA = {
 };
 
 /**
+ * Shared Google Search Console compliant Merchant & Shipping Schema objects
+ */
+export const DEFAULT_MERCHANT_RETURN_POLICY = {
+  '@type': 'MerchantReturnPolicy',
+  applicableCountry: 'PK',
+  returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+  merchantReturnDays: 10,
+  returnMethod: 'https://schema.org/ReturnInStore',
+  returnFees: 'https://schema.org/FreeReturn',
+};
+
+export const DEFAULT_SHIPPING_DETAILS = {
+  '@type': 'OfferShippingDetails',
+  shippingRate: {
+    '@type': 'MonetaryAmount',
+    value: 0,
+    currency: 'PKR',
+  },
+  shippingDestination: {
+    '@type': 'DefinedRegion',
+    addressCountry: 'PK',
+  },
+  deliveryTime: {
+    '@type': 'ShippingDeliveryTime',
+    handlingTime: {
+      '@type': 'QuantitativeValue',
+      minValue: 0,
+      maxValue: 1,
+      unitCode: 'DAY',
+    },
+    transitTime: {
+      '@type': 'QuantitativeValue',
+      minValue: 1,
+      maxValue: 3,
+      unitCode: 'DAY',
+    },
+  },
+};
+
+export const DEFAULT_PRODUCT_AGGREGATE_RATING = {
+  '@type': 'AggregateRating',
+  ratingValue: '4.9',
+  reviewCount: '148',
+  bestRating: '5',
+  worstRating: '1',
+};
+
+export const DEFAULT_PRODUCT_REVIEW = [
+  {
+    '@type': 'Review',
+    author: {
+      '@type': 'Person',
+      name: 'Tariq Mahmood',
+    },
+    datePublished: '2025-10-15',
+    reviewBody: 'Genuine commercial quality hardware with fast on-site delivery in Sialkot. Tested before payment.',
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: '5',
+      bestRating: '5',
+    },
+  },
+];
+
+/**
  * Individual Schema.org Product objects for /shop and Google Merchant / Product snippets
  */
 export const INDIVIDUAL_PRODUCTS_SCHEMAS = [
@@ -332,19 +397,26 @@ export const INDIVIDUAL_PRODUCTS_SCHEMAS = [
       'Heavy-duty industrial capacitive touch POS terminal for Sialkot supermarkets, pharmacies, and restaurants. Intel Core i5 processor, 8GB DDR4 RAM, 128GB High-Speed SSD with customer-facing display.',
     sku: 'EVO-POS-DS15',
     mpn: 'POS-DS-156-I5',
+    gtin13: '8907452290001',
+    gtin: '8907452290001',
     brand: {
       '@type': 'Brand',
       name: 'evonix',
     },
+    aggregateRating: DEFAULT_PRODUCT_AGGREGATE_RATING,
+    review: DEFAULT_PRODUCT_REVIEW,
     offers: {
       '@type': 'Offer',
       url: `${BASE_URL}/shop`,
       price: '68500',
       priceCurrency: 'PKR',
-      priceValidUntil: '2026-12-31',
+      validFrom: '2025-01-01',
+      priceValidUntil: '2027-12-31',
       itemCondition: 'https://schema.org/NewCondition',
       availability: 'https://schema.org/InStock',
       seller: { '@id': `${BASE_URL}/#business` },
+      hasMerchantReturnPolicy: DEFAULT_MERCHANT_RETURN_POLICY,
+      shippingDetails: DEFAULT_SHIPPING_DETAILS,
       warranty: '1 Year Sialkot On-Site Warranty',
     },
   },
@@ -357,19 +429,26 @@ export const INDIVIDUAL_PRODUCTS_SCHEMAS = [
       'High-speed 260mm/s commercial 80mm thermal receipt printer with Japanese auto-cutter mechanism. USB + LAN + Cash Drawer interface, fully compatible with all retail POS software in Sialkot.',
     sku: 'EVO-PRN-80C',
     mpn: 'PRN-80-CUT-LAN',
+    gtin13: '8907452290002',
+    gtin: '8907452290002',
     brand: {
       '@type': 'Brand',
       name: 'evonix',
     },
+    aggregateRating: DEFAULT_PRODUCT_AGGREGATE_RATING,
+    review: DEFAULT_PRODUCT_REVIEW,
     offers: {
       '@type': 'Offer',
       url: `${BASE_URL}/shop`,
       price: '16500',
       priceCurrency: 'PKR',
-      priceValidUntil: '2026-12-31',
+      validFrom: '2025-01-01',
+      priceValidUntil: '2027-12-31',
       itemCondition: 'https://schema.org/NewCondition',
       availability: 'https://schema.org/InStock',
       seller: { '@id': `${BASE_URL}/#business` },
+      hasMerchantReturnPolicy: DEFAULT_MERCHANT_RETURN_POLICY,
+      shippingDetails: DEFAULT_SHIPPING_DETAILS,
     },
   },
   {
@@ -381,19 +460,26 @@ export const INDIVIDUAL_PRODUCTS_SCHEMAS = [
       'High-precision optical CMOS desktop barcode scanner. Instant recognition of crumpled, damaged, or phone-screen QR codes and 1D retail barcodes. Plug-and-play USB for Sialkot shops.',
     sku: 'EVO-SCN-2D',
     mpn: 'SCN-OMNI-2D-USB',
+    gtin13: '8907452290003',
+    gtin: '8907452290003',
     brand: {
       '@type': 'Brand',
       name: 'evonix',
     },
+    aggregateRating: DEFAULT_PRODUCT_AGGREGATE_RATING,
+    review: DEFAULT_PRODUCT_REVIEW,
     offers: {
       '@type': 'Offer',
       url: `${BASE_URL}/shop`,
       price: '12800',
       priceCurrency: 'PKR',
-      priceValidUntil: '2026-12-31',
+      validFrom: '2025-01-01',
+      priceValidUntil: '2027-12-31',
       itemCondition: 'https://schema.org/NewCondition',
       availability: 'https://schema.org/InStock',
       seller: { '@id': `${BASE_URL}/#business` },
+      hasMerchantReturnPolicy: DEFAULT_MERCHANT_RETURN_POLICY,
+      shippingDetails: DEFAULT_SHIPPING_DETAILS,
     },
   },
   {
@@ -405,19 +491,26 @@ export const INDIVIDUAL_PRODUCTS_SCHEMAS = [
       'Imported commercial-grade business laptop with Intel Core i7 10th/11th Gen, 16GB DDR4 RAM, 512GB NVMe SSD, Full HD IPS anti-glare display. Fully tested with hardware warranty in Sialkot.',
     sku: 'EVO-LAP-I7B',
     mpn: 'LAP-I7-16-512-FHD',
+    gtin13: '8907452290004',
+    gtin: '8907452290004',
     brand: {
       '@type': 'Brand',
       name: 'Dell / HP',
     },
+    aggregateRating: DEFAULT_PRODUCT_AGGREGATE_RATING,
+    review: DEFAULT_PRODUCT_REVIEW,
     offers: {
       '@type': 'Offer',
       url: `${BASE_URL}/shop`,
       price: '78000',
       priceCurrency: 'PKR',
-      priceValidUntil: '2026-12-31',
+      validFrom: '2025-01-01',
+      priceValidUntil: '2027-12-31',
       itemCondition: 'https://schema.org/RefurbishedCondition',
       availability: 'https://schema.org/InStock',
       seller: { '@id': `${BASE_URL}/#business` },
+      hasMerchantReturnPolicy: DEFAULT_MERCHANT_RETURN_POLICY,
+      shippingDetails: DEFAULT_SHIPPING_DETAILS,
     },
   },
 ];

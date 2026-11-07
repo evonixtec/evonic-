@@ -383,7 +383,7 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ policyType, onClose })
                 </div>
                 <div className="flex items-center gap-2">
                   <Phone className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                  <span>Legal Helpline: <strong>+92 300 7100062</strong></span>
+                  <span>Legal Helpline: <strong>+92 326 324 4002</strong></span>
                 </div>
               </div>
 

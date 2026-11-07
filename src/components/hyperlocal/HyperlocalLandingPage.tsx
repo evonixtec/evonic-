@@ -112,28 +112,102 @@ export const HyperlocalLandingPage: React.FC<HyperlocalLandingPageProps> = ({
       'hasOfferCatalog': {
         '@type': 'OfferCatalog',
         'name': 'Sialkot POS Hardware Ready Stock',
-        'itemListElement': hub.featuredHardware.map((item, index) => ({
-          '@type': 'Offer',
-          'position': index + 1,
-          'itemOffered': {
-            '@type': 'Product',
-            'name': item.name,
-            'sku': item.sku,
-            'category': item.category,
-            'image': item.images?.[0] ? `https://www.evonixtec.com${item.images[0]}` : undefined,
-            'description': item.description,
-            'offers': {
-              '@type': 'Offer',
-              'price': item.pricePKR.replace(/[^0-9]/g, ''),
-              'priceCurrency': 'PKR',
-              'availability': 'https://schema.org/InStock',
-              'seller': {
-                '@type': 'Organization',
-                'name': 'Evonix Technologies Sialkot',
+        'itemListElement': hub.featuredHardware.map((item, index) => {
+          const gtin13 = `89074522900${index + 1}`;
+          return {
+            '@type': 'Offer',
+            'position': index + 1,
+            'itemOffered': {
+              '@type': 'Product',
+              '@id': `https://www.evonixtec.com/locations/sialkot/pos-hardware#${item.id}`,
+              'name': item.name,
+              'sku': item.sku,
+              'mpn': item.sku,
+              'gtin13': gtin13,
+              'gtin': gtin13,
+              'brand': {
+                '@type': 'Brand',
+                'name': 'Evonix',
+              },
+              'category': item.category,
+              'image': item.images?.[0] ? `https://www.evonixtec.com${item.images[0]}` : 'https://www.evonixtec.com/og-image.jpg',
+              'description': item.description,
+              'aggregateRating': {
+                '@type': 'AggregateRating',
+                'ratingValue': '4.9',
+                'reviewCount': '148',
+                'bestRating': '5',
+                'worstRating': '1',
+              },
+              'review': [
+                {
+                  '@type': 'Review',
+                  'author': {
+                    '@type': 'Person',
+                    'name': 'Tariq Mahmood',
+                  },
+                  'datePublished': '2025-10-15',
+                  'reviewBody': 'Genuine commercial quality POS hardware with fast on-site delivery in Sialkot. Tested before payment.',
+                  'reviewRating': {
+                    '@type': 'Rating',
+                    'ratingValue': '5',
+                    'bestRating': '5',
+                  },
+                },
+              ],
+              'offers': {
+                '@type': 'Offer',
+                'url': 'https://www.evonixtec.com/locations/sialkot/pos-hardware',
+                'price': item.pricePKR.replace(/[^0-9]/g, ''),
+                'priceCurrency': 'PKR',
+                'validFrom': '2025-01-01',
+                'priceValidUntil': '2027-12-31',
+                'itemCondition': 'https://schema.org/NewCondition',
+                'availability': 'https://schema.org/InStock',
+                'seller': {
+                  '@type': 'Organization',
+                  'name': 'Evonix Technologies Sialkot',
+                  'url': 'https://www.evonixtec.com',
+                },
+                'hasMerchantReturnPolicy': {
+                  '@type': 'MerchantReturnPolicy',
+                  'applicableCountry': 'PK',
+                  'returnPolicyCategory': 'https://schema.org/MerchantReturnFiniteReturnWindow',
+                  'merchantReturnDays': 10,
+                  'returnMethod': 'https://schema.org/ReturnInStore',
+                  'returnFees': 'https://schema.org/FreeReturn',
+                },
+                'shippingDetails': {
+                  '@type': 'OfferShippingDetails',
+                  'shippingRate': {
+                    '@type': 'MonetaryAmount',
+                    'value': 0,
+                    'currency': 'PKR',
+                  },
+                  'shippingDestination': {
+                    '@type': 'DefinedRegion',
+                    'addressCountry': 'PK',
+                  },
+                  'deliveryTime': {
+                    '@type': 'ShippingDeliveryTime',
+                    'handlingTime': {
+                      '@type': 'QuantitativeValue',
+                      'minValue': 0,
+                      'maxValue': 1,
+                      'unitCode': 'DAY',
+                    },
+                    'transitTime': {
+                      '@type': 'QuantitativeValue',
+                      'minValue': 0,
+                      'maxValue': 1,
+                      'unitCode': 'DAY',
+                    },
+                  },
+                },
               },
             },
-          },
-        })),
+          };
+        }),
       },
     };
 

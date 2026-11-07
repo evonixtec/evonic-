@@ -88,7 +88,7 @@ export const LOCAL_CITIES: Record<LocalCity['slug'], LocalCity> = {
       'Frequent industrial feeder voltage fluctuations and generator transfer phase-shifts that disrupt factory CNC servers, blow PC power supplies, and cause CAD/CAM workstation blue-screens.',
     localSolutionNote:
       'evonix deploys industrial online double-conversion UPS line conditioners, surge-arrestor network switches, and rapid on-site motherboard technicians reachable in under 45 minutes.',
-    phoneContact: '+92 316 7637844',
+    phoneContact: '+92 326 324 4002',
     verifiedClients: [
       {
         name: 'Al-Raziq Surgical Forging Daska',
@@ -137,7 +137,7 @@ export const LOCAL_CITIES: Record<LocalCity['slug'], LocalCity> = {
       'Strict zero-downtime WeBOC customs clearing deadlines. Thermal shipping barcode printers, cargo scales, and customs gateway servers cannot afford even 30 minutes of outage during flight cut-offs.',
     localSolutionNote:
       'evonix provides high-priority 25-minute field engineer response for Sambrial clearing agents, redundant thermal head spares, and automated WeBOC data mirror setups.',
-    phoneContact: '+92 316 7637844',
+    phoneContact: '+92 326 324 4002',
     verifiedClients: [
       {
         name: 'Sambrial Global Freight Logistics',
@@ -186,7 +186,7 @@ export const LOCAL_CITIES: Record<LocalCity['slug'], LocalCity> = {
       'Fine conductive metal grinding and polishing dust floating in workshops, settling on computer fans and motherboard heatsinks, causing sudden thermal shutdowns and motherboard short circuits.',
     localSolutionNote:
       'evonix engineers install sealed positive-pressure dust filters, chemical conformal coatings on motherboards, and reliable offline POS billing for bustling GT Road showrooms.',
-    phoneContact: '+92 316 7637844',
+    phoneContact: '+92 326 324 4002',
     verifiedClients: [
       {
         name: 'Imperial Cutlery Works Wazirabad',

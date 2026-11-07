@@ -86,7 +86,7 @@ export const PRIVACY_POLICY: PolicySection = {
         'Under GDPR, CCPA/CPRA, and Google Play Store User Data policies, you hold full legal rights regarding your information:',
         'Right to Access & Portability: You may request a copy of all correspondence and service history connected to your business.',
         'Right to Erasure (Data Deletion): You have the unconditional right to request the permanent deletion of your customer records, quotes, and repair tickets.',
-        'How to Request Deletion: Email evonixtec@gmail.com with subject "Data Deletion Request" or submit your request via WhatsApp at +92 300 7100062. All records will be permanently purged from active systems within 30 days.'
+        'How to Request Deletion: Email evonixtec@gmail.com with subject "Data Deletion Request" or submit your request via WhatsApp at +92 326 324 4002. All records will be permanently purged from active systems within 30 days.'
       ]
     },
     {
@@ -106,7 +106,7 @@ export const PRIVACY_POLICY: PolicySection = {
         'Company Name: Evonix Technologies (SMC-Private Limited)',
         'SECP Registration: Corporate Universal Registration System, Government of Pakistan',
         'Physical Headquarters: Kotli Behram, Defense Road / Airport Road link, Sialkot 51310, Punjab, Pakistan',
-        'Direct Email: evonixtec@gmail.com | Phone / WhatsApp: +92 300 7100062'
+        'Direct Email: evonixtec@gmail.com | Phone / WhatsApp: +92 326 324 4002'
       ]
     }
   ]
@@ -229,7 +229,7 @@ export const REFUND_POLICY: PolicySection = {
       content: [
         'To submit a refund or warranty claim, contact our billing desk directly:',
         'Email: evonixtec@gmail.com with subject "Refund / Warranty Claim"',
-        'WhatsApp Support: +92 300 7100062 with your Invoice / RMA number or Google Play GPA ID.',
+        'WhatsApp Support: +92 326 324 4002 with your Invoice / RMA number or Google Play GPA ID.',
         'Resolution SLA: All requests are acknowledged within 4 business hours and resolved within 3 to 7 business days via original payment method (Google Play, Bank Transfer, JazzCash/EasyPaisa, or Wire).'
       ]
     }

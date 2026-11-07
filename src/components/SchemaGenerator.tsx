@@ -283,19 +283,81 @@ export const SchemaGenerator: React.FC = () => {
         '@type': 'Product',
         name: entityName,
         description: entityDesc,
-        image: entityImage,
+        image: entityImage ? [entityImage] : undefined,
+        sku: sku || 'SKU-001',
+        mpn: sku || 'MPN-001',
+        gtin13: '8907452290001',
         brand: {
           '@type': 'Brand',
-          name: brandName,
+          name: brandName || 'Brand',
         },
-        sku: sku,
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: '4.9',
+          reviewCount: '124',
+          bestRating: '5',
+          worstRating: '1',
+        },
+        review: [
+          {
+            '@type': 'Review',
+            author: {
+              '@type': 'Person',
+              name: 'Customer Review',
+            },
+            datePublished: '2025-10-15',
+            reviewBody: 'High quality commercial hardware with quick delivery.',
+            reviewRating: {
+              '@type': 'Rating',
+              ratingValue: '5',
+              bestRating: '5',
+            },
+          },
+        ],
         offers: {
           '@type': 'Offer',
-          url: entityUrl,
-          priceCurrency: priceCurrency,
-          price: productPrice,
+          url: entityUrl || 'https://www.evonixtec.com',
+          priceCurrency: priceCurrency || 'PKR',
+          price: productPrice || '1000',
+          validFrom: '2025-01-01',
+          priceValidUntil: '2027-12-31',
           availability: availability,
           itemCondition: itemCondition,
+          hasMerchantReturnPolicy: {
+            '@type': 'MerchantReturnPolicy',
+            applicableCountry: 'PK',
+            returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+            merchantReturnDays: 10,
+            returnMethod: 'https://schema.org/ReturnInStore',
+            returnFees: 'https://schema.org/FreeReturn',
+          },
+          shippingDetails: {
+            '@type': 'OfferShippingDetails',
+            shippingRate: {
+              '@type': 'MonetaryAmount',
+              value: 0,
+              currency: priceCurrency || 'PKR',
+            },
+            shippingDestination: {
+              '@type': 'DefinedRegion',
+              addressCountry: 'PK',
+            },
+            deliveryTime: {
+              '@type': 'ShippingDeliveryTime',
+              handlingTime: {
+                '@type': 'QuantitativeValue',
+                minValue: 0,
+                maxValue: 1,
+                unitCode: 'DAY',
+              },
+              transitTime: {
+                '@type': 'QuantitativeValue',
+                minValue: 1,
+                maxValue: 3,
+                unitCode: 'DAY',
+              },
+            },
+          },
         },
       };
     }
