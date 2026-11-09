@@ -25,6 +25,8 @@ export interface ToolMetadata {
     formula: string;
     rates: string[];
   };
+  ogTitle?: string;
+  ogDescription?: string;
 }
 
 export const toolsRegistry: Record<string, ToolMetadata> = {
@@ -364,8 +366,10 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     slug: 'amazon-fba-calculator',
     name: 'Amazon FBA Fee & Profit Calculator',
     h1: 'Amazon FBA Fulfillment & Referral Fee Calculator',
-    metaTitle: 'Amazon FBA Fee & Profit Calculator 2026 | evonix',
-    metaDescription: 'Calculate category referral fees, FBA fulfillment tiers, fuel surcharges, peak storage fees, and net profit margins.',
+    metaTitle: 'Free Amazon FBA Calculator (Updated 2026) - Instant Profit & Fee Estimator',
+    metaDescription: 'Calculate accurate Amazon FBA fulfillment fees, referral rates, storage costs, and net profit margins instantly. 100% free tool for Amazon sellers.',
+    ogTitle: 'Free Amazon FBA Calculator (2026) | Instant Profit Estimator',
+    ogDescription: 'Model Amazon US/UK/UAE FBA fees and calculate net profit margins accurately.',
     category: 'Finance & Tax',
     targetAudience: 'Amazon FBA sellers, wholesale brand owners, and exporters.',
     hardwareCta: {
@@ -451,8 +455,10 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     slug: 'stripe-fee-calculator',
     name: 'Stripe Fee & Payout Calculator',
     h1: 'Stripe Credit Card Processing & Payout Calculator',
-    metaTitle: 'Stripe Fee Calculator | Transaction & Payout Tool',
-    metaDescription: 'Model domestic and international Stripe credit card processing fees with forward and reverse payout calculation logic.',
+    metaTitle: 'Free Stripe Fee Calculator (2026 Rates) - Domestic & International Payouts',
+    metaDescription: 'Instant Stripe processing fee calculator. Accurately calculate standard 2.9% + $0.30 rates, international card fees, and reverse payout deductions.',
+    ogTitle: 'Free Stripe Fee Calculator (2026) | Real-Time Fee Breakdown',
+    ogDescription: 'Calculate domestic and international Stripe credit card transaction fees instantly.',
     category: 'Finance & Tax',
     targetAudience: 'SaaS founders, freelancers, and global e-commerce merchants.',
     hardwareCta: {

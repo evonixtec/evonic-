@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { toolsRegistry, ToolMetadata, resolveToolSlug } from '../../data/toolsRegistry';
 import { CheckCircle2, ArrowRight, ShieldCheck, HelpCircle, ArrowLeft, Grid } from 'lucide-react';
 import { NavPageId } from '../../types';
+import { EcommerceHardwareBanner } from '../EcommerceHardwareBanner';
 
 // Lazy-loaded or passed-in tool widgets
 interface ToolDynamicPageProps {
@@ -54,11 +55,14 @@ export const ToolDynamicPage: React.FC<ToolDynamicPageProps> = ({
       el.setAttribute('content', content);
     };
 
-    updateOrCreateMeta('property', 'og:title', tool.metaTitle);
-    updateOrCreateMeta('property', 'og:description', tool.metaDescription);
+    const resolvedOgTitle = tool.ogTitle || tool.metaTitle;
+    const resolvedOgDesc = tool.ogDescription || tool.metaDescription;
+
+    updateOrCreateMeta('property', 'og:title', resolvedOgTitle);
+    updateOrCreateMeta('property', 'og:description', resolvedOgDesc);
     updateOrCreateMeta('property', 'og:url', canonicalUrl);
-    updateOrCreateMeta('name', 'twitter:title', tool.metaTitle);
-    updateOrCreateMeta('name', 'twitter:description', tool.metaDescription);
+    updateOrCreateMeta('name', 'twitter:title', resolvedOgTitle);
+    updateOrCreateMeta('name', 'twitter:description', resolvedOgDesc);
 
     // 5. Inject Programmatic JSON-LD Schema (SoftwareApplication & FAQPage)
     const scriptId = 'tool-dynamic-schema';
@@ -203,31 +207,35 @@ export const ToolDynamicPage: React.FC<ToolDynamicPageProps> = ({
           {children}
         </section>
 
-        {/* HARDWARE REVENUE / STORE CTA BANNER */}
-        {tool.hardwareCta && (
-          <section className="bg-gradient-to-r from-blue-950/80 via-slate-900 to-slate-900 border border-blue-500/40 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
-            <div className="space-y-1.5 text-left">
-              <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-blue-400">
-                <ShieldCheck className="w-3.5 h-3.5" />
-                <span>store.evonixtec.com • Verified Hardware</span>
+        {/* E-COMMERCE HARDWARE FUNNEL BANNER (Stripe, Amazon FBA, eBay, Temu) */}
+        {['stripe-fee-calculator', 'amazon-fba-calculator', 'ebay-fee-calculator', 'temu-seller-calculator'].includes(tool.slug) ? (
+          <EcommerceHardwareBanner />
+        ) : (
+          tool.hardwareCta && (
+            <section className="bg-gradient-to-r from-blue-950/80 via-slate-900 to-slate-900 border border-blue-500/40 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+              <div className="space-y-1.5 text-left">
+                <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-blue-400">
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  <span>store.evonixtec.com • Verified Hardware</span>
+                </div>
+                <h2 className="text-lg sm:text-xl font-bold text-white">
+                  {tool.hardwareCta.headline}
+                </h2>
+                <p className="text-slate-300 text-xs sm:text-sm max-w-xl leading-relaxed">
+                  {tool.hardwareCta.subtext}
+                </p>
               </div>
-              <h2 className="text-lg sm:text-xl font-bold text-white">
-                {tool.hardwareCta.headline}
-              </h2>
-              <p className="text-slate-300 text-xs sm:text-sm max-w-xl leading-relaxed">
-                {tool.hardwareCta.subtext}
-              </p>
-            </div>
-            <a
-              href={tool.hardwareCta.targetUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="shrink-0 inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-semibold px-5 py-3 rounded-xl transition-all shadow-lg shadow-blue-600/30 cursor-pointer whitespace-nowrap"
-            >
-              <span>{tool.hardwareCta.buttonText}</span>
-              <ArrowRight className="w-4 h-4" />
-            </a>
-          </section>
+              <a
+                href={tool.hardwareCta.targetUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-semibold px-5 py-3 rounded-xl transition-all shadow-lg shadow-blue-600/30 cursor-pointer whitespace-nowrap"
+              >
+                <span>{tool.hardwareCta.buttonText}</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </section>
+          )
         )}
 
         {/* EDITORIAL HOW THIS CALCULATOR WORKS (EDITORIAL SEO CONTENT) */}

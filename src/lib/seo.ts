@@ -1143,13 +1143,13 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ],
   },
   'amazon-fba-calculator': {
-    title: 'Amazon FBA Fee & Profit Calculator 2026 | evonix',
+    title: 'Free Amazon FBA Calculator (Updated 2026) - Instant Profit & Fee Estimator',
     description:
-      '2026 updated Amazon FBA Fee Calculator. Calculate referral fee (8-45%), FBA fulfillment fee, 3.5% fuel surcharge, Oct 15 - Jan 14 peak fee $0.32, storage, inbound placement & net profit.',
+      'Calculate accurate Amazon FBA fulfillment fees, referral rates, storage costs, and net profit margins instantly. 100% free tool for Amazon sellers.',
     canonicalUrl: `${BASE_URL}/amazon-fba-fee-calculator`,
-    ogTitle: 'Amazon FBA Fee & Profit Calculator 2026 | evonix',
+    ogTitle: 'Free Amazon FBA Calculator (Updated 2026) - Instant Profit & Fee Estimator',
     ogDescription:
-      'Calculate Amazon FBA fees with 2026 rates: Referral, Fulfillment, Fuel 3.5%, Peak Season & Net Profit.',
+      'Calculate accurate Amazon FBA fulfillment fees, referral rates, storage costs, and net profit margins instantly. 100% free tool for Amazon sellers.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/amazon-fba-fee-calculator-2026.png`,
     keywords: [
@@ -1185,13 +1185,13 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     ],
   },
   'stripe-fee-calculator': {
-    title: 'Stripe Fee Calculator | Stripe Transaction & Payout Tool',
+    title: 'Free Stripe Fee Calculator (2026 Rates) - Domestic & International Payouts',
     description:
-      'Run our advanced Stripe fee calculator to analyze stripe transaction fee calculator tiers, processing margins, and reverse payment logic instantly.',
+      'Instant Stripe processing fee calculator. Accurately calculate standard 2.9% + $0.30 rates, international card fees, and reverse payout deductions.',
     canonicalUrl: `${BASE_URL}/stripe-fee-calculator`,
-    ogTitle: 'Stripe Fee Calculator | Stripe Transaction & Payout Tool',
+    ogTitle: 'Free Stripe Fee Calculator (2026 Rates) - Domestic & International Payouts',
     ogDescription:
-      'Analyze stripe transaction fee calculator tiers, processing margins, and reverse payment logic instantly.',
+      'Instant Stripe processing fee calculator. Accurately calculate standard 2.9% + $0.30 rates, international card fees, and reverse payout deductions.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/stripe-fee-calculator-2026.png`,
     keywords: [

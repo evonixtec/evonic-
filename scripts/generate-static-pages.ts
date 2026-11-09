@@ -955,7 +955,7 @@ pages.push({
 Object.values(toolsRegistry).forEach((tool) => {
   pages.push({
     route: `tools/${tool.slug}`,
-    title: `${tool.metaTitle || tool.name} | EVONIX`,
+    title: tool.metaTitle.includes('EVONIX') ? tool.metaTitle : (tool.metaTitle || tool.name),
     description: tool.metaDescription,
     canonical: `${DOMAIN}/tools/${tool.slug}`,
     heading: tool.h1 || tool.name,
@@ -1068,7 +1068,44 @@ Object.values(toolsRegistry).forEach((tool) => {
         </div>
 
         ${
-          tool.hardwareCta
+          ['stripe-fee-calculator', 'amazon-fba-calculator', 'ebay-fee-calculator', 'temu-seller-calculator'].includes(tool.slug)
+            ? `
+          <aside aria-label="Hardware & Equipment Recommendation" class="my-8 rounded-xl border border-teal-500/30 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 p-6 text-white shadow-xl">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div class="space-y-2 text-center md:text-left">
+                <div class="inline-flex items-center gap-2 rounded-full bg-teal-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-teal-400 border border-teal-500/20">
+                  Hardware for E-commerce Sellers
+                </div>
+                <h3 class="text-xl md:text-2xl font-bold tracking-tight text-white">
+                  Selling on Amazon, eBay, or Local E-Commerce?
+                </h3>
+                <p class="text-sm md:text-base text-slate-300 max-w-xl">
+                  Upgrade your order fulfillment with industrial thermal shipping label printers and wireless barcode scanners. Same-day dispatch across Pakistan.
+                </p>
+              </div>
+
+              <div class="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto shrink-0">
+                <a
+                  href="https://store.evonixtec.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="w-full sm:w-auto inline-flex items-center justify-center rounded-lg bg-teal-500 px-5 py-3 text-sm font-semibold text-slate-950 transition-colors hover:bg-teal-400 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 focus:ring-offset-slate-900"
+                >
+                  Visit Hardware Store &rarr;
+                </a>
+                <a
+                  href="https://wa.me/923263244002?text=Hello%20Evonix,%20I%20am%20interested%20in%20Thermal%20Label%20Printers%20and%20Scanners."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="w-full sm:w-auto inline-flex items-center justify-center rounded-lg border border-slate-700 bg-slate-800/80 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-700 hover:border-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-500"
+                >
+                  WhatsApp Support
+                </a>
+              </div>
+            </div>
+          </aside>
+        `
+            : tool.hardwareCta
             ? `
           <div class="p-6 rounded-2xl bg-slate-900/90 border border-teal-500/30 space-y-3">
             <h3 class="text-xl font-bold text-white">${escapeHtml(tool.hardwareCta.headline)}</h3>
@@ -1354,13 +1391,13 @@ pages.push({
 const flatCalculatorRedirects: { route: string; targetSlug: string; title: string; desc: string }[] = [
   { route: 'invoice', targetSlug: 'invoice-generator', title: 'Global Zero-Database Invoice Hub | EVONIX', desc: 'Client-side invoice generator.' },
   { route: 'tiktok-shop-fee-calculator', targetSlug: 'tiktok-shop-fee-calculator', title: 'TikTok Shop Fee Calculator 2026 | EVONIX', desc: 'Calculate TikTok Shop commission and net margins.' },
-  { route: 'amazon-fba-fee-calculator', targetSlug: 'amazon-fba-calculator', title: 'Amazon FBA Fee Calculator 2026 | EVONIX', desc: 'Calculate Amazon FBA fulfillment, referral, and storage fees.' },
-  { route: 'amazon-fba-calculator', targetSlug: 'amazon-fba-calculator', title: 'Amazon FBA Fee Calculator 2026 | EVONIX', desc: 'Calculate Amazon FBA fees and profit margins.' },
+  { route: 'amazon-fba-fee-calculator', targetSlug: 'amazon-fba-calculator', title: 'Free Amazon FBA Calculator (Updated 2026) - Instant Profit & Fee Estimator', desc: 'Calculate accurate Amazon FBA fulfillment fees, referral rates, storage costs, and net profit margins instantly. 100% free tool for Amazon sellers.' },
+  { route: 'amazon-fba-calculator', targetSlug: 'amazon-fba-calculator', title: 'Free Amazon FBA Calculator (Updated 2026) - Instant Profit & Fee Estimator', desc: 'Calculate accurate Amazon FBA fulfillment fees, referral rates, storage costs, and net profit margins instantly. 100% free tool for Amazon sellers.' },
   { route: 'ebay-fee-calculator', targetSlug: 'ebay-fee-calculator', title: 'eBay Fee & Profit Calculator 2026 | EVONIX', desc: 'Calculate eBay final value fees and seller payout.' },
   { route: 'shopify-fee-calculator', targetSlug: 'shopify-fee-calculator', title: 'Shopify Fee Calculator 2026 | EVONIX', desc: 'Calculate Shopify Payments processing and store margins.' },
   { route: 'etsy-fee-calculator', targetSlug: 'etsy-fee-calculator', title: 'Etsy Fee & Payoneer Profit Calculator 2026 | EVONIX', desc: 'Calculate Etsy transaction fees and Payoneer deductions.' },
   { route: 'amazon-fbm-calculator', targetSlug: 'amazon-fbm-calculator', title: 'Amazon FBM Fee Calculator 2026 | EVONIX', desc: 'Calculate Amazon FBM merchant shipping and referral fees.' },
-  { route: 'stripe-fee-calculator', targetSlug: 'stripe-fee-calculator', title: 'Stripe Fee Calculator 2026 | EVONIX', desc: 'Calculate Stripe payment processing fees and payouts.' },
+  { route: 'stripe-fee-calculator', targetSlug: 'stripe-fee-calculator', title: 'Free Stripe Fee Calculator (2026 Rates) - Domestic & International Payouts', desc: 'Instant Stripe processing fee calculator. Accurately calculate standard 2.9% + $0.30 rates, international card fees, and reverse payout deductions.' },
   { route: 'temu-seller-calculator', targetSlug: 'temu-seller-calculator', title: 'Temu Seller Fee Calculator 2026 | EVONIX', desc: 'Calculate Temu seller margins and logistics costs.' },
   { route: 'ecommerce-calculator', targetSlug: 'ecommerce-margin-calculator', title: 'E-Commerce Margin Calculator | EVONIX', desc: 'Calculate COD return buffers and net seller profit.' },
   { route: 'cbm-calculator', targetSlug: 'export-cbm-calculator', title: 'Export CBM Freight Calculator | EVONIX', desc: 'Calculate ocean and air cargo CBM volume and container loading.' },
