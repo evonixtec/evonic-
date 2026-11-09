@@ -316,18 +316,6 @@ export default function TikTokShopCalculator() {
         {/* Special Launch Offer Banner */}
         <SpecialOfferBanner toolName="TikTok Shop Fee Calculator" />
 
-        {/* Mobile Warning Banner */}
-        <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 shadow-xs flex items-start gap-3">
-          <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
-          <div className="space-y-0.5">
-            <span className="text-xs font-bold uppercase tracking-wider text-amber-800 block">
-              Important Note for Mobile Users
-            </span>
-            <p className="text-xs sm:text-sm font-medium leading-relaxed">
-              For Mobile Users: This web calculator is 100% free and mobile responsive. The offline desktop software edition is for Windows and Mac.
-            </p>
-          </div>
-        </div>
 
         {/* Master Header Card */}
         <div className="apple-glass-box p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">

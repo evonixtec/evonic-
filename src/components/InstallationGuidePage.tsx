@@ -42,18 +42,6 @@ export const InstallationGuidePage: React.FC<InstallationGuidePageProps> = ({ on
         {/* Special Launch Offer Banner */}
         <SpecialOfferBanner />
 
-        {/* Mobile Warning Banner - Strictly Required */}
-        <div className="p-4 sm:p-5 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 shadow-xs flex items-start gap-3">
-          <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
-          <div className="space-y-1">
-            <span className="text-xs font-bold uppercase tracking-wider text-amber-800 block">
-              Important Note for Mobile Users
-            </span>
-            <p className="text-xs sm:text-sm font-medium leading-relaxed">
-              For Mobile Users (Android / iPhone): This is a desktop software (Windows/Mac). On mobile, you can use our online web version of the calculator. The downloadable offline version is only for Windows and Mac.
-            </p>
-          </div>
-        </div>
 
         {/* Page Header */}
         <div className="apple-glass-box p-6 sm:p-8 space-y-3">
