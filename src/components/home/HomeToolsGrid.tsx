@@ -15,6 +15,7 @@ import {
   Wrench
 } from 'lucide-react';
 import { NavPageId } from '../../types';
+import { PAGE_TO_TOOL_SLUG } from '../../App';
 
 interface HomeToolsGridProps {
   onLaunchTool: (toolId: NavPageId) => void;
@@ -241,14 +242,19 @@ export const HomeToolsGrid: React.FC<HomeToolsGridProps> = ({
                   </span>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() => onLaunchTool(tool.id)}
+                <a
+                  href={`/tools/${PAGE_TO_TOOL_SLUG[tool.id] || tool.id}`}
+                  onClick={(e) => {
+                    if (!e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey) {
+                      e.preventDefault();
+                      onLaunchTool(tool.id);
+                    }
+                  }}
                   className="w-full py-2.5 px-4 rounded-xl bg-[#0071e3] hover:bg-[#0077ed] text-white font-semibold text-xs flex items-center justify-center gap-2 cursor-pointer transition-all shadow-xs shadow-blue-500/20 active:scale-[0.99]"
                 >
                   <span>Launch Calculator</span>
                   <ArrowRight className="w-3.5 h-3.5" />
-                </button>
+                </a>
               </div>
             </div>
           ))}
@@ -271,14 +277,19 @@ export const HomeToolsGrid: React.FC<HomeToolsGridProps> = ({
           </div>
 
           <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={onNavigateToToolsHub}
+            <a
+              href="/tools"
+              onClick={(e) => {
+                if (!e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey) {
+                  e.preventDefault();
+                  onNavigateToToolsHub();
+                }
+              }}
               className="py-2.5 px-4 rounded-xl bg-white hover:bg-slate-50 border border-black/[0.08] text-[#1E1E1E] font-semibold text-xs flex items-center gap-1.5 transition-colors shadow-xs cursor-pointer"
             >
               <span>View Full Tools Catalog</span>
               <ExternalLink className="w-3.5 h-3.5 text-[#52525B]" />
-            </button>
+            </a>
           </div>
         </div>
 

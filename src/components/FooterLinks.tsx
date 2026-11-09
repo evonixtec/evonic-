@@ -1,6 +1,8 @@
 import React from 'react';
 import { GLOBAL_BLOGS_DATA } from '../config/blogsList';
 
+import { toolsRegistry } from '../data/toolsRegistry';
+
 export default function FooterLinks() {
   // Sialkot Localized Sells & Service Branches Area Clusters Array
   const locationLinks = [
@@ -17,22 +19,14 @@ export default function FooterLinks() {
     { name: "Wazirabad POS Solutions", path: "/locations/wazirabad/pos-systems" },
   ];
 
-  // International Premium High-CPC Finance Calculators Web Tools (Canonical Paths)
+  // All 24+ Canonical Tools from Tools Registry & Enterprise Solutions
   const toolLinks = [
-    { name: "eBay Fee & Profit Builder", path: "/tools/ebay-fee-calculator" },
-    { name: "TikTok Shop Fee Calculator", path: "/tools/tiktok-shop-fee-calculator" },
-    { name: "Amazon FBA Fee Calculator", path: "/tools/amazon-fba-calculator" },
-    { name: "Shopify Fee Calculator", path: "/tools/shopify-fee-calculator" },
-    { name: "Stripe Processing Fee Calculator", path: "/tools/stripe-fee-calculator" },
-    { name: "Temu Seller Fee Calculator", path: "/tools/temu-seller-calculator" },
+    ...Object.values(toolsRegistry).map((t) => ({
+      name: t.name,
+      path: `/tools/${t.slug}`,
+    })),
     { name: "Sialkot Export ERP Suite", path: "/sialkot-export-erp" },
-    { name: "Trend Intelligence Suite", path: "/tools/trend-intelligence-suite" },
-    { name: "Global Invoice Generator", path: "/tools/invoice-generator" },
-    { name: "E-Commerce Margin Calculator", path: "/tools/ecommerce-margin-calculator" },
-    { name: "B2B Packing CBM Engine", path: "/tools/export-cbm-calculator" },
-    { name: "Developer Sourcing Calculator", path: "/tools/developer-cost-calculator" },
-    { name: "Website AI Visibility Checker", path: "/tools/ai-visibility-checker" },
-    { name: "Desktop Software Setup Guide", path: "/installation-guide" },
+    { name: "Software Installation Guide", path: "/installation-guide" },
   ];
 
   const handleNav = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {

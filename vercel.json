@@ -105,6 +105,121 @@
       "permanent": true
     },
     {
+      "source": "/tiktok-shop-fee-calculator",
+      "destination": "/tools/tiktok-shop-fee-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/amazon-fba-fee-calculator",
+      "destination": "/tools/amazon-fba-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/amazon-fba-calculator",
+      "destination": "/tools/amazon-fba-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/ebay-fee-calculator",
+      "destination": "/tools/ebay-fee-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/shopify-fee-calculator",
+      "destination": "/tools/shopify-fee-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/etsy-fee-calculator",
+      "destination": "/tools/etsy-fee-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/amazon-fbm-calculator",
+      "destination": "/tools/amazon-fbm-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/stripe-fee-calculator",
+      "destination": "/tools/stripe-fee-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/temu-seller-calculator",
+      "destination": "/tools/temu-seller-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/ecommerce-calculator",
+      "destination": "/tools/ecommerce-margin-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/cbm-calculator",
+      "destination": "/tools/export-cbm-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/developer-cost-calculator",
+      "destination": "/tools/developer-cost-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/ai-visibility-checker",
+      "destination": "/tools/ai-visibility-checker",
+      "permanent": true
+    },
+    {
+      "source": "/invoice",
+      "destination": "/tools/invoice-generator",
+      "permanent": true
+    },
+    {
+      "source": "/export-barcode-studio",
+      "destination": "/tools/barcode-label-studio",
+      "permanent": true
+    },
+    {
+      "source": "/factory-network-tester",
+      "destination": "/tools/network-latency-tester",
+      "permanent": true
+    },
+    {
+      "source": "/trend-intelligence-suite",
+      "destination": "/tools/trend-intelligence-suite",
+      "permanent": true
+    },
+    {
+      "source": "/hs-code-lookup",
+      "destination": "/tools/hs-code-lookup",
+      "permanent": true
+    },
+    {
+      "source": "/schema-generator",
+      "destination": "/tools/schema-generator",
+      "permanent": true
+    },
+    {
+      "source": "/uk-eu-vat-calculator",
+      "destination": "/tools/uk-vat-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/us-duty-nexus-estimator",
+      "destination": "/tools/us-customs-duty-estimator",
+      "permanent": true
+    },
+    {
+      "source": "/ce-ukca-compliance",
+      "destination": "/tools/ce-ukca-compliance-generator",
+      "permanent": true
+    },
+    {
+      "source": "/ai-tools-name-for-travel-itinerary",
+      "destination": "/tools/ai-trip-planner",
+      "permanent": true
+    },
+    {
       "source": "/services/doorstep-support",
       "destination": "https://store.evonixtec.com",
       "permanent": true

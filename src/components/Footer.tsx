@@ -638,8 +638,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             </a>
             <span>•</span>
             <a
-              href="/services/doorstep-support"
-              onClick={(e) => { e.preventDefault(); onNavigate('doorstep-support'); }}
+              href="https://store.evonixtec.com/services/doorstep-support"
               className="hover:text-red-400 transition-colors cursor-pointer text-emerald-400 font-semibold"
             >
               Doorstep IT
@@ -654,15 +653,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             </a>
             <span>•</span>
             <a
-              href="/guidelines"
-              onClick={(e) => { e.preventDefault(); onNavigate('guidelines'); }}
+              href="/guides"
+              onClick={(e) => { e.preventDefault(); onNavigate('guides'); }}
               className="hover:text-red-400 transition-colors cursor-pointer text-cyan-400 font-semibold"
             >
-              Guidelines
+              Guides
             </a>
             <span>•</span>
             <a
-              href="/factory-network-tester"
+              href="/tools/network-latency-tester"
               onClick={(e) => { e.preventDefault(); onNavigate('factory-network-tester'); }}
               className="hover:text-red-400 transition-colors cursor-pointer text-blue-400 font-semibold"
             >

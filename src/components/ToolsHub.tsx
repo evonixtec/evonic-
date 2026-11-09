@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import { NavPageId } from '../types';
 import { incrementToolUsage } from '../lib/toolUsageTracker';
+import { PAGE_TO_TOOL_SLUG } from '../App';
 
 import SpecialOfferBanner from './common/SpecialOfferBanner';
 import { ToolsHeroVideoBanner } from './tools/ToolsHeroVideoBanner';
@@ -992,14 +993,19 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
 
                   {/* Footer */}
                   <div className="p-4 bg-slate-50/80 border-t border-slate-100 flex items-center justify-end">
-                    <button
-                      type="button"
-                      onClick={() => handleLaunchWithTrack(tool.navTarget, tool.id)}
+                    <a
+                      href={`/tools/${PAGE_TO_TOOL_SLUG[tool.navTarget as NavPageId] || tool.id}`}
+                      onClick={(e) => {
+                        if (!e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey) {
+                          e.preventDefault();
+                          handleLaunchWithTrack(tool.navTarget, tool.id);
+                        }
+                      }}
                       className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 hover:bg-red-600 text-white text-xs font-bold transition-all shadow-2xs group-hover:shadow-xs cursor-pointer"
                     >
                       <span>Launch Tool</span>
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    </a>
                   </div>
                 </motion.div>
               ))}

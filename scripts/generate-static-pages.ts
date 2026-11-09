@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { ALL_BLOGS } from '../src/data/blogs';
-import { LOCAL_CITIES, CLUSTER_SERVICES } from '../src/data/localClusters';
+import { LOCAL_CITIES, CLUSTER_SERVICES, getClusterData } from '../src/data/localClusters';
 import { COMPANY_INFO, SERVICES, PORTFOLIO_DATA, FAQ_ITEMS } from '../src/data/content';
 import { toolsRegistry } from '../src/data/toolsRegistry';
 
@@ -387,55 +387,47 @@ subServices.forEach((ss) => {
   });
 });
 
-// Sialkot IT Services Landing
+// Sialkot IT Services Landing (Clean Redirect to /services)
 pages.push({
   route: 'sialkot-it-services',
   title: 'IT Services in Sialkot | Enterprise Software, POS & Web Engineering | EVONIX',
   description: 'Top IT services in Sialkot. Custom website engineering, retail POS systems, and factory software backed by 20+ years Dubai international experience.',
-  canonical: `${DOMAIN}/sialkot-it-services`,
-  heading: 'IT Services & Software Engineering in Sialkot',
-  subheading: 'Two Decades of Dubai Systems Experience Delivered in Sialkot, Pakistan',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Services', url: '/services' }, { name: 'Sialkot IT Services', url: '/sialkot-it-services' }],
+  canonical: `${DOMAIN}/services`,
+  isRedirect: true,
+  redirectTo: 'services',
+  heading: 'Redirecting to IT Services...',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Services', url: '/services' }],
   bodyHtml: `
     <div class="space-y-6 text-slate-300">
       <p class="text-base sm:text-lg leading-relaxed text-slate-200">
-        We build fast business websites, retail POS systems, and export ERP software for Sialkot businesses.
+        Redirecting to our primary services directory...
       </p>
-
-      <div class="p-6 rounded-2xl bg-slate-900 border border-teal-500/30">
-        <h3 class="text-xl font-bold text-white mb-2">Got a question? Call us.</h3>
-        <p class="text-sm text-slate-300 mb-4">We reply in 2 hours with direct technician support.</p>
-        <a href="tel:${COMPANY_INFO.contact.phoneRaw}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-sm">
-          Call ${COMPANY_INFO.contact.phoneDisplay}
-        </a>
-      </div>
+      <a href="/services" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-teal-500 text-slate-950 font-bold text-sm">
+        View All IT Services &rarr;
+      </a>
     </div>
   `
 });
 
-// Doorstep Support Landings
+// Doorstep Support Landings (Clean Redirect to store.evonixtec.com)
 ['services/doorstep-support', 'doorstep-support'].forEach((routePath) => {
   pages.push({
     route: routePath,
     title: 'Doorstep IT Support & Emergency Field Dispatch Sialkot | EVONIX',
     description: 'Rapid 30-45 minute doorstep IT support across Sialkot. On-site retail POS setup, thermal printer fix, and network troubleshooting.',
-    canonical: `${DOMAIN}/${routePath}`,
-    heading: 'Doorstep IT Support in Sialkot',
-    subheading: 'Rapid 30-45 Minute Field Technician Dispatch',
-    breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Services', url: '/services' }, { name: 'Doorstep Support', url: `/${routePath}` }],
+    canonical: 'https://store.evonixtec.com',
+    isRedirect: true,
+    redirectTo: 'https://store.evonixtec.com',
+    heading: 'Redirecting to Hardware Store & Doorstep Support...',
+    breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Services', url: '/services' }],
     bodyHtml: `
       <div class="space-y-6 text-slate-300">
         <p class="text-base sm:text-lg leading-relaxed text-slate-200">
-          A certified technician visits your office or shop within 30 to 45 minutes across Sialkot.
+          Hardware repair and doorstep engineer dispatch have moved to our dedicated store portal.
         </p>
-
-        <div class="p-6 rounded-2xl bg-slate-900 border border-teal-500/30">
-          <h3 class="text-xl font-bold text-white mb-2">Got a question? Call us.</h3>
-          <p class="text-sm text-slate-300 mb-4">We reply in 2 hours with direct technician dispatch.</p>
-          <a href="tel:${COMPANY_INFO.contact.phoneRaw}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-sm">
-            Call ${COMPANY_INFO.contact.phoneDisplay}
-          </a>
-        </div>
+        <a href="https://store.evonixtec.com" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-teal-500 text-slate-950 font-bold text-sm">
+          Open store.evonixtec.com &rarr;
+        </a>
       </div>
     `
   });
@@ -978,6 +970,7 @@ Object.values(toolsRegistry).forEach((tool) => {
       '@context': 'https://schema.org',
       '@type': 'WebApplication',
       name: tool.name,
+      url: `${DOMAIN}/tools/${tool.slug}`,
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'All',
       browserRequirements: 'Requires JavaScript and modern web browser',
@@ -989,27 +982,102 @@ Object.values(toolsRegistry).forEach((tool) => {
       description: tool.metaDescription,
     },
     bodyHtml: `
-      <div class="space-y-6 text-slate-300">
-        <p class="text-base sm:text-lg text-slate-200">
-          ${escapeHtml(tool.metaDescription)}
-        </p>
+      <div class="space-y-8 text-slate-300">
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-4">
+          <h2 class="text-xl font-bold text-white">About ${escapeHtml(tool.name)}</h2>
+          <p class="text-base text-slate-200 leading-relaxed">
+            ${escapeHtml(tool.metaDescription)}
+          </p>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            This utility is built for ${escapeHtml(tool.targetAudience)}. All calculations run directly in your web browser with zero remote database storage. Your financial margins, customer lists, and private trade numbers stay on your machine.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-2 text-xs font-semibold">
+            <span class="px-3 py-1 rounded-full bg-teal-500/10 text-teal-400 border border-teal-500/20">Category: ${escapeHtml(tool.category)}</span>
+            <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">100% Free &amp; Client-Side</span>
+            <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700">Zero Cloud Logging</span>
+          </div>
+        </div>
+
+        ${
+          tool.howItWorks
+            ? `
+          <div class="p-6 rounded-2xl bg-slate-900 border border-teal-500/30 space-y-4 text-left">
+            <h2 class="text-xl font-bold text-white">${escapeHtml(tool.howItWorks.title)}</h2>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              ${escapeHtml(tool.howItWorks.explanation)}
+            </p>
+            <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800 font-mono text-xs text-teal-300 overflow-x-auto">
+              <span class="text-slate-400 font-sans block text-[11px] font-semibold mb-1 uppercase tracking-wider">Baseline Mathematical Formula:</span>
+              ${escapeHtml(tool.howItWorks.formula)}
+            </div>
+            <div class="space-y-2 pt-2">
+              <h3 class="text-xs uppercase font-bold tracking-wider text-slate-400">Standard Baseline Rates &amp; Thresholds:</h3>
+              <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-slate-300">
+                ${tool.howItWorks.rates
+                  .map(
+                    (rate) => `
+                  <li class="flex items-start gap-2 bg-slate-950/50 p-2.5 rounded-lg border border-slate-800/60">
+                    <span class="w-1.5 h-1.5 rounded-full bg-teal-400 mt-1.5 shrink-0"></span>
+                    <span>${escapeHtml(rate)}</span>
+                  </li>
+                `
+                  )
+                  .join('')}
+              </ul>
+            </div>
+          </div>
+        `
+            : ''
+        }
 
         <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
-          <h2 class="text-xl font-bold text-white">How To Use</h2>
-          <ol class="list-decimal list-inside space-y-2 text-sm text-slate-300">
-            ${(tool.howToSteps || []).map((step) => `<li>${escapeHtml(step)}</li>`).join('')}
+          <h2 class="text-xl font-bold text-white">How To Use This Tool</h2>
+          <ol class="list-decimal list-inside space-y-3 text-sm text-slate-300">
+            ${(tool.howToSteps || []).map((step) => `<li class="leading-relaxed"><strong class="text-white">${escapeHtml(step)}</strong></li>`).join('')}
           </ol>
+        </div>
+
+        <div class="space-y-4">
+          <h2 class="text-xl font-bold text-white">Core Technical Capabilities</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+              <h3 class="text-base font-bold text-teal-400">Instant Mathematical Precision</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Uses validated formulas updated for 2026 marketplace policies, international freight metrics, and tax compliance standards.
+              </p>
+            </div>
+            <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+              <h3 class="text-base font-bold text-teal-400">Zero Database Privacy</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Nothing is uploaded to remote servers. No cookies, no tracking pixels, and no account signup required.
+              </p>
+            </div>
+            <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+              <h3 class="text-base font-bold text-teal-400">Mobile &amp; Desktop Friendly</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Fully responsive layout built to run on phones, tablets, shop counter touchscreens, and factory office laptops.
+              </p>
+            </div>
+            <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+              <h3 class="text-base font-bold text-teal-400">Export &amp; Local Market Ready</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Built with direct support for Pakistani exporters, cross-border sellers on TikTok Shop / Amazon / Etsy, and local retail outlets.
+              </p>
+            </div>
+          </div>
         </div>
 
         ${
           tool.hardwareCta
             ? `
-          <div class="p-6 rounded-2xl bg-slate-900/80 border border-teal-500/30">
-            <h3 class="text-xl font-bold text-white mb-2">${escapeHtml(tool.hardwareCta.headline)}</h3>
-            <p class="text-sm text-slate-300 mb-4">${escapeHtml(tool.hardwareCta.subtext)}</p>
-            <a href="${tool.hardwareCta.targetUrl}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-sm">
-              ${escapeHtml(tool.hardwareCta.buttonText)}
-            </a>
+          <div class="p-6 rounded-2xl bg-slate-900/90 border border-teal-500/30 space-y-3">
+            <h3 class="text-xl font-bold text-white">${escapeHtml(tool.hardwareCta.headline)}</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">${escapeHtml(tool.hardwareCta.subtext)}</p>
+            <div class="pt-2">
+              <a href="${tool.hardwareCta.targetUrl}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-sm transition-colors">
+                ${escapeHtml(tool.hardwareCta.buttonText)} &rarr;
+              </a>
+            </div>
           </div>
         `
             : ''
@@ -1023,11 +1091,14 @@ Object.values(toolsRegistry).forEach((tool) => {
             <div class="space-y-3 text-sm text-slate-300">
               ${tool.faqs
                 .map(
-                  (f) => `
-                <div>
-                  <h3 class="font-bold text-white">${escapeHtml(f.q)}</h3>
-                  <p class="text-slate-400">${escapeHtml(f.a)}</p>
-                </div>
+                  (f, idx) => `
+                <details ${idx === 0 ? 'open' : ''} class="group p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+                  <summary class="font-bold text-white cursor-pointer list-none flex items-center justify-between">
+                    <span>${escapeHtml(f.q)}</span>
+                    <span class="text-xs text-slate-500 group-open:rotate-180 transition-transform">▼</span>
+                  </summary>
+                  <p class="text-slate-400 leading-relaxed pt-2 border-t border-slate-800/50">${escapeHtml(f.a)}</p>
+                </details>
               `
                 )
                 .join('')}
@@ -1036,6 +1107,21 @@ Object.values(toolsRegistry).forEach((tool) => {
         `
             : ''
         }
+
+        <div class="p-6 rounded-2xl bg-slate-900 border border-teal-500/30 space-y-2">
+          <h3 class="text-lg font-bold text-white">Got a question? Call us. We reply in 2 hours.</h3>
+          <p class="text-sm text-slate-300">
+            Need a customized software module, thermal printer, or industrial barcode system for your business?
+          </p>
+          <div class="pt-2 flex flex-wrap gap-4 items-center">
+            <a href="tel:+923263244002" class="px-5 py-2.5 rounded-xl bg-teal-500 text-slate-950 font-bold text-sm hover:bg-teal-400">
+              Call +92 326 324 4002
+            </a>
+            <a href="https://wa.me/923263244002" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-sm hover:bg-emerald-500">
+              WhatsApp Us
+            </a>
+          </div>
+        </div>
       </div>
     `,
   });
@@ -1162,14 +1248,18 @@ pages.push({
   route: 'pos-software-sialkot',
   title: 'Point of Sale (POS) Software Sialkot | Retail & ERP | EVONIX',
   description: 'Fast, offline-first POS software for retail stores, supermarkets, sports manufacturers, and surgical units in Sialkot.',
-  canonical: `${DOMAIN}/pos-software-sialkot`,
-  heading: 'Point of Sale (POS) Software Sialkot',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'POS Software Sialkot', url: '/pos-software-sialkot' }],
+  canonical: `${DOMAIN}/services/software-pos`,
+  isRedirect: true,
+  redirectTo: 'services/software-pos',
+  heading: 'Redirecting to POS Software Systems...',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'POS Software', url: '/services/software-pos' }],
   bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Engineered specifically for retailers and manufacturers who need 100% offline billing reliability.
-      </p>
+    <div class="text-center py-12 space-y-4 text-slate-300">
+      <h2 class="text-xl font-bold text-white">Point of Sale Software Solutions</h2>
+      <p class="text-slate-400">Redirecting to official POS systems page...</p>
+      <a href="/services/software-pos" class="inline-block px-6 py-3 rounded-xl bg-teal-500 text-slate-950 font-bold text-sm hover:bg-teal-400">
+        Click here to continue &rarr;
+      </a>
     </div>
   `
 });
@@ -1177,715 +1267,134 @@ pages.push({
 pages.push({
   route: 'sialkot-export-erp',
   title: 'Sialkot Export Industry ERP & Factory Systems | EVONIX',
-  description: 'Export-grade ERP software for sports goods, surgical instruments, and leather apparel manufacturers in Sialkot.',
+  description: 'Export-grade ERP software for sports goods, surgical instruments, and leather apparel manufacturers in Sialkot. Complete batch traceability and WeBOC EDI customs sync.',
   canonical: `${DOMAIN}/sialkot-export-erp`,
-  heading: 'Sialkot Export Industry ERP & Custom Software',
+  heading: 'Sialkot Export Factory ERP & WeBOC Cloud Billing Suite',
+  subheading: 'Engineered specifically for surgical forging, leather garment, and sports apparel exporters across Sialkot.',
   breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Export ERP', url: '/sialkot-export-erp' }],
   bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Custom ERP tracking every stage from raw material intake to carton packaging and WeBOC customs filing.
-      </p>
-    </div>
-  `
-});
+    <div class="space-y-8 text-slate-300">
+      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+        <h2 class="text-xl font-bold text-white">Bespoke Industrial ERP Architecture</h2>
+        <p class="text-base text-slate-200 leading-relaxed">
+          Manage your complete factory operations from raw material intake to finished carton dispatch. Our offline-first architecture ensures production lines, CNC machines, and packing stations never freeze even during power switchovers or internet cuts.
+        </p>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          Built to comply with international buyer standards including European MDR Class I/IIa regulations, ISO 13485 quality control protocols, and direct Pakistan WeBOC automated electronic data interchange (EDI) customs filing.
+        </p>
+      </div>
 
-pages.push({
-  route: 'export-barcode-studio',
-  title: 'Export Barcode & Carton Label Studio | EVONIX Sialkot',
-  description: 'Free interactive GS1, Code 128, and carton shipping label generator for export manufacturers in Sialkot.',
-  canonical: `${DOMAIN}/export-barcode-studio`,
-  heading: 'Export Barcode & Carton Label Studio',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Export Barcode Studio', url: '/export-barcode-studio' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Generate compliant GS1, Code 128, and master carton shipping labels directly in your browser.
-      </p>
-    </div>
-  `
-});
+      <div class="space-y-4">
+        <h2 class="text-xl font-bold text-white">4 Specialized Manufacturing Modules</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+            <h3 class="text-base font-bold text-teal-400">1. Surgical MDR Batch Traceability</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Track stainless steel heat numbers from forging to ultrasonic cleaning, chemical passivation, and laser etched UDI matrix barcodes.
+            </p>
+          </div>
+          <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+            <h3 class="text-base font-bold text-teal-400">2. Leather Apparel Job-Card Routing</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Manage hide square footage yields, piece-rate artisan wages, lining trims, and hardware accessories with barcode labor tracking.
+            </p>
+          </div>
+          <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+            <h3 class="text-base font-bold text-teal-400">3. Sports Goods Carton Packing</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Automate GS1-128 shipping labels, carton weight scale verification, and container CBM volume optimization for soccer and combat gear.
+            </p>
+          </div>
+          <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+            <h3 class="text-base font-bold text-teal-400">4. WeBOC EDI Customs Gateway</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Generate standardized packing lists, commercial invoices, Form E documentation, and Sialkot Dry Port cargo manifest sync.
+            </p>
+          </div>
+        </div>
+      </div>
 
-pages.push({
-  route: 'factory-network-tester',
-  title: 'Export Factory Network Latency & Bandwidth Benchmark | EVONIX',
-  description: 'Interactive industrial network latency tester for export factories and ERP database synchronization across Sialkot.',
-  canonical: `${DOMAIN}/factory-network-tester`,
-  heading: 'Export Factory Network Latency Benchmark',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Network Benchmark', url: '/factory-network-tester' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Benchmark premise network latency, SQL server database sync times, and WeBOC customs gateway ping stability in Sialkot industrial zones.
-      </p>
-      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
-        <h2 class="text-xl font-bold text-white mb-3">On-Premise Industrial Targets</h2>
-        <ul class="space-y-2 text-sm text-slate-400">
-          <li>&bull; Surgical Instruments Manufacturing ERP (SQL Server)</li>
-          <li>&bull; Sambrial Dry Port Customs &amp; EDI Dispatch Gateway</li>
-          <li>&bull; Daska Road Leather &amp; Sports Goods Hybrid Cloud Sync</li>
-        </ul>
+      <div class="space-y-4 pt-4 border-t border-slate-800">
+        <h2 class="text-xl font-bold text-white">Frequently Asked Questions</h2>
+        <div class="space-y-4 text-sm text-slate-300">
+          <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+            <h3 class="font-bold text-white">Can the ERP work completely offline on our factory network?</h3>
+            <p class="text-slate-400 leading-relaxed">Yes. Our system uses local database instances on your on-premise server. Factory operators continue scanning barcodes and logging production even if WAN connectivity drops.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+            <h3 class="font-bold text-white">Do you integrate with thermal barcode printers and electronic weighing scales?</h3>
+            <p class="text-slate-400 leading-relaxed">Yes. We natively interface with Zebra, TSC, and Xprinter thermal barcode printers via ESC/POS and ZPL, alongside RS-232 industrial scale data bridges.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+            <h3 class="font-bold text-white">What is the implementation timeline for a factory in Sialkot?</h3>
+            <p class="text-slate-400 leading-relaxed">Standard deployments take 14 to 28 days including database setup, master item coding, staff workstation training, and on-site engineering supervision.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-slate-900 border border-teal-500/30 space-y-2">
+        <h3 class="text-lg font-bold text-white">Got a question? Call us. We reply in 2 hours.</h3>
+        <p class="text-sm text-slate-300">
+          Book an on-site factory consultation with our senior systems engineer in Sialkot, Daska, or Sambrial.
+        </p>
+        <div class="pt-2 flex flex-wrap gap-4 items-center">
+          <a href="tel:+923263244002" class="px-5 py-2.5 rounded-xl bg-teal-500 text-slate-950 font-bold text-sm hover:bg-teal-400">
+            Call +92 326 324 4002
+          </a>
+          <a href="https://wa.me/923263244002" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-sm hover:bg-emerald-500">
+            WhatsApp Us
+          </a>
+        </div>
       </div>
     </div>
   `
 });
 
-// Financial / Calculators
-pages.push({
-  route: 'invoice',
-  title: 'Global Zero-Database Enterprise Invoice Hub | EVONIX Technologies',
-  description: '100% free client-side invoice generator. Multi-country tax calculation, Code128 barcode engine, amount in words, and local privacy persistence for global freelancers.',
-  canonical: `${DOMAIN}/invoice`,
-  ogImage: `${DOMAIN}/images/micro-invoice-generator-2026.png`,
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
-  heading: 'Global Zero-Database Enterprise Invoice Hub',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Invoice Hub', url: '/invoice' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Generate professional PDF invoices with barcodes, multi-currency calculations, and zero remote data storage.
-      </p>
-      <div class="community-box my-6">
-        <h3 class="text-lg font-bold text-white mb-2">Discussed on Reddit r/AISEOInsider</h3>
-        <p class="text-sm text-slate-300 mb-3">Our GEO-ready invoice schema was reviewed by AI SEO experts.</p>
-        <a href="https://www.reddit.com/r/AISEOInsider/comments/1xb85id/i_built_a_free_microinvoice_tool_for_geoaeo_it/" target="_blank" rel="noopener" class="text-orange-400 hover:text-orange-300 font-bold underline">
-          View Discussion on Reddit →
+// Legacy Flat Calculator Aliases -> Redirect strictly to Canonical /tools/[slug]
+const flatCalculatorRedirects: { route: string; targetSlug: string; title: string; desc: string }[] = [
+  { route: 'invoice', targetSlug: 'invoice-generator', title: 'Global Zero-Database Invoice Hub | EVONIX', desc: 'Client-side invoice generator.' },
+  { route: 'tiktok-shop-fee-calculator', targetSlug: 'tiktok-shop-fee-calculator', title: 'TikTok Shop Fee Calculator 2026 | EVONIX', desc: 'Calculate TikTok Shop commission and net margins.' },
+  { route: 'amazon-fba-fee-calculator', targetSlug: 'amazon-fba-calculator', title: 'Amazon FBA Fee Calculator 2026 | EVONIX', desc: 'Calculate Amazon FBA fulfillment, referral, and storage fees.' },
+  { route: 'amazon-fba-calculator', targetSlug: 'amazon-fba-calculator', title: 'Amazon FBA Fee Calculator 2026 | EVONIX', desc: 'Calculate Amazon FBA fees and profit margins.' },
+  { route: 'ebay-fee-calculator', targetSlug: 'ebay-fee-calculator', title: 'eBay Fee & Profit Calculator 2026 | EVONIX', desc: 'Calculate eBay final value fees and seller payout.' },
+  { route: 'shopify-fee-calculator', targetSlug: 'shopify-fee-calculator', title: 'Shopify Fee Calculator 2026 | EVONIX', desc: 'Calculate Shopify Payments processing and store margins.' },
+  { route: 'etsy-fee-calculator', targetSlug: 'etsy-fee-calculator', title: 'Etsy Fee & Payoneer Profit Calculator 2026 | EVONIX', desc: 'Calculate Etsy transaction fees and Payoneer deductions.' },
+  { route: 'amazon-fbm-calculator', targetSlug: 'amazon-fbm-calculator', title: 'Amazon FBM Fee Calculator 2026 | EVONIX', desc: 'Calculate Amazon FBM merchant shipping and referral fees.' },
+  { route: 'stripe-fee-calculator', targetSlug: 'stripe-fee-calculator', title: 'Stripe Fee Calculator 2026 | EVONIX', desc: 'Calculate Stripe payment processing fees and payouts.' },
+  { route: 'temu-seller-calculator', targetSlug: 'temu-seller-calculator', title: 'Temu Seller Fee Calculator 2026 | EVONIX', desc: 'Calculate Temu seller margins and logistics costs.' },
+  { route: 'ecommerce-calculator', targetSlug: 'ecommerce-margin-calculator', title: 'E-Commerce Margin Calculator | EVONIX', desc: 'Calculate COD return buffers and net seller profit.' },
+  { route: 'cbm-calculator', targetSlug: 'export-cbm-calculator', title: 'Export CBM Freight Calculator | EVONIX', desc: 'Calculate ocean and air cargo CBM volume and container loading.' },
+  { route: 'developer-cost-calculator', targetSlug: 'developer-cost-calculator', title: 'Developer Cost Calculator | EVONIX', desc: 'Estimate custom software and app development costs.' },
+  { route: 'ai-visibility-checker', targetSlug: 'ai-visibility-checker', title: 'AI Visibility & GEO Readiness Auditor | EVONIX', desc: 'Check brand visibility in AI search engines and LLMs.' },
+  { route: 'uk-eu-vat-calculator', targetSlug: 'uk-eu-vat-calculator', title: 'UK & EU VAT Reverse Charge Calculator | EVONIX', desc: 'Calculate cross-border B2B export VAT exemptions.' },
+  { route: 'us-duty-nexus-estimator', targetSlug: 'us-duty-nexus-estimator', title: 'US Customs Duty & Nexus Estimator | EVONIX', desc: 'Estimate US sales tax nexus and import tariff duties.' },
+  { route: 'ce-ukca-compliance-generator', targetSlug: 'ce-ukca-compliance-generator', title: 'CE & UKCA Compliance Generator | EVONIX', desc: 'Generate export product compliance declarations.' },
+  { route: 'export-barcode-studio', targetSlug: 'barcode-label-studio', title: 'Export Barcode & Carton Label Studio | EVONIX', desc: 'Generate GS1 and Code 128 shipping labels.' },
+  { route: 'printer-diagnostics', targetSlug: 'printer-diagnostics', title: 'Thermal Printer Diagnostic Engine | EVONIX', desc: 'Troubleshoot 80mm ESC/POS receipt printers.' },
+  { route: 'factory-network-tester', targetSlug: 'factory-network-tester', title: 'Factory Network Latency Tester | EVONIX', desc: 'Benchmark premise ERP database latency and WeBOC stability.' },
+  { route: 'live-repair-tracker', targetSlug: 'live-repair-tracker', title: 'Live RMA Bench Repair Tracker | EVONIX', desc: 'Track hardware diagnostic lab repair progress in real time.' },
+];
+
+flatCalculatorRedirects.forEach((item) => {
+  pages.push({
+    route: item.route,
+    title: item.title,
+    description: item.desc,
+    canonical: `${DOMAIN}/tools/${item.targetSlug}`,
+    heading: item.title,
+    breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: item.title, url: `/tools/${item.targetSlug}` }],
+    isRedirect: true,
+    redirectTo: `tools/${item.targetSlug}`,
+    bodyHtml: `
+      <div class="text-center py-12 space-y-4 text-slate-300">
+        <h2 class="text-xl font-bold text-white">${escapeHtml(item.title)}</h2>
+        <p class="text-slate-400">This tool has moved to our unified Tools Hub directory.</p>
+        <a href="/tools/${item.targetSlug}" class="inline-block px-6 py-3 rounded-xl bg-teal-500 text-slate-950 font-bold text-sm hover:bg-teal-400">
+          Open Official Tool Page &rarr;
         </a>
       </div>
-    </div>
-  `
-});
-
-pages.push({
-  route: 'tiktok-shop-fee-calculator',
-  title: 'TikTok Shop Fee Calculator UK 9% & US 6%/8% - 2026 Commission Calculator | evonix',
-  description: 'Calculate TikTok Shop UK 9% commission (VAT inclusive), US 6% official & 8% reported referral fees, EU 9% rates, and Pakistan cross-border seller margins. Live 2026 payout breakdown.',
-  canonical: `${DOMAIN}/tiktok-shop-fee-calculator`,
-  ogImage: `${DOMAIN}/images/tiktok-shop-fee-calculator-2026.png`,
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
-  heading: 'TikTok Shop Fee Calculator UK 9% & US 6%/8% - 2026 Commission Calculator',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'TikTok Shop Fee Calculator', url: '/tiktok-shop-fee-calculator' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Calculate exact TikTok Shop UK 9% commission (VAT inclusive, no separate transaction fee), US 6% official / 8% reported rates, EU 9% standard, and Pakistan cross-border exporter net margins.
-      </p>
-      <div class="space-y-4">
-        <h2 class="text-xl font-bold text-white">TikTok Shop UK Commission Rates</h2>
-        <p class="text-sm text-slate-300">TikTok Shop UK standard commission is 9.0% VAT-inclusive with no separate payment transaction fee. Electronics qualify for 5% during promotional seller missions.</p>
-      </div>
-      <div class="space-y-4">
-        <h2 class="text-xl font-bold text-white">Seller Profitability Factors</h2>
-        <p class="text-sm text-slate-300">Actionable strategies for optimizing net profit on TikTok Shop:</p>
-        <ul class="list-disc list-inside space-y-2 text-sm text-slate-300">
-          <li><strong>Managing Storage Fees:</strong> Keep inventory turns under 30 to 45 days. FBT and 3PL warehouses double monthly storage charges on aged inventory past 60 days.</li>
-          <li><strong>Understanding Return Rates:</strong> Viral impulse buys face 12% to 22% returns. Build an 8% to 10% return reserve buffer into retail prices to avoid margin erosion.</li>
-          <li><strong>Selecting Fulfillment Partners:</strong> Compare Fulfilled by TikTok (FBT) for fast-delivery badges with seller self-shipping via Royal Mail or Evri for lightweight parcels.</li>
-        </ul>
-      </div>
-      <div class="space-y-4 pt-4 border-t border-slate-800">
-        <h2 class="text-xl font-bold text-white">Frequently Asked Questions</h2>
-        <div class="space-y-3 text-sm text-slate-300">
-          <div>
-            <h3 class="font-bold text-white">What is TikTok Shop fee in UK 2026?</h3>
-            <p class="text-slate-400">9% VAT inclusive, with no separate payment transaction fee.</p>
-          </div>
-          <div>
-            <h3 class="font-bold text-white">What is TikTok Shop fee in US 2026?</h3>
-            <p class="text-slate-400">6% official standard fee (5% for selected jewelry), and 8% reported for newer categories and accounts since August 2026.</p>
-          </div>
-          <div>
-            <h3 class="font-bold text-white">Is there transaction fee on TikTok Shop?</h3>
-            <p class="text-slate-400">In the US, payment processing is bundled inside the referral fee. In the UK, there is no separate payment transaction fee charged to sellers.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  `
-});
-
-pages.push({
-  route: 'amazon-fba-fee-calculator',
-  title: 'Amazon FBA Fee Calculator 2026 - Profit, Referral, Fulfillment + Fuel Surcharge',
-  description: '2026 updated Amazon FBA Fee Calculator. Calculate referral fee (8-45%), FBA fulfillment fee, 3.5% fuel surcharge, Oct 15 - Jan 14 peak fee $0.32, storage, inbound placement & net profit.',
-  canonical: `${DOMAIN}/amazon-fba-fee-calculator`,
-  ogImage: `${DOMAIN}/images/amazon-fba-fee-calculator-2026.png`,
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
-  heading: 'Amazon FBA Fee Calculator 2026 - Profit, Referral, Fulfillment + Fuel Surcharge',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Amazon FBA Calculator', url: '/amazon-fba-fee-calculator' }],
-  schemaType: 'FAQPage',
-  schemaJson: {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'What is the Amazon FBA fee in 2026?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'In 2026, Amazon FBA fee includes category referral fee (8% to 45%, min $0.30), size-tier pick and pack fee ($3.22 to $5.50+), a 3.5% fuel surcharge on fulfillment, and Q4 peak surcharges ($0.32 avg).'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'What is the 3.5% fuel surcharge on Amazon FBA?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Amazon applies a 3.5% fuel and logistics surcharge on top of standard FBA fulfillment fees to account for rising carrier freight and diesel costs.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'What is Amazon Q4 peak season fulfillment fee?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Between Oct 15, 2026 and Jan 14, 2027, Amazon charges an additional holiday peak surcharge averaging +$0.32 per standard unit, along with higher cubic-foot storage rates ($2.40/cu ft).'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'How do I calculate break-even ACoS for Amazon PPC?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Break-even ACoS equals your Net Profit Margin percentage before ad spend. If your margin is 28%, you can spend up to 28% of your sale price on ads without losing money.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'What is the Amazon low-inventory-level fee?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Amazon charges between $0.32 and $2.09 per unit if your inventory consistently falls below 28 days of historical supply relative to sales velocity.'
-        }
-      }
-    ]
-  },
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        2026 ke latest Amazon fee schedule ke mutabiq. Q4 Peak Season (Oct 15, 2026 - Jan 14, 2027) aur Fuel Surcharge 3.5% included hai.
-      </p>
-
-      <div class="space-y-4">
-        <h2 class="text-xl font-bold text-white">Amazon Referral Fee Schedule 2026</h2>
-        <p class="text-sm text-slate-300">Amazon charges a referral fee on every item sold. Most product categories carry a standard 15% rate, with a universal $0.30 minimum fee per unit.</p>
-        <p class="text-sm text-slate-300">Consumer electronics remain at 8%, while device accessories range up to 45%. Knowing your category percentage prevents costly pricing mistakes.</p>
-      </div>
-
-      <div class="space-y-4">
-        <h2 class="text-xl font-bold text-white">FBA Fulfillment Fees & 3.5% Fuel Surcharge</h2>
-        <p class="text-sm text-slate-300">Fulfillment fees cover pick, pack, shipping, and customer support. Starting April 17, 2026, Amazon applied a 3.5% fuel and logistics surcharge on all fulfillment rates.</p>
-        <p class="text-sm text-slate-300">Small standard goods under $10 enjoy low-price FBA rates at $3.22. Standard items between $10 and $50 start at $3.45 to $5.50 based on shipping weight.</p>
-      </div>
-
-      <div class="space-y-4">
-        <h2 class="text-xl font-bold text-white">Seller Profitability Factors (Peak Season & Storage)</h2>
-        <p class="text-sm text-slate-300">During the Q4 holiday window from Oct 15, 2026 to Jan 14, 2027, Amazon adds an average peak fee of $0.32 per unit. Monthly storage also triples from $0.78 to $2.40 per cubic foot.</p>
-        <p class="text-sm text-slate-300">Maintain at least 28 days of inventory supply to prevent low-inventory penalties. Keep fast turn rates to protect your cash flow.</p>
-      </div>
-
-      <div class="space-y-4 pt-4 border-t border-slate-800">
-        <h2 class="text-xl font-bold text-white">Frequently Asked Questions</h2>
-        <div class="space-y-3 text-sm text-slate-300">
-          <div>
-            <h3 class="font-bold text-white">What is the Amazon FBA fee in 2026?</h3>
-            <p class="text-slate-400">In 2026, Amazon FBA fee includes category referral fee (8% to 45%, min $0.30), size-tier pick & pack fee ($3.22 to $5.50+), a 3.5% fuel surcharge on fulfillment, and Q4 peak surcharges ($0.32 avg).</p>
-          </div>
-          <div>
-            <h3 class="font-bold text-white">What is the 3.5% fuel surcharge on Amazon FBA?</h3>
-            <p class="text-slate-400">Amazon applies a 3.5% fuel and logistics surcharge on top of standard FBA fulfillment fees to account for rising carrier freight and diesel costs.</p>
-          </div>
-          <div>
-            <h3 class="font-bold text-white">What is Amazon Q4 peak season fulfillment fee?</h3>
-            <p class="text-slate-400">Between Oct 15, 2026 and Jan 14, 2027, Amazon charges an additional holiday peak surcharge averaging +$0.32 per standard unit, along with higher cubic-foot storage rates ($2.40/cu ft).</p>
-          </div>
-          <div>
-            <h3 class="font-bold text-white">How do I calculate break-even ACoS for Amazon PPC?</h3>
-            <p class="text-slate-400">Break-even ACoS equals your Net Profit Margin percentage before ad spend. If your margin is 28%, you can spend up to 28% of your sale price on ads without losing money.</p>
-          </div>
-          <div>
-            <h3 class="font-bold text-white">What is the Amazon low-inventory-level fee?</h3>
-            <p class="text-slate-400">Amazon charges between $0.32 and $2.09 per unit if your inventory consistently falls below 28 days of historical supply relative to sales velocity.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
-        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
-        <p class="text-slate-400">Doorstep IT consultancy and Amazon cross-border seller support.</p>
-      </div>
-    </div>
-  `
-});
-
-pages.push({
-  route: 'amazon-fba-calculator',
-  title: 'Amazon FBA Fee Calculator 2026 - Profit, Referral, Fulfillment + Fuel Surcharge',
-  description: '2026 updated Amazon FBA Fee Calculator. Calculate referral fee (8-45%), FBA fulfillment fee, 3.5% fuel surcharge, Oct 15 - Jan 14 peak fee $0.32, storage, inbound placement & net profit.',
-  canonical: `${DOMAIN}/amazon-fba-fee-calculator`,
-  ogImage: `${DOMAIN}/images/amazon-fba-fee-calculator-2026.png`,
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
-  isRedirect: true,
-  redirectTo: 'amazon-fba-fee-calculator',
-  heading: 'Amazon FBA Fee Calculator 2026',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Amazon FBA Calculator', url: '/amazon-fba-fee-calculator' }],
-  bodyHtml: `<p class="text-slate-300">Redirecting to Amazon FBA Fee Calculator 2026...</p>`
-});
-
-pages.push({
-  route: 'ebay-fee-calculator',
-  title: 'eBay Fee & Profit Calculator 2026 | Accurate Seller Margins | evonix',
-  description: 'Free eBay fee and profit calculator. Calculate final value fees, promoted ads, shipping costs, and net margins across US, UK, Germany, UAE, and Pakistan.',
-  canonical: `${DOMAIN}/ebay-fee-calculator`,
-  ogImage: `${DOMAIN}/images/ebay-fee-calculator-2026.png`,
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
-  heading: 'eBay Fee & Profit Calculator 2026',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'eBay Fee Calculator', url: '/ebay-fee-calculator' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Calculate exact eBay final value fees (13.25% standard), promoted listing ad spend, carrier shipping costs, and net seller payout across global currencies.
-      </p>
-      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
-        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
-        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
-      </div>
-    </div>
-  `
-});
-
-pages.push({
-  route: 'shopify-fee-calculator',
-  title: 'Shopify Fee Calculator 2026 | Payments & Plan Profit Engine | evonix',
-  description: 'Calculate platform billing costs via our Shopify fee calculator. Track shopify profit calculator projections, transaction fees, and payment channels.',
-  canonical: `${DOMAIN}/shopify-fee-calculator`,
-  ogImage: `${DOMAIN}/images/shopify-fee-calculator-2026.png`,
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
-  heading: 'Shopify Fee & Profit Margin Calculator 2026',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Shopify Fee Calculator', url: '/shopify-fee-calculator' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Analyze Shopify Payments processing rates (2.9% + 30¢), third-party gateway transaction surcharges, and monthly subscription plan amortization.
-      </p>
-      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
-        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
-        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
-      </div>
-    </div>
-  `
-});
-
-pages.push({
-  route: 'etsy-fee-calculator',
-  title: 'EtsyFeePro: Etsy Fee & Payoneer Profit Calculator 2026 | EVONIX',
-  description: 'Calculate exact Etsy fees ($0.20 listing, 6.5% transaction, 3-4.5% payment), 15% offsite ads with $100 order cap, and Payoneer banking deductions. Live currency converter.',
-  canonical: `${DOMAIN}/etsy-fee-calculator`,
-  ogImage: `${DOMAIN}/images/etsy-fee-calculator-2026.png`,
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
-  heading: 'EtsyFeePro: Etsy Fee & Payoneer Profit Engine 2026',
-  subheading: 'Precise Etsy Fees, Offsite Ads $100 Cap & Cross-Border Payoneer Cash Payout Matrix',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'EtsyFeePro Calculator', url: '/etsy-fee-calculator' }],
-  schemaType: 'FAQPage',
-  schemaJson: {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'What are the real Etsy fees per sale in 2026?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Etsy charges a $0.20 fixed listing fee, 6.5% transaction fee on item price and shipping, payment processing fees (3.0% + $0.25 in the US, up to 4.5% + $0.30 for international Payoneer accounts), and optional 15% offsite ads.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'What is the Etsy Offsite Ads $100 fee cap?',
-        answer: 'When a buyer clicks an external ad and buys within 30 days, Etsy deducts 15% (or 12% for shops over $10k/yr). However, Etsy officially caps this fee at $100 on any single order.'
-      },
-      {
-        '@type': 'Question',
-        name: 'How much does Payoneer deduct when withdrawing Etsy funds?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Payoneer deducts a 0.5% inflow receiving fee, an estimated 2.0% wholesale FX spread below the live interbank rate, and a flat $1.50 local bank wire fee per withdrawal.'
-        }
-      }
-    ]
-  },
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Calculate exact Etsy listing renewals ($0.20), 6.5% transaction cut on item and shipping, payment processing fees (3% + 25¢), 15% Offsite Ads with official $100 order cap, and multi-stage Payoneer cross-border banking deductions.
-      </p>
-      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
-        <h2 class="text-lg font-bold text-white">EtsyFeePro Features &amp; Capabilities</h2>
-        <ul class="space-y-2 text-sm text-slate-400">
-          <li>&bull; <strong>Precise Etsy Fee Engine:</strong> Listing fee ($0.20), 6.5% transaction, country-specific payment processing, and regulatory operating fees.</li>
-          <li>&bull; <strong>Official $100 Offsite Ads Cap:</strong> Automatically limits 15% or 12% ad fees to the maximum $100 limit.</li>
-          <li>&bull; <strong>Cross-Border Payoneer Deductions:</strong> Calculates inflow 0.5%, FX spread 2%, and local bank wire flat fee $1.50.</li>
-          <li>&bull; <strong>Target Price Solver:</strong> Solves required selling prices for 20% Safe, 35% Growth, and 50% Brand profit margins.</li>
-        </ul>
-      </div>
-      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
-        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
-        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
-      </div>
-    </div>
-  `
-});
-
-pages.push({
-  route: 'amazon-fbm-calculator',
-  title: 'Amazon FBM Fee & Profit Calculator 2026 - Merchant Shipping & Referral Fees | evonix',
-  description: '2026 Amazon FBM (Fulfilled by Merchant) fee calculator. Calculate category referral fees (8-15%), merchant self-shipping, packaging, PPC CAC, and net profit margins.',
-  canonical: `${DOMAIN}/amazon-fbm-calculator`,
-  ogImage: `${DOMAIN}/images/amazon-fbm-calculator-2026.png`,
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
-  heading: 'Amazon FBM Fee & Profit Calculator 2026',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Amazon FBM Calculator', url: '/amazon-fbm-calculator' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Compute Amazon Fulfilled by Merchant (FBM) unit economics: category referral cut, self-ship carrier rates, packaging materials, and break-even ACoS.
-      </p>
-      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
-        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
-        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
-      </div>
-    </div>
-  `
-});
-
-pages.push({
-  route: 'stripe-fee-calculator',
-  title: 'Stripe Fee Calculator 2026 | Transaction Fee & Net Payout Tool | evonix',
-  description: 'Run our advanced Stripe fee calculator to analyze stripe transaction fee calculator tiers, processing margins, and reverse payment logic instantly.',
-  canonical: `${DOMAIN}/stripe-fee-calculator`,
-  ogImage: `${DOMAIN}/images/stripe-fee-calculator-2026.png`,
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
-  heading: 'Stripe Fee & Net Payout Calculator 2026',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Stripe Fee Calculator', url: '/stripe-fee-calculator' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Analyze Stripe 2.9% + 30¢ domestic processing, international credit card surcharges, and reverse payment calculations instantly.
-      </p>
-      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
-        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
-        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
-      </div>
-    </div>
-  `
-});
-
-pages.push({
-  route: 'temu-seller-calculator',
-  title: 'Temu Seller Calculator 2026 | Fee & Profit Margin Calculator | evonix',
-  description: 'Use the real Temu seller calculator to process temu fee calculator rows, commission profiles, supply chain costs, and net margins instantly.',
-  canonical: `${DOMAIN}/temu-seller-calculator`,
-  ogImage: `${DOMAIN}/images/temu-seller-calculator-2026.png`,
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
-  heading: 'Temu Seller Profit & Margin Calculator 2026',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Temu Seller Calculator', url: '/temu-seller-calculator' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Compute cross-border wholesale unit economics, platform commissions, air freight logistics, and return loss buffers on Temu.
-      </p>
-      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
-        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
-        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
-      </div>
-    </div>
-  `
-});
-
-pages.push({
-  route: 'ecommerce-calculator',
-  title: 'E-Commerce Profit & Courier Shipping Margin Calculator | evonix',
-  description: 'Free zero-database e-commerce margin calculator. Real-time Leopards, TCS, Trax, PostEx courier tariffs, COD handling charges, marketing CAC, and RTO return loss simulator.',
-  canonical: `${DOMAIN}/ecommerce-calculator`,
-  ogImage: `${DOMAIN}/images/ecommerce-calculator-2026.png`,
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
-  heading: 'E-Commerce Profit & Courier Tariff Calculator',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'E-Commerce Calculator', url: '/ecommerce-calculator' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Calculate courier shipping tariffs across Leopards, TCS, Trax, and PostEx, COD fee percentages, ad CAC break-evens, and RTO return loss cushions in Pakistan.
-      </p>
-      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
-        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
-        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
-      </div>
-    </div>
-  `
-});
-
-pages.push({
-  route: 'cbm-calculator',
-  title: 'Export CBM & Volumetric Shipping Cargo Calculator | evonix',
-  description: 'Free B2B export CBM calculator. Instant Cubic Meters computations, DHL/FedEx and air cargo volumetric weights, and 20ft/40ft ocean container space utilization.',
-  canonical: `${DOMAIN}/cbm-calculator`,
-  ogImage: `${DOMAIN}/images/cbm-calculator-2026.png`,
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
-  heading: 'Export CBM & Volumetric Freight Calculator',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'CBM Calculator', url: '/cbm-calculator' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Calculate master carton volume in Cubic Meters (CBM), air freight dimensional weights (divisor 5000 / 6000), and 20ft/40ft container capacity.
-      </p>
-      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
-        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
-        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
-      </div>
-    </div>
-  `
-});
-
-pages.push({
-  route: 'developer-cost-calculator',
-  title: 'Dedicated Developer Cost Calculator - Save 70% | evonix',
-  description: 'Calculate cost to hire dedicated developers via evonix Technologies Sialkot. Senior dev at $22/hr vs $80/hr in USA. Save $111k/year. Get CVs in 24h.',
-  canonical: `${DOMAIN}/hire-dedicated-developer-cost-calculator-pune-india`,
-  ogImage: `${DOMAIN}/images/developer-cost-calculator-2026.png`,
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
-  heading: 'Dedicated Developer Cost Calculator - Save 70%',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Developer Cost Calculator', url: '/hire-dedicated-developer-cost-calculator-pune-india' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Compare the total compensation cost of US and UK software engineers ($80/hr) with vetted senior offshore developers ($22/hr) from Evonix Technologies Sialkot.
-      </p>
-      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
-        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
-        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
-      </div>
-    </div>
-  `
-});
-
-pages.push({
-  route: 'ai-visibility-checker',
-  title: 'Website E-E-A-T & AI Visibility Checker | evonix',
-  description: 'Free client-side Google E-E-A-T & Generative Engine Optimization (GEO) checker. Audit your domain readiness for ChatGPT, Claude, and Google AI Overviews.',
-  canonical: `${DOMAIN}/ai-visibility-checker`,
-  ogImage: `${DOMAIN}/images/ai-visibility-checker-2026.png`,
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
-  heading: 'Website E-E-A-T & AI Visibility Checker',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'AI Visibility Checker', url: '/ai-visibility-checker' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Audit your domain readiness for generative search engines, ChatGPT citations, Claude answers, and Google AI Overview summaries with client-side analysis.
-      </p>
-      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
-        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
-        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
-      </div>
-    </div>
-  `
-});
-
-pages.push({
-  route: 'tools/ai-trip-planner',
-  title: 'AI Trip Planner: Free Day-by-Day Vacation Itinerary Generator | EVONIX',
-  description: 'Free AI travel itinerary generator. Enter your destination, budget, and days to generate an instant day-wise vacation schedule with food spots, costs & transit advice.',
-  canonical: `${DOMAIN}/tools/ai-trip-planner`,
-  ogImage: `${DOMAIN}/images/ai-trip-planner-2026.png`,
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
-  heading: 'AI Trip Planner & Vacation Itinerary Generator',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'AI Trip Planner', url: '/tools/ai-trip-planner' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Generate custom day-wise travel itineraries, estimated budgets, restaurant recommendations, and transit guidance for any city worldwide.
-      </p>
-      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
-        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
-        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
-      </div>
-    </div>
-  `
-});
-
-pages.push({
-  route: 'uk-eu-vat-calculator',
-  title: 'UK & EU VAT Reverse Charge & VAT MOSS Engine | evonix',
-  description: 'Automate HMRC Section 55A and EU Directive 2006/112/EC 0% reverse charge VAT exemptions and statutory invoice clauses for international B2B exporters.',
-  canonical: `${DOMAIN}/uk-eu-vat-calculator`,
-  ogImage: `${DOMAIN}/images/uk-eu-vat-calculator-2026.png`,
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
-  heading: 'UK & EU VAT Reverse Charge & Exemption Engine',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'UK & EU VAT Calculator', url: '/uk-eu-vat-calculator' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Determine cross-border B2B 0% reverse charge VAT exemptions, statutory HMRC Section 55A invoice wording, and EU Directive compliance.
-      </p>
-      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
-        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
-        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
-      </div>
-    </div>
-  `
-});
-
-pages.push({
-  route: 'us-duty-nexus-estimator',
-  title: 'US Customs Tariff & Section 321 De Minimis Calculator | evonix',
-  description: 'Calculate US CBP tariffs, verify the $800 duty-free Section 321 entry eligibility, and estimate landed costs for US buyers.',
-  canonical: `${DOMAIN}/us-duty-nexus-estimator`,
-  ogImage: `${DOMAIN}/images/us-duty-nexus-estimator-2026.png`,
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
-  heading: 'US Customs Tariff & Section 321 Calculator',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'US Duty Nexus Estimator', url: '/us-duty-nexus-estimator' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Verify $800 duty-free Section 321 de minimis eligibility, HTS code tariffs, and total US landed import costs for Pakistani exporters.
-      </p>
-      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
-        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
-        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
-      </div>
-    </div>
-  `
-});
-
-pages.push({
-  route: 'ce-ukca-compliance-generator',
-  title: 'UKCA & CE Declaration of Conformity (DoC) Generator | evonix',
-  description: 'Generate audited technical Declaration of Conformity documents for CE Marking (EU MDR Class I) and UKCA tenders.',
-  canonical: `${DOMAIN}/ce-ukca-compliance-generator`,
-  ogImage: `${DOMAIN}/images/ce-ukca-compliance-generator-2026.png`,
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
-  heading: 'UKCA & CE Declaration of Conformity Generator',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'CE & UKCA Compliance', url: '/ce-ukca-compliance-generator' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Create compliant Declarations of Conformity for EU MDR 2017/745 Class I medical devices, sports equipment, and UKCA tenders.
-      </p>
-      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
-        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
-        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
-      </div>
-    </div>
-  `
-});
-
-pages.push({
-  route: 'export-barcode-studio',
-  title: 'Export Barcode Label Studio – GS1-128 & Carton Labels | evonix',
-  description: 'Generate compliant thermal shipping carton barcode labels for surgical instruments, sports goods, and leather exports. 4x6 direct thermal, GS1-128, and Code 128 vector rendering.',
-  canonical: `${DOMAIN}/export-barcode-studio`,
-  ogImage: `${DOMAIN}/images/export-barcode-studio-2026.png`,
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
-  heading: 'Export Barcode Label Studio (GS1-128 & Code 128)',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Export Barcode Studio', url: '/export-barcode-studio' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Generate outer shipping carton barcode labels for Sialkot export manufacturing. 4x6 inch direct thermal printable with GS1 application identifiers.
-      </p>
-      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
-        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
-        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
-      </div>
-    </div>
-  `
-});
-
-pages.push({
-  route: 'printer-diagnostics',
-  title: 'Thermal Receipt & POS Printer Diagnostic Engine | evonix',
-  description: 'Interactive step-by-step troubleshooter for 80mm ESC/POS thermal printers, paper jams, blurred barcodes, cutter lockups, and Windows POS driver issues.',
-  canonical: `${DOMAIN}/printer-diagnostics`,
-  ogImage: `${DOMAIN}/images/printer-diagnostics-2026.png`,
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
-  heading: 'Thermal Receipt & POS Printer Diagnostic Engine',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Printer Diagnostics', url: '/printer-diagnostics' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Troubleshoot 80mm ESC/POS commercial receipt printers, auto-cutter lockups, paper feed errors, and printhead degradation.
-      </p>
-      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
-        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
-        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
-      </div>
-    </div>
-  `
-});
-
-pages.push({
-  route: 'factory-network-tester',
-  title: 'Factory ERP & Customs Network Latency Benchmark | evonix',
-  description: 'Benchmark factory premise network latency, SQL server database sync times, and WeBOC customs gateway ping stability in Sialkot export industrial zones.',
-  canonical: `${DOMAIN}/factory-network-tester`,
-  ogImage: `${DOMAIN}/images/factory-network-tester-2026.png`,
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
-  heading: 'Factory ERP & Customs Network Latency Benchmark',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Factory Network Tester', url: '/factory-network-tester' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Benchmark LAN and WAN latency, database sync jitter, and WeBOC customs gateway connection stability across Sialkot industrial factories.
-      </p>
-      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
-        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
-        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
-      </div>
-    </div>
-  `
-});
-
-pages.push({
-  route: 'live-repair-tracker',
-  title: 'Live RMA Bench Repair Status Tracker | evonix',
-  description: 'Track your diagnostic bench repair ticket in real-time. Check motherboard micro-soldering progress, standby current logs, and 90-day warranty certificates in Sialkot.',
-  canonical: `${DOMAIN}/live-repair-tracker`,
-  ogImage: `${DOMAIN}/images/live-repair-tracker-2026.png`,
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
-  heading: 'Live RMA Bench Repair Status Tracker',
-  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: 'Live Repair Tracker', url: '/live-repair-tracker' }],
-  bodyHtml: `
-    <div class="space-y-6 text-slate-300">
-      <p class="text-base sm:text-lg text-slate-200">
-        Track real-time hardware laboratory diagnostic progress, standby current readings, chip-level micro-soldering, and 90-day warranty status.
-      </p>
-      <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm">
-        <p class="text-white font-bold">Got a question? Call us. We reply in 2 hours.</p>
-        <p class="text-slate-400">On-site IT and cross-border ecommerce consulting in Sialkot.</p>
-      </div>
-    </div>
-  `
+    `
+  });
 });
 
 pages.push({
@@ -2254,23 +1763,102 @@ citySlugs.forEach((city) => {
     description: `Rapid 30-45 minute on-site IT support and software engineering for businesses in ${cityData.name}.`,
     canonical: `${DOMAIN}/locations/${city}`,
     heading: `${cityData.name} IT Services & Industrial Support`,
+    subheading: `${cityData.urduName} · Dispatch ETA: ${cityData.dispatchEtaMinutes}`,
     breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Locations', url: '/locations' }, { name: cityData.name, url: `/locations/${city}` }],
     bodyHtml: `
-      <div class="space-y-6 text-slate-300">
-        <p class="text-base sm:text-lg text-slate-200">${escapeHtml(cityData.tagline)}</p>
-        <h2 class="text-xl font-bold text-white mt-6 mb-3">Available Services in ${cityData.name}</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          ${enterpriseLocationServices.map(svc => `
-            <a href="/locations/${city}/${svc}" class="p-4 rounded-xl bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-200 hover:text-teal-400 text-sm font-semibold transition-colors">
-              ${escapeHtml(CLUSTER_SERVICES[svc].name)}
+      <div class="space-y-8 text-slate-300">
+        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+          <h2 class="text-xl font-bold text-white">Industrial IT Support in ${escapeHtml(cityData.name)}</h2>
+          <p class="text-base text-slate-200 leading-relaxed">${escapeHtml(cityData.tagline)}</p>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Our certified field engineers maintain an active mobile patrol across the Sialkot-${escapeHtml(cityData.name)} industrial corridor. We provide guaranteed on-site arrival within ${escapeHtml(cityData.dispatchEtaMinutes)} for factories and commercial offices.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-2 text-xs font-semibold">
+            <span class="px-3 py-1 rounded-full bg-teal-500/10 text-teal-400 border border-teal-500/20">Postal Code: ${escapeHtml(cityData.postalCode)}</span>
+            <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">Distance: ${escapeHtml(cityData.distanceFromHQLab)}</span>
+            <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Response: ${escapeHtml(cityData.dispatchEtaMinutes)}</span>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <h2 class="text-xl font-bold text-white">Local Technical Challenges &amp; Solutions</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+              <h3 class="text-base font-bold text-red-400">Common Local Issues</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">${escapeHtml(cityData.infraChallenge)}</p>
+            </div>
+            <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+              <h3 class="text-base font-bold text-teal-400">Our On-Site Fix</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">${escapeHtml(cityData.localSolutionNote)}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <h2 class="text-xl font-bold text-white">Key Commercial Hubs We Serve in ${escapeHtml(cityData.name)}</h2>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-300">
+            ${cityData.keyCommercialHubs.map(hub => `
+              <li class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-teal-400"></span>
+                <span>${escapeHtml(hub)}</span>
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+
+        <div class="space-y-4">
+          <h2 class="text-xl font-bold text-white">Available Services in ${escapeHtml(cityData.name)}</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            ${enterpriseLocationServices.map(svc => `
+              <a href="/locations/${city}/${svc}" class="p-4 rounded-xl bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-200 hover:text-teal-400 text-sm font-semibold transition-colors block space-y-1">
+                <div class="text-teal-400 font-bold">${escapeHtml(CLUSTER_SERVICES[svc].shortName)}</div>
+                <div class="text-xs text-slate-400 line-clamp-2">${escapeHtml(CLUSTER_SERVICES[svc].summary)}</div>
+              </a>
+            `).join('')}
+            <a href="https://store.evonixtec.com/hardware-repair" class="p-4 rounded-xl bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-200 hover:text-teal-400 text-sm font-semibold transition-colors block space-y-1">
+              <div class="text-teal-400 font-bold">Hardware Maintenance &amp; Repair &rarr;</div>
+              <div class="text-xs text-slate-400">Thermal printer repair, barcode scanners, and touch terminal servicing.</div>
             </a>
-          `).join('')}
-          <a href="https://store.evonixtec.com/hardware-repair" class="p-4 rounded-xl bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-200 hover:text-teal-400 text-sm font-semibold transition-colors">
-            Hardware Maintenance &amp; Repair &rarr;
-          </a>
-          <a href="https://store.evonixtec.com/laptop-repairing-sialkot" class="p-4 rounded-xl bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-200 hover:text-teal-400 text-sm font-semibold transition-colors">
-            Chip-Level Laptop Repair &rarr;
-          </a>
+            <a href="https://store.evonixtec.com/laptop-repairing-sialkot" class="p-4 rounded-xl bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-200 hover:text-teal-400 text-sm font-semibold transition-colors block space-y-1">
+              <div class="text-teal-400 font-bold">Chip-Level Laptop Repair &rarr;</div>
+              <div class="text-xs text-slate-400">Component-level motherboard micro-soldering with 90-day warranty.</div>
+            </a>
+          </div>
+        </div>
+
+        ${cityData.verifiedClients && cityData.verifiedClients.length > 0 ? `
+          <div class="space-y-4 pt-4 border-t border-slate-800">
+            <h2 class="text-xl font-bold text-white">Verified Client Case Studies in ${escapeHtml(cityData.name)}</h2>
+            <div class="space-y-4">
+              ${cityData.verifiedClients.map(vc => `
+                <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+                  <div class="flex flex-wrap items-center justify-between gap-2">
+                    <h3 class="font-bold text-white text-base">${escapeHtml(vc.name)}</h3>
+                    <span class="text-xs text-teal-400">${escapeHtml(vc.industry)}</span>
+                  </div>
+                  <p class="text-xs text-slate-400">Service: ${escapeHtml(vc.serviceProvided)}</p>
+                  <blockquote class="text-xs text-slate-300 italic border-l-2 border-teal-500 pl-3 leading-relaxed">
+                    &ldquo;${escapeHtml(vc.quote)}&rdquo;
+                  </blockquote>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        ` : ''}
+
+        <div class="p-6 rounded-2xl bg-slate-900 border border-teal-500/30 space-y-2">
+          <h3 class="text-lg font-bold text-white">Got a question? Call us. We reply in 2 hours.</h3>
+          <p class="text-sm text-slate-300">
+            Direct field technician dispatch in ${escapeHtml(cityData.name)}. Zero callout fee for commercial diagnostics.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-4 items-center">
+            <a href="tel:+923263244002" class="px-5 py-2.5 rounded-xl bg-teal-500 text-slate-950 font-bold text-sm hover:bg-teal-400">
+              Call +92 326 324 4002
+            </a>
+            <a href="https://wa.me/923263244002" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-sm hover:bg-emerald-500">
+              WhatsApp Dispatch
+            </a>
+          </div>
         </div>
       </div>
     `
@@ -2278,12 +1866,14 @@ citySlugs.forEach((city) => {
 
   enterpriseLocationServices.forEach((svc) => {
     const serviceData = CLUSTER_SERVICES[svc];
+    const cluster = getClusterData(city, svc);
     pages.push({
       route: `locations/${city}/${svc}`,
       title: `${serviceData.name} in ${cityData.name} | EVONIX`,
       description: `${serviceData.summary} Expert on-site engineering team serving ${cityData.name}.`,
       canonical: `${DOMAIN}/locations/${city}/${svc}`,
       heading: `${serviceData.name} in ${cityData.name}`,
+      subheading: cluster.subheadline,
       breadcrumb: [
         { name: 'Home', url: '/' },
         { name: 'Locations', url: '/locations' },
@@ -2291,14 +1881,67 @@ citySlugs.forEach((city) => {
         { name: serviceData.name, url: `/locations/${city}/${svc}` }
       ],
       bodyHtml: `
-        <div class="space-y-6 text-slate-300">
-          <p class="text-base sm:text-lg text-slate-200">${escapeHtml(serviceData.summary)}</p>
-          <div class="p-6 rounded-2xl bg-slate-900 border border-teal-500/30">
-            <h3 class="text-lg font-bold text-white mb-2">Got a question? Call us.</h3>
-            <p class="text-sm text-slate-300 mb-4">We reply in 2 hours with direct technician support in ${cityData.name}.</p>
-            <a href="tel:${cityData.phoneContact.replace(/\s+/g, '')}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-sm">
-              Call ${cityData.phoneContact}
-            </a>
+        <div class="space-y-8 text-slate-300">
+          <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+            <h2 class="text-xl font-bold text-white">${escapeHtml(cluster.headline)}</h2>
+            <p class="text-base text-slate-200 leading-relaxed">${escapeHtml(cluster.heroPitch)}</p>
+            <p class="text-sm text-slate-400 leading-relaxed">${escapeHtml(cluster.industrialBenefit)}</p>
+          </div>
+
+          <div class="space-y-4">
+            <h2 class="text-xl font-bold text-white">Technical Service Specifications</h2>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-300">
+              ${serviceData.detailedSpecs.map(spec => `
+                <li class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-teal-400 mt-1.5 flex-shrink-0"></span>
+                  <span class="text-xs leading-relaxed">${escapeHtml(spec)}</span>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+            <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1">
+              <span class="text-slate-400 block font-semibold">Turnaround Time</span>
+              <span class="text-white font-bold">${escapeHtml(serviceData.turnaroundTime)}</span>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1">
+              <span class="text-slate-400 block font-semibold">Pricing Terms</span>
+              <span class="text-white font-bold">${escapeHtml(serviceData.startingPrice)}</span>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1">
+              <span class="text-slate-400 block font-semibold">Hardware Warranty</span>
+              <span class="text-white font-bold">${escapeHtml(serviceData.warranty)}</span>
+            </div>
+          </div>
+
+          ${cluster.localFaqs && cluster.localFaqs.length > 0 ? `
+            <div class="space-y-4 pt-4 border-t border-slate-800">
+              <h2 class="text-xl font-bold text-white">Frequently Asked Questions in ${escapeHtml(cityData.name)}</h2>
+              <div class="space-y-4 text-sm text-slate-300">
+                ${cluster.localFaqs.map(f => `
+                  <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+                    <h3 class="font-bold text-white">${escapeHtml(f.q)}</h3>
+                    <p class="text-slate-400 leading-relaxed">${escapeHtml(f.a)}</p>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+
+          <div class="p-6 rounded-2xl bg-slate-900 border border-teal-500/30 space-y-2">
+            <h3 class="text-lg font-bold text-white">Got a question? Call us. We reply in 2 hours.</h3>
+            <p class="text-sm text-slate-300">
+              Direct field technician dispatch in ${escapeHtml(cityData.name)}. Guaranteed arrival in ${escapeHtml(cityData.dispatchEtaMinutes)}.
+            </p>
+            <div class="pt-2 flex flex-wrap gap-4 items-center">
+              <a href="tel:+923263244002" class="px-5 py-2.5 rounded-xl bg-teal-500 text-slate-950 font-bold text-sm hover:bg-teal-400">
+                Call +92 326 324 4002
+              </a>
+              <a href="https://wa.me/923263244002" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-sm hover:bg-emerald-500">
+                WhatsApp Dispatch
+              </a>
+            </div>
           </div>
         </div>
       `
@@ -2453,8 +2096,12 @@ const aliasRedirects = [
   { route: 'blogs', redirectTo: 'guides', canonical: `${DOMAIN}/guides`, title: 'Tech Blogs | EVONIX Sialkot' },
   { route: 'blog', redirectTo: 'guides', canonical: `${DOMAIN}/guides`, title: 'Tech Blog Archive | EVONIX Sialkot' },
   { route: 'guide', redirectTo: 'guides', canonical: `${DOMAIN}/guides`, title: 'Technical Guides | EVONIX Sialkot' },
-  { route: 'invoice-generator', redirectTo: 'invoice', canonical: `${DOMAIN}/invoice`, title: 'Invoice Generator | EVONIX Sialkot' },
-  { route: 'margin-calculator', redirectTo: 'ecommerce-calculator', canonical: `${DOMAIN}/ecommerce-calculator`, title: 'Margin Calculator | EVONIX Sialkot' },
+  { route: 'invoice-generator', redirectTo: 'tools/invoice-generator', canonical: `${DOMAIN}/tools/invoice-generator`, title: 'Invoice Generator | EVONIX Sialkot' },
+  { route: 'margin-calculator', redirectTo: 'tools/ecommerce-margin-calculator', canonical: `${DOMAIN}/tools/ecommerce-margin-calculator`, title: 'Margin Calculator | EVONIX Sialkot' },
+  { route: 'pos-software-in-sialkot', redirectTo: 'blog/pos-software-in-sialkot', canonical: `${DOMAIN}/blog/pos-software-in-sialkot`, title: 'POS Software in Sialkot Guide | EVONIX' },
+  { route: 'locations/paris-road', redirectTo: 'locations/sialkot/pos-hardware', canonical: `${DOMAIN}/locations/sialkot/pos-hardware`, title: 'Paris Road IT Support | EVONIX Sialkot' },
+  { route: 'locations/khadim-ali-road', redirectTo: 'locations/sialkot/pos-hardware', canonical: `${DOMAIN}/locations/sialkot/pos-hardware`, title: 'Khadim Ali Road IT Support | EVONIX Sialkot' },
+  { route: 'blog/structuring-entity-schema-node-mapping-generative-ai-visibility', redirectTo: 'guides', canonical: `${DOMAIN}/guides`, title: 'Technical Guides | EVONIX Sialkot' },
 ];
 
 aliasRedirects.forEach((ar) => {

@@ -74,15 +74,15 @@ export const ToolDynamicPage: React.FC<ToolDynamicPageProps> = ({
       '@context': 'https://schema.org',
       '@graph': [
         {
-          '@type': 'SoftwareApplication',
+          '@type': 'WebApplication',
           name: tool.name,
+          url: canonicalUrl,
           applicationCategory: 'BusinessApplication',
           operatingSystem: 'All',
-          url: canonicalUrl,
           offers: {
             '@type': 'Offer',
             price: '0',
-            priceCurrency: 'PKR',
+            priceCurrency: 'USD',
             availability: 'https://schema.org/InStock',
           },
           provider: {
@@ -230,6 +230,34 @@ export const ToolDynamicPage: React.FC<ToolDynamicPageProps> = ({
           </section>
         )}
 
+        {/* EDITORIAL HOW THIS CALCULATOR WORKS (EDITORIAL SEO CONTENT) */}
+        {tool.howItWorks && (
+          <section className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4 text-left shadow-lg">
+            <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+              <CheckCircle2 className="w-5 h-5 text-teal-400" />
+              <span>{tool.howItWorks.title}</span>
+            </h2>
+            <p className="text-sm text-slate-300 leading-relaxed">
+              {tool.howItWorks.explanation}
+            </p>
+            <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-4 font-mono text-xs text-teal-300 overflow-x-auto">
+              <span className="text-slate-400 font-sans block text-[11px] font-semibold mb-1 uppercase tracking-wider">Baseline Mathematical Formula:</span>
+              {tool.howItWorks.formula}
+            </div>
+            <div className="space-y-2 pt-2">
+              <h3 className="text-xs uppercase font-bold tracking-wider text-slate-400">Standard Baseline Rates &amp; Thresholds:</h3>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-slate-300">
+                {tool.howItWorks.rates.map((rate, idx) => (
+                  <li key={idx} className="flex items-start gap-2 bg-slate-950/50 p-2.5 rounded-lg border border-slate-800/60">
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal-400 mt-1.5 shrink-0" />
+                    <span>{rate}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
+
         {/* CRAWLABLE ON-PAGE CONTENT (PREVENTS THIN-CONTENT PENALTY) */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-slate-800/80 pt-10">
           <div className="space-y-4 text-left">
@@ -259,18 +287,22 @@ export const ToolDynamicPage: React.FC<ToolDynamicPageProps> = ({
             </h2>
             <div className="space-y-3">
               {tool.faqs.map((faq, i) => (
-                <div
+                <details
                   key={i}
-                  className="bg-slate-900/60 border border-slate-800/70 rounded-xl p-3.5 space-y-1.5"
+                  open={i === 0}
+                  className="group bg-slate-900/60 border border-slate-800/70 rounded-xl p-3.5 space-y-1.5"
                 >
-                  <h3 className="text-xs sm:text-sm font-semibold text-white flex items-start gap-2">
-                    <span className="text-blue-400 font-bold shrink-0">Q:</span>
-                    <span>{faq.q}</span>
-                  </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed pl-5">
+                  <summary className="text-xs sm:text-sm font-semibold text-white flex items-center justify-between cursor-pointer list-none select-none">
+                    <span className="flex items-start gap-2">
+                      <span className="text-blue-400 font-bold shrink-0">Q:</span>
+                      <span>{faq.q}</span>
+                    </span>
+                    <span className="text-slate-400 text-xs transition-transform group-open:rotate-180 ml-2">▼</span>
+                  </summary>
+                  <p className="text-xs text-slate-300 leading-relaxed pl-5 pt-2 border-t border-slate-800/50 mt-2">
                     {faq.a}
                   </p>
-                </div>
+                </details>
               ))}
             </div>
           </div>

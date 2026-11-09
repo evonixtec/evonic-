@@ -46,7 +46,6 @@ const mainCoreRoutes = [
   { loc: `${DOMAIN_MAIN}/portfolio/websites`, changefreq: 'monthly', priority: '0.80', lastmod: CURRENT_TIMESTAMP },
   { loc: `${DOMAIN_MAIN}/portfolio/software`, changefreq: 'monthly', priority: '0.80', lastmod: CURRENT_TIMESTAMP },
   { loc: `${DOMAIN_MAIN}/sialkot-export-erp`, changefreq: 'weekly', priority: '0.90', lastmod: CURRENT_TIMESTAMP },
-  { loc: `${DOMAIN_MAIN}/guidelines`, changefreq: 'weekly', priority: '0.85', lastmod: CURRENT_TIMESTAMP },
   { loc: `${DOMAIN_MAIN}/guides`, changefreq: 'daily', priority: '0.90', lastmod: CURRENT_TIMESTAMP },
   { loc: `${DOMAIN_MAIN}/about`, changefreq: 'weekly', priority: '0.85', lastmod: CURRENT_TIMESTAMP },
   { loc: `${DOMAIN_MAIN}/contact`, changefreq: 'daily', priority: '0.90', lastmod: CURRENT_TIMESTAMP },
@@ -72,7 +71,7 @@ citySlugs.forEach((city) => {
   mainLocationRoutes.push({
     loc: `${DOMAIN_MAIN}/locations/${city}`,
     changefreq: 'weekly',
-    priority: '0.85',
+    priority: '0.90',
     lastmod: CURRENT_TIMESTAMP,
   });
 });
@@ -82,18 +81,18 @@ citySlugs.forEach((city) => {
     mainLocationRoutes.push({
       loc: `${DOMAIN_MAIN}/locations/${city}/${service}`,
       changefreq: 'weekly',
-      priority: '0.80',
+      priority: '0.85',
       lastmod: CURRENT_TIMESTAMP,
     });
   });
 });
 
 const policyRoutes = [
-  { loc: `${DOMAIN_MAIN}/privacy-policy`, changefreq: 'monthly', priority: '0.5', lastmod: CURRENT_TIMESTAMP },
-  { loc: `${DOMAIN_MAIN}/terms-and-conditions`, changefreq: 'monthly', priority: '0.5', lastmod: CURRENT_TIMESTAMP },
-  { loc: `${DOMAIN_MAIN}/warranty-policy`, changefreq: 'monthly', priority: '0.5', lastmod: CURRENT_TIMESTAMP },
-  { loc: `${DOMAIN_MAIN}/mobile-policy`, changefreq: 'monthly', priority: '0.5', lastmod: CURRENT_TIMESTAMP },
-  { loc: `${DOMAIN_MAIN}/data-safety`, changefreq: 'monthly', priority: '0.5', lastmod: CURRENT_TIMESTAMP },
+  { loc: `${DOMAIN_MAIN}/privacy-policy`, changefreq: 'monthly', priority: '0.6', lastmod: CURRENT_TIMESTAMP },
+  { loc: `${DOMAIN_MAIN}/terms-and-conditions`, changefreq: 'monthly', priority: '0.6', lastmod: CURRENT_TIMESTAMP },
+  { loc: `${DOMAIN_MAIN}/warranty-policy`, changefreq: 'monthly', priority: '0.6', lastmod: CURRENT_TIMESTAMP },
+  { loc: `${DOMAIN_MAIN}/mobile-policy`, changefreq: 'monthly', priority: '0.6', lastmod: CURRENT_TIMESTAMP },
+  { loc: `${DOMAIN_MAIN}/data-safety`, changefreq: 'monthly', priority: '0.6', lastmod: CURRENT_TIMESTAMP },
 ];
 
 // All technical blogs and field guides
@@ -101,7 +100,7 @@ const mainBlogRoutes = B2B_BLOGS.map((blog) => ({
   loc: `${DOMAIN_MAIN}/blog/${blog.slug}`,
   lastmod: CURRENT_TIMESTAMP,
   changefreq: 'weekly',
-  priority: '0.80',
+  priority: '0.85',
 }));
 
 const allMainRoutes = [

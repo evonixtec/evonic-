@@ -19,6 +19,12 @@ export interface ToolMetadata {
   };
   howToSteps: string[];
   faqs: { q: string; a: string }[];
+  howItWorks?: {
+    title: string;
+    explanation: string;
+    formula: string;
+    rates: string[];
+  };
 }
 
 export const toolsRegistry: Record<string, ToolMetadata> = {
@@ -165,6 +171,17 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
       buttonText: 'View Developer Laptops',
       targetUrl: 'https://store.evonixtec.com',
     },
+    howItWorks: {
+      title: 'How This Calculator Works: Onshore vs Offshore Developer Cost Modeling',
+      explanation: 'In-house hiring in western markets involves substantial overhead beyond gross base salary, including health insurance, payroll taxes (FICA/National Insurance), equipment leasing, 401(k) or pension matching, and office workstation facilities. Offshore dedicated squads eliminate these liabilities under fixed monthly agreements.',
+      formula: 'Western Total In-House Cost = Base Salary * 1.28 (Overhead & Benefits Multiplier). Net Annual Savings = (Western Total In-House Cost - Offshore Retainer Total) * Number of Engineers.',
+      rates: [
+        'United States (US): Average senior full-stack engineer salary $135,000/yr + $37,800 mandatory benefits = $172,800/yr.',
+        'United Kingdom (UK): Average senior engineer salary GBP 75,000/yr + employer National Insurance = GBP 93,750/yr.',
+        'United Arab Emirates (UAE): Senior engineer salary AED 28,000/mo + visa sponsorship + accommodation allowance = AED 396,000/yr.',
+        'Offshore Dedicated Squad: Fully managed senior software engineer starting at $2,200 to $3,200/month all-inclusive.'
+      ],
+    },
     howToSteps: [
       'Select developer seniority level and primary technology stack.',
       'Choose benchmark comparison region (USA, UK, or UAE).',
@@ -173,8 +190,16 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     ],
     faqs: [
       {
-        q: 'What is included in the dedicated developer retainer?',
-        a: 'Full 160 hours monthly, high-speed fiber internet, workstation hardware, and local management oversight.',
+        q: 'What overhead expenses are included in the dedicated developer retainer?',
+        a: 'The retainer includes full 160 hours monthly, modern business laptop hardware, high-speed fiber internet with power backup, and local technical oversight.',
+      },
+      {
+        q: 'How does time-zone alignment work with offshore development teams?',
+        a: 'Engineers provide a minimum 4-hour daily overlap with North American and European working hours for daily stand-ups and sprint planning.',
+      },
+      {
+        q: 'Can we scale or transition engineers between projects?',
+        a: 'Yes. Dedicated squad contracts offer 30-day flexibility to upscale, downscale, or adjust technology skill sets as product requirements evolve.',
       },
     ],
   },
@@ -194,6 +219,17 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
       buttonText: 'Explore Web Engineering',
       targetUrl: 'https://www.evonixtec.com/services',
     },
+    howItWorks: {
+      title: 'How This Checker Works: Generative Engine Optimization (GEO) & Schema Analysis',
+      explanation: 'Modern AI answer engines like ChatGPT Search, Perplexity, Claude, and Google AI Overviews do not crawl the web like traditional 10-blue-link bots. Instead, they extract verified entities, semantic facts, and linked knowledge graphs from valid JSON-LD schemas and authoritative citation co-occurrences.',
+      formula: 'GEO Readiness Index = (Structured Data Node Score * 0.35) + (Entity Disambiguation Score * 0.25) + (Direct Fact Density * 0.25) + (Core Web Vitals TTFB * 0.15).',
+      rates: [
+        'Organization Schema: Complete @id entity graph linked with sameAs authoritative profiles (Wikidata, LinkedIn, Crunchbase).',
+        'Direct Fact Density: High ratio of factual assertions to marketing adjectives per paragraph.',
+        'Author Credibility: Person schema containing knowledgable jobTitle, alumniOf, and verified publication records.',
+        'Robots & Crawler Access: Unblocked OAI-SearchBot, PerplexityBot, and Google-Extended user-agent access.'
+      ],
+    },
     howToSteps: [
       'Enter target website domain or landing page URL.',
       'Audit entity graphs, JSON-LD schemas, and author credentials.',
@@ -203,7 +239,15 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     faqs: [
       {
         q: 'What is Generative Engine Optimization (GEO)?',
-        a: 'Structuring digital content and entity schemas so AI answer engines cite your brand as an authoritative source.',
+        a: 'GEO is the practice of structuring digital content and entity schemas so AI answer engines (ChatGPT, Perplexity, Google Gemini) cite your brand as the primary factual source.',
+      },
+      {
+        q: 'Why are JSON-LD entity graphs critical for AI citation?',
+        a: 'Large Language Models rely on clear subject-predicate-object semantic nodes to disambiguate corporate entities and prevent factual hallucinations.',
+      },
+      {
+        q: 'How does page load speed affect AI crawler inclusion?',
+        a: 'AI search bots operate under strict millisecond timeout budgets. Server response times over 600ms cause bots to abandon retrieval and synthesize answers from competitor sources.',
       },
     ],
   },
@@ -252,6 +296,18 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
       buttonText: 'View Thermal Hardware',
       targetUrl: 'https://store.evonixtec.com',
     },
+    howItWorks: {
+      title: 'How This Calculator Works: eBay Final Value & Category Caps',
+      explanation: 'eBay charges a Final Value Fee (FVF) based on the total amount paid by the buyer, which includes the item price, shipping cost, and any applicable sales tax. The exact percentage depends on the product category and your store subscription tier.',
+      formula: 'eBay Deductions = (Total Buyer Amount * Category FVF Rate) + Fixed Fee ($0.30 - $0.40) + Promoted Ads Fee + International Surcharge. Net Profit = Sale Price - Cost of Goods - Shipping - eBay Deductions.',
+      rates: [
+        'Standard Non-Store Sellers: 13.25% on total sale amount up to $7,500 per item; 2.35% on remaining balance over $7,500.',
+        'eBay Basic / Premium Store: 12.35% on general categories with reduced rates down to 9.35% on musical instruments and computers.',
+        'Fixed Transaction Fee: $0.30 or $0.40 per order depending on sale amount under/over $10.00.',
+        'International Surcharge: 1.65% if you sell to buyers outside your registration country.',
+        'Promoted Listings Standard: Custom percentage (typically 2% to 15%) deducted only when a buyer purchases via an ad click.'
+      ],
+    },
     howToSteps: [
       'Select eBay marketplace (US, UK, Germany, Australia, etc.).',
       'Choose product category to apply specific final value fee rates.',
@@ -260,8 +316,16 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     ],
     faqs: [
       {
-        q: 'Does this calculate eBay Promoted Listings?',
-        a: 'Yes, select Promoted Listings Standard percentage to see exact ad fees deducted upon sale.',
+        q: 'Does this calculate eBay Promoted Listings and ad costs?',
+        a: 'Yes. Enter your Promoted Listings Standard percentage to see exact ad fees deducted upon sale alongside standard Final Value Fees.',
+      },
+      {
+        q: 'How do eBay Store subscriptions affect final fees?',
+        a: 'Subscribing to a Basic or Premium eBay Store reduces final value percentages across electronics, sporting goods, and apparel, and raises your monthly free listing allowance.',
+      },
+      {
+        q: 'What is the international selling fee on eBay?',
+        a: 'eBay charges a 1.65% international fee when your registered address is outside the buyer delivery zone, plus standard currency conversion spreads.',
       },
     ],
   },
@@ -397,6 +461,17 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
       buttonText: 'View POS Equipment',
       targetUrl: 'https://store.evonixtec.com',
     },
+    howItWorks: {
+      title: 'How This Calculator Works: Stripe Processing Formulas',
+      explanation: 'Stripe uses a percentage-plus-fixed-fee model on every settled transaction. The base fee varies depending on whether the card is domestic or cross-border. When currency conversion is required, an extra conversion spread applies.',
+      formula: 'Processing Fee = (Transaction Amount * Rate) + Fixed Fee. Reverse Charge = (Target Payout + Fixed Fee) / (1 - Rate).',
+      rates: [
+        'US Domestic Cards: 2.9% + $0.30 per successful charge.',
+        'International Cards: Standard rate plus 1.5% cross-border assessment (total 4.4% + $0.30).',
+        'Currency Conversion: An additional 1% spread if settlement currency differs from charge currency.',
+        'In-Person Terminal: 2.7% + $0.05 for card-present POS transactions.',
+      ],
+    },
     howToSteps: [
       'Enter transaction amount or net payout target.',
       'Select card type (domestic 2.9% + $0.30 or international +1.5%).',
@@ -405,8 +480,16 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     ],
     faqs: [
       {
-        q: 'How does the reverse calculator work?',
-        a: 'It calculates exactly what you must bill a client so you receive your target sum after Stripe takes its fee.',
+        q: 'How does the reverse calculator formula work?',
+        a: 'The reverse formula accounts for Stripe deducting fees from the gross total. It divides (Target Amount + Fixed Fee) by (1 - Fee Percentage) so your net settlement equals your target.',
+      },
+      {
+        q: 'What is the fee difference between domestic and international cards?',
+        a: 'Domestic US cards incur 2.9% + $0.30. Non-US international cards add a 1.5% fee, plus another 1% if currency conversion is involved.',
+      },
+      {
+        q: 'Does Stripe refund processing fees when an order is cancelled?',
+        a: 'No. Stripe retains the original fixed and percentage fees when you issue full or partial refunds to customers.',
       },
     ],
   },
@@ -426,6 +509,17 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
       buttonText: 'View Warehouse Hardware',
       targetUrl: 'https://store.evonixtec.com',
     },
+    howItWorks: {
+      title: 'How This Calculator Works: Temu Commissions & Logistics Deductions',
+      explanation: 'Temu uses two primary operating models: Fully-Managed (where Temu sets retail prices, collects sales, and takes fulfillment deductions) and Semi-Managed (where the seller fulfills from their own domestic or overseas warehouse). Net earnings depend on wholesale supply price, platform commission, and inbound freight.',
+      formula: 'Net Margin = Final Settlement Price - Manufacturing Cost - Packaging Cost - Domestic Freight - Platform Deduction Rate. Margin Percentage = (Net Margin / Final Settlement Price) * 100.',
+      rates: [
+        'Semi-Managed Commission: Between 2% and 5% depending on commodity category and warehouse location.',
+        'Fully-Managed Model: Negotiated factory supply price where Temu absorbs customer marketing but charges return penalties.',
+        'Platform Fee / Reserve Fund: 10% to 15% rolling reserve withheld for customer disputes and quality guarantee periods.',
+        'Fulfillment Surcharge: Variable per-parcel logistics charge if using Temu partnered freight hubs.'
+      ],
+    },
     howToSteps: [
       'Select Temu management model (Fully-Managed or Semi-Managed).',
       'Input product manufacturing cost, packaging, and logistics freight.',
@@ -435,7 +529,15 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     faqs: [
       {
         q: 'What is the difference between Temu fully-managed and semi-managed?',
-        a: 'Fully-managed handles local shipping from domestic warehouses; semi-managed requires sellers to ship overseas orders directly.',
+        a: 'Fully-managed handles local shipping from domestic warehouses; semi-managed requires sellers to ship overseas orders directly from local inventory.',
+      },
+      {
+        q: 'How does Temu calculate seller settlement pricing?',
+        a: 'In the fully-managed model, you bid a wholesale supply price. In semi-managed, you list a retail price and pay Temu a 2% to 5% commission plus payment processing.',
+      },
+      {
+        q: 'What quality return deductions does Temu enforce?',
+        a: 'Temu imposes fines of up to 5x product value for severe quality violations or delayed fulfillment beyond contractual dispatch windows.',
       },
     ],
   },
@@ -455,6 +557,18 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
       buttonText: 'Shop Commercial Printers',
       targetUrl: 'https://store.evonixtec.com',
     },
+    howItWorks: {
+      title: 'How This Calculator Works: UK 20% Standard VAT vs EU OSS Rules',
+      explanation: 'In the United Kingdom, standard VAT is 20%. Under HMRC Section 55A, B2B sales between registered entities shift the VAT accounting burden to the buyer under the Domestic Reverse Charge. In the EU, cross-border B2B sales apply 0% intra-community supply rules under Directive 2006/112/EC when a valid VIES VAT ID is supplied, while B2C sales apply destination VAT via the One Stop Shop (OSS) scheme for turnover exceeding EUR 10,000.',
+      formula: 'B2B Reverse Charge Invoice Total = Net Value (VAT = 0% reverse charge clause displayed). Standard B2C Invoice Total = Net Value * (1 + Member State VAT Rate).',
+      rates: [
+        'UK Standard VAT: 20% on taxable goods and services.',
+        'UK Reduced Rate: 5% on qualifying energy, insulation, and protective equipment.',
+        'EU Cross-Border B2B: 0% Reverse Charge when recipient holds active VIES registered VAT number.',
+        'EU OSS Threshold: EUR 10,000 pan-EU cross-border threshold before destination VAT registration triggers.',
+        'Germany (19%), France (20%), Italy (22%), Spain (21%) destination VAT rates.'
+      ],
+    },
     howToSteps: [
       'Select destination country (UK or EU Member State).',
       'Enter invoice taxable value in GBP or EUR.',
@@ -463,8 +577,16 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     ],
     faqs: [
       {
-        q: 'What is the HMRC Section 55A reverse charge?',
-        a: 'It shifts liability to account for VAT from the seller to the buyer on qualifying B2B services and goods.',
+        q: 'What is the HMRC Section 55A reverse charge mechanism?',
+        a: 'It shifts liability to account for VAT from the seller to the buyer on qualifying B2B services and supplies, ensuring the customer accounts for output and input tax simultaneously.',
+      },
+      {
+        q: 'How does the EU One Stop Shop (OSS) threshold work?',
+        a: 'If your annual cross-border B2C sales to EU consumers exceed EUR 10,000, you must register for OSS and charge the VAT rate of the customer country of residence.',
+      },
+      {
+        q: 'What invoice statement is legally required for 0% VAT exports?',
+        a: 'Statutory compliance requires stating: "VAT Reverse Charge: Subject to reverse charge under Article 196 of EU VAT Directive 2006/112/EC or HMRC Section 55A".',
       },
     ],
   },
@@ -513,6 +635,17 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
       buttonText: 'Explore Lab Hardware',
       targetUrl: 'https://store.evonixtec.com',
     },
+    howItWorks: {
+      title: 'How This Generator Works: CE MDR Annex IV & UKCA Statutory Clauses',
+      explanation: 'Under European Union Medical Device Regulation (EU MDR 2017/745) Annex IV and UK Medical Devices Regulations 2002, Class I reusable instruments and non-sterile devices can be self-declared by manufacturers maintaining an ISO 13485 quality system. The Declaration of Conformity legally states that the product satisfies general safety and performance requirements.',
+      formula: 'Compliance Validity = Legal Manufacturer Details + Appointed Authorized Representative (EC REP / UK Responsible Person) + Harmonized Standards Reference + Basic UDI-DI String + Authorized Signatory Stamp.',
+      rates: [
+        'EU MDR 2017/745: Mandatory for all surgical, dental, and medical instruments entering the 27 EU member states.',
+        'UKCA Marking: Required for placing medical products and PPE onto the Great Britain (England, Scotland, Wales) market.',
+        'Harmonized Directives: ISO 13485 (Quality Management), EN ISO 14971 (Risk Management), and ISO 15223-1 (Medical Device Labelling).',
+        'EC REP Mandate: Non-EU manufacturers must maintain a legally registered Authorized Representative within the EU.'
+      ],
+    },
     howToSteps: [
       'Select regulatory framework (EU CE MDR Class I or UKCA).',
       'Input legal manufacturer corporate details and EU/UK Authorized Representative.',
@@ -521,8 +654,16 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     ],
     faqs: [
       {
-        q: 'Is this valid for surgical export consignments?',
-        a: 'Yes, formats follow official EU MDR 2017/745 Annex IV specifications for Class I medical devices.',
+        q: 'Is this Declaration of Conformity valid for customs clearance?',
+        a: 'Yes. The structure conforms to official EU MDR 2017/745 Annex IV specifications and UKCA Medical Device guidance for Class I equipment.',
+      },
+      {
+        q: 'Do I need an Authorized Representative in Europe or the UK?',
+        a: 'Yes. Non-European manufacturers outside the EU or UK must appoint an authorized representative (EC REP or UKRP) whose address appears on the certificate and packaging.',
+      },
+      {
+        q: 'What quality standards must my factory maintain?',
+        a: 'Exporters typically maintain ISO 13485:2016 Medical Devices Quality Management System certification along with EN ISO 14971 risk management files.',
       },
     ],
   },
@@ -629,6 +770,17 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
       buttonText: 'Consult Network Engineers',
       targetUrl: 'https://store.evonixtec.com',
     },
+    howItWorks: {
+      title: 'How This Network Benchmark Works: Jitter, Packet Loss & Gateway Metrics',
+      explanation: 'Factory ERP sync, cloud backups, and PRAL WeBOC customs declarations rely on consistent low-latency network connections. This tool sends high-frequency HTTP and WebSocket ping probes to calculate round-trip time (RTT), standard deviation jitter, and packet loss ratios directly from your factory floor browser.',
+      formula: 'Jitter = Mean Deviation of Consecutive RTTs. Packet Loss % = (Dropped Packets / Total Probes Transmitted) * 100. Connection Score = Baseline Max(0, 100 - (Avg Latency / 2) - (Jitter * 1.5) - (Packet Loss * 10)).',
+      rates: [
+        'Optimal WeBOC Customs Filing: Latency < 45ms, Jitter < 8ms, Packet Loss = 0%.',
+        'Local ERP Database Sync: Latency < 10ms across internal Cat6A industrial cabling.',
+        'Cloud Backup Threshold: Sustained upload jitter < 15ms to avoid snapshot database corruptions.',
+        'Failover Trigger: Automatic WAN switchover suggested when primary gateway packet loss exceeds 2.5% over a 30-second window.'
+      ],
+    },
     howToSteps: [
       'Click Start Latency Benchmark on your factory workstation.',
       'Measure packet jitter, millisecond ping, and packet loss.',
@@ -637,8 +789,16 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     ],
     faqs: [
       {
-        q: 'What is acceptable latency for WeBOC customs filings?',
-        a: 'Ping should remain under 40ms with 0% packet loss to prevent session timeouts during declaration submission.',
+        q: 'What is acceptable network latency for WeBOC customs filings?',
+        a: 'Ping should remain under 45ms with 0% packet loss to prevent SSL handshake drops and session timeouts during export declaration submissions.',
+      },
+      {
+        q: 'Why does packet jitter cause SQL database disconnects on the factory floor?',
+        a: 'High jitter causes TCP packet retransmissions, leading to query lockups, aborted thermal receipt printing jobs, and ERP client timeout errors.',
+      },
+      {
+        q: 'How can industrial factories eliminate frequent internet dropouts in Sialkot?',
+        a: 'Deploying dual-WAN enterprise routers (like MikroTik or pfSense) configured with automated multi-ISP failover (Fiber + 4G LTE backup) maintains 99.9% uptime.',
       },
     ],
   },
@@ -716,6 +876,17 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
       buttonText: 'View Business Laptops',
       targetUrl: 'https://store.evonixtec.com',
     },
+    howItWorks: {
+      title: 'How This Trend Engine Works: Multi-Platform Velocity & Volume Scoring',
+      explanation: 'Evaluating niche product viability requires cross-referencing commercial purchase intent with organic consumer discovery. This engine computes a normalized Trend Velocity Index (0 to 100) by aggregating Google Search interest curves, eBay completed transaction rates, and Amazon search volume velocity.',
+      formula: 'Composite Trend Score = (Google Interest Momentum * 0.35) + (Amazon Commercial Query Volume * 0.30) + (eBay Sold Frequency * 0.20) + (YouTube Explanatory Velocity * 0.15).',
+      rates: [
+        'Breakout Trend Threshold: Sustained 4-week query momentum > 75 with increasing transaction conversion.',
+        'Commercial Intent Ratio: High proportion of high-converting transactional queries vs informational searches.',
+        'Market Saturation Index: Inverse ratio of active competitive product listings to 30-day unit sales velocity.',
+        'Cross-Platform Validation: Minimum 3 independent sources confirming upward directional demand trajectory.'
+      ],
+    },
     howToSteps: [
       'Enter your target product or search keyword.',
       'Analyze multi-platform volume and velocity score.',
@@ -724,8 +895,16 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     ],
     faqs: [
       {
-        q: 'What data sources are analyzed?',
-        a: 'Calculates real-time trend weights across Google, Bing, eBay, YouTube, and Amazon.',
+        q: 'What data sources are analyzed in Trend Intelligence Suite?',
+        a: 'The engine evaluates normalized interest weights across Google Trends, Bing Search, eBay completed listings, YouTube queries, and Amazon search velocity.',
+      },
+      {
+        q: 'How does the composite trend score calculate breakout niches?',
+        a: 'It combines search momentum with actual marketplace sales velocity. Scores above 70 indicate strong breakout commercial viability with rising buyer demand.',
+      },
+      {
+        q: 'Can exporters use this data to forecast international export demand?',
+        a: 'Yes. Exporters use market trend trajectories to validate surgical, sports gear, and leather apparel product lines before initiating mass manufacturing runs.',
       },
     ],
   },
@@ -798,18 +977,18 @@ export const TOOL_SLUG_ALIASES: Record<string, string> = {
   'stripe': 'stripe-fee-calculator',
   'temu-calculator': 'temu-seller-calculator',
   'temu': 'temu-seller-calculator',
-  'uk-vat': 'uk-vat-calculator',
-  'uk-eu-vat-calculator': 'uk-vat-calculator',
-  'vat': 'uk-vat-calculator',
-  'us-duty-nexus-estimator': 'us-customs-duty-estimator',
-  'custom-duty': 'us-customs-duty-estimator',
+  'uk-vat': 'uk-eu-vat-calculator',
+  'uk-vat-calculator': 'uk-eu-vat-calculator',
+  'vat': 'uk-eu-vat-calculator',
+  'us-customs-duty-estimator': 'us-duty-nexus-estimator',
+  'custom-duty': 'us-duty-nexus-estimator',
   'ce-ukca': 'ce-ukca-compliance-generator',
   'hs-code': 'hs-code-lookup',
   'schema': 'schema-generator',
   'developer-cost': 'developer-cost-calculator',
-  'latency-tester': 'network-latency-tester',
-  'factory-network-tester': 'network-latency-tester',
-  'printer-diagnostics': 'printer-diagnostic-troubleshooter',
+  'network-latency-tester': 'factory-network-tester',
+  'latency-tester': 'factory-network-tester',
+  'printer-diagnostic-troubleshooter': 'printer-diagnostics',
   'live-repair-tracker': 'live-repair-tracker',
   'repair-tracker': 'live-repair-tracker',
   'ai-visibility': 'ai-visibility-checker',
