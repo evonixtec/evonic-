@@ -113,6 +113,7 @@ export const DynamicBreadcrumb: React.FC<DynamicBreadcrumbProps> = ({
       {
         label: 'Home',
         page: 'home',
+        path: '/',
         icon: showHomeIcon ? <Home className="w-3.5 h-3.5" /> : undefined,
       },
     ];
@@ -138,19 +139,13 @@ export const DynamicBreadcrumb: React.FC<DynamicBreadcrumbProps> = ({
       list.push({
         label: 'Web Tools',
         page: 'tools',
+        path: '/tools',
       });
-
-      const catLabel = category || TOOL_CATEGORIES[activePage];
-      if (catLabel) {
-        list.push({
-          label: catLabel,
-          page: 'tools',
-        });
-      }
 
       const toolLabel = currentTitle || PAGE_TITLES[activePage] || activePage;
       list.push({
         label: toolLabel,
+        path: `/tools/${activePage}`,
         isCurrent: true,
       });
       return list;
@@ -161,9 +156,11 @@ export const DynamicBreadcrumb: React.FC<DynamicBreadcrumbProps> = ({
       list.push({
         label: 'Services',
         page: 'services',
+        path: '/services',
       });
       list.push({
         label: currentTitle || PAGE_TITLES[activePage] || activePage,
+        path: `/${activePage}`,
         isCurrent: true,
       });
       return list;
@@ -174,11 +171,13 @@ export const DynamicBreadcrumb: React.FC<DynamicBreadcrumbProps> = ({
       list.push({
         label: 'Sialkot Coverage',
         page: 'locations',
+        path: '/locations',
         isCurrent: !currentTitle,
       });
       if (currentTitle) {
         list.push({
           label: currentTitle,
+          path: '/locations',
           isCurrent: true,
         });
       }
@@ -189,11 +188,46 @@ export const DynamicBreadcrumb: React.FC<DynamicBreadcrumbProps> = ({
     const pageLabel = currentTitle || PAGE_TITLES[activePage] || activePage;
     list.push({
       label: pageLabel,
+      path: `/${activePage}`,
       isCurrent: true,
     });
 
     return list;
-  }, [customSegments, currentToolId, currentPage, category, currentTitle, showHomeIcon]);
+  }, [customSegments, currentToolId, currentPage, currentTitle, showHomeIcon]);
+
+  // Resolve absolute canonical item URL for schema and semantic crawling
+  const resolveItemUrl = React.useCallback(
+    (item: BreadcrumbSegment, isLast: boolean): string => {
+      const BASE_ORIGIN = 'https://www.evonixtec.com';
+      if (item.path) {
+        if (item.path.startsWith('http://') || item.path.startsWith('https://')) {
+          return item.path;
+        }
+        const cleanPath = item.path.startsWith('/') ? item.path : `/${item.path}`;
+        return cleanPath === '/' ? BASE_ORIGIN : `${BASE_ORIGIN}${cleanPath}`;
+      }
+      if (item.page === 'home') {
+        return BASE_ORIGIN;
+      }
+      if (item.page) {
+        return `${BASE_ORIGIN}/${item.page}`;
+      }
+      if (isLast) {
+        if (currentToolId) {
+          return `${BASE_ORIGIN}/tools/${currentToolId}`;
+        }
+        if (currentPage && currentPage !== 'home') {
+          return `${BASE_ORIGIN}/${currentPage}`;
+        }
+        if (typeof window !== 'undefined' && window.location.pathname && window.location.pathname !== '/') {
+          return `${BASE_ORIGIN}${window.location.pathname}`;
+        }
+        return BASE_ORIGIN;
+      }
+      return BASE_ORIGIN;
+    },
+    [currentToolId, currentPage]
+  );
 
   // Color variants
   const isDark = variant === 'dark';
@@ -231,18 +265,20 @@ export const DynamicBreadcrumb: React.FC<DynamicBreadcrumbProps> = ({
   // Schema.org BreadcrumbList JSON-LD
   const schemaBreadcrumbs = React.useMemo(() => {
     if (!includeSchema || items.length === 0) return null;
-    const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://www.evonixtec.com';
     return {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
-      itemListElement: items.map((item, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        name: item.label,
-        item: item.page === 'home' ? baseUrl : `${baseUrl}/${item.page || ''}`,
-      })),
+      itemListElement: items.map((item, index) => {
+        const isLast = index === items.length - 1 || item.isCurrent;
+        return {
+          '@type': 'ListItem',
+          position: index + 1,
+          name: item.label,
+          item: resolveItemUrl(item, Boolean(isLast)),
+        };
+      }),
     };
-  }, [items, includeSchema]);
+  }, [items, includeSchema, resolveItemUrl]);
 
   return (
     <>
@@ -263,6 +299,7 @@ export const DynamicBreadcrumb: React.FC<DynamicBreadcrumbProps> = ({
         >
           {items.map((item, index) => {
             const isLast = index === items.length - 1 || item.isCurrent;
+            const itemUrl = resolveItemUrl(item, Boolean(isLast));
             return (
               <li
                 key={`${item.label}-${index}`}
@@ -278,24 +315,32 @@ export const DynamicBreadcrumb: React.FC<DynamicBreadcrumbProps> = ({
                   />
                 )}
                 {isLast ? (
-                  <span
+                  <a
+                    itemProp="item"
+                    href={itemUrl}
                     aria-current="page"
-                    itemProp="name"
+                    onClick={(e) => e.preventDefault()}
                     title={item.label}
-                    className={`max-w-[150px] sm:max-w-[240px] md:max-w-none truncate ${currentColor}`}
+                    className={`max-w-[150px] sm:max-w-[240px] md:max-w-none truncate ${currentColor} cursor-default`}
                   >
-                    {item.label}
-                  </span>
+                    <span itemProp="name">{item.label}</span>
+                  </a>
                 ) : (
-                  <button
-                    type="button"
-                    onClick={() => handleItemClick(item)}
+                  <a
+                    itemProp="item"
+                    href={itemUrl}
+                    onClick={(e) => {
+                      if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                        e.preventDefault();
+                        handleItemClick(item);
+                      }
+                    }}
                     title={item.label}
                     className={`inline-flex items-center gap-1 transition-colors cursor-pointer max-w-[120px] sm:max-w-[180px] md:max-w-none truncate ${linkColor}`}
                   >
                     {item.icon}
                     <span itemProp="name">{item.label}</span>
-                  </button>
+                  </a>
                 )}
                 <meta itemProp="position" content={String(index + 1)} />
               </li>

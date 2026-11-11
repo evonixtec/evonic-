@@ -122,7 +122,7 @@ function buildSeoFooter(): string {
   const citySlugs = Object.keys(LOCAL_CITIES) as (keyof typeof LOCAL_CITIES)[];
 
   return `
-    <footer class="border-t border-slate-800 bg-slate-950 text-slate-300 mt-20 pt-12 pb-16 px-4 sm:px-8">
+    <footer class="border-t border-slate-900 bg-[#020617] text-slate-300 mt-20 pt-12 pb-16 px-4 sm:px-8">
       <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
         <div>
           <h3 class="text-white font-bold text-base mb-3">EVONIX TECHNOLOGIES</h3>
@@ -194,18 +194,40 @@ function buildSeoFooter(): string {
   `;
 }
 
-// Build standard breadcrumb HTML
+// Build standard breadcrumb HTML with full Schema.org BreadcrumbList Microdata
 function buildBreadcrumbsHtml(crumbs: { name: string; url: string }[]): string {
   return `
     <nav aria-label="Breadcrumb" class="mb-6">
-      <ol class="flex flex-wrap items-center gap-2 text-xs text-slate-400">
-        ${crumbs.map((c, idx) => {
-          const isLast = idx === crumbs.length - 1;
-          if (isLast) {
-            return `<li class="text-teal-400 font-semibold" aria-current="page">${escapeHtml(c.name)}</li>`;
-          }
-          return `<li><a href="${c.url}" class="hover:text-slate-200">${escapeHtml(c.name)}</a> <span class="mx-1 text-slate-600">/</span></li>`;
-        }).join('')}
+      <ol itemscope itemtype="https://schema.org/BreadcrumbList" class="flex flex-wrap items-center gap-2 text-xs text-slate-400">
+        ${crumbs
+          .map((c, idx) => {
+            const isLast = idx === crumbs.length - 1;
+            const fullUrl = c.url.startsWith('http')
+              ? c.url
+              : `${DOMAIN}${c.url.startsWith('/') ? '' : '/'}${c.url === '/' ? '' : c.url}`;
+            const cleanUrl = fullUrl.endsWith('/') && fullUrl !== `${DOMAIN}/` ? fullUrl.slice(0, -1) : fullUrl;
+            const pos = idx + 1;
+            if (isLast) {
+              return `
+                <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class="flex items-center">
+                  <a itemprop="item" href="${cleanUrl}" aria-current="page" class="text-teal-400 font-semibold">
+                    <span itemprop="name">${escapeHtml(c.name)}</span>
+                  </a>
+                  <meta itemprop="position" content="${pos}" />
+                </li>
+              `;
+            }
+            return `
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class="flex items-center gap-2">
+                <a itemprop="item" href="${cleanUrl}" class="hover:text-slate-200 transition-colors">
+                  <span itemprop="name">${escapeHtml(c.name)}</span>
+                </a>
+                <meta itemprop="position" content="${pos}" />
+                <span class="mx-1 text-slate-600" aria-hidden="true">/</span>
+              </li>
+            `;
+          })
+          .join('')}
       </ol>
     </nav>
   `;
@@ -964,7 +986,7 @@ Object.values(toolsRegistry).forEach((tool) => {
     subheading: `${tool.category} · ${tool.targetAudience}`,
     breadcrumb: [
       { name: 'Home', url: '/' },
-      { name: 'Free Tools', url: '/tools' },
+      { name: 'Web Tools', url: '/tools' },
       { name: tool.name, url: `/tools/${tool.slug}` },
     ],
     schemaType: 'WebApplication',
@@ -984,6 +1006,29 @@ Object.values(toolsRegistry).forEach((tool) => {
             priceCurrency: 'USD',
           },
           description: tool.metaDescription,
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Home',
+              item: DOMAIN,
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Web Tools',
+              item: `${DOMAIN}/tools`,
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: tool.name,
+              item: `${DOMAIN}/tools/${tool.slug}`,
+            },
+          ],
         },
         ...(tool.faqs && tool.faqs.length > 0
           ? [
@@ -1785,13 +1830,55 @@ pages.push({
   subheading: 'Instant Day-by-Day Vacation Itinerary Generator with Cost Estimates',
   breadcrumb: [
     { name: 'Home', url: '/' },
-    { name: 'AI Travel Tools', url: '/ai-tools-name-for-travel-itinerary' },
-    { name: 'Trip Planner', url: '/tools/ai-trip-planner' }
+    { name: 'Web Tools', url: '/tools' },
+    { name: 'AI Trip Planner', url: '/tools/ai-trip-planner' }
   ],
+  schemaType: 'WebApplication',
+  schemaJson: {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebApplication',
+        name: 'AI Trip Planner',
+        url: `${DOMAIN}/tools/ai-trip-planner`,
+        applicationCategory: 'LifestyleApplication',
+        operatingSystem: 'All',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+        description: 'Free AI travel itinerary generator. Enter your destination, budget, and days to generate an instant day-wise vacation schedule with food spots & costs.',
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: DOMAIN,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Web Tools',
+            item: `${DOMAIN}/tools`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: 'AI Trip Planner',
+            item: `${DOMAIN}/tools/ai-trip-planner`,
+          },
+        ],
+      },
+    ],
+  },
   bodyHtml: `
     <div class="space-y-6 text-slate-300">
       <p class="text-base sm:text-lg text-slate-200">
-        Plan your complete vacation in under 30 seconds. Choose your destination, travel duration, and budget to get an instant schedule with food spots and cost estimates.
+        Planning a vacation should be simple, not stressful. The Evonixtec AI trip planner is free. Enter your destination and days to get an instant schedule in 30 seconds.
       </p>
       <div class="p-6 rounded-2xl bg-slate-900 border border-teal-500/40 text-center space-y-3">
         <h3 class="text-xl font-bold text-white">Looking for the top 10 travel tools comparison?</h3>

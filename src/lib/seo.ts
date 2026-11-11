@@ -84,15 +84,26 @@ export const LOCAL_BUSINESS_SCHEMA = {
  * Builds a valid Schema.org BreadcrumbList object
  */
 export function buildBreadcrumbSchema(items: { name: string; url: string }[]) {
+  const lastUrl = items[items.length - 1].url.startsWith('http')
+    ? items[items.length - 1].url
+    : `${BASE_URL}${items[items.length - 1].url.startsWith('/') ? '' : '/'}${items[items.length - 1].url === '/' ? '' : items[items.length - 1].url}`;
   return {
     '@type': 'BreadcrumbList',
-    '@id': `${items[items.length - 1].url}#breadcrumb`,
-    itemListElement: items.map((item, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: item.name,
-      item: item.url,
-    })),
+    '@id': `${lastUrl}#breadcrumb`,
+    itemListElement: items.map((item, index) => {
+      let fullUrl = item.url.startsWith('http')
+        ? item.url
+        : `${BASE_URL}${item.url.startsWith('/') ? '' : '/'}${item.url === '/' ? '' : item.url}`;
+      if (fullUrl.endsWith('/') && fullUrl !== `${BASE_URL}/`) {
+        fullUrl = fullUrl.slice(0, -1);
+      }
+      return {
+        '@type': 'ListItem',
+        position: index + 1,
+        name: item.name,
+        item: fullUrl,
+      };
+    }),
   };
 }
 

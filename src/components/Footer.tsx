@@ -81,15 +81,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
   ];
 
   return (
-    <footer id="main-footer" className="relative bg-slate-950 text-slate-300 border-t border-slate-800/90 pt-16 pb-12 overflow-hidden selection:bg-teal-500/30 selection:text-white print:hidden">
-      {/* UAE / Dubai Tech Silhouette Subtle Background (30-40% opacity with smooth gradient fade) */}
+    <footer id="main-footer" className="relative bg-[#020617] text-slate-300 border-t border-slate-900 pt-16 pb-12 overflow-hidden selection:bg-teal-500/30 selection:text-white print:hidden">
+      {/* UAE / Dubai Tech Silhouette Subtle Background (Darkened with deep contrast) */}
       <div 
-        className="absolute inset-0 pointer-events-none bg-cover bg-center opacity-30 mix-blend-luminosity"
+        className="absolute inset-0 pointer-events-none bg-cover bg-center opacity-15 mix-blend-luminosity"
         style={{
           backgroundImage: `url('/images/hero_dubai_tech_1790044690065.webp')`,
         }}
       />
-      <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-slate-950/95 via-slate-950/90 to-slate-950/98" />
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-black/95 via-[#020617]/95 to-black" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 1. Top Emergency Help Desk Banner */}

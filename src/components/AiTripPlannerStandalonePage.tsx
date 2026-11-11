@@ -49,16 +49,16 @@ export const AiTripPlannerStandalonePage: React.FC<AiTripPlannerStandalonePagePr
             AI Trip Planner: Free Day-by-Day Vacation Itinerary Generator
           </h1>
 
-          {/* Exactly ~145-155 words SEO Intro */}
+          {/* Simple Grade 6 Short Paragraphs */}
           <div className="prose prose-invert max-w-none text-slate-300 text-sm sm:text-base leading-relaxed space-y-3">
             <p>
-              Planning a vacation should feel simple, not stressful. The Evonixtec AI Trip Planner is a free artificial intelligence tool built for modern travelers. Instead of spending hours reading scattered travel blogs and comparing forums, you can now generate a complete day-by-day vacation plan in 30 seconds.
+              Planning a vacation should be simple, not stressful. The Evonixtec AI trip planner is free. Enter your destination and days to get an instant schedule in 30 seconds.
             </p>
             <p>
-              Just select your destination city, length of stay, budget level, and travel party. Our AI algorithm creates a realistic schedule with morning walks, historic landmarks, local dining spots, and sunset views. You also receive practical packing checklists and transit advice tailored to your city.
+              Pick your city, stay length, and budget. Our smart planner creates a clear schedule with morning walks, top sights, food spots, and sunset views.
             </p>
             <p>
-              Whether you are planning a solo weekend in Dubai, a family holiday in Tokyo, or a cultural road trip across Europe, this tool calculates estimated daily expenses and organizes your route smoothly. Try it below for free with zero sign-up required.
+              You also get packing tips and estimated daily costs. It runs 100% in your browser. No sign-up or credit card required.
             </p>
           </div>
 

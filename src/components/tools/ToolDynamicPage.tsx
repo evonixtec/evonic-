@@ -23,11 +23,10 @@ export const ToolDynamicPage: React.FC<ToolDynamicPageProps> = ({
   children,
 }) => {
   const tool: ToolMetadata | undefined = resolveToolSlug(toolSlug);
+  const canonicalUrl = tool ? `https://www.evonixtec.com/tools/${tool.slug}` : 'https://www.evonixtec.com/tools';
 
   useEffect(() => {
     if (!tool) return;
-
-    const canonicalUrl = `https://www.evonixtec.com/tools/${tool.slug}`;
 
     // 1. Update Document Title
     document.title = tool.metaTitle;
@@ -102,12 +101,12 @@ export const ToolDynamicPage: React.FC<ToolDynamicPageProps> = ({
               '@type': 'ListItem',
               position: 1,
               name: 'Home',
-              item: 'https://www.evonixtec.com/',
+              item: 'https://www.evonixtec.com',
             },
             {
               '@type': 'ListItem',
               position: 2,
-              name: 'Tools Directory',
+              name: 'Web Tools',
               item: 'https://www.evonixtec.com/tools',
             },
             {
@@ -161,25 +160,78 @@ export const ToolDynamicPage: React.FC<ToolDynamicPageProps> = ({
     <div className="min-h-screen bg-slate-950 text-slate-100 py-10 px-4 sm:px-6 lg:px-8 selection:bg-blue-600 font-sans">
       <main className="max-w-5xl mx-auto space-y-10">
         {/* Navigation Breadcrumb Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-4 text-xs text-slate-400">
-          <div className="flex items-center gap-2">
-            <button
-              onClick={onNavigateHome}
-              className="hover:text-white transition-colors cursor-pointer"
+        <nav
+          aria-label="Breadcrumb"
+          className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-4 text-xs text-slate-400"
+        >
+          <ol
+            itemScope
+            itemType="https://schema.org/BreadcrumbList"
+            className="flex items-center gap-2 flex-wrap"
+          >
+            <li
+              itemProp="itemListElement"
+              itemScope
+              itemType="https://schema.org/ListItem"
+              className="flex items-center gap-2"
             >
-              Home
-            </button>
-            <span aria-hidden="true">/</span>
-            <button
-              onClick={onNavigateToolsHub}
-              className="hover:text-white transition-colors cursor-pointer flex items-center gap-1"
+              <a
+                itemProp="item"
+                href="https://www.evonixtec.com"
+                onClick={(e) => {
+                  if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                    e.preventDefault();
+                    onNavigateHome();
+                  }
+                }}
+                className="hover:text-white transition-colors cursor-pointer"
+              >
+                <span itemProp="name">Home</span>
+              </a>
+              <meta itemProp="position" content="1" />
+              <span aria-hidden="true" className="text-slate-600">/</span>
+            </li>
+            <li
+              itemProp="itemListElement"
+              itemScope
+              itemType="https://schema.org/ListItem"
+              className="flex items-center gap-2"
             >
-              <Grid className="w-3.5 h-3.5 text-blue-400" />
-              <span>Tools</span>
-            </button>
-            <span aria-hidden="true">/</span>
-            <span className="text-blue-400 font-semibold">{tool.name}</span>
-          </div>
+              <a
+                itemProp="item"
+                href="https://www.evonixtec.com/tools"
+                onClick={(e) => {
+                  if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+                    e.preventDefault();
+                    onNavigateToolsHub();
+                  }
+                }}
+                className="hover:text-white transition-colors cursor-pointer flex items-center gap-1"
+              >
+                <Grid className="w-3.5 h-3.5 text-blue-400" />
+                <span itemProp="name">Web Tools</span>
+              </a>
+              <meta itemProp="position" content="2" />
+              <span aria-hidden="true" className="text-slate-600">/</span>
+            </li>
+            <li
+              itemProp="itemListElement"
+              itemScope
+              itemType="https://schema.org/ListItem"
+              className="flex items-center"
+            >
+              <a
+                itemProp="item"
+                href={canonicalUrl}
+                aria-current="page"
+                onClick={(e) => e.preventDefault()}
+                className="text-blue-400 font-semibold cursor-default"
+              >
+                <span itemProp="name">{tool.name}</span>
+              </a>
+              <meta itemProp="position" content="3" />
+            </li>
+          </ol>
 
           <div className="flex items-center gap-2">
             <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1">
@@ -187,7 +239,7 @@ export const ToolDynamicPage: React.FC<ToolDynamicPageProps> = ({
               <span>Zero Cloud Latency &amp; Complete Client Privacy</span>
             </span>
           </div>
-        </div>
+        </nav>
 
         {/* Header Hero */}
         <div className="text-center space-y-3">
