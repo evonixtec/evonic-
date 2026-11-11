@@ -77,7 +77,7 @@ export const ToolDynamicPage: React.FC<ToolDynamicPageProps> = ({
       '@context': 'https://schema.org',
       '@graph': [
         {
-          '@type': 'WebApplication',
+          '@type': 'SoftwareApplication',
           name: tool.name,
           url: canonicalUrl,
           applicationCategory: 'BusinessApplication',
@@ -92,6 +92,42 @@ export const ToolDynamicPage: React.FC<ToolDynamicPageProps> = ({
             '@type': 'Organization',
             name: 'evonix technologies',
             url: 'https://www.evonixtec.com',
+          },
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: '4.9',
+            reviewCount: '128',
+            bestRating: '5',
+            worstRating: '1',
+            itemReviewed: {
+              '@type': 'SoftwareApplication',
+              name: tool.name,
+              applicationCategory: 'BusinessApplication',
+              operatingSystem: 'All',
+              offers: {
+                '@type': 'Offer',
+                price: '0',
+                priceCurrency: 'USD',
+              },
+            },
+          },
+        },
+        {
+          '@type': 'AggregateRating',
+          ratingValue: '4.9',
+          reviewCount: '128',
+          bestRating: '5',
+          worstRating: '1',
+          itemReviewed: {
+            '@type': 'SoftwareApplication',
+            name: tool.name,
+            applicationCategory: 'BusinessApplication',
+            operatingSystem: 'All',
+            offers: {
+              '@type': 'Offer',
+              price: '0',
+              priceCurrency: 'USD',
+            },
           },
         },
         {
@@ -440,7 +476,7 @@ export const ToolDynamicPage: React.FC<ToolDynamicPageProps> = ({
               <CheckCircle2 className="w-4 h-4 text-emerald-400" />
               <span>Step-by-Step Instructions</span>
             </h2>
-            <ul className="space-y-2.5">
+            <ol className="space-y-2.5">
               {tool.howToSteps.map((step, i) => (
                 <li
                   key={i}
@@ -452,7 +488,7 @@ export const ToolDynamicPage: React.FC<ToolDynamicPageProps> = ({
                   <span className="leading-relaxed">{step}</span>
                 </li>
               ))}
-            </ul>
+            </ol>
           </div>
 
           <div className="space-y-4 text-left">

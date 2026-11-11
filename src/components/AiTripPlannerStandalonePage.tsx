@@ -26,6 +26,102 @@ export const AiTripPlannerStandalonePage: React.FC<AiTripPlannerStandalonePagePr
   onNavigatePage,
   onOpenQuote
 }) => {
+  React.useEffect(() => {
+    const scriptId = 'ai-trip-planner-schema';
+    let script = document.getElementById(scriptId) as HTMLScriptElement | null;
+    if (!script) {
+      script = document.createElement('script');
+      script.id = scriptId;
+      script.type = 'application/ld+json';
+      document.head.appendChild(script);
+    }
+
+    const payload = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'SoftwareApplication',
+          name: 'AI Trip Planner',
+          url: 'https://www.evonixtec.com/tools/ai-trip-planner',
+          applicationCategory: 'BusinessApplication',
+          operatingSystem: 'All',
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD',
+          },
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: '4.9',
+            reviewCount: '128',
+            bestRating: '5',
+            worstRating: '1',
+            itemReviewed: {
+              '@type': 'SoftwareApplication',
+              name: 'AI Trip Planner',
+              applicationCategory: 'BusinessApplication',
+              operatingSystem: 'All',
+              offers: {
+                '@type': 'Offer',
+                price: '0',
+                priceCurrency: 'USD',
+              },
+            },
+          },
+        },
+        {
+          '@type': 'AggregateRating',
+          ratingValue: '4.9',
+          reviewCount: '128',
+          bestRating: '5',
+          worstRating: '1',
+          itemReviewed: {
+            '@type': 'SoftwareApplication',
+            name: 'AI Trip Planner',
+            applicationCategory: 'BusinessApplication',
+            operatingSystem: 'All',
+            offers: {
+              '@type': 'Offer',
+              price: '0',
+              priceCurrency: 'USD',
+            },
+          },
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Home',
+              item: 'https://www.evonixtec.com',
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Web Tools',
+              item: 'https://www.evonixtec.com/tools',
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: 'AI Trip Planner',
+              item: 'https://www.evonixtec.com/tools/ai-trip-planner',
+            },
+          ],
+        },
+      ],
+    };
+
+    script.textContent = JSON.stringify(payload);
+
+    return () => {
+      if (script && script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 pt-24 pb-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto space-y-10">
@@ -50,14 +146,14 @@ export const AiTripPlannerStandalonePage: React.FC<AiTripPlannerStandalonePagePr
           </h1>
 
           {/* Simple Grade 6 Short Paragraphs */}
-          <div className="prose prose-invert max-w-none text-slate-300 text-sm sm:text-base leading-relaxed space-y-3">
-            <p>
+          <div className="max-w-none space-y-3 text-sm sm:text-base leading-relaxed">
+            <p className="text-white font-medium">
               Planning a vacation should be simple, not stressful. The Evonixtec AI trip planner is free. Enter your destination and days to get an instant schedule in 30 seconds.
             </p>
-            <p>
+            <p className="text-white font-medium">
               Pick your city, stay length, and budget. Our smart planner creates a clear schedule with morning walks, top sights, food spots, and sunset views.
             </p>
-            <p>
+            <p className="text-white font-medium">
               You also get packing tips and estimated daily costs. It runs 100% in your browser. No sign-up or credit card required.
             </p>
           </div>

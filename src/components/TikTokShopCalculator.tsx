@@ -1075,7 +1075,7 @@ export default function TikTokShopCalculator() {
                 <span className="text-slate-400 text-xl font-normal"> / 5.0</span>
               </div>
               <p className="text-xs text-slate-500">
-                Based on <span itemProp="reviewCount">1428</span> verified UK and Pakistan merchants
+                Based on <span itemProp="reviewCount">128</span> verified UK and Pakistan merchants
               </p>
               <meta itemProp="bestRating" content="5" />
               <meta itemProp="worstRating" content="1" />

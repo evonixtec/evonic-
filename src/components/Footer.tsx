@@ -51,7 +51,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
     },
     {
       name: 'Facebook',
-      url: COMPANY_INFO.contact.socials?.facebook || 'https://www.facebook.com/evonixtechnologies',
+      url: COMPANY_INFO.contact.socials?.facebook || 'https://www.facebook.com/profile.php?id=61595290703138',
       hoverClass: 'hover:bg-[#1877f2] hover:border-[#1877f2] hover:text-white',
       label: 'Facebook Page',
       icon: (

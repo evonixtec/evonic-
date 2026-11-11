@@ -25,7 +25,7 @@ export const COMPANY_INFO = {
     hours: 'Monday – Saturday: 9:00 AM – 8:00 PM | Enterprise On-Call Support 24/7',
     socials: {
       linkedin: 'https://www.linkedin.com/company/evonix-technologies',
-      facebook: 'https://www.facebook.com/evonixtechnologies',
+      facebook: 'https://www.facebook.com/profile.php?id=61595290703138',
       twitter: 'https://x.com/evonixtec',
       instagram: 'https://www.instagram.com/evonixtechnologies',
       whatsapp: 'https://wa.me/923263244002',
