@@ -181,11 +181,13 @@ function buildSeoFooter(): string {
         <div>
           &copy; ${new Date().getFullYear()} EVONIX TECHNOLOGIES. All rights reserved. Sialkot, Pakistan.
         </div>
-        <div class="flex items-center gap-4">
-          <a href="/privacy-policy" class="hover:text-slate-300">Privacy Policy</a>
-          <a href="/terms-and-conditions" class="hover:text-slate-300">Terms of Service</a>
-          <a href="/warranty-policy" class="hover:text-slate-300">Warranty Policy</a>
-          <a href="/contact" class="hover:text-slate-300">Contact Us</a>
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="/privacy-policy" class="hover:text-teal-400">Privacy Policy</a>
+          <a href="/terms-and-conditions" class="hover:text-teal-400">Terms of Service</a>
+          <a href="/disclaimer" class="hover:text-teal-400">Disclaimer</a>
+          <a href="/warranty-policy" class="hover:text-teal-400">Warranty Policy</a>
+          <a href="/about" class="hover:text-teal-400">About Us</a>
+          <a href="/contact" class="hover:text-teal-400">Contact Us</a>
         </div>
       </div>
     </footer>
@@ -968,18 +970,37 @@ Object.values(toolsRegistry).forEach((tool) => {
     schemaType: 'WebApplication',
     schemaJson: {
       '@context': 'https://schema.org',
-      '@type': 'WebApplication',
-      name: tool.name,
-      url: `${DOMAIN}/tools/${tool.slug}`,
-      applicationCategory: 'BusinessApplication',
-      operatingSystem: 'All',
-      browserRequirements: 'Requires JavaScript and modern web browser',
-      offers: {
-        '@type': 'Offer',
-        price: '0',
-        priceCurrency: 'USD',
-      },
-      description: tool.metaDescription,
+      '@graph': [
+        {
+          '@type': 'WebApplication',
+          name: tool.name,
+          url: `${DOMAIN}/tools/${tool.slug}`,
+          applicationCategory: 'BusinessApplication',
+          operatingSystem: 'All',
+          browserRequirements: 'Requires JavaScript and modern web browser',
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD',
+          },
+          description: tool.metaDescription,
+        },
+        ...(tool.faqs && tool.faqs.length > 0
+          ? [
+              {
+                '@type': 'FAQPage',
+                mainEntity: tool.faqs.map((f) => ({
+                  '@type': 'Question',
+                  name: f.q,
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: f.a,
+                  },
+                })),
+              },
+            ]
+          : []),
+      ],
     },
     bodyHtml: `
       <div class="space-y-8 text-slate-300">
@@ -999,7 +1020,70 @@ Object.values(toolsRegistry).forEach((tool) => {
         </div>
 
         ${
-          tool.howItWorks
+          tool.editorialSections
+            ? `
+          <div class="p-6 sm:p-8 rounded-2xl bg-slate-900 border border-slate-800 space-y-6 text-left">
+            <div class="space-y-3">
+              <h2 class="text-xl sm:text-2xl font-bold text-white">${escapeHtml(tool.editorialSections.introHeading)}</h2>
+              ${tool.editorialSections.introParagraphs.map(p => `<p class="text-sm text-slate-300 leading-relaxed">${escapeHtml(p)}</p>`).join('')}
+            </div>
+
+            <div class="space-y-3 pt-2">
+              <h3 class="text-base font-bold text-white">${escapeHtml(tool.editorialSections.tableTitle)}</h3>
+              <div class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-950/60">
+                <table class="w-full text-left text-xs sm:text-sm">
+                  <thead class="bg-slate-900 border-b border-slate-800 text-teal-400 font-semibold uppercase tracking-wider text-[11px]">
+                    <tr>
+                      ${tool.editorialSections.tableHeaders.map(h => `<th class="px-4 py-3 sm:px-6">${escapeHtml(h)}</th>`).join('')}
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-800/60 font-mono text-xs text-slate-300">
+                    ${tool.editorialSections.tableRows.map(row => `
+                      <tr class="hover:bg-slate-900/40">
+                        ${row.map((cell, cIdx) => `
+                          <td class="px-4 py-3 sm:px-6 ${cIdx === 0 ? 'font-sans font-bold text-white' : cIdx === 1 ? 'text-teal-300 font-semibold' : ''}">
+                            ${escapeHtml(cell)}
+                          </td>
+                        `).join('')}
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="pt-6 border-t border-slate-800 space-y-4">
+              <h2 class="text-lg sm:text-xl font-bold text-white">${escapeHtml(tool.editorialSections.scheduleHeading)}</h2>
+              ${tool.editorialSections.scheduleParagraphs.map(p => `<p class="text-sm text-slate-300 leading-relaxed">${escapeHtml(p)}</p>`).join('')}
+              ${tool.editorialSections.scheduleBulletPoints ? `
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2">
+                  ${tool.editorialSections.scheduleBulletPoints.map(bp => `
+                    <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800/80 space-y-1.5">
+                      <h4 class="text-xs font-bold text-teal-400 uppercase tracking-wide">${escapeHtml(bp.title)}</h4>
+                      <p class="text-xs text-slate-300 leading-relaxed">${escapeHtml(bp.desc)}</p>
+                    </div>
+                  `).join('')}
+                </div>
+              ` : ''}
+            </div>
+
+            <div class="pt-6 border-t border-slate-800 space-y-4">
+              <h2 class="text-lg sm:text-xl font-bold text-white">${escapeHtml(tool.editorialSections.strategiesHeading)}</h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                ${tool.editorialSections.strategies.map((strat, sIdx) => `
+                  <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 flex items-start gap-3">
+                    <span class="w-6 h-6 rounded-lg bg-emerald-500/10 text-emerald-400 font-mono font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-500/20">${sIdx + 1}</span>
+                    <div class="space-y-1 text-left">
+                      <h4 class="text-xs sm:text-sm font-bold text-white">${escapeHtml(strat.title)}</h4>
+                      <p class="text-xs text-slate-400 leading-relaxed">${escapeHtml(strat.desc)}</p>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        `
+            : tool.howItWorks
             ? `
           <div class="p-6 rounded-2xl bg-slate-900 border border-teal-500/30 space-y-4 text-left">
             <h2 class="text-xl font-bold text-white">${escapeHtml(tool.howItWorks.title)}</h2>
@@ -1144,6 +1228,31 @@ Object.values(toolsRegistry).forEach((tool) => {
         `
             : ''
         }
+
+        <div class="pt-8 border-t border-slate-800 space-y-4 text-left">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h2 class="text-lg font-bold text-white">Related E-Commerce &amp; Seller Financial Tools</h2>
+            <a href="/tools" class="text-xs font-semibold text-teal-400 hover:text-teal-300">View All 25+ Business Tools &rarr;</a>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <a href="/tools/stripe-fee-calculator" class="p-3.5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-teal-500/40 text-left block">
+              <span class="text-[10px] font-mono font-bold text-teal-400 block uppercase">2.9% + $0.30 Rates</span>
+              <strong class="text-xs text-white block mt-1">Stripe Fee Calculator</strong>
+            </a>
+            <a href="/tools/amazon-fba-calculator" class="p-3.5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-teal-500/40 text-left block">
+              <span class="text-[10px] font-mono font-bold text-teal-400 block uppercase">Pick &amp; Pack Profits</span>
+              <strong class="text-xs text-white block mt-1">Amazon FBA Calculator</strong>
+            </a>
+            <a href="/tools/ebay-fee-calculator" class="p-3.5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-teal-500/40 text-left block">
+              <span class="text-[10px] font-mono font-bold text-teal-400 block uppercase">FVF &amp; Store Rates</span>
+              <strong class="text-xs text-white block mt-1">eBay Fee Calculator</strong>
+            </a>
+            <a href="/tools/temu-seller-calculator" class="p-3.5 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-teal-500/40 text-left block">
+              <span class="text-[10px] font-mono font-bold text-teal-400 block uppercase">Cross-Border Margin</span>
+              <strong class="text-xs text-white block mt-1">Temu Seller Calculator</strong>
+            </a>
+          </div>
+        </div>
 
         <div class="p-6 rounded-2xl bg-slate-900 border border-teal-500/30 space-y-2">
           <h3 class="text-lg font-bold text-white">Got a question? Call us. We reply in 2 hours.</h3>
@@ -1735,11 +1844,107 @@ pages.push({
 pages.push({
   route: 'privacy-policy',
   title: 'Privacy Policy | EVONIX Technologies Sialkot',
-  description: 'Official privacy policy and data governance practices of EVONIX Technologies.',
+  description: 'Official privacy policy and data governance practices of EVONIX Technologies, including Google AdSense and third-party advertising disclosures.',
   canonical: `${DOMAIN}/privacy-policy`,
-  heading: 'Privacy Policy',
+  heading: 'Privacy Policy & Data Safety Declaration',
+  subheading: 'Effective Date: November 2026 • Evonix Technologies (SECP Registered IT Company, Sialkot, Pakistan)',
   breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Privacy Policy', url: '/privacy-policy' }],
-  bodyHtml: `<p class="text-slate-300">EVONIX Technologies respects your privacy. All diagnostic tools and calculators process data locally on your device.</p>`
+  bodyHtml: `
+    <div class="prose prose-invert max-w-none space-y-6 text-slate-300">
+      <p class="text-base leading-relaxed">
+        At Evonix Technologies (SECP Registered SMC-Pvt Ltd, Kotli Behram, Sialkot, Pakistan), we engineer software and business productivity utilities with a strict privacy-first architecture. This policy details how our web platforms, tools, and calculators handle user data in full alignment with Google AdSense, GDPR, and international data standards.
+      </p>
+
+      <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+        <h2 class="text-xl font-bold text-white">1. Zero-Cloud Client-Side Privacy Guarantee</h2>
+        <p class="text-sm leading-relaxed text-slate-300">
+          All client-facing fee calculators, margin tools, and invoice generators execute 100% client-side inside your browser sandbox. Numerical inputs, product values, fee breakdowns, and export carton dimensions remain strictly on your device and are never transmitted to external databases without your explicit manual export command.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+        <h2 class="text-xl font-bold text-white">2. Google AdSense &amp; Third-Party Advertising Disclosures</h2>
+        <p class="text-sm leading-relaxed text-slate-300">
+          We may partner with third-party advertising networks, including Google AdSense, to serve advertisements when you visit our website.
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-sm text-slate-300">
+          <li><strong>Cookies &amp; Ad Serving:</strong> Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites on the Internet.</li>
+          <li><strong>DoubleClick DART Cookie:</strong> Google's use of advertising cookies enables it and its partners to serve ads to our users based on their visits to our sites and/or other sites on the Internet.</li>
+          <li><strong>Personalized Advertising Opt-Out:</strong> Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" class="text-teal-400 font-bold hover:underline">Google Ads Settings (https://www.google.com/settings/ads)</a> or through the Network Advertising Initiative / Digital Advertising Alliance at <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer" class="text-teal-400 font-bold hover:underline">www.aboutads.info</a>.</li>
+        </ul>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+        <h2 class="text-xl font-bold text-white">3. Analytics &amp; Performance Telemetry</h2>
+        <p class="text-sm leading-relaxed text-slate-300">
+          We use aggregated, anonymous telemetry solely to monitor server latency and tool uptime. We NEVER collect, monitor, or store sensitive personal financial information, credit card numbers, or banking credentials.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+        <h2 class="text-xl font-bold text-white">4. User Rights, Data Portability &amp; Inquiries</h2>
+        <p class="text-sm leading-relaxed text-slate-300">
+          Under applicable data protection laws, you hold the right to access, rectify, or request permanent deletion of any quotation service records. For inquiries, contact our Data Privacy Officer:
+        </p>
+        <div class="text-xs text-slate-400 font-mono space-y-1 pt-2 border-t border-slate-800">
+          <p>Company: Evonix Technologies (SMC-Pvt Ltd)</p>
+          <p>Operating Location: Kotli Behram, Sialkot 51310, Punjab, Pakistan</p>
+          <p>Official Email: evonixtec@gmail.com | Phone: +92 326 324 4002</p>
+          <p class="text-teal-400 font-bold">Got a question? Call us. We reply in 2 hours.</p>
+        </div>
+      </div>
+    </div>
+  `
+});
+
+pages.push({
+  route: 'disclaimer',
+  title: 'Financial & E-Commerce Fee Disclaimer | EVONIX Technologies',
+  description: 'Official financial and e-commerce calculator disclaimer for EVONIX Technologies tools.',
+  canonical: `${DOMAIN}/disclaimer`,
+  heading: 'Financial & E-Commerce Fee Disclaimer',
+  subheading: 'Effective Date: November 2026 • Informational & Educational Notice',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Disclaimer', url: '/disclaimer' }],
+  bodyHtml: `
+    <div class="prose prose-invert max-w-none space-y-6 text-slate-300">
+      <p class="text-base leading-relaxed">
+        This official disclaimer clarifies the informational nature of all fee calculators, margin estimators, and export tools published by Evonix Technologies. Please review this notice prior to making commercial business decisions based on automated calculations.
+      </p>
+
+      <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+        <h2 class="text-xl font-bold text-white">1. Informational &amp; Educational Estimates Only</h2>
+        <p class="text-sm leading-relaxed text-slate-300">
+          All e-commerce profit, processing fee, and payout calculators provided across evonixtec.com and tools.evonixtec.com (including Stripe, Amazon FBA, Amazon FBM, eBay, Temu, Etsy, PayPal, and TikTok Shop tools) are offered exclusively for general informational, planning, and educational purposes. Calculations represent mathematical simulations based on publicly documented fee schedules and user-submitted inputs. They are not binding financial commitments.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+        <h2 class="text-xl font-bold text-white">2. Independent Company — Zero Third-Party Affiliation</h2>
+        <p class="text-sm leading-relaxed text-slate-300">
+          Evonix Technologies is an independent software development and enterprise IT company headquartered in Kotli Behram, Sialkot, Pakistan. We are NOT affiliated, endorsed, sponsored, authorized, or in any way officially connected with Stripe, Inc., Amazon.com, Inc., eBay Inc., Temu (PDD Holdings), PayPal Holdings, Inc., Etsy, Inc., ByteDance / TikTok, or any of their subsidiaries or affiliates. All brand names and trademarks belong exclusively to their respective owners and are used strictly under nominative fair use to describe the platform for which the calculation formula applies.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+        <h2 class="text-xl font-bold text-white">3. Rate Adjustments &amp; Merchant Verification</h2>
+        <p class="text-sm leading-relaxed text-slate-300">
+          Payment processors and marketplaces regularly modify baseline interchange rates, cross-border settlement fees, dispute charges, and seasonal storage fees. Users must confirm actual transaction charges with their official merchant account dashboards. Evonix Technologies assumes no liability for variations between modeled estimates and actual platform debits.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+        <h2 class="text-xl font-bold text-white">4. No Financial, Legal, or Tax Advice</h2>
+        <p class="text-sm leading-relaxed text-slate-300">
+          Calculations and commentary do not constitute financial, legal, tax, or investment advice. For formal tax compliance, nexus determinations, or VAT filings, consult a certified tax professional or licensed accountant.
+        </p>
+        <div class="text-xs text-slate-400 font-mono space-y-1 pt-2 border-t border-slate-800">
+          <p>Evonix Technologies • Kotli Behram, Sialkot 51310, Punjab, Pakistan</p>
+          <p>Official Email: evonixtec@gmail.com • Direct Phone / WhatsApp: +92 326 324 4002</p>
+          <p class="text-teal-400 font-bold">Got a question? Call us. We reply in 2 hours.</p>
+        </div>
+      </div>
+    </div>
+  `
 });
 
 pages.push({

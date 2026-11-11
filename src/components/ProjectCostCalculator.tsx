@@ -18,6 +18,7 @@ import {
   ChevronRight,
   TrendingDown,
   Layers,
+  Phone,
 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
 
@@ -35,101 +36,110 @@ const SECTORS: BusinessSector[] = [
   { id: 'corporate', name: 'Corporate & Services Consultancy', commonNeed: 'Executive portfolio, client consultation portal, CRM leads' },
 ];
 
-interface ProjectTier {
+export interface TierModule {
+  id: string;
+  label: string;
+  detail: string;
+  defaultChecked: boolean;
+}
+
+export interface ProjectTier {
   id: string;
   title: string;
-  basePkr: number;
-  baseAed: number;
+  category: string;
+  pricingNote: string;
   days: string;
   description: string;
   idealFor: string;
-  includedModules: string[];
+  availableModules: TierModule[];
 }
 
 const TIERS: ProjectTier[] = [
   {
-    id: 'export-catalog',
-    title: 'Professional B2B Export Website',
-    basePkr: 75000,
-    baseAed: 1000,
-    days: '7 - 10 Days',
-    description: 'High-speed Next.js static catalog designed specifically for European & US buyers with RFQ cart and WhatsApp quoting.',
-    idealFor: 'Export manufacturers in Daska Road and Rangpura looking for direct foreign buyer inquiries.',
-    includedModules: [
-      'Next.js 14 Sub-Second Page Speed',
-      'Interactive Product Catalog with RFQ Cart',
-      'WhatsApp & Email Instant Quote Alerts',
-      'Advanced Sialkot & Global Technical SEO',
-      'Mobile-First Responsive Layout',
-      '1 Year High-Speed NVMe Cloud Hosting Included',
+    id: 'retail-pos',
+    title: 'Offline-First Retail POS Billing System',
+    category: 'Retail & Wholesale Billing',
+    pricingNote: 'Custom Scope • Budget-Friendly',
+    days: '3 - 5 Days',
+    description: 'Zero-latency touch billing system with 80mm thermal receipt printing, barcode scanning, offline mode, and owner WhatsApp reports.',
+    idealFor: 'Garment shops, bakeries, supermarkets, and hardware stores across Sialkot bazars.',
+    availableModules: [
+      { id: 'offline-engine', label: 'Zero-Latency Offline SQLite Billing Engine', detail: 'Runs 100% locally without requiring internet connectivity', defaultChecked: true },
+      { id: 'printer-drivers', label: '80mm / 58mm Thermal Printer Auto-Cut Drivers', detail: 'Instant custom receipt design with your shop logo & footer', defaultChecked: true },
+      { id: 'barcode-scan', label: '2D Barcode & QR Code Scanner Integration', detail: 'Rapid item lookup and instant cashier checkout counter', defaultChecked: true },
+      { id: 'stock-alert', label: 'Real-Time Inventory & Low-Stock Warnings', detail: 'Prevents stockouts and tracks exact warehouse quantities', defaultChecked: true },
+      { id: 'multi-counter', label: 'Multi-Counter & Multi-Cashier Support', detail: 'Synchronize multiple sales desks on local factory WiFi', defaultChecked: false },
+      { id: 'profit-loss', label: 'Daily Profit & Loss Ledger Reports', detail: 'Track daily cash inflow, udhar credit ledger, and margins', defaultChecked: true },
+      { id: 'whatsapp-reports', label: 'Daily WhatsApp Sales Summary to Owner Phone', detail: 'Receive automatic closing report at end of day on phone', defaultChecked: true },
+      { id: 'fbr-pos', label: 'Digital FBR Invoicing Integration (Optional)', detail: 'Direct QR-code fiscalization verified when needed', defaultChecked: false },
     ],
   },
   {
-    id: 'retail-pos',
-    title: 'Offline-First Retail POS Billing System',
-    basePkr: 65000,
-    baseAed: 850,
+    id: 'export-catalog',
+    title: 'Professional B2B Export Website',
+    category: 'B2B International Trade',
+    pricingNote: 'Custom Scope • Foreign Inquiries',
     days: '5 - 7 Days',
-    description: 'Zero-latency touch billing system with 80mm thermal receipt printing, barcode scanning, and multi-counter cloud sync.',
-    idealFor: 'Garment shops, bakeries, supermarkets, and hardware stores across Sialkot bazars.',
-    includedModules: [
-      'Zero-Latency Offline SQLite Billing Engine',
-      '80mm / 58mm Thermal Printer Auto-Cut Drivers',
-      '2D Handheld Barcode Scanner Integration',
-      'Multi-Counter Cloud Inventory Sync',
-      'Profit & Loss Financial Reports',
-      'Daily WhatsApp Sales Summary to Owner',
+    description: 'High-speed Next.js static catalog designed specifically for European & US buyers with RFQ cart and WhatsApp quoting.',
+    idealFor: 'Export manufacturers in Daska Road and Rangpura looking for direct foreign buyer inquiries.',
+    availableModules: [
+      { id: 'nextjs-speed', label: 'Next.js 14 Sub-Second Page Speed', detail: 'Ultra-fast loading for foreign buyers on mobile & desktop', defaultChecked: true },
+      { id: 'rfq-cart', label: 'Interactive Product Catalog with RFQ Cart', detail: 'Foreign buyers add items to inquiry basket and submit specs', defaultChecked: true },
+      { id: 'instant-alerts', label: 'WhatsApp & Email Instant Quote Alerts', detail: 'Get notified on your phone seconds after a buyer inquires', defaultChecked: true },
+      { id: 'export-seo', label: 'Sialkot Export Technical SEO & Schema', detail: 'Rank on Google for international B2B buyer keywords', defaultChecked: true },
+      { id: 'responsive-layout', label: 'Mobile-First Fluid Responsive Layout', detail: '100% fluid display on iPhone, iPad, and Android screens', defaultChecked: true },
+      { id: 'cloud-hosting', label: '1 Year High-Speed NVMe Cloud Hosting Included', detail: 'Zero server maintenance with 99.9% uptime SLA', defaultChecked: true },
     ],
   },
   {
     id: 'ecommerce-global',
     title: 'Global E-Commerce Store with Multi-Currency',
-    basePkr: 120000,
-    baseAed: 1600,
-    days: '12 - 16 Days',
+    category: 'Cross-Border Retail',
+    pricingNote: 'Custom Scope • Global Payouts',
+    days: '7 - 10 Days',
     description: 'Complete online store with international credit card processing, DHL/FedEx shipping rates, and automated invoices.',
     idealFor: 'Brands selling direct-to-consumer in the UK, USA, UAE, and domestic Pakistani markets.',
-    includedModules: [
-      'Stripe, Payoneer & Local Bank Gateway Setup',
-      'Multi-Currency Auto-Currency Converter (USD, EUR, AED, PKR)',
-      'Automated PDF Commercial Invoice & Packing Slips',
-      'Real-Time DHL / TCS Shipping Rate Calculator',
-      'Customer Wholesale Portal with Tiered Discounts',
-      'Automated Inventory Low-Stock Warnings',
+    availableModules: [
+      { id: 'payment-gateway', label: 'Stripe, Payoneer & Local Bank Gateway Setup', detail: 'Accept Visa, MasterCard, and direct debit worldwide', defaultChecked: true },
+      { id: 'multi-currency', label: 'Auto Multi-Currency Converter (USD, EUR, GBP, AED, PKR)', detail: 'Shows localized currency automatically by buyer region', defaultChecked: true },
+      { id: 'pdf-invoices', label: 'Automated PDF Commercial Invoices & Packing Slips', detail: 'One-click compliant documentation ready for shipping', defaultChecked: true },
+      { id: 'courier-calc', label: 'Real-Time Courier & Cargo Shipping Calculator', detail: 'Calculate domestic TCS/Leopard or international DHL rates', defaultChecked: true },
+      { id: 'wholesale-portal', label: 'Customer Wholesale Portal with Tiered Discounts', detail: 'Special pricing accounts for bulk commercial buyers', defaultChecked: false },
+      { id: 'stock-automation', label: 'Automated Low-Stock & Re-Order Warnings', detail: 'Never oversell out-of-stock items', defaultChecked: true },
     ],
   },
   {
     id: 'factory-erp',
     title: 'Custom Industrial ERP & Production Tracking',
-    basePkr: 195000,
-    baseAed: 2600,
-    days: '20 - 30 Days',
+    category: 'Factory Manufacturing',
+    pricingNote: 'Custom Scope • Full Automation',
+    days: '14 - 20 Days',
     description: 'Tailored manufacturing software tracking raw steel/leather weight, subcontractor gatepasses, worker pieces, and QA clearance.',
     idealFor: 'Mid-to-large export factories on Daska Road, Small Industrial Estate, and Ugoki.',
-    includedModules: [
-      'Raw Material Heat & Batch Lot QR Code Tracking',
-      'Outsourced Subcontractor Gatepass Weight Audit',
-      'Worker Piece-Rate Payroll Automation',
-      'CE / ISO Audit Compliance Technical Logs',
-      'Multi-Warehouse Inventory Management',
-      'Owner Executive Mobile KPI App',
+    availableModules: [
+      { id: 'lot-tracking', label: 'Raw Material Heat & Batch Lot QR Code Tracking', detail: 'Track every batch of leather, steel, or fabric to finished piece', defaultChecked: true },
+      { id: 'gatepass-audit', label: 'Outsourced Subcontractor Gatepass Weight Audit', detail: 'Verify weight sent out vs returned to stop material wastage', defaultChecked: true },
+      { id: 'piece-rate', label: 'Worker Piece-Rate Payroll Automation', detail: 'Calculate daily wages accurately based on barcode piece tickets', defaultChecked: true },
+      { id: 'compliance-logs', label: 'CE & ISO Audit Compliance Technical Logs', detail: 'Export ready logs for European buyer factory audits', defaultChecked: true },
+      { id: 'multi-warehouse', label: 'Multi-Warehouse & Department Dispatch Inventory', detail: 'Track stock across cutting, stitching, buffing, and packing', defaultChecked: true },
+      { id: 'executive-app', label: 'Factory Owner Executive Mobile KPI App', detail: 'Monitor real-time factory output from your smartphone anywhere', defaultChecked: true },
     ],
   },
   {
     id: 'dedicated-developer',
     title: 'Dedicated Remote Software Engineer (Staff Augmentation)',
-    basePkr: 110000,
-    baseAed: 1450,
+    category: 'Dedicated Staffing',
+    pricingNote: 'Flexible Retainer • Save Over 70%',
     days: 'Starts in 48h',
     description: 'Hire pre-vetted full-time senior/mid software engineers in Sialkot at $15 - $22/hr vs $80/hr in USA. Save over 72% annually with NDA and full IP ownership.',
     idealFor: 'Tech startups, software houses, and overseas businesses in USA, UK, UAE looking for dedicated engineers.',
-    includedModules: [
-      'Senior / Mid React, Node, Python, Mobile Engineers',
-      '$15 - $22/hr vs $80/hr USA Standard (72% Savings)',
-      'Strict NDA & 100% Client Code Ownership',
-      'Daily Standups, Slack & Time-Zone Aligned',
-      'Dual-Monitor Workstation & 100% Power Backup',
-      'Includes Free Replacement & Zero Recruiter Fees',
+    availableModules: [
+      { id: 'eng-skills', label: 'Senior / Mid React, Node, Python, Mobile Engineers', detail: 'Vetted problem solvers with fluent English communication', defaultChecked: true },
+      { id: 'hourly-savings', label: 'Flexible Retainer (Save Over 70% vs Western Rates)', detail: 'Direct hourly or monthly contracts with zero hidden recruiter fees', defaultChecked: true },
+      { id: 'nda-ip', label: 'Strict NDA & 100% Client Code Ownership', detail: 'All source code, repositories, and intellectual property remain yours', defaultChecked: true },
+      { id: 'standups', label: 'Daily Standups, Slack & Time-Zone Aligned', detail: 'Synchronized working hours with your engineering sprint', defaultChecked: true },
+      { id: 'workstation-power', label: 'Dual-Monitor Workstation & 100% Power Generator Backup', detail: 'Zero downtime guaranteed with redundant solar + generator power', defaultChecked: true },
+      { id: 'replacement-guarantee', label: 'Free Replacement Guarantee & Fast Onboarding', detail: 'Seamless onboarding with dedicated technical management support', defaultChecked: true },
     ],
   },
 ];
@@ -151,8 +161,28 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
   // 1. Projects State
   const [selectedSectorId, setSelectedSectorId] = useState<string>(SECTORS[0].id);
   const [selectedTierId, setSelectedTierId] = useState<string>(TIERS[0].id);
+  
+  // Interactive Module Checkboxes state
+  const [activeModules, setActiveModules] = useState<Record<string, boolean>>(() => {
+    const initial: Record<string, boolean> = {};
+    TIERS.forEach((tier) => {
+      tier.availableModules.forEach((mod) => {
+        initial[`${tier.id}_${mod.id}`] = mod.defaultChecked;
+      });
+    });
+    return initial;
+  });
+
   const [addMultilingual, setAddMultilingual] = useState<boolean>(false);
   const [addConfigurator, setAddConfigurator] = useState<boolean>(false);
+
+  const toggleModule = (tierId: string, modId: string) => {
+    const key = `${tierId}_${modId}`;
+    setActiveModules((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
 
   // 2. Developer Cost Calculator State
   const [devTier, setDevTier] = useState<DevTier>('senior');
@@ -191,22 +221,15 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
   const currentSector = SECTORS.find((s) => s.id === selectedSectorId) || SECTORS[0];
   const currentTier = TIERS.find((t) => t.id === selectedTierId) || TIERS[0];
 
-  let totalPkr = currentTier.basePkr;
-  let totalAed = currentTier.baseAed;
-
-  if (addMultilingual) {
-    totalPkr += 25000;
-    totalAed += 350;
-  }
-  if (addConfigurator) {
-    totalPkr += 45000;
-    totalAed += 600;
-  }
+  const selectedModuleItems = currentTier.availableModules.filter(
+    (mod) => activeModules[`${currentTier.id}_${mod.id}`]
+  );
+  const selectedCount = selectedModuleItems.length + (addMultilingual ? 1 : 0) + (addConfigurator ? 1 : 0);
 
   const handleRequestProjectQuote = () => {
     if (onOpenQuote) {
       onOpenQuote(
-        `Project Quote: ${currentTier.title} for ${currentSector.name}. Estimated: Rs. ${totalPkr.toLocaleString()} (${totalAed} AED).`
+        `Custom Scope Quote: ${currentTier.title} for ${currentSector.name}. Features Selected (${selectedCount}): ${selectedModuleItems.map(m => m.label).join(', ')}.`
       );
     }
   };
@@ -221,9 +244,14 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
   };
 
   const whatsappMessage = encodeURIComponent(
-    `Hello evonix, I used your project calculator. Sector: ${currentSector.name}. Package: ${currentTier.title}. Add-ons: ${
-      addMultilingual ? 'Multilingual (DE/FR), ' : ''
-    }${addConfigurator ? '3D Configurator' : 'Standard'}. Estimated: Rs. ${totalPkr.toLocaleString()} (approx. ${totalAed} AED). Please send formal proposal.`
+    `Hello evonix technologies, I customized my software scope on your website:\n` +
+    `• Business Sector: ${currentSector.name}\n` +
+    `• System Architecture: ${currentTier.title}\n` +
+    `• Active Features (${selectedCount}):\n` +
+    selectedModuleItems.map((m) => `  ✓ ${m.label}`).join('\n') +
+    (addMultilingual ? '\n  ✓ European Multilingual (German/French Subpaths)' : '') +
+    (addConfigurator ? '\n  ✓ Interactive 3D WebGL Product Customizer' : '') +
+    `\n\nPlease send me your lowest discounted factory estimate and timeline.`
   );
 
   return (
@@ -342,7 +370,7 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                 {/* Step 2: Project Architecture / Package */}
                 <div className="apple-glass-box p-6 space-y-3">
                   <label className="block text-xs font-bold text-[#86868b] uppercase tracking-wider">
-                    Step 2: Choose Project Architecture
+                    Step 2: Choose Software Architecture
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {TIERS.map((tier) => {
@@ -379,9 +407,9 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                             </p>
                           </div>
                           <div className="mt-3 pt-2 border-t border-current/15 flex items-baseline justify-between text-xs">
-                            <span className={isSelected ? 'text-slate-300' : 'text-[#86868b]'}>Starting from</span>
-                            <span className={`font-black ${isSelected ? 'text-white' : 'text-[#0071e3]'}`}>
-                              Rs. {tier.basePkr.toLocaleString()}
+                            <span className={isSelected ? 'text-slate-300' : 'text-[#86868b]'}>Pricing</span>
+                            <span className={`font-bold ${isSelected ? 'text-teal-300' : 'text-[#0071e3]'}`}>
+                              {tier.pricingNote}
                             </span>
                           </div>
                         </button>
@@ -390,10 +418,63 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                   </div>
                 </div>
 
-                {/* Step 3: Optional Enterprise Add-ons */}
+                {/* Step 3: Interactive Feature Modules Checklist */}
+                <div className="apple-glass-box p-6 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <label className="block text-xs font-bold text-[#86868b] uppercase tracking-wider">
+                        Step 3: Check Required Features &amp; Modules
+                      </label>
+                      <p className="text-xs text-slate-500 mt-0.5">
+                        Toggle any feature to customize your exact scope for {currentTier.title}.
+                      </p>
+                    </div>
+                    <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-blue-50 text-[#0071e3] border border-blue-200">
+                      {selectedModuleItems.length} of {currentTier.availableModules.length} Active
+                    </span>
+                  </div>
+
+                  <div className="space-y-2.5">
+                    {currentTier.availableModules.map((mod) => {
+                      const isChecked = !!activeModules[`${currentTier.id}_${mod.id}`];
+                      return (
+                        <label
+                          key={mod.id}
+                          className={`flex items-start gap-3 p-3.5 rounded-xl border transition-all cursor-pointer ${
+                            isChecked
+                              ? 'bg-blue-50/60 border-blue-300 shadow-2xs'
+                              : 'bg-white border-slate-200/80 hover:bg-slate-50 opacity-75'
+                          }`}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={isChecked}
+                            onChange={() => toggleModule(currentTier.id, mod.id)}
+                            className="w-4 h-4 mt-0.5 rounded text-[#0071e3] focus:ring-[#0071e3] cursor-pointer"
+                          />
+                          <div className="flex-1">
+                            <span className={`text-xs font-bold block ${isChecked ? 'text-slate-900' : 'text-slate-700'}`}>
+                              {mod.label}
+                            </span>
+                            <span className="text-[11px] text-slate-500 block mt-0.5">
+                              {mod.detail}
+                            </span>
+                          </div>
+                          {isChecked && (
+                            <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 self-center">
+                              Included
+                            </span>
+                          )}
+                        </label>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Step 4: Optional High-Value Modules */}
                 <div className="apple-glass-box p-6 space-y-3">
                   <label className="block text-xs font-bold text-[#86868b] uppercase tracking-wider">
-                    Step 3: Optional High-Value Modules
+                    Step 4: Optional High-Value Modules
                   </label>
                   <div className="space-y-2">
                     <label className="flex items-center justify-between p-3.5 rounded-xl bg-white border border-slate-200/80 cursor-pointer hover:bg-slate-50 transition-colors">
@@ -414,8 +495,8 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                           </span>
                         </div>
                       </div>
-                      <span className="text-xs font-bold text-[#0071e3] whitespace-nowrap pl-2">
-                        +Rs. 25,000
+                      <span className="text-xs font-bold text-teal-700 bg-teal-50 px-2.5 py-1 rounded border border-teal-200 whitespace-nowrap pl-2">
+                        Custom Scope
                       </span>
                     </label>
 
@@ -437,8 +518,8 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                           </span>
                         </div>
                       </div>
-                      <span className="text-xs font-bold text-[#0071e3] whitespace-nowrap pl-2">
-                        +Rs. 45,000
+                      <span className="text-xs font-bold text-teal-700 bg-teal-50 px-2.5 py-1 rounded border border-teal-200 whitespace-nowrap pl-2">
+                        Custom Scope
                       </span>
                     </label>
                   </div>
@@ -451,7 +532,7 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                   {/* Card Header */}
                   <div className="space-y-1 pb-4 border-b border-black/6">
                     <span className="text-xs font-bold text-[#0071e3] uppercase tracking-wider">
-                      Official Estimation Summary
+                      Personalized Scope Summary
                     </span>
                     <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-[#1d1d1f]">
                       {currentTier.title}
@@ -461,28 +542,41 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                     </span>
                   </div>
 
-                  {/* Price Display */}
-                  <div className="p-5 rounded-2xl bg-white/90 border border-slate-200/80 space-y-1 shadow-xs">
-                    <div className="flex items-baseline justify-between">
-                      <span className="text-xs text-[#86868b] font-medium">Total Investment (PKR):</span>
-                      <span className="text-2xl sm:text-3xl font-black text-[#1d1d1f]">
-                        Rs. {totalPkr.toLocaleString()}
+                  {/* Dynamic Pricing Policy Box */}
+                  <div className="p-5 rounded-2xl bg-white/95 border border-slate-200/80 space-y-2.5 shadow-xs">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-[#86868b] font-medium">Pricing Status:</span>
+                      <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        Custom Scope on WhatsApp
                       </span>
                     </div>
-                    <div className="flex items-baseline justify-between text-xs text-[#86868b] pt-2 border-t border-slate-100">
-                      <span>Dubai / UAE Equivalent:</span>
-                      <span className="font-bold text-emerald-700">~{totalAed} AED</span>
+
+                    <div className="pt-1">
+                      <span className="text-base sm:text-lg font-bold text-[#1d1d1f] block">
+                        Tailored Strictly to Your Checked Features
+                      </span>
+                      <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                        No rigid flat prices. We calculate your exact cost only for the features you checked on the left. Discuss directly with our engineers on WhatsApp for our lowest rate.
+                      </p>
+                    </div>
+
+                    <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+                      <span className="text-[#86868b]">Selected Modules:</span>
+                      <span className="font-bold text-[#0071e3] bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                        {selectedCount} Features Selected
+                      </span>
                     </div>
                   </div>
 
                   {/* Delivery & Architecture Details */}
                   <div className="grid grid-cols-2 gap-3 text-xs">
                     <div className="p-3 rounded-xl bg-white/80 border border-slate-200/80">
-                      <span className="text-[10px] text-[#86868b] font-bold uppercase tracking-wider block">Timeline</span>
+                      <span className="text-[10px] text-[#86868b] font-bold uppercase tracking-wider block">Estimated Turnaround</span>
                       <span className="font-bold text-[#1d1d1f] block mt-0.5">{currentTier.days}</span>
                     </div>
                     <div className="p-3 rounded-xl bg-white/80 border border-slate-200/80">
-                      <span className="text-[10px] text-[#86868b] font-bold uppercase tracking-wider block">Standard</span>
+                      <span className="text-[10px] text-[#86868b] font-bold uppercase tracking-wider block">Engineering Standard</span>
                       <span className="font-bold text-[#1d1d1f] block mt-0.5">Dubai Enterprise</span>
                     </div>
                   </div>
@@ -490,25 +584,25 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
                   {/* Included Modules Checklist */}
                   <div className="space-y-2.5">
                     <span className="text-xs font-bold text-[#86868b] uppercase tracking-wider block">
-                      Included Features &amp; Modules:
+                      Active Features In Your Proposal:
                     </span>
-                    <div className="space-y-2">
-                      {currentTier.includedModules.map((mod, mIdx) => (
-                        <div key={mIdx} className="flex items-start gap-2.5 text-xs text-[#1d1d1f]">
-                          <CheckCircle2 className="w-4 h-4 text-[#0071e3] mt-0.5 flex-shrink-0" />
-                          <span>{mod}</span>
+                    <div className="space-y-2 max-h-56 overflow-y-auto pr-1">
+                      {selectedModuleItems.map((mod) => (
+                        <div key={mod.id} className="flex items-start gap-2.5 text-xs text-[#1d1d1f]">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 mt-0.5 flex-shrink-0" />
+                          <span className="font-medium">{mod.label}</span>
                         </div>
                       ))}
                       {addMultilingual && (
                         <div className="flex items-start gap-2.5 text-xs text-[#1d1d1f]">
                           <CheckCircle2 className="w-4 h-4 text-emerald-600 mt-0.5 flex-shrink-0" />
-                          <span>Multilingual (DE/FR/ES) with hreflang tags</span>
+                          <span className="font-medium">European Multilingual (DE/FR) with hreflang tags</span>
                         </div>
                       )}
                       {addConfigurator && (
                         <div className="flex items-start gap-2.5 text-xs text-[#1d1d1f]">
                           <CheckCircle2 className="w-4 h-4 text-emerald-600 mt-0.5 flex-shrink-0" />
-                          <span>Interactive 3D WebGL Uniform / Product Configurator</span>
+                          <span className="font-medium">Interactive 3D WebGL Uniform / Product Configurator</span>
                         </div>
                       )}
                     </div>
@@ -516,23 +610,30 @@ export const ProjectCostCalculator: React.FC<ProjectCostCalculatorProps> = ({
 
                   {/* CTA Buttons */}
                   <div className="pt-2 space-y-3">
-                    <button
-                      onClick={handleRequestProjectQuote}
-                      className="apple-calculate-btn py-4 text-sm sm:text-base cursor-pointer"
-                    >
-                      <Sparkles className="w-4 h-4" />
-                      <span>Lock In Estimate &amp; Request Proposal</span>
-                      <ArrowRight className="w-4 h-4 ml-1" />
-                    </button>
-
                     <a
                       href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${whatsappMessage}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full py-3 px-6 rounded-2xl bg-[#34c759] hover:bg-[#30b753] text-white font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                      className="w-full py-4 px-6 rounded-2xl bg-[#25D366] hover:bg-[#20ba59] active:bg-[#1da850] text-white font-extrabold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-emerald-500/25 hover:scale-[1.01]"
                     >
-                      <MessageSquare className="w-4 h-4" />
-                      <span>Instant WhatsApp Discussion With Senior Engineer</span>
+                      <MessageSquare className="w-4 h-4 fill-white" />
+                      <span>Send My Scope to WhatsApp for Lowest Price</span>
+                    </a>
+
+                    <button
+                      onClick={handleRequestProjectQuote}
+                      className="w-full py-3 px-6 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                    >
+                      <Sparkles className="w-4 h-4 text-amber-400" />
+                      <span>Request Free Scope Callback in 2 Hours</span>
+                    </button>
+
+                    <a
+                      href={`tel:${COMPANY_INFO.contact.phoneRaw}`}
+                      className="w-full py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition-colors flex items-center justify-center gap-2 text-center"
+                    >
+                      <Phone className="w-3.5 h-3.5 text-emerald-600" />
+                      <span>Got a question? Call us: {COMPANY_INFO.contact.phoneDisplay}</span>
                     </a>
                   </div>
 

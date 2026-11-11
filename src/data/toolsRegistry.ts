@@ -25,6 +25,18 @@ export interface ToolMetadata {
     formula: string;
     rates: string[];
   };
+  editorialSections?: {
+    introHeading: string;
+    introParagraphs: string[];
+    tableTitle: string;
+    tableHeaders: string[];
+    tableRows: string[][];
+    scheduleHeading: string;
+    scheduleParagraphs: string[];
+    scheduleBulletPoints?: { title: string; desc: string }[];
+    strategiesHeading: string;
+    strategies: { title: string; desc: string }[];
+  };
   ogTitle?: string;
   ogDescription?: string;
 }
@@ -378,6 +390,70 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
       buttonText: 'View Label Printers',
       targetUrl: 'https://store.evonixtec.com',
     },
+    howItWorks: {
+      title: 'How This Calculator Works: Amazon FBA Fulfillment & Referral Formulas',
+      explanation: 'Amazon charges a Referral Fee percentage on total transaction gross, alongside weight-and-dimension tiered FBA pick-and-pack fulfillment fees, monthly cubic-foot warehouse storage charges, and peak holiday surcharges.',
+      formula: 'Total Amazon Cost = (Gross Sales * Referral Rate) + FBA Fulfillment Fee + Monthly Storage Fee + Inbound Placement Fee. Net Profit = Gross Sale Price - Cost of Goods - Shipping to FBA - Total Amazon Cost.',
+      rates: [
+        'Standard Referral Fee: Typically 15% on most consumer categories ($0.30 minimum fee per item).',
+        'FBA Fulfillment Fee: Ranging from $3.22 to $5.40+ per standard-size unit depending on packaged shipping weight.',
+        'Low-Price FBA (< $10): Automatic $0.77 discount on standard pick-and-pack fulfillment rates.',
+        'Q4 Holiday Peak Storage: $2.40 per cubic foot (October 15 to January 15) vs $0.87 standard off-peak rate.',
+      ],
+    },
+    editorialSections: {
+      introHeading: 'Section 1: Amazon FBA Fee Breakdown & Rate Schedule',
+      introParagraphs: [
+        'Selling through Fulfillment by Amazon (FBA) involves two distinct categories: Referral Fees (selling commission taken by Amazon on the total selling price) and FBA Fulfillment Fees (unit picking, packing, shipping, and customer service costs based on weight and dimension tiers).',
+        'Accurately modeling both categories safeguards your bottom-line profitability across standard, oversize, and low-price retail assortments.',
+      ],
+      tableTitle: 'Amazon FBA Fee Structure & Math Breakdown Table',
+      tableHeaders: ['Item Category', 'Average Referral Fee', 'FBA Fulfillment Fee (Standard Size)', 'Storage Fee (Off-Peak vs Q4)'],
+      tableRows: [
+        ['Electronics & Hardware', '8% – 15%', '$3.22 – $4.75 / unit', '$0.87 / cu ft (Jan–Sep)'],
+        ['Apparel & Clothing', '17%', '$3.68 – $5.40 / unit', '$2.40 / cu ft (Oct–Dec Peak)'],
+        ['Home & Kitchen', '15%', '$3.50 – $4.90 / unit', 'Standard storage fees apply'],
+        ['Low-Price FBA (< $10)', '8% – 15%', 'Automatic $0.77 discount', 'Reduced fulfillment tiers apply'],
+      ],
+      scheduleHeading: 'Section 2: 2026 Q4 Peak Transition into 2027 Base Fees',
+      scheduleParagraphs: [
+        'Amazon continuously updates its logistical surcharge matrices to reflect fulfillment labor, storage capacity, and regional transportation expenses.',
+        'Review the crucial policy updates currently governing active marketplace seller inventory:',
+      ],
+      scheduleBulletPoints: [
+        {
+          title: 'Holiday Peak Fulfillment Surcharge',
+          desc: 'The seasonal Q4 fulfillment surcharge active through January 15, 2027, adds an average of $0.19 to $0.45 per standard unit. From mid-January 2027, base standard FBA rates resume.',
+        },
+        {
+          title: 'Low-Inventory-Level Fee',
+          desc: 'Maintaining minimum inventory levels (historical days of supply above 28 days) is essential. Sellers with low inventory face additional fees per unit shipped.',
+        },
+        {
+          title: 'Inbound Placement Service Fee',
+          desc: 'Inbound shipments split across multiple Amazon fulfillment centers versus single-location shipments determine upfront inventory placement charges.',
+        },
+      ],
+      strategiesHeading: 'Section 3: Seller Cost-Reduction Strategies (Tips to Save Money)',
+      strategies: [
+        {
+          title: 'Optimize Packaging Dimensions into Lower Size Tiers',
+          desc: 'Shaving even a quarter-inch off carton packaging can drop your product from Large Standard to Small Standard size, saving over $0.70 per unit in fulfillment fees.',
+        },
+        {
+          title: 'Enroll Qualifying SKUs in Low-Price FBA',
+          desc: 'Products priced below $10 automatically receive a $0.77 fulfillment fee discount while retaining standard Prime shipping speed for buyers.',
+        },
+        {
+          title: 'Maintain Above 28 Days of Historical Supply',
+          desc: 'Avoid costly Low-Inventory-Level surcharges by planning steady replenishment shipments that never dip below 4 weeks of historical unit velocity.',
+        },
+        {
+          title: 'Leverage Multi-Location Inbound Placement Splits',
+          desc: 'Select Amazon multi-warehouse split placement option to minimize or completely eliminate inbound inventory placement surcharges.',
+        },
+      ],
+    },
     howToSteps: [
       'Select Amazon product category and dimensions.',
       'Enter unit sale price, manufacturing cost, and inbound freight.',
@@ -386,8 +462,20 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     ],
     faqs: [
       {
-        q: 'Does this include the Amazon fuel surcharge?',
-        a: 'Yes, includes updated fulfillment and fuel surcharges applied to Amazon logistics.',
+        q: 'What is the Low-Inventory-Level Fee on Amazon?',
+        a: 'Amazon charges an additional fee on standard-size products if inventory levels relative to historical sales drop below 28 days of supply.',
+      },
+      {
+        q: 'When do Q4 Holiday Peak fees end?',
+        a: 'Amazon\'s seasonal holiday peak fulfillment fees typically run from October 15 through January 15, after which rates return to standard off-peak schedules.',
+      },
+      {
+        q: 'How is the Amazon Referral Fee calculated?',
+        a: 'Referral fees are calculated as a percentage of the total sales price paid by the buyer, including the item price, shipping fees, and gift-wrapping charges, usually averaging between 8% and 15%.',
+      },
+      {
+        q: 'How does the Low-Price FBA program work?',
+        a: 'Items priced under $10 automatically qualify for reduced FBA rates, receiving an instant $0.77 discount per unit fulfilled compared to standard FBA rates.',
       },
     ],
   },
@@ -478,6 +566,59 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
         'In-Person Terminal: 2.7% + $0.05 for card-present POS transactions.',
       ],
     },
+    editorialSections: {
+      introHeading: 'Section 1: Understanding Stripe Processing Fees (2026–2027)',
+      introParagraphs: [
+        'Stripe operates on a per-transaction pricing model. For standard domestic card transactions in the US, Stripe charges 2.9% + $0.30 per successful charge.',
+        'However, global sellers and cross-border businesses incur different fee structures depending on payment methods, currency conversion, and billing regions.',
+      ],
+      tableTitle: 'Stripe Processing Fee & Math Breakdown Table',
+      tableHeaders: ['Transaction Type', 'Domestic Fee (US)', 'International / Cross-Border', 'Payout & FX Fee'],
+      tableRows: [
+        ['Standard Cards (Visa, MC)', '2.9% + $0.30', '+1.5% (4.4% + $0.30)', '+1% Currency Conversion'],
+        ['ACH Direct Debit', '0.8% (Capped at $5.00)', 'N/A', 'N/A'],
+        ['Instant Payouts', '1.0% (Min $0.50)', '1.0%', 'Standard FX rates apply'],
+        ['Chargeback / Dispute', '$15.00 per dispute', '$15.00 per dispute', 'Non-refundable fee'],
+      ],
+      scheduleHeading: 'Section 2: 2027 Stripe Fee Forecast & What Sellers Need to Know',
+      scheduleParagraphs: [
+        'Payment processing networks continue to evolve their global merchant interchange frameworks for cross-border operations.',
+        'Understanding upcoming network fee updates helps digital businesses safeguard their transaction profit margins.',
+      ],
+      scheduleBulletPoints: [
+        {
+          title: 'Cross-Border Interchange Adjustments',
+          desc: 'With upcoming 2027 international banking regulations, multi-currency processing through Stripe incurs an additional 1% to 1.5% fee if currency conversion is required.',
+        },
+        {
+          title: 'Non-Refundable Processing Fees',
+          desc: 'Since recent policy revisions, Stripe does not return the original processing fee (2.9% + $0.30) when a customer is issued a full or partial refund.',
+        },
+        {
+          title: 'Dispute Protection',
+          desc: 'The standard chargeback fee stands at $15.00. Using automated radar rules and 3D Secure verification directly reduces fraudulent chargeback liability.',
+        },
+      ],
+      strategiesHeading: 'Section 3: Seller Cost-Reduction Strategies (Tips to Save Money)',
+      strategies: [
+        {
+          title: 'Leverage ACH Direct Debit for B2B Invoices',
+          desc: 'Encourage wholesale and enterprise B2B buyers to pay via ACH Direct Debit, which is capped at $5.00 per transfer regardless of invoice volume.',
+        },
+        {
+          title: 'Request Custom Interchange-Plus Volume Tiers',
+          desc: 'Merchants processing over $100,000 monthly can negotiate lower customized interchange-plus pricing directly through Stripe enterprise sales.',
+        },
+        {
+          title: 'Pass Processing Surcharges Compliantly',
+          desc: 'Where permitted by local state and national consumer laws, add a compliant checkout surcharge for high-fee international cards.',
+        },
+        {
+          title: 'Implement Multi-Currency Settlement Accounts',
+          desc: 'Maintain local currency bank accounts in GBP, EUR, and USD to bypass Stripe 1% to 1.5% cross-currency conversion markups.',
+        },
+      ],
+    },
     howToSteps: [
       'Enter transaction amount or net payout target.',
       'Select card type (domestic 2.9% + $0.30 or international +1.5%).',
@@ -486,16 +627,20 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     ],
     faqs: [
       {
-        q: 'How does the reverse calculator formula work?',
-        a: 'The reverse formula accounts for Stripe deducting fees from the gross total. It divides (Target Amount + Fixed Fee) by (1 - Fee Percentage) so your net settlement equals your target.',
+        q: 'Does Stripe refund processing fees when I issue a customer refund?',
+        a: 'No. Stripe retains the fixed processing fee and percentage charges incurred during the initial transaction when a refund is processed.',
       },
       {
-        q: 'What is the fee difference between domestic and international cards?',
-        a: 'Domestic US cards incur 2.9% + $0.30. Non-US international cards add a 1.5% fee, plus another 1% if currency conversion is involved.',
+        q: 'What is the difference between Domestic and International Stripe fees?',
+        a: 'Domestic cards registered within your merchant account\'s home country are charged at the standard 2.9% + $0.30 rate. Cards issued internationally incur an additional 1.5% cross-border fee, plus an extra 1% if currency conversion is required.',
       },
       {
-        q: 'Does Stripe refund processing fees when an order is cancelled?',
-        a: 'No. Stripe retains the original fixed and percentage fees when you issue full or partial refunds to customers.',
+        q: 'How can businesses reduce Stripe processing costs?',
+        a: 'High-volume businesses processing over $100,000 monthly can request customized interchange-plus pricing from Stripe sales. For domestic B2B invoicing, enabling ACH Direct Debit caps processing fees at $5 per transaction.',
+      },
+      {
+        q: 'How are reverse Stripe fees calculated?',
+        a: 'Reverse calculation determines the gross amount you must invoice a client so that after Stripe deducts its standard fees, you receive your exact net required amount. Formula: (Net Amount + $0.30) / (1 - 0.029).',
       },
     ],
   },

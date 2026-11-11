@@ -21,12 +21,13 @@ import {
   TERMS_AND_CONDITIONS,
   REFUND_POLICY,
   MOBILE_PLAY_POLICY,
+  DISCLAIMER_POLICY,
   TOOL_DATA_SAFETY_MATRIX,
   PolicySection
 } from '../data/policies';
 import { EvonixMark } from './EvonixLogo';
 
-export type PolicyType = 'privacy' | 'terms' | 'refund' | 'mobile' | 'matrix' | null;
+export type PolicyType = 'privacy' | 'terms' | 'refund' | 'mobile' | 'matrix' | 'disclaimer' | null;
 
 interface PolicyModalProps {
   policyType: PolicyType;
@@ -57,6 +58,8 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ policyType, onClose })
         return REFUND_POLICY;
       case 'mobile':
         return MOBILE_PLAY_POLICY;
+      case 'disclaimer':
+        return DISCLAIMER_POLICY;
       case 'matrix':
       default:
         return null;
@@ -197,6 +200,18 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ policyType, onClose })
             >
               <Smartphone className="w-3.5 h-3.5" />
               <span>Google Play Mobile Addendum</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('disclaimer')}
+              className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-all whitespace-nowrap cursor-pointer ${
+                activeTab === 'disclaimer'
+                  ? 'bg-rose-600 text-white font-bold shadow-sm'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200'
+              }`}
+            >
+              <ShieldCheck className="w-3.5 h-3.5" />
+              <span>Calculators Disclaimer</span>
             </button>
 
             <button

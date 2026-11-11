@@ -90,13 +90,19 @@ export const PRIVACY_POLICY: PolicySection = {
       ]
     },
     {
-      heading: '7. Cookies, LocalStorage & Telemetry Policy',
+      heading: '7. Cookies, Google AdSense & Third-Party Advertising Disclosures',
       content: [
-        'We do not utilize invasive tracking cookies. Our web and mobile applications utilize browser LocalStorage strictly for functional convenience:',
-        'Saving your active currency preferences (e.g., PKR, USD, EUR, AED, GBP, SAR).',
-        'Persisting draft invoice line items so you do not lose progress if your browser closes.',
-        'Remembering high-contrast dark/light mode UI preferences.',
-        'You can purge this data at any moment by clearing your browser cache or clicking "Reset Tool" inside any calculator.'
+        'Our web applications utilize browser LocalStorage strictly for functional convenience such as saving your active currency preference (PKR, USD, EUR, AED, GBP), persisting draft calculator line items, and remembering UI settings.',
+        'Google AdSense & Third-Party Vendors: We may partner with third-party advertising vendors, including Google, to serve relevant advertisements across our free informational calculators and web utilities.',
+        'Third-party vendors, including Google, use cookies to serve ads based on a user\'s prior visits to this website or other websites across the Internet.',
+        'Google\'s use of advertising cookies enables it and its partners to serve ads to our users based on their visit to our sites and/or other sites on the Internet.',
+        'Opt-Out Instructions: Users may opt out of personalized advertising at any time by visiting Google Ads Settings (https://www.google.com/settings/ads) or through the Digital Advertising Alliance at www.aboutads.info.',
+        'Analytics & Telemetry: We utilize standard aggregated web performance metrics to measure tool uptime and server speed. We NEVER collect or store sensitive personal financial data, credit card numbers, or bank account credentials.'
+      ],
+      bulletPoints: [
+        'Third-party ad cookies: Google and authorized ad networks serve contextually relevant ads.',
+        'Personalized Ad Opt-Out: Manage preferences anytime at https://www.google.com/settings/ads or www.aboutads.info.',
+        'Zero financial storage: Calculator inputs run 100% in-browser without persistent server database retention.'
       ]
     },
     {
@@ -289,6 +295,62 @@ export const MOBILE_PLAY_POLICY: PolicySection = {
     }
   ]
 };
+
+// 4b. Financial & E-Commerce Calculation Disclaimer (AdSense & Regulatory Compliance)
+export const DISCLAIMER_POLICY: PolicySection = {
+  id: 'disclaimer',
+  title: 'Financial & E-Commerce Fee Calculation Disclaimer',
+  badge: 'Informational & Educational Notice',
+  lastUpdated: 'November 2026',
+  complianceTags: ['Independent Utility Notice', 'Nominative Fair Use', 'No Financial Advice', 'Informational Estimates'],
+  summary: 'This official disclaimer sets forth the informational nature of all fee calculators, margin estimators, and export tools published by Evonix Technologies. Please read this notice prior to making commercial business decisions based on automated calculations.',
+  sections: [
+    {
+      heading: '1. Informational & Educational Estimates Only',
+      content: [
+        'All e-commerce profit, processing fee, and payout calculators provided across evonixtec.com and tools.evonixtec.com (including Stripe, Amazon FBA, Amazon FBM, eBay, Temu, Etsy, PayPal, and TikTok Shop tools) are offered exclusively for general informational, planning, and educational purposes.',
+        'Calculations represent mathematical models generated client-side from publicly documented base merchant rates and user-submitted numerical inputs. They are not binding financial commitments.'
+      ],
+      bulletPoints: [
+        'Simulation only: Modeled results represent estimates, not guaranteed bank settlements.',
+        'No warranty of exact accuracy: Merchant category codes, custom tier waivers, and currency conversion margins may alter final payouts.',
+        'Self-verification required: Always reconcile calculations with your active merchant account statements.'
+      ]
+    },
+    {
+      heading: '2. Independent Software Company — Zero Affiliation with Third Parties',
+      content: [
+        'Evonix Technologies is an independent software engineering and enterprise IT services company registered with SECP in Sialkot, Pakistan, with international UAE heritage.',
+        'We are NOT affiliated, endorsed, sponsored, authorized, or in any way officially connected with Stripe, Inc., Amazon.com, Inc., eBay Inc., Temu (PDD Holdings), PayPal Holdings, Inc., Etsy, Inc., ByteDance / TikTok, or any of their subsidiaries or affiliates.',
+        'All product names, brand names, logos, and registered trademarks referenced across our tools belong exclusively to their respective owners. Their use on this website is solely for nominative fair use to describe the platform for which the fee formula is designed.'
+      ]
+    },
+    {
+      heading: '3. Dynamic Rate Adjustments & Active Policy Variations',
+      content: [
+        'Payment processors and e-commerce marketplaces frequently adjust baseline interchange fees, cross-border settlement surcharges, buyer return chargebacks, and peak-season storage tariffs.',
+        'While our engineering desk regularly updates rate matrices, users must verify live transaction charges directly within their official merchant dashboards (such as Stripe Dashboard, Amazon Seller Central, or eBay Seller Hub).'
+      ]
+    },
+    {
+      heading: '4. No Professional Financial, Legal, or Tax Advice',
+      content: [
+        'No information provided on this platform should be construed as legal, tax, accounting, or professional financial advice.',
+        'For specific corporate tax filings, cross-border VAT/GST nexus determinations, or customs clearance declarations, consult a certified tax professional or licensed customs attorney.'
+      ]
+    },
+    {
+      heading: '5. Corporate Contact & Inquiries',
+      content: [
+        'If you have questions regarding this disclaimer, fee algorithms, or would like to report a rate adjustment, please contact our engineering desk:',
+        'Evonix Technologies • Kotli Behram, Sialkot 51310, Punjab, Pakistan',
+        'Official Email: evonixtec@gmail.com • Direct Phone / WhatsApp: +92 326 324 4002',
+        'Customer Service SLA: Got a question? Call us. We reply in 2 hours.'
+      ]
+    }
+  ]
+};
+
 
 // 5. Tool-by-Tool Data Privacy & Safety Matrix (For all 9 tools + Shop + RMA)
 export const TOOL_DATA_SAFETY_MATRIX: ToolSafetyItem[] = [

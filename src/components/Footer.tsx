@@ -29,7 +29,7 @@ import {
 interface FooterProps {
   onNavigate: (section: SectionId | string, subTarget?: string) => void;
   onOpenQuote: () => void;
-  onOpenPolicy?: (type: 'privacy' | 'terms' | 'refund' | 'mobile' | 'matrix') => void;
+  onOpenPolicy?: (type: 'privacy' | 'terms' | 'refund' | 'mobile' | 'matrix' | 'disclaimer') => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenPolicy }) => {
@@ -81,29 +81,38 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
   ];
 
   return (
-    <footer id="main-footer" className="bg-slate-950 text-slate-400 border-t border-slate-800 pt-16 pb-12 selection:bg-red-900 selection:text-white print:hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer id="main-footer" className="relative bg-slate-950 text-slate-300 border-t border-slate-800/90 pt-16 pb-12 overflow-hidden selection:bg-teal-500/30 selection:text-white print:hidden">
+      {/* UAE / Dubai Tech Silhouette Subtle Background (30-40% opacity with smooth gradient fade) */}
+      <div 
+        className="absolute inset-0 pointer-events-none bg-cover bg-center opacity-30 mix-blend-luminosity"
+        style={{
+          backgroundImage: `url('/images/hero_dubai_tech_1790044690065.webp')`,
+        }}
+      />
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-slate-950/95 via-slate-950/90 to-slate-950/98" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 1. Top Emergency Help Desk Banner */}
-        <div className="pb-10 border-b border-slate-800/90 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-          <div className="lg:col-span-8 space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-800 text-red-300 text-xs font-bold">
+        <div className="pb-10 border-b border-slate-800/80 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div className="lg:col-span-8 space-y-2.5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/90 border border-teal-500/30 text-teal-300 text-xs font-semibold shadow-xs">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>On-Duty Desk: Kotli Behram, Sialkot, Pakistan</span>
+              <span>On-Duty Desk: Kotli Behram, Sialkot, Pakistan • UAE Heritage</span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
               {COMPANY_INFO.tagline1}
             </h2>
             <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
-              Got a question? Call us. We reply in 2 hours. 20+ years of Dubai IT engineering standard right here in Sialkot.
+              Got a question? Call us. We reply in 2 hours. 20+ years of Dubai IT engineering standards deployed right here in Sialkot.
             </p>
           </div>
 
           <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col items-start lg:items-end gap-3 w-full">
             <button
               onClick={onOpenQuote}
-              className="w-full sm:w-auto px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-bold text-xs sm:text-sm shadow-md transition-all cursor-pointer flex items-center justify-center gap-2 hover:scale-[1.02]"
+              className="w-full sm:w-auto px-6 py-3 rounded-xl bg-teal-500 hover:bg-teal-400 active:bg-teal-600 text-slate-950 font-extrabold text-xs sm:text-sm shadow-lg shadow-teal-500/20 transition-all cursor-pointer flex items-center justify-center gap-2 hover:scale-[1.02]"
             >
-              <Sparkles className="w-4 h-4 text-white" />
+              <Sparkles className="w-4 h-4 text-slate-950" />
               <span>Get Free Consultation</span>
             </button>
 
@@ -111,7 +120,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello evonix, I need urgent IT support in Sialkot.')}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-emerald-400 font-semibold text-xs border border-emerald-900/60 transition-colors flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-emerald-400 font-bold text-xs border border-emerald-500/40 transition-colors flex items-center justify-center gap-2 shadow-xs"
             >
               <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
               <span>WhatsApp: +{COMPANY_INFO.contact.whatsappDisplay}</span>
@@ -124,25 +133,25 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
           {/* Column 1: Brand & Compliance Credentials (4 cols on lg) */}
           <div className="lg:col-span-4 space-y-4">
             <EvonixLogo size="md" forceTheme="dark" />
-            <p className="text-xs text-slate-400 leading-relaxed max-w-sm mt-3">
+            <p className="text-xs text-slate-300 leading-relaxed max-w-sm mt-3">
               evonix delivers two decades of enterprise software engineering, autonomous AI workflows, and industrial manufacturing ERP systems from Dubai, UAE to Sialkot, Pakistan.
             </p>
 
             {/* Badges */}
             <div className="space-y-2 pt-1">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 font-medium text-[11px]">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 text-slate-200 font-medium text-[11px]">
                 <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
                 <span>SECP Registered IT Company (SMC)</span>
               </div>
-              <div className="flex items-center gap-2 text-[11px] text-slate-400">
-                <Globe className="w-3.5 h-3.5 text-red-400 flex-shrink-0" />
+              <div className="flex items-center gap-2 text-[11px] text-slate-300">
+                <Globe className="w-3.5 h-3.5 text-teal-400 flex-shrink-0" />
                 <span>Dubai IT Heritage Since 2004</span>
               </div>
             </div>
 
             {/* Social Links */}
             <div className="pt-2">
-              <span className="text-[10px] font-bold text-slate-500 block mb-2 uppercase tracking-wider">
+              <span className="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wider">
                 Follow Us Online
               </span>
               <div className="flex items-center gap-2">
@@ -154,7 +163,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                     rel="noopener noreferrer"
                     aria-label={social.label}
                     title={social.label}
-                    className={`p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md flex items-center justify-center cursor-pointer ${social.hoverClass}`}
+                    className={`p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md flex items-center justify-center cursor-pointer ${social.hoverClass}`}
                   >
                     {social.icon}
                   </a>
@@ -166,14 +175,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
           {/* Column 2: Core Services (2 cols on lg) */}
           <div className="lg:col-span-2 space-y-3">
             <h3 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
-              <Wrench className="w-3.5 h-3.5 text-red-500" />
+              <Wrench className="w-3.5 h-3.5 text-teal-400" />
               <span>Core Services</span>
             </h3>
-            <ul className="space-y-2 text-slate-400">
+            <ul className="space-y-2 text-slate-300 font-medium">
               <li>
                 <button
                   onClick={() => onNavigate('services')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer"
+                  className="hover:text-teal-300 transition-colors text-left cursor-pointer text-slate-200"
                 >
                   Enterprise Software Engineering
                 </button>
@@ -182,7 +191,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                 <a
                   href="/sialkot-export-erp"
                   onClick={(e) => { e.preventDefault(); onNavigate('sialkot-export-erp'); }}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer block font-semibold text-slate-200"
+                  className="hover:text-teal-300 transition-colors text-left cursor-pointer block font-bold text-teal-400"
                 >
                   Sialkot Export Industrial ERP
                 </a>
@@ -190,7 +199,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               <li>
                 <button
                   onClick={() => onNavigate('services')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer"
+                  className="hover:text-teal-300 transition-colors text-left cursor-pointer text-slate-200"
                 >
                   Enterprise AI &amp; Cloud Pipelines
                 </button>
@@ -198,7 +207,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               <li>
                 <button
                   onClick={() => onNavigate('services')}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer"
+                  className="hover:text-teal-300 transition-colors text-left cursor-pointer text-slate-200"
                 >
                   Retail &amp; FBR POS Systems
                 </button>
@@ -208,9 +217,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                   href={getStoreDomainUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-amber-400 transition-colors text-left text-amber-300 font-semibold flex items-center gap-1"
+                  className="hover:text-amber-300 transition-colors text-left text-amber-400 font-bold flex items-center gap-1"
                 >
-                  <span>Hardware &amp; POS Store (store.evonixtec.com) ↗</span>
+                  <span>Hardware &amp; POS Store ↗</span>
                 </a>
               </li>
               <li>
@@ -218,9 +227,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                   href={getStoreDomainUrl('/doorstep-support')}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-emerald-400 transition-colors text-left text-emerald-300 font-semibold flex items-center gap-1"
+                  className="hover:text-emerald-300 transition-colors text-left text-emerald-400 font-bold flex items-center gap-1"
                 >
-                  <span>Doorstep Support (store.evonixtec.com) ↗</span>
+                  <span>Doorstep Support (45m Dispatch) ↗</span>
                 </a>
               </li>
             </ul>
@@ -229,15 +238,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
           {/* Column 3: Web Tools Suite (2 cols on lg) */}
           <div className="lg:col-span-2 space-y-3">
             <h3 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
-              <Cpu className="w-3.5 h-3.5 text-red-500" />
+              <Cpu className="w-3.5 h-3.5 text-teal-400" />
               <span>Web Tools Hub</span>
             </h3>
-            <ul className="space-y-2 text-slate-400">
+            <ul className="space-y-2 text-slate-300 font-medium">
               <li>
                 <a
                   href="/ebay-fee-calculator"
                   onClick={(e) => { e.preventDefault(); onNavigate('ebay-fee-calculator'); }}
-                  className="hover:text-blue-400 transition-colors text-left cursor-pointer text-blue-300 font-bold flex items-center gap-1.5"
+                  className="hover:text-blue-300 transition-colors text-left cursor-pointer text-blue-400 font-bold flex items-center gap-1.5"
                 >
                   <span>eBay Fee &amp; Profit Calculator</span>
                   <span className="text-[9px] bg-blue-600 text-white px-1.5 py-0.2 rounded font-black">HOT</span>
@@ -247,17 +256,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                 <a
                   href="/invoice"
                   onClick={(e) => { e.preventDefault(); onNavigate('invoice'); }}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-amber-300 font-bold flex items-center gap-1.5"
+                  className="hover:text-amber-300 transition-colors text-left cursor-pointer text-amber-400 font-bold flex items-center gap-1.5"
                 >
                   <span>Micro-Invoice Generator</span>
-                  <span className="text-[9px] bg-red-600 text-white px-1.5 py-0.2 rounded font-black">FREE</span>
+                  <span className="text-[9px] bg-amber-500 text-slate-950 px-1.5 py-0.2 rounded font-black">FREE</span>
                 </a>
               </li>
               <li>
                 <a
                   href="/ai-tools-name-for-travel-itinerary"
                   onClick={(e) => { e.preventDefault(); onNavigate('ai-travel-tools'); }}
-                  className="hover:text-teal-400 transition-colors text-left cursor-pointer text-teal-300 font-bold flex items-center gap-1.5"
+                  className="hover:text-teal-300 transition-colors text-left cursor-pointer text-teal-400 font-bold flex items-center gap-1.5"
                 >
                   <span>10 Best AI Travel Tools</span>
                   <span className="text-[9px] bg-teal-600 text-white px-1.5 py-0.2 rounded font-black">NEW</span>
@@ -267,7 +276,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                 <a
                   href="/tools/ai-trip-planner"
                   onClick={(e) => { e.preventDefault(); onNavigate('ai-trip-planner'); }}
-                  className="hover:text-teal-400 transition-colors text-left cursor-pointer text-slate-300 font-semibold flex items-center gap-1.5"
+                  className="hover:text-teal-300 transition-colors text-left cursor-pointer text-slate-200 font-semibold flex items-center gap-1.5"
                 >
                   <span>AI Trip Planner Engine</span>
                   <span className="text-[9px] bg-slate-800 text-teal-400 border border-teal-500/40 px-1 py-0.2 rounded font-bold">FREE</span>
@@ -277,7 +286,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                 <a
                   href="/factory-network-tester"
                   onClick={(e) => { e.preventDefault(); onNavigate('factory-network-tester'); }}
-                  className="hover:text-blue-400 transition-colors text-left cursor-pointer text-blue-300 font-semibold flex items-center gap-1.5"
+                  className="hover:text-blue-300 transition-colors text-left cursor-pointer text-blue-300 font-semibold flex items-center gap-1.5"
                 >
                   <span>Factory Network Tester</span>
                   <span className="text-[9px] bg-blue-900/60 text-blue-300 px-1.5 py-0.2 rounded font-bold">PING</span>
@@ -287,17 +296,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                 <a
                   href="/ecommerce-calculator"
                   onClick={(e) => { e.preventDefault(); onNavigate('ecommerce-calculator'); }}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-blue-300 font-bold flex items-center gap-1.5"
+                  className="hover:text-sky-300 transition-colors text-left cursor-pointer text-sky-400 font-bold flex items-center gap-1.5"
                 >
                   <span>E-Commerce Margin Calc</span>
-                  <span className="text-[9px] bg-blue-600 text-white px-1.5 py-0.2 rounded font-black">TOOL</span>
+                  <span className="text-[9px] bg-sky-600 text-white px-1.5 py-0.2 rounded font-black">TOOL</span>
                 </a>
               </li>
               <li>
                 <a
                   href="/export-barcode-studio"
                   onClick={(e) => { e.preventDefault(); onNavigate('export-barcode-studio'); }}
-                  className="hover:text-amber-400 transition-colors text-left cursor-pointer text-amber-300 font-semibold flex items-center gap-1.5"
+                  className="hover:text-amber-300 transition-colors text-left cursor-pointer text-amber-300 font-semibold flex items-center gap-1.5"
                 >
                   <span>Export Barcode Studio</span>
                   <span className="text-[9px] bg-amber-500 text-slate-900 px-1.5 py-0.2 rounded font-black">BARCODE</span>
@@ -307,7 +316,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                 <a
                   href="/schema-generator"
                   onClick={(e) => { e.preventDefault(); onNavigate('schema-generator'); }}
-                  className="hover:text-red-400 transition-colors text-left cursor-pointer text-slate-300 flex items-center gap-1"
+                  className="hover:text-emerald-300 transition-colors text-left cursor-pointer text-slate-200 flex items-center gap-1"
                 >
                   <span>JSON-LD Schema Generator</span>
                   <span className="text-[9px] bg-emerald-600 text-white px-1.5 py-0.2 rounded font-black">AEO</span>
@@ -321,14 +330,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             {/* Client Portfolio Sub-block */}
             <div className="space-y-2">
               <h3 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
-                <Briefcase className="w-3.5 h-3.5 text-red-500" />
+                <Briefcase className="w-3.5 h-3.5 text-teal-400" />
                 <span>Client Portfolio</span>
               </h3>
-              <ul className="space-y-1.5 text-slate-400">
+              <ul className="space-y-1.5 text-slate-200 font-medium">
                 <li>
                   <button
                     onClick={() => onNavigate('portfolio')}
-                    className="hover:text-red-400 transition-colors text-left cursor-pointer block"
+                    className="hover:text-teal-300 transition-colors text-left cursor-pointer block text-slate-200"
                   >
                     Dubai Web Client Deployments
                   </button>
@@ -336,7 +345,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                 <li>
                   <button
                     onClick={() => onNavigate('portfolio')}
-                    className="hover:text-red-400 transition-colors text-left cursor-pointer block"
+                    className="hover:text-teal-300 transition-colors text-left cursor-pointer block text-slate-200"
                   >
                     Custom Software &amp; POS Case Studies
                   </button>
@@ -344,7 +353,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                 <li>
                   <button
                     onClick={() => onNavigate('portfolio')}
-                    className="hover:text-red-400 transition-colors text-left cursor-pointer block"
+                    className="hover:text-teal-300 transition-colors text-left cursor-pointer block text-slate-200"
                   >
                     Sialkot Export Industry ERP
                   </button>
@@ -352,7 +361,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                 <li>
                   <button
                     onClick={() => onNavigate('portfolio')}
-                    className="text-red-400 font-bold hover:underline transition-colors flex items-center gap-1 pt-0.5 cursor-pointer"
+                    className="text-teal-400 font-bold hover:text-teal-300 hover:underline transition-colors flex items-center gap-1 pt-0.5 cursor-pointer"
                   >
                     <span>View Full Portfolio Page →</span>
                   </button>
@@ -363,14 +372,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             {/* Tech Blogs Sub-block */}
             <div className="space-y-2 pt-2 border-t border-slate-800/80">
               <h3 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
-                <BookOpen className="w-3.5 h-3.5 text-red-500" />
+                <BookOpen className="w-3.5 h-3.5 text-teal-400" />
                 <span>Technical Insights &amp; Case Studies</span>
               </h3>
-              <ul className="space-y-1.5 text-slate-400">
+              <ul className="space-y-1.5 text-slate-200 font-medium">
                 <li>
                   <button
                     onClick={() => onNavigate('guides')}
-                    className="hover:text-red-400 transition-colors text-left cursor-pointer block"
+                    className="hover:text-teal-300 transition-colors text-left cursor-pointer block text-slate-200"
                   >
                     Enterprise Software Architecture Guides
                   </button>
@@ -378,7 +387,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                 <li>
                   <button
                     onClick={() => onNavigate('guides')}
-                    className="hover:text-red-400 transition-colors text-left cursor-pointer block"
+                    className="hover:text-teal-300 transition-colors text-left cursor-pointer block text-slate-200"
                   >
                     Sialkot Export Manufacturing ERP Audits
                   </button>
@@ -386,7 +395,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                 <li>
                   <button
                     onClick={() => onNavigate('guides')}
-                    className="hover:text-red-400 transition-colors text-left cursor-pointer block"
+                    className="hover:text-teal-300 transition-colors text-left cursor-pointer block text-slate-200"
                   >
                     Autonomous AI Pipeline Case Studies
                   </button>
@@ -394,7 +403,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                 <li>
                   <button
                     onClick={() => onNavigate('guides')}
-                    className="text-red-400 font-bold hover:underline transition-colors flex items-center gap-1 pt-0.5 cursor-pointer"
+                    className="text-teal-400 font-bold hover:text-teal-300 hover:underline transition-colors flex items-center gap-1 pt-0.5 cursor-pointer"
                   >
                     <span>Open Case Studies &amp; Articles →</span>
                   </button>
@@ -406,15 +415,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
           {/* Column 5: Headquarters & Contact Desk (2 cols on lg) */}
           <div className="lg:col-span-2 space-y-3">
             <h3 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
-              <Building2 className="w-3.5 h-3.5 text-red-500" />
+              <Building2 className="w-3.5 h-3.5 text-teal-400" />
               <span>Headquarters &amp; Hub</span>
             </h3>
-            <div className="space-y-2.5 text-slate-400">
+            <div className="space-y-2.5 text-slate-300">
               {/* Styled Sialkot Tech Hub Card */}
               <div className="p-3 rounded-xl bg-slate-900 border border-slate-700/80 text-slate-200 leading-snug space-y-1.5 shadow-sm">
                 <div className="flex items-center justify-between">
-                  <span className="text-red-400 font-extrabold text-[11px] uppercase tracking-wider flex items-center gap-1">
-                    <MapPin className="w-3 h-3 text-red-500" />
+                  <span className="text-teal-400 font-extrabold text-[11px] uppercase tracking-wider flex items-center gap-1">
+                    <MapPin className="w-3 h-3 text-teal-400" />
                     <span>Sialkot Engineering Hub</span>
                   </span>
                   <span className="text-[10px] text-slate-400 font-mono">Sialkot</span>
@@ -430,10 +439,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
 
               {/* Direct Phone */}
               <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-slate-500 flex-shrink-0" />
+                <Phone className="w-3.5 h-3.5 text-teal-400 flex-shrink-0" />
                 <a
                   href={`tel:${COMPANY_INFO.contact.phoneRaw}`}
-                  className="text-slate-300 hover:text-white font-semibold transition-colors"
+                  className="text-slate-200 hover:text-teal-300 font-semibold transition-colors"
                 >
                   {COMPANY_INFO.contact.phoneDisplay}
                 </a>
@@ -441,10 +450,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
 
               {/* Email */}
               <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-slate-500 flex-shrink-0" />
+                <Mail className="w-3.5 h-3.5 text-teal-400 flex-shrink-0" />
                 <a
                   href={`mailto:${COMPANY_INFO.contact.email}`}
-                  className="text-slate-300 hover:text-white transition-colors"
+                  className="text-slate-200 hover:text-teal-300 transition-colors"
                 >
                   {COMPANY_INFO.contact.email}
                 </a>
@@ -454,10 +463,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               <div className="pt-1">
                 <button
                   onClick={() => onNavigate('locations')}
-                  className="text-[11px] text-slate-400 hover:text-red-400 transition-colors flex items-center gap-1 cursor-pointer"
+                  className="text-[11px] text-slate-300 hover:text-teal-300 font-medium transition-colors flex items-center gap-1 cursor-pointer"
                 >
-                  <MapPin className="w-3 h-3 text-red-500" />
-                  <span>Paris Road, Cantt & Regional Hubs →</span>
+                  <MapPin className="w-3 h-3 text-teal-400" />
+                  <span>Paris Road, Cantt &amp; Regional Hubs →</span>
                 </button>
               </div>
             </div>
@@ -468,12 +477,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
         <div className="py-6 my-6 border-y border-slate-800/80 space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <Tag className="w-4 h-4 text-red-500 flex-shrink-0" />
+              <Tag className="w-4 h-4 text-teal-400 flex-shrink-0" />
               <h3 className="text-xs font-bold uppercase tracking-wider text-slate-200">
                 Specialized Services, Industrial ERP &amp; Regional Hubs
               </h3>
             </div>
-            <span className="text-[11px] text-slate-400">
+            <span className="text-[11px] text-slate-300">
               Serving Kotli Behram, Sialkot, Paris Road, Cantt, Daska, Sambrial &amp; Wazirabad
             </span>
           </div>
@@ -532,19 +541,19 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                   e.preventDefault();
                   onNavigate(item.target);
                 }}
-                className="p-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-red-600/60 text-left transition-all cursor-pointer group block"
+                className="p-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-850 border border-slate-800 hover:border-teal-500/50 text-left transition-all cursor-pointer group block shadow-xs"
               >
                 <div className="flex items-center justify-between gap-1">
-                  <span className="text-slate-200 font-bold text-xs group-hover:text-red-400 transition-colors">
+                  <span className="text-slate-200 font-bold text-xs group-hover:text-teal-300 transition-colors">
                     {item.label}
                   </span>
                   {item.badge && (
-                    <span className="text-[8px] font-black px-1 py-0.2 rounded bg-red-950 text-red-400 border border-red-800/60">
+                    <span className="text-[8px] font-black px-1.5 py-0.5 rounded bg-teal-950/80 text-teal-300 border border-teal-700/60">
                       {item.badge}
                     </span>
                   )}
                 </div>
-                <span className="text-[10px] text-slate-400 block mt-0.5">
+                <span className="text-[10px] text-slate-400 block mt-0.5 font-medium">
                   {item.sub}
                 </span>
               </a>
@@ -556,14 +565,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
         <div className="py-6 border-b border-slate-800/80 mb-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
             <div>
-              <span className="text-[10px] font-black uppercase tracking-widest text-red-500 block">
+              <span className="text-[10px] font-black uppercase tracking-widest text-teal-400 block">
                 Official Multi-Domain Architecture
               </span>
               <h4 className="text-sm font-black text-white">
                 Evonix Technologies Web Ecosystem
               </h4>
             </div>
-            <span className="text-xs text-slate-400">
+            <span className="text-xs text-slate-300">
               Synchronized cross-domain network on high-speed Vercel Edge
             </span>
           </div>
@@ -571,51 +580,51 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
             <a
               href={getMainAgencyDomainUrl()}
-              className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-red-500/50 hover:bg-slate-850 transition-all group block"
+              className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-teal-500/50 hover:bg-slate-850 transition-all group block shadow-xs"
             >
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-white group-hover:text-red-400 transition-colors">
+                <span className="text-xs font-bold text-white group-hover:text-teal-300 transition-colors">
                   evonixtec.com
                 </span>
-                <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-red-950 text-red-400 border border-red-800/80">
+                <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-teal-950/80 text-teal-300 border border-teal-700/80">
                   Main Agency
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400 mt-1">
+              <p className="text-[11px] text-slate-300 mt-1 leading-relaxed font-medium">
                 B2B Software Engineering, Web Development &amp; Enterprise AI Solutions
               </p>
             </a>
 
             <a
               href={getToolsDomainUrl()}
-              className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 hover:bg-slate-850 transition-all group block"
+              className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-sky-500/50 hover:bg-slate-850 transition-all group block shadow-xs"
             >
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-white group-hover:text-blue-400 transition-colors">
+                <span className="text-xs font-bold text-white group-hover:text-sky-300 transition-colors">
                   tools.evonixtec.com
                 </span>
-                <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-blue-950 text-blue-400 border border-blue-800/80">
+                <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-sky-950/80 text-sky-300 border border-sky-700/80">
                   Free Workstation
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400 mt-1">
+              <p className="text-[11px] text-slate-300 mt-1 leading-relaxed font-medium">
                 26 Free E-Commerce, eBay, Etsy, Amazon FBA, CBM &amp; Export Fee Calculators
               </p>
             </a>
 
             <a
               href={getStoreDomainUrl()}
-              className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 hover:bg-slate-850 transition-all group block"
+              className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 hover:bg-slate-850 transition-all group block shadow-xs"
             >
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-white group-hover:text-amber-400 transition-colors">
+                <span className="text-xs font-bold text-white group-hover:text-amber-300 transition-colors">
                   store.evonixtec.com
                 </span>
-                <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800/80">
+                <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-amber-950/80 text-amber-300 border border-amber-700/80">
                   Hardware Store
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400 mt-1">
+              <p className="text-[11px] text-slate-300 mt-1 leading-relaxed font-medium">
                 Certified IT Hardware, POS Billing Counters, Thermal Printers &amp; Laptops
               </p>
             </a>
@@ -623,7 +632,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
         </div>
 
         {/* 4. Bottom Legal Policies & Copyright */}
-        <div className="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div className="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <div>
             © {new Date().getFullYear()} evonix technologies. All rights reserved. SECP Registered IT Company in Sialkot, Pakistan.
           </div>
@@ -632,14 +641,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             <a
               href="/about"
               onClick={(e) => { e.preventDefault(); onNavigate('about'); }}
-              className="hover:text-red-400 transition-colors cursor-pointer text-slate-400 font-semibold"
+              className="hover:text-teal-300 transition-colors cursor-pointer text-slate-300 font-semibold"
             >
               About
             </a>
             <span>•</span>
             <a
               href="https://store.evonixtec.com/services/doorstep-support"
-              className="hover:text-red-400 transition-colors cursor-pointer text-emerald-400 font-semibold"
+              className="hover:text-teal-300 transition-colors cursor-pointer text-emerald-400 font-semibold"
             >
               Doorstep IT
             </a>
@@ -647,7 +656,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             <a
               href="/sialkot-export-erp"
               onClick={(e) => { e.preventDefault(); onNavigate('sialkot-export-erp'); }}
-              className="hover:text-red-400 transition-colors cursor-pointer text-purple-400 font-semibold"
+              className="hover:text-teal-300 transition-colors cursor-pointer text-teal-400 font-semibold"
             >
               Export ERP
             </a>
@@ -655,7 +664,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             <a
               href="/guides"
               onClick={(e) => { e.preventDefault(); onNavigate('guides'); }}
-              className="hover:text-red-400 transition-colors cursor-pointer text-cyan-400 font-semibold"
+              className="hover:text-teal-300 transition-colors cursor-pointer text-cyan-400 font-semibold"
             >
               Guides
             </a>
@@ -663,7 +672,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             <a
               href="/tools/network-latency-tester"
               onClick={(e) => { e.preventDefault(); onNavigate('factory-network-tester'); }}
-              className="hover:text-red-400 transition-colors cursor-pointer text-blue-400 font-semibold"
+              className="hover:text-teal-300 transition-colors cursor-pointer text-blue-400 font-semibold"
             >
               Network Ping
             </a>
@@ -671,7 +680,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             <a
               href="/locations/wazirabad"
               onClick={(e) => { e.preventDefault(); onNavigate('locations'); }}
-              className="hover:text-red-400 transition-colors cursor-pointer text-slate-400 font-semibold"
+              className="hover:text-teal-300 transition-colors cursor-pointer text-slate-300 font-semibold"
             >
               Wazirabad
             </a>
@@ -679,7 +688,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             <a
               href="/locations/sambrial"
               onClick={(e) => { e.preventDefault(); onNavigate('locations'); }}
-              className="hover:text-red-400 transition-colors cursor-pointer text-slate-400 font-semibold"
+              className="hover:text-teal-300 transition-colors cursor-pointer text-slate-300 font-semibold"
             >
               Sambrial
             </a>
@@ -687,23 +696,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             <a
               href="/portfolio"
               onClick={(e) => { e.preventDefault(); onNavigate('portfolio'); }}
-              className="hover:text-red-400 transition-colors cursor-pointer text-slate-400 font-semibold"
+              className="hover:text-teal-300 transition-colors cursor-pointer text-slate-300 font-semibold"
             >
               Portfolio
             </a>
             <span>•</span>
             <a
-              href="/guides"
-              onClick={(e) => { e.preventDefault(); onNavigate('guides'); }}
-              className="hover:text-red-400 transition-colors cursor-pointer text-slate-400 font-semibold"
-            >
-              Guides
-            </a>
-            <span>•</span>
-            <a
               href="/locations"
               onClick={(e) => { e.preventDefault(); onNavigate('locations'); }}
-              className="hover:text-red-400 transition-colors cursor-pointer text-slate-400 font-semibold"
+              className="hover:text-teal-300 transition-colors cursor-pointer text-slate-300 font-semibold"
             >
               Locations
             </a>
@@ -711,7 +712,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             <a
               href="/contact"
               onClick={(e) => { e.preventDefault(); onNavigate('contact'); }}
-              className="hover:text-red-400 transition-colors cursor-pointer text-slate-400 font-semibold"
+              className="hover:text-teal-300 transition-colors cursor-pointer text-slate-300 font-semibold"
             >
               Contact
             </a>
@@ -720,35 +721,42 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               <>
                 <button
                   onClick={() => onOpenPolicy('privacy')}
-                  className="hover:text-red-400 transition-colors cursor-pointer"
+                  className="hover:text-teal-300 transition-colors cursor-pointer text-slate-300"
                 >
                   Privacy Policy
                 </button>
                 <span>•</span>
                 <button
                   onClick={() => onOpenPolicy('terms')}
-                  className="hover:text-red-400 transition-colors cursor-pointer"
+                  className="hover:text-teal-300 transition-colors cursor-pointer text-slate-300"
                 >
-                  Terms &amp; EULA
+                  Terms of Service
+                </button>
+                <span>•</span>
+                <button
+                  onClick={() => onOpenPolicy('disclaimer')}
+                  className="hover:text-teal-300 transition-colors cursor-pointer text-slate-300"
+                >
+                  Disclaimer
                 </button>
                 <span>•</span>
                 <button
                   onClick={() => onOpenPolicy('refund')}
-                  className="hover:text-red-400 transition-colors cursor-pointer"
+                  className="hover:text-teal-300 transition-colors cursor-pointer text-slate-300"
                 >
                   Refund &amp; RMA
                 </button>
                 <span>•</span>
                 <button
                   onClick={() => onOpenPolicy('mobile')}
-                  className="hover:text-blue-400 transition-colors cursor-pointer font-medium text-slate-300"
+                  className="hover:text-sky-300 transition-colors cursor-pointer font-medium text-slate-300"
                 >
                   Google Play Policy
                 </button>
                 <span>•</span>
                 <button
                   onClick={() => onOpenPolicy('matrix')}
-                  className="hover:text-indigo-400 transition-colors cursor-pointer font-medium text-slate-300"
+                  className="hover:text-indigo-300 transition-colors cursor-pointer font-medium text-slate-300"
                 >
                   Data Safety Matrix
                 </button>
@@ -759,29 +767,29 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               href="/sitemap.xml"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-red-400 transition-colors inline-flex items-center gap-1 cursor-pointer"
+              className="hover:text-teal-300 transition-colors inline-flex items-center gap-1 cursor-pointer text-slate-300"
               title="Official XML Sitemap (142 verified URLs)"
             >
               <span>XML Sitemap</span>
-              <ExternalLink className="w-3 h-3 text-slate-500" />
+              <ExternalLink className="w-3 h-3 text-slate-400" />
             </a>
             <span>•</span>
             <button
               onClick={() => onNavigate('admin')}
-              className="hover:text-red-400 text-slate-500 transition-colors inline-flex items-center gap-1 cursor-pointer"
+              className="hover:text-teal-300 text-slate-400 transition-colors inline-flex items-center gap-1 cursor-pointer"
               title="Protected Admin Security Console"
             >
-              <ShieldCheck className="w-3 h-3 text-red-500" />
+              <ShieldCheck className="w-3 h-3 text-teal-400" />
               <span>Admin Console</span>
             </button>
             <span>•</span>
             <button
               onClick={scrollToTop}
-              className="p-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-300 transition-colors flex items-center gap-1 cursor-pointer"
+              className="p-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-200 transition-colors flex items-center gap-1 cursor-pointer"
               title="Back to Top"
               aria-label="Back to Top"
             >
-              <ArrowUp className="w-3.5 h-3.5" />
+              <ArrowUp className="w-3.5 h-3.5 text-teal-400" />
             </button>
           </div>
         </div>

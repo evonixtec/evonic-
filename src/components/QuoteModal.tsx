@@ -171,7 +171,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
     if (type === 'pakistan') {
       setSelectedCountryCode('PK');
       setCurrency('PKR');
-      setBudget('Commercial Package (Rs. 65,000 - Rs. 150,000)');
+      setBudget('Flexible / Custom Scope (Tailored to My Budget)');
     } else {
       setSelectedCountryCode('AE');
       setCurrency('USD');
@@ -696,10 +696,10 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                       </>
                     ) : (
                       <>
-                        <option value="Flexible / Best Value">Flexible / Best Value</option>
-                        <option value="Economy Startup Package (PKR 35k - 65k)">Economy Startup Package (PKR 35k - 65k)</option>
-                        <option value="Commercial Web / POS (PKR 65k - 150k)">Commercial Web / POS (PKR 65k - 150k)</option>
-                        <option value="Custom Factory ERP (PKR 150k+)">Custom Factory ERP (PKR 150k+)</option>
+                        <option value="Flexible / Custom Scope (Tailored to My Budget)">Flexible / Custom Scope (Tailored to My Budget)</option>
+                        <option value="Startup Retail POS & Website (Budget-Friendly)">Startup Retail POS &amp; Website (Budget-Friendly)</option>
+                        <option value="Commercial Export Catalog & Store">Commercial Export Catalog &amp; Store</option>
+                        <option value="Custom Factory ERP & Automation">Custom Factory ERP &amp; Automation</option>
                       </>
                     )}
                   </select>

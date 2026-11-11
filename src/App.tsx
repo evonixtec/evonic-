@@ -713,6 +713,13 @@ export default function App() {
         path === 'tool-data-safety'
       ) {
         setActivePolicyModal('matrix');
+      } else if (
+        path === 'disclaimer' ||
+        path === 'fee-disclaimer' ||
+        path === 'financial-disclaimer' ||
+        path === 'calculator-disclaimer'
+      ) {
+        setActivePolicyModal('disclaimer');
       }
 
       // Check specialized industrial home sections
@@ -1168,20 +1175,7 @@ export default function App() {
                     onOpenQuote={handleOpenQuote}
                   />
 
-                  {/* 1c. Hero 3-Pillar Interactive Capabilities Matrix */}
-                  <Hero
-                    onOpenQuote={(service) => handleOpenQuote(service || 'Enterprise Software Architecture Consultation')}
-                    onNavigate={(section) => {
-                      if (section === 'services') navigateToPage('services');
-                      else if (section === 'portfolio') navigateToPage('portfolio');
-                      else if (section === 'contact') navigateToPage('contact');
-                      else if (section === 'about') navigateToPage('about');
-                      else navigateToPage('home');
-                    }}
-                    onOpenSearch={() => setIsSearchOpen(true)}
-                  />
-
-                  {/* 1d. Concise Core Services Preview */}
+                  {/* 1c. Concise Core Services Preview */}
                   <HomeServicesPreview
                     onNavigateToServices={() => navigateToPage('services')}
                     onOpenQuote={handleOpenQuote}
@@ -1304,25 +1298,19 @@ export default function App() {
                   {/* 1i. Why Choose Us (Dubai Quality & Engineering Rigor) */}
                   <WhyChooseUs />
 
-            {/* 1h. Genuine Google Business Reviews */}
-            <GoogleReviewsSection />
+                  {/* 1j. Client Case Studies & Verified Testimonials */}
+                  <Testimonials
+                    onOpenQuote={handleOpenQuote}
+                    onNavigateSection={(sec) => navigateToPage(sec as NavPageId)}
+                  />
 
-            {/* 1h-2. Client Testimonials */}
-            <Testimonials
-              onOpenQuote={handleOpenQuote}
-              onNavigateSection={(sec) => navigateToPage(sec as NavPageId)}
-            />
-
-            {/* 1i. Quick FAQ Preview */}
-            <FAQ
-              onOpenQuote={handleOpenQuote}
-              onNavigateSection={(sec) => navigateToPage(sec as NavPageId)}
-            />
-
-            {/* 1j. Sialkot High-Value SEO Keywords & Search Intent Authority Hub */}
-            <SialkotSeoKeywordsHub onNavigatePage={navigateToPage} />
-          </div>
-        )}
+                  {/* 1k. Essential FAQ */}
+                  <FAQ
+                    onOpenQuote={handleOpenQuote}
+                    onNavigateSection={(sec) => navigateToPage(sec as NavPageId)}
+                  />
+                </div>
+              )}
 
         {/* ========================================================
             PAGE 2: DEDICATED SERVICES PAGE

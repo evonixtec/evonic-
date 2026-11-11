@@ -238,8 +238,123 @@ export const ToolDynamicPage: React.FC<ToolDynamicPageProps> = ({
           )
         )}
 
-        {/* EDITORIAL HOW THIS CALCULATOR WORKS (EDITORIAL SEO CONTENT) */}
-        {tool.howItWorks && (
+        {/* EDITORIAL SECTION 1: FEE STRUCTURE & MATH BREAKDOWN TABLE */}
+        {tool.editorialSections && (
+          <section className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6 text-left shadow-lg">
+            <div className="space-y-3">
+              <h2 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
+                <CheckCircle2 className="w-5 h-5 text-teal-400" />
+                <span>{tool.editorialSections.introHeading}</span>
+              </h2>
+              {tool.editorialSections.introParagraphs.map((para, idx) => (
+                <p key={idx} className="text-sm text-slate-300 leading-relaxed">
+                  {para}
+                </p>
+              ))}
+            </div>
+
+            {/* FORMULA TABLE */}
+            <div className="space-y-3 pt-2">
+              <h3 className="text-base font-bold text-white flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-teal-400" />
+                <span>{tool.editorialSections.tableTitle}</span>
+              </h3>
+              <div className="overflow-x-auto rounded-xl border border-slate-800 bg-slate-950/60">
+                <table className="w-full text-left text-xs sm:text-sm">
+                  <thead className="bg-slate-900 border-b border-slate-800 text-teal-400 font-semibold uppercase tracking-wider text-[11px]">
+                    <tr>
+                      {tool.editorialSections.tableHeaders.map((hdr, hIdx) => (
+                        <th key={hIdx} className="px-4 py-3 sm:px-6">
+                          {hdr}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-800/60 font-mono text-xs text-slate-300">
+                    {tool.editorialSections.tableRows.map((row, rIdx) => (
+                      <tr key={rIdx} className="hover:bg-slate-900/40 transition-colors">
+                        {row.map((cell, cIdx) => (
+                          <td
+                            key={cIdx}
+                            className={`px-4 py-3 sm:px-6 ${
+                              cIdx === 0
+                                ? 'font-sans font-bold text-white'
+                                : cIdx === 1
+                                ? 'text-teal-300 font-semibold'
+                                : ''
+                            }`}
+                          >
+                            {cell}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* EDITORIAL SECTION 2: 2026 - 2027 RATE SCHEDULE & POLICY CHANGES */}
+            <div className="pt-6 border-t border-slate-800 space-y-4">
+              <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-blue-400" />
+                <span>{tool.editorialSections.scheduleHeading}</span>
+              </h2>
+              {tool.editorialSections.scheduleParagraphs.map((para, idx) => (
+                <p key={idx} className="text-sm text-slate-300 leading-relaxed">
+                  {para}
+                </p>
+              ))}
+
+              {tool.editorialSections.scheduleBulletPoints && (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2">
+                  {tool.editorialSections.scheduleBulletPoints.map((bp, bpIdx) => (
+                    <div
+                      key={bpIdx}
+                      className="p-4 rounded-xl bg-slate-950/60 border border-slate-800/80 space-y-1.5"
+                    >
+                      <h4 className="text-xs font-bold text-teal-400 uppercase tracking-wide">
+                        {bp.title}
+                      </h4>
+                      <p className="text-xs text-slate-300 leading-relaxed">{bp.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* EDITORIAL SECTION 3: SELLER COST-REDUCTION STRATEGIES */}
+            <div className="pt-6 border-t border-slate-800 space-y-4">
+              <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                <span>{tool.editorialSections.strategiesHeading}</span>
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                {tool.editorialSections.strategies.map((strat, sIdx) => (
+                  <div
+                    key={sIdx}
+                    className="p-4 rounded-xl bg-slate-950/70 border border-slate-800 flex items-start gap-3"
+                  >
+                    <span className="w-6 h-6 rounded-lg bg-emerald-500/10 text-emerald-400 font-mono font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-500/20">
+                      {sIdx + 1}
+                    </span>
+                    <div className="space-y-1 text-left">
+                      <h4 className="text-xs sm:text-sm font-bold text-white">
+                        {strat.title}
+                      </h4>
+                      <p className="text-xs text-slate-400 leading-relaxed">
+                        {strat.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* EDITORIAL HOW THIS CALCULATOR WORKS (EDITORIAL SEO CONTENT FALLBACK) */}
+        {!tool.editorialSections && tool.howItWorks && (
           <section className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4 text-left shadow-lg">
             <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-teal-400" />
@@ -313,6 +428,56 @@ export const ToolDynamicPage: React.FC<ToolDynamicPageProps> = ({
                 </details>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* RELATED E-COMMERCE TOOLS INTERNAL LINKING GRID */}
+        <section className="border-t border-slate-800/80 pt-10 space-y-4 text-left">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <h2 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+              <Grid className="w-4 h-4 text-teal-400" />
+              <span>Related E-Commerce &amp; Seller Financial Tools</span>
+            </h2>
+            <button
+              onClick={onNavigateToolsHub}
+              className="text-xs font-semibold text-teal-400 hover:text-teal-300 transition-colors inline-flex items-center gap-1 cursor-pointer"
+            >
+              <span>View All 25+ Business Tools</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+            {[
+              { slug: 'stripe-fee-calculator', name: 'Stripe Fee Calculator', tag: '2.9% + $0.30 Rates' },
+              { slug: 'amazon-fba-calculator', name: 'Amazon FBA Calculator', tag: 'Pick & Pack Profits' },
+              { slug: 'ebay-fee-calculator', name: 'eBay Fee Calculator', tag: 'FVF & Store Rates' },
+              { slug: 'temu-seller-calculator', name: 'Temu Seller Calculator', tag: 'Cross-Border Margin' },
+              { slug: 'shopify-fee-calculator', name: 'Shopify Fee Calculator', tag: 'Gateway & Tiers' },
+              { slug: 'amazon-fbm-calculator', name: 'Amazon FBM Calculator', tag: 'Merchant Shipping' },
+              { slug: 'etsy-fee-calculator', name: 'Etsy Fee Calculator', tag: 'Listing & Payoneer' },
+              { slug: 'tiktok-shop-fee-calculator', name: 'TikTok Shop Calculator', tag: 'UK 9% & US 6%' },
+            ].map((relTool, idx) => (
+              <a
+                key={idx}
+                href={`/tools/${relTool.slug}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigatePage(relTool.slug as NavPageId);
+                }}
+                className={`p-3.5 rounded-xl border transition-all text-left space-y-1 block cursor-pointer ${
+                  tool.slug === relTool.slug
+                    ? 'bg-teal-500/10 border-teal-500/50 text-white'
+                    : 'bg-slate-900/60 border-slate-800/80 hover:border-teal-500/40 hover:bg-slate-900 text-slate-300'
+                }`}
+              >
+                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-teal-400 block truncate">
+                  {relTool.tag}
+                </span>
+                <h3 className="text-xs sm:text-sm font-bold text-white line-clamp-1">
+                  {relTool.name}
+                </h3>
+              </a>
+            ))}
           </div>
         </section>
       </main>
