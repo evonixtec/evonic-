@@ -736,7 +736,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'Create invoice in browser, data never leaves your device. Free multi-currency commercial invoices for freelancers and exporters with automatic tax calculations and instant A4 PDF.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/micro-invoice-generator-2026.png`,
-    canonicalUrl: `${BASE_URL}/invoice`,
+    canonicalUrl: `${BASE_URL}/tools/invoice-generator`,
     keywords: [
       'invoice generator',
       'free invoice generator',
@@ -767,7 +767,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'Calculate unit economics, multi-courier rates, COD handling fees, break-even targets, and Pakistani return rate risk cushions with zero remote database tracking.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/ecommerce-calculator-2026.png`,
-    canonicalUrl: `${BASE_URL}/ecommerce-calculator`,
+    canonicalUrl: `${BASE_URL}/tools/ecommerce-margin-calculator`,
     keywords: [
       'E-Commerce_Profit_and_Loss',
       'ecommerce profit calculator pakistan',
@@ -793,7 +793,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'Compute carton volume in CBM, air cargo dimensional weights, and container packing capacity instantly with zero remote database tracking.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/cbm-calculator-2026.png`,
-    canonicalUrl: `${BASE_URL}/cbm-calculator`,
+    canonicalUrl: `${BASE_URL}/tools/export-cbm-calculator`,
     keywords: [
       'Compute_industrial_cargo',
       'cbm calculator',
@@ -818,7 +818,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'Calculate cost to hire dedicated developers via evonix Technologies Sialkot. Senior dev at $22/hr vs $80/hr in USA. Save $111k/year. Get CVs in 24h.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/developer-cost-calculator-2026.png`,
-    canonicalUrl: `${BASE_URL}/hire-dedicated-developer-cost-calculator-pune-india`,
+    canonicalUrl: `${BASE_URL}/tools/developer-cost-calculator`,
     keywords: [
       'Developer_cost_calculator',
       'hire dedicated developer cost calculator pakistan',
@@ -842,7 +842,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'Free client-side Google E-E-A-T & Generative Engine Optimization (GEO) checker. Audit your domain readiness for ChatGPT, Claude, and Google AI Overviews.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/ai-visibility-checker-2026.png`,
-    canonicalUrl: `${BASE_URL}/ai-visibility-checker`,
+    canonicalUrl: `${BASE_URL}/tools/ai-visibility-checker`,
     keywords: [
       'ai visibility checker',
       'website eeat checker',
@@ -887,7 +887,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'Compliant outer carton thermal barcode generator for Sialkot exporters. GS1-128, Code 128, and instant 203 DPI thermal printing.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/export-barcode-studio-2026.png`,
-    canonicalUrl: `${BASE_URL}/export-barcode-studio`,
+    canonicalUrl: `${BASE_URL}/tools/barcode-label-studio`,
     keywords: [
       'export barcode label studio',
       'gs1 128 carton barcode generator',
@@ -907,7 +907,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'Live RMA tracking for motherboard, laptop, and printer repairs in Sialkot. Real-time technician bench notes and voltage readings.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/live-repair-tracker-2026.png`,
-    canonicalUrl: `${BASE_URL}/live-repair-tracker`,
+    canonicalUrl: `${BASE_URL}/tools/live-repair-tracker`,
     keywords: [
       'live repair tracker',
       'rma status tracking sialkot',
@@ -926,7 +926,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'Diagnose and fix thermal receipt printer defects, cutter jams, and ESC/POS communication errors with interactive decision trees.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/printer-diagnostics-2026.png`,
-    canonicalUrl: `${BASE_URL}/printer-diagnostics`,
+    canonicalUrl: `${BASE_URL}/tools/printer-diagnostics`,
     keywords: [
       'thermal printer diagnostic tool',
       'esc pos printer troubleshooter',
@@ -945,7 +945,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'Real-time network latency, jitter, and packet loss tester for Sialkot export manufacturing factories and customs portals.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/factory-network-tester-2026.png`,
-    canonicalUrl: `${BASE_URL}/factory-network-tester`,
+    canonicalUrl: `${BASE_URL}/tools/factory-network-tester`,
     keywords: [
       'factory network latency test',
       'weboc customs ping stability',
@@ -1065,7 +1065,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     title: 'eBay Fee & Profit Calculator 2026 | evonix',
     description:
       'Free eBay fee and profit calculator. Calculate final value fees, promoted ads, shipping costs, and net margins across US, UK, Germany, UAE, and Pakistan.',
-    canonicalUrl: `${BASE_URL}/ebay-fee-calculator`,
+    canonicalUrl: `${BASE_URL}/tools/ebay-fee-calculator`,
     ogTitle: 'eBay Fee & Profit Calculator 2026',
     ogDescription:
       'Calculate eBay seller fees, promoted listings, and net profits accurately with live currency conversions.',
@@ -1084,7 +1084,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     title: 'UK & EU VAT Reverse Charge & VAT MOSS Engine | evonix',
     description:
       'Automate HMRC Section 55A and EU Directive 2006/112/EC 0% reverse charge VAT exemptions and statutory invoice clauses for international B2B exporters.',
-    canonicalUrl: `${BASE_URL}/uk-eu-vat-calculator`,
+    canonicalUrl: `${BASE_URL}/tools/uk-eu-vat-calculator`,
     ogTitle: 'UK & EU VAT Reverse Charge & VAT MOSS Engine',
     ogDescription:
       'HMRC Section 55A and EU Directive 2006/112/EC reverse charge calculator with automated compliance notes.',
@@ -1102,7 +1102,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     title: 'US Customs Tariff & Section 321 De Minimis Calculator | evonix',
     description:
       'Calculate US CBP tariffs, verify the $800 duty-free Section 321 entry eligibility, and estimate landed costs for US buyers.',
-    canonicalUrl: `${BASE_URL}/us-duty-nexus-estimator`,
+    canonicalUrl: `${BASE_URL}/tools/us-duty-nexus-estimator`,
     ogTitle: 'US Customs Tariff & Section 321 De Minimis Calculator',
     ogDescription:
       'US CBP customs tariffs, Section 321 $800 de minimis qualification, and landed cost calculator.',
@@ -1120,7 +1120,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     title: 'UKCA & CE Declaration of Conformity (DoC) Generator | evonix',
     description:
       'Generate audited technical Declaration of Conformity documents for CE Marking (EU MDR Class I) and UKCA tenders.',
-    canonicalUrl: `${BASE_URL}/ce-ukca-compliance-generator`,
+    canonicalUrl: `${BASE_URL}/tools/ce-ukca-compliance-generator`,
     ogTitle: 'UKCA & CE Declaration of Conformity Generator',
     ogDescription:
       'Create compliant CE and UKCA declarations of conformity for international tenders.',
@@ -1138,7 +1138,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     title: 'TikTok Shop Fee & Commission Calculator 2026 | evonix',
     description:
       'Calculate TikTok Shop UK 9% commission (VAT inclusive), US 6% official & 8% reported fees, EU 9% rates, and Pakistan cross-border seller margins. Complete 2026 payout breakdown.',
-    canonicalUrl: `${BASE_URL}/tiktok-shop-fee-calculator`,
+    canonicalUrl: `${BASE_URL}/tools/tiktok-shop-fee-calculator`,
     ogTitle: 'TikTok Shop Fee & Commission Calculator 2026 | evonix',
     ogDescription:
       'Updated for UK 9% commission, US 6%/8% toggle, and Pakistan seller accounts. Calculate exact TikTok Shop referral fees, VAT, creator commissions, and net profit margins.',
@@ -1166,7 +1166,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     title: 'Free Amazon FBA Calculator (Updated 2026) - Instant Profit & Fee Estimator',
     description:
       'Calculate accurate Amazon FBA fulfillment fees, referral rates, storage costs, and net profit margins instantly. 100% free tool for Amazon sellers.',
-    canonicalUrl: `${BASE_URL}/amazon-fba-fee-calculator`,
+    canonicalUrl: `${BASE_URL}/tools/amazon-fba-calculator`,
     ogTitle: 'Free Amazon FBA Calculator (Updated 2026) - Instant Profit & Fee Estimator',
     ogDescription:
       'Calculate accurate Amazon FBA fulfillment fees, referral rates, storage costs, and net profit margins instantly. 100% free tool for Amazon sellers.',
@@ -1189,7 +1189,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     title: 'Shopify Fee Calculator | Shopify Payment & Profit Utility',
     description:
       'Calculate platform billing costs via our Shopify fee calculator. Track shopify profit calculator projections, transaction fees, and payment channels.',
-    canonicalUrl: `${BASE_URL}/shopify-fee-calculator`,
+    canonicalUrl: `${BASE_URL}/tools/shopify-fee-calculator`,
     ogTitle: 'Shopify Fee Calculator | Shopify Payment & Profit Utility',
     ogDescription:
       'Calculate platform billing costs via our Shopify fee calculator. Track shopify profit calculator projections, transaction fees, and payment channels.',
@@ -1208,7 +1208,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     title: 'Free Stripe Fee Calculator (2026 Rates) - Domestic & International Payouts',
     description:
       'Instant Stripe processing fee calculator. Accurately calculate standard 2.9% + $0.30 rates, international card fees, and reverse payout deductions.',
-    canonicalUrl: `${BASE_URL}/stripe-fee-calculator`,
+    canonicalUrl: `${BASE_URL}/tools/stripe-fee-calculator`,
     ogTitle: 'Free Stripe Fee Calculator (2026 Rates) - Domestic & International Payouts',
     ogDescription:
       'Instant Stripe processing fee calculator. Accurately calculate standard 2.9% + $0.30 rates, international card fees, and reverse payout deductions.',
@@ -1227,7 +1227,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     title: 'Temu Seller Calculator | Temu Fee & Profit Margin Calculator',
     description:
       'Use the real Temu seller calculator to process temu fee calculator rows, commission profiles, supply chain costs, and net margins instantly.',
-    canonicalUrl: `${BASE_URL}/temu-seller-calculator`,
+    canonicalUrl: `${BASE_URL}/tools/temu-seller-calculator`,
     ogTitle: 'Temu Seller Calculator | Temu Fee & Profit Margin Calculator',
     ogDescription:
       'Process temu fee calculator rows, commission profiles, supply chain costs, and net margins instantly.',
@@ -1246,7 +1246,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     title: 'Etsy Fee & Payoneer Profit Calculator | EtsyFeePro',
     description:
       'Calculate exact Etsy fees ($0.20 listing, 6.5% transaction, 3-4.5% payment), 15% offsite ads with $100 order cap, and Payoneer banking deductions. Live currency converter.',
-    canonicalUrl: `${BASE_URL}/etsy-fee-calculator`,
+    canonicalUrl: `${BASE_URL}/tools/etsy-fee-calculator`,
     ogTitle: 'Etsy Fee & Payoneer Profit Calculator | EtsyFeePro',
     ogDescription:
       'Calculate exact Etsy fees, $0.20 listing, 6.5% transaction, payment processing, 15% offsite ads with $100 cap, and Payoneer net bank deposit.',
@@ -1270,7 +1270,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     title: 'Amazon FBM Fee & Profit Calculator 2026 | evonix',
     description:
       '2026 Amazon FBM (Fulfilled by Merchant) fee calculator. Calculate category referral fees (8-15%), merchant self-shipping, packaging, PPC CAC, and net profit margins.',
-    canonicalUrl: `${BASE_URL}/amazon-fbm-calculator`,
+    canonicalUrl: `${BASE_URL}/tools/amazon-fbm-calculator`,
     ogTitle: 'Amazon FBM Fee & Profit Calculator 2026 | evonix',
     ogDescription:
       'Calculate Amazon FBM fees with 2026 rates: category referral cut, self-ship carrier rates, packaging, and net profit payout.',
@@ -1307,7 +1307,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     title: 'Trend Intelligence Suite V15 | Trend Scoring | EVONIXTEC',
     description:
       'Real-time multi-platform trend scoring engine across Google, Bing, eBay, YouTube, and Amazon with automated edge failover.',
-    canonicalUrl: `${BASE_URL}/trend-intelligence-suite`,
+    canonicalUrl: `${BASE_URL}/tools/trend-intelligence-suite`,
     ogTitle: 'Trend Intelligence Suite V15 | EVONIXTEC',
     ogDescription:
       'Multi-platform keyword trend intelligence engine across Google, Bing, eBay, YouTube, and Amazon.',
@@ -1326,7 +1326,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     title: 'Advanced JSON-LD Schema Markup Generator | Evonix Tools',
     description:
       'Generate valid JSON-LD structured data for Local Business, FAQs, and Products instantly. Optimized for Google AI Overviews and SEO.',
-    canonicalUrl: `${BASE_URL}/schema-generator`,
+    canonicalUrl: `${BASE_URL}/tools/schema-generator`,
     ogTitle: 'Advanced JSON-LD Schema Markup Generator | Evonix Tools',
     ogDescription:
       'Create search-engine-ready structured data instantly for better AEO & SEO rankings and Google rich snippets.',
@@ -1346,7 +1346,7 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     title: 'Global HS Code & Custom Duty Lookup Engine | Evonix Tools',
     description:
       'Accurate Harmonized System (HS) code finder and estimated import duty calculator for Sialkot exporters and global e-commerce across USA, EU, UK, and UAE.',
-    canonicalUrl: `${BASE_URL}/hs-code-lookup`,
+    canonicalUrl: `${BASE_URL}/tools/hs-code-lookup`,
     ogTitle: 'Global HS Code & Custom Duty Lookup Engine | Evonix Tools',
     ogDescription:
       'Quickly find export commodity codes and estimate customs tariffs for USA, EU, UK, and UAE.',
@@ -1883,7 +1883,7 @@ export function applyPageSEO(
   let canonicalUrl = overrideCanonicalUrl || meta.canonicalUrl;
   if (!overrideCanonicalUrl && typeof window !== 'undefined') {
     const hostname = window.location.hostname.toLowerCase();
-    const rawPath = window.location.pathname.replace(/\/+$/, '') || '/';
+    const rawPath = window.location.pathname.replace(/\/index\.html$/i, '').replace(/\/+$/, '') || '/';
     const isStore = hostname === 'store.evonixtec.com' || hostname.startsWith('store.') || window.location.search.includes('subdomain=store');
     const isTools = hostname === 'tools.evonixtec.com' || hostname.startsWith('tools.') || window.location.search.includes('subdomain=tools');
 
@@ -1904,7 +1904,7 @@ export function applyPageSEO(
       } else if (rawPath === '/guidelines') {
         canonicalUrl = `${BASE_URL}/guidelines`;
       } else if (rawPath === '/factory-network-tester') {
-        canonicalUrl = `${BASE_URL}/factory-network-tester`;
+        canonicalUrl = `${BASE_URL}/tools/factory-network-tester`;
       } else if (rawPath === '/schema-generator') {
         canonicalUrl = `${BASE_URL}/tools/schema-generator`;
       } else if (rawPath === '/hs-code-lookup' || rawPath === '/hex-code-lookup' || rawPath === '/tools/hex-code-lookup') {

@@ -58,6 +58,15 @@
   RewriteCond %{HTTP_HOST} ^store\.evonixtec\.com$ [NC]
   RewriteRule ^sitemap\.xml$ /sitemap-store.xml [L]
 
+  # Prevent Apache mod_dir from issuing a 301 trailing-slash redirect on pre-rendered folders
+  DirectorySlash Off
+
+  # Serve pre-rendered subdirectory index.html directly with HTTP 200
+  RewriteCond %{REQUEST_URI} !^/$
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_FILENAME}/index.html -f
+  RewriteRule ^(.+?)/?$ $1/index.html [L]
+
   # Don't rewrite files or directories that exist
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f

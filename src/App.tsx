@@ -166,7 +166,7 @@ export default function App() {
   // Helper to extract city and service cluster from URL path
   const parseLocationFromPath = (): { city: LocalCity['slug']; service: ClusterService['slug'] } => {
     if (typeof window !== 'undefined') {
-      const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+      const path = window.location.pathname.replace(/\/index\.html$/i, '').replace(/^index\.html$/i, '').replace(/^\/+|\/+$/g, '').toLowerCase();
       const parts = path.split('/');
       if (parts[0] === 'location' || parts[0] === 'locations') {
         const cityCandidate = parts[1] as LocalCity['slug'];
@@ -182,7 +182,13 @@ export default function App() {
   // Universal page resolver for clean URLs, aliases, and legacy hashes
   const resolvePageFromPath = (rawPath: string): NavPageId => {
     if (!rawPath) return 'home';
-    const path = rawPath.split('?')[0].split('#')[0].replace(/^\/+|\/+$/g, '').toLowerCase();
+    const path = rawPath
+      .split('?')[0]
+      .split('#')[0]
+      .replace(/\/index\.html$/i, '')
+      .replace(/^index\.html$/i, '')
+      .replace(/^\/+|\/+$/g, '')
+      .toLowerCase();
     if (!path) return 'home';
 
     // 0. Dynamic /tools/[slug] resolution, /tool fallback & tools hub aliases
@@ -612,7 +618,13 @@ export default function App() {
     const isToolsHost = isToolsSubdomain();
     const isStoreHost = isStoreSubdomain();
     if (typeof window !== 'undefined') {
-      const path = window.location.pathname.split('?')[0].split('#')[0].replace(/^\/+|\/+$/g, '').toLowerCase();
+      const path = window.location.pathname
+        .split('?')[0]
+        .split('#')[0]
+        .replace(/\/index\.html$/i, '')
+        .replace(/^index\.html$/i, '')
+        .replace(/^\/+|\/+$/g, '')
+        .toLowerCase();
       if (path) {
         const resolved = resolvePageFromPath(path);
         if (isToolsHost && resolved === 'home') {
@@ -672,7 +684,13 @@ export default function App() {
   // Clean URL synchronization: listen to browser back/forward buttons (popstate) and legacy hash
   useEffect(() => {
     const syncRouteFromLocation = () => {
-      const path = window.location.pathname.split('?')[0].split('#')[0].replace(/^\/+|\/+$/g, '').toLowerCase();
+      const path = window.location.pathname
+        .split('?')[0]
+        .split('#')[0]
+        .replace(/\/index\.html$/i, '')
+        .replace(/^index\.html$/i, '')
+        .replace(/^\/+|\/+$/g, '')
+        .toLowerCase();
       const hash = window.location.hash.replace('#', '').split('?')[0].replace(/^\/+|\/+$/g, '').toLowerCase();
 
       // Check direct policy modal routes (Web & Google Play Store Compliance)

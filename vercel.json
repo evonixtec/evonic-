@@ -311,6 +311,17 @@
       "permanent": true
     },
     {
+      "source": "/tools/:slug+",
+      "has": [
+        {
+          "type": "host",
+          "value": "tools.evonixtec.com"
+        }
+      ],
+      "destination": "https://www.evonixtec.com/tools/:slug+",
+      "permanent": true
+    },
+    {
       "source": "/:slug+",
       "has": [
         {

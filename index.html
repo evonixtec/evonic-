@@ -22,8 +22,16 @@
     <script>
       (function() {
         try {
+          var savedRedirect = sessionStorage.getItem('redirect');
+          if (savedRedirect) {
+            sessionStorage.removeItem('redirect');
+            if (savedRedirect !== '/' && savedRedirect.charAt(0) === '/') {
+              window.history.replaceState(null, '', savedRedirect);
+            }
+          }
+
           var h = window.location.hostname.toLowerCase();
-          var p = window.location.pathname.replace(/\/+$/, '') || '';
+          var p = window.location.pathname.replace(/\/index\.html$/i, '').replace(/\/+$/, '') || '';
           
           // 301-equivalent immediate client redirect if accessed via tools.evonixtec.com
           if (h === 'tools.evonixtec.com' || h.startsWith('tools.')) {

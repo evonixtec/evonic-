@@ -35,5 +35,9 @@ https://tools.evonixtec.com/     https://www.evonixtec.com/tools           301!
 # Host-based sitemap for store subdomain
 https://store.evonixtec.com/sitemap.xml    /sitemap-store.xml    200
 
+# Explicit 200 OK handling for canonical /tools routes
+/tools                                     /index.html           200
+/tools/*                                   /index.html           200
+
 # SPA Catch-all (Default 200)
 /*    /index.html   200
