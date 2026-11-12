@@ -1,5 +1,6 @@
 # Cloudflare / Netlify Subdomain Routing & 301 Permanent Redirects
 # Redirect tools.evonixtec.com -> www.evonixtec.com/tools/
+https://tools.evonixtec.com/hex-code-lookup    https://www.evonixtec.com/tools/hs-code-lookup    301!
 https://tools.evonixtec.com/*    https://www.evonixtec.com/tools/:splat    301!
 https://tools.evonixtec.com/     https://www.evonixtec.com/tools           301!
 
@@ -26,6 +27,8 @@ https://tools.evonixtec.com/     https://www.evonixtec.com/tools           301!
 /factory-network-tester                /tools/factory-network-tester                301!
 /live-repair-tracker                   /tools/live-repair-tracker                   301!
 /hs-code-lookup                        /tools/hs-code-lookup                        301!
+/hex-code-lookup                       /tools/hs-code-lookup                        301!
+/tools/hex-code-lookup                 /tools/hs-code-lookup                        301!
 /schema-generator                      /tools/schema-generator                      301!
 /trend-intelligence-suite              /tools/trend-intelligence-suite              301!
 

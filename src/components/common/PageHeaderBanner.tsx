@@ -8,6 +8,7 @@ interface PageHeaderBannerProps {
   subtitle: string;
   badgeText: string;
   breadcrumbCurrent: string;
+  currentPage?: string;
   onNavigateHome: () => void;
   onOpenQuote?: () => void;
   ctaText?: string;
@@ -20,6 +21,7 @@ export const PageHeaderBanner: React.FC<PageHeaderBannerProps> = ({
   subtitle,
   badgeText,
   breadcrumbCurrent,
+  currentPage,
   onNavigateHome,
   onOpenQuote,
   ctaText = 'Get Free Quote',
@@ -38,6 +40,7 @@ export const PageHeaderBanner: React.FC<PageHeaderBannerProps> = ({
         {/* Dynamic Breadcrumb with Schema.org & responsive styling */}
         <div className="mb-4">
           <DynamicBreadcrumb
+            currentPage={currentPage}
             currentTitle={breadcrumbCurrent}
             segments={segments}
             onNavigatePage={() => onNavigateHome()}

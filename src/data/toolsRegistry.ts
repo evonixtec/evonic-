@@ -1135,6 +1135,8 @@ export const TOOL_SLUG_ALIASES: Record<string, string> = {
   'custom-duty': 'us-duty-nexus-estimator',
   'ce-ukca': 'ce-ukca-compliance-generator',
   'hs-code': 'hs-code-lookup',
+  'hex-code-lookup': 'hs-code-lookup',
+  'hex-code': 'hs-code-lookup',
   'schema': 'schema-generator',
   'developer-cost': 'developer-cost-calculator',
   'network-latency-tester': 'factory-network-tester',

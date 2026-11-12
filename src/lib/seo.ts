@@ -81,29 +81,38 @@ export const LOCAL_BUSINESS_SCHEMA = {
 };
 
 /**
- * Builds a valid Schema.org BreadcrumbList object
+ * Builds a valid Schema.org BreadcrumbList object (guarantees non-empty full URL on every ListItem)
  */
 export function buildBreadcrumbSchema(items: { name: string; url: string }[]) {
-  const lastUrl = items[items.length - 1].url.startsWith('http')
-    ? items[items.length - 1].url
-    : `${BASE_URL}${items[items.length - 1].url.startsWith('/') ? '' : '/'}${items[items.length - 1].url === '/' ? '' : items[items.length - 1].url}`;
+  const safeItems =
+    items && items.length > 0 ? items : [{ name: 'Home', url: `${BASE_URL}/` }];
+
+  const normalizeItemUrl = (rawUrl: string | undefined): string => {
+    const trimmed = (rawUrl || '').trim();
+    if (!trimmed || trimmed === '/') {
+      return `${BASE_URL}/`;
+    }
+    if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+      return trimmed.endsWith('/') && trimmed !== `${BASE_URL}/` && trimmed !== `${TOOLS_BASE_URL}/` && trimmed !== `${STORE_BASE_URL}/`
+        ? trimmed.slice(0, -1)
+        : trimmed;
+    }
+    const clean = `${BASE_URL}${trimmed.startsWith('/') ? '' : '/'}${trimmed}`;
+    return clean.endsWith('/') && clean !== `${BASE_URL}/` ? clean.slice(0, -1) : clean;
+  };
+
+  const normalizedItems = safeItems.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: (item.name || '').trim() || 'Page',
+    item: normalizeItemUrl(item.url),
+  }));
+
+  const lastUrl = normalizedItems[normalizedItems.length - 1].item;
   return {
     '@type': 'BreadcrumbList',
     '@id': `${lastUrl}#breadcrumb`,
-    itemListElement: items.map((item, index) => {
-      let fullUrl = item.url.startsWith('http')
-        ? item.url
-        : `${BASE_URL}${item.url.startsWith('/') ? '' : '/'}${item.url === '/' ? '' : item.url}`;
-      if (fullUrl.endsWith('/') && fullUrl !== `${BASE_URL}/`) {
-        fullUrl = fullUrl.slice(0, -1);
-      }
-      return {
-        '@type': 'ListItem',
-        position: index + 1,
-        name: item.name,
-        item: fullUrl,
-      };
-    }),
+    itemListElement: normalizedItems,
   };
 }
 
@@ -1449,27 +1458,87 @@ function generateRouteStructuredData(pageId: NavPageId): object {
   const meta = SIALKOT_PAGE_SEO[pageId];
   const graph: object[] = [];
 
-  // 1. BreadcrumbList for every route
-  const breadcrumbItems = [{ name: 'Home', url: `${BASE_URL}/` }];
+  const isToolsHost =
+    typeof window !== 'undefined' &&
+    (window.location.hostname.toLowerCase() === 'tools.evonixtec.com' ||
+      window.location.hostname.toLowerCase().startsWith('tools.'));
+  const isStoreHost =
+    typeof window !== 'undefined' &&
+    (window.location.hostname.toLowerCase() === 'store.evonixtec.com' ||
+      window.location.hostname.toLowerCase().startsWith('store.'));
+
+  const activeOrigin = isToolsHost ? TOOLS_BASE_URL : isStoreHost ? STORE_BASE_URL : BASE_URL;
+  const toolUrl = (slug: string) =>
+    isToolsHost ? `${TOOLS_BASE_URL}/${slug}` : `${BASE_URL}/tools/${slug}`;
+
+  const TOOL_BREADCRUMB_MAP: Partial<Record<NavPageId, { name: string; slug: string }>> = {
+    invoice: { name: 'Global Micro-Invoice Generator', slug: 'invoice-generator' },
+    'ecommerce-calculator': { name: 'E-Commerce Margin Calculator', slug: 'ecommerce-margin-calculator' },
+    'cbm-calculator': { name: 'Export CBM Freight Calculator', slug: 'export-cbm-calculator' },
+    'developer-cost-calculator': { name: 'Developer Cost Calculator', slug: 'developer-cost-calculator' },
+    'ai-visibility-checker': { name: 'AI Visibility Checker', slug: 'ai-visibility-checker' },
+    'export-barcode-studio': { name: 'Barcode Label Studio', slug: 'barcode-label-studio' },
+    'live-repair-tracker': { name: 'Live RMA Repair Tracker', slug: 'live-repair-tracker' },
+    'printer-diagnostics': { name: 'Thermal Printer Diagnostics', slug: 'printer-diagnostics' },
+    'factory-network-tester': { name: 'Factory Network Latency Tester', slug: 'factory-network-tester' },
+    'uk-eu-vat-calculator': { name: 'UK & EU VAT Calculator', slug: 'uk-eu-vat-calculator' },
+    'us-duty-nexus-estimator': { name: 'US Customs Duty Estimator', slug: 'us-duty-nexus-estimator' },
+    'ce-ukca-compliance-generator': { name: 'CE & UKCA Compliance Generator', slug: 'ce-ukca-compliance-generator' },
+    'ebay-fee-calculator': { name: 'eBay Fee Calculator', slug: 'ebay-fee-calculator' },
+    'tiktok-shop-fee-calculator': { name: 'TikTok Shop Fee Calculator', slug: 'tiktok-shop-fee-calculator' },
+    'amazon-fba-calculator': { name: 'Amazon FBA Calculator', slug: 'amazon-fba-calculator' },
+    'amazon-fbm-calculator': { name: 'Amazon FBM Calculator', slug: 'amazon-fbm-calculator' },
+    'shopify-fee-calculator': { name: 'Shopify Fee Calculator', slug: 'shopify-fee-calculator' },
+    'stripe-fee-calculator': { name: 'Stripe Fee Calculator', slug: 'stripe-fee-calculator' },
+    'temu-seller-calculator': { name: 'Temu Seller Calculator', slug: 'temu-seller-calculator' },
+    'etsy-fee-calculator': { name: 'Etsy Fee Calculator', slug: 'etsy-fee-calculator' },
+    'trend-intelligence-suite': { name: 'Trend Intelligence Suite', slug: 'trend-intelligence-suite' },
+    'schema-generator': { name: 'JSON-LD Schema Generator', slug: 'schema-generator' },
+    'hs-code-lookup': { name: 'Global HS Code & Duty Lookup', slug: 'hs-code-lookup' },
+    'ai-trip-planner': { name: 'AI Trip Planner', slug: 'ai-trip-planner' },
+  };
+
+  // 1. BreadcrumbList for every route (guaranteed non-empty valid full URLs on every ListItem)
+  const breadcrumbItems = [{ name: 'Home', url: `${activeOrigin}/` }];
 
   if (pageId === 'services') {
     breadcrumbItems.push({ name: 'IT & Software Services', url: `${BASE_URL}/services` });
   } else if (pageId === 'portfolio') {
     breadcrumbItems.push({ name: 'Enterprise Portfolio', url: `${BASE_URL}/portfolio` });
   } else if (pageId === 'shop') {
-    breadcrumbItems.push({ name: 'IT Hardware & POS Shop', url: `${BASE_URL}/shop` });
+    breadcrumbItems.push({ name: 'IT Hardware & POS Shop', url: `${activeOrigin}/shop` });
   } else if (pageId === 'about') {
     breadcrumbItems.push({ name: 'About evonix & Dubai Heritage', url: `${BASE_URL}/about` });
   } else if (pageId === 'guides') {
     breadcrumbItems.push({ name: 'Tech Blogs & Guides', url: `${BASE_URL}/guides` });
   } else if (pageId === 'contact') {
     breadcrumbItems.push({ name: 'Contact & On-Site Support', url: `${BASE_URL}/contact` });
-  } else if (pageId === 'schema-generator') {
+  } else if (pageId === 'tools') {
+    breadcrumbItems.push({ name: 'Web Tools', url: isToolsHost ? `${TOOLS_BASE_URL}/` : `${BASE_URL}/tools` });
+  } else if (pageId === 'locations') {
+    breadcrumbItems.push({ name: 'Sialkot Regional Hubs', url: `${BASE_URL}/locations` });
+  } else if (pageId === 'sialkot-pos-hardware') {
+    breadcrumbItems.push({ name: 'Locations', url: `${BASE_URL}/locations` });
+    breadcrumbItems.push({ name: 'Sialkot POS Hardware', url: `${BASE_URL}/locations/sialkot/pos-hardware` });
+  } else if (pageId === 'sialkot-export-erp') {
+    breadcrumbItems.push({ name: 'Services', url: `${BASE_URL}/services` });
+    breadcrumbItems.push({ name: 'Sialkot Export ERP', url: `${BASE_URL}/sialkot-export-erp` });
+  } else if (pageId === 'guidelines') {
+    breadcrumbItems.push({ name: 'Guides', url: `${BASE_URL}/guides` });
+    breadcrumbItems.push({ name: 'IT Guidelines', url: `${BASE_URL}/guidelines` });
+  } else if (pageId === 'installation-guide') {
+    breadcrumbItems.push({ name: 'Guides', url: `${BASE_URL}/guides` });
+    breadcrumbItems.push({ name: 'Installation Guide', url: `${BASE_URL}/installation-guide` });
+  } else if (pageId === 'ai-travel-tools') {
+    breadcrumbItems.push({ name: 'Guides', url: `${BASE_URL}/guides` });
+    breadcrumbItems.push({ name: 'AI Tools for Travel Itinerary', url: `${BASE_URL}/ai-tools-name-for-travel-itinerary` });
+  } else if (pageId === 'doorstep-support') {
+    breadcrumbItems.push({ name: 'Hardware & Shop', url: `${activeOrigin}/shop` });
+    breadcrumbItems.push({ name: 'Doorstep Support', url: `${activeOrigin}/services/doorstep-support` });
+  } else if (TOOL_BREADCRUMB_MAP[pageId]) {
+    const toolMeta = TOOL_BREADCRUMB_MAP[pageId]!;
     breadcrumbItems.push({ name: 'Web Tools', url: `${BASE_URL}/tools` });
-    breadcrumbItems.push({ name: 'AEO SEO & Development', url: `${BASE_URL}/schema-generator` });
-  } else if (pageId === 'hs-code-lookup') {
-    breadcrumbItems.push({ name: 'Web Tools', url: `${BASE_URL}/tools` });
-    breadcrumbItems.push({ name: 'Business & Export', url: `${BASE_URL}/hs-code-lookup` });
+    breadcrumbItems.push({ name: toolMeta.name, url: toolUrl(toolMeta.slug) });
   }
 
   graph.push(buildBreadcrumbSchema(breadcrumbItems));
@@ -1837,9 +1906,9 @@ export function applyPageSEO(
       } else if (rawPath === '/factory-network-tester') {
         canonicalUrl = `${BASE_URL}/factory-network-tester`;
       } else if (rawPath === '/schema-generator') {
-        canonicalUrl = `${BASE_URL}/schema-generator`;
-      } else if (rawPath === '/hs-code-lookup') {
-        canonicalUrl = `${BASE_URL}/hs-code-lookup`;
+        canonicalUrl = `${BASE_URL}/tools/schema-generator`;
+      } else if (rawPath === '/hs-code-lookup' || rawPath === '/hex-code-lookup' || rawPath === '/tools/hex-code-lookup') {
+        canonicalUrl = `${BASE_URL}/tools/hs-code-lookup`;
       } else {
         canonicalUrl = `${BASE_URL}${rawPath === '/' ? '/' : rawPath}`;
       }

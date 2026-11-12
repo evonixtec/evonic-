@@ -14,8 +14,12 @@
   RewriteCond %{HTTP_HOST} ^tools\.evonixtec\.com$ [NC]
   RewriteRule ^tools/(.*)$ https://www.evonixtec.com/tools/$1 [R=301,L]
   RewriteCond %{HTTP_HOST} ^tools\.evonixtec\.com$ [NC]
+  RewriteRule ^hex-code-lookup/?$ https://www.evonixtec.com/tools/hs-code-lookup [R=301,L]
+  RewriteCond %{HTTP_HOST} ^tools\.evonixtec\.com$ [NC]
   RewriteRule ^/?$ https://www.evonixtec.com/tools [R=301,L]
   RewriteCond %{HTTP_HOST} ^tools\.evonixtec\.com$ [NC]
+  RewriteRule ^(.+)$ https://www.evonixtec.com/tools/$1 [R=301,L]
+
   # ========================================================
   # 301 SEO REDIRECTS FOR LEGACY ROOT CALCULATOR URLs -> /tools/[slug]
   # Guarantees HTTP 301 Moved Permanently for full link equity pass
@@ -42,6 +46,8 @@
   RewriteRule ^factory-network-tester/?$ https://www.evonixtec.com/tools/factory-network-tester [R=301,L]
   RewriteRule ^live-repair-tracker/?$ https://www.evonixtec.com/tools/live-repair-tracker [R=301,L]
   RewriteRule ^hs-code-lookup/?$ https://www.evonixtec.com/tools/hs-code-lookup [R=301,L]
+  RewriteRule ^hex-code-lookup/?$ https://www.evonixtec.com/tools/hs-code-lookup [R=301,L]
+  RewriteRule ^tools/hex-code-lookup/?$ https://www.evonixtec.com/tools/hs-code-lookup [R=301,L]
   RewriteRule ^schema-generator/?$ https://www.evonixtec.com/tools/schema-generator [R=301,L]
   RewriteRule ^trend-intelligence-suite/?$ https://www.evonixtec.com/tools/trend-intelligence-suite [R=301,L]
 

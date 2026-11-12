@@ -104,7 +104,7 @@ export const SchemaGenerator: React.FC = () => {
     },
   ]);
 
-  // Inject exact breadcrumb schema into document head on mount
+  // Inject exact breadcrumb schema into document head on mount (host-aware canonical URLs)
   useEffect(() => {
     const scriptId = 'evonix-schema-generator-breadcrumb-ld';
     let script = document.getElementById(scriptId) as HTMLScriptElement | null;
@@ -115,6 +115,15 @@ export const SchemaGenerator: React.FC = () => {
       document.head.appendChild(script);
     }
 
+    const isToolsHost =
+      typeof window !== 'undefined' &&
+      (window.location.hostname.toLowerCase() === 'tools.evonixtec.com' ||
+        window.location.hostname.toLowerCase().startsWith('tools.'));
+    const origin = isToolsHost ? 'https://tools.evonixtec.com' : 'https://www.evonixtec.com';
+    const currentItemUrl = isToolsHost
+      ? 'https://tools.evonixtec.com/schema-generator'
+      : 'https://www.evonixtec.com/tools/schema-generator';
+
     const breadcrumbPayload = {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
@@ -123,19 +132,19 @@ export const SchemaGenerator: React.FC = () => {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://tools.evonixtec.com/',
+          item: `${origin}/`,
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Web Tools',
-          item: 'https://tools.evonixtec.com/tools',
+          item: 'https://www.evonixtec.com/tools',
         },
         {
           '@type': 'ListItem',
           position: 3,
-          name: 'AEO SEO & Development',
-          item: 'https://tools.evonixtec.com/schema-generator',
+          name: 'JSON-LD Schema Generator',
+          item: currentItemUrl,
         },
       ],
     };
@@ -216,17 +225,30 @@ export const SchemaGenerator: React.FC = () => {
   // Generate clean schema object
   const generatedSchema = useMemo(() => {
     if (schemaType === 'BreadcrumbList') {
+      const validCrumbs = breadcrumbs.filter((b) => b.name.trim().length > 0);
       return {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
-        itemListElement: breadcrumbs
-          .filter((b) => b.name.trim().length > 0)
-          .map((b, idx) => ({
+        itemListElement: validCrumbs.map((b, idx) => {
+          const rawItem = b.item.trim();
+          const fallbackUrl =
+            idx === 0
+              ? 'https://tools.evonixtec.com/'
+              : idx === validCrumbs.length - 1
+              ? 'https://tools.evonixtec.com/schema-generator'
+              : `https://tools.evonixtec.com/step-${idx + 1}`;
+          const normalizedItem = !rawItem
+            ? fallbackUrl
+            : rawItem.startsWith('http://') || rawItem.startsWith('https://')
+            ? rawItem
+            : `https://tools.evonixtec.com${rawItem.startsWith('/') ? '' : '/'}${rawItem}`;
+          return {
             '@type': 'ListItem',
             position: idx + 1,
             name: b.name.trim(),
-            item: b.item.trim(),
-          })),
+            item: normalizedItem,
+          };
+        }),
       };
     }
 

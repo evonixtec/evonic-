@@ -1,6 +1,7 @@
 import React from 'react';
 import { Home, ChevronRight } from 'lucide-react';
 import { NavPageId } from '../../types';
+import { resolveToolSlug } from '../../data/toolsRegistry';
 
 export interface BreadcrumbSegment {
   label: string;
@@ -34,6 +35,7 @@ const PAGE_TITLES: Record<string, string> = {
   guides: 'Tech Guides & Blogs',
   contact: 'Contact & Support',
   locations: 'Sialkot Regional Hubs',
+  'sialkot-pos-hardware': 'Sialkot POS Hardware',
   tools: 'Online Tools Hub',
   invoice: 'Micro-Invoice Generator',
   'ecommerce-calculator': 'E-Commerce Margin Calc',
@@ -47,14 +49,19 @@ const PAGE_TITLES: Record<string, string> = {
   'uk-eu-vat-calculator': 'UK/EU VAT Calc',
   'us-duty-nexus-estimator': 'US Duty Estimator',
   'ce-ukca-compliance-generator': 'Compliance Generator',
+  'schema-generator': 'Schema Generator',
+  'hs-code-lookup': 'HS Code & Duty Lookup',
+  'hex-code-lookup': 'HS Code & Duty Lookup',
   'ai-trip-planner': 'AI Trip Planner',
   'ai-travel-tools': 'Travel Tech Directory',
   'ebay-fee-calculator': 'eBay Fee Calculator',
   'tiktok-shop-fee-calculator': 'TikTok Shop Calc',
   'amazon-fba-calculator': 'Amazon FBA Calc',
+  'amazon-fbm-calculator': 'Amazon FBM Calc',
   'shopify-fee-calculator': 'Shopify Fee Calc',
   'stripe-fee-calculator': 'Stripe Fee Calc',
   'temu-seller-calculator': 'Temu Seller Calc',
+  'etsy-fee-calculator': 'Etsy Fee Calc',
   'installation-guide': 'Installation Manual',
   admin: 'Admin Portal',
   'doorstep-support': 'Doorstep IT Support',
@@ -72,11 +79,16 @@ const TOOL_CATEGORIES: Record<string, string> = {
   'uk-eu-vat-calculator': 'Global Trade',
   'us-duty-nexus-estimator': 'Global Trade',
   'ce-ukca-compliance-generator': 'Global Trade',
+  'hs-code-lookup': 'Business & Export',
+  'hex-code-lookup': 'Business & Export',
+  'schema-generator': 'AEO SEO & Development',
   'sialkot-export-erp': 'Enterprise ERP',
   'ecommerce-calculator': 'E-Commerce & Ads',
   'ebay-fee-calculator': 'E-Commerce & Export',
   'tiktok-shop-fee-calculator': 'E-Commerce & Ads',
   'amazon-fba-calculator': 'E-Commerce & Export',
+  'amazon-fbm-calculator': 'E-Commerce & Export',
+  'etsy-fee-calculator': 'E-Commerce & Export',
   'shopify-fee-calculator': 'E-Commerce Platforms',
   'stripe-fee-calculator': 'Finance & Gateways',
   'temu-seller-calculator': 'E-Commerce & Export',
@@ -90,6 +102,28 @@ const TOOL_CATEGORIES: Record<string, string> = {
   'doorstep-support': 'Hardware Care',
   'installation-guide': 'Documentation',
 };
+
+function getCanonicalOrigin(): string {
+  if (typeof window !== 'undefined') {
+    const h = window.location.hostname.toLowerCase();
+    if (h === 'tools.evonixtec.com' || h.startsWith('tools.')) {
+      return 'https://tools.evonixtec.com';
+    }
+    if (h === 'store.evonixtec.com' || h.startsWith('store.')) {
+      return 'https://store.evonixtec.com';
+    }
+  }
+  return 'https://www.evonixtec.com';
+}
+
+function getToolBreadcrumbPath(toolIdOrSlug: string, origin: string): string {
+  const resolved = resolveToolSlug(toolIdOrSlug);
+  const canonicalSlug = resolved ? resolved.slug : toolIdOrSlug.replace(/^\/+|\/+$/g, '');
+  if (origin === 'https://tools.evonixtec.com') {
+    return `/${canonicalSlug}`;
+  }
+  return `/tools/${canonicalSlug}`;
+}
 
 export const DynamicBreadcrumb: React.FC<DynamicBreadcrumbProps> = ({
   currentPage,
@@ -106,9 +140,10 @@ export const DynamicBreadcrumb: React.FC<DynamicBreadcrumbProps> = ({
   // Resolve navigation items automatically if not provided custom
   const items: BreadcrumbSegment[] = React.useMemo(() => {
     if (customSegments && customSegments.length > 0) {
-      return customSegments;
+      return customSegments.filter((seg) => seg && seg.label && seg.label.trim().length > 0);
     }
 
+    const origin = getCanonicalOrigin();
     const list: BreadcrumbSegment[] = [
       {
         label: 'Home',
@@ -121,18 +156,33 @@ export const DynamicBreadcrumb: React.FC<DynamicBreadcrumbProps> = ({
     const activePage = currentToolId || currentPage;
 
     if (!activePage || activePage === 'home') {
+      if (currentTitle && currentTitle.trim() && currentTitle.trim().toLowerCase() !== 'home') {
+        const fallbackPath =
+          typeof window !== 'undefined' && window.location.pathname && window.location.pathname !== '/'
+            ? window.location.pathname
+            : '/';
+        list.push({
+          label: currentTitle.trim(),
+          path: fallbackPath,
+          isCurrent: true,
+        });
+      }
       return list;
     }
 
     // Is it a tool page?
+    const resolvedTool = resolveToolSlug(activePage);
     const isTool =
       activePage === 'tools' ||
       TOOL_CATEGORIES[activePage] !== undefined ||
+      Boolean(resolvedTool) ||
       activePage.includes('calculator') ||
       activePage.includes('generator') ||
       activePage.includes('tracker') ||
       activePage.includes('diagnostics') ||
       activePage.includes('tester') ||
+      activePage.includes('lookup') ||
+      activePage.includes('schema') ||
       activePage === 'invoice';
 
     if (isTool && activePage !== 'tools') {
@@ -142,10 +192,10 @@ export const DynamicBreadcrumb: React.FC<DynamicBreadcrumbProps> = ({
         path: '/tools',
       });
 
-      const toolLabel = currentTitle || PAGE_TITLES[activePage] || activePage;
+      const toolLabel = currentTitle || PAGE_TITLES[activePage] || resolvedTool?.name || activePage;
       list.push({
         label: toolLabel,
-        path: `/tools/${activePage}`,
+        path: getToolBreadcrumbPath(activePage, origin),
         isCurrent: true,
       });
       return list;
@@ -177,10 +227,27 @@ export const DynamicBreadcrumb: React.FC<DynamicBreadcrumbProps> = ({
       if (currentTitle) {
         list.push({
           label: currentTitle,
-          path: '/locations',
+          path:
+            typeof window !== 'undefined' && window.location.pathname && window.location.pathname.startsWith('/location')
+              ? window.location.pathname
+              : '/locations',
           isCurrent: true,
         });
       }
+      return list;
+    }
+
+    if (activePage === 'sialkot-pos-hardware') {
+      list.push({
+        label: 'Locations',
+        page: 'locations',
+        path: '/locations',
+      });
+      list.push({
+        label: currentTitle || PAGE_TITLES[activePage] || 'Sialkot POS Hardware',
+        path: '/locations/sialkot/pos-hardware',
+        isCurrent: true,
+      });
       return list;
     }
 
@@ -195,36 +262,49 @@ export const DynamicBreadcrumb: React.FC<DynamicBreadcrumbProps> = ({
     return list;
   }, [customSegments, currentToolId, currentPage, currentTitle, showHomeIcon]);
 
-  // Resolve absolute canonical item URL for schema and semantic crawling
+  // Resolve absolute canonical item URL for schema and semantic crawling (ALWAYS returns valid non-empty https URL)
   const resolveItemUrl = React.useCallback(
     (item: BreadcrumbSegment, isLast: boolean): string => {
-      const BASE_ORIGIN = 'https://www.evonixtec.com';
-      if (item.path) {
-        if (item.path.startsWith('http://') || item.path.startsWith('https://')) {
-          return item.path;
+      const origin = getCanonicalOrigin();
+      const rawPath = item.path?.trim();
+      if (rawPath) {
+        if (rawPath.startsWith('http://') || rawPath.startsWith('https://')) {
+          return rawPath;
         }
-        const cleanPath = item.path.startsWith('/') ? item.path : `/${item.path}`;
-        return cleanPath === '/' ? BASE_ORIGIN : `${BASE_ORIGIN}${cleanPath}`;
+        const cleanPath = rawPath.startsWith('/') ? rawPath : `/${rawPath}`;
+        return cleanPath === '/' ? `${origin}/` : `${origin}${cleanPath}`;
       }
       if (item.page === 'home') {
-        return BASE_ORIGIN;
+        return `${origin}/`;
       }
       if (item.page) {
-        return `${BASE_ORIGIN}/${item.page}`;
+        const resolved = resolveToolSlug(item.page);
+        if (resolved) {
+          return `${origin}${getToolBreadcrumbPath(resolved.slug, origin)}`;
+        }
+        return `${origin}/${item.page}`;
       }
       if (isLast) {
         if (currentToolId) {
-          return `${BASE_ORIGIN}/tools/${currentToolId}`;
+          return `${origin}${getToolBreadcrumbPath(currentToolId, origin)}`;
         }
         if (currentPage && currentPage !== 'home') {
-          return `${BASE_ORIGIN}/${currentPage}`;
+          const resolved = resolveToolSlug(currentPage);
+          if (resolved) {
+            return `${origin}${getToolBreadcrumbPath(resolved.slug, origin)}`;
+          }
+          return `${origin}/${currentPage}`;
         }
         if (typeof window !== 'undefined' && window.location.pathname && window.location.pathname !== '/') {
-          return `${BASE_ORIGIN}${window.location.pathname}`;
+          const cleanWinPath = window.location.pathname.replace(/\/+$/, '');
+          return cleanWinPath ? `${origin}${cleanWinPath}` : `${origin}/`;
         }
-        return BASE_ORIGIN;
       }
-      return BASE_ORIGIN;
+      if (typeof window !== 'undefined' && window.location.pathname && window.location.pathname !== '/') {
+        const cleanWinPath = window.location.pathname.replace(/\/+$/, '');
+        if (cleanWinPath) return `${origin}${cleanWinPath}`;
+      }
+      return `${origin}/`;
     },
     [currentToolId, currentPage]
   );
@@ -270,11 +350,12 @@ export const DynamicBreadcrumb: React.FC<DynamicBreadcrumbProps> = ({
       '@type': 'BreadcrumbList',
       itemListElement: items.map((item, index) => {
         const isLast = index === items.length - 1 || item.isCurrent;
+        const resolvedUrl = resolveItemUrl(item, Boolean(isLast)) || 'https://www.evonixtec.com/';
         return {
           '@type': 'ListItem',
           position: index + 1,
-          name: item.label,
-          item: resolveItemUrl(item, Boolean(isLast)),
+          name: item.label.trim() || 'Page',
+          item: resolvedUrl,
         };
       }),
     };

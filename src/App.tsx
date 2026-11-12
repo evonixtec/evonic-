@@ -515,11 +515,14 @@ export default function App() {
     if (
       path === 'hs-code-lookup' ||
       path === 'hs-code' ||
+      path === 'hex-code-lookup' ||
+      path === 'hex-code' ||
       path === 'custom-duty-lookup' ||
       path === 'duty-lookup' ||
       path === 'hscode' ||
       path === 'global-hs-code-custom-duty-lookup-engine' ||
       path.startsWith('hs-code') ||
+      path.startsWith('hex-code') ||
       path.startsWith('custom-duty')
     ) {
       return 'hs-code-lookup';
@@ -1121,6 +1124,7 @@ export default function App() {
                   <VideoBackground theme="hardware-circuit" overlayOpacity="medium">
                     <PageHeaderBanner
                       transparentBg
+                      currentPage="shop"
                       breadcrumbCurrent="Hardware & Shop"
                       badgeText="Original & Tested Commercial Hardware"
                       title="IT Hardware, POS Systems & Equipment Shop"
@@ -1320,6 +1324,7 @@ export default function App() {
             <VideoBackground theme="tech-network" overlayOpacity="medium">
               <PageHeaderBanner
                 transparentBg
+                currentPage="services"
                 breadcrumbCurrent="Our Services"
                 badgeText="Enterprise Software Engineering"
                 title="Enterprise Services & Technology Solutions"
@@ -1421,6 +1426,7 @@ export default function App() {
             <VideoBackground theme="corporate-blue" overlayOpacity="medium">
               <PageHeaderBanner
                 transparentBg
+                currentPage="portfolio"
                 breadcrumbCurrent="Portfolio"
                 badgeText="Proven UAE & Dubai Track Record"
                 title="Valuable Client Deployments & Case Studies"
@@ -1454,6 +1460,7 @@ export default function App() {
             <VideoBackground theme="hardware-circuit" overlayOpacity="medium">
               <PageHeaderBanner
                 transparentBg
+                currentPage="shop"
                 breadcrumbCurrent="Hardware & Shop"
                 badgeText="Original & Tested Commercial Hardware"
                 title="IT Hardware, POS Systems & Equipment Shop"
@@ -1481,6 +1488,7 @@ export default function App() {
             <VideoBackground theme="corporate-blue" overlayOpacity="medium">
               <PageHeaderBanner
                 transparentBg
+                currentPage="about"
                 breadcrumbCurrent="About Us"
                 badgeText="20+ Years UAE Corporate Excellence"
                 title="About evonix & Our Dubai Heritage"
@@ -1513,6 +1521,7 @@ export default function App() {
             <VideoBackground theme="tech-network" overlayOpacity="medium">
               <PageHeaderBanner
                 transparentBg
+                currentPage="guides"
                 breadcrumbCurrent="Tech Blogs & Case Studies"
                 badgeText="evonix Engineering Blogs & Knowledge Hub"
                 title="Official Tech Blogs, Hardware Guides & Field Case Studies"
@@ -1560,6 +1569,7 @@ export default function App() {
             <VideoBackground theme="cyber-data" overlayOpacity="medium">
               <PageHeaderBanner
                 transparentBg
+                currentPage="contact"
                 breadcrumbCurrent="Contact & Support"
                 badgeText="Sialkot Service Lab & Office"
                 title="Contact evonix & Book On-Site Visit"

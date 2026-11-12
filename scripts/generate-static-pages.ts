@@ -200,11 +200,13 @@ function buildBreadcrumbsHtml(crumbs: { name: string; url: string }[]): string {
     <nav aria-label="Breadcrumb" class="mb-6">
       <ol itemscope itemtype="https://schema.org/BreadcrumbList" class="flex flex-wrap items-center gap-2 text-xs text-slate-400">
         ${crumbs
-          .map((c, idx) => {
-            const isLast = idx === crumbs.length - 1;
-            const fullUrl = c.url.startsWith('http')
-              ? c.url
-              : `${DOMAIN}${c.url.startsWith('/') ? '' : '/'}${c.url === '/' ? '' : c.url}`;
+          .filter((c) => c && c.name && c.name.trim().length > 0)
+          .map((c, idx, arr) => {
+            const isLast = idx === arr.length - 1;
+            const rawUrl = (c.url || '/').trim() || '/';
+            const fullUrl = rawUrl.startsWith('http')
+              ? rawUrl
+              : `${DOMAIN}${rawUrl.startsWith('/') ? '' : '/'}${rawUrl === '/' ? '' : rawUrl}`;
             const cleanUrl = fullUrl.endsWith('/') && fullUrl !== `${DOMAIN}/` ? fullUrl.slice(0, -1) : fullUrl;
             const pos = idx + 1;
             if (isLast) {
@@ -1600,6 +1602,11 @@ const flatCalculatorRedirects: { route: string; targetSlug: string; title: strin
   { route: 'printer-diagnostics', targetSlug: 'printer-diagnostics', title: 'Thermal Printer Diagnostic Engine | EVONIX', desc: 'Troubleshoot 80mm ESC/POS receipt printers.' },
   { route: 'factory-network-tester', targetSlug: 'factory-network-tester', title: 'Factory Network Latency Tester | EVONIX', desc: 'Benchmark premise ERP database latency and WeBOC stability.' },
   { route: 'live-repair-tracker', targetSlug: 'live-repair-tracker', title: 'Live RMA Bench Repair Tracker | EVONIX', desc: 'Track hardware diagnostic lab repair progress in real time.' },
+  { route: 'schema-generator', targetSlug: 'schema-generator', title: 'Advanced JSON-LD Schema Markup Generator | EVONIX', desc: 'Generate valid JSON-LD structured data for BreadcrumbList, LocalBusiness, FAQs, and Products.' },
+  { route: 'hs-code-lookup', targetSlug: 'hs-code-lookup', title: 'Global HS Code & Custom Duty Lookup Engine | EVONIX', desc: 'Find export HS commodity codes and estimate customs tariffs for USA, EU, UK, and UAE.' },
+  { route: 'trend-intelligence-suite', targetSlug: 'trend-intelligence-suite', title: 'Trend Intelligence Suite V15 | EVONIX', desc: 'Multi-platform keyword trend intelligence across Google, Bing, eBay, YouTube, and Amazon.' },
+  { route: 'hex-code-lookup', targetSlug: 'hs-code-lookup', title: 'Global HS Code & Custom Duty Lookup Engine | EVONIX', desc: 'Find export HS commodity codes and estimate customs tariffs for USA, EU, UK, and UAE.' },
+  { route: 'tools/hex-code-lookup', targetSlug: 'hs-code-lookup', title: 'Global HS Code & Custom Duty Lookup Engine | EVONIX', desc: 'Find export HS commodity codes and estimate customs tariffs for USA, EU, UK, and UAE.' },
 ];
 
 flatCalculatorRedirects.forEach((item) => {
@@ -1612,6 +1619,15 @@ flatCalculatorRedirects.forEach((item) => {
     breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Tools Hub', url: '/tools' }, { name: item.title, url: `/tools/${item.targetSlug}` }],
     isRedirect: true,
     redirectTo: `tools/${item.targetSlug}`,
+    schemaJson: {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${DOMAIN}/` },
+        { '@type': 'ListItem', position: 2, name: 'Web Tools', item: `${DOMAIN}/tools` },
+        { '@type': 'ListItem', position: 3, name: item.title, item: `${DOMAIN}/tools/${item.targetSlug}` },
+      ],
+    },
     bodyHtml: `
       <div class="text-center py-12 space-y-4 text-slate-300">
         <h2 class="text-xl font-bold text-white">${escapeHtml(item.title)}</h2>

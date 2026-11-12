@@ -245,10 +245,18 @@ export const LocalClusterLandingPage: React.FC<LocalClusterLandingPageProps> = (
         <div className="py-2">
           <DynamicBreadcrumb
             segments={[
-              { label: 'Home', page: 'home' },
-              { label: 'Sialkot Industrial Triangle', page: 'locations' },
-              { label: currentCity.name, onClick: () => handleCityChange(currentCity.slug) },
-              { label: currentService.shortName, isCurrent: true },
+              { label: 'Home', page: 'home', path: '/' },
+              { label: 'Sialkot Industrial Triangle', page: 'locations', path: '/locations' },
+              {
+                label: currentCity.name,
+                path: `/locations/${currentCity.slug}`,
+                onClick: () => handleCityChange(currentCity.slug),
+              },
+              {
+                label: currentService.shortName,
+                path: `/locations/${currentCity.slug}/${currentService.slug}`,
+                isCurrent: true,
+              },
             ]}
             onNavigatePage={(p) => onNavigatePage(p as NavPageId)}
             variant="light"

@@ -38,9 +38,9 @@ export const AiTravelGuidePage: React.FC<AiTravelGuidePageProps> = ({
         {/* Dynamic Breadcrumbs */}
         <DynamicBreadcrumb
           segments={[
-            { label: 'Home', page: 'home' },
-            { label: 'Guides', page: 'guides' },
-            { label: 'AI Tools for Travel Itinerary', isCurrent: true },
+            { label: 'Home', page: 'home', path: '/' },
+            { label: 'Guides', page: 'guides', path: '/guides' },
+            { label: 'AI Tools for Travel Itinerary', path: '/ai-tools-name-for-travel-itinerary', isCurrent: true },
           ]}
           onNavigatePage={(p) => onNavigatePage(p)}
           variant="dark"

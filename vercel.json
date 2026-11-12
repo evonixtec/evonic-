@@ -195,6 +195,16 @@
       "permanent": true
     },
     {
+      "source": "/hex-code-lookup",
+      "destination": "/tools/hs-code-lookup",
+      "permanent": true
+    },
+    {
+      "source": "/tools/hex-code-lookup",
+      "destination": "/tools/hs-code-lookup",
+      "permanent": true
+    },
+    {
       "source": "/schema-generator",
       "destination": "/tools/schema-generator",
       "permanent": true
@@ -287,6 +297,17 @@
     {
       "source": "/bench-intake-pass/:path*",
       "destination": "https://store.evonixtec.com",
+      "permanent": true
+    },
+    {
+      "source": "/hex-code-lookup",
+      "has": [
+        {
+          "type": "host",
+          "value": "tools.evonixtec.com"
+        }
+      ],
+      "destination": "https://www.evonixtec.com/tools/hs-code-lookup",
       "permanent": true
     },
     {
