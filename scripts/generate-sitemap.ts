@@ -52,6 +52,7 @@ const mainCoreRoutes = [
   { loc: `${DOMAIN_MAIN}/locations`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
   { loc: `${DOMAIN_MAIN}/locations/sialkot/pos-hardware`, changefreq: 'daily', priority: '0.95', lastmod: CURRENT_TIMESTAMP },
   { loc: `${DOMAIN_MAIN}/installation-guide`, changefreq: 'weekly', priority: '0.85', lastmod: CURRENT_TIMESTAMP },
+  { loc: `${DOMAIN_MAIN}/ai-tools-name-for-travel-itinerary`, changefreq: 'daily', priority: '0.90', lastmod: CURRENT_TIMESTAMP },
   // All canonical 24+ tools from central tools registry under /tools/[slug]
   ...Object.values(toolsRegistry).map((tool) => ({
     loc: `${DOMAIN_MAIN}/tools/${tool.slug}`,

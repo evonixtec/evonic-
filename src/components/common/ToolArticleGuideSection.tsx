@@ -74,10 +74,12 @@ export const ToolArticleGuideSection: React.FC<ToolArticleGuideSectionProps> = (
                 <button
                   type="button"
                   onClick={handleShare}
+                  aria-label={copiedLink ? 'Article link copied' : 'Share article guide link'}
                   className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors cursor-pointer"
                   title="Share article link"
                 >
                   <Share2 className="w-3.5 h-3.5" />
+                  <span className="sr-only">Share article guide</span>
                 </button>
               </div>
             </div>

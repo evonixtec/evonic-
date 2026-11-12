@@ -127,9 +127,9 @@ const TrendIntelligenceSuite = lazyWithRetry(() => import('./components/TrendInt
 const SchemaGenerator = lazyWithRetry(() => import('./components/SchemaGenerator'));
 const HsCodeLookup = lazyWithRetry(() => import('./components/HsCodeLookup'));
 
-// Loading spinner fallback for lazy chunks
+// Loading spinner fallback for lazy chunks with reserved height to eliminate CLS
 const LazyLoaderFallback: React.FC = () => (
-  <div className="py-24 flex flex-col items-center justify-center space-y-3 min-h-[300px]">
+  <div className="py-24 flex flex-col items-center justify-center space-y-3 min-h-[550px]">
     <div className="w-9 h-9 rounded-full border-3 border-slate-200 border-t-red-600 animate-spin" />
     <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">Loading Evonix Engine...</span>
   </div>

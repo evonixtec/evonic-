@@ -422,6 +422,7 @@ Generated via evonixtec.com/etsy-fee-calculator`;
             {/* Quick Copy */}
             <button
               onClick={handleCopySummary}
+              aria-label={copied ? 'Etsy fee audit copied to clipboard' : 'Copy Etsy fee audit summary'}
               className="hidden md:flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold bg-orange-600 hover:bg-orange-500 text-white transition-all shadow-sm cursor-pointer"
             >
               {copied ? <Check className="w-3.5 h-3.5 text-emerald-300" /> : <Copy className="w-3.5 h-3.5" />}

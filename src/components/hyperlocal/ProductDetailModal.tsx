@@ -102,16 +102,20 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                     <button
                       type="button"
                       onClick={handlePrevImage}
+                      aria-label="Previous product image"
                       className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-900/80 hover:bg-slate-800 text-white border border-slate-700 transition-colors cursor-pointer"
                     >
                       <ChevronLeft className="w-4 h-4" />
+                      <span className="sr-only">Previous product image</span>
                     </button>
                     <button
                       type="button"
                       onClick={handleNextImage}
+                      aria-label="Next product image"
                       className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-900/80 hover:bg-slate-800 text-white border border-slate-700 transition-colors cursor-pointer"
                     >
                       <ChevronRight className="w-4 h-4" />
+                      <span className="sr-only">Next product image</span>
                     </button>
                   </>
                 )}

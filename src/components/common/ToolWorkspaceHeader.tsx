@@ -320,11 +320,13 @@ export const ToolWorkspaceHeader: React.FC<ToolWorkspaceHeaderProps> = ({
                 <button
                   type="button"
                   onClick={onReset}
+                  aria-label="Reset tool inputs to default values"
                   className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
                   title="Clear inputs back to default state"
                 >
                   <RotateCcw className="w-3.5 h-3.5 text-slate-400" />
                   <span className="hidden sm:inline">Reset</span>
+                  <span className="sr-only sm:hidden">Reset</span>
                 </button>
               )}
 
@@ -332,6 +334,7 @@ export const ToolWorkspaceHeader: React.FC<ToolWorkspaceHeaderProps> = ({
                 <button
                   type="button"
                   onClick={onCopySummary}
+                  aria-label="Copy calculated output summary to clipboard"
                   className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
                   title="Copy calculated output summary to clipboard"
                 >
@@ -344,6 +347,7 @@ export const ToolWorkspaceHeader: React.FC<ToolWorkspaceHeaderProps> = ({
                 <button
                   type="button"
                   onClick={onPrint}
+                  aria-label="Print or export PDF specification sheet"
                   className="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
                   title="Print or export PDF specification sheet"
                 >
@@ -355,6 +359,7 @@ export const ToolWorkspaceHeader: React.FC<ToolWorkspaceHeaderProps> = ({
               <button
                 type="button"
                 onClick={handleShare}
+                aria-label={copiedLink ? 'Tool link copied to clipboard' : 'Share this tool link'}
                 className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
                 title="Copy shareable direct tool link"
               >
@@ -367,6 +372,7 @@ export const ToolWorkspaceHeader: React.FC<ToolWorkspaceHeaderProps> = ({
                   <>
                     <Share2 className="w-3.5 h-3.5 text-slate-400" />
                     <span className="hidden sm:inline">Share</span>
+                    <span className="sr-only sm:hidden">Share</span>
                   </>
                 )}
               </button>

@@ -290,17 +290,19 @@ export const ToolDynamicPage: React.FC<ToolDynamicPageProps> = ({
           </p>
         </div>
 
-        {/* WORKSPACE AREA (Isolated Tool Logic) */}
-        <section className="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl overflow-hidden">
+        {/* WORKSPACE AREA (Isolated Tool Logic with Reserved Dimensions to eliminate CLS) */}
+        <section className="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl overflow-hidden min-h-[550px]">
           {children}
         </section>
 
         {/* E-COMMERCE HARDWARE FUNNEL BANNER (Stripe, Amazon FBA, eBay, Temu) */}
         {['stripe-fee-calculator', 'amazon-fba-calculator', 'ebay-fee-calculator', 'temu-seller-calculator'].includes(tool.slug) ? (
-          <EcommerceHardwareBanner />
+          <div className="min-h-[140px]">
+            <EcommerceHardwareBanner />
+          </div>
         ) : (
           tool.hardwareCta && (
-            <section className="bg-gradient-to-r from-blue-950/80 via-slate-900 to-slate-900 border border-blue-500/40 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+            <section className="bg-gradient-to-r from-blue-950/80 via-slate-900 to-slate-900 border border-blue-500/40 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl min-h-[140px]">
               <div className="space-y-1.5 text-left">
                 <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-blue-400">
                   <ShieldCheck className="w-3.5 h-3.5" />

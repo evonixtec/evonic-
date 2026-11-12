@@ -912,18 +912,22 @@ export const SchemaGenerator: React.FC = () => {
                   <button
                     type="button"
                     onClick={handleDownload}
+                    aria-label="Download generated Schema JSON-LD file"
                     className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors cursor-pointer"
                     title="Download JSON-LD file"
                   >
                     <Download className="w-4 h-4" />
+                    <span className="sr-only">Download JSON-LD</span>
                   </button>
                   <button
                     type="button"
                     onClick={handleCopy}
+                    aria-label={copied ? 'Schema copied to clipboard' : 'Copy schema to clipboard'}
                     className="p-2 rounded-lg bg-red-600 hover:bg-red-700 text-white transition-colors cursor-pointer"
                     title="Copy to clipboard"
                   >
                     {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                    <span className="sr-only">{copied ? 'Copied' : 'Copy'}</span>
                   </button>
                 </div>
               </div>

@@ -8,13 +8,22 @@
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
   # ========================================================
-  # 301 SEO REDIRECTS FOR TOOLS SUBDOMAIN MIGRATION
-  # If tools are hosted on dedicated subdomain tools.evonixtec.com,
-  # these rules preserve 100% Google SEO link juice and eliminate 404s
+  # 301 SEO REDIRECTS FOR TOOLS SUBDOMAIN -> MAIN CANONICAL /tools/
+  # Preserves 100% Google SEO link juice and permanently eliminates duplicate content
   # ========================================================
-  # RewriteCond %{HTTP_HOST} ^(www\.)?evonixtec\.com$ [NC]
-  # RewriteRule ^tools/?$ https://tools.evonixtec.com/ [R=301,L]
-  # RewriteRule ^(ebay-fee-calculator|amazon-fba-calculator|tiktok-shop-fee-calculator|shopify-fee-calculator|stripe-fee-calculator|temu-seller-calculator|etsy-fee-calculator|amazon-fbm-calculator|cbm-calculator|ecommerce-calculator|invoice|trend-intelligence-suite|uk-eu-vat-calculator|us-duty-nexus-estimator|ce-ukca-compliance-generator|ai-visibility-checker|developer-cost-calculator)(.*)$ https://tools.evonixtec.com/$1$2 [R=301,L]
+  RewriteCond %{HTTP_HOST} ^tools\.evonixtec\.com$ [NC]
+  RewriteRule ^tools/(.*)$ https://www.evonixtec.com/tools/$1 [R=301,L]
+  RewriteCond %{HTTP_HOST} ^tools\.evonixtec\.com$ [NC]
+  RewriteRule ^/?$ https://www.evonixtec.com/tools [R=301,L]
+  RewriteCond %{HTTP_HOST} ^tools\.evonixtec\.com$ [NC]
+  RewriteRule ^(.*)$ https://www.evonixtec.com/tools/$1 [R=301,L]
+
+  # ========================================================
+  # SUBDOMAIN SITEMAP HOSTING
+  # Maps https://store.evonixtec.com/sitemap.xml -> /sitemap-store.xml (200 OK)
+  # ========================================================
+  RewriteCond %{HTTP_HOST} ^store\.evonixtec\.com$ [NC]
+  RewriteRule ^sitemap\.xml$ /sitemap-store.xml [L]
 
   # Don't rewrite files or directories that exist
   RewriteRule ^index\.html$ - [L]

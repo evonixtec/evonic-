@@ -24,10 +24,16 @@
         try {
           var h = window.location.hostname.toLowerCase();
           var p = window.location.pathname.replace(/\/+$/, '') || '';
-          var base = 'https://www.evonixtec.com';
+          
+          // 301-equivalent immediate client redirect if accessed via tools.evonixtec.com
           if (h === 'tools.evonixtec.com' || h.startsWith('tools.')) {
-            base = 'https://tools.evonixtec.com';
-          } else if (h === 'store.evonixtec.com' || h.startsWith('store.')) {
+            var toolTarget = p ? (p.startsWith('/tools/') ? p : ('/tools' + p)) : '/tools';
+            window.location.replace('https://www.evonixtec.com' + toolTarget + window.location.search);
+            return;
+          }
+
+          var base = 'https://www.evonixtec.com';
+          if (h === 'store.evonixtec.com' || h.startsWith('store.')) {
             base = 'https://store.evonixtec.com';
           }
           var c = base + (p ? p : '/');

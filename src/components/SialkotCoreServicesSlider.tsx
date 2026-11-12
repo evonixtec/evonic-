@@ -285,18 +285,22 @@ export const SialkotCoreServicesSlider: React.FC<SialkotCoreServicesSliderProps>
                 <button
                   type="button"
                   onClick={handlePrev}
+                  aria-label="Previous Service Slide"
                   className="p-2 rounded-xl bg-slate-800 hover:bg-red-600 text-slate-300 hover:text-white border border-slate-700 transition-colors cursor-pointer"
                   title="Previous Service Slide"
                 >
                   <ChevronLeft className="w-4 h-4" />
+                  <span className="sr-only">Previous Service Slide</span>
                 </button>
                 <button
                   type="button"
                   onClick={handleNext}
+                  aria-label="Next Service Slide"
                   className="p-2 rounded-xl bg-slate-800 hover:bg-red-600 text-slate-300 hover:text-white border border-slate-700 transition-colors cursor-pointer"
                   title="Next Service Slide"
                 >
                   <ChevronRight className="w-4 h-4" />
+                  <span className="sr-only">Next Service Slide</span>
                 </button>
               </div>
             </div>
