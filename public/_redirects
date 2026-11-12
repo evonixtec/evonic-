@@ -3,5 +3,34 @@
 https://tools.evonixtec.com/*    https://www.evonixtec.com/tools/:splat    301!
 https://tools.evonixtec.com/     https://www.evonixtec.com/tools           301!
 
+# 301 Permanent Redirects for all Legacy Root Calculator URLs -> /tools/[slug]
+/stripe-fee-calculator                 /tools/stripe-fee-calculator                 301!
+/amazon-fba-calculator                 /tools/amazon-fba-calculator                 301!
+/amazon-fba-fee-calculator             /tools/amazon-fba-calculator                 301!
+/ebay-fee-calculator                   /tools/ebay-fee-calculator                   301!
+/tiktok-shop-fee-calculator            /tools/tiktok-shop-fee-calculator            301!
+/shopify-fee-calculator                /tools/shopify-fee-calculator                301!
+/temu-seller-calculator                /tools/temu-seller-calculator                301!
+/etsy-fee-calculator                   /tools/etsy-fee-calculator                   301!
+/amazon-fbm-calculator                 /tools/amazon-fbm-calculator                 301!
+/invoice                               /tools/invoice-generator                     301!
+/export-barcode-studio                 /tools/barcode-label-studio                  301!
+/cbm-calculator                        /tools/export-cbm-calculator                 301!
+/ecommerce-calculator                  /tools/ecommerce-margin-calculator           301!
+/developer-cost-calculator             /tools/developer-cost-calculator             301!
+/ai-visibility-checker                 /tools/ai-visibility-checker                 301!
+/uk-eu-vat-calculator                  /tools/uk-eu-vat-calculator                  301!
+/us-duty-nexus-estimator               /tools/us-duty-nexus-estimator               301!
+/ce-ukca-compliance-generator          /tools/ce-ukca-compliance-generator          301!
+/printer-diagnostics                   /tools/printer-diagnostics                   301!
+/factory-network-tester                /tools/factory-network-tester                301!
+/live-repair-tracker                   /tools/live-repair-tracker                   301!
+/hs-code-lookup                        /tools/hs-code-lookup                        301!
+/schema-generator                      /tools/schema-generator                      301!
+/trend-intelligence-suite              /tools/trend-intelligence-suite              301!
+
+# Host-based sitemap for store subdomain
+https://store.evonixtec.com/sitemap.xml    /sitemap-store.xml    200
+
 # SPA Catch-all (Default 200)
 /*    /index.html   200

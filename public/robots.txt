@@ -29,3 +29,4 @@ Disallow: /api/
 Disallow: /admin/
 
 Sitemap: https://www.evonixtec.com/sitemap.xml
+Sitemap: https://store.evonixtec.com/sitemap.xml

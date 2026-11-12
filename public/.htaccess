@@ -16,7 +16,34 @@
   RewriteCond %{HTTP_HOST} ^tools\.evonixtec\.com$ [NC]
   RewriteRule ^/?$ https://www.evonixtec.com/tools [R=301,L]
   RewriteCond %{HTTP_HOST} ^tools\.evonixtec\.com$ [NC]
-  RewriteRule ^(.*)$ https://www.evonixtec.com/tools/$1 [R=301,L]
+  # ========================================================
+  # 301 SEO REDIRECTS FOR LEGACY ROOT CALCULATOR URLs -> /tools/[slug]
+  # Guarantees HTTP 301 Moved Permanently for full link equity pass
+  # ========================================================
+  RewriteRule ^stripe-fee-calculator/?$ https://www.evonixtec.com/tools/stripe-fee-calculator [R=301,L]
+  RewriteRule ^amazon-fba-calculator/?$ https://www.evonixtec.com/tools/amazon-fba-calculator [R=301,L]
+  RewriteRule ^amazon-fba-fee-calculator/?$ https://www.evonixtec.com/tools/amazon-fba-calculator [R=301,L]
+  RewriteRule ^ebay-fee-calculator/?$ https://www.evonixtec.com/tools/ebay-fee-calculator [R=301,L]
+  RewriteRule ^tiktok-shop-fee-calculator/?$ https://www.evonixtec.com/tools/tiktok-shop-fee-calculator [R=301,L]
+  RewriteRule ^shopify-fee-calculator/?$ https://www.evonixtec.com/tools/shopify-fee-calculator [R=301,L]
+  RewriteRule ^temu-seller-calculator/?$ https://www.evonixtec.com/tools/temu-seller-calculator [R=301,L]
+  RewriteRule ^etsy-fee-calculator/?$ https://www.evonixtec.com/tools/etsy-fee-calculator [R=301,L]
+  RewriteRule ^amazon-fbm-calculator/?$ https://www.evonixtec.com/tools/amazon-fbm-calculator [R=301,L]
+  RewriteRule ^invoice/?$ https://www.evonixtec.com/tools/invoice-generator [R=301,L]
+  RewriteRule ^export-barcode-studio/?$ https://www.evonixtec.com/tools/barcode-label-studio [R=301,L]
+  RewriteRule ^cbm-calculator/?$ https://www.evonixtec.com/tools/export-cbm-calculator [R=301,L]
+  RewriteRule ^ecommerce-calculator/?$ https://www.evonixtec.com/tools/ecommerce-margin-calculator [R=301,L]
+  RewriteRule ^developer-cost-calculator/?$ https://www.evonixtec.com/tools/developer-cost-calculator [R=301,L]
+  RewriteRule ^ai-visibility-checker/?$ https://www.evonixtec.com/tools/ai-visibility-checker [R=301,L]
+  RewriteRule ^uk-eu-vat-calculator/?$ https://www.evonixtec.com/tools/uk-eu-vat-calculator [R=301,L]
+  RewriteRule ^us-duty-nexus-estimator/?$ https://www.evonixtec.com/tools/us-duty-nexus-estimator [R=301,L]
+  RewriteRule ^ce-ukca-compliance-generator/?$ https://www.evonixtec.com/tools/ce-ukca-compliance-generator [R=301,L]
+  RewriteRule ^printer-diagnostics/?$ https://www.evonixtec.com/tools/printer-diagnostics [R=301,L]
+  RewriteRule ^factory-network-tester/?$ https://www.evonixtec.com/tools/factory-network-tester [R=301,L]
+  RewriteRule ^live-repair-tracker/?$ https://www.evonixtec.com/tools/live-repair-tracker [R=301,L]
+  RewriteRule ^hs-code-lookup/?$ https://www.evonixtec.com/tools/hs-code-lookup [R=301,L]
+  RewriteRule ^schema-generator/?$ https://www.evonixtec.com/tools/schema-generator [R=301,L]
+  RewriteRule ^trend-intelligence-suite/?$ https://www.evonixtec.com/tools/trend-intelligence-suite [R=301,L]
 
   # ========================================================
   # SUBDOMAIN SITEMAP HOSTING
