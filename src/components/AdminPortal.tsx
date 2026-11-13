@@ -345,7 +345,10 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({ onNavigateHome }) => {
                 </div>
                 <h2 className="text-xl font-bold text-white">Full Security System Audit</h2>
                 <p className="text-xs text-slate-400">
-                  {auditResult.passedChecks} of {auditResult.totalChecks} checks verified. Zero security vulnerabilities found.
+                  {auditResult.passedChecks} of {auditResult.totalChecks} checks verified. Report security issues to{' '}
+                  <a href="mailto:security@evonixtec.com" className="text-emerald-400 font-semibold hover:underline">
+                    security@evonixtec.com
+                  </a>.
                 </p>
               </div>
 

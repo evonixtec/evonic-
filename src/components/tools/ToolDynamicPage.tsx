@@ -99,35 +99,6 @@ export const ToolDynamicPage: React.FC<ToolDynamicPageProps> = ({
             reviewCount: '128',
             bestRating: '5',
             worstRating: '1',
-            itemReviewed: {
-              '@type': 'SoftwareApplication',
-              name: tool.name,
-              applicationCategory: 'BusinessApplication',
-              operatingSystem: 'All',
-              offers: {
-                '@type': 'Offer',
-                price: '0',
-                priceCurrency: 'USD',
-              },
-            },
-          },
-        },
-        {
-          '@type': 'AggregateRating',
-          ratingValue: '4.9',
-          reviewCount: '128',
-          bestRating: '5',
-          worstRating: '1',
-          itemReviewed: {
-            '@type': 'SoftwareApplication',
-            name: tool.name,
-            applicationCategory: 'BusinessApplication',
-            operatingSystem: 'All',
-            offers: {
-              '@type': 'Offer',
-              price: '0',
-              priceCurrency: 'USD',
-            },
           },
         },
         {

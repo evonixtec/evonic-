@@ -340,6 +340,12 @@ export const DoorstepSupportPage: React.FC<DoorstepSupportPageProps> = ({
               <Phone className="w-4 h-4 text-red-600" />
               <span>{COMPANY_INFO.contact.phoneDisplay}</span>
             </a>
+            <a
+              href={`mailto:${COMPANY_INFO.contact.emails.support}`}
+              className="px-6 py-3 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 text-white font-bold text-sm transition-all flex items-center gap-2"
+            >
+              <span>{COMPANY_INFO.contact.emails.support}</span>
+            </a>
             <button
               onClick={() => onNavigatePage('contact')}
               className="px-6 py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-sm transition-all cursor-pointer"

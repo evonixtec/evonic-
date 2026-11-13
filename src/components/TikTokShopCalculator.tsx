@@ -1119,8 +1119,13 @@ export default function TikTokShopCalculator() {
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <span itemProp="author" className="font-bold text-xs sm:text-sm text-slate-900 block">
-                      {rev.name}
+                    <span
+                      itemProp="author"
+                      itemScope
+                      itemType="https://schema.org/Person"
+                      className="font-bold text-xs sm:text-sm text-slate-900 block"
+                    >
+                      <span itemProp="name">{rev.name}</span>
                     </span>
                     <span className="text-[11px] text-slate-500 block">
                       {rev.location} · {rev.storeType}
@@ -1128,6 +1133,8 @@ export default function TikTokShopCalculator() {
                   </div>
                   <div className="flex items-center gap-0.5" itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
                     <meta itemProp="ratingValue" content={String(rev.rating)} />
+                    <meta itemProp="bestRating" content="5" />
+                    <meta itemProp="worstRating" content="1" />
                     {[...Array(rev.rating)].map((_, i) => (
                       <Star key={i} className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
                     ))}

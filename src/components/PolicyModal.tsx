@@ -68,8 +68,22 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ policyType, onClose })
 
   const data = getPolicyData();
 
+  const contactEmail =
+    activeTab === 'refund'
+      ? 'support@evonixtec.com'
+      : activeTab === 'terms' || activeTab === 'disclaimer'
+      ? 'info@evonixtec.com'
+      : 'privacy@evonixtec.com';
+
+  const contactLabel =
+    activeTab === 'refund'
+      ? 'Customer & Warranty Support'
+      : activeTab === 'terms' || activeTab === 'disclaimer'
+      ? 'Official Corporate & Legal Desk'
+      : 'Data Privacy & Deletion Officer';
+
   const handleCopyEmail = () => {
-    navigator.clipboard?.writeText('evonixtec@gmail.com');
+    navigator.clipboard?.writeText(contactEmail);
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2500);
   };
@@ -387,7 +401,7 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ policyType, onClose })
                 <div className="flex items-center gap-2">
                   <Mail className="w-4 h-4 text-red-600 flex-shrink-0" />
                   <span>
-                    Data Privacy & Deletion Officer: <strong>evonixtec@gmail.com</strong>
+                    {contactLabel}: <strong>{contactEmail}</strong>
                   </span>
                   <button
                     onClick={handleCopyEmail}
@@ -406,8 +420,8 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ policyType, onClose })
                 <span>
                   Physical HQ: Kotli Behram, Defense / Airport Road Link, Sialkot 51310, Punjab, Pakistan.
                 </span>
-                <span className="text-slate-400">
-                  Google Play Developer Package: com.evonix.tools • Target API 34+
+                <span className="text-slate-500">
+                  Security Reports: <strong className="text-slate-700">security@evonixtec.com</strong> • API 34+
                 </span>
               </div>
             </div>

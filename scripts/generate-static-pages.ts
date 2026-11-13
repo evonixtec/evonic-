@@ -307,9 +307,14 @@ pages.push({
             <span class="text-xs text-slate-400 block font-semibold uppercase">Direct Phone</span>
             <a href="tel:${COMPANY_INFO.contact.phoneRaw}" class="text-lg font-bold text-white hover:text-teal-400">${COMPANY_INFO.contact.phoneDisplay}</a>
           </div>
-          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
-            <span class="text-xs text-slate-400 block font-semibold uppercase">Email</span>
-            <a href="mailto:${COMPANY_INFO.contact.email}" class="text-lg font-bold text-white hover:text-teal-400">${COMPANY_INFO.contact.email}</a>
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <span class="text-xs text-slate-400 block font-semibold uppercase">Official Email</span>
+            <a href="mailto:${COMPANY_INFO.contact.email}" class="text-lg font-bold text-white hover:text-teal-400 block">${COMPANY_INFO.contact.email}</a>
+            <div class="text-xs text-slate-400 pt-2 border-t border-slate-800 flex flex-wrap gap-x-4 gap-y-1">
+              <span>Support: <a href="mailto:support@evonixtec.com" class="text-teal-400 hover:underline">support@evonixtec.com</a></span>
+              <span>Privacy: <a href="mailto:privacy@evonixtec.com" class="text-teal-400 hover:underline">privacy@evonixtec.com</a></span>
+              <span>Security: <a href="mailto:security@evonixtec.com" class="text-teal-400 hover:underline">security@evonixtec.com</a></span>
+            </div>
           </div>
           <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
             <span class="text-xs text-slate-400 block font-semibold uppercase">Diagnostic Lab Address</span>
@@ -1014,35 +1019,6 @@ Object.values(toolsRegistry).forEach((tool) => {
             reviewCount: '128',
             bestRating: '5',
             worstRating: '1',
-            itemReviewed: {
-              '@type': 'SoftwareApplication',
-              name: tool.name,
-              applicationCategory: 'BusinessApplication',
-              operatingSystem: 'All',
-              offers: {
-                '@type': 'Offer',
-                price: '0',
-                priceCurrency: 'USD',
-              },
-            },
-          },
-        },
-        {
-          '@type': 'AggregateRating',
-          ratingValue: '4.9',
-          reviewCount: '128',
-          bestRating: '5',
-          worstRating: '1',
-          itemReviewed: {
-            '@type': 'SoftwareApplication',
-            name: tool.name,
-            applicationCategory: 'BusinessApplication',
-            operatingSystem: 'All',
-            offers: {
-              '@type': 'Offer',
-              price: '0',
-              priceCurrency: 'USD',
-            },
           },
         },
         {
@@ -1907,35 +1883,6 @@ pages.push({
           reviewCount: '128',
           bestRating: '5',
           worstRating: '1',
-          itemReviewed: {
-            '@type': 'SoftwareApplication',
-            name: 'AI Trip Planner',
-            applicationCategory: 'BusinessApplication',
-            operatingSystem: 'All',
-            offers: {
-              '@type': 'Offer',
-              price: '0',
-              priceCurrency: 'USD',
-            },
-          },
-        },
-      },
-      {
-        '@type': 'AggregateRating',
-        ratingValue: '4.9',
-        reviewCount: '128',
-        bestRating: '5',
-        worstRating: '1',
-        itemReviewed: {
-          '@type': 'SoftwareApplication',
-          name: 'AI Trip Planner',
-          applicationCategory: 'BusinessApplication',
-          operatingSystem: 'All',
-          offers: {
-            '@type': 'Offer',
-            price: '0',
-            priceCurrency: 'USD',
-          },
         },
       },
       {
@@ -2064,7 +2011,7 @@ pages.push({
         <div class="text-xs text-slate-400 font-mono space-y-1 pt-2 border-t border-slate-800">
           <p>Company: Evonix Technologies (SMC-Pvt Ltd)</p>
           <p>Operating Location: Kotli Behram, Sialkot 51310, Punjab, Pakistan</p>
-          <p>Official Email: evonixtec@gmail.com | Phone: +92 326 324 4002</p>
+          <p>Privacy Email: privacy@evonixtec.com | Security Desk: security@evonixtec.com | Phone: +92 326 324 4002</p>
           <p class="text-teal-400 font-bold">Got a question? Call us. We reply in 2 hours.</p>
         </div>
       </div>
@@ -2114,7 +2061,7 @@ pages.push({
         </p>
         <div class="text-xs text-slate-400 font-mono space-y-1 pt-2 border-t border-slate-800">
           <p>Evonix Technologies • Kotli Behram, Sialkot 51310, Punjab, Pakistan</p>
-          <p>Official Email: evonixtec@gmail.com • Direct Phone / WhatsApp: +92 326 324 4002</p>
+          <p>Official Email: info@evonixtec.com • Support: support@evonixtec.com • Direct Phone / WhatsApp: +92 326 324 4002</p>
           <p class="text-teal-400 font-bold">Got a question? Call us. We reply in 2 hours.</p>
         </div>
       </div>
@@ -2139,7 +2086,7 @@ pages.push({
   canonical: `${DOMAIN}/warranty-policy`,
   heading: 'Hardware & Service Warranty Policy',
   breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Warranty Policy', url: '/warranty-policy' }],
-  bodyHtml: `<p class="text-slate-300">Comprehensive warranty coverage on motherboard repairs, thermal components, and touch POS terminals.</p>`
+  bodyHtml: `<div class="space-y-4 text-slate-300"><p>Comprehensive warranty coverage on motherboard repairs, thermal components, and touch POS terminals.</p><p class="text-sm">Warranty &amp; RMA Support Email: <a href="mailto:support@evonixtec.com" class="text-teal-400 font-bold hover:underline">support@evonixtec.com</a></p></div>`
 });
 
 // Locations

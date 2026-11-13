@@ -29,7 +29,7 @@ export const LOCAL_BUSINESS_SCHEMA = {
   image: DEFAULT_OG_IMAGE,
   url: `${BASE_URL}/`,
   telephone: '+92 326 324 4002',
-  email: 'evonixtec@gmail.com',
+  email: 'info@evonixtec.com',
   priceRange: 'PKR 50000 - PKR 1500000',
   currenciesAccepted: 'PKR, USD, AED, EUR',
   paymentAccepted: 'Bank Transfer, Wire, Credit Card, Raast',

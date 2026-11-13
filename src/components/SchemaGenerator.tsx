@@ -51,7 +51,7 @@ export const SchemaGenerator: React.FC = () => {
 
   // LocalBusiness Specific
   const [telephone, setTelephone] = useState<string>('+923263244002');
-  const [email, setEmail] = useState<string>('evonixtec@gmail.com');
+  const [email, setEmail] = useState<string>('info@evonixtec.com');
   const [streetAddress, setStreetAddress] = useState<string>('Paris Road & Cantt');
   const [city, setCity] = useState<string>('Sialkot');
   const [region, setRegion] = useState<string>('Punjab');
@@ -773,7 +773,7 @@ export const SchemaGenerator: React.FC = () => {
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            placeholder="evonixtec@gmail.com"
+                            placeholder="info@evonixtec.com"
                             className="w-full p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs text-[#1E1E1E] focus:outline-none focus:border-red-500"
                           />
                         </div>

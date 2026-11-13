@@ -13,7 +13,13 @@ export const COMPANY_INFO = {
     vision: 'To establish Sialkot as a premier hub for digital export commerce backed by world-class software engineering and AI-driven automation.',
   },
   contact: {
-    email: 'evonixtec@gmail.com',
+    email: 'info@evonixtec.com',
+    emails: {
+      info: 'info@evonixtec.com',
+      support: 'support@evonixtec.com',
+      privacy: 'privacy@evonixtec.com',
+      security: 'security@evonixtec.com',
+    },
     phoneDisplay: '+92 326 324 4002',
     phoneRaw: '+923263244002',
     whatsapp: '923263244002',

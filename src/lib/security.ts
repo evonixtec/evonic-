@@ -305,7 +305,7 @@ export function initializeConsoleShield(): void {
       warningStyle
     );
     console.log(
-      '%cUnauthorized decompilation, malicious payload injection, or automated scraping is prohibited.\nRegistered Office: Kotli Behram, Sialkot | Direct Desk: evonixtec@gmail.com',
+      '%cUnauthorized decompilation, malicious payload injection, or automated scraping is prohibited.\nRegistered Office: Kotli Behram, Sialkot | Security Desk: security@evonixtec.com',
       infoStyle
     );
   } catch (err) {

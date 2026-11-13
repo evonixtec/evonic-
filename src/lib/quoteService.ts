@@ -1,6 +1,6 @@
 /**
  * Quotation & Inquiry Service
- * Generates unique reference tracking codes and manages international submission dispatch to evonixtec@gmail.com
+ * Generates unique reference tracking codes and manages international submission dispatch to info@evonixtec.com
  */
 
 import { COMPANY_INFO } from '../data/content';
@@ -41,13 +41,13 @@ export function generateReferenceId(): string {
 const QUOTES_STORAGE_KEY = 'evonix_quotes_ledger';
 
 /**
- * Save quotation to local audit ledger and dispatch notification directly to evonixtec@gmail.com
+ * Save quotation to local audit ledger and dispatch notification directly to info@evonixtec.com
  */
 export async function dispatchQuoteNotification(
   payload: Omit<QuotePayload, 'referenceId' | 'submittedAt' | 'recipientEmail'>
 ): Promise<QuotePayload> {
   const referenceId = generateReferenceId();
-  const recipientEmail = COMPANY_INFO.contact.email || 'evonixtec@gmail.com';
+  const recipientEmail = COMPANY_INFO.contact.email || 'info@evonixtec.com';
 
   const fullPayload: QuotePayload = {
     ...payload,
@@ -68,7 +68,7 @@ export async function dispatchQuoteNotification(
     console.warn('Could not save to local storage ledger', err);
   }
 
-  // 2. Real Transmission to evonixtec@gmail.com via FormSubmit AJAX Gateway
+  // 2. Real Transmission to info@evonixtec.com via FormSubmit AJAX Gateway
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 6500);
@@ -112,7 +112,7 @@ export async function dispatchQuoteNotification(
       fullPayload.emailDispatched = true;
       if (typeof data?.message === 'string' && data.message.toLowerCase().includes('activation')) {
         fullPayload.needsActivation = true;
-        fullPayload.emailDispatchMessage = 'Activation link sent to evonixtec@gmail.com. Please click Activate in your inbox.';
+        fullPayload.emailDispatchMessage = 'Activation link sent to info@evonixtec.com. Please click Activate in your inbox.';
       } else {
         fullPayload.emailDispatchMessage = `Email successfully dispatched to ${recipientEmail}`;
       }
@@ -145,13 +145,13 @@ export function buildWhatsAppQuoteUrl(quote: QuotePayload): string {
 ${quote.email ? `*Email:* ${quote.email}\n` : ''}*Service:* ${quote.serviceType}
 *City / Location:* ${quote.locationArea}${quote.gpsDetected ? ' (GPS Auto-Detected)' : ''}
 ${quote.currency ? `*Currency:* ${quote.currency}\n` : ''}${quote.budget ? `*Budget:* ${quote.budget}\n` : ''}${quote.preferredContactMethod ? `*Preferred Contact:* ${quote.preferredContactMethod}\n` : ''}${quote.timeZone ? `*Timezone:* ${quote.timeZone}\n` : ''}${quote.isHomeService ? '*On-Site Visit:* Yes (Requested)\n' : ''}${quote.details ? `*Requirements:* ${quote.details}\n` : ''}━━━━━━━━━━━━━━━━━━━━
-_Dispatch routed to evonixtec@gmail.com_`;
+_Dispatch routed to info@evonixtec.com_`;
 
   return `https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent(text)}`;
 }
 
 /**
- * Formats a direct mailto link to evonixtec@gmail.com with prefilled quote details
+ * Formats a direct mailto link to info@evonixtec.com with prefilled quote details
  */
 export function buildMailtoQuoteUrl(quote: QuotePayload): string {
   const subject = `[Quote ${quote.referenceId}] [${quote.country || 'Global'}] Inquiry for ${quote.serviceType} - ${quote.fullName}`;

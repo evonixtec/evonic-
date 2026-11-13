@@ -86,7 +86,7 @@ export const PRIVACY_POLICY: PolicySection = {
         'Under GDPR, CCPA/CPRA, and Google Play Store User Data policies, you hold full legal rights regarding your information:',
         'Right to Access & Portability: You may request a copy of all correspondence and service history connected to your business.',
         'Right to Erasure (Data Deletion): You have the unconditional right to request the permanent deletion of your customer records, quotes, and repair tickets.',
-        'How to Request Deletion: Email evonixtec@gmail.com with subject "Data Deletion Request" or submit your request via WhatsApp at +92 326 324 4002. All records will be permanently purged from active systems within 30 days.'
+        'How to Request Deletion: Email privacy@evonixtec.com with subject "Data Deletion Request" or submit your request via WhatsApp at +92 326 324 4002. All records will be permanently purged from active systems within 30 days.'
       ]
     },
     {
@@ -112,7 +112,7 @@ export const PRIVACY_POLICY: PolicySection = {
         'Company Name: Evonix Technologies (SMC-Private Limited)',
         'SECP Registration: Corporate Universal Registration System, Government of Pakistan',
         'Physical Headquarters: Kotli Behram, Defense Road / Airport Road link, Sialkot 51310, Punjab, Pakistan',
-        'Direct Email: evonixtec@gmail.com | Phone / WhatsApp: +92 326 324 4002'
+        'Privacy & Data Deletion Email: privacy@evonixtec.com | Security Desk: security@evonixtec.com | Phone / WhatsApp: +92 326 324 4002'
       ]
     }
   ]
@@ -200,7 +200,7 @@ export const REFUND_POLICY: PolicySection = {
       content: [
         'For digital features, premium tools, or subscriptions purchased through Google Play Store on Android devices:',
         'First 48 Hours: You may request an automatic refund directly through Google Play Order History on your Android device or via support.google.com/googleplay. Google Play processes these requests according to standard Google Play Refund Policy.',
-        'After 48 Hours & Up to 14 Calendar Days: If a paid feature encounters persistent bugs, fails to generate required outputs, or does not function as advertised, email evonixtec@gmail.com with your Google Play Order Number (GPA.xxxx-xxxx-xxxx). Our technical team will investigate and issue a direct developer refund or credit within 3 to 5 business days.',
+        'After 48 Hours & Up to 14 Calendar Days: If a paid feature encounters persistent bugs, fails to generate required outputs, or does not function as advertised, email support@evonixtec.com with your Google Play Order Number (GPA.xxxx-xxxx-xxxx). Our technical team will investigate and issue a direct developer refund or credit within 3 to 5 business days.',
         'Managing Subscriptions: You can pause or cancel recurring mobile subscriptions at any time via Google Play Store > Payments & subscriptions. Upon cancellation, your access remains active until the end of the current billing cycle.'
       ]
     },
@@ -234,7 +234,7 @@ export const REFUND_POLICY: PolicySection = {
       heading: '5. Refund Claim Procedure & Timeline',
       content: [
         'To submit a refund or warranty claim, contact our billing desk directly:',
-        'Email: evonixtec@gmail.com with subject "Refund / Warranty Claim"',
+        'Email: support@evonixtec.com with subject "Refund / Warranty Claim"',
         'WhatsApp Support: +92 326 324 4002 with your Invoice / RMA number or Google Play GPA ID.',
         'Resolution SLA: All requests are acknowledged within 4 business hours and resolved within 3 to 7 business days via original payment method (Google Play, Bank Transfer, JazzCash/EasyPaisa, or Wire).'
       ]
@@ -283,7 +283,7 @@ export const MOBILE_PLAY_POLICY: PolicySection = {
       content: [
         'In compliance with Google Play\'s account and data deletion policy, if our mobile application supports user profile creation or repair tracking accounts, users have an accessible method to delete their account and associated data:',
         'In-App Deletion: Users can clear stored local history through the settings menu.',
-        'Web & Email Deletion: Users can visit https://evonixtec.com/privacy-policy or email evonixtec@gmail.com with their phone or ticket number to permanently delete all server-side records within 30 days.'
+        'Web & Email Deletion: Users can visit https://www.evonixtec.com/privacy-policy or email privacy@evonixtec.com with their phone or ticket number to permanently delete all server-side records within 30 days.'
       ]
     },
     {
@@ -344,7 +344,7 @@ export const DISCLAIMER_POLICY: PolicySection = {
       content: [
         'If you have questions regarding this disclaimer, fee algorithms, or would like to report a rate adjustment, please contact our engineering desk:',
         'Evonix Technologies • Kotli Behram, Sialkot 51310, Punjab, Pakistan',
-        'Official Email: evonixtec@gmail.com • Direct Phone / WhatsApp: +92 326 324 4002',
+        'Official Email: info@evonixtec.com • Support: support@evonixtec.com • Direct Phone / WhatsApp: +92 326 324 4002',
         'Customer Service SLA: Got a question? Call us. We reply in 2 hours.'
       ]
     }

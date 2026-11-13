@@ -1591,7 +1591,7 @@ export default function App() {
                 breadcrumbCurrent="Contact & Support"
                 badgeText="Sialkot Service Lab & Office"
                 title="Contact evonix & Book On-Site Visit"
-                subtitle="Reach out to our engineering lab on Paris Road and Sialkot Cantt. Automatic GPS sensor pinpoints your location area in Sialkot with an instant tracking reference code dispatched to evonixtec@gmail.com."
+                subtitle="Reach out to our engineering lab on Paris Road and Sialkot Cantt. Automatic GPS sensor pinpoints your location area in Sialkot with an instant tracking reference code dispatched to info@evonixtec.com."
                 onNavigateHome={() => navigateToPage('home')}
                 onOpenQuote={() => handleOpenQuote('Direct Sialkot Inquiry')}
                 ctaText="Get Free Quote"

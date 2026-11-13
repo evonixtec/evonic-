@@ -56,35 +56,6 @@ export const AiTripPlannerStandalonePage: React.FC<AiTripPlannerStandalonePagePr
             reviewCount: '128',
             bestRating: '5',
             worstRating: '1',
-            itemReviewed: {
-              '@type': 'SoftwareApplication',
-              name: 'AI Trip Planner',
-              applicationCategory: 'BusinessApplication',
-              operatingSystem: 'All',
-              offers: {
-                '@type': 'Offer',
-                price: '0',
-                priceCurrency: 'USD',
-              },
-            },
-          },
-        },
-        {
-          '@type': 'AggregateRating',
-          ratingValue: '4.9',
-          reviewCount: '128',
-          bestRating: '5',
-          worstRating: '1',
-          itemReviewed: {
-            '@type': 'SoftwareApplication',
-            name: 'AI Trip Planner',
-            applicationCategory: 'BusinessApplication',
-            operatingSystem: 'All',
-            offers: {
-              '@type': 'Offer',
-              price: '0',
-              priceCurrency: 'USD',
-            },
           },
         },
         {

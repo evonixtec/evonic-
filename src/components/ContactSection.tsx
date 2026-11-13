@@ -218,6 +218,17 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                     {COMPANY_INFO.contact.email}
                   </a>
                   <p className="text-xs text-slate-600 mt-1 font-medium">For formal tenders, export proposals & AMC agreements</p>
+                  <div className="mt-2.5 pt-2.5 border-t border-blue-100 flex flex-wrap gap-x-3 gap-y-1 text-[11px] font-semibold">
+                    <a href={`mailto:${COMPANY_INFO.contact.emails.support}`} className="text-blue-700 hover:underline">
+                      Support: {COMPANY_INFO.contact.emails.support}
+                    </a>
+                    <a href={`mailto:${COMPANY_INFO.contact.emails.privacy}`} className="text-slate-700 hover:underline">
+                      Privacy: {COMPANY_INFO.contact.emails.privacy}
+                    </a>
+                    <a href={`mailto:${COMPANY_INFO.contact.emails.security}`} className="text-slate-700 hover:underline">
+                      Security: {COMPANY_INFO.contact.emails.security}
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -286,7 +297,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                       </button>
                     </div>
                     <p className="text-[11px] text-slate-500">
-                      Dispatched to <span className="font-semibold text-slate-700">evonixtec@gmail.com</span>. Please quote this ID for immediate updates.
+                      Dispatched to <span className="font-semibold text-slate-700">info@evonixtec.com</span>. Please quote this ID for immediate updates.
                     </p>
                   </div>
 
@@ -322,7 +333,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                       Send a Direct Message & Get Free Quotation
                     </h3>
                     <p className="text-xs text-slate-500 mt-1">
-                      Fill out the form below. An instant Reference Code will be generated and routed directly to <span className="text-slate-800 font-bold">evonixtec@gmail.com</span>.
+                      Fill out the form below. An instant Reference Code will be generated and routed directly to <span className="text-slate-800 font-bold">info@evonixtec.com</span>.
                     </p>
                   </div>
 
@@ -515,7 +526,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                       {isSubmitting ? (
                         <>
                           <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                          <span>Routing to evonixtec@gmail.com...</span>
+                          <span>Routing to info@evonixtec.com...</span>
                         </>
                       ) : (
                         <>
@@ -526,7 +537,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                     </button>
 
                     <p className="text-[11px] text-slate-500 font-medium">
-                      Immediate routing to <span className="font-bold text-slate-800">evonixtec@gmail.com</span>
+                      Immediate routing to <span className="font-bold text-slate-800">info@evonixtec.com</span>
                     </p>
                   </div>
                 </form>

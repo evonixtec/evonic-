@@ -449,14 +449,27 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               </div>
 
               {/* Email */}
-              <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-teal-400 flex-shrink-0" />
-                <a
-                  href={`mailto:${COMPANY_INFO.contact.email}`}
-                  className="text-slate-200 hover:text-teal-300 transition-colors"
-                >
-                  {COMPANY_INFO.contact.email}
-                </a>
+              <div className="flex items-start gap-2">
+                <Mail className="w-3.5 h-3.5 text-teal-400 flex-shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  <a
+                    href={`mailto:${COMPANY_INFO.contact.email}`}
+                    className="text-slate-200 hover:text-teal-300 font-semibold transition-colors block"
+                  >
+                    {COMPANY_INFO.contact.email}
+                  </a>
+                  <div className="text-[11px] text-slate-400 flex flex-wrap gap-x-2.5 gap-y-0.5">
+                    <a href={`mailto:${COMPANY_INFO.contact.emails.support}`} className="hover:text-teal-300 transition-colors">
+                      {COMPANY_INFO.contact.emails.support}
+                    </a>
+                    <a href={`mailto:${COMPANY_INFO.contact.emails.privacy}`} className="hover:text-teal-300 transition-colors">
+                      {COMPANY_INFO.contact.emails.privacy}
+                    </a>
+                    <a href={`mailto:${COMPANY_INFO.contact.emails.security}`} className="hover:text-teal-300 transition-colors">
+                      {COMPANY_INFO.contact.emails.security}
+                    </a>
+                  </div>
+                </div>
               </div>
 
               {/* Regional Hubs Link */}

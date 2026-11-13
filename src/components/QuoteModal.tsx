@@ -344,7 +344,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                   </button>
                 </div>
                 <p className="text-xs text-slate-600">
-                  Transmitted directly to our engineering desk (<span className="font-semibold text-slate-900">evonixtec@gmail.com</span>).
+                  Transmitted directly to our engineering desk (<span className="font-semibold text-slate-900">info@evonixtec.com</span>).
                 </p>
               </div>
 
@@ -376,13 +376,13 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                   </span>
                 </div>
                 <p className="text-slate-600 text-[11px]">
-                  {submittedQuote.emailDispatchMessage || `Routed to evonixtec@gmail.com`}
+                  {submittedQuote.emailDispatchMessage || `Routed to info@evonixtec.com`}
                 </p>
                 {submittedQuote.needsActivation && (
                   <div className="mt-2 p-2 rounded-lg bg-amber-50 border border-amber-200 text-amber-900 text-[11px] flex items-start gap-1.5">
                     <AlertCircle className="w-3.5 h-3.5 text-amber-600 flex-shrink-0 mt-0.5" />
                     <span>
-                      <strong>Admin Note:</strong> Please click <em>"Activate Form"</em> in the email sent by FormSubmit to evonixtec@gmail.com.
+                      <strong>Admin Note:</strong> Please click <em>"Activate Form"</em> in the email sent by FormSubmit to info@evonixtec.com.
                     </span>
                   </div>
                 )}
@@ -405,7 +405,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                   className="w-full py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs border border-slate-200 flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
                 >
                   <Mail className="w-3.5 h-3.5 text-slate-500" />
-                  <span>Send Direct Email Copy to evonixtec@gmail.com</span>
+                  <span>Send Direct Email Copy to info@evonixtec.com</span>
                 </a>
 
                 <div className="pt-2">
@@ -762,7 +762,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                   {isSubmitting ? (
                     <>
                       <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      <span>Dispatching to evonixtec@gmail.com...</span>
+                      <span>Dispatching to info@evonixtec.com...</span>
                     </>
                   ) : (
                     <>
@@ -773,7 +773,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                 </button>
 
                 <p className="text-[11px] text-slate-500 font-medium">
-                  Direct routing to <span className="font-bold text-slate-800">evonixtec@gmail.com</span>
+                  Direct routing to <span className="font-bold text-slate-800">info@evonixtec.com</span>
                 </p>
               </div>
             </form>

@@ -978,10 +978,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           <div className="flex items-center gap-2">
             <span className="text-[11px] text-slate-500">Sialkot Service Desk</span>
             <a
-              href={`mailto:${COMPANY_INFO.contact.email}`}
+              href={`mailto:${COMPANY_INFO.contact.emails.support}`}
               className="text-red-600 hover:underline text-[11px] font-medium"
             >
-              {COMPANY_INFO.contact.email}
+              {COMPANY_INFO.contact.emails.support}
             </a>
           </div>
         </div>
