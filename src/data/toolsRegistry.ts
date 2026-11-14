@@ -289,8 +289,20 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     ],
     faqs: [
       {
-        q: 'How does Payoneer deduct fees on Etsy payouts?',
-        a: 'Payoneer applies a 0.5% receiving fee, approx 2.0% wholesale FX spread below interbank rate, and $1.50 local wire transfer.',
+        q: 'How does the Etsy Offsite Ads fee calculator 2027 work?',
+        a: 'Etsy charges a 15% Offsite Ads fee if your shop has earned under $10,000 USD over the preceding 12 months (mandatory when opted in), or a mandatory 12% rate once annual sales exceed $10,000 USD, capped at $100 per order. Our calculator models both tiers so you can price custom orders profitably into 2027.',
+      },
+      {
+        q: 'What base Etsy seller fees apply on each 2026/2027 transaction?',
+        a: 'Standard Etsy deductions include a $0.20 USD listing fee per item, a 6.5% transaction fee applied to both item price and customer shipping, plus regional Etsy Payments processing fees (typically 3% to 4.5% plus a fixed per-order amount depending on your bank country).',
+      },
+      {
+        q: 'How does Payoneer deduct fees on cross-border Etsy payouts?',
+        a: 'Payoneer typically applies a 0.5% receiving charge, an approximate 2.0% currency conversion spread below interbank rates, and a $1.50 local bank withdrawal fee depending on account corridor.',
+      },
+      {
+        q: 'Does Etsy charge the 6.5% transaction fee on shipping charges?',
+        a: 'Yes. Etsy applies its 6.5% transaction fee to the total order value paid by the buyer, covering both item retail price and shipping/gift-wrap charges.',
       },
     ],
   },
@@ -367,8 +379,20 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     ],
     faqs: [
       {
-        q: 'What is the TikTok Shop UK commission rate in 2026?',
-        a: 'Standard UK marketplace commission is 9% (VAT inclusive) on eligible product categories.',
+        q: 'How does this TikTok Shop seller referral fee and affiliate commission calculator 2026/2027 work?',
+        a: 'Select your target marketplace (US, UK, EU, or cross-border), enter your selling price and COGS, and input your creator affiliate rate. The calculator deducts the marketplace referral commission, creator commission, and payment fees to show your exact net payout per unit.',
+      },
+      {
+        q: 'What are the UK, US, and EU TikTok Shop referral commission rates for 2026/2027?',
+        a: 'Standard UK marketplace commission is 9% (VAT-inclusive), EU standard rates stand at 9% across general categories, and US referral fees sit at 6% standard (with 8% applying to newer or select categories). Check your Seller Center rate card for category exceptions.',
+      },
+      {
+        q: 'How do creator affiliate commissions affect net seller payout breakdown?',
+        a: 'Creator affiliate percentages (commonly 10% to 20%) are deducted directly from the net eligible item price alongside platform referral fees and shipping subsidies, significantly lowering take-home margin if left unmodeled.',
+      },
+      {
+        q: 'Are buyer refunds or free-shipping co-funded vouchers deducted from TikTok Shop settlement payouts?',
+        a: 'Yes. Merchant-funded voucher shares, shipping co-subsidies, and refunded order adjustments are netted out of your rolling settlement statement before bank disbursement.',
       },
     ],
   },
@@ -462,20 +486,20 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     ],
     faqs: [
       {
-        q: 'What is the Low-Inventory-Level Fee on Amazon?',
-        a: 'Amazon charges an additional fee on standard-size products if inventory levels relative to historical sales drop below 28 days of supply.',
+        q: 'How does the Amazon FBA Q4 peak storage fee & return cost calculator impact unit profit?',
+        a: 'Between October 15 and January 15, Q4 peak storage rates rise to $2.40 per cubic foot alongside holiday fulfillment surcharges (+$0.19 to $0.45/unit). Factoring return rate percentages and non-refundable refund administration fees reveals your true net margin after returns.',
       },
       {
-        q: 'When do Q4 Holiday Peak fees end?',
-        a: 'Amazon\'s seasonal holiday peak fulfillment fees typically run from October 15 through January 15, after which rates return to standard off-peak schedules.',
+        q: 'What is the Low-Inventory-Level Fee on Amazon FBA in 2026/2027?',
+        a: 'Amazon applies a Low-Inventory-Level surcharge on standard-size products when historical inventory days of supply fall below 28 days relative to customer demand.',
       },
       {
-        q: 'How is the Amazon Referral Fee calculated?',
-        a: 'Referral fees are calculated as a percentage of the total sales price paid by the buyer, including the item price, shipping fees, and gift-wrapping charges, usually averaging between 8% and 15%.',
+        q: 'What happens to net profit margin after customer returns on Amazon FBA?',
+        a: 'When an FBA item is returned, Amazon retains the outbound FBA fulfillment fee and charges a refund administration fee (the lesser of $5.00 or 20% of the referral fee) plus return processing fees on high-return categories such as apparel.',
       },
       {
-        q: 'How does the Low-Price FBA program work?',
-        a: 'Items priced under $10 automatically qualify for reduced FBA rates, receiving an instant $0.77 discount per unit fulfilled compared to standard FBA rates.',
+        q: 'How is the Amazon Referral Fee calculated alongside Low-Price FBA?',
+        a: 'Referral fees are a percentage of total buyer payment (usually 8% to 15%, $0.30 minimum), while eligible products priced under $10 automatically receive a $0.77 Low-Price FBA fulfillment discount.',
       },
     ],
   },
@@ -627,20 +651,20 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     ],
     faqs: [
       {
+        q: 'How does the Stripe international currency conversion (FX) fee calculator work?',
+        a: 'When charging a customer in a foreign currency or accepting a card issued outside your merchant country, Stripe adds a +1.5% international card fee plus +1.0% when currency conversion (FX) is needed, raising a 2.9% + $0.30 US charge to 5.4% + $0.30 total.',
+      },
+      {
         q: 'Does Stripe refund processing fees when I issue a customer refund?',
-        a: 'No. Stripe retains the fixed processing fee and percentage charges incurred during the initial transaction when a refund is processed.',
+        a: 'No. Stripe retains the fixed $0.30 and percentage processing fees from the original charge when a full or partial refund is processed.',
       },
       {
-        q: 'What is the difference between Domestic and International Stripe fees?',
-        a: 'Domestic cards registered within your merchant account\'s home country are charged at the standard 2.9% + $0.30 rate. Cards issued internationally incur an additional 1.5% cross-border fee, plus an extra 1% if currency conversion is required.',
+        q: 'How are reverse Stripe fees calculated for exact net invoice payouts?',
+        a: 'Reverse payout calculation solves for the gross invoice charge needed so you receive your exact target net payout after Stripe deductions: Gross = (Target Net + Fixed Fee) / (1 - Total Percentage Rate).',
       },
       {
-        q: 'How can businesses reduce Stripe processing costs?',
-        a: 'High-volume businesses processing over $100,000 monthly can request customized interchange-plus pricing from Stripe sales. For domestic B2B invoicing, enabling ACH Direct Debit caps processing fees at $5 per transaction.',
-      },
-      {
-        q: 'How are reverse Stripe fees calculated?',
-        a: 'Reverse calculation determines the gross amount you must invoice a client so that after Stripe deducts its standard fees, you receive your exact net required amount. Formula: (Net Amount + $0.30) / (1 - 0.029).',
+        q: 'How can global SaaS and B2B exporters lower cross-border Stripe transaction fees?',
+        a: 'Settling charges into matching local currency bank accounts (USD, EUR, GBP) avoids the 1.0% FX spread, and collecting domestic B2B invoices via ACH Direct Debit caps Stripe fees at $5.00 per transfer.',
       },
     ],
   },
@@ -679,16 +703,20 @@ export const toolsRegistry: Record<string, ToolMetadata> = {
     ],
     faqs: [
       {
-        q: 'What is the difference between Temu fully-managed and semi-managed?',
-        a: 'Fully-managed handles local shipping from domestic warehouses; semi-managed requires sellers to ship overseas orders directly from local inventory.',
+        q: 'How do you calculate Temu seller profit margin after ad spend (ROAS)?',
+        a: 'Subtract your landed product cost, local warehouse shipping, semi-managed commission (2% to 5%), and customer acquisition cost (Sale Price / ROAS) from retail revenue. For example, at a 4.0x ROAS, paid ads consume 25% of gross order value before net margin.',
       },
       {
-        q: 'How does Temu calculate seller settlement pricing?',
-        a: 'In the fully-managed model, you bid a wholesale supply price. In semi-managed, you list a retail price and pay Temu a 2% to 5% commission plus payment processing.',
+        q: 'What is the difference between Temu fully-managed and semi-managed in 2026/2027?',
+        a: 'Under fully-managed, Temu sets retail prices and handles marketing from central supply; under semi-managed, merchants fulfill from domestic or regional warehouses and pay a 2% to 5% platform commission.',
       },
       {
-        q: 'What quality return deductions does Temu enforce?',
-        a: 'Temu imposes fines of up to 5x product value for severe quality violations or delayed fulfillment beyond contractual dispatch windows.',
+        q: 'How do Temu rolling reserves and quality return deductions work?',
+        a: 'Temu withholds a 10% to 15% rolling reserve during settlement windows and can issue dispute penalties up to multiple times item value for late shipment or verified quality defects.',
+      },
+      {
+        q: 'What minimum profit margin should Temu semi-managed sellers target before scaling ads?',
+        a: 'Aim for at least 35% to 45% pre-ad gross contribution margin so ad spend, return rate allowances, and reserve holdbacks leave healthy positive cash flow.',
       },
     ],
   },
@@ -1114,6 +1142,7 @@ export const TOOL_SLUG_ALIASES: Record<string, string> = {
   'ebay': 'ebay-fee-calculator',
   'ebay-fee': 'ebay-fee-calculator',
   'tiktok-calculator': 'tiktok-shop-fee-calculator',
+  'tiktok-shop-calculator': 'tiktok-shop-fee-calculator',
   'tiktok-shop': 'tiktok-shop-fee-calculator',
   'tiktok': 'tiktok-shop-fee-calculator',
   'amazon-fba': 'amazon-fba-calculator',

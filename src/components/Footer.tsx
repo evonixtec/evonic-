@@ -1,5 +1,5 @@
 import React from 'react';
-import { COMPANY_INFO, SERVICES } from '../data/content';
+import { COMPANY_INFO } from '../data/content';
 import { getMainAgencyDomainUrl, getToolsDomainUrl, getStoreDomainUrl } from '../lib/domainUtils';
 import { SectionId } from '../types';
 import { EvonixLogo } from './EvonixLogo';
@@ -10,20 +10,14 @@ import {
   Phone,
   MessageSquare,
   ArrowUp,
-  Sparkles,
+  ArrowRight,
   ShieldCheck,
-  CheckCircle2,
   ExternalLink,
-  Clock,
   Wrench,
   Cpu,
-  FileText,
-  Barcode,
   Building2,
-  ChevronRight,
-  Tag,
-  BookOpen,
   Briefcase,
+  BookOpen,
 } from 'lucide-react';
 
 interface FooterProps {
@@ -41,7 +35,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
     {
       name: 'LinkedIn',
       url: COMPANY_INFO.contact.socials?.linkedin || 'https://www.linkedin.com/company/evonix-technologies',
-      hoverClass: 'hover:bg-[#0077b5] hover:border-[#0077b5] hover:text-white',
       label: 'LinkedIn Profile',
       icon: (
         <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -52,7 +45,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
     {
       name: 'Facebook',
       url: COMPANY_INFO.contact.socials?.facebook || 'https://www.facebook.com/profile.php?id=61595290703138',
-      hoverClass: 'hover:bg-[#1877f2] hover:border-[#1877f2] hover:text-white',
       label: 'Facebook Page',
       icon: (
         <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -63,7 +55,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
     {
       name: 'Instagram',
       url: COMPANY_INFO.contact.socials?.instagram || 'https://www.instagram.com/evonixtechnologies',
-      hoverClass: 'hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:border-transparent hover:text-white',
       label: 'Instagram Showcase',
       icon: (
         <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -74,85 +65,75 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
     {
       name: 'WhatsApp',
       url: COMPANY_INFO.contact.socials?.whatsapp || 'https://wa.me/923263244002',
-      hoverClass: 'hover:bg-[#25D366] hover:border-[#25D366] hover:text-white',
       label: 'Direct WhatsApp Chat',
       icon: <MessageSquare className="w-4 h-4" />,
     },
   ];
 
   return (
-    <footer id="main-footer" className="relative bg-[#020617] text-slate-300 border-t border-slate-900 pt-16 pb-12 overflow-hidden selection:bg-teal-500/30 selection:text-white print:hidden">
-      {/* UAE / Dubai Tech Silhouette Subtle Background (Darkened with deep contrast) */}
-      <div 
-        className="absolute inset-0 pointer-events-none bg-cover bg-center opacity-15 mix-blend-luminosity"
-        style={{
-          backgroundImage: `url('/images/hero_dubai_tech_1790044690065.webp')`,
-        }}
-      />
-      <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-black/95 via-[#020617]/95 to-black" />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* 1. Top Emergency Help Desk Banner */}
-        <div className="pb-10 border-b border-slate-800/80 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-          <div className="lg:col-span-8 space-y-2.5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/90 border border-teal-500/30 text-teal-300 text-xs font-semibold shadow-xs">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>On-Duty Desk: Kotli Behram, Sialkot, Pakistan • UAE Heritage</span>
-            </div>
-            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+    <footer
+      id="main-footer"
+      className="bg-[#111827] text-slate-300 border-t border-slate-800 pt-16 pb-12 selection:bg-[#C81E1E] selection:text-white print:hidden"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* 1. Top Desk Inquiry Row */}
+        <div className="pb-10 border-b border-white/10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div className="lg:col-span-8 space-y-2">
+            <p className="text-xs font-medium text-slate-400">
+              Engineering Desk · Kotli Behram, Sialkot · UAE Heritage Since 2004
+            </p>
+            <h2 className="text-xl sm:text-2xl font-semibold text-white tracking-tight">
               {COMPANY_INFO.tagline1}
             </h2>
             <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
-              Got a question? Call us. We reply in 2 hours. 20+ years of Dubai IT engineering standards deployed right here in Sialkot.
+              Got a question? Call us. We reply in 2 hours. Twenty years of Dubai corporate software standards deployed directly in Sialkot.
             </p>
           </div>
 
           <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col items-start lg:items-end gap-3 w-full">
             <button
               onClick={onOpenQuote}
-              className="w-full sm:w-auto px-6 py-3 rounded-xl bg-teal-500 hover:bg-teal-400 active:bg-teal-600 text-slate-950 font-extrabold text-xs sm:text-sm shadow-lg shadow-teal-500/20 transition-all cursor-pointer flex items-center justify-center gap-2 hover:scale-[1.02]"
+              className="w-full sm:w-auto px-5 py-3 rounded-lg bg-[#C81E1E] hover:bg-[#A6171E] text-white font-semibold text-xs sm:text-sm transition-colors cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap"
             >
-              <Sparkles className="w-4 h-4 text-slate-950" />
               <span>Get Free Consultation</span>
+              <ArrowRight className="w-4 h-4" />
             </button>
 
             <a
               href={`https://wa.me/${COMPANY_INFO.contact.whatsapp}?text=${encodeURIComponent('Hello evonix, I need urgent IT support in Sialkot.')}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-emerald-400 font-bold text-xs border border-emerald-500/40 transition-colors flex items-center justify-center gap-2 shadow-xs"
+              className="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 font-medium text-xs border border-white/10 transition-colors flex items-center justify-center gap-2 whitespace-nowrap"
             >
-              <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
+              <MessageSquare className="w-3.5 h-3.5 text-slate-300" />
               <span>WhatsApp: +{COMPANY_INFO.contact.whatsappDisplay}</span>
             </a>
           </div>
         </div>
 
-        {/* 2. Main 5-Column Content Grid */}
+        {/* 2. Main 5-Column Directory */}
         <div className="py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 text-xs">
-          {/* Column 1: Brand & Compliance Credentials (4 cols on lg) */}
+          {/* Column 1: Brand & Credentials */}
           <div className="lg:col-span-4 space-y-4">
             <EvonixLogo size="md" forceTheme="dark" />
-            <p className="text-xs text-slate-300 leading-relaxed max-w-sm mt-3">
+            <p className="text-xs text-slate-400 leading-relaxed max-w-sm mt-3">
               evonix delivers two decades of enterprise software engineering, autonomous AI workflows, and industrial manufacturing ERP systems from Dubai, UAE to Sialkot, Pakistan.
             </p>
 
-            {/* Badges */}
-            <div className="space-y-2 pt-1">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 text-slate-200 font-medium text-[11px]">
-                <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+            <div className="space-y-1.5 pt-1 text-[11px] text-slate-300">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-3.5 h-3.5 text-slate-400 flex-shrink-0" />
                 <span>SECP Registered IT Company (SMC)</span>
               </div>
-              <div className="flex items-center gap-2 text-[11px] text-slate-300">
-                <Globe className="w-3.5 h-3.5 text-teal-400 flex-shrink-0" />
+              <div className="flex items-center gap-2">
+                <Globe className="w-3.5 h-3.5 text-slate-400 flex-shrink-0" />
                 <span>Dubai IT Heritage Since 2004</span>
               </div>
             </div>
 
-            {/* Social Links */}
             <div className="pt-2">
-              <span className="text-[10px] font-bold text-slate-400 block mb-2 uppercase tracking-wider">
-                Follow Us Online
+              <span className="text-[11px] font-medium text-slate-400 block mb-2">
+                Official Channels
               </span>
               <div className="flex items-center gap-2">
                 {socialLinks.map((social) => (
@@ -163,7 +144,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                     rel="noopener noreferrer"
                     aria-label={social.label}
                     title={social.label}
-                    className={`p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md flex items-center justify-center cursor-pointer ${social.hoverClass}`}
+                    className="p-2.5 rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 hover:text-white transition-colors flex items-center justify-center cursor-pointer"
                   >
                     {social.icon}
                   </a>
@@ -172,17 +153,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             </div>
           </div>
 
-          {/* Column 2: Core Services (2 cols on lg) */}
+          {/* Column 2: Core Services */}
           <div className="lg:col-span-2 space-y-3">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
-              <Wrench className="w-3.5 h-3.5 text-teal-400" />
+            <h3 className="text-xs font-semibold text-white flex items-center gap-1.5">
+              <Wrench className="w-3.5 h-3.5 text-slate-400" />
               <span>Core Services</span>
             </h3>
-            <ul className="space-y-2 text-slate-300 font-medium">
+            <ul className="space-y-2 text-slate-300">
               <li>
                 <button
                   onClick={() => onNavigate('services')}
-                  className="hover:text-teal-300 transition-colors text-left cursor-pointer text-slate-200"
+                  className="hover:text-white transition-colors text-left cursor-pointer"
                 >
                   Enterprise Software Engineering
                 </button>
@@ -190,8 +171,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               <li>
                 <a
                   href="/sialkot-export-erp"
-                  onClick={(e) => { e.preventDefault(); onNavigate('sialkot-export-erp'); }}
-                  className="hover:text-teal-300 transition-colors text-left cursor-pointer block font-bold text-teal-400"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('sialkot-export-erp');
+                  }}
+                  className="hover:text-white transition-colors text-left cursor-pointer block font-medium text-white"
                 >
                   Sialkot Export Industrial ERP
                 </a>
@@ -199,7 +183,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               <li>
                 <button
                   onClick={() => onNavigate('services')}
-                  className="hover:text-teal-300 transition-colors text-left cursor-pointer text-slate-200"
+                  className="hover:text-white transition-colors text-left cursor-pointer"
                 >
                   Enterprise AI &amp; Cloud Pipelines
                 </button>
@@ -207,7 +191,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               <li>
                 <button
                   onClick={() => onNavigate('services')}
-                  className="hover:text-teal-300 transition-colors text-left cursor-pointer text-slate-200"
+                  className="hover:text-white transition-colors text-left cursor-pointer"
                 >
                   Retail &amp; FBR POS Systems
                 </button>
@@ -217,435 +201,335 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                   href={getStoreDomainUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-amber-300 transition-colors text-left text-amber-400 font-bold flex items-center gap-1"
+                  className="hover:text-white transition-colors text-left block"
                 >
-                  <span>Hardware &amp; POS Store ↗</span>
+                  Hardware &amp; POS Store
                 </a>
               </li>
               <li>
                 <a
-                  href={getStoreDomainUrl('/doorstep-support')}
+                  href={getStoreDomainUrl('/services/doorstep-support')}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-emerald-300 transition-colors text-left text-emerald-400 font-bold flex items-center gap-1"
+                  className="hover:text-white transition-colors text-left block"
                 >
-                  <span>Doorstep Support (45m Dispatch) ↗</span>
+                  Doorstep Support (45m Dispatch)
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Web Tools Suite (2 cols on lg) */}
+          {/* Column 3: Web Tools Hub */}
           <div className="lg:col-span-2 space-y-3">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
-              <Cpu className="w-3.5 h-3.5 text-teal-400" />
+            <h3 className="text-xs font-semibold text-white flex items-center gap-1.5">
+              <Cpu className="w-3.5 h-3.5 text-slate-400" />
               <span>Web Tools Hub</span>
             </h3>
-            <ul className="space-y-2 text-slate-300 font-medium">
+            <ul className="space-y-2 text-slate-300">
               <li>
                 <a
-                  href="/ebay-fee-calculator"
-                  onClick={(e) => { e.preventDefault(); onNavigate('ebay-fee-calculator'); }}
-                  className="hover:text-blue-300 transition-colors text-left cursor-pointer text-blue-400 font-bold flex items-center gap-1.5"
+                  href="/tools/etsy-fee-calculator"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('etsy-fee-calculator');
+                  }}
+                  className="hover:text-white transition-colors text-left cursor-pointer block"
                 >
-                  <span>eBay Fee &amp; Profit Calculator</span>
-                  <span className="text-[9px] bg-blue-600 text-white px-1.5 py-0.2 rounded font-black">HOT</span>
+                  Etsy Fee &amp; Profit Calculator
                 </a>
               </li>
               <li>
                 <a
-                  href="/invoice"
-                  onClick={(e) => { e.preventDefault(); onNavigate('invoice'); }}
-                  className="hover:text-amber-300 transition-colors text-left cursor-pointer text-amber-400 font-bold flex items-center gap-1.5"
+                  href="/tools/ebay-fee-calculator"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('ebay-fee-calculator');
+                  }}
+                  className="hover:text-white transition-colors text-left cursor-pointer block"
                 >
-                  <span>Micro-Invoice Generator</span>
-                  <span className="text-[9px] bg-amber-500 text-slate-950 px-1.5 py-0.2 rounded font-black">FREE</span>
+                  eBay Fee &amp; Profit Builder
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/tools/invoice-generator"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('invoice');
+                  }}
+                  className="hover:text-white transition-colors text-left cursor-pointer block"
+                >
+                  Micro-Invoice Generator
                 </a>
               </li>
               <li>
                 <a
                   href="/ai-tools-name-for-travel-itinerary"
-                  onClick={(e) => { e.preventDefault(); onNavigate('ai-travel-tools'); }}
-                  className="hover:text-teal-300 transition-colors text-left cursor-pointer text-teal-400 font-bold flex items-center gap-1.5"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('ai-travel-tools');
+                  }}
+                  className="hover:text-white transition-colors text-left cursor-pointer block"
                 >
-                  <span>10 Best AI Travel Tools</span>
-                  <span className="text-[9px] bg-teal-600 text-white px-1.5 py-0.2 rounded font-black">NEW</span>
+                  10 Best AI Travel Tools
                 </a>
               </li>
               <li>
                 <a
                   href="/tools/ai-trip-planner"
-                  onClick={(e) => { e.preventDefault(); onNavigate('ai-trip-planner'); }}
-                  className="hover:text-teal-300 transition-colors text-left cursor-pointer text-slate-200 font-semibold flex items-center gap-1.5"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('ai-trip-planner');
+                  }}
+                  className="hover:text-white transition-colors text-left cursor-pointer block"
                 >
-                  <span>AI Trip Planner Engine</span>
-                  <span className="text-[9px] bg-slate-800 text-teal-400 border border-teal-500/40 px-1 py-0.2 rounded font-bold">FREE</span>
+                  AI Trip Planner Engine
                 </a>
               </li>
               <li>
                 <a
-                  href="/factory-network-tester"
-                  onClick={(e) => { e.preventDefault(); onNavigate('factory-network-tester'); }}
-                  className="hover:text-blue-300 transition-colors text-left cursor-pointer text-blue-300 font-semibold flex items-center gap-1.5"
+                  href="/tools/factory-network-tester"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('factory-network-tester');
+                  }}
+                  className="hover:text-white transition-colors text-left cursor-pointer block"
                 >
-                  <span>Factory Network Tester</span>
-                  <span className="text-[9px] bg-blue-900/60 text-blue-300 px-1.5 py-0.2 rounded font-bold">PING</span>
+                  Factory Network Tester
                 </a>
               </li>
               <li>
                 <a
-                  href="/ecommerce-calculator"
-                  onClick={(e) => { e.preventDefault(); onNavigate('ecommerce-calculator'); }}
-                  className="hover:text-sky-300 transition-colors text-left cursor-pointer text-sky-400 font-bold flex items-center gap-1.5"
+                  href="/tools/ecommerce-calculator"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('ecommerce-calculator');
+                  }}
+                  className="hover:text-white transition-colors text-left cursor-pointer block"
                 >
-                  <span>E-Commerce Margin Calc</span>
-                  <span className="text-[9px] bg-sky-600 text-white px-1.5 py-0.2 rounded font-black">TOOL</span>
+                  E-Commerce Margin Calc
                 </a>
               </li>
               <li>
                 <a
-                  href="/export-barcode-studio"
-                  onClick={(e) => { e.preventDefault(); onNavigate('export-barcode-studio'); }}
-                  className="hover:text-amber-300 transition-colors text-left cursor-pointer text-amber-300 font-semibold flex items-center gap-1.5"
+                  href="/tools/export-barcode-studio"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('export-barcode-studio');
+                  }}
+                  className="hover:text-white transition-colors text-left cursor-pointer block"
                 >
-                  <span>Export Barcode Studio</span>
-                  <span className="text-[9px] bg-amber-500 text-slate-900 px-1.5 py-0.2 rounded font-black">BARCODE</span>
+                  Export Barcode Studio
                 </a>
               </li>
               <li>
                 <a
-                  href="/schema-generator"
-                  onClick={(e) => { e.preventDefault(); onNavigate('schema-generator'); }}
-                  className="hover:text-emerald-300 transition-colors text-left cursor-pointer text-slate-200 flex items-center gap-1"
+                  href="/tools/schema-generator"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('schema-generator');
+                  }}
+                  className="hover:text-white transition-colors text-left cursor-pointer block"
                 >
-                  <span>JSON-LD Schema Generator</span>
-                  <span className="text-[9px] bg-emerald-600 text-white px-1.5 py-0.2 rounded font-black">AEO</span>
+                  JSON-LD Schema Generator
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Column 4: Client Portfolio & Tech Blogs (3 cols on lg) */}
-          <div className="lg:col-span-3 space-y-4">
-            {/* Client Portfolio Sub-block */}
+          {/* Column 4: Portfolio & Guides */}
+          <div className="lg:col-span-2 space-y-4">
             <div className="space-y-2">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
-                <Briefcase className="w-3.5 h-3.5 text-teal-400" />
+              <h3 className="text-xs font-semibold text-white flex items-center gap-1.5">
+                <Briefcase className="w-3.5 h-3.5 text-slate-400" />
                 <span>Client Portfolio</span>
               </h3>
-              <ul className="space-y-1.5 text-slate-200 font-medium">
+              <ul className="space-y-1.5 text-slate-300">
                 <li>
                   <button
                     onClick={() => onNavigate('portfolio')}
-                    className="hover:text-teal-300 transition-colors text-left cursor-pointer block text-slate-200"
+                    className="hover:text-white transition-colors text-left cursor-pointer block"
                   >
-                    Dubai Web Client Deployments
+                    Dubai Web Deployments
                   </button>
                 </li>
                 <li>
                   <button
                     onClick={() => onNavigate('portfolio')}
-                    className="hover:text-teal-300 transition-colors text-left cursor-pointer block text-slate-200"
+                    className="hover:text-white transition-colors text-left cursor-pointer block"
                   >
-                    Custom Software &amp; POS Case Studies
+                    Software &amp; POS Studies
                   </button>
                 </li>
                 <li>
                   <button
                     onClick={() => onNavigate('portfolio')}
-                    className="hover:text-teal-300 transition-colors text-left cursor-pointer block text-slate-200"
+                    className="hover:text-white transition-colors text-left cursor-pointer block"
                   >
-                    Sialkot Export Industry ERP
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() => onNavigate('portfolio')}
-                    className="text-teal-400 font-bold hover:text-teal-300 hover:underline transition-colors flex items-center gap-1 pt-0.5 cursor-pointer"
-                  >
-                    <span>View Full Portfolio Page →</span>
+                    Sialkot Export ERP Cases
                   </button>
                 </li>
               </ul>
             </div>
 
-            {/* Tech Blogs Sub-block */}
-            <div className="space-y-2 pt-2 border-t border-slate-800/80">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
-                <BookOpen className="w-3.5 h-3.5 text-teal-400" />
-                <span>Technical Insights &amp; Case Studies</span>
+            <div className="space-y-2 pt-3 border-t border-white/10">
+              <h3 className="text-xs font-semibold text-white flex items-center gap-1.5">
+                <BookOpen className="w-3.5 h-3.5 text-slate-400" />
+                <span>Technical Guides</span>
               </h3>
-              <ul className="space-y-1.5 text-slate-200 font-medium">
+              <ul className="space-y-1.5 text-slate-300">
                 <li>
                   <button
                     onClick={() => onNavigate('guides')}
-                    className="hover:text-teal-300 transition-colors text-left cursor-pointer block text-slate-200"
+                    className="hover:text-white transition-colors text-left cursor-pointer block"
                   >
-                    Enterprise Software Architecture Guides
+                    Architecture &amp; ERP Audits
                   </button>
                 </li>
                 <li>
                   <button
                     onClick={() => onNavigate('guides')}
-                    className="hover:text-teal-300 transition-colors text-left cursor-pointer block text-slate-200"
+                    className="hover:text-white transition-colors text-left cursor-pointer block font-medium text-white"
                   >
-                    Sialkot Export Manufacturing ERP Audits
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() => onNavigate('guides')}
-                    className="hover:text-teal-300 transition-colors text-left cursor-pointer block text-slate-200"
-                  >
-                    Autonomous AI Pipeline Case Studies
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() => onNavigate('guides')}
-                    className="text-teal-400 font-bold hover:text-teal-300 hover:underline transition-colors flex items-center gap-1 pt-0.5 cursor-pointer"
-                  >
-                    <span>Open Case Studies &amp; Articles →</span>
+                    Read Technical Articles
                   </button>
                 </li>
               </ul>
             </div>
           </div>
 
-          {/* Column 5: Headquarters & Contact Desk (2 cols on lg) */}
+          {/* Column 5: Headquarters & Contact Desk */}
           <div className="lg:col-span-2 space-y-3">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
-              <Building2 className="w-3.5 h-3.5 text-teal-400" />
-              <span>Headquarters &amp; Hub</span>
+            <h3 className="text-xs font-semibold text-white flex items-center gap-1.5">
+              <Building2 className="w-3.5 h-3.5 text-slate-400" />
+              <span>Headquarters</span>
             </h3>
-            <div className="space-y-2.5 text-slate-300">
-              {/* Styled Sialkot Tech Hub Card */}
-              <div className="p-3 rounded-xl bg-slate-900 border border-slate-700/80 text-slate-200 leading-snug space-y-1.5 shadow-sm">
-                <div className="flex items-center justify-between">
-                  <span className="text-teal-400 font-extrabold text-[11px] uppercase tracking-wider flex items-center gap-1">
-                    <MapPin className="w-3 h-3 text-teal-400" />
-                    <span>Sialkot Engineering Hub</span>
-                  </span>
-                  <span className="text-[10px] text-slate-400 font-mono">Sialkot</span>
+            <div className="space-y-3 text-slate-300">
+              <div className="p-3 rounded-lg bg-white/5 border border-white/10 space-y-1.5">
+                <div className="flex items-center justify-between text-[11px] font-semibold text-white">
+                  <span>Sialkot Engineering Hub</span>
                 </div>
-                <p className="text-[11px] text-slate-300 font-medium leading-relaxed">
+                <p className="text-[11px] text-slate-400 leading-relaxed">
                   {COMPANY_INFO.contact.address}
                 </p>
-                <div className="inline-flex items-center gap-1 text-[10px] text-emerald-400 font-bold bg-emerald-950/80 border border-emerald-800/80 px-2 py-0.5 rounded">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>24/7 Enterprise SLA Support</span>
-                </div>
+                <p className="text-[10px] font-mono text-slate-300">
+                  24/7 Enterprise SLA Desk
+                </p>
               </div>
 
-              {/* Direct Phone */}
               <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-teal-400 flex-shrink-0" />
+                <Phone className="w-3.5 h-3.5 text-slate-400 flex-shrink-0" />
                 <a
                   href={`tel:${COMPANY_INFO.contact.phoneRaw}`}
-                  className="text-slate-200 hover:text-teal-300 font-semibold transition-colors"
+                  className="text-slate-200 hover:text-white font-medium transition-colors"
                 >
                   {COMPANY_INFO.contact.phoneDisplay}
                 </a>
               </div>
 
-              {/* Email */}
               <div className="flex items-start gap-2">
-                <Mail className="w-3.5 h-3.5 text-teal-400 flex-shrink-0 mt-0.5" />
+                <Mail className="w-3.5 h-3.5 text-slate-400 flex-shrink-0 mt-0.5" />
                 <div className="space-y-1">
                   <a
                     href={`mailto:${COMPANY_INFO.contact.email}`}
-                    className="text-slate-200 hover:text-teal-300 font-semibold transition-colors block"
+                    className="text-slate-200 hover:text-white font-medium transition-colors block"
                   >
                     {COMPANY_INFO.contact.email}
                   </a>
-                  <div className="text-[11px] text-slate-400 flex flex-wrap gap-x-2.5 gap-y-0.5">
-                    <a href={`mailto:${COMPANY_INFO.contact.emails.support}`} className="hover:text-teal-300 transition-colors">
+                  <div className="text-[11px] text-slate-400 flex flex-col gap-0.5">
+                    <a href={`mailto:${COMPANY_INFO.contact.emails.support}`} className="hover:text-white transition-colors">
                       {COMPANY_INFO.contact.emails.support}
                     </a>
-                    <a href={`mailto:${COMPANY_INFO.contact.emails.privacy}`} className="hover:text-teal-300 transition-colors">
+                    <a href={`mailto:${COMPANY_INFO.contact.emails.privacy}`} className="hover:text-white transition-colors">
                       {COMPANY_INFO.contact.emails.privacy}
                     </a>
-                    <a href={`mailto:${COMPANY_INFO.contact.emails.security}`} className="hover:text-teal-300 transition-colors">
+                    <a href={`mailto:${COMPANY_INFO.contact.emails.security}`} className="hover:text-white transition-colors">
                       {COMPANY_INFO.contact.emails.security}
                     </a>
                   </div>
                 </div>
               </div>
 
-              {/* Regional Hubs Link */}
-              <div className="pt-1">
+              <div>
                 <button
                   onClick={() => onNavigate('locations')}
-                  className="text-[11px] text-slate-300 hover:text-teal-300 font-medium transition-colors flex items-center gap-1 cursor-pointer"
+                  className="text-[11px] text-slate-300 hover:text-white font-medium transition-colors flex items-center gap-1 cursor-pointer"
                 >
-                  <MapPin className="w-3 h-3 text-teal-400" />
-                  <span>Paris Road, Cantt &amp; Regional Hubs →</span>
+                  <MapPin className="w-3 h-3 text-slate-400" />
+                  <span>Regional Hubs Directory</span>
                 </button>
               </div>
             </div>
           </div>
         </div>
 
-        {/* 3. Refined Quick Directory Row */}
-        <div className="py-6 my-6 border-y border-slate-800/80 space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
-              <Tag className="w-4 h-4 text-teal-400 flex-shrink-0" />
-              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-200">
-                Specialized Services, Industrial ERP &amp; Regional Hubs
-              </h3>
-            </div>
-            <span className="text-[11px] text-slate-300">
-              Serving Kotli Behram, Sialkot, Paris Road, Cantt, Daska, Sambrial &amp; Wazirabad
+        {/* 3. Multi-Domain Ecosystem */}
+        <div className="py-6 border-y border-white/10 mb-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+            <h4 className="text-xs font-semibold text-white">
+              Evonix Technologies Web Ecosystem
+            </h4>
+            <span className="text-xs text-slate-400">
+              Synchronized multi-domain infrastructure
             </span>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 text-xs">
-            {[
-              {
-                label: 'Doorstep IT Support',
-                sub: '45-Min Emergency Dispatch',
-                href: '/services/doorstep-support',
-                target: 'doorstep-support',
-                badge: 'DISPATCH',
-              },
-              {
-                label: 'Sialkot Export ERP',
-                sub: 'Surgical & Leather Billing',
-                href: '/sialkot-export-erp',
-                target: 'sialkot-export-erp',
-                badge: 'EXPORT',
-              },
-              {
-                label: 'IT Guidelines Hub',
-                sub: 'Factory Network Rules',
-                href: '/guidelines',
-                target: 'guidelines',
-                badge: 'STANDARDS',
-              },
-              {
-                label: 'Factory Latency Benchmark',
-                sub: 'Dry Port & Cloud Ping',
-                href: '/factory-network-tester',
-                target: 'factory-network-tester',
-                badge: 'PING',
-              },
-              {
-                label: 'Wazirabad Tech Hub',
-                sub: 'Cutlery & Hardware IT',
-                href: '/locations/wazirabad',
-                target: 'locations',
-                subTarget: 'wazirabad',
-                badge: 'HUB',
-              },
-              {
-                label: 'Sambrial Export Zone',
-                sub: 'Dry Port IT Support',
-                href: '/locations/sambrial',
-                target: 'locations',
-                subTarget: 'sambrial',
-                badge: 'DRY PORT',
-              },
-            ].map((item, idx) => (
-              <a
-                key={idx}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate(item.target);
-                }}
-                className="p-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-850 border border-slate-800 hover:border-teal-500/50 text-left transition-all cursor-pointer group block shadow-xs"
-              >
-                <div className="flex items-center justify-between gap-1">
-                  <span className="text-slate-200 font-bold text-xs group-hover:text-teal-300 transition-colors">
-                    {item.label}
-                  </span>
-                  {item.badge && (
-                    <span className="text-[8px] font-black px-1.5 py-0.5 rounded bg-teal-950/80 text-teal-300 border border-teal-700/60">
-                      {item.badge}
-                    </span>
-                  )}
-                </div>
-                <span className="text-[10px] text-slate-400 block mt-0.5 font-medium">
-                  {item.sub}
-                </span>
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* 3b. Evonix Ecosystem Domains (Main Agency, Tools Workstation, Hardware Store) */}
-        <div className="py-6 border-b border-slate-800/80 mb-6">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-            <div>
-              <span className="text-[10px] font-black uppercase tracking-widest text-teal-400 block">
-                Official Multi-Domain Architecture
-              </span>
-              <h4 className="text-sm font-black text-white">
-                Evonix Technologies Web Ecosystem
-              </h4>
-            </div>
-            <span className="text-xs text-slate-300">
-              Synchronized cross-domain network on high-speed Vercel Edge
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <a
               href={getMainAgencyDomainUrl()}
-              className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-teal-500/50 hover:bg-slate-850 transition-all group block shadow-xs"
+              className="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-white/25 transition-colors block"
             >
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-white group-hover:text-teal-300 transition-colors">
+                <span className="text-xs font-semibold text-white">
                   evonixtec.com
                 </span>
-                <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-teal-950/80 text-teal-300 border border-teal-700/80">
+                <span className="font-mono text-[10px] text-slate-400">
                   Main Agency
                 </span>
               </div>
-              <p className="text-[11px] text-slate-300 mt-1 leading-relaxed font-medium">
+              <p className="text-[11px] text-slate-400 mt-1.5 leading-relaxed">
                 B2B Software Engineering, Web Development &amp; Enterprise AI Solutions
               </p>
             </a>
 
             <a
               href={getToolsDomainUrl()}
-              className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-sky-500/50 hover:bg-slate-850 transition-all group block shadow-xs"
+              className="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-white/25 transition-colors block"
             >
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-white group-hover:text-sky-300 transition-colors">
+                <span className="text-xs font-semibold text-white">
                   tools.evonixtec.com
                 </span>
-                <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-sky-950/80 text-sky-300 border border-sky-700/80">
+                <span className="font-mono text-[10px] text-slate-400">
                   Free Workstation
                 </span>
               </div>
-              <p className="text-[11px] text-slate-300 mt-1 leading-relaxed font-medium">
+              <p className="text-[11px] text-slate-400 mt-1.5 leading-relaxed">
                 26 Free E-Commerce, eBay, Etsy, Amazon FBA, CBM &amp; Export Fee Calculators
               </p>
             </a>
 
             <a
               href={getStoreDomainUrl()}
-              className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 hover:bg-slate-850 transition-all group block shadow-xs"
+              className="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-white/25 transition-colors block"
             >
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-white group-hover:text-amber-300 transition-colors">
+                <span className="text-xs font-semibold text-white">
                   store.evonixtec.com
                 </span>
-                <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-amber-950/80 text-amber-300 border border-amber-700/80">
+                <span className="font-mono text-[10px] text-slate-400">
                   Hardware Store
                 </span>
               </div>
-              <p className="text-[11px] text-slate-300 mt-1 leading-relaxed font-medium">
+              <p className="text-[11px] text-slate-400 mt-1.5 leading-relaxed">
                 Certified IT Hardware, POS Billing Counters, Thermal Printers &amp; Laptops
               </p>
             </a>
           </div>
         </div>
 
-        {/* 4. Bottom Legal Policies & Copyright */}
-        <div className="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        {/* 4. Legal Policies & Copyright */}
+        <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <div>
             © {new Date().getFullYear()} evonix technologies. All rights reserved. SECP Registered IT Company in Sialkot, Pakistan.
           </div>
@@ -653,156 +537,183 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
           <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
             <a
               href="/about"
-              onClick={(e) => { e.preventDefault(); onNavigate('about'); }}
-              className="hover:text-teal-300 transition-colors cursor-pointer text-slate-300 font-semibold"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('about');
+              }}
+              className="hover:text-white transition-colors cursor-pointer"
             >
               About
             </a>
-            <span>•</span>
+            <span>·</span>
             <a
               href="https://store.evonixtec.com/services/doorstep-support"
-              className="hover:text-teal-300 transition-colors cursor-pointer text-emerald-400 font-semibold"
+              className="hover:text-white transition-colors cursor-pointer"
             >
               Doorstep IT
             </a>
-            <span>•</span>
+            <span>·</span>
             <a
               href="/sialkot-export-erp"
-              onClick={(e) => { e.preventDefault(); onNavigate('sialkot-export-erp'); }}
-              className="hover:text-teal-300 transition-colors cursor-pointer text-teal-400 font-semibold"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('sialkot-export-erp');
+              }}
+              className="hover:text-white transition-colors cursor-pointer"
             >
               Export ERP
             </a>
-            <span>•</span>
+            <span>·</span>
             <a
               href="/guides"
-              onClick={(e) => { e.preventDefault(); onNavigate('guides'); }}
-              className="hover:text-teal-300 transition-colors cursor-pointer text-cyan-400 font-semibold"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('guides');
+              }}
+              className="hover:text-white transition-colors cursor-pointer"
             >
               Guides
             </a>
-            <span>•</span>
+            <span>·</span>
             <a
               href="/tools/network-latency-tester"
-              onClick={(e) => { e.preventDefault(); onNavigate('factory-network-tester'); }}
-              className="hover:text-teal-300 transition-colors cursor-pointer text-blue-400 font-semibold"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('factory-network-tester');
+              }}
+              className="hover:text-white transition-colors cursor-pointer"
             >
               Network Ping
             </a>
-            <span>•</span>
+            <span>·</span>
             <a
               href="/locations/wazirabad"
-              onClick={(e) => { e.preventDefault(); onNavigate('locations'); }}
-              className="hover:text-teal-300 transition-colors cursor-pointer text-slate-300 font-semibold"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('locations', 'wazirabad');
+              }}
+              className="hover:text-white transition-colors cursor-pointer"
             >
               Wazirabad
             </a>
-            <span>•</span>
+            <span>·</span>
             <a
               href="/locations/sambrial"
-              onClick={(e) => { e.preventDefault(); onNavigate('locations'); }}
-              className="hover:text-teal-300 transition-colors cursor-pointer text-slate-300 font-semibold"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('locations', 'sambrial');
+              }}
+              className="hover:text-white transition-colors cursor-pointer"
             >
               Sambrial
             </a>
-            <span>•</span>
+            <span>·</span>
             <a
               href="/portfolio"
-              onClick={(e) => { e.preventDefault(); onNavigate('portfolio'); }}
-              className="hover:text-teal-300 transition-colors cursor-pointer text-slate-300 font-semibold"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('portfolio');
+              }}
+              className="hover:text-white transition-colors cursor-pointer"
             >
               Portfolio
             </a>
-            <span>•</span>
+            <span>·</span>
             <a
               href="/locations"
-              onClick={(e) => { e.preventDefault(); onNavigate('locations'); }}
-              className="hover:text-teal-300 transition-colors cursor-pointer text-slate-300 font-semibold"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('locations');
+              }}
+              className="hover:text-white transition-colors cursor-pointer"
             >
               Locations
             </a>
-            <span>•</span>
+            <span>·</span>
             <a
               href="/contact"
-              onClick={(e) => { e.preventDefault(); onNavigate('contact'); }}
-              className="hover:text-teal-300 transition-colors cursor-pointer text-slate-300 font-semibold"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('contact');
+              }}
+              className="hover:text-white transition-colors cursor-pointer"
             >
               Contact
             </a>
-            <span>•</span>
+            <span>·</span>
             {onOpenPolicy && (
               <>
                 <button
                   onClick={() => onOpenPolicy('privacy')}
-                  className="hover:text-teal-300 transition-colors cursor-pointer text-slate-300"
+                  className="hover:text-white transition-colors cursor-pointer"
                 >
                   Privacy Policy
                 </button>
-                <span>•</span>
+                <span>·</span>
                 <button
                   onClick={() => onOpenPolicy('terms')}
-                  className="hover:text-teal-300 transition-colors cursor-pointer text-slate-300"
+                  className="hover:text-white transition-colors cursor-pointer"
                 >
                   Terms of Service
                 </button>
-                <span>•</span>
+                <span>·</span>
                 <button
                   onClick={() => onOpenPolicy('disclaimer')}
-                  className="hover:text-teal-300 transition-colors cursor-pointer text-slate-300"
+                  className="hover:text-white transition-colors cursor-pointer"
                 >
                   Disclaimer
                 </button>
-                <span>•</span>
+                <span>·</span>
                 <button
                   onClick={() => onOpenPolicy('refund')}
-                  className="hover:text-teal-300 transition-colors cursor-pointer text-slate-300"
+                  className="hover:text-white transition-colors cursor-pointer"
                 >
                   Refund &amp; RMA
                 </button>
-                <span>•</span>
+                <span>·</span>
                 <button
                   onClick={() => onOpenPolicy('mobile')}
-                  className="hover:text-sky-300 transition-colors cursor-pointer font-medium text-slate-300"
+                  className="hover:text-white transition-colors cursor-pointer"
                 >
                   Google Play Policy
                 </button>
-                <span>•</span>
+                <span>·</span>
                 <button
                   onClick={() => onOpenPolicy('matrix')}
-                  className="hover:text-indigo-300 transition-colors cursor-pointer font-medium text-slate-300"
+                  className="hover:text-white transition-colors cursor-pointer"
                 >
                   Data Safety Matrix
                 </button>
-                <span>•</span>
+                <span>·</span>
               </>
             )}
             <a
               href="/sitemap.xml"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-teal-300 transition-colors inline-flex items-center gap-1 cursor-pointer text-slate-300"
-              title="Official XML Sitemap (142 verified URLs)"
+              className="hover:text-white transition-colors inline-flex items-center gap-1 cursor-pointer"
+              title="Official XML Sitemap"
             >
               <span>XML Sitemap</span>
               <ExternalLink className="w-3 h-3 text-slate-400" />
             </a>
-            <span>•</span>
+            <span>·</span>
             <button
               onClick={() => onNavigate('admin')}
-              className="hover:text-teal-300 text-slate-400 transition-colors inline-flex items-center gap-1 cursor-pointer"
+              className="hover:text-white text-slate-400 transition-colors inline-flex items-center gap-1 cursor-pointer"
               title="Protected Admin Security Console"
             >
-              <ShieldCheck className="w-3 h-3 text-teal-400" />
+              <ShieldCheck className="w-3 h-3" />
               <span>Admin Console</span>
             </button>
-            <span>•</span>
+            <span>·</span>
             <button
               onClick={scrollToTop}
-              className="p-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-200 transition-colors flex items-center gap-1 cursor-pointer"
+              className="p-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-slate-200 transition-colors flex items-center gap-1 cursor-pointer"
               title="Back to Top"
               aria-label="Back to Top"
             >
-              <ArrowUp className="w-3.5 h-3.5 text-teal-400" />
+              <ArrowUp className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>

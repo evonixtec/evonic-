@@ -119,12 +119,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           : 'bg-white/90 backdrop-blur-[12px] shadow-[0_8px_24px_-4px_rgba(0,0,0,0.05)] border-b border-slate-200/60 py-2.5'
       }`}
     >
-      {/* 3D Top Metallic / Radiant Shimmer Line */}
-      <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-red-600 via-rose-500 via-amber-500 to-red-600 shadow-[0_1px_8px_rgba(220,38,38,0.4)] pointer-events-none" />
-
-      <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
-        <div className="flex items-center justify-between gap-1.5 sm:gap-2 lg:gap-3 w-full min-w-0">
-          {/* Brand Logo with 3D Nano Tagline */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between gap-4 lg:gap-8 w-full min-w-0">
+          {/* Zone 1: Clean Single Brand Mark */}
           <button
             onClick={() => {
               if (isSub) {
@@ -133,45 +130,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                 handlePageSelect('home');
               }
             }}
-            className="flex items-center gap-2 group cursor-pointer transition-all duration-200 hover:scale-[1.02] flex-shrink-0"
+            className="flex items-center group cursor-pointer transition-opacity hover:opacity-90 flex-shrink-0 whitespace-nowrap"
             aria-label={isSub ? "evonix Tools Workstation" : "evonix Home"}
           >
-            <div className="relative p-1 rounded-xl transition-all duration-300 group-hover:drop-shadow-[0_4px_12px_rgba(220,38,38,0.3)]">
-              <EvonixLogo size="md" forceTheme="light" />
-            </div>
-            <div className="hidden xl:flex flex-col text-left pl-2.5 border-l border-slate-200/90">
-              {isSubStore ? (
-                <>
-                  <span className="text-[10px] font-black uppercase tracking-wider text-amber-600 leading-tight flex items-center gap-1.5">
-                    <span>Hardware Store</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
-                  </span>
-                  <span className="text-[9px] font-extrabold text-slate-500 uppercase tracking-widest leading-tight mt-0.5">
-                    store.evonixtec.com
-                  </span>
-                </>
-              ) : isSubTools ? (
-                <>
-                  <span className="text-[10px] font-black uppercase tracking-wider text-blue-600 leading-tight flex items-center gap-1.5">
-                    <span>Tools Workstation</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
-                  </span>
-                  <span className="text-[9px] font-extrabold text-slate-500 uppercase tracking-widest leading-tight mt-0.5">
-                    evonixtec.com/tools
-                  </span>
-                </>
-              ) : (
-                <>
-                  <span className="text-[10px] font-black uppercase tracking-wider text-red-600 leading-tight flex items-center gap-1.5">
-                    <span>Dubai Heritage</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
-                  </span>
-                  <span className="text-[9px] font-extrabold text-slate-500 uppercase tracking-widest leading-tight mt-0.5">
-                    Software House &amp; AI
-                  </span>
-                </>
-              )}
-            </div>
+            <EvonixLogo size="md" forceTheme="light" />
           </button>
 
           {/* Desktop Navigation Links with Clean Professional Grouping */}
@@ -183,16 +145,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* 1. Home Link */}
             <button
               onClick={() => handlePageSelect('home')}
-              className={`px-2 xl:px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
+              className={`px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
                 currentPage === 'home'
-                  ? 'text-red-700 bg-red-50/90 font-bold shadow-2xs border border-red-200/60'
-                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
+                  ? 'text-[#C81E1E] font-semibold bg-slate-100/80'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
               }`}
             >
               Home
             </button>
 
-            {/* 2. Services Dropdown (2-Column Clean Mega-Menu) */}
+            {/* 2. Services Dropdown */}
             <div
               className="relative"
               onMouseEnter={() => setActiveDropdown('services')}
@@ -200,17 +162,17 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <button
                 onClick={() => handlePageSelect('services')}
-                className={`px-2 xl:px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap ${
+                className={`px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-colors flex items-center gap-1 cursor-pointer whitespace-nowrap shrink-0 ${
                   currentPage === 'services'
-                    ? 'text-red-700 bg-gradient-to-b from-red-50 to-rose-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(220,38,38,0.12)] border border-red-200/80'
-                    : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
+                    ? 'text-[#C81E1E] font-semibold bg-slate-100/80'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}
                 aria-expanded={activeDropdown === 'services'}
               >
                 <span>Services</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    activeDropdown === 'services' ? 'rotate-180 text-red-600' : 'text-slate-400'
+                    activeDropdown === 'services' ? 'rotate-180 text-[#C81E1E]' : 'text-slate-400'
                   }`}
                 />
               </button>
@@ -218,24 +180,24 @@ export const Navbar: React.FC<NavbarProps> = ({
               {/* Services Dropdown */}
               {activeDropdown === 'services' && (
                 <div className="absolute top-full left-0 w-80 pt-1.5 z-50">
-                  <div className="bg-white/98 backdrop-blur-2xl rounded-2xl shadow-[0_20px_45px_-10px_rgba(0,0,0,0.14),0_0_0_1px_rgba(0,0,0,0.06)] border border-slate-200 p-2.5 space-y-1">
-                    <div className="px-2.5 py-1 text-[10px] font-black text-slate-500 uppercase tracking-wider flex items-center justify-between border-b border-slate-100 pb-1.5 mb-1">
-                      <span>Core Services</span>
-                      <span className="text-red-600 font-bold">Dubai Stds</span>
+                  <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-2 space-y-1">
+                    <div className="px-2.5 py-1.5 text-[11px] font-semibold text-slate-500 flex items-center justify-between border-b border-slate-100 mb-1">
+                      <span>Core Engineering Services</span>
+                      <span className="text-[#C81E1E]">Dubai Standards</span>
                     </div>
 
                     <button
                       onClick={() => handlePageSelect('services', 'web-development')}
-                      className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
+                      className="w-full text-left p-2 rounded-lg hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
                     >
-                      <div className="p-1.5 rounded-lg bg-red-50 text-red-600 group-hover:bg-red-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+                      <div className="p-1.5 rounded-md bg-slate-100 text-slate-700 group-hover:bg-[#C81E1E] group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
                         <Globe className="w-3.5 h-3.5" />
                       </div>
                       <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-600 transition-colors">
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#C81E1E] transition-colors">
                           Website Development
                         </div>
-                        <div className="text-[10px] text-slate-500 line-clamp-1">
+                        <div className="text-[11px] text-slate-500 line-clamp-1">
                           E-Commerce & High-Speed Next.js Portals
                         </div>
                       </div>
@@ -243,16 +205,16 @@ export const Navbar: React.FC<NavbarProps> = ({
 
                     <button
                       onClick={() => handlePageSelect('services', 'software-pos')}
-                      className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
+                      className="w-full text-left p-2 rounded-lg hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
                     >
-                      <div className="p-1.5 rounded-lg bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+                      <div className="p-1.5 rounded-md bg-slate-100 text-slate-700 group-hover:bg-[#C81E1E] group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
                         <Monitor className="w-3.5 h-3.5" />
                       </div>
                       <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#C81E1E] transition-colors">
                           Software & POS Systems
                         </div>
-                        <div className="text-[10px] text-slate-500 line-clamp-1">
+                        <div className="text-[11px] text-slate-500 line-clamp-1">
                           Retail ERP, Invoicing & Inventory Control
                         </div>
                       </div>
@@ -260,16 +222,16 @@ export const Navbar: React.FC<NavbarProps> = ({
 
                     <button
                       onClick={() => handlePageSelect('services', 'ai-automation')}
-                      className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
+                      className="w-full text-left p-2 rounded-lg hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
                     >
-                      <div className="p-1.5 rounded-lg bg-purple-50 text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
-                        <Sparkles className="w-3.5 h-3.5" />
+                      <div className="p-1.5 rounded-md bg-slate-100 text-slate-700 group-hover:bg-[#C81E1E] group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+                        <Cpu className="w-3.5 h-3.5" />
                       </div>
                       <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-purple-600 transition-colors">
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#C81E1E] transition-colors">
                           Enterprise AI &amp; Automation
                         </div>
-                        <div className="text-[10px] text-slate-500 line-clamp-1">
+                        <div className="text-[11px] text-slate-500 line-clamp-1">
                           Autonomous LLM Pipelines &amp; RAG Systems
                         </div>
                       </div>
@@ -277,27 +239,27 @@ export const Navbar: React.FC<NavbarProps> = ({
 
                     <button
                       onClick={() => handlePageSelect('services', 'cloud-architecture')}
-                      className="w-full text-left p-2 rounded-xl hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
+                      className="w-full text-left p-2 rounded-lg hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
                     >
-                      <div className="p-1.5 rounded-lg bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+                      <div className="p-1.5 rounded-md bg-slate-100 text-slate-700 group-hover:bg-[#C81E1E] group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
                         <Cpu className="w-3.5 h-3.5" />
                       </div>
                       <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#C81E1E] transition-colors">
                           Cloud &amp; Scalable Architecture
                         </div>
-                        <div className="text-[10px] text-slate-500 line-clamp-1">
+                        <div className="text-[11px] text-slate-500 line-clamp-1">
                           Distributed Microservices &amp; 99.9% Uptime
                         </div>
                       </div>
                     </button>
 
-                    <div className="pt-2 border-t border-slate-100">
+                    <div className="pt-1.5 border-t border-slate-100">
                       <button
                         onClick={() => handlePageSelect('services')}
-                        className="w-full py-1.5 px-3 rounded-lg bg-slate-50 hover:bg-red-50 text-center text-[11px] font-bold text-red-600 hover:text-red-700 flex items-center justify-center gap-1 cursor-pointer transition-colors border border-slate-200"
+                        className="w-full py-1.5 px-3 rounded-lg bg-slate-50 hover:bg-slate-100 text-center text-xs font-semibold text-[#C81E1E] flex items-center justify-center gap-1 cursor-pointer transition-colors"
                       >
-                        <span>Open Full Services Directory</span>
+                        <span>All Services</span>
                         <ArrowRight className="w-3 h-3" />
                       </button>
                     </div>
@@ -305,50 +267,39 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </div>
               )}
             </div>
-            {/* 3. Agency Domain Navigation (Clean B2B Software House) */}
+            {/* 3. Agency Domain Navigation */}
             {!isSubTools && !isSubStore && (
               <>
-                {/* Portfolio */}
                 <button
                   onClick={() => handlePageSelect('portfolio')}
-                  className={`px-2 xl:px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                  className={`px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
                     currentPage === 'portfolio'
-                      ? 'text-red-700 bg-red-50/90 font-bold shadow-2xs border border-red-200/60'
-                      : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
+                      ? 'text-[#C81E1E] font-semibold bg-slate-100/80'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                   }`}
                 >
                   Portfolio
                 </button>
 
-                {/* Free Tools Directory Button (Instant Client-Side Navigation) */}
                 <button
                   type="button"
                   onClick={() => handlePageSelect('tools')}
-                  className={`px-2 xl:px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-all flex items-center gap-1 xl:gap-1.5 group whitespace-nowrap cursor-pointer ${
+                  className={`px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
                     isToolsActive
-                      ? 'text-red-700 bg-red-50/90 font-bold shadow-2xs border border-red-200/60'
-                      : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
+                      ? 'text-[#C81E1E] font-semibold bg-slate-100/80'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                   }`}
                   title="26 Free E-Commerce, Export & Freight Calculators"
                 >
-                  <span>Free Tools</span>
-                  <span className="hidden xl:inline-flex text-[9px] bg-red-100 text-red-700 group-hover:bg-red-600 group-hover:text-white transition-colors px-1.5 py-0.5 rounded-md font-bold items-center gap-0.5">
-                    <span>26 Free</span>
-                    <ArrowRight className="w-2.5 h-2.5" />
-                  </span>
+                  Tools
                 </button>
 
-                {/* Store Subdomain Bridge */}
                 <a
                   href={getStoreDomainUrl()}
-                  className="px-2 xl:px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-all flex items-center gap-1 xl:gap-1.5 text-slate-700 hover:text-slate-900 hover:bg-slate-100/80 group whitespace-nowrap"
+                  className="px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-50 whitespace-nowrap shrink-0"
                   title="Certified IT Hardware, POS Terminals & Enterprise Laptops on store.evonixtec.com"
                 >
-                  <span>Hardware Store</span>
-                  <span className="hidden xl:inline-flex text-[9px] bg-amber-100 text-amber-800 group-hover:bg-amber-600 group-hover:text-white transition-colors px-1.5 py-0.5 rounded-md font-bold items-center gap-0.5">
-                    <span>Store</span>
-                    <ArrowRight className="w-2.5 h-2.5" />
-                  </span>
+                  Hardware Store
                 </a>
               </>
             )}
@@ -969,14 +920,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               <ThemeSwitcher variant="icon" />
             </div>
 
-            {/* 3D Radiant Specular Free Quote Button */}
+            {/* Primary Solid CTA Button */}
             <button
               onClick={() => onOpenQuote()}
               aria-label="Request a Free Technical Quote"
-              className="px-3 xl:px-4.5 py-1.5 sm:py-2 min-h-[38px] sm:min-h-[40px] rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-600 active:from-red-700 active:to-rose-700 text-white font-extrabold text-xs xl:text-sm transition-all shadow-[inset_0_1.5px_0_rgba(255,255,255,0.4),0_6px_20px_rgba(220,38,38,0.4)] hover:shadow-[inset_0_1.5px_0_rgba(255,255,255,0.5),0_8px_25px_rgba(220,38,38,0.5)] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer flex items-center gap-1.5 flex-shrink-0 border-t border-white/30 whitespace-nowrap"
+              className="px-4 py-2 min-h-[38px] sm:min-h-[40px] rounded-lg bg-[#C81E1E] hover:bg-[#A6171E] text-white font-semibold text-xs xl:text-sm transition-colors cursor-pointer flex items-center gap-1.5 flex-shrink-0 whitespace-nowrap"
             >
-              <Sparkles className="w-3.5 h-3.5 text-amber-200 animate-pulse" />
-              <span>Free Quote</span>
+              <span>Request Quote</span>
             </button>
 
             {/* Mobile Hamburger Toggle Button */}

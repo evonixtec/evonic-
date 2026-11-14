@@ -250,9 +250,13 @@ export const ToolDynamicPage: React.FC<ToolDynamicPageProps> = ({
 
         {/* Header Hero */}
         <div className="text-center space-y-3">
-          <span className="inline-block text-[11px] uppercase font-bold tracking-widest text-blue-400 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full">
-            {tool.category} • For {tool.targetAudience}
-          </span>
+          <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] font-mono text-slate-400">
+            <span className="text-blue-400 font-semibold uppercase tracking-wider">
+              {tool.category} · For {tool.targetAudience}
+            </span>
+            <span aria-hidden="true">·</span>
+            <span className="text-emerald-400 font-semibold">Updated for 2026/2027</span>
+          </div>
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
             {tool.h1}
           </h1>

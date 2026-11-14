@@ -39,9 +39,13 @@ export const SialkotExportErpPage: React.FC<SialkotExportErpPageProps> = ({
       {/* Hero Header */}
       <section className="bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800 text-white pt-28 pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-700">
         <div className="max-w-5xl mx-auto text-center space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30 text-xs font-semibold uppercase tracking-wider">
-            <Factory className="w-3.5 h-3.5" />
-            <span>Built For Sialkot Exporters</span>
+          <div className="inline-flex flex-wrap items-center justify-center gap-2 text-xs font-mono text-slate-300">
+            <span className="inline-flex items-center gap-1.5 font-semibold text-white">
+              <Factory className="w-3.5 h-3.5 text-[#C81E1E]" />
+              <span>Built For Sialkot Exporters</span>
+            </span>
+            <span aria-hidden="true">·</span>
+            <span className="text-emerald-400 font-semibold">Updated for 2026/2027</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
@@ -318,6 +322,91 @@ export const SialkotExportErpPage: React.FC<SialkotExportErpPageProps> = ({
 
         {/* Industrial Solutions Breakdown Component */}
         <SialkotIndustrialSolutions onOpenQuote={onOpenQuote} />
+
+        {/* Option A Semantic On-Page SEO Architecture & 2026/2027 Compliance Guide */}
+        <section className="bg-white border border-[#E5E7EB] rounded-xl p-6 sm:p-8 space-y-8 text-left">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-5 border-b border-[#E5E7EB]">
+            <div>
+              <p className="text-xs font-semibold text-[#C81E1E]">
+                Updated for 2026/2027 · Export Compliance &amp; Production Guide
+              </p>
+              <p className="text-sm text-slate-600 mt-1">
+                Built for Sialkot surgical, leather, and sportswear plants dispatching via Sambrial Dry Port and SIAL Airport.
+              </p>
+            </div>
+            <span className="font-mono text-xs text-slate-500 tabular-nums">
+              WeBOC · FBR Digital · DLTL
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-5 rounded-xl bg-[#FAFAF9] border border-[#E5E7EB] space-y-2.5">
+              <h2 className="text-base sm:text-lg font-semibold text-slate-900 leading-snug">
+                Export documentation and commercial invoice software Sialkot
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Generate dual-currency USD, EUR, and GBP commercial invoices, itemized master carton packing lists, Certificate of Origin drafts, and WeBOC Goods Declaration manifests from one verified factory order ledger.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-xl bg-[#FAFAF9] border border-[#E5E7EB] space-y-2.5">
+              <h2 className="text-base sm:text-lg font-semibold text-slate-900 leading-snug">
+                Sportswear &amp; surgical manufacturing production tracking ERP Pakistan
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Track raw steel billets, sublimation fabric rolls, hide yields, piece-rate artisan contractor job cards, and FDA/CE laser-marked lot traceability across forging, stitching, and QC stations with local LAN failover.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-xl bg-[#FAFAF9] border border-[#E5E7EB] space-y-2.5">
+              <h2 className="text-base sm:text-lg font-semibold text-slate-900 leading-snug">
+                FBR digital invoicing and export rebate management system
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Maintain compliant FBR digital invoicing audit trails alongside automated State Bank Form-E reconciliation, duty drawback calculations, and DLTL export rebate documentation for finance teams.
+              </p>
+            </div>
+          </div>
+
+          {/* Sialkot Export ERP 2026/2027 FAQ Section */}
+          <div className="pt-6 border-t border-[#E5E7EB] space-y-4">
+            <h3 className="text-lg sm:text-xl font-semibold text-slate-900">
+              Frequently Asked Questions · Sialkot Export ERP (2026/2027)
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {[
+                {
+                  q: 'Does your export documentation and commercial invoice software support Sialkot buyers in Europe and the US?',
+                  a: 'Yes. Commercial invoices and packing lists export cleanly in USD, EUR, GBP, and AED with HS codes, carton CBM weights, and buyer SKU references mapped to WeBOC customs filings.',
+                },
+                {
+                  q: 'How does sportswear & surgical manufacturing production tracking ERP handle power or internet outages?',
+                  a: 'Our ERP runs offline-first on a local factory LAN SSD node so forging, stitching, and dispatch terminals keep printing barcodes without interruption, syncing to cloud backups once connectivity returns.',
+                },
+                {
+                  q: 'Is FBR digital invoicing and export rebate tracking included for 2026/2027 audits?',
+                  a: 'Yes. Every domestic and export dispatch records tax statuses, Form-E references, and supporting shipping bills to simplify FBR digital invoicing and export rebate filings.',
+                },
+                {
+                  q: 'Can piece-rate contractor and master artisan wages be tracked inside the factory ERP?',
+                  a: 'Yes. Job cards issue barcode batch tickets per department—grinding, polishing, cutting, or stitching—calculating exact weekly piece-rate contractor payouts with zero manual ledger errors.',
+                },
+              ].map((faq, idx) => (
+                <div
+                  key={idx}
+                  className="p-4 rounded-xl bg-[#FAFAF9] border border-[#E5E7EB] space-y-1.5"
+                >
+                  <h4 className="text-xs sm:text-sm font-semibold text-slate-900">
+                    {faq.q}
+                  </h4>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    {faq.a}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* Direct Contact Banner Rule 4 */}
         <div className="bg-slate-900 text-white p-8 rounded-3xl text-center space-y-4">

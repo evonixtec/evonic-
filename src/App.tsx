@@ -4,7 +4,6 @@ import { PageId, SectionId } from './types';
 import { ScrollProgressBar } from './components/ScrollProgressBar';
 import { Navbar, NavPageId } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { HeroSlider } from './components/HeroSlider';
 import { Footer } from './components/Footer';
 import { type PolicyType } from './components/PolicyModal';
 import { SecurityAlertToast } from './components/SecurityAlertToast';
@@ -26,9 +25,9 @@ import { resolveToolSlug, ToolMetadata } from './data/toolsRegistry';
 
 // Statically imported home sections for instant render and zero dynamic import fetch failures
 import { HomeServicesPreview } from './components/home/HomeServicesPreview';
-import { HomeAboutPreview } from './components/home/HomeAboutPreview';
 import { HomePortfolioPreview } from './components/home/HomePortfolioPreview';
 import { HomeJourneyGateway } from './components/home/HomeJourneyGateway';
+import { HomeToolsStoreSection } from './components/home/HomeToolsStoreSection';
 import FAQ from './components/FAQ';
 const GoogleReviewsSection = lazy(() => import('./components/GoogleReviewsSection').then(m => ({ default: m.GoogleReviewsSection })));
 const WhyChooseUs = lazy(() => import('./components/WhyChooseUs').then(m => ({ default: m.WhyChooseUs })));
@@ -54,7 +53,6 @@ const AiVisibilityChecker = lazy(() => import('./components/AiVisibilityChecker'
 const UkEuVatCalculator = lazy(() => import('./components/UkEuVatCalculator'));
 const UsDutyNexusEstimator = lazy(() => import('./components/UsDutyNexusEstimator'));
 const CeUkcaComplianceGenerator = lazy(() => import('./components/CeUkcaComplianceGenerator'));
-const ProjectCostCalculator = lazy(() => import('./components/ProjectCostCalculator').then(m => ({ default: m.ProjectCostCalculator })));
 const SialkotAreaCoverage = lazy(() => import('./components/SialkotAreaCoverage').then(m => ({ default: m.SialkotAreaCoverage })));
 const SialkotSeoKeywordsHub = lazy(() => import('./components/SialkotSeoKeywordsHub').then(m => ({ default: m.SialkotSeoKeywordsHub })));
 const KeywordMappingHub = lazy(() => import('./components/KeywordMappingHub').then(m => ({ default: m.KeywordMappingHub })));
@@ -745,9 +743,8 @@ export default function App() {
 
       // Check specialized industrial home sections
       const SPECIALIZED_SECTION_MAP: Record<string, string> = {
-        'sialkot-it-services': 'services',
-        'pos-software-sialkot': 'sialkot-industrial-solutions',
-        'sialkot-export-erp': 'sialkot-industrial-solutions',
+        'sialkot-it-services': 'our-services-section',
+        'pos-software-sialkot': 'our-services-section',
       };
 
       if (SPECIALIZED_SECTION_MAP[path]) {
@@ -843,9 +840,8 @@ export default function App() {
     }
 
     const SPECIALIZED_SECTION_MAP: Record<string, string> = {
-      'sialkot-it-services': 'services',
-      'pos-software-sialkot': 'sialkot-industrial-solutions',
-      'sialkot-export-erp': 'sialkot-industrial-solutions',
+      'sialkot-it-services': 'our-services-section',
+      'pos-software-sialkot': 'our-services-section',
     };
 
     if (SPECIALIZED_SECTION_MAP[page as string]) {
@@ -1172,161 +1168,47 @@ export default function App() {
 
               {/* ========================================================
                   PAGE 2: MAIN DOMAIN B2B SOFTWARE HOUSE (evonixtec.com)
+                  6-Section Option A Clean Editorial Architecture
                  ======================================================== */}
               {!isToolsMode && !isStoreMode && currentPage === 'home' && (
                 <div className="space-y-0">
-                  {/* 1a. Flagship Interactive Hero Slider with Touch-Swipe & Cross-Fade Visuals & VideoBackground */}
-                  <VideoBackground theme="cyber-data" overlayOpacity="medium">
-                    <HeroSlider
-                      transparentBg
-                      onOpenQuote={(service) => handleOpenQuote(service || 'Enterprise Software Architecture Consultation')}
-                      onNavigate={(section) => {
-                        if (section === 'services') navigateToPage('services');
-                        else if (section === 'portfolio') navigateToPage('portfolio');
-                        else if (section === 'contact') navigateToPage('contact');
-                        else if (section === 'about') navigateToPage('about');
-                        else navigateToPage('home');
-                      }}
-                      onOpenSearch={() => setIsSearchOpen(true)}
-                    />
-                  </VideoBackground>
+                  {/* Section 1 (#FFFFFF): Static Editorial Hero + Live Sialkot Export ERP / Calculator UI Card */}
+                  <Hero
+                    onOpenQuote={(service) =>
+                      handleOpenQuote(service || 'Enterprise Software Architecture Consultation')
+                    }
+                    onNavigate={(target) => {
+                      if (target === 'services' || target === 'portfolio' || target === 'tools' || target === 'sialkot-export-erp' || target === 'etsy-fee-calculator' || target === 'contact' || target === 'about') {
+                        navigateToPage(target as NavPageId);
+                      } else {
+                        navigateToPage('home');
+                      }
+                    }}
+                    onOpenSearch={() => setIsSearchOpen(true)}
+                  />
 
-                  {/* 1b. Distinct Client Pathways (Corporate B2B Software vs Sialkot Industrial ERP) */}
+                  {/* Section 2 (#FAFAF9): Specialized Engineering Divisions */}
                   <HomeJourneyGateway
                     onNavigatePage={navigateToPage}
                     onOpenQuote={handleOpenQuote}
                   />
 
-                  {/* 1c. Concise Core Services Preview */}
+                  {/* Section 3 (#FFFFFF): Core B2B Software Capabilities */}
                   <HomeServicesPreview
                     onNavigateToServices={() => navigateToPage('services')}
                     onOpenQuote={handleOpenQuote}
                   />
 
-                  {/* 1e. Concise About Us Highlight (Dubai 20+ Yrs Heritage Teaser) */}
-                  <HomeAboutPreview
-                    onNavigateToAbout={() => navigateToPage('about')}
-                    onOpenQuote={() => handleOpenQuote('General Consultation')}
-                  />
-
-                  {/* 1f. Concise Portfolio Preview (Top 3 UAE Client Deployments) */}
+                  {/* Section 4 (#FAFAF9): Featured UAE & Sialkot Client Deployments */}
                   <HomePortfolioPreview
                     onNavigateToPortfolio={() => navigateToPage('portfolio')}
                     onOpenQuote={handleOpenQuote}
                   />
 
-                  {/* 1g. Sialkot Export Industry ERP & Custom Software Suite */}
-                  <SialkotIndustrialSolutions onOpenQuote={handleOpenQuote} />
+                  {/* Section 5 (#FFFFFF): Streamlined Tools & Hardware Store with Direct Internal SEO Links */}
+                  <HomeToolsStoreSection onNavigatePage={navigateToPage} />
 
-                  {/* 1g. Interactive Web & POS Software Project Cost Calculator */}
-                  <ProjectCostCalculator
-                    onOpenQuote={handleOpenQuote}
-                    onNavigatePage={(page) => navigateToPage(page as NavPageId)}
-                  />
-
-                  {/* 1h. High-Converting B2B Subdomain Bridges: Free Tools Workstation & Hardware Store */}
-                  <section className="py-14 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white relative overflow-hidden border-y border-slate-800">
-                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(220,38,38,0.18),transparent_65%)] pointer-events-none" />
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
-                      {/* Card 1: tools.evonixtec.com */}
-                      <div className="flex flex-col lg:flex-row items-center justify-between gap-8 p-8 sm:p-10 rounded-3xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-2xl">
-                        <div className="space-y-3 text-center lg:text-left">
-                          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-600/20 text-blue-400 text-xs font-bold uppercase tracking-wider border border-blue-500/30">
-                            <Sparkles className="w-3.5 h-3.5 text-blue-400" />
-                            <span>Tools Subdomain: tools.evonixtec.com</span>
-                          </div>
-                          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white">
-                            Looking for our 26 Free E-Commerce &amp; Export Calculators?
-                          </h3>
-                          <p className="text-slate-300 text-xs sm:text-sm max-w-2xl leading-relaxed">
-                            Access our complete workstation suite—including Etsy fee &amp; profit calculators, Amazon FBA &amp; FBM, eBay profit formulas, TikTok Shop calculators, export CBM engines, and global invoicing. Always 100% free with zero paywalls.
-                          </p>
-                          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-1 text-xs text-slate-400">
-                            <span className="flex items-center gap-1.5 text-emerald-400">
-                              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                              <span>100% Free Forever</span>
-                            </span>
-                            <span>·</span>
-                            <span className="flex items-center gap-1.5 text-blue-400">
-                              <ShieldCheck className="w-4 h-4 text-blue-400" />
-                              <span>Zero Signup Required</span>
-                            </span>
-                            <span>·</span>
-                            <span className="flex items-center gap-1.5 text-amber-400">
-                              <Boxes className="w-4 h-4 text-amber-400" />
-                              <span>26 Free Tools</span>
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="flex flex-col sm:flex-row items-center gap-3 flex-shrink-0">
-                          <button
-                            type="button"
-                            onClick={() => navigateToPage('tools')}
-                            className="px-7 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-sm shadow-xl shadow-blue-600/30 transition-all flex items-center gap-2.5 group cursor-pointer hover:scale-[1.02] active:scale-100"
-                          >
-                            <span>Explore 26 Free Tools</span>
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                          </button>
-                        </div>
-                      </div>
-
-                      {/* Card 2: store.evonixtec.com */}
-                      <div className="flex flex-col lg:flex-row items-center justify-between gap-8 p-8 sm:p-10 rounded-3xl bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-2xl">
-                        <div className="space-y-3 text-center lg:text-left">
-                          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-600/20 text-amber-400 text-xs font-bold uppercase tracking-wider border border-amber-500/30">
-                            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                            <span>Store Subdomain: store.evonixtec.com</span>
-                          </div>
-                          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white">
-                            Looking for Certified IT Hardware, POS Units &amp; Laptops?
-                          </h3>
-                          <p className="text-slate-300 text-xs sm:text-sm max-w-2xl leading-relaxed">
-                            Hardware sales, retail touchscreen billing counters, thermal receipt printers, imported office laptops, and lab repairs have been migrated to <strong className="text-white">store.evonixtec.com</strong> with direct warranty &amp; doorstep delivery.
-                          </p>
-                          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-1 text-xs text-slate-400">
-                            <span className="flex items-center gap-1.5 text-emerald-400">
-                              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                              <span>Warranty Included</span>
-                            </span>
-                            <span>·</span>
-                            <span className="flex items-center gap-1.5 text-amber-400">
-                              <ShieldCheck className="w-4 h-4 text-amber-400" />
-                              <span>Tested Genuine Units</span>
-                            </span>
-                            <span>·</span>
-                            <span className="flex items-center gap-1.5 text-cyan-400">
-                              <Clock className="w-4 h-4 text-cyan-400" />
-                              <span>Same-Day Sialkot Dispatch</span>
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="flex flex-col sm:flex-row items-center gap-3 flex-shrink-0">
-                          <a
-                            href={getStoreDomainUrl()}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="px-7 py-4 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-black text-sm shadow-xl shadow-amber-600/30 transition-all flex items-center gap-2.5 group cursor-pointer hover:scale-[1.02] active:scale-100"
-                          >
-                            <span>Open store.evonixtec.com</span>
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-
-                  {/* 1i. Why Choose Us (Dubai Quality & Engineering Rigor) */}
-                  <WhyChooseUs />
-
-                  {/* 1j. Client Case Studies & Verified Testimonials */}
-                  <Testimonials
-                    onOpenQuote={handleOpenQuote}
-                    onNavigateSection={(sec) => navigateToPage(sec as NavPageId)}
-                  />
-
-                  {/* 1k. Essential FAQ */}
+                  {/* Section 6 (#FAFAF9): FAQ & Direct Engineering Desk */}
                   <FAQ
                     onOpenQuote={handleOpenQuote}
                     onNavigateSection={(sec) => navigateToPage(sec as NavPageId)}

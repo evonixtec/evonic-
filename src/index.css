@@ -2,74 +2,51 @@
 @import "./common.css";
 
 :root {
-  --apple-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "SF Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --apple-crystal-bg: #f8fafc;
-  --apple-near-black: #1e1e1e;
-  --apple-red-primary: #dc2626;
-  --apple-red-hover: #b91c1c;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --apple-font: var(--font-sans);
+  --surface-canvas: #ffffff;
+  --surface-subtle: #fafaf9;
+  --ink-primary: #111827;
+  --ink-secondary: #4b5563;
+  --brand-crimson: #c81e1e;
+  --brand-crimson-hover: #a6171e;
 }
 
 @layer base {
-  body {
-    background-color: #f8fafc;
-    color: #1e1e1e;
-    font-family: var(--apple-font);
-    line-height: 1.55;
+  html, body {
+    background-color: #ffffff;
+    color: #111827;
+    font-family: var(--font-sans);
+    line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* FLUXFIT Typography & Readability: Left-align body text and set line-height 1.4 to 1.6 */
   p, li, blockquote, dd, dt, article p, .prose p, .blog-content p, .product-desc {
     text-align: left;
-    line-height: 1.55;
-    color: #1e1e1e;
+    line-height: 1.6;
+    color: #374151;
   }
 
-  /* FLUXFIT No Pure Black Rule: Enforce soft near-black #1E1E1E on headings */
   h1, h2, h3, h4, h5, h6 {
-    color: #1e1e1e;
-    letter-spacing: -0.02em;
+    font-family: var(--font-sans);
+    color: #111827;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
   }
 }
 
 .font-display {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-sans);
 }
 
 .font-mono {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 }
 
-.glass-panel {
-  background: rgba(15, 17, 26, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.glass-panel-glow {
-  background: rgba(15, 17, 26, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 212, 255, 0.2);
-  box-shadow: 0 8px 32px 0 rgba(0, 212, 255, 0.05);
-}
-
-.glass-panel-glow:hover {
-  border-color: rgba(0, 212, 255, 0.45);
-  box-shadow: 0 12px 40px 0 rgba(0, 212, 255, 0.15), 0 0 25px rgba(168, 85, 247, 0.1);
-}
-
-.text-gradient {
-  background: linear-gradient(135deg, #00D4FF 0%, #A855F7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.glow-cyan {
-  text-shadow: 0 0 25px rgba(0, 212, 255, 0.5);
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
 }
 
 .perspective-1000 {
@@ -81,11 +58,14 @@
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0a0f;
+  background: #f8f9fa;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 212, 255, 0.3);
+  background: #cbd5e1;
   border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
 
 /* Community Discussion Card */

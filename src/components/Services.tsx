@@ -53,11 +53,11 @@ const SERVICES: ServiceItem[] = [
     id: 'ai-solutions',
     num: '03',
     title: 'AI Solutions',
-    subtitle: 'Enterprise LLMs, RAG & Autonomous Agents',
-    description: 'Deploy real-world generative AI and computer vision models into your production software. We construct secure Retrieval-Augmented Generation (RAG) pipelines, proprietary model fine-tuning, and task-oriented agents.',
+    subtitle: 'Custom AI Workflow & WhatsApp Business Automation UAE',
+    description: 'Deploy custom AI workflow & WhatsApp business automation UAE and private RAG pipelines into production operations. We connect order routing, quote intake, and enterprise knowledge search directly to CRM and ERP records.',
     deliverables: [
+      'Custom AI workflow & WhatsApp business automation UAE pipelines',
       'Private RAG pipelines with vector databases (Pinecone, pgvector)',
-      'Custom LLM fine-tuning and domain-specific quantized inference',
       'Multi-agent task orchestration with tool-calling capabilities',
       'Zero-data-leakage enterprise governance and privacy boundaries',
     ],
@@ -70,11 +70,11 @@ const SERVICES: ServiceItem[] = [
     id: 'custom-software',
     num: '04',
     title: 'Custom Software & SaaS',
-    subtitle: 'Mission-Critical Cloud Platforms & POS Systems',
-    description: 'Tailored enterprise software built to replace legacy spreadsheets and brittle manual operations. Distributed microservices, high-throughput financial transaction engines, and industrial ERP/POS systems.',
+    subtitle: 'UAE Corporate Tax & E-Invoicing Ready ERP Solutions',
+    description: 'B2B inventory and POS integration Dubai & Sharjah alongside UAE corporate tax & e-invoicing ready ERP solutions. Built with multi-branch transaction engines, role-based controls, and audited financial ledgers.',
     deliverables: [
-      'Multi-tenant SaaS architectures with role-based RBAC access',
-      'Industrial barcode scanning, warehouse inventory, and POS hardware',
+      'UAE corporate tax & e-invoicing ready ERP solutions',
+      'B2B inventory and POS integration Dubai & Sharjah showrooms',
       'High-throughput asynchronous event-driven worker pipelines',
       'AWS / GCP Kubernetes orchestration with automated zero-downtime failover',
     ],
@@ -244,6 +244,57 @@ export const Services: React.FC<ServicesProps> = ({
               </div>
             );
           })}
+        </div>
+
+        {/* Option A Light Editorial UAE B2B & Automation FAQ Section (Updated for 2026/2027) */}
+        <div className="bg-white rounded-xl border border-[#E5E7EB] p-6 sm:p-8 text-left space-y-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
+            <div className="space-y-1.5">
+              <p className="text-xs font-semibold text-[#C81E1E]">
+                Updated for 2026/2027 · UAE &amp; Cross-Border B2B Engineering
+              </p>
+              <h3 className="text-xl sm:text-2xl font-semibold text-slate-900 tracking-tight">
+                Enterprise IT, UAE E-Invoicing &amp; AI Automation FAQs
+              </h3>
+            </div>
+            {onSelectServiceForQuote && (
+              <button
+                onClick={() => onSelectServiceForQuote('UAE B2B ERP & AI Automation Consultation')}
+                className="px-4 py-2 rounded-lg bg-[#C81E1E] hover:bg-[#A6171E] text-white font-semibold text-xs sm:text-sm transition-colors cursor-pointer whitespace-nowrap self-start md:self-auto"
+              >
+                Book Architecture Review
+              </button>
+            )}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-5 rounded-xl bg-[#FAFAF9] border border-[#E5E7EB] space-y-2">
+              <h4 className="text-sm sm:text-base font-semibold text-slate-900">
+                Custom AI workflow &amp; WhatsApp business automation UAE
+              </h4>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Automate buyer lead qualification, Arabic/English document extraction, order status updates, and ERP ticket routing via official WhatsApp Business APIs without exposing proprietary client data.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-xl bg-[#FAFAF9] border border-[#E5E7EB] space-y-2">
+              <h4 className="text-sm sm:text-base font-semibold text-slate-900">
+                B2B inventory and POS integration Dubai &amp; Sharjah
+              </h4>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Unify warehouse stock levels in Al Quoz, Jebel Ali, and Sharjah industrial zones with multi-branch retail POS counters, barcode scanning, and real-time supplier replenishment ledgers.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-xl bg-[#FAFAF9] border border-[#E5E7EB] space-y-2">
+              <h4 className="text-sm sm:text-base font-semibold text-slate-900">
+                UAE corporate tax &amp; e-invoicing ready ERP solutions
+              </h4>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Built-in TRN/VAT tax ledgers, structured audit logs, and UAE e-invoicing readiness aligned with FTA compliance timelines for 2026 and 2027 cross-border trading groups.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
