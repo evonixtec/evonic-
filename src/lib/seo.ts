@@ -17,16 +17,62 @@ const BASE_URL = 'https://www.evonixtec.com';
 const STORE_BASE_URL = 'https://store.evonixtec.com';
 const TOOLS_BASE_URL = 'https://tools.evonixtec.com';
 const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.jpg`;
+const OFFICIAL_SQUARE_LOGO = {
+  '@type': 'ImageObject',
+  url: `${BASE_URL}/logo-192x192.png`,
+  width: 192,
+  height: 192,
+};
+
+export const ORGANIZATION_SCHEMA = {
+  '@type': ['Organization', 'ProfessionalService'],
+  '@id': `${BASE_URL}/#organization`,
+  name: 'Evonix Technologies',
+  alternateName: 'evonix technologies',
+  url: `${BASE_URL}/`,
+  logo: OFFICIAL_SQUARE_LOGO,
+  image: `${BASE_URL}/logo-192x192.png`,
+  telephone: '+923263244002',
+  email: 'info@evonixtec.com',
+  sameAs: [
+    'https://evonixtec.com',
+    'https://www.linkedin.com/company/evonix-technologies',
+    'https://www.facebook.com/profile.php?id=61595290703138',
+    'https://www.instagram.com/evonixtechnologies',
+  ],
+};
+
+export const SITE_NAVIGATION_SCHEMA = {
+  '@type': 'SiteNavigationElement',
+  '@id': `${BASE_URL}/#site-navigation`,
+  name: [
+    'Software Services',
+    'POS Software Pricing',
+    'Sialkot Export ERP',
+    'Free Business Tools',
+    'Retail & Tech Guides',
+    'Client Portfolio',
+  ],
+  url: [
+    `${BASE_URL}/services`,
+    `${BASE_URL}/services/software-pos`,
+    `${BASE_URL}/sialkot-export-erp`,
+    `${BASE_URL}/tools`,
+    `${BASE_URL}/guides`,
+    `${BASE_URL}/portfolio`,
+  ],
+};
 
 /**
- * Common LocalBusiness schema for evonix technologies in Sialkot
+ * Common LocalBusiness schema for Evonix Technologies in Sialkot
  */
 export const LOCAL_BUSINESS_SCHEMA = {
   '@type': 'LocalBusiness',
   '@id': `${BASE_URL}/#business`,
-  name: 'evonix technologies',
-  alternateName: 'evonix Technologies – Enterprise Software & AI House',
-  image: DEFAULT_OG_IMAGE,
+  name: 'Evonix Technologies',
+  alternateName: 'evonix technologies',
+  logo: OFFICIAL_SQUARE_LOGO,
+  image: `${BASE_URL}/logo-192x192.png`,
   url: `${BASE_URL}/`,
   telephone: '+92 326 324 4002',
   email: 'info@evonixtec.com',
@@ -340,6 +386,64 @@ export const FAQ_PAGE_SCHEMA = {
 };
 
 /**
+ * FAQPage JSON-LD for Evonix Hisaab Pro Offline Retail & Business POS (/services/software-pos & /services)
+ */
+export const HISAAB_PRO_FAQ_SCHEMA = {
+  '@type': 'FAQPage',
+  '@id': `${BASE_URL}/services/software-pos#faq`,
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Does Evonix Hisaab Pro work as offline POS software without internet?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Evonix Hisaab Pro is native Windows offline POS software without internet dependency. Barcode scanning, multi-unit billing, stock updates, and Digital Khata ledgers execute locally on your PC or counter LAN without freezing during Wi-Fi outages.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I use it as Kiryana store ka software with loose weights, dozens, and cartons?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. As dedicated Kiryana store ka software, you can purchase stock in cartons or sacks and sell in loose weight, pieces, or dozens with automatic unit conversion, customer udhaar limits, and bulk Excel product import.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How do Digital khata WhatsApp reminders work from a Windows PC?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Every udhaar invoice updates the customer account automatically. Whenever you check your overdue receivables (7, 15, or 30+ days), Digital khata WhatsApp reminders let you send itemized balance messages and receipts via WhatsApp Desktop or Web in one click.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How does Evonix Hisaab Pro help on how to run a retail shop in Pakistan with less leakage?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Shop owners learning how to run a retail shop in Pakistan profitably need two things: PIN-locked staff controls and real net profit tracking. Cashiers cannot approve refunds or extra discounts without a Manager PIN, daily Galla counts verify cash at closing, and COGS + expenses reveal true daily profit.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What happens to my data if my Windows PC has an issue or power outage?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Your sales, inventory, and Khata database stay saved safely on your machine with silent automated daily backups to a secondary local drive or USB flash drive—allowing full restoration within minutes.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does it support FBR Tier-1 POS, Excel migration, and 58mm/80mm thermal hardware?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Our onboarding team performs zero-loss data migration from Excel sheets or paper registers, configures FBR Tier-1 POS digital invoicing if required, and connects all standard 58mm/80mm thermal printers, barcode scanners, and automatic cash drawers.',
+      },
+    },
+  ],
+};
+
+/**
  * Shared Google Search Console compliant Merchant & Shipping Schema objects
  */
 export const DEFAULT_MERCHANT_RETURN_POLICY = {
@@ -540,12 +644,12 @@ export const INDIVIDUAL_PRODUCTS_SCHEMAS = [
  */
 export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   home: {
-    title: 'evonix technologies – Enterprise Software & Cloud AI',
+    title: 'Evonix Technologies | Software & POS',
     description:
-      'Premier B2B software engineering agency and enterprise solutions provider. High-performance custom web applications, multi-branch industrial ERPs, and private AI pipelines engineered to Dubai standards.',
-    ogTitle: 'evonix technologies – Enterprise Software & Cloud AI',
+      'Evonix Technologies builds custom software, offline retail POS systems, and Sialkot export ERPs backed by 20+ years of UAE engineering standards.',
+    ogTitle: 'Evonix Technologies | Software & POS',
     ogDescription:
-      'B2B software engineering, high-availability cloud architecture, and Sialkot industrial export ERPs backed by 20+ years Dubai technology leadership.',
+      'Custom software engineering, offline retail POS systems, and Sialkot export ERPs backed by 20+ years of UAE technology leadership.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalUrl: `${BASE_URL}/`,
@@ -558,39 +662,38 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'software house in Sialkot',
       'export manufacturing ERP',
       'Dubai software expertise',
-      'evonix technologies',
+      'Evonix Technologies',
     ],
   },
 
   services: {
-    title: 'Enterprise Software & Cloud Technology Solutions | evonix',
+    title: 'Software Development Services | Evonix',
     description:
-      'Premier B2B software engineering & industrial solutions: high-availability distributed systems, custom export ERPs, private AI pipelines, and cloud architecture.',
-    ogTitle: 'Enterprise Software & Cloud Engineering Services – evonix',
+      'Custom web engineering, offline-first Windows POS software, industrial export ERPs, and cloud architecture built by Evonix Technologies in Sialkot.',
+    ogTitle: 'Software Development Services | Evonix',
     ogDescription:
-      'Full-suite enterprise software development, manufacturing ERPs, WeBOC customs integration, and private AI automation with 20+ years Dubai technical excellence.',
+      'Full-suite custom software development, manufacturing ERPs, WeBOC customs integration, and offline POS solutions.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalUrl: `${BASE_URL}/services`,
     keywords: [
-      'enterprise software services',
+      'software development services',
       'custom software development Sialkot',
       'export ERP software Sialkot',
       'B2B web development',
       'cloud architecture',
-      'AI automation pipelines',
       'software consultancy Sialkot',
       'Sialkot manufacturing ERP',
     ],
   },
 
   portfolio: {
-    title: 'IT Portfolio Sialkot – Web & Enterprise Deployments | evonix',
+    title: 'Client Portfolio & Case Studies | Evonix',
     description:
-      'Proven software and web development case studies for exporters and retail brands in Sialkot and Dubai. View our high-volume ERP and e-commerce work.',
-    ogTitle: 'IT Portfolio Sialkot – Software & Web Projects by evonix',
+      'Proven web development, industrial ERP, and multi-branch POS deployments delivered for exporters and retail brands across UAE and Pakistan.',
+    ogTitle: 'Client Portfolio & Case Studies | Evonix',
     ogDescription:
-      'High-volume e-commerce systems, custom export ERP portals, and POS deployments delivered for UAE and Sialkot enterprise clients.',
+      'High-volume e-commerce systems, custom export ERP portals, and retail POS deployments delivered for UAE and Sialkot clients.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalUrl: `${BASE_URL}/portfolio`,
@@ -606,10 +709,10 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   shop: {
-    title: 'IT Hardware, POS Systems & Laptops | store.evonixtec.com',
+    title: 'POS Hardware & Laptops | Evonix Store',
     description:
-      'Buy business laptops, touch POS terminals, 80mm thermal receipt printers, and barcode scanners with local warranty and doorstep setup on store.evonixtec.com.',
-    ogTitle: 'IT Hardware & POS Shop – store.evonixtec.com',
+      'Buy commercial business laptops, touch POS terminals, 80mm thermal receipt printers, and barcode scanners with local warranty on store.evonixtec.com.',
+    ogTitle: 'POS Hardware & Laptops | Evonix Store',
     ogDescription:
       'Imported commercial laptops, touch POS machines, thermal receipt printers, and barcode scanners on store.evonixtec.com.',
     ogType: 'website',
@@ -626,61 +729,50 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
   },
 
   about: {
-    title: 'About evonix – IT Consultancy & Engineering Heritage in Sialkot',
+    title: 'About Evonix Technologies | Dubai Heritage',
     description:
-      'evonix brings 20+ years of high-availability Dubai IT consultancy and industrial hardware maintenance to Sialkot manufacturers and businesses.',
-    ogTitle: 'About evonix – IT Consultancy & Engineering Heritage in Sialkot',
+      'Evonix Technologies brings 20+ years of UAE IT consultancy, custom software engineering, and hardware lab testing to Sialkot businesses.',
+    ogTitle: 'About Evonix Technologies | Dubai Heritage',
     ogDescription:
-      '20+ years of Dubai enterprise IT engineering now operating in Sialkot. Learn about our leadership, diagnostic lab, and commitment to international standards.',
+      'Two decades of UAE enterprise IT engineering now operating in Sialkot. Meet our leadership and diagnostic engineering desk.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalUrl: `${BASE_URL}/about`,
     keywords: [
-      'about evonix Technologies',
+      'about Evonix Technologies',
       'IT consultancy Sialkot',
       'industrial hardware maintenance Sialkot',
       'IT company in Sialkot profile',
       'Dubai IT experience in Pakistan',
       'IT leadership Sialkot',
-      'computer diagnostic lab Sialkot',
-      'IT consultants Sialkot Cantt',
-      'top tech company Sialkot Punjab',
     ],
   },
 
   guides: {
-    title: 'Tech Blogs, IT Guides & Field Case Studies Sialkot | evonix',
+    title: 'Retail & Technical Guides | Evonix',
     description:
-      'Official evonix engineering blog & technical knowledge base for Sialkot: 85+ practical guides on printer repair, laptop overheating, retail POS, and chip-level restoration.',
-    ogTitle: 'Tech Blogs, IT Guides & Field Case Studies in Sialkot – evonix',
+      'Practical technical guides by Evonix engineers covering offline POS management, Sialkot factory ERPs, thermal printers, and retail workflows.',
+    ogTitle: 'Retail & Technical Guides | Evonix',
     ogDescription:
-      'Official engineering blogs, practical troubleshooting tutorials, and Daska Road & Rangpura on-site field case studies by evonix technicians.',
+      'Official engineering tutorials, retail POS tips, and Sialkot industrial software guides written by Evonix specialists.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalUrl: `${BASE_URL}/guides`,
     keywords: [
       'IT blogs Sialkot',
       'tech blog Sialkot',
-      'laptop repair blog',
+      'POS software guide Pakistan',
       'thermal printer troubleshooting Sialkot',
       'IT troubleshooting guides Sialkot',
-      'computer repair guide Sialkot',
-      'laptop repairing Daska Road Sialkot',
-      'doorstep laptop repair Rangpura',
-      'POS printer error fix Pakistan',
-      'laptop motherboard repair guide Sialkot',
       'web development guide Sialkot',
-      'Sialkot IT knowledge hub',
-      'Daska Road IT solutions Sialkot',
-      'Rangpura IT support Sialkot',
     ],
   },
 
   contact: {
-    title: 'Contact IT Consultants Sialkot – Kotli Behram | evonix',
+    title: 'Contact Evonix | Sialkot IT Consultants',
     description:
-      'Got a question? Call us. We reply in 2 hours. Doorstep IT support in Kotli Behram, Paris Road, and Sialkot Cantt. Free bench diagnosis.',
-    ogTitle: 'Contact evonix – IT Support in Kotli Behram & Paris Road Sialkot',
+      'Got a question? Call us at +92 326 324 4002. We reply in 2 hours with doorstep IT support across Kotli Behram, Paris Road, and Sialkot Cantt.',
+    ogTitle: 'Contact Evonix | Sialkot IT Consultants',
     ogDescription:
       'Got a question? Call us. We reply in 2 hours. Rapid doorstep dispatch across Kotli Behram, Cantt, Sambrial, and Daska Road.',
     ogType: 'website',
@@ -689,51 +781,39 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
     keywords: [
       'contact IT consultant Sialkot',
       'computer repair Kotli Behram Sialkot',
-      'laptop repairing Kotli Behram Sialkot',
       'doorstep IT technician Kotli Behram Sialkot',
-      'hardware maintenance services contact Sialkot',
       'industrial IT support Sialkot',
       'contact IT company Sialkot',
-      'computer technician home service Sialkot',
-      'on-site IT support Sialkot',
-      'laptop repair contact Paris Road Sialkot',
-      'IT support WhatsApp Sialkot',
-      'urgent computer repair Sialkot Cantt',
-      'IT engineer visit Sialkot',
     ],
   },
 
   locations: {
-    title: 'Local IT Services Hub – Daska & Sambrial | evonix',
+    title: 'Local IT Hubs: Daska & Sambrial | Evonix',
     description:
-      'Doorstep industrial IT consultancy, hardware maintenance, retail POS systems, and chip-level motherboard repair across Daska, Sambrial, and Wazirabad with 25-45 min field dispatch.',
-    ogTitle: 'evonix Local Hubs – Daska, Sambrial & Wazirabad IT Support',
+      'Doorstep industrial IT consultancy, retail POS systems, and hardware servicing across Daska, Sambrial Dry Port, and Wazirabad within 45 minutes.',
+    ogTitle: 'Local IT Hubs: Daska & Sambrial | Evonix',
     ogDescription:
-      'High-priority industrial IT engineering, WeBOC server maintenance, and laptop repair across the Sialkot-Daska-Sambrial-Wazirabad industrial corridor.',
+      'Priority industrial IT engineering, WeBOC server maintenance, and retail POS support across Daska, Sambrial, and Wazirabad.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalUrl: `${BASE_URL}/locations`,
     keywords: [
       'IT company Daska',
-      'laptop repairing Daska Road Sialkot',
       'hardware maintenance Sambrial',
       'IT support Sambrial Dry Port',
       'computer repair Wazirabad',
-      'cutlery website developer Wazirabad',
       'POS software Daska',
       'retail billing software Wazirabad',
-      'on-site IT support Sambrial',
-      'Sialkot industrial IT triangle',
     ],
   },
 
   invoice: {
-    title: 'Free Global Invoice Generator – Multi-Currency PDF | evonix',
+    title: 'Free Global Invoice Generator | Evonix',
     description:
-      'Free online invoice generator for freelance billing and small business invoicing. Create multi-currency commercial invoices in browser with paper-style editor, automatic tax calculation, and instant A4 PDF download. No signup required.',
-    ogTitle: 'Free Global Invoice Generator – Multi-Currency PDF',
+      'Create multi-currency commercial invoices in your browser with automatic tax math, Code128 barcodes, and instant A4 PDF export with zero signup.',
+    ogTitle: 'Free Global Invoice Generator | Evonix',
     ogDescription:
-      'Create invoice in browser, data never leaves your device. Free multi-currency commercial invoices for freelancers and exporters with automatic tax calculations and instant A4 PDF.',
+      'Create commercial invoices locally in your browser with 150+ currencies, tax rules, and instant A4 PDF downloads.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/micro-invoice-generator-2026.png`,
     canonicalUrl: `${BASE_URL}/tools/invoice-generator`,
@@ -742,104 +822,71 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'free invoice generator',
       'online invoice generator',
       'micro invoice',
-      'freelance invoice maker',
-      'freelance billing',
-      'small business invoicing',
       'multi-currency invoice',
-      'paper-style editor',
-      'automatic tax calculation',
-      'free commercial invoice generator',
-      'zero database invoice generator',
-      'instant pdf invoice',
-      'online invoice maker free',
-      'free invoice generator pakistan',
-      'code128 barcode invoice generator',
-      'multi currency invoice maker',
     ],
   },
 
   'ecommerce-calculator': {
-    title: 'E-Commerce Profit & Courier Shipping Calculator | evonix',
+    title: 'E-Commerce Margin Calculator | Evonix',
     description:
-      'Free zero-database e-commerce margin calculator. Real-time Leopards, TCS, Trax, PostEx courier tariffs, COD handling charges, marketing CAC, and RTO return loss simulator.',
-    ogTitle: 'E-Commerce Margin & Courier Tariff Calculator | evonix',
+      'Simulate Leopards, TCS, Trax, and PostEx COD fees, ad CAC, and RTO return losses in Pakistan with instant unit-profit calculations.',
+    ogTitle: 'E-Commerce Margin Calculator | Evonix',
     ogDescription:
-      'Calculate unit economics, multi-courier rates, COD handling fees, break-even targets, and Pakistani return rate risk cushions with zero remote database tracking.',
+      'Calculate Pakistani COD courier tariffs, return rate cushions, and unit profit margins with zero database tracking.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/ecommerce-calculator-2026.png`,
     canonicalUrl: `${BASE_URL}/tools/ecommerce-margin-calculator`,
     keywords: [
-      'E-Commerce_Profit_and_Loss',
       'ecommerce profit calculator pakistan',
       'courier shipping margin calculator',
       'leopards courier rates calculator',
       'tcs cod tariff calculator',
-      'trax shipping cost calculator',
-      'postex cod fee calculator',
-      'ecommerce unit economics calculator',
-      'cash on delivery margin calculator',
-      'shopify pakistan profit calculator',
-      'daraz margin calculator',
       'rto return rate loss calculator',
     ],
   },
 
   'cbm-calculator': {
-    title: 'Export CBM & Volumetric Cargo Calculator | evonix',
+    title: 'Export CBM Freight Calculator | Evonix',
     description:
-      'Free B2B export CBM calculator. Instant Cubic Meters computations, DHL/FedEx and air cargo volumetric weights, and 20ft/40ft ocean container space utilization.',
-    ogTitle: 'Export CBM & Freight Volumetric Engine | evonix',
+      'Compute carton Cubic Meters (CBM), DHL/FedEx air cargo volumetric weight, and 20ft/40ft container loading plans instantly.',
+    ogTitle: 'Export CBM Freight Calculator | Evonix',
     ogDescription:
-      'Compute carton volume in CBM, air cargo dimensional weights, and container packing capacity instantly with zero remote database tracking.',
+      'Compute export carton CBM, air cargo volumetric weight, and ocean container loading capacity offline.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/cbm-calculator-2026.png`,
     canonicalUrl: `${BASE_URL}/tools/export-cbm-calculator`,
     keywords: [
-      'Compute_industrial_cargo',
       'cbm calculator',
       'export cbm calculator',
       'cubic meter calculator shipping',
       'air freight volumetric weight calculator',
-      'dhl dimensional weight calculator',
-      '20ft container cbm capacity',
-      '40ft container cbm calculator',
-      'sialkot export shipping calculator',
-      'freight forwarder cbm tool',
-      'chargeable weight calculator',
     ],
   },
 
   'developer-cost-calculator': {
-    title: 'Dedicated Developer Cost Calculator - Save 70% | evonix',
+    title: 'Developer Cost Calculator | Evonix',
     description:
-      'Calculate cost to hire dedicated developers via evonix Technologies Sialkot. Senior dev at $22/hr vs $80/hr in USA. Save $111k/year. Get CVs in 24h.',
-    ogTitle: 'Dedicated Developer Cost Calculator - Save 70% | evonix',
+      'Compare US vs dedicated Pakistan software engineer rates and calculate annual engineering savings with instant role cost breakdowns.',
+    ogTitle: 'Developer Cost Calculator | Evonix',
     ogDescription:
-      'Calculate cost to hire dedicated developers via evonix Technologies Sialkot. Senior dev at $22/hr vs $80/hr in USA. Save $111k/year. Get CVs in 24h.',
+      'Calculate cost to hire dedicated software developers via Evonix Technologies and compare offshore team savings.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/developer-cost-calculator-2026.png`,
     canonicalUrl: `${BASE_URL}/tools/developer-cost-calculator`,
     keywords: [
-      'Developer_cost_calculator',
-      'hire dedicated developer cost calculator pakistan',
       'hire dedicated developer cost calculator',
-      'cost to hire developer in india',
-      'hire dedicated developer cost',
-      'hire developer in pune cost',
-      'cost to hire dedicated developer from pakistan',
-      'cost to hire software engineer',
       'offshore developer hourly rate',
       'evonix technologies developer rates',
     ],
   },
 
   'ai-visibility-checker': {
-    title: 'Website E-E-A-T & AI Visibility Checker | evonix Technologies',
+    title: 'AI Visibility & E-E-A-T Checker | Evonix',
     description:
-      'Free client-side Google E-E-A-T & Generative Engine Optimization (GEO) checker. Audit your domain readiness for ChatGPT, Claude, and Google AI Overviews.',
-    ogTitle: 'Website E-E-A-T & AI Visibility Checker | evonix Technologies',
+      'Audit your domain Google E-E-A-T signals and Generative Engine Optimization readiness for ChatGPT, Claude, and AI Overviews.',
+    ogTitle: 'AI Visibility & E-E-A-T Checker | Evonix',
     ogDescription:
-      'Free client-side Google E-E-A-T & Generative Engine Optimization (GEO) checker. Audit your domain readiness for ChatGPT, Claude, and Google AI Overviews.',
+      'Free client-side E-E-A-T and AI search readiness checker for domain structured data and entity visibility.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/ai-visibility-checker-2026.png`,
     canonicalUrl: `${BASE_URL}/tools/ai-visibility-checker`,
@@ -847,44 +894,35 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'ai visibility checker',
       'website eeat checker',
       'generative engine optimization tool',
-      'geo audit tool',
-      'chatgpt website visibility',
-      'google ai overview audit',
-      'claude citation readiness',
-      'llm citation probability',
-      'brand entity node optimization',
-      'evonix technologies seo tools',
     ],
   },
 
   tools: {
-    title: 'Online Web Tools Portfolio & Engineering Calculators | evonix',
+    title: 'Free Business Tools & Calculators | Evonix',
     description:
-      'Suite of zero-database client-side web tools by evonix: Free Invoice Generator, Export Barcode Studio, CBM Freight Engine, E-Com Margin Simulator, and Diagnostic Lab bench utilities.',
-    ogTitle: 'Online Web Tools Portfolio | evonix Technologies',
+      'Access 26+ free browser calculators for e-commerce margins, marketplace fees, export CBM freight, HS duties, and commercial invoicing.',
+    ogTitle: 'Free Business Tools & Calculators | Evonix',
     ogDescription:
-      'Zero-database, 100% client-side web tools and calculators for international exporters, freelancers, e-commerce stores, and electronics technicians.',
+      'Zero-database browser calculators for international exporters, e-commerce sellers, freelancers, and retail shops.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalUrl: `${BASE_URL}/tools`,
     keywords: [
+      'free business tools',
       'online tools portfolio',
-      'web tools hub',
       'free business calculators',
       'zero database tools',
-      'client side engineering tools',
       'sialkot export utilities',
-      'evonix online tools',
     ],
   },
 
   'export-barcode-studio': {
-    title: 'Export Barcode Label Studio – GS1-128 & Carton Labels | evonix',
+    title: 'Export Barcode Label Studio | Evonix',
     description:
-      'Generate compliant thermal shipping carton barcode labels for surgical instruments, sports goods, and leather exports. 4x6 direct thermal, GS1-128, and Code 128 vector rendering.',
-    ogTitle: 'Export Barcode Label Studio | evonix Technologies',
+      'Print 4x6 direct thermal shipping carton labels, GS1-128 barcodes, and Code 128 export tags for surgical, sports, and leather boxes.',
+    ogTitle: 'Export Barcode Label Studio | Evonix',
     ogDescription:
-      'Compliant outer carton thermal barcode generator for Sialkot exporters. GS1-128, Code 128, and instant 203 DPI thermal printing.',
+      'Compliant outer carton thermal barcode generator for exporters with GS1-128 and Code 128 rendering.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/export-barcode-studio-2026.png`,
     canonicalUrl: `${BASE_URL}/tools/barcode-label-studio`,
@@ -892,19 +930,16 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'export barcode label studio',
       'gs1 128 carton barcode generator',
       'shipping label maker 4x6',
-      'surgical instrument barcode label',
-      'thermal printer barcode generator',
-      'code 128 barcode generator pakistan',
     ],
   },
 
   'live-repair-tracker': {
-    title: 'Live RMA Bench Repair Status Tracker | evonix Technologies',
+    title: 'Live RMA Repair Tracker | Evonix',
     description:
-      'Track your diagnostic bench repair ticket in real-time. Check motherboard micro-soldering progress, standby current logs, and 90-day warranty certificates in Sialkot.',
-    ogTitle: 'Live RMA Bench Repair Tracker | evonix Technologies',
+      'Check live bench repair ticket progress, motherboard voltage diagnostics, and 90-day warranty records at the Evonix Sialkot service lab.',
+    ogTitle: 'Live RMA Repair Tracker | Evonix',
     ogDescription:
-      'Live RMA tracking for motherboard, laptop, and printer repairs in Sialkot. Real-time technician bench notes and voltage readings.',
+      'Live RMA tracking for motherboard, laptop, and thermal printer repairs at Evonix Sialkot.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/live-repair-tracker-2026.png`,
     canonicalUrl: `${BASE_URL}/tools/live-repair-tracker`,
@@ -912,18 +947,16 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'live repair tracker',
       'rma status tracking sialkot',
       'laptop repair tracking online',
-      'micro soldering ticket status',
-      'evonix repair desk',
     ],
   },
 
   'printer-diagnostics': {
-    title: 'Thermal Receipt & POS Printer Diagnostic Engine | evonix',
+    title: 'Thermal Printer Diagnostics | Evonix',
     description:
-      'Interactive step-by-step troubleshooter for 80mm ESC/POS thermal printers, paper jams, blurred barcodes, cutter lockups, and Windows POS driver issues.',
-    ogTitle: 'Printer Diagnostic Troubleshooter | evonix Technologies',
+      'Step-by-step interactive troubleshooter for 80mm ESC/POS thermal receipt printers, blurred barcodes, cutter jams, and USB driver faults.',
+    ogTitle: 'Thermal Printer Diagnostics | Evonix',
     ogDescription:
-      'Diagnose and fix thermal receipt printer defects, cutter jams, and ESC/POS communication errors with interactive decision trees.',
+      'Diagnose and fix thermal receipt printer paper jams, cutter lockups, and ESC/POS errors interactively.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/printer-diagnostics-2026.png`,
     canonicalUrl: `${BASE_URL}/tools/printer-diagnostics`,
@@ -931,18 +964,16 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'thermal printer diagnostic tool',
       'esc pos printer troubleshooter',
       'receipt printer repair sialkot',
-      '80mm printer paper jam fix',
-      'barcode printer troubleshooting',
     ],
   },
 
   'factory-network-tester': {
-    title: 'Factory ERP & Customs Network Latency Benchmark | evonix',
+    title: 'Factory Network Latency Test | Evonix',
     description:
-      'Benchmark factory premise network latency, SQL server database sync times, and WeBOC customs gateway ping stability in Sialkot export industrial zones.',
-    ogTitle: 'Factory Network Latency Benchmark | evonix Technologies',
+      'Measure factory LAN latency, SQL ERP sync response times, and WeBOC customs gateway ping stability in real time.',
+    ogTitle: 'Factory Network Latency Test | Evonix',
     ogDescription:
-      'Real-time network latency, jitter, and packet loss tester for Sialkot export manufacturing factories and customs portals.',
+      'Real-time latency, jitter, and packet loss diagnostics for factory ERPs and customs gateways.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/factory-network-tester-2026.png`,
     canonicalUrl: `${BASE_URL}/tools/factory-network-tester`,
@@ -950,89 +981,79 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'factory network latency test',
       'weboc customs ping stability',
       'erp database latency benchmark',
-      'dual wan failover tester',
-      'sialkot industrial network diagnostics',
     ],
   },
 
   'ai-travel-tools': {
-    title: '10 Best AI Tools for Travel Planning [2026] | evonix',
+    title: '10 Best AI Travel Tools [2026] | Evonix',
     description:
-      'What are the best AI tools for travel planning in 2026? Find top 10 AI tools name, tools required for AI trip planning, flights & vacation planning + FREE tool.',
-    ogTitle: '10 Best AI Tools for Travel Planning [2026] | evonix',
+      'Compare the 10 best AI travel planning tools in 2026 for flight fare alerts, automated hotel routing, and free day-by-day trip schedules.',
+    ogTitle: '10 Best AI Travel Tools [2026] | Evonix',
     ogDescription:
-      'What are the best AI tools for travel planning in 2026? Find top 10 AI tools name, tools required for AI trip planning, flights & vacation planning + FREE tool.',
+      'Top 10 AI travel planning platforms for flights, hotels, and custom vacation schedules in 2026.',
     ogType: 'article',
     ogImage: DEFAULT_OG_IMAGE,
     canonicalUrl: `${BASE_URL}/ai-tools-name-for-travel-itinerary`,
     keywords: [
-      'ai tools name',
-      'tools required for artificial intelligence',
       'ai tools for travel itinerary',
       'best ai tools for travel planning',
-      'ai tools for flights',
-      'ai tools for vacation planning',
       'ai travel tools',
-      'trip planner ai',
-      'itinerary generator',
     ],
   },
 
   'ai-trip-planner': {
-    title: 'AI Trip Planner: Day-by-Day Vacation Generator | EVONIX',
+    title: 'AI Trip Planner & Itinerary | Evonix',
     description:
-      'Free AI travel itinerary generator. Enter your destination, budget, and days to generate an instant day-wise vacation schedule with food spots, costs & transit advice.',
-    ogTitle: 'AI Trip Planner: Day-by-Day Vacation Generator',
+      'Generate custom day-by-day vacation itineraries with daily budget estimates, local food stops, and transit tips in seconds.',
+    ogTitle: 'AI Trip Planner & Itinerary | Evonix',
     ogDescription:
-      'Free AI travel itinerary generator. Enter your destination, budget, and days to generate an instant day-wise vacation schedule with food spots, costs & transit advice.',
+      'Free AI travel itinerary builder with day-wise schedules, budget tiers, and local transit suggestions.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/ai-trip-planner-2026.png`,
     canonicalUrl: `${BASE_URL}/tools/ai-trip-planner`,
     keywords: [
-      'Ai Trip Planner',
       'ai trip planner',
       'free itinerary generator',
       'travel itinerary ai',
-      'vacation planning ai',
-      'trip planner free',
     ],
   },
+
   admin: {
-    title: 'Admin Security Hub | evonix technologies',
-    description: 'Internal protected security management console for evonix engineering staff in Kotli Behram, Sialkot.',
+    title: 'Admin Security Hub | Evonix',
+    description: 'Protected management console for Evonix Technologies operations in Kotli Behram, Sialkot.',
     canonicalUrl: `${BASE_URL}/admin`,
-    ogTitle: 'Admin Security Hub | evonix technologies',
-    ogDescription: 'Internal protected management console.',
+    ogTitle: 'Admin Security Hub | Evonix',
+    ogDescription: 'Protected management console.',
     ogType: 'website',
     ogImage: `${BASE_URL}/og-image.jpg`,
     keywords: ['admin security', 'internal portal'],
   },
+
   'doorstep-support': {
-    title: 'Doorstep IT Support & Hardware Repair | store.evonixtec.com',
+    title: 'Doorstep IT Support Sialkot | Evonix',
     description:
-      'Emergency doorstep IT engineer dispatch in Sialkot, Sambrial, Daska & Wazirabad. 45-min arrival for factory POS, server crashes, and network failure on store.evonixtec.com.',
+      '45-minute on-site IT engineer dispatch across Sialkot, Sambrial, Daska, and Wazirabad for POS counters, servers, and LAN networks.',
     canonicalUrl: `${STORE_BASE_URL}/services/doorstep-support`,
-    ogTitle: 'Doorstep IT Support & On-Site Hardware Repair in Sialkot',
+    ogTitle: 'Doorstep IT Support Sialkot | Evonix',
     ogDescription:
-      'Fast on-site tech support in Sialkot. Certified engineers reach your shop or factory within 45 minutes.',
+      'On-site IT and POS support across Sialkot with 45-minute field technician arrival.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     keywords: [
       'doorstep IT support Sialkot',
       'on-site computer repair Sialkot',
-      'factory network repair Sialkot',
       'POS emergency support Sialkot',
-      'IT engineer visit Sialkot',
     ],
   },
+
   'sialkot-export-erp': {
-    title: 'Export Manufacturing ERP & WeBOC Cloud Suite | evonix',
+    title: 'Sialkot Export ERP Software | Evonix',
     description:
-      'Industrial ERP software for Sialkot surgical, leather, and sports exporters. Complete batch traceability, multi-currency invoicing, and WeBOC customs sync.',
+      'Custom manufacturing ERP for Sialkot surgical, leather, and sportswear exporters featuring job-card tracking, packing lists, and WeBOC billing.',
     canonicalUrl: `${BASE_URL}/sialkot-export-erp`,
-    ogTitle: 'Sialkot Export Manufacturing ERP & Customs Suite',
+    ogTitle: 'Sialkot Export ERP Software | Evonix',
     ogDescription:
-      'Industrial ERP software built for Sialkot export factories. Track batches, orders, and customs declarations.',
+      'Industrial export ERP built for Sialkot factories to manage raw materials, job cards, packing lists, and WeBOC compliance.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     keywords: [
@@ -1040,357 +1061,307 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'surgical manufacturing erp sialkot',
       'leather factory erp sialkot',
       'weboc billing software',
-      'customs erp sialkot',
     ],
   },
+
   guidelines: {
-    title: 'IT Infrastructure & Hardware Engineering Guidelines | evonix',
+    title: 'IT & Hardware Guidelines | Evonix',
     description:
-      'Technical guidelines for industrial factory networks, server data backup, and motherboard diagnostics in Sialkot export manufacturing.',
+      'Engineering standards for factory server backups, GEPCO power surge protection, and component-level hardware diagnostics.',
     canonicalUrl: `${BASE_URL}/guidelines`,
-    ogTitle: 'IT Infrastructure & Hardware Engineering Guidelines',
+    ogTitle: 'IT & Hardware Guidelines | Evonix',
     ogDescription:
-      'Clear tech guidelines for factory networks, server backups, and hardware repair.',
+      'Technical guidelines for industrial networks, server backups, and safe hardware maintenance.',
     ogType: 'article',
     ogImage: DEFAULT_OG_IMAGE,
     keywords: [
       'it guidelines sialkot',
       'hardware repair guidelines',
       'factory network best practices',
-      'server backup guidelines',
-      'tech guidelines',
     ],
   },
+
   'ebay-fee-calculator': {
-    title: 'eBay Fee & Profit Calculator 2026 | evonix',
+    title: 'eBay Fee & Profit Calculator | Evonix',
     description:
-      'Free eBay fee and profit calculator. Calculate final value fees, promoted ads, shipping costs, and net margins across US, UK, Germany, UAE, and Pakistan.',
+      'Calculate eBay Final Value Fees, promoted ad rates, shipping costs, and real-time FX profits across 10 international eBay marketplaces.',
     canonicalUrl: `${BASE_URL}/tools/ebay-fee-calculator`,
-    ogTitle: 'eBay Fee & Profit Calculator 2026',
+    ogTitle: 'eBay Fee & Profit Calculator | Evonix',
     ogDescription:
-      'Calculate eBay seller fees, promoted listings, and net profits accurately with live currency conversions.',
+      'Calculate eBay seller fees, promoted listings, and net profits accurately across 10 global marketplaces.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/ebay-fee-calculator-2026.png`,
     keywords: [
       'ebay fee calculator',
       'ebay profit calculator',
-      'ebay seller fee calculator',
       'ebay final value fee calculator',
-      'ebay margin calculator',
-      'ebay calculator pakistan',
     ],
   },
+
   'uk-eu-vat-calculator': {
-    title: 'UK & EU VAT Reverse Charge & VAT MOSS Engine | evonix',
+    title: 'UK & EU VAT Reverse Charge | Evonix',
     description:
-      'Automate HMRC Section 55A and EU Directive 2006/112/EC 0% reverse charge VAT exemptions and statutory invoice clauses for international B2B exporters.',
+      'Verify HMRC Section 55A and EU Directive 2006/112/EC zero-rated B2B reverse charge VAT rules and generate compliant invoice clauses.',
     canonicalUrl: `${BASE_URL}/tools/uk-eu-vat-calculator`,
-    ogTitle: 'UK & EU VAT Reverse Charge & VAT MOSS Engine',
+    ogTitle: 'UK & EU VAT Reverse Charge | Evonix',
     ogDescription:
-      'HMRC Section 55A and EU Directive 2006/112/EC reverse charge calculator with automated compliance notes.',
+      'HMRC Section 55A and EU B2B reverse charge VAT calculator with ready-to-use invoice compliance notes.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/uk-eu-vat-calculator-2026.png`,
     keywords: [
       'uk eu vat calculator',
       'vat reverse charge calculator',
       'hmrc section 55a invoice clause',
-      'eu directive 2006 112 ec vat exemption',
-      'cross border vat b2b calculator',
     ],
   },
+
   'us-duty-nexus-estimator': {
-    title: 'US Customs Tariff & Section 321 De Minimis Calculator | evonix',
+    title: 'US Customs Duty & Section 321 | Evonix',
     description:
-      'Calculate US CBP tariffs, verify the $800 duty-free Section 321 entry eligibility, and estimate landed costs for US buyers.',
+      'Check US CBP import tariff rates, verify Section 321 $800 de minimis eligibility, and estimate US landed shipping costs.',
     canonicalUrl: `${BASE_URL}/tools/us-duty-nexus-estimator`,
-    ogTitle: 'US Customs Tariff & Section 321 De Minimis Calculator',
+    ogTitle: 'US Customs Duty & Section 321 | Evonix',
     ogDescription:
-      'US CBP customs tariffs, Section 321 $800 de minimis qualification, and landed cost calculator.',
+      'Estimate US customs tariffs, verify Section 321 $800 duty-free clearance, and compute landed order costs.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/us-duty-nexus-estimator-2026.png`,
     keywords: [
       'us duty nexus calculator',
       'section 321 de minimis calculator',
       'us cbp import tariff calculator',
-      'hts duty calculator',
-      'landed cost us customs',
     ],
   },
+
   'ce-ukca-compliance-generator': {
-    title: 'UKCA & CE Declaration of Conformity (DoC) Generator | evonix',
+    title: 'UKCA & CE DoC Generator | Evonix',
     description:
-      'Generate audited technical Declaration of Conformity documents for CE Marking (EU MDR Class I) and UKCA tenders.',
+      'Build formatted Declaration of Conformity (DoC) sheets for EU MDR Class I surgical goods and UKCA export tender compliance.',
     canonicalUrl: `${BASE_URL}/tools/ce-ukca-compliance-generator`,
-    ogTitle: 'UKCA & CE Declaration of Conformity Generator',
+    ogTitle: 'UKCA & CE DoC Generator | Evonix',
     ogDescription:
-      'Create compliant CE and UKCA declarations of conformity for international tenders.',
+      'Create compliant CE and UKCA Declaration of Conformity files for European and UK export shipments.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/ce-ukca-compliance-generator-2026.png`,
     keywords: [
       'ce ukca compliance generator',
       'declaration of conformity generator',
       'eu mdr class 1 doc',
-      'ukca tender declaration template',
-      'ce marking technical file exporter',
     ],
   },
+
   'tiktok-shop-fee-calculator': {
-    title: 'TikTok Shop Fee & Commission Calculator 2026 | evonix',
+    title: 'TikTok Shop Fee Calculator | Evonix',
     description:
-      'Calculate TikTok Shop UK 9% commission (VAT inclusive), US 6% official & 8% reported fees, EU 9% rates, and Pakistan cross-border seller margins. Complete 2026 payout breakdown.',
+      'Calculate TikTok Shop UK 9% VAT-inclusive commission, US 6%–8% referral fees, affiliate creator payouts, and net profit margins.',
     canonicalUrl: `${BASE_URL}/tools/tiktok-shop-fee-calculator`,
-    ogTitle: 'TikTok Shop Fee & Commission Calculator 2026 | evonix',
+    ogTitle: 'TikTok Shop Fee Calculator | Evonix',
     ogDescription:
-      'Updated for UK 9% commission, US 6%/8% toggle, and Pakistan seller accounts. Calculate exact TikTok Shop referral fees, VAT, creator commissions, and net profit margins.',
+      'Calculate TikTok Shop UK 9% and US 6%/8% seller referral fees, creator commissions, and net payouts.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/tiktok-shop-fee-calculator-2026.png`,
     keywords: [
-      'TikTok Shop Fee Calculator UK 9% & US 6%/8% - 2026 Commission Calculator',
-      'tiktok shop fee calculator uk 9%',
-      'tiktok shop fee calculator us 6% 8%',
-      'tiktok shop fee in uk 2026',
-      'tiktok shop fee in us 2026',
-      'tiktok shop commission calculator pakistan',
-      'tiktok shop 9% commission fee uk',
-      'tiktok shop uk seller fees vat',
+      'tiktok shop fee calculator',
       'tiktok shop commission calculator',
-      'tiktok seller calculator uk',
-      'tiktok shop fees explained',
       'tiktok shop profit calculator',
-      'tiktok shop margin calculator',
-      'tiktok shop creator affiliate commission',
-      'tiktok shop pakistan seller payout',
     ],
   },
+
   'amazon-fba-calculator': {
-    title: 'Free Amazon FBA Calculator (Updated 2026) - Instant Profit & Fee Estimator',
+    title: 'Amazon FBA Profit Calculator | Evonix',
     description:
-      'Calculate accurate Amazon FBA fulfillment fees, referral rates, storage costs, and net profit margins instantly. 100% free tool for Amazon sellers.',
+      'Estimate 2026/2027 Amazon FBA pick-and-pack fees, category referral cuts, monthly storage costs, break-even ACoS, and net ROI.',
     canonicalUrl: `${BASE_URL}/tools/amazon-fba-calculator`,
-    ogTitle: 'Free Amazon FBA Calculator (Updated 2026) - Instant Profit & Fee Estimator',
+    ogTitle: 'Amazon FBA Profit Calculator | Evonix',
     ogDescription:
-      'Calculate accurate Amazon FBA fulfillment fees, referral rates, storage costs, and net profit margins instantly. 100% free tool for Amazon sellers.',
+      'Calculate Amazon FBA fulfillment fees, referral percentages, storage charges, and net margin.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/amazon-fba-fee-calculator-2026.png`,
     keywords: [
       'Amazon FBA Calculator',
       'FBA profit calculator',
       'Amazon referral fee',
-      'FBA fulfillment fee',
-      'Amazon storage fee',
-      'peak fee calculator 2026',
-      'amazon fuel surcharge calculator',
       'amazon break-even acos calculator',
-      'fba fee calculator 2026',
-      'amazon seller calculator',
     ],
   },
+
   'shopify-fee-calculator': {
-    title: 'Shopify Fee Calculator | Shopify Payment & Profit Utility',
+    title: 'Shopify Fee & Profit Calculator | Evonix',
     description:
-      'Calculate platform billing costs via our Shopify fee calculator. Track shopify profit calculator projections, transaction fees, and payment channels.',
+      'Compare Shopify Basic, Grow, and Advanced plan billing, Shopify Payments card fees, and third-party gateway surcharges per order.',
     canonicalUrl: `${BASE_URL}/tools/shopify-fee-calculator`,
-    ogTitle: 'Shopify Fee Calculator | Shopify Payment & Profit Utility',
+    ogTitle: 'Shopify Fee & Profit Calculator | Evonix',
     ogDescription:
-      'Calculate platform billing costs via our Shopify fee calculator. Track shopify profit calculator projections, transaction fees, and payment channels.',
+      'Calculate Shopify plan transaction fees, payment gateway deductions, and per-order net margins.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/shopify-fee-calculator-2026.png`,
     keywords: [
       'shopify fee calculator',
       'shopify profit calculator',
       'shopify transaction fee calculator',
-      'shopify profit margin calculator',
-      'shopify payment calculator',
-      'shopify fees calculator',
     ],
   },
+
   'stripe-fee-calculator': {
-    title: 'Free Stripe Fee Calculator (2026 Rates) - Domestic & International Payouts',
+    title: 'Stripe Fee Calculator 2026 | Evonix',
     description:
-      'Instant Stripe processing fee calculator. Accurately calculate standard 2.9% + $0.30 rates, international card fees, and reverse payout deductions.',
+      'Compute domestic 2.9% + $0.30 Stripe fees, international card and FX surcharges, plus reverse invoice billing amounts cleanly.',
     canonicalUrl: `${BASE_URL}/tools/stripe-fee-calculator`,
-    ogTitle: 'Free Stripe Fee Calculator (2026 Rates) - Domestic & International Payouts',
+    ogTitle: 'Stripe Fee Calculator 2026 | Evonix',
     ogDescription:
-      'Instant Stripe processing fee calculator. Accurately calculate standard 2.9% + $0.30 rates, international card fees, and reverse payout deductions.',
+      'Calculate exact Stripe processing deductions and reverse invoice totals for domestic and global cards.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/stripe-fee-calculator-2026.png`,
     keywords: [
       'stripe fee calculator',
-      'stripe fees calculator',
       'stripe transaction fee calculator',
-      'stripe payment fee calculator',
       'stripe processing fee calculator',
-      'stripe commission calculator',
     ],
   },
+
   'temu-seller-calculator': {
-    title: 'Temu Seller Calculator | Temu Fee & Profit Margin Calculator',
+    title: 'Temu Seller Fee Calculator | Evonix',
     description:
-      'Use the real Temu seller calculator to process temu fee calculator rows, commission profiles, supply chain costs, and net margins instantly.',
+      'Simulate Temu seller margins, wholesale supply cost, local warehouse fulfillment charges, and net marketplace payouts instantly.',
     canonicalUrl: `${BASE_URL}/tools/temu-seller-calculator`,
-    ogTitle: 'Temu Seller Calculator | Temu Fee & Profit Margin Calculator',
+    ogTitle: 'Temu Seller Fee Calculator | Evonix',
     ogDescription:
-      'Process temu fee calculator rows, commission profiles, supply chain costs, and net margins instantly.',
+      'Calculate Temu seller unit margins, warehouse fulfillment deductions, and net order profits.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/temu-seller-calculator-2026.png`,
     keywords: [
       'temu seller calculator',
       'temu fee calculator',
-      'temu seller fee calculator',
       'temu profit calculator',
-      'temu commission calculator',
-      'temu seller margin calculator',
     ],
   },
+
   'etsy-fee-calculator': {
-    title: 'Etsy Fee & Payoneer Profit Calculator | EtsyFeePro',
+    title: 'Etsy Fee & Payoneer Calculator | Evonix',
     description:
-      'Calculate exact Etsy fees ($0.20 listing, 6.5% transaction, 3-4.5% payment), 15% offsite ads with $100 order cap, and Payoneer banking deductions. Live currency converter.',
+      'Calculate $0.20 Etsy listing fees, 6.5% transaction fees, 15% offsite ads with $100 cap, and Payoneer bank withdrawal rates.',
     canonicalUrl: `${BASE_URL}/tools/etsy-fee-calculator`,
-    ogTitle: 'Etsy Fee & Payoneer Profit Calculator | EtsyFeePro',
+    ogTitle: 'Etsy Fee & Payoneer Calculator | Evonix',
     ogDescription:
-      'Calculate exact Etsy fees, $0.20 listing, 6.5% transaction, payment processing, 15% offsite ads with $100 cap, and Payoneer net bank deposit.',
+      'Compute Etsy seller fees, offsite ad deductions, and Payoneer PKR/USD net bank deposits.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/etsy-fee-calculator-2026.png`,
     keywords: [
       'etsy fee calculator',
-      'etsyfeepro',
       'etsy profit calculator',
       'etsy payoneer fee calculator',
-      'etsy fees 2026',
-      'etsy transaction fee',
-      'etsy payment processing fee',
-      'etsy offsite ads fee calculator',
-      'etsy seller calculator pakistan',
-      'etsy profit margin calculator',
-      'etsy cross border profit',
     ],
   },
+
   'amazon-fbm-calculator': {
-    title: 'Amazon FBM Fee & Profit Calculator 2026 | evonix',
+    title: 'Amazon FBM Fee Calculator 2026 | Evonix',
     description:
-      '2026 Amazon FBM (Fulfilled by Merchant) fee calculator. Calculate category referral fees (8-15%), merchant self-shipping, packaging, PPC CAC, and net profit margins.',
+      'Calculate Amazon FBM category referral fees (8–15%), merchant self-shipping rates, packaging costs, and net unit profit margins.',
     canonicalUrl: `${BASE_URL}/tools/amazon-fbm-calculator`,
-    ogTitle: 'Amazon FBM Fee & Profit Calculator 2026 | evonix',
+    ogTitle: 'Amazon FBM Fee Calculator 2026 | Evonix',
     ogDescription:
-      'Calculate Amazon FBM fees with 2026 rates: category referral cut, self-ship carrier rates, packaging, and net profit payout.',
+      'Compute Amazon Fulfilled by Merchant referral cuts, carrier shipping expenses, and profit per order.',
     ogType: 'website',
     ogImage: `${BASE_URL}/images/amazon-fbm-calculator-2026.png`,
     keywords: [
       'amazon fbm calculator',
       'amazon fbm fee calculator',
       'amazon fulfilled by merchant calculator',
-      'amazon fbm profit calculator',
-      'amazon referral fee calculator',
-      'fbm vs fba calculator',
-      'amazon seller calculator 2026',
     ],
   },
+
   'installation-guide': {
-    title: 'Desktop Software & License Activation Guide | evonix',
+    title: 'Desktop Software Setup Guide | Evonix',
     description:
-      'Step-by-step installation guide for Windows 10/11 and macOS for Evonix fee calculators. Single key activation and hardware ID locking instructions.',
+      'Windows 10/11 and macOS setup instructions for Evonix desktop calculators, license key activation, and offline workstation prep.',
     canonicalUrl: `${BASE_URL}/installation-guide`,
-    ogTitle: 'Desktop Software Installation & License Activation Guide | evonix',
+    ogTitle: 'Desktop Software Setup Guide | Evonix',
     ogDescription:
-      'Step-by-step installation guide for Windows 10/11 and macOS for Evonix fee calculators.',
+      'Step-by-step installation and license activation instructions for Windows and macOS desktop tools.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     keywords: [
       'software installation guide',
       'evonix license activation',
-      'hardware id finding',
       'offline fee calculator windows mac',
     ],
   },
+
   'trend-intelligence-suite': {
-    title: 'Trend Intelligence Suite V15 | Trend Scoring | EVONIXTEC',
+    title: 'Trend Intelligence Suite V15 | Evonix',
     description:
-      'Real-time multi-platform trend scoring engine across Google, Bing, eBay, YouTube, and Amazon with automated edge failover.',
+      'Score multi-platform product keyword trends across Google, Amazon, eBay, Bing, and YouTube with bulk CSV import and export.',
     canonicalUrl: `${BASE_URL}/tools/trend-intelligence-suite`,
-    ogTitle: 'Trend Intelligence Suite V15 | EVONIXTEC',
+    ogTitle: 'Trend Intelligence Suite V15 | Evonix',
     ogDescription:
-      'Multi-platform keyword trend intelligence engine across Google, Bing, eBay, YouTube, and Amazon.',
+      'Multi-platform keyword trend scoring engine across Google, Bing, eBay, YouTube, and Amazon.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     keywords: [
       'trend intelligence suite',
       'keyword trend analyzer',
       'ebay trend score',
-      'google trend volume',
-      'amazon sales score',
-      'evonix technologies v15',
     ],
   },
+
   'schema-generator': {
-    title: 'Advanced JSON-LD Schema Markup Generator | Evonix Tools',
+    title: 'JSON-LD Schema Generator | Evonix',
     description:
-      'Generate valid JSON-LD structured data for Local Business, FAQs, and Products instantly. Optimized for Google AI Overviews and SEO.',
+      'Generate valid Schema.org JSON-LD markup for LocalBusiness, FAQPage, Product, and SoftwareApplication rich snippets.',
     canonicalUrl: `${BASE_URL}/tools/schema-generator`,
-    ogTitle: 'Advanced JSON-LD Schema Markup Generator | Evonix Tools',
+    ogTitle: 'JSON-LD Schema Generator | Evonix',
     ogDescription:
-      'Create search-engine-ready structured data instantly for better AEO & SEO rankings and Google rich snippets.',
+      'Build search-ready JSON-LD structured data markup for Google rich results and knowledge graphs.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     keywords: [
       'json ld schema markup generator',
       'schema generator tool',
-      'local business schema generator',
-      'faq schema generator',
-      'product schema generator',
       'google rich results schema',
-      'ai overviews schema',
     ],
   },
+
   'hs-code-lookup': {
-    title: 'Global HS Code & Custom Duty Lookup Engine | Evonix Tools',
+    title: 'HS Code & Customs Duty Lookup | Evonix',
     description:
-      'Accurate Harmonized System (HS) code finder and estimated import duty calculator for Sialkot exporters and global e-commerce across USA, EU, UK, and UAE.',
+      'Search 6 to 8-digit WCO HS tariff codes for leather, surgical, and sports exports and estimate USA, EU, UK, and UAE customs duties.',
     canonicalUrl: `${BASE_URL}/tools/hs-code-lookup`,
-    ogTitle: 'Global HS Code & Custom Duty Lookup Engine | Evonix Tools',
+    ogTitle: 'HS Code & Customs Duty Lookup | Evonix',
     ogDescription:
-      'Quickly find export commodity codes and estimate customs tariffs for USA, EU, UK, and UAE.',
+      'Find export HS tariff codes and estimate import duties across USA, EU, UK, and UAE.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     keywords: [
       'hs code lookup engine',
       'custom duty lookup',
       'export hs codes sialkot',
-      'section 321 duty calculator',
-      'us import duty calculator',
-      'eu gsp duty tariff',
-      'leather surgical sports hs code',
     ],
   },
+
   starter: {
-    title: 'November Business Web Starter Pack | Evonix Technologies',
-    description: 'Limited November business web design offer for Pakistani businesses and exporters.',
+    title: 'Business Web Starter Pack | Evonix',
+    description: 'Starter website engineering package for Pakistani exporters, manufacturers, and growing retail businesses.',
     canonicalUrl: `${BASE_URL}/starter`,
-    ogTitle: 'November Business Web Starter Pack | Evonix Technologies',
-    ogDescription: 'Limited November business web design offer for Pakistani businesses and exporters.',
+    ogTitle: 'Business Web Starter Pack | Evonix',
+    ogDescription: 'Starter website engineering package for exporters and retail businesses.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     keywords: ['web design offer', 'starter pack', 'evonix promo'],
   },
+
   'sialkot-pos-hardware': {
-    title: 'POS Hardware & Thermal Receipt Printers in Sialkot | Same-Day Dispatch',
+    title: 'POS Hardware & Printers Sialkot | Evonix',
     description:
-      'Buy 80mm & 58mm thermal receipt printers, wireless barcode scanners, and touch POS systems in Sialkot. 1-year warranty, on-site testing, and instant COD.',
+      'Order 80mm and 58mm thermal receipt printers, 2D barcode scanners, and touch POS terminals in Sialkot with 1-year local warranty.',
     canonicalUrl: `${BASE_URL}/locations/sialkot/pos-hardware`,
-    ogTitle: 'POS Hardware & Thermal Receipt Printers in Sialkot | Same-Day Dispatch',
+    ogTitle: 'POS Hardware & Printers Sialkot | Evonix',
     ogDescription:
-      '80mm/58mm thermal printers, 2D barcode scanners & touch POS machines in ready stock in Sialkot. Same-day COD delivery and 1-year local replacement warranty.',
+      'Thermal receipt printers, barcode scanners, and touch POS terminals with same-day Sialkot dispatch.',
     ogType: 'website',
     ogImage: DEFAULT_OG_IMAGE,
     keywords: [
       'thermal printer sialkot',
       'pos hardware sialkot',
       'barcode scanner sialkot',
-      'receipt printer 80mm sialkot',
-      'touch pos machine sialkot',
-      'cash drawer sialkot',
-      'pos hardware depot kotli behram',
-      'pos printer same day delivery sialkot',
     ],
   },
 };
@@ -1543,8 +1514,10 @@ function generateRouteStructuredData(pageId: NavPageId): object {
 
   graph.push(buildBreadcrumbSchema(breadcrumbItems));
 
-  // 2. Core LocalBusiness Provider
+  // 2. Core Organization, LocalBusiness & SiteNavigationElement
+  graph.push(ORGANIZATION_SCHEMA);
   graph.push(LOCAL_BUSINESS_SCHEMA);
+  graph.push(SITE_NAVIGATION_SCHEMA);
 
   // 3. Route-Specific Entities
   if (pageId === 'home') {
@@ -1552,9 +1525,10 @@ function generateRouteStructuredData(pageId: NavPageId): object {
       '@type': 'WebSite',
       '@id': `${BASE_URL}/#website`,
       url: `${BASE_URL}/`,
-      name: 'evonix technologies',
+      name: 'Evonix Technologies',
+      alternateName: 'evonixtec.com',
       description: meta.description,
-      publisher: { '@id': `${BASE_URL}/#business` },
+      publisher: { '@id': `${BASE_URL}/#organization` },
       potentialAction: {
         '@type': 'SearchAction',
         target: `${BASE_URL}/guides?search={search_term_string}`,
@@ -1597,6 +1571,9 @@ function generateRouteStructuredData(pageId: NavPageId): object {
 
     // Inject all individual Service schemas
     INDIVIDUAL_SERVICES_SCHEMAS.forEach((svc) => graph.push(svc));
+
+    // Inject Evonix Hisaab Pro POS FAQPage Rich Result schema
+    graph.push(HISAAB_PRO_FAQ_SCHEMA);
   } else if (pageId === 'shop') {
     // Store entity
     graph.push({
@@ -1881,6 +1858,26 @@ export function applyPageSEO(
 
   // Determine exact self-referential canonical URL
   let canonicalUrl = overrideCanonicalUrl || meta.canonicalUrl;
+  if (typeof window !== 'undefined') {
+    const rawSubPath = window.location.pathname.replace(/\/index\.html$/i, '').replace(/\/+$/, '').toLowerCase();
+    if (rawSubPath === '/services/software-pos') {
+      meta.title = 'POS Software Price in Pakistan | Evonix';
+      meta.description =
+        'Offline Windows POS billing, multi-unit stock, digital khata with WhatsApp reminders & daily net profit software for retail shops in Pakistan.';
+      meta.ogTitle = meta.title;
+      meta.ogDescription = meta.description;
+      meta.keywords = [
+        'POS Software Price in Pakistan',
+        'Evonix Hisaab Pro',
+        'offline POS software Pakistan',
+        'Kiryana store ka software',
+        'Pharmacy medical store software Pakistan',
+        'Digital khata WhatsApp reminders',
+        'Garments boutique POS software',
+        'Mobile shop IMEI PTA status software',
+      ];
+    }
+  }
   if (!overrideCanonicalUrl && typeof window !== 'undefined') {
     const hostname = window.location.hostname.toLowerCase();
     const rawPath = window.location.pathname.replace(/\/index\.html$/i, '').replace(/\/+$/, '') || '/';
@@ -1983,8 +1980,17 @@ export function applyPageSEO(
  * Sets dynamic SEO for an active blog / technical guide post reader view
  */
 export function applyBlogPostSEO(blog: BlogPost) {
-  const pageTitle = `${blog.title.slice(0, 48)} | evonix Sialkot`;
-  const pageDesc = blog.excerpt.length > 155 ? `${blog.excerpt.slice(0, 152)}...` : blog.excerpt;
+  const maxSlugTitleLen = 42;
+  const trimmedTitle =
+    blog.title.length > maxSlugTitleLen
+      ? blog.title.slice(0, maxSlugTitleLen).replace(/\s+\S*$/, '').trim()
+      : blog.title.trim();
+  const pageTitle = `${trimmedTitle} | Evonix`;
+  const uniqueContext = blog.targetKeywords[0] ? `${blog.targetKeywords[0]} — ` : `${blog.categoryLabel} — `;
+  const rawDesc = blog.excerpt.trim().startsWith(uniqueContext)
+    ? blog.excerpt.trim()
+    : `${uniqueContext}${blog.excerpt.trim()}`;
+  const pageDesc = rawDesc.length > 158 ? `${rawDesc.slice(0, 155)}...` : rawDesc;
   const canonicalUrl = `${BASE_URL}/blog/${blog.slug}`;
 
   document.title = pageTitle;

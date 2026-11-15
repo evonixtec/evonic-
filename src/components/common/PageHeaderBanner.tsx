@@ -14,6 +14,7 @@ interface PageHeaderBannerProps {
   ctaText?: string;
   segments?: BreadcrumbSegment[];
   transparentBg?: boolean;
+  headingTag?: 'h1' | 'div';
 }
 
 export const PageHeaderBanner: React.FC<PageHeaderBannerProps> = ({
@@ -27,7 +28,9 @@ export const PageHeaderBanner: React.FC<PageHeaderBannerProps> = ({
   ctaText = 'Get Free Quote',
   segments,
   transparentBg = false,
+  headingTag = 'h1',
 }) => {
+  const HeadingTag = headingTag;
   return (
     <div
       className={`pt-24 pb-12 sm:pt-28 sm:pb-16 border-b transition-colors ${
@@ -62,13 +65,13 @@ export const PageHeaderBanner: React.FC<PageHeaderBannerProps> = ({
               <span>{badgeText}</span>
             </div>
 
-            <h1
+            <HeadingTag
               className={`text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight ${
                 transparentBg ? 'text-white drop-shadow-sm' : 'text-slate-900'
               }`}
             >
               {title}
-            </h1>
+            </HeadingTag>
 
             <p
               className={`text-sm sm:text-base leading-relaxed max-w-2xl ${

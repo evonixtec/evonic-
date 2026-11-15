@@ -8,12 +8,35 @@ import {
   Globe,
   BrainCircuit,
   Server,
+  WifiOff,
+  HardDrive,
 } from 'lucide-react';
 
 interface HomeServicesPreviewProps {
   onNavigateToServices: () => void;
   onOpenQuote: (serviceName?: string) => void;
 }
+
+const BUSINESS_CATEGORIES_SUMMARY = [
+  'Retail & Single-Counter Shops',
+  'Multi-Branch Retail Chains',
+  'E-Commerce & Omnichannel Sellers',
+  'Restaurants, Cafés & Takeaways',
+  'Wholesale & Distribution',
+  'Manufacturing & Export Units',
+  'Clinics, Salons & Services',
+  'Enterprise & High-Volume Ops',
+];
+
+const TECHNICAL_SERVICES_SUMMARY = [
+  'Custom Offline Software',
+  'Corporate & Business Websites',
+  'E-Commerce Stores',
+  'Mobile Applications',
+  'Legacy Data Migration',
+  'Tax & FBR Integration Setup',
+  'POS & Retail Hardware',
+];
 
 export const HomeServicesPreview: React.FC<HomeServicesPreviewProps> = ({
   onNavigateToServices,
@@ -29,10 +52,10 @@ export const HomeServicesPreview: React.FC<HomeServicesPreviewProps> = ({
               02 · Core Engineering Capabilities
             </p>
             <h2 className="text-3xl sm:text-4xl font-semibold text-slate-900 tracking-tight">
-              B2B software built for production load
+              Offline-first software &amp; enterprise engineering
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              From custom Next.js enterprise portals to multi-branch retail POS software and automated cloud operations.
+              Desktop and local-network systems powered by Evonix Hisaab Pro—running 100% offline with local backups, full data privacy, and zero internet dependency.
             </p>
           </div>
 
@@ -54,7 +77,7 @@ export const HomeServicesPreview: React.FC<HomeServicesPreviewProps> = ({
         </div>
 
         {/* 4 Core B2B Service Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
           {SERVICES.map((service) => (
             <div
               key={service.id}
@@ -114,6 +137,82 @@ export const HomeServicesPreview: React.FC<HomeServicesPreviewProps> = ({
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Concise Summary of Business Solutions & Implementation Catalog */}
+        <div className="bg-[#FAFAF9] rounded-xl border border-[#E5E7EB] p-6 sm:p-8 mb-10 text-left space-y-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-[#E5E7EB]">
+            <div className="space-y-1">
+              <div className="flex flex-wrap items-center gap-3 text-xs text-slate-600">
+                <span className="inline-flex items-center gap-1.5 font-semibold text-[#C81E1E]">
+                  <WifiOff className="w-3.5 h-3.5" />
+                  <span>100% Offline &amp; On-Premise</span>
+                </span>
+                <span aria-hidden="true">·</span>
+                <span className="inline-flex items-center gap-1.5 font-medium text-slate-700">
+                  <HardDrive className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Local Backups &amp; Full Data Privacy</span>
+                </span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-semibold text-slate-900 tracking-tight">
+                Evonix Hisaab Pro · Business &amp; Implementation Matrix
+              </h3>
+            </div>
+
+            <a
+              href="/services"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigateToServices();
+              }}
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#C81E1E] hover:text-[#A6171E] whitespace-nowrap"
+            >
+              <span>View Complete Services Catalog</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Solutions by Business Type Summary */}
+            <div className="space-y-3">
+              <h4 className="text-sm font-semibold text-slate-900">
+                Solutions by Business Type (8 Industry Tracks)
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {BUSINESS_CATEGORIES_SUMMARY.map((label, idx) => (
+                  <div
+                    key={label}
+                    className="bg-white border border-[#E5E7EB] rounded-lg px-3 py-2 flex items-center gap-2 text-xs text-slate-700"
+                  >
+                    <span className="font-mono text-[11px] text-slate-400 tabular-nums">
+                      0{idx + 1}.
+                    </span>
+                    <span className="font-medium text-slate-800 truncate">{label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Technical & Implementation Services Summary */}
+            <div className="space-y-3">
+              <h4 className="text-sm font-semibold text-slate-900">
+                Technical &amp; Implementation Services (7 Deployments)
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {TECHNICAL_SERVICES_SUMMARY.map((label, idx) => (
+                  <div
+                    key={label}
+                    className="bg-white border border-[#E5E7EB] rounded-lg px-3 py-2 flex items-center gap-2 text-xs text-slate-700"
+                  >
+                    <span className="font-mono text-[11px] text-slate-400 tabular-nums">
+                      0{idx + 1}.
+                    </span>
+                    <span className="font-medium text-slate-800 truncate">{label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Clean 4-Column Engineering Matrix */}

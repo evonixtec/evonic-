@@ -58,7 +58,7 @@ export default function FooterLinks() {
         </div>
 
         {/* COLUMN 2: REGIONAL SIALKOT LOCATIONS SERVICE PATHS */}
-        <div className="space-y-3">
+        <nav className="space-y-3" aria-label="Regional Service Clusters">
           <h4 className="text-white font-black text-sm uppercase tracking-wider">Sialkot Service Clusters</h4>
           <div className="grid grid-cols-2 gap-2 text-xs">
             {locationLinks.map((link, idx) => (
@@ -72,10 +72,10 @@ export default function FooterLinks() {
               </a>
             ))}
           </div>
-        </div>
+        </nav>
 
         {/* COLUMN 3: PREMIUM MULTI-CURRENCY WEB TOOLS MATRIX */}
-        <div className="space-y-3">
+        <nav className="space-y-3" aria-label="Business Utilities Directory">
           <h4 className="text-white font-black text-sm uppercase tracking-wider">International Utilities</h4>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
             {toolLinks.map((link, idx) => (
@@ -89,10 +89,10 @@ export default function FooterLinks() {
               </a>
             ))}
           </div>
-        </div>
+        </nav>
 
         {/* COLUMN 4: FIELD GUIDES & TECHNICAL CASE STUDIES */}
-        <div className="space-y-3">
+        <nav className="space-y-3" aria-label="Field Case Studies Directory">
           <h4 className="text-white font-black text-sm uppercase tracking-wider">Field Case Studies</h4>
           <div className="space-y-2 text-xs">
             {GLOBAL_BLOGS_DATA.map((blog, idx) => (
@@ -106,7 +106,7 @@ export default function FooterLinks() {
               </a>
             ))}
           </div>
-        </div>
+        </nav>
 
       </div>
 

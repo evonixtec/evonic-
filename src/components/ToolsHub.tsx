@@ -761,7 +761,7 @@ export const ToolsHub: React.FC<ToolsHubProps> = ({ onLaunchTool, onNavigateHome
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-              Free E-Commerce, Export &amp; Trade Calculators
+              Free Business Tools &amp; Calculators
             </h1>
 
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">

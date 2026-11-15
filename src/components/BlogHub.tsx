@@ -8,11 +8,16 @@ import { applyBlogPostSEO, applyPageSEO } from '../lib/seo';
 import { isStoreSubdomain, getStoreDomainUrl, getMainAgencyDomainUrl } from '../lib/domainUtils';
 
 interface BlogHubProps {
-  onNavigateSection: (sectionId: SectionId | string) => void;
+  onNavigateSection: (sectionId: SectionId | string, subTarget?: string) => void;
   onOpenQuoteModal?: (serviceId?: string) => void;
+  onReadingStateChange?: (isReading: boolean) => void;
 }
 
-export const BlogHub: React.FC<BlogHubProps> = ({ onNavigateSection, onOpenQuoteModal }) => {
+export const BlogHub: React.FC<BlogHubProps> = ({
+  onNavigateSection,
+  onOpenQuoteModal,
+  onReadingStateChange,
+}) => {
   const isStore = isStoreSubdomain();
   const activeCategories = isStore ? STORE_BLOG_CATEGORIES : B2B_BLOG_CATEGORIES;
   const currentDomainBlogs = isStore ? HARDWARE_STORE_BLOGS : B2B_BLOGS;
@@ -66,14 +71,18 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onNavigateSection, onOpenQuote
 
   const displayedBlogs = filteredBlogs.slice(0, visibleCount);
 
-  // Synchronize SEO when reading a specific guide or browsing guides hub
+  // Synchronize SEO and H1 state when reading a specific guide or browsing guides hub
   useEffect(() => {
+    onReadingStateChange?.(Boolean(readingBlog));
     if (readingBlog) {
       applyBlogPostSEO(readingBlog);
     } else {
       applyPageSEO('guides');
     }
-  }, [readingBlog]);
+    return () => {
+      onReadingStateChange?.(false);
+    };
+  }, [readingBlog, onReadingStateChange]);
 
   const handleOpenBlog = (blog: BlogPost) => {
     setReadingBlog(blog);
@@ -157,6 +166,43 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onNavigateSection, onOpenQuote
                 ? 'Step-by-step bench diagnostics from our Sialkot hardware lab. Covering motherboard chip repair, laser fusers, thermal receipt printers, and power sequencing.'
                 : 'Written by evonix engineers with 20+ years Dubai enterprise experience. Covering custom software architecture, offline-first POS systems, export portals, and modern cloud engineering.'}
             </p>
+            {!isStore && (
+              <div className="flex flex-wrap items-center gap-3 pt-1 text-xs font-semibold">
+                <a
+                  href="/services/software-pos"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigateSection('services', 'software-pos');
+                  }}
+                  className="text-[#C81E1E] hover:underline inline-flex items-center gap-1"
+                >
+                  <span>POS Software Pricing</span>
+                  <ArrowRight className="w-3 h-3" />
+                </a>
+                <span className="text-slate-300" aria-hidden="true">|</span>
+                <a
+                  href="/services"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigateSection('services');
+                  }}
+                  className="text-slate-800 hover:text-[#C81E1E] hover:underline inline-flex items-center gap-1"
+                >
+                  <span>Software Development Services</span>
+                </a>
+                <span className="text-slate-300" aria-hidden="true">|</span>
+                <a
+                  href="/sialkot-export-erp"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigateSection('sialkot-export-erp');
+                  }}
+                  className="text-slate-800 hover:text-[#C81E1E] hover:underline inline-flex items-center gap-1"
+                >
+                  <span>Sialkot Export ERP</span>
+                </a>
+              </div>
+            )}
           </div>
 
           {/* Quick Search Input */}
@@ -341,14 +387,17 @@ export const BlogHub: React.FC<BlogHubProps> = ({ onNavigateSection, onOpenQuote
             </div>
           </div>
           {/* Single Primary Red Action */}
-          <button
-            type="button"
-            onClick={() => onNavigateSection('export-barcode-studio')}
+          <a
+            href="/tools/barcode-label-studio"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigateSection('export-barcode-studio');
+            }}
             className="whitespace-nowrap px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-red-600/30 hover:shadow-red-600/50 transition-all flex items-center gap-2 cursor-pointer flex-shrink-0"
           >
             <span>Open Barcode Studio</span>
             <ArrowRight className="w-4 h-4" />
-          </button>
+          </a>
         </div>
 
         {/* Trending AI Research Guide Banner */}

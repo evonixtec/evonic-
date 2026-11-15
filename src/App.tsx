@@ -28,6 +28,7 @@ import { HomeServicesPreview } from './components/home/HomeServicesPreview';
 import { HomePortfolioPreview } from './components/home/HomePortfolioPreview';
 import { HomeJourneyGateway } from './components/home/HomeJourneyGateway';
 import { HomeToolsStoreSection } from './components/home/HomeToolsStoreSection';
+import { EvonixHisaabProSection } from './components/EvonixHisaabProSection';
 import FAQ from './components/FAQ';
 const GoogleReviewsSection = lazy(() => import('./components/GoogleReviewsSection').then(m => ({ default: m.GoogleReviewsSection })));
 const WhyChooseUs = lazy(() => import('./components/WhyChooseUs').then(m => ({ default: m.WhyChooseUs })));
@@ -662,6 +663,7 @@ export default function App() {
   const [isQuoteOpen, setIsQuoteOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [activePolicyModal, setActivePolicyModal] = useState<PolicyType>(null);
+  const [isBlogModalOpen, setIsBlogModalOpen] = useState<boolean>(false);
   const [selectedServiceForQuote, setSelectedServiceForQuote] = useState<string>('Website Development');
   const [securityAlert, setSecurityAlert] = useState<string | null>(null);
 
@@ -866,6 +868,8 @@ export default function App() {
     const toolSlug = PAGE_TO_TOOL_SLUG[page as NavPageId];
     if (toolSlug) {
       cleanPath = `/tools/${toolSlug}`;
+    } else if (page === 'services' && subTarget === 'software-pos') {
+      cleanPath = '/services/software-pos';
     } else if (page === 'tools') {
       cleanPath = '/tools';
     } else if (page === 'ai-travel-tools') {
@@ -890,6 +894,9 @@ export default function App() {
       // Clear out outdated hash if present
       window.history.replaceState({ page, subTarget }, '', cleanPath);
     }
+
+    // Ensure sub-route SEO updates even when page id stays 'services'
+    applyPageSEO(page as NavPageId);
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -1217,31 +1224,84 @@ export default function App() {
               )}
 
         {/* ========================================================
-            PAGE 2: DEDICATED SERVICES PAGE
+            PAGE 2: DEDICATED SERVICES & /services/software-pos PAGE
            ======================================================== */}
-        {currentPage === 'services' && (
-          <div className="space-y-0">
-            <VideoBackground theme="tech-network" overlayOpacity="medium">
-              <PageHeaderBanner
-                transparentBg
-                currentPage="services"
-                breadcrumbCurrent="Our Services"
-                badgeText="Enterprise Software Engineering"
-                title="Enterprise Services & Technology Solutions"
-                subtitle="Two decades of Dubai high-availability systems engineering delivered in Sialkot, Pakistan. From high-throughput web applications to multi-tenant cloud platforms, bespoke industrial ERPs, and private AI automation pipelines."
-                onNavigateHome={() => navigateToPage('home')}
-                onOpenQuote={() => handleOpenQuote('Enterprise Software Architecture Inquiry')}
-              />
-            </VideoBackground>
+        {currentPage === 'services' && (() => {
+          const isSoftwarePosSubroute =
+            typeof window !== 'undefined' &&
+            window.location.pathname.toLowerCase().replace(/\/+$/, '') === '/services/software-pos';
 
-            {/* Full Detailed Services Section */}
-            <Services
-              onSelectServiceForQuote={handleOpenQuote}
-              onNavigatePage={(page) => navigateToPage(page as NavPageId)}
-            />
+          return (
+            <div className="space-y-0">
+              {isSoftwarePosSubroute ? (
+                <>
+                  <div className="bg-[#FAFAF9] border-b border-[#E5E7EB] pt-24 pb-4 px-4 sm:px-6 lg:px-8">
+                    <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto flex flex-wrap items-center gap-2 text-xs text-slate-500">
+                      <button
+                        type="button"
+                        onClick={() => navigateToPage('home')}
+                        className="hover:text-[#C81E1E] cursor-pointer transition-colors"
+                      >
+                        Home
+                      </button>
+                      <span aria-hidden="true">/</span>
+                      <button
+                        type="button"
+                        onClick={() => navigateToPage('services')}
+                        className="hover:text-[#C81E1E] cursor-pointer transition-colors"
+                      >
+                        Services
+                      </button>
+                      <span aria-hidden="true">/</span>
+                      <span className="font-semibold text-slate-900">Evonix Hisaab Pro POS</span>
+                    </nav>
+                  </div>
 
-            {/* Sialkot Export Industry ERP & Custom Software Suite */}
-            <SialkotIndustrialSolutions onOpenQuote={handleOpenQuote} />
+                  {/* Primary Dedicated POS Landing Experience on /services/software-pos */}
+                  <EvonixHisaabProSection
+                    id="software-pos"
+                    asMainPage
+                    onOpenQuote={handleOpenQuote}
+                    onNavigatePage={(page) => navigateToPage(page as NavPageId)}
+                  />
+
+                  {/* Full Business Solutions & Technical Services */}
+                  <Services
+                    onSelectServiceForQuote={handleOpenQuote}
+                    onNavigatePage={(page) => navigateToPage(page as NavPageId)}
+                  />
+                </>
+              ) : (
+                <>
+                  <PageHeaderBanner
+                    transparentBg={false}
+                    currentPage="services"
+                    breadcrumbCurrent="Software Services"
+                    badgeText="Offline-First POS & Enterprise Software"
+                    title="Software Development Services"
+                    subtitle="Offline-first Windows & LAN business software powered by Evonix Hisaab Pro, alongside twenty years of Dubai enterprise web, cloud, and FBR POS deployment."
+                    onNavigateHome={() => navigateToPage('home')}
+                    onOpenQuote={() => handleOpenQuote('Enterprise Software Architecture Inquiry')}
+                  />
+
+                  {/* Full Detailed Services Section */}
+                  <Services
+                    onSelectServiceForQuote={handleOpenQuote}
+                    onNavigatePage={(page) => navigateToPage(page as NavPageId)}
+                  />
+
+                  {/* Complete Offline Retail & Business POS / Evonix Hisaab Pro Landing Section */}
+                  <EvonixHisaabProSection
+                    id="software-pos"
+                    asMainPage={false}
+                    onOpenQuote={handleOpenQuote}
+                    onNavigatePage={(page) => navigateToPage(page as NavPageId)}
+                  />
+                </>
+              )}
+
+              {/* Sialkot Export Industry ERP & Custom Software Suite */}
+              <SialkotIndustrialSolutions onOpenQuote={handleOpenQuote} />
 
             {/* Technologies We Use (Tech Stack Badges) */}
             <Technologies onExploreService={(svc) => handleOpenQuote(svc || 'Enterprise Software Development')} />
@@ -1249,18 +1309,17 @@ export default function App() {
             {/* Centralized SEO Dashboard: Keyword Mapping & Health Tracking */}
             <CentralizedSeoDashboard onNavigatePage={navigateToPage} />
 
-            {/* Featured High-CPC Web Tool Spotlight: eBay Fee & Profit Builder (Homepage Internal Linking) */}
-            <div className="bg-gradient-to-r from-blue-900 via-slate-900 to-indigo-950 py-10 px-4 text-white border-y border-blue-800/40">
+            {/* Featured Seller Tool Spotlight: eBay Fee & Profit Builder (Internal Linking) */}
+            <div className="bg-white py-12 px-4 border-y border-[#E5E7EB]">
               <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
                 <div className="space-y-2 text-center md:text-left">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold uppercase tracking-wider border border-blue-400/30">
-                    <span>🏷️ Featured Online Tool</span>
-                    <span className="bg-emerald-500 text-slate-950 px-1.5 py-0.2 rounded font-black text-[9px]">10 COUNTRIES</span>
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-black tracking-tight text-white">
+                  <p className="text-xs font-semibold text-[#C81E1E]">
+                    Free Seller Utility · 10 Global Markets
+                  </p>
+                  <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-slate-900">
                     eBay Marketplace Fee &amp; Profit Builder
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
                     Calculate exact Final Value Fees (FVF), promoted listings, international tariffs, and 100x bulk order margins across USA, UK, Germany, and 7 other global hubs.
                   </p>
                 </div>
@@ -1271,7 +1330,7 @@ export default function App() {
                       e.preventDefault();
                       navigateToPage('ebay-fee-calculator');
                     }}
-                    className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-black text-xs uppercase tracking-wider shadow-lg shadow-blue-600/30 transition-all flex items-center gap-2 cursor-pointer"
+                    className="px-5 py-2.5 rounded-lg bg-[#C81E1E] hover:bg-[#A6171E] text-white font-semibold text-xs sm:text-sm transition-colors flex items-center gap-2 cursor-pointer"
                   >
                     <span>Open eBay Fee Calculator</span>
                     <ArrowRight className="w-4 h-4" />
@@ -1282,7 +1341,7 @@ export default function App() {
                       e.preventDefault();
                       navigateToPage('tools');
                     }}
-                    className="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-slate-200 font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
+                    className="px-5 py-2.5 rounded-lg bg-white hover:bg-[#FAFAF9] text-slate-800 font-semibold text-xs sm:text-sm border border-[#E5E7EB] transition-colors cursor-pointer"
                   >
                     View All Tools
                   </a>
@@ -1291,24 +1350,24 @@ export default function App() {
             </div>
 
             {/* Doorstep On-Site Callout */}
-            <div className="bg-slate-50 py-12 border-t border-slate-200">
+            <div className="bg-[#FAFAF9] py-14 border-b border-[#E5E7EB]">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-                <h3 className="text-2xl font-bold text-slate-900">
-                  Ready to Start Your Project With Dubai Standards?
+                <h3 className="text-2xl font-semibold text-slate-900">
+                  Got a question? Call us. We reply in 2 hours.
                 </h3>
                 <p className="text-sm text-slate-600 max-w-xl mx-auto">
-                  Get a free technical consultation and formal quote tailored to your exact Sialkot business needs.
+                  Get a technical consultation and formal quote tailored to your Sialkot or UAE operations.
                 </p>
                 <div className="pt-2 flex justify-center gap-3">
                   <button
                     onClick={() => handleOpenQuote('Custom Architecture Inquiry')}
-                    className="px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm cursor-pointer shadow-2xs"
+                    className="px-5 py-2.5 rounded-lg bg-[#C81E1E] hover:bg-[#A6171E] text-white font-semibold text-xs sm:text-sm cursor-pointer transition-colors"
                   >
                     Request Free Consultation
                   </button>
                   <button
                     onClick={() => navigateToPage('contact')}
-                    className="px-6 py-3 rounded-xl bg-white hover:bg-slate-100 text-slate-800 font-bold text-xs sm:text-sm border border-slate-300 cursor-pointer"
+                    className="px-5 py-2.5 rounded-lg bg-white hover:bg-[#FAFAF9] text-slate-800 font-semibold text-xs sm:text-sm border border-[#E5E7EB] cursor-pointer transition-colors"
                   >
                     Contact Sialkot Office
                   </button>
@@ -1316,7 +1375,8 @@ export default function App() {
               </div>
             </div>
           </div>
-        )}
+          );
+        })()}
 
         {/* ========================================================
             PAGE 3: DEDICATED PORTFOLIO PAGE
@@ -1422,9 +1482,10 @@ export default function App() {
               <PageHeaderBanner
                 transparentBg
                 currentPage="guides"
-                breadcrumbCurrent="Tech Blogs & Case Studies"
+                breadcrumbCurrent="Retail & Tech Guides"
                 badgeText="evonix Engineering Blogs & Knowledge Hub"
-                title="Official Tech Blogs, Hardware Guides & Field Case Studies"
+                title="Retail & Technical Guides"
+                headingTag={isBlogModalOpen ? 'div' : 'h1'}
                 subtitle="Practical, ground-level engineering blogs written by evonix technicians. Covers retail thermal printer troubleshooting, laptop overheating fixes, factory network sync, and chip-level motherboard restoration in Sialkot."
                 onNavigateHome={() => navigateToPage('home')}
                 onOpenQuote={() => handleOpenQuote('Technical Consultation')}
@@ -1434,8 +1495,9 @@ export default function App() {
 
             {/* Blog Hub with 80+ SEO Guides */}
             <BlogHub
-              onNavigateSection={(sec) => navigateToPage(sec as NavPageId)}
+              onNavigateSection={(sec, subTarget) => navigateToPage(sec as NavPageId, subTarget)}
               onOpenQuoteModal={handleOpenQuote}
+              onReadingStateChange={setIsBlogModalOpen}
             />
 
             {/* Sialkot Citywide Direct On-Site Coverage Hub */}

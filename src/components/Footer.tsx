@@ -154,19 +154,35 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
           </div>
 
           {/* Column 2: Core Services */}
-          <div className="lg:col-span-2 space-y-3">
+          <nav className="lg:col-span-2 space-y-3" aria-label="Footer Core Services Navigation">
             <h3 className="text-xs font-semibold text-white flex items-center gap-1.5">
               <Wrench className="w-3.5 h-3.5 text-slate-400" />
               <span>Core Services</span>
             </h3>
             <ul className="space-y-2 text-slate-300">
               <li>
-                <button
-                  onClick={() => onNavigate('services')}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
+                <a
+                  href="/services"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('services');
+                  }}
+                  className="hover:text-white transition-colors text-left cursor-pointer block"
                 >
-                  Enterprise Software Engineering
-                </button>
+                  Software Services
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/services/software-pos"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('services', 'software-pos');
+                  }}
+                  className="hover:text-white transition-colors text-left cursor-pointer block font-medium text-white"
+                >
+                  POS Pricing
+                </a>
               </li>
               <li>
                 <a
@@ -177,24 +193,20 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                   }}
                   className="hover:text-white transition-colors text-left cursor-pointer block font-medium text-white"
                 >
-                  Sialkot Export Industrial ERP
+                  Export ERP
                 </a>
               </li>
               <li>
-                <button
-                  onClick={() => onNavigate('services')}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
+                <a
+                  href="/tools"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('tools');
+                  }}
+                  className="hover:text-white transition-colors text-left cursor-pointer block"
                 >
-                  Enterprise AI &amp; Cloud Pipelines
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('services')}
-                  className="hover:text-white transition-colors text-left cursor-pointer"
-                >
-                  Retail &amp; FBR POS Systems
-                </button>
+                  Business Tools
+                </a>
               </li>
               <li>
                 <a
@@ -213,14 +225,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors text-left block"
                 >
-                  Doorstep Support (45m Dispatch)
+                  Doorstep Support
                 </a>
               </li>
             </ul>
-          </div>
+          </nav>
 
           {/* Column 3: Web Tools Hub */}
-          <div className="lg:col-span-2 space-y-3">
+          <nav className="lg:col-span-2 space-y-3" aria-label="Footer Business Tools Navigation">
             <h3 className="text-xs font-semibold text-white flex items-center gap-1.5">
               <Cpu className="w-3.5 h-3.5 text-slate-400" />
               <span>Web Tools Hub</span>
@@ -335,10 +347,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
                 </a>
               </li>
             </ul>
-          </div>
+          </nav>
 
           {/* Column 4: Portfolio & Guides */}
-          <div className="lg:col-span-2 space-y-4">
+          <nav className="lg:col-span-2 space-y-4" aria-label="Footer Portfolio and Guides Navigation">
             <div className="space-y-2">
               <h3 className="text-xs font-semibold text-white flex items-center gap-1.5">
                 <Briefcase className="w-3.5 h-3.5 text-slate-400" />
@@ -346,28 +358,40 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               </h3>
               <ul className="space-y-1.5 text-slate-300">
                 <li>
-                  <button
-                    onClick={() => onNavigate('portfolio')}
+                  <a
+                    href="/portfolio"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate('portfolio');
+                    }}
+                    className="hover:text-white transition-colors text-left cursor-pointer block font-medium text-white"
+                  >
+                    Client Portfolio
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/portfolio"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate('portfolio');
+                    }}
                     className="hover:text-white transition-colors text-left cursor-pointer block"
                   >
                     Dubai Web Deployments
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button
-                    onClick={() => onNavigate('portfolio')}
+                  <a
+                    href="/services/software-pos"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate('services', 'software-pos');
+                    }}
                     className="hover:text-white transition-colors text-left cursor-pointer block"
                   >
-                    Software &amp; POS Studies
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() => onNavigate('portfolio')}
-                    className="hover:text-white transition-colors text-left cursor-pointer block"
-                  >
-                    Sialkot Export ERP Cases
-                  </button>
+                    Offline POS Software
+                  </a>
                 </li>
               </ul>
             </div>
@@ -379,24 +403,32 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               </h3>
               <ul className="space-y-1.5 text-slate-300">
                 <li>
-                  <button
-                    onClick={() => onNavigate('guides')}
-                    className="hover:text-white transition-colors text-left cursor-pointer block"
-                  >
-                    Architecture &amp; ERP Audits
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() => onNavigate('guides')}
+                  <a
+                    href="/guides"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate('guides');
+                    }}
                     className="hover:text-white transition-colors text-left cursor-pointer block font-medium text-white"
                   >
-                    Read Technical Articles
-                  </button>
+                    Retail Guides
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/guidelines"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate('guidelines');
+                    }}
+                    className="hover:text-white transition-colors text-left cursor-pointer block"
+                  >
+                    IT Guidelines
+                  </a>
                 </li>
               </ul>
             </div>
-          </div>
+          </nav>
 
           {/* Column 5: Headquarters & Contact Desk */}
           <div className="lg:col-span-2 space-y-3">
@@ -451,13 +483,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
               </div>
 
               <div>
-                <button
-                  onClick={() => onNavigate('locations')}
+                <a
+                  href="/locations"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('locations');
+                  }}
                   className="text-[11px] text-slate-300 hover:text-white font-medium transition-colors flex items-center gap-1 cursor-pointer"
                 >
                   <MapPin className="w-3 h-3 text-slate-400" />
-                  <span>Regional Hubs Directory</span>
-                </button>
+                  <span>Regional Hubs</span>
+                </a>
               </div>
             </div>
           </div>
@@ -534,7 +570,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             © {new Date().getFullYear()} evonix technologies. All rights reserved. SECP Registered IT Company in Sialkot, Pakistan.
           </div>
 
-          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+          <nav className="flex flex-wrap items-center gap-2.5 sm:gap-3" aria-label="Footer Quick Links Navigation">
             <a
               href="/about"
               onClick={(e) => {
@@ -715,7 +751,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
             >
               <ArrowUp className="w-3.5 h-3.5" />
             </button>
-          </div>
+          </nav>
         </div>
       </div>
     </footer>

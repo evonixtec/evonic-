@@ -122,8 +122,10 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-4 lg:gap-8 w-full min-w-0">
           {/* Zone 1: Clean Single Brand Mark */}
-          <button
-            onClick={() => {
+          <a
+            href={isSub ? '/tools' : '/'}
+            onClick={(e) => {
+              e.preventDefault();
               if (isSub) {
                 handlePageSelect('tools');
               } else {
@@ -131,178 +133,245 @@ export const Navbar: React.FC<NavbarProps> = ({
               }
             }}
             className="flex items-center group cursor-pointer transition-opacity hover:opacity-90 flex-shrink-0 whitespace-nowrap"
-            aria-label={isSub ? "evonix Tools Workstation" : "evonix Home"}
+            aria-label={isSub ? "Evonix Tools Workstation" : "Evonix Technologies Home"}
           >
             <EvonixLogo size="md" forceTheme="light" />
-          </button>
+          </a>
 
-          {/* Desktop Navigation Links with Clean Professional Grouping */}
+          {/* Desktop Navigation Links with Semantic Sitelink Anchor Text */}
           <nav
             ref={dropdownRef}
-            className="hidden lg:flex items-center gap-0.5 xl:gap-1.5 min-w-0"
+            className="hidden lg:flex items-center gap-0.5 xl:gap-1 min-w-0"
             aria-label="Main Navigation"
           >
-            {/* 1. Home Link */}
-            <button
-              onClick={() => handlePageSelect('home')}
-              className={`px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
-                currentPage === 'home'
-                  ? 'text-[#C81E1E] font-semibold bg-slate-100/80'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-              }`}
-            >
-              Home
-            </button>
+            {/* 1. Software Services + Dropdown */}
+            {!isSubTools && !isSubStore && (() => {
+              const isPosRoute =
+                currentPage === 'services' &&
+                typeof window !== 'undefined' &&
+                window.location.pathname.toLowerCase().replace(/\/+$/, '') === '/services/software-pos';
 
-            {/* 2. Services Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => setActiveDropdown('services')}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <button
-                onClick={() => handlePageSelect('services')}
-                className={`px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-colors flex items-center gap-1 cursor-pointer whitespace-nowrap shrink-0 ${
-                  currentPage === 'services'
-                    ? 'text-[#C81E1E] font-semibold bg-slate-100/80'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-                }`}
-                aria-expanded={activeDropdown === 'services'}
-              >
-                <span>Services</span>
-                <ChevronDown
-                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    activeDropdown === 'services' ? 'rotate-180 text-[#C81E1E]' : 'text-slate-400'
-                  }`}
-                />
-              </button>
-
-              {/* Services Dropdown */}
-              {activeDropdown === 'services' && (
-                <div className="absolute top-full left-0 w-80 pt-1.5 z-50">
-                  <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-2 space-y-1">
-                    <div className="px-2.5 py-1.5 text-[11px] font-semibold text-slate-500 flex items-center justify-between border-b border-slate-100 mb-1">
-                      <span>Core Engineering Services</span>
-                      <span className="text-[#C81E1E]">Dubai Standards</span>
-                    </div>
-
-                    <button
-                      onClick={() => handlePageSelect('services', 'web-development')}
-                      className="w-full text-left p-2 rounded-lg hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
+              return (
+                <>
+                  <div
+                    className="relative"
+                    onMouseEnter={() => setActiveDropdown('services')}
+                    onMouseLeave={() => setActiveDropdown(null)}
+                  >
+                    <a
+                      href="/services"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handlePageSelect('services');
+                      }}
+                      className={`px-2.5 xl:px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-colors flex items-center gap-1 cursor-pointer whitespace-nowrap shrink-0 ${
+                        currentPage === 'services' && !isPosRoute
+                          ? 'text-[#C81E1E] font-semibold bg-slate-100/80'
+                          : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                      }`}
+                      aria-expanded={activeDropdown === 'services'}
                     >
-                      <div className="p-1.5 rounded-md bg-slate-100 text-slate-700 group-hover:bg-[#C81E1E] group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
-                        <Globe className="w-3.5 h-3.5" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#C81E1E] transition-colors">
-                          Website Development
-                        </div>
-                        <div className="text-[11px] text-slate-500 line-clamp-1">
-                          E-Commerce & High-Speed Next.js Portals
-                        </div>
-                      </div>
-                    </button>
+                      <span>Software Services</span>
+                      <ChevronDown
+                        className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                          activeDropdown === 'services' ? 'rotate-180 text-[#C81E1E]' : 'text-slate-400'
+                        }`}
+                      />
+                    </a>
 
-                    <button
-                      onClick={() => handlePageSelect('services', 'software-pos')}
-                      className="w-full text-left p-2 rounded-lg hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
-                    >
-                      <div className="p-1.5 rounded-md bg-slate-100 text-slate-700 group-hover:bg-[#C81E1E] group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
-                        <Monitor className="w-3.5 h-3.5" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#C81E1E] transition-colors">
-                          Software & POS Systems
-                        </div>
-                        <div className="text-[11px] text-slate-500 line-clamp-1">
-                          Retail ERP, Invoicing & Inventory Control
-                        </div>
-                      </div>
-                    </button>
+                    {activeDropdown === 'services' && (
+                      <div className="absolute top-full left-0 w-80 pt-1.5 z-50">
+                        <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-2 space-y-1">
+                          <div className="px-2.5 py-1.5 text-[11px] font-semibold text-slate-500 flex items-center justify-between border-b border-slate-100 mb-1">
+                            <span>Core Engineering Services</span>
+                            <span className="text-[#C81E1E]">Dubai Standards</span>
+                          </div>
 
-                    <button
-                      onClick={() => handlePageSelect('services', 'ai-automation')}
-                      className="w-full text-left p-2 rounded-lg hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
-                    >
-                      <div className="p-1.5 rounded-md bg-slate-100 text-slate-700 group-hover:bg-[#C81E1E] group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
-                        <Cpu className="w-3.5 h-3.5" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#C81E1E] transition-colors">
-                          Enterprise AI &amp; Automation
-                        </div>
-                        <div className="text-[11px] text-slate-500 line-clamp-1">
-                          Autonomous LLM Pipelines &amp; RAG Systems
-                        </div>
-                      </div>
-                    </button>
+                          <a
+                            href="/services#web-development"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handlePageSelect('services', 'web-development');
+                            }}
+                            className="w-full text-left p-2 rounded-lg hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
+                          >
+                            <div className="p-1.5 rounded-md bg-slate-100 text-slate-700 group-hover:bg-[#C81E1E] group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+                              <Globe className="w-3.5 h-3.5" />
+                            </div>
+                            <div>
+                              <div className="text-xs font-semibold text-slate-900 group-hover:text-[#C81E1E] transition-colors">
+                                Website Development
+                              </div>
+                              <div className="text-[11px] text-slate-500 line-clamp-1">
+                                E-Commerce &amp; High-Speed Web Portals
+                              </div>
+                            </div>
+                          </a>
 
-                    <button
-                      onClick={() => handlePageSelect('services', 'cloud-architecture')}
-                      className="w-full text-left p-2 rounded-lg hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
-                    >
-                      <div className="p-1.5 rounded-md bg-slate-100 text-slate-700 group-hover:bg-[#C81E1E] group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
-                        <Cpu className="w-3.5 h-3.5" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#C81E1E] transition-colors">
-                          Cloud &amp; Scalable Architecture
-                        </div>
-                        <div className="text-[11px] text-slate-500 line-clamp-1">
-                          Distributed Microservices &amp; 99.9% Uptime
-                        </div>
-                      </div>
-                    </button>
+                          <a
+                            href="/services/software-pos"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handlePageSelect('services', 'software-pos');
+                            }}
+                            className="w-full text-left p-2 rounded-lg hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
+                          >
+                            <div className="p-1.5 rounded-md bg-slate-100 text-slate-700 group-hover:bg-[#C81E1E] group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+                              <Monitor className="w-3.5 h-3.5" />
+                            </div>
+                            <div>
+                              <div className="text-xs font-semibold text-slate-900 group-hover:text-[#C81E1E] transition-colors">
+                                POS Software Pricing
+                              </div>
+                              <div className="text-[11px] text-slate-500 line-clamp-1">
+                                Offline Retail POS, Khata &amp; Inventory
+                              </div>
+                            </div>
+                          </a>
 
-                    <div className="pt-1.5 border-t border-slate-100">
-                      <button
-                        onClick={() => handlePageSelect('services')}
-                        className="w-full py-1.5 px-3 rounded-lg bg-slate-50 hover:bg-slate-100 text-center text-xs font-semibold text-[#C81E1E] flex items-center justify-center gap-1 cursor-pointer transition-colors"
-                      >
-                        <span>All Services</span>
-                        <ArrowRight className="w-3 h-3" />
-                      </button>
-                    </div>
+                          <a
+                            href="/sialkot-export-erp"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handlePageSelect('sialkot-export-erp');
+                            }}
+                            className="w-full text-left p-2 rounded-lg hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
+                          >
+                            <div className="p-1.5 rounded-md bg-slate-100 text-slate-700 group-hover:bg-[#C81E1E] group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+                              <Boxes className="w-3.5 h-3.5" />
+                            </div>
+                            <div>
+                              <div className="text-xs font-semibold text-slate-900 group-hover:text-[#C81E1E] transition-colors">
+                                Sialkot Export ERP
+                              </div>
+                              <div className="text-[11px] text-slate-500 line-clamp-1">
+                                Factory Batch Control &amp; WeBOC Sync
+                              </div>
+                            </div>
+                          </a>
+
+                          <a
+                            href="/services#cloud-architecture"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handlePageSelect('services', 'cloud-architecture');
+                            }}
+                            className="w-full text-left p-2 rounded-lg hover:bg-slate-50 transition-colors flex items-start gap-2.5 group cursor-pointer"
+                          >
+                            <div className="p-1.5 rounded-md bg-slate-100 text-slate-700 group-hover:bg-[#C81E1E] group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+                              <Cpu className="w-3.5 h-3.5" />
+                            </div>
+                            <div>
+                              <div className="text-xs font-semibold text-slate-900 group-hover:text-[#C81E1E] transition-colors">
+                                Cloud &amp; Architecture
+                              </div>
+                              <div className="text-[11px] text-slate-500 line-clamp-1">
+                                Distributed Systems &amp; 99.9% Uptime
+                              </div>
+                            </div>
+                          </a>
+
+                          <div className="pt-1.5 border-t border-slate-100">
+                            <a
+                              href="/services"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handlePageSelect('services');
+                              }}
+                              className="w-full py-1.5 px-3 rounded-lg bg-slate-50 hover:bg-slate-100 text-center text-xs font-semibold text-[#C81E1E] flex items-center justify-center gap-1 cursor-pointer transition-colors"
+                            >
+                              <span>All Software Services</span>
+                              <ArrowRight className="w-3 h-3" />
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                </div>
-              )}
-            </div>
-            {/* 3. Agency Domain Navigation */}
-            {!isSubTools && !isSubStore && (
-              <>
-                <button
-                  onClick={() => handlePageSelect('portfolio')}
-                  className={`px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
-                    currentPage === 'portfolio'
-                      ? 'text-[#C81E1E] font-semibold bg-slate-100/80'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-                  }`}
-                >
-                  Portfolio
-                </button>
 
-                <button
-                  type="button"
-                  onClick={() => handlePageSelect('tools')}
-                  className={`px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
-                    isToolsActive
-                      ? 'text-[#C81E1E] font-semibold bg-slate-100/80'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-                  }`}
-                  title="26 Free E-Commerce, Export & Freight Calculators"
-                >
-                  Tools
-                </button>
+                  {/* 2. POS Software Pricing */}
+                  <a
+                    href="/services/software-pos"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePageSelect('services', 'software-pos');
+                    }}
+                    className={`px-2.5 xl:px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
+                      isPosRoute
+                        ? 'text-[#C81E1E] font-semibold bg-slate-100/80'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                    }`}
+                  >
+                    POS Pricing
+                  </a>
 
-                <a
-                  href={getStoreDomainUrl()}
-                  className="px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-50 whitespace-nowrap shrink-0"
-                  title="Certified IT Hardware, POS Terminals & Enterprise Laptops on store.evonixtec.com"
-                >
-                  Hardware Store
-                </a>
-              </>
-            )}
+                  {/* 3. Sialkot Export ERP */}
+                  <a
+                    href="/sialkot-export-erp"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePageSelect('sialkot-export-erp');
+                    }}
+                    className={`px-2.5 xl:px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
+                      currentPage === 'sialkot-export-erp'
+                        ? 'text-[#C81E1E] font-semibold bg-slate-100/80'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                    }`}
+                  >
+                    Export ERP
+                  </a>
+
+                  {/* 4. Free Business Tools */}
+                  <a
+                    href="/tools"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePageSelect('tools');
+                    }}
+                    className={`px-2.5 xl:px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                      isToolsActive
+                        ? 'text-[#C81E1E] font-semibold bg-slate-100/80'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                    }`}
+                    title="Free Business Tools and Calculators"
+                  >
+                    Business Tools
+                  </a>
+
+                  {/* 5. Retail & Tech Guides */}
+                  <a
+                    href="/guides"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePageSelect('guides');
+                    }}
+                    className={`px-2.5 xl:px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                      currentPage === 'guides'
+                        ? 'text-[#C81E1E] font-semibold bg-slate-100/80'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                    }`}
+                  >
+                    Retail Guides
+                  </a>
+
+                  {/* 6. Client Portfolio */}
+                  <a
+                    href="/portfolio"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePageSelect('portfolio');
+                    }}
+                    className={`px-2.5 xl:px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
+                      currentPage === 'portfolio'
+                        ? 'text-[#C81E1E] font-semibold bg-slate-100/80'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                    }`}
+                  >
+                    Portfolio
+                  </a>
+                </>
+              );
+            })()}
 
             {/* Tools Subdomain Header Controls */}
             {isSubTools && (
@@ -830,82 +899,112 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
             )}
 
-            {/* 6. Company Dropdown (Consolidated with About, Sialkot Lab & Regional Hubs) */}
+            {/* Company Dropdown (Consolidated with Hardware Store, About, Sialkot Lab & Regional Hubs) */}
             <div
               className="relative"
               onMouseEnter={() => setActiveDropdown('company')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <button
-                onClick={() => handlePageSelect('about')}
-                className={`px-2 xl:px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap ${
-                  currentPage === 'about' || currentPage === 'locations'
-                    ? 'text-red-700 bg-gradient-to-b from-red-50 to-rose-50/50 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_1px_3px_rgba(220,38,38,0.12)] border border-red-200/80'
-                    : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/80'
+              <a
+                href="/about"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handlePageSelect('about');
+                }}
+                className={`px-2.5 xl:px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-colors flex items-center gap-1 cursor-pointer whitespace-nowrap shrink-0 ${
+                  currentPage === 'about' || currentPage === 'locations' || currentPage === 'contact'
+                    ? 'text-[#C81E1E] font-semibold bg-slate-100/80'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}
                 aria-expanded={activeDropdown === 'company'}
               >
                 <span>Company</span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    activeDropdown === 'company' ? 'rotate-180 text-red-600' : 'text-slate-400'
+                    activeDropdown === 'company' ? 'rotate-180 text-[#C81E1E]' : 'text-slate-400'
                   }`}
                 />
-              </button>
+              </a>
 
               {activeDropdown === 'company' && (
-                <div className="absolute top-full right-0 lg:left-0 w-80 pt-1.5 z-50">
-                  <div className="bg-white/98 backdrop-blur-2xl rounded-2xl shadow-[0_20px_45px_-10px_rgba(0,0,0,0.14),0_0_0_1px_rgba(0,0,0,0.06)] border border-slate-200 p-2 space-y-1">
-                    <div className="px-3 py-1.5 border-b border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                      <span>evonix Heritage & Hubs</span>
-                      <span className="text-[10px] text-red-600 font-bold">20+ Yrs UAE</span>
+                <div className="absolute top-full right-0 lg:left-0 w-72 pt-1.5 z-50">
+                  <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-2 space-y-1">
+                    <div className="px-2.5 py-1.5 border-b border-slate-100 flex items-center justify-between text-[11px] font-semibold text-slate-500">
+                      <span>Evonix Heritage &amp; Store</span>
+                      <span className="text-[#C81E1E]">20+ Yrs UAE</span>
                     </div>
 
-                    <button
-                      onClick={() => handlePageSelect('about')}
-                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 cursor-pointer group"
+                    <a
+                      href={getStoreDomainUrl()}
+                      className="w-full text-left p-2 rounded-lg hover:bg-slate-50 transition-colors flex items-center gap-2.5 cursor-pointer group"
                     >
-                      <div className="p-2 rounded-lg bg-red-50 text-red-600 group-hover:bg-red-600 group-hover:text-white transition-colors">
-                        <ShieldCheck className="w-4 h-4" />
+                      <div className="p-1.5 rounded-md bg-slate-100 text-slate-700 group-hover:bg-[#C81E1E] group-hover:text-white transition-colors">
+                        <ShoppingBag className="w-3.5 h-3.5" />
                       </div>
                       <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-red-600">
-                          About Us & Dubai Heritage
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#C81E1E]">
+                          Hardware Store
                         </div>
-                        <div className="text-[11px] text-slate-500">20+ Years UAE Pedigree in Sialkot</div>
+                        <div className="text-[11px] text-slate-500">POS Terminals &amp; Laptops</div>
                       </div>
-                    </button>
+                    </a>
 
-                    <button
-                      onClick={() => handlePageSelect('locations')}
-                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 cursor-pointer group"
+                    <a
+                      href="/about"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handlePageSelect('about');
+                      }}
+                      className="w-full text-left p-2 rounded-lg hover:bg-slate-50 transition-colors flex items-center gap-2.5 cursor-pointer group"
                     >
-                      <div className="p-2 rounded-lg bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                        <MapPin className="w-4 h-4" />
+                      <div className="p-1.5 rounded-md bg-slate-100 text-slate-700 group-hover:bg-[#C81E1E] group-hover:text-white transition-colors">
+                        <ShieldCheck className="w-3.5 h-3.5" />
                       </div>
                       <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-emerald-700 flex items-center gap-1.5">
-                          <span>Regional Industrial Hubs</span>
-                          <span className="text-[9px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.2 rounded-full">Daska • Sambrial</span>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#C81E1E]">
+                          About Us
                         </div>
-                        <div className="text-[11px] text-slate-500">Field Stations Across Sialkot Division</div>
+                        <div className="text-[11px] text-slate-500">20+ Years UAE Engineering</div>
                       </div>
-                    </button>
+                    </a>
 
-                    <button
-                      onClick={() => handlePageSelect('contact')}
-                      className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 cursor-pointer group"
+                    <a
+                      href="/locations"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handlePageSelect('locations');
+                      }}
+                      className="w-full text-left p-2 rounded-lg hover:bg-slate-50 transition-colors flex items-center gap-2.5 cursor-pointer group"
                     >
-                      <div className="p-2 rounded-lg bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                        <Users className="w-4 h-4" />
+                      <div className="p-1.5 rounded-md bg-slate-100 text-slate-700 group-hover:bg-[#C81E1E] group-hover:text-white transition-colors">
+                        <MapPin className="w-3.5 h-3.5" />
                       </div>
                       <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-blue-700">
-                          Kotli Behram Lab & Team
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#C81E1E]">
+                          Regional Hubs
                         </div>
-                        <div className="text-[11px] text-slate-500">Kotli Behram, Sialkot Hub</div>
+                        <div className="text-[11px] text-slate-500">Sialkot, Daska, Sambrial &amp; Wazirabad</div>
                       </div>
-                    </button>
+                    </a>
+
+                    <a
+                      href="/contact"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handlePageSelect('contact');
+                      }}
+                      className="w-full text-left p-2 rounded-lg hover:bg-slate-50 transition-colors flex items-center gap-2.5 cursor-pointer group"
+                    >
+                      <div className="p-1.5 rounded-md bg-slate-100 text-slate-700 group-hover:bg-[#C81E1E] group-hover:text-white transition-colors">
+                        <Users className="w-3.5 h-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#C81E1E]">
+                          Contact Desk
+                        </div>
+                        <div className="text-[11px] text-slate-500">Kotli Behram, Sialkot Office</div>
+                      </div>
+                    </a>
                   </div>
                 </div>
               )}
@@ -1035,14 +1134,57 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             {/* Portfolio Link for Agency Domain */}
             {!isSub && (
-              <button
-                onClick={() => handlePageSelect('portfolio')}
-                className={`w-full text-left px-3.5 py-2 rounded-xl text-sm font-bold flex items-center justify-between ${
-                  currentPage === 'portfolio' ? 'bg-red-50 text-red-600' : 'text-slate-800 hover:bg-slate-100'
-                }`}
-              >
-                <span>Portfolio &amp; Case Studies</span>
-              </button>
+              <>
+                <a
+                  href="/services/software-pos"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handlePageSelect('services', 'software-pos');
+                  }}
+                  className="w-full text-left px-3.5 py-2 rounded-xl text-sm font-bold flex items-center justify-between text-slate-800 hover:bg-slate-100"
+                >
+                  <span>POS Software Pricing</span>
+                </a>
+
+                <a
+                  href="/sialkot-export-erp"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handlePageSelect('sialkot-export-erp');
+                  }}
+                  className={`w-full text-left px-3.5 py-2 rounded-xl text-sm font-bold flex items-center justify-between ${
+                    currentPage === 'sialkot-export-erp' ? 'bg-red-50 text-red-600' : 'text-slate-800 hover:bg-slate-100'
+                  }`}
+                >
+                  <span>Sialkot Export ERP</span>
+                </a>
+
+                <a
+                  href="/guides"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handlePageSelect('guides');
+                  }}
+                  className={`w-full text-left px-3.5 py-2 rounded-xl text-sm font-bold flex items-center justify-between ${
+                    currentPage === 'guides' ? 'bg-red-50 text-red-600' : 'text-slate-800 hover:bg-slate-100'
+                  }`}
+                >
+                  <span>Retail &amp; Tech Guides</span>
+                </a>
+
+                <a
+                  href="/portfolio"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handlePageSelect('portfolio');
+                  }}
+                  className={`w-full text-left px-3.5 py-2 rounded-xl text-sm font-bold flex items-center justify-between ${
+                    currentPage === 'portfolio' ? 'bg-red-50 text-red-600' : 'text-slate-800 hover:bg-slate-100'
+                  }`}
+                >
+                  <span>Client Portfolio</span>
+                </a>
+              </>
             )}
 
             {/* About Us */}
@@ -1071,7 +1213,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <span>🛠️ 26 Free Business Tools</span>
                   </div>
                   <span className="px-2 py-0.5 bg-red-600 text-white text-[10px] rounded-full font-bold flex items-center gap-1">
-                    <span>Explore 26 Tools →</span>
+                    <span>Open 26 Tools →</span>
                   </span>
                 </button>
 

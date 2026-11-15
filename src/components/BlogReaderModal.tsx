@@ -27,9 +27,36 @@ interface BlogReaderModalProps {
   blog: BlogPost | null;
   onClose: () => void;
   onSelectBlog: (blog: BlogPost) => void;
-  onNavigateSection: (sectionId: SectionId | string) => void;
+  onNavigateSection: (sectionId: SectionId | string, subTarget?: string) => void;
   onOpenQuoteModal?: (serviceId?: string) => void;
 }
+
+const resolveSectionHref = (targetSection: string): string => {
+  const map: Record<string, string> = {
+    home: '/',
+    services: '/services',
+    'software-pos': '/services/software-pos',
+    'sialkot-export-erp': '/sialkot-export-erp',
+    portfolio: '/portfolio',
+    tools: '/tools',
+    guides: '/guides',
+    about: '/about',
+    contact: '/contact',
+    locations: '/locations',
+    'export-barcode-studio': '/tools/barcode-label-studio',
+    invoice: '/tools/invoice-generator',
+    'cbm-calculator': '/tools/export-cbm-calculator',
+    'ecommerce-calculator': '/tools/ecommerce-margin-calculator',
+    'ebay-fee-calculator': '/tools/ebay-fee-calculator',
+    'printer-diagnostics': '/tools/printer-diagnostics',
+    'factory-network-tester': '/tools/factory-network-tester',
+    'live-repair-tracker': '/tools/live-repair-tracker',
+    'schema-generator': '/tools/schema-generator',
+    'hs-code-lookup': '/tools/hs-code-lookup',
+  };
+  if (map[targetSection]) return map[targetSection];
+  return targetSection.startsWith('/') ? targetSection : `/${targetSection}`;
+};
 
 // Thoroughly clean any raw markdown artifacts and AI formatting residue
 const sanitizePureText = (text: string): string => {
@@ -481,9 +508,10 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
               </div>
 
               {/* Single Primary Red Action */}
-              <button
-                type="button"
-                onClick={() => {
+              <a
+                href="/tools/barcode-label-studio"
+                onClick={(e) => {
+                  e.preventDefault();
                   onClose();
                   onNavigateSection('export-barcode-studio');
                 }}
@@ -491,7 +519,81 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
               >
                 <span>Open Barcode Studio</span>
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </a>
+            </div>
+
+            {/* Direct Contextual Internal Links to POS & Software Services */}
+            <div className="p-5 rounded-xl bg-[#FAFAF9] border border-[#E5E7EB] space-y-3 text-left">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <span className="text-xs font-semibold text-slate-900">
+                  Next Steps: Software &amp; Offline POS Solutions
+                </span>
+                <span className="text-[11px] font-mono text-slate-500">Evonix Core Pages</span>
+              </div>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Need Windows offline billing, Digital Khata, or custom enterprise systems? Check our core service pages directly:
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <a
+                  href="/services/software-pos"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onClose();
+                    onNavigateSection('services', 'software-pos');
+                  }}
+                  className="p-3 rounded-lg bg-white border border-[#E5E7EB] hover:border-[#C81E1E] transition-colors flex items-center justify-between group"
+                >
+                  <div>
+                    <span className="text-xs font-semibold text-slate-900 group-hover:text-[#C81E1E] block">
+                      POS Software Pricing
+                    </span>
+                    <span className="text-[11px] text-slate-500 block mt-0.5">
+                      Offline Windows POS &amp; Khata
+                    </span>
+                  </div>
+                  <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#C81E1E] shrink-0" />
+                </a>
+
+                <a
+                  href="/services"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onClose();
+                    onNavigateSection('services');
+                  }}
+                  className="p-3 rounded-lg bg-white border border-[#E5E7EB] hover:border-[#C81E1E] transition-colors flex items-center justify-between group"
+                >
+                  <div>
+                    <span className="text-xs font-semibold text-slate-900 group-hover:text-[#C81E1E] block">
+                      Software Development Services
+                    </span>
+                    <span className="text-[11px] text-slate-500 block mt-0.5">
+                      Web, Cloud &amp; Custom ERP
+                    </span>
+                  </div>
+                  <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#C81E1E] shrink-0" />
+                </a>
+
+                <a
+                  href="/sialkot-export-erp"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onClose();
+                    onNavigateSection('sialkot-export-erp');
+                  }}
+                  className="p-3 rounded-lg bg-white border border-[#E5E7EB] hover:border-[#C81E1E] transition-colors flex items-center justify-between group"
+                >
+                  <div>
+                    <span className="text-xs font-semibold text-slate-900 group-hover:text-[#C81E1E] block">
+                      Sialkot Export ERP
+                    </span>
+                    <span className="text-[11px] text-slate-500 block mt-0.5">
+                      WeBOC &amp; Factory Automation
+                    </span>
+                  </div>
+                  <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#C81E1E] shrink-0" />
+                </a>
+              </div>
             </div>
 
             {/* Contextual Architecture & Service Internal Links Grid */}
@@ -504,35 +606,43 @@ export const BlogReaderModal: React.FC<BlogReaderModalProps> = ({
                   <span className="text-[11px] text-slate-400 font-mono">internal documentation</span>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {blog.internalLinks.map((link, lIdx) => (
-                    <button
-                      key={lIdx}
-                      type="button"
-                      onClick={() => {
-                        onClose();
-                        onNavigateSection(link.targetSection);
-                        if (onOpenQuoteModal && (link.targetSection === 'contact' || link.targetSection === 'services')) {
-                          onOpenQuoteModal(link.label);
-                        }
-                      }}
-                      className="p-4 rounded-[20px] border border-slate-200 hover:border-red-300 hover:bg-red-50/40 transition-all text-left flex items-center justify-between group cursor-pointer bg-white shadow-2xs"
-                    >
-                      <div className="pr-3">
-                        <span className="text-[11px] font-bold text-red-600 block">
-                          {link.label}
-                        </span>
-                        <span className="text-xs font-semibold text-[#1E1E1E] group-hover:text-red-700 transition-colors block mt-0.5">
-                          {link.anchorText}
-                        </span>
-                        {link.description && (
-                          <span className="text-[11px] text-slate-500 block mt-1 line-clamp-1">
-                            {link.description}
+                  {blog.internalLinks.map((link, lIdx) => {
+                    const targetHref = resolveSectionHref(link.targetSection);
+                    return (
+                      <a
+                        key={lIdx}
+                        href={targetHref}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          onClose();
+                          if (link.targetSection === 'software-pos') {
+                            onNavigateSection('services', 'software-pos');
+                          } else {
+                            onNavigateSection(link.targetSection);
+                          }
+                          if (onOpenQuoteModal && (link.targetSection === 'contact' || link.targetSection === 'services')) {
+                            onOpenQuoteModal(link.label);
+                          }
+                        }}
+                        className="p-4 rounded-[20px] border border-slate-200 hover:border-red-300 hover:bg-red-50/40 transition-all text-left flex items-center justify-between group cursor-pointer bg-white shadow-2xs"
+                      >
+                        <div className="pr-3">
+                          <span className="text-[11px] font-bold text-red-600 block">
+                            {link.label}
                           </span>
-                        )}
-                      </div>
-                      <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-red-600 group-hover:translate-x-1 transition-all flex-shrink-0" />
-                    </button>
-                  ))}
+                          <span className="text-xs font-semibold text-[#1E1E1E] group-hover:text-red-700 transition-colors block mt-0.5">
+                            {link.anchorText}
+                          </span>
+                          {link.description && (
+                            <span className="text-[11px] text-slate-500 block mt-1 line-clamp-1">
+                              {link.description}
+                            </span>
+                          )}
+                        </div>
+                        <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-red-600 group-hover:translate-x-1 transition-all flex-shrink-0" />
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
             )}
