@@ -112,9 +112,9 @@ export const AiTripPlannerStandalonePage: React.FC<AiTripPlannerStandalonePagePr
             <span>AI Travel Itinerary Generator &bull; 2026 Edition</span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
             AI Trip Planner: Free Day-by-Day Vacation Itinerary Generator
-          </h1>
+          </h2>
 
           {/* Simple Grade 6 Short Paragraphs */}
           <div className="max-w-none space-y-3 text-sm sm:text-base leading-relaxed">

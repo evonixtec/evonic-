@@ -159,9 +159,9 @@ Calculated via EVONIX Technologies: https://www.evonixtec.com/amazon-fbm-calcula
               <Truck className="w-3.5 h-3.5" />
               <span>Fulfilled by Merchant Suite</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
               Amazon FBM Fee &amp; Profit Calculator 2026
-            </h1>
+            </h2>
             <p className="text-xs sm:text-sm text-slate-600 max-w-xl">
               Compare merchant self-shipping against Amazon referral fees, ad spend, and net seller payout.
             </p>

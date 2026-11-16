@@ -324,9 +324,9 @@ export default function TikTokShopCalculator() {
               <ShoppingBag className="w-3.5 h-3.5 text-[#0071e3]" />
               <span>TikTok Shop Seller Suite • UK 9% &amp; US 6%/8% Commission Engine</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#1d1d1f]">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#1d1d1f]">
               TikTok Shop Fee Calculator UK 9% &amp; US 6%/8% - 2026 Commission Calculator
-            </h1>
+            </h2>
             <p className="text-xs sm:text-sm text-[#86868b] leading-relaxed max-w-2xl">
               Calculate exact TikTok Shop fees: UK 9% commission (VAT-inclusive, no separate transaction fee), US 6% official &amp; 8% reported tiers, EU 9% rates, and Pakistan cross-border exporter net profits.
             </p>

@@ -294,9 +294,9 @@ export const ToolWorkspaceHeader: React.FC<ToolWorkspaceHeaderProps> = ({
                 {/* Tool Title */}
                 <div className="flex items-center gap-2 mt-0.5">
                   <div className="text-red-500 flex-shrink-0">{icon}</div>
-                  <h1 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                  <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
                     {toolTitle}
-                  </h1>
+                  </h2>
                 </div>
               </div>
             </div>

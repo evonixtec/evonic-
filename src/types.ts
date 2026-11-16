@@ -39,7 +39,8 @@ export type NavPageId =
   | 'schema-generator'
   | 'hs-code-lookup'
   | 'sialkot-pos-hardware'
-  | 'starter';
+  | 'starter'
+  | 'not-found';
 
 export type PageId = NavPageId;
 

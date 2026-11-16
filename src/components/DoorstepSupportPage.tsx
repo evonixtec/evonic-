@@ -324,6 +324,26 @@ export const DoorstepSupportPage: React.FC<DoorstepSupportPageProps> = ({
               </p>
             </div>
           </div>
+
+          <div className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200 space-y-3">
+            <h3 className="text-sm font-bold text-slate-900">
+              Hardware Repair &amp; Troubleshooting Guides
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <a
+                href="https://www.evonixtec.com/blog/heavy-duty-laser-printer-repair-daska-road-sialkot-factories"
+                className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-red-500 text-slate-800 font-semibold block transition-colors"
+              >
+                Laser Printer Fuser Repair on Daska Road, Sialkot Factories &rarr;
+              </a>
+              <a
+                href="https://www.evonixtec.com/blog/dell-latitude-hp-elitebook-type-c-charging-repair-sialkot"
+                className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-red-500 text-slate-800 font-semibold block transition-colors"
+              >
+                Dell Latitude &amp; HP EliteBook Type-C Charging IC Repair &rarr;
+              </a>
+            </div>
+          </div>
         </div>
 
         {/* Direct Contact Banner Rule 4 */}

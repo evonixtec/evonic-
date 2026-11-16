@@ -90,9 +90,9 @@ export const UkEuVatCalculator: React.FC = () => {
               </span>
               <span className="text-xs text-[#86868b] font-mono">HMRC &sect;55A &bull; EU Art. 196</span>
             </div>
-            <h1 className="apple-tool-title mt-2">
+            <h2 className="apple-tool-title mt-2">
               UK &amp; EU VAT Reverse Charge &amp; Statutory Declaration Generator
-            </h1>
+            </h2>
             <p className="apple-tool-subtitle">
               Verify B2B cross-border 0% reverse charge VAT qualification, generate statutory invoice clauses, and audit tax compliance for British &amp; EU tenders.
             </p>

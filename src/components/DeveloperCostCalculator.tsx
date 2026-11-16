@@ -49,7 +49,7 @@ export const DeveloperCostCalculator: React.FC<DeveloperCostCalculatorProps> = (
             </span>
             <span className="text-xs text-[#86868b] font-mono">USA / UK / UAE vs Dedicated Sialkot Engineers</span>
           </div>
-          <h1 className="apple-tool-title mt-2">Dedicated Developer Cost Calculator</h1>
+          <h2 className="apple-tool-title mt-2">Dedicated Developer Cost Calculator</h2>
           <p className="apple-tool-subtitle">Benchmark in-house tech hiring burdens against dedicated offshore engineering squads in Sialkot.</p>
         </div>
 

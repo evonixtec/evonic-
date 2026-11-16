@@ -162,9 +162,9 @@ export default function TemuSellerCalculator() {
               <PackageCheck className="w-3.5 h-3.5 text-[#0071e3]" />
               <span>Temu Manufacturer &amp; Cross-Border Suite</span>
             </div>
-            <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#1d1d1f]">
+            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#1d1d1f]">
               Temu Seller Calculator: Calculate Temu Fees &amp; Profit
-            </h1>
+            </h2>
             <p className="text-xs sm:text-sm text-[#86868b] leading-relaxed max-w-2xl">
               Temu charges commission margins, logistics service fee, transport tariffs. Our temu seller calculator helps manufacturing + cross-border brands evaluate real margins before listing.
             </p>

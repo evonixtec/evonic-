@@ -80,9 +80,9 @@ Title: ${signatoryRole}
               </span>
               <span className="text-xs text-[#86868b] font-mono">UKCA &amp; CE Marking MDR / RoHS</span>
             </div>
-            <h1 className="apple-tool-title mt-2">
+            <h2 className="apple-tool-title mt-2">
               UKCA &amp; CE Declaration of Conformity (DoC) Generator
-            </h1>
+            </h2>
             <p className="apple-tool-subtitle">
               Generate audited technical Declaration of Conformity certificates for UK and European Union medical, surgical, and hardware procurement tenders.
             </p>

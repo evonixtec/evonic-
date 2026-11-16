@@ -406,6 +406,44 @@ export const SialkotExportErpPage: React.FC<SialkotExportErpPageProps> = ({
               ))}
             </div>
           </div>
+
+          <div className="pt-6 border-t border-[#E5E7EB] space-y-3">
+            <h3 className="text-sm font-semibold text-slate-900">
+              Recommended Sialkot Export SEO &amp; B2B Web Guides
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+              <a
+                href="/blog/export-seo-ranking-first-page-google-daska-road-sialkot"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigatePage('guides', 'blog/export-seo-ranking-first-page-google-daska-road-sialkot');
+                }}
+                className="p-3.5 rounded-lg bg-[#FAFAF9] border border-[#E5E7EB] hover:border-[#C81E1E] text-slate-800 font-medium block transition-colors"
+              >
+                Export SEO: Ranking #1 on Google for Daska Road Exporters &rarr;
+              </a>
+              <a
+                href="/blog/essential-elements-high-converting-b2b-portfolio-website"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigatePage('guides', 'blog/essential-elements-high-converting-b2b-portfolio-website');
+                }}
+                className="p-3.5 rounded-lg bg-[#FAFAF9] border border-[#E5E7EB] hover:border-[#C81E1E] text-slate-800 font-medium block transition-colors"
+              >
+                High-Converting B2B Export Portfolio Websites &rarr;
+              </a>
+              <a
+                href="/blog/high-performance-landing-pages-structure-speed-seo"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigatePage('guides', 'blog/high-performance-landing-pages-structure-speed-seo');
+                }}
+                className="p-3.5 rounded-lg bg-[#FAFAF9] border border-[#E5E7EB] hover:border-[#C81E1E] text-slate-800 font-medium block transition-colors"
+              >
+                High-Performance Landing Pages: Speed &amp; SEO &rarr;
+              </a>
+            </div>
+          </div>
         </section>
 
         {/* Direct Contact Banner Rule 4 */}

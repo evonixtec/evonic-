@@ -84,9 +84,13 @@ const PROJECTS: ProjectItem[] = [
 export interface PortfolioProps {
   onRequestPrivateMeeting?: () => void;
   onOpenQuote?: (title?: string) => void;
+  onNavigatePage?: (page: string, subTarget?: string) => void;
 }
 
-export const Portfolio: React.FC<PortfolioProps> = ({ onRequestPrivateMeeting }) => {
+export const Portfolio: React.FC<PortfolioProps> = ({
+  onRequestPrivateMeeting: _onRequestPrivateMeeting,
+  onNavigatePage,
+}) => {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [tiltStates, setTiltStates] = useState<Record<string, { x: number; y: number }>>({});
 
@@ -226,6 +230,83 @@ export const Portfolio: React.FC<PortfolioProps> = ({ onRequestPrivateMeeting })
               </div>
             );
           })}
+        </div>
+
+        {/* Related Web Architecture & Export SEO Guides */}
+        <div className="rounded-2xl bg-white/5 border border-white/10 p-6 sm:p-8 space-y-5 text-left">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-white/10">
+            <div>
+              <span className="font-mono text-xs text-[#00D4FF]">Web &amp; Export SEO Guides</span>
+              <h3 className="text-lg sm:text-xl font-bold text-white mt-1">
+                Technical Architecture Behind High-Converting B2B Websites
+              </h3>
+            </div>
+            <a
+              href="/services"
+              onClick={(e) => {
+                if (onNavigatePage) {
+                  e.preventDefault();
+                  onNavigatePage('services');
+                }
+              }}
+              className="text-xs font-semibold text-[#00D4FF] hover:underline"
+            >
+              View Web Engineering Services &rarr;
+            </a>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+            <a
+              href="/blog/high-performance-landing-pages-structure-speed-seo"
+              onClick={(e) => {
+                if (onNavigatePage) {
+                  e.preventDefault();
+                  onNavigatePage('guides', 'blog/high-performance-landing-pages-structure-speed-seo');
+                }
+              }}
+              className="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#00D4FF]/60 transition-colors block space-y-1.5"
+            >
+              <strong className="text-sm text-white block">
+                High-Performance Landing Pages: Speed &amp; SEO
+              </strong>
+              <span className="text-slate-300 block">
+                Proven structure and load-time patterns for B2B service portals.
+              </span>
+            </a>
+            <a
+              href="/blog/essential-elements-high-converting-b2b-portfolio-website"
+              onClick={(e) => {
+                if (onNavigatePage) {
+                  e.preventDefault();
+                  onNavigatePage('guides', 'blog/essential-elements-high-converting-b2b-portfolio-website');
+                }
+              }}
+              className="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#00D4FF]/60 transition-colors block space-y-1.5"
+            >
+              <strong className="text-sm text-white block">
+                Essential Elements of a High-Converting B2B Portfolio Website
+              </strong>
+              <span className="text-slate-300 block">
+                How international buyers check trust signals and request quotes.
+              </span>
+            </a>
+            <a
+              href="/blog/export-seo-ranking-first-page-google-daska-road-sialkot"
+              onClick={(e) => {
+                if (onNavigatePage) {
+                  e.preventDefault();
+                  onNavigatePage('guides', 'blog/export-seo-ranking-first-page-google-daska-road-sialkot');
+                }
+              }}
+              className="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#00D4FF]/60 transition-colors block space-y-1.5"
+            >
+              <strong className="text-sm text-white block">
+                Export SEO Blueprint for Sialkot Factories
+              </strong>
+              <span className="text-slate-300 block">
+                Ranking Daska Road sports and surgical makers in USA and EU search.
+              </span>
+            </a>
+          </div>
         </div>
       </div>
 

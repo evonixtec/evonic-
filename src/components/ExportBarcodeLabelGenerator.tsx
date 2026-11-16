@@ -22,7 +22,7 @@ export const ExportBarcodeLabelGenerator: React.FC<ExportBarcodeLabelGeneratorPr
               <Barcode className="w-3.5 h-3.5 text-[#0071e3]" />
               <span>GS1-128 Outer Carton Thermal Suite</span>
             </div>
-            <h1 className="text-2xl font-bold tracking-tight text-[#1d1d1f]">Export Barcode Label Studio</h1>
+            <h2 className="text-2xl font-bold tracking-tight text-[#1d1d1f]">Export Barcode Label Studio</h2>
             <p className="text-xs text-[#86868b] mt-0.5">GS1-128 &amp; 4"x6" direct thermal shipping carton label maker</p>
           </div>
           <button 

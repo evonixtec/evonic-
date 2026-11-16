@@ -5,7 +5,7 @@
  * Uses web-accessible paths from /public/images/ so Node.js scripts (sitemap/SSG) and Vite work smoothly.
  */
 
-import { BlogPost, BlogInternalLink } from '../data/blogs/types';
+import type { BlogPost, BlogInternalLink } from '../data/blogs/types';
 
 export interface BlogVisualInfo {
   imageUrl: string;

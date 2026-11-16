@@ -17,7 +17,7 @@ export const LiveRepairTracker: React.FC<LiveRepairTrackerProps> = ({ onOpenQuot
             <Clock className="w-3.5 h-3.5 text-[#0071e3]" />
             <span>Diagnostic Bench System</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#1d1d1f]">Live RMA Bench Repair Tracker</h1>
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#1d1d1f]">Live RMA Bench Repair Tracker</h2>
           <p className="text-xs sm:text-sm text-[#86868b]">Track motherboard micro-soldering progress, standby current readings, and 90-day warranty ticket status in Kotli Behram lab.</p>
         </div>
 

@@ -510,9 +510,9 @@ export const SchemaGenerator: React.FC = () => {
                 <Code className="w-3.5 h-3.5 text-red-600" />
                 <span>Google Search &amp; AI Overviews Ready</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-black text-[#1E1E1E] tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-black text-[#1E1E1E] tracking-tight">
                 Advanced JSON-LD Schema Markup Generator
-              </h1>
+              </h2>
               <p className="text-xs sm:text-sm text-slate-600 leading-[1.55] max-w-2xl">
                 Create search-engine-ready structured data in seconds. Boost search rankings and rich snippet visibility.
               </p>

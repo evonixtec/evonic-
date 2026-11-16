@@ -94,101 +94,118 @@ function escapeHtml(str: string | undefined | null): string {
     .replace(/'/g, '&#39;');
 }
 
-// Generate shared header for pre-rendered pages
-function buildSeoHeader(currentRoute: string): string {
+function formatConciseTitle(rawTitle: string, suffix = ' | Evonix', maxTotal = 52): string {
+  const clean = (rawTitle || '').trim();
+  const decodeSafeLen = (s: string) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').length;
+  if (clean.length <= maxTotal && decodeSafeLen(clean) < 55) return clean;
+  const budget = Math.max(16, maxTotal - suffix.length);
+  let trimmed = clean.slice(0, budget).replace(/\s+\S*$/, '').trim() || clean.slice(0, budget);
+  trimmed = trimmed.replace(/[&\-–—:,|/]+$/, '').trim();
+  while (decodeSafeLen(trimmed + suffix) >= 55 && trimmed.length > 14) {
+    trimmed = trimmed.replace(/\s+\S*$/, '').replace(/[&\-–—:,|/]+$/, '').trim();
+  }
+  return `${trimmed}${suffix}`;
+}
+
+// Generate shared header for pre-rendered pages (matches Option A Clean Editorial Sitelinks)
+function buildSeoHeader(_currentRoute: string): string {
   return `
-    <header class="border-b border-slate-800 bg-slate-950/90 text-white px-4 py-4 sm:px-8">
+    <header class="border-b border-[#E5E7EB] bg-white text-slate-900 px-4 py-4 sm:px-8">
       <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
-        <a href="/" class="flex items-center gap-3 text-white font-extrabold text-lg tracking-wider">
-          <span class="text-teal-400">EVONIX</span> TECHNOLOGIES
+        <a href="/" class="flex items-center gap-2 text-slate-900 font-bold text-lg tracking-tight">
+          <span class="text-[#C81E1E] font-extrabold">Evonix</span> Technologies
         </a>
-        <nav class="flex flex-wrap items-center gap-4 sm:gap-6 text-sm text-slate-300 font-medium">
-          <a href="/services" class="hover:text-teal-400">Services</a>
-          <a href="/guides" class="hover:text-teal-400">Guides</a>
-          <a href="/portfolio" class="hover:text-teal-400">Portfolio</a>
-          <a href="https://store.evonixtec.com" class="hover:text-teal-400">Hardware Store</a>
-          <a href="/locations" class="hover:text-teal-400">Locations</a>
-          <a href="/about" class="hover:text-teal-400">About</a>
-          <a href="/contact" class="hover:text-teal-400">Contact</a>
+        <nav aria-label="Primary Navigation" class="flex flex-wrap items-center gap-4 sm:gap-6 text-sm text-slate-700 font-medium">
+          <a href="/services" class="hover:text-[#C81E1E]">Software Services</a>
+          <a href="/services/software-pos" class="hover:text-[#C81E1E]">POS Pricing</a>
+          <a href="/sialkot-export-erp" class="hover:text-[#C81E1E]">Export ERP</a>
+          <a href="/tools" class="hover:text-[#C81E1E]">Business Tools</a>
+          <a href="/guides" class="hover:text-[#C81E1E]">Retail Guides</a>
+          <a href="/portfolio" class="hover:text-[#C81E1E]">Portfolio</a>
+          <a href="/contact" class="px-3.5 py-1.5 rounded-lg bg-[#C81E1E] text-white font-semibold hover:bg-[#A6171E]">Get Quote</a>
         </nav>
       </div>
     </header>
   `;
 }
 
-// Generate shared footer with rich crawlable internal links
+// Generate shared footer with semantic <nav> blocks matching Google Sitelinks structure
 function buildSeoFooter(): string {
-  const topBlogs = ALL_BLOGS.slice(0, 8);
+  const topBlogs = ALL_BLOGS.slice(0, 6);
   const citySlugs = Object.keys(LOCAL_CITIES) as (keyof typeof LOCAL_CITIES)[];
 
   return `
-    <footer class="border-t border-slate-900 bg-[#020617] text-slate-300 mt-20 pt-12 pb-16 px-4 sm:px-8">
+    <footer class="border-t border-slate-800 bg-[#111827] text-slate-200 mt-20 pt-12 pb-16 px-4 sm:px-8">
       <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
         <div>
-          <h3 class="text-white font-bold text-base mb-3">EVONIX TECHNOLOGIES</h3>
-          <p class="text-xs text-slate-400 leading-relaxed mb-4">
+          <h3 class="text-white font-bold text-base mb-3">Evonix Technologies</h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-4">
             ${COMPANY_INFO.about.story}
           </p>
-          <p class="text-xs text-teal-400 font-bold">
+          <p class="text-xs text-[#F87171] font-bold">
             Got a question? Call us. We reply in 2 hours.
           </p>
-          <p class="text-xs text-slate-400 mt-1">
+          <p class="text-xs text-slate-300 mt-1">
             Phone: ${COMPANY_INFO.contact.phoneDisplay}
           </p>
-          <p class="text-xs text-slate-400">
+          <p class="text-xs text-slate-300">
             Address: ${COMPANY_INFO.contact.address}
           </p>
         </div>
 
-        <div>
-          <h3 class="text-white font-bold text-base mb-3">Enterprise Services</h3>
-          <ul class="space-y-2 text-xs text-slate-400">
-            <li><a href="/services/web-development" class="hover:text-teal-400">Custom Website Development</a></li>
-            <li><a href="/services/software-pos" class="hover:text-teal-400">Retail &amp; Export POS Systems</a></li>
-            <li><a href="/sialkot-export-erp" class="hover:text-teal-400">Sialkot Export Factory ERP</a></li>
-            <li><a href="/services" class="hover:text-teal-400">Cloud Architecture &amp; Microservices</a></li>
-            <li><a href="https://store.evonixtec.com" class="hover:text-teal-400">Hardware &amp; Equipment Store &rarr;</a></li>
+        <nav aria-label="Core Services Navigation">
+          <h3 class="text-white font-bold text-base mb-3">Core Solutions</h3>
+          <ul class="space-y-2 text-xs text-slate-200">
+            <li><a href="/services" class="text-slate-200 hover:text-white">Software Services</a></li>
+            <li><a href="/services/software-pos" class="text-slate-200 hover:text-white">POS Pricing</a></li>
+            <li><a href="/sialkot-export-erp" class="text-slate-200 hover:text-white">Export ERP</a></li>
+            <li><a href="/services/web-development" class="text-slate-200 hover:text-white">Web Development</a></li>
+            <li><a href="/portfolio" class="text-slate-200 hover:text-white">Portfolio</a></li>
+            <li><a href="https://store.evonixtec.com" class="text-slate-200 hover:text-white">Hardware Store</a></li>
           </ul>
-        </div>
+        </nav>
 
-        <div>
-          <h3 class="text-white font-bold text-base mb-3">Industrial Areas</h3>
-          <ul class="space-y-2 text-xs text-slate-400">
+        <nav aria-label="Regional Hubs and Tools Navigation">
+          <h3 class="text-white font-bold text-base mb-3">Regional Hubs &amp; Tools</h3>
+          <ul class="space-y-2 text-xs text-slate-200">
             ${citySlugs.map((city) => `
-              <li><a href="/locations/${city}" class="hover:text-teal-400">${LOCAL_CITIES[city].name} IT Services</a></li>
+              <li><a href="/locations/${city}" class="text-slate-200 hover:text-white">${LOCAL_CITIES[city].name} IT Services</a></li>
             `).join('')}
-            <li><a href="/locations" class="hover:text-teal-400">All Coverage Zones</a></li>
-            <li><a href="/export-barcode-studio" class="hover:text-teal-400">Export Barcode Studio</a></li>
-            <li><a href="/printer-troubleshooter" class="hover:text-teal-400">Printer Troubleshooter</a></li>
-            <li><a href="/factory-network-tester" class="hover:text-teal-400">Factory Network Tester</a></li>
-            <li><a href="/tools/ai-trip-planner" class="hover:text-teal-400">Free AI Trip Planner</a></li>
+            <li><a href="/locations" class="text-slate-200 hover:text-white">All Locations</a></li>
+            <li><a href="/tools" class="text-slate-200 hover:text-white">Business Tools</a></li>
+            <li><a href="/tools/invoice-generator" class="text-slate-200 hover:text-white">Free Invoice Maker</a></li>
+            <li><a href="/tools/export-cbm-calculator" class="text-slate-200 hover:text-white">Export CBM Calculator</a></li>
           </ul>
-        </div>
+        </nav>
 
-        <div>
-          <h3 class="text-white font-bold text-base mb-3">Technical Guides &amp; AI</h3>
-          <ul class="space-y-2 text-xs text-slate-400">
-            <li><a href="/ai-tools-name-for-travel-itinerary" class="text-teal-400 font-bold hover:underline">10 Best AI Tools for Travel &rarr;</a></li>
-            ${topBlogs.map((b) => `
-              <li><a href="/blog/${b.slug}" class="hover:text-teal-400 line-clamp-1">${escapeHtml(b.title)}</a></li>
+        <nav aria-label="Technical Guides Navigation">
+          <h3 class="text-white font-bold text-base mb-3">Retail &amp; Tech Guides</h3>
+          <ul class="space-y-2 text-xs text-slate-200">
+            <li><a href="/blog/high-performance-landing-pages-structure-speed-seo" class="text-slate-200 hover:text-white line-clamp-1">High-Performance Landing Pages: Speed &amp; SEO</a></li>
+            <li><a href="/blog/essential-elements-high-converting-b2b-portfolio-website" class="text-slate-200 hover:text-white line-clamp-1">High-Converting B2B Portfolio Websites</a></li>
+            <li><a href="/blog/export-seo-ranking-first-page-google-daska-road-sialkot" class="text-slate-200 hover:text-white line-clamp-1">Export SEO for Daska Road Sialkot Factories</a></li>
+            <li><a href="/blog/heavy-duty-laser-printer-repair-daska-road-sialkot-factories" class="text-slate-200 hover:text-white line-clamp-1">Laser Printer Fuser Repair in Sialkot Factories</a></li>
+            <li><a href="/blog/dell-latitude-hp-elitebook-type-c-charging-repair-sialkot" class="text-slate-200 hover:text-white line-clamp-1">Dell &amp; HP Type-C Charging IC Repair Sialkot</a></li>
+            ${topBlogs.slice(0, 2).map((b) => `
+              <li><a href="/blog/${b.slug}" class="text-slate-200 hover:text-white line-clamp-1">${escapeHtml(b.title)}</a></li>
             `).join('')}
-            <li class="pt-2"><a href="/guides" class="text-teal-400 font-bold hover:underline">View All 90+ Guides &rarr;</a></li>
+            <li class="pt-2"><a href="/guides" class="text-white font-bold hover:underline">Retail Guides</a></li>
           </ul>
-        </div>
+        </nav>
       </div>
 
-      <div class="max-w-7xl mx-auto pt-8 border-t border-slate-800/80 flex flex-wrap items-center justify-between text-xs text-slate-500 gap-4">
+      <div class="max-w-7xl mx-auto pt-8 border-t border-slate-800 flex flex-wrap items-center justify-between text-xs text-slate-300 gap-4">
         <div>
-          &copy; ${new Date().getFullYear()} EVONIX TECHNOLOGIES. All rights reserved. Sialkot, Pakistan.
+          &copy; ${new Date().getFullYear()} Evonix Technologies. All rights reserved. Sialkot, Pakistan.
         </div>
-        <div class="flex flex-wrap items-center gap-4">
-          <a href="/privacy-policy" class="hover:text-teal-400">Privacy Policy</a>
-          <a href="/terms-and-conditions" class="hover:text-teal-400">Terms of Service</a>
-          <a href="/disclaimer" class="hover:text-teal-400">Disclaimer</a>
-          <a href="/warranty-policy" class="hover:text-teal-400">Warranty Policy</a>
-          <a href="/about" class="hover:text-teal-400">About Us</a>
-          <a href="/contact" class="hover:text-teal-400">Contact Us</a>
-        </div>
+        <nav aria-label="Policies Navigation" class="flex flex-wrap items-center gap-4">
+          <a href="/privacy-policy" class="text-slate-300 hover:text-white">Privacy Policy</a>
+          <a href="/terms-and-conditions" class="text-slate-300 hover:text-white">Terms of Service</a>
+          <a href="/disclaimer" class="text-slate-300 hover:text-white">Disclaimer</a>
+          <a href="/warranty-policy" class="text-slate-300 hover:text-white">Warranty Policy</a>
+          <a href="/about" class="text-slate-300 hover:text-white">About Us</a>
+          <a href="/contact" class="text-slate-300 hover:text-white">Contact Us</a>
+        </nav>
       </div>
     </footer>
   `;
@@ -243,8 +260,8 @@ const pages: StaticPageDef[] = [];
 // ==========================================
 pages.push({
   route: 'about',
-  title: 'About EVONIX Technologies – 20+ Years Dubai Heritage in Sialkot',
-  description: 'EVONIX brings 20+ years of Dubai corporate IT infrastructure experience to Sialkot. Enterprise website engineering, POS systems, and chip-level repairs.',
+  title: 'About Evonix Technologies | Dubai Heritage',
+  description: 'Evonix Technologies brings 20+ years of UAE IT consultancy, custom software engineering, and hardware lab testing to Sialkot businesses.',
   canonical: `${DOMAIN}/about`,
   heading: 'About EVONIX Technologies',
   subheading: '20+ Years Dubai Corporate IT Experience, Now Serving Sialkot & Punjab',
@@ -291,8 +308,8 @@ pages.push({
 
 pages.push({
   route: 'contact',
-  title: 'Contact EVONIX & Sialkot Service Lab | Fast 2-Hour Response',
-  description: 'Got a question? Call us. We reply in 2 hours with direct technician dispatch across Sialkot. Paris Road & Kotli Behram lab.',
+  title: 'Contact Evonix | Sialkot IT Consultants',
+  description: 'Got a question? Call us at +92 326 324 4002. We reply in 2 hours with doorstep IT support across Kotli Behram, Paris Road, and Sialkot Cantt.',
   canonical: `${DOMAIN}/contact`,
   heading: 'Contact EVONIX Technologies',
   subheading: 'Got a question? Call us. We reply in 2 hours.',
@@ -328,8 +345,8 @@ pages.push({
 
 pages.push({
   route: 'services',
-  title: 'IT Services, Website Development & POS Software | EVONIX Sialkot',
-  description: 'Premier IT services in Sialkot. Custom website development, retail & export POS systems, chip-level laptop repairs, and doorstep IT support.',
+  title: 'Software Development Services | Evonix',
+  description: 'Custom web engineering, offline-first Windows POS software, industrial export ERPs, and cloud architecture built by Evonix Technologies in Sialkot.',
   canonical: `${DOMAIN}/services`,
   heading: 'Engineering & IT Services in Sialkot',
   subheading: 'Precision Software, Retail POS, and Hardware Engineering',
@@ -360,6 +377,27 @@ pages.push({
           <a href="/sialkot-export-erp" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-teal-400 text-sm font-semibold">Export Factory ERP</a>
         </div>
       </div>
+
+      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 my-8 space-y-4">
+        <h2 class="text-xl font-bold text-white">Engineering, Export SEO &amp; Hardware Repair Guides</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+          <a href="/blog/high-performance-landing-pages-structure-speed-seo" class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 hover:border-teal-500 text-teal-400 font-semibold block">
+            High-Performance Landing Pages: Structure, Speed &amp; SEO &rarr;
+          </a>
+          <a href="/blog/essential-elements-high-converting-b2b-portfolio-website" class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 hover:border-teal-500 text-teal-400 font-semibold block">
+            Essential Elements of a High-Converting B2B Portfolio Website &rarr;
+          </a>
+          <a href="/blog/export-seo-ranking-first-page-google-daska-road-sialkot" class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 hover:border-teal-500 text-teal-400 font-semibold block">
+            Export SEO: Ranking #1 on Google for Daska Road Exporters &rarr;
+          </a>
+          <a href="/blog/heavy-duty-laser-printer-repair-daska-road-sialkot-factories" class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 hover:border-teal-500 text-teal-400 font-semibold block">
+            Heavy-Duty Laser Printer Fuser Repair on Daska Road, Sialkot &rarr;
+          </a>
+          <a href="/blog/dell-latitude-hp-elitebook-type-c-charging-repair-sialkot" class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 hover:border-teal-500 text-teal-400 font-semibold block">
+            Dell Latitude &amp; HP EliteBook Type-C Charging IC Repair &rarr;
+          </a>
+        </div>
+      </div>
     </div>
   `
 });
@@ -368,27 +406,172 @@ pages.push({
 const subServices = [
   {
     route: 'services/web-development',
-    title: 'Custom Website & Web Application Engineering | EVONIX Sialkot',
+    title: 'Custom Web Development Services | Evonix',
     description: 'High-speed B2B export websites, React web applications, and multi-currency portals for Sialkot businesses.',
     heading: 'Custom Website & Web Application Engineering',
-    features: ['Modern React & TypeScript SPAs', 'Clean Mobile Responsive Grids', 'Fast Core Web Vitals (95+ score)', 'Direct WhatsApp Lead Capture']
+    features: ['Modern React & TypeScript SPAs', 'Clean Mobile Responsive Grids', 'Fast Core Web Vitals (95+ score)', 'Direct WhatsApp Lead Capture'],
+    extraHtml: `
+      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 mt-6">
+        <h2 class="text-xl font-bold text-white">Recommended Web &amp; Export SEO Guides</h2>
+        <ul class="space-y-2 text-sm text-teal-400">
+          <li>&bull; <a href="/blog/high-performance-landing-pages-structure-speed-seo" class="hover:underline">High-Performance Landing Pages: Structure, Speed &amp; SEO</a></li>
+          <li>&bull; <a href="/blog/essential-elements-high-converting-b2b-portfolio-website" class="hover:underline">Essential Elements of a High-Converting B2B Portfolio Website</a></li>
+          <li>&bull; <a href="/blog/export-seo-ranking-first-page-google-daska-road-sialkot" class="hover:underline">Export SEO Blueprint for Daska Road Sialkot Exporters</a></li>
+        </ul>
+      </div>
+    `
   },
   {
     route: 'services/software-pos',
-    title: 'Retail & Export POS Software Solutions | EVONIX Sialkot',
-    description: 'Offline-first POS billing systems, barcode inventory tracking, and custom manufacturing ERP software for Sialkot.',
-    heading: 'Retail & Export POS Software Solutions',
-    features: ['Offline-First Local SQLite/Cloud Sync', '80mm Thermal Receipt Printing', 'Barcode Scanning & Stock Deductions', 'Cashier Rights & Daily Z-Reports']
+    title: 'POS Software Price in Pakistan | Evonix',
+    description: 'Offline Windows POS billing, multi-unit stock, digital khata with WhatsApp reminders & daily net profit software for retail shops in Pakistan.',
+    heading: 'Offline POS, Digital Khata & Retail Management Software Pakistan',
+    features: ['100% Offline Windows Desktop & LAN Engine', '80mm Thermal Receipt & Barcode Label Printing', 'Multi-Unit Stock & Digital Khata WhatsApp Reminders', 'Cash Drawer (Galla) & Daily Net Profit Reports'],
+    schemaType: 'FAQPage',
+    schemaJson: {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Does Evonix Hisaab Pro work as offline POS software without internet?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Yes. Evonix Hisaab Pro is native Windows offline POS software without internet dependency. Barcode scanning, multi-unit billing, stock updates, and Digital Khata ledgers execute locally on your PC or counter LAN without freezing during Wi-Fi outages.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Can I use it as Kiryana store ka software with loose weights, dozens, and cartons?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Yes. You can purchase stock in cartons or sacks and sell in loose weight, pieces, or dozens with automatic unit conversion, customer udhaar limits, and bulk Excel product import.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'How do Digital khata WhatsApp reminders work from a Windows PC?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Every udhaar invoice updates the customer account automatically and lets you send itemized balance reminders via WhatsApp Desktop or Web in one click.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'What happens to my data if my Windows PC has an issue or power outage?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Your sales, inventory, and Khata database stay saved safely on your machine with silent automated daily backups to a secondary local drive or USB flash drive.'
+          }
+        }
+      ]
+    },
+    extraHtml: `
+      <section class="bg-white text-slate-900 rounded-xl border border-[#E5E7EB] p-6 sm:p-8 space-y-6 my-8">
+        <div class="space-y-2">
+          <p class="text-xs font-semibold text-[#C81E1E]">Transparent Offline Licensing Plans</p>
+          <h2 class="text-2xl font-semibold text-slate-900">Evonix Hisaab Pro Pricing in Pakistan</h2>
+          <p class="text-sm text-slate-600">Evaluate Evonix Hisaab Pro free for 14 days on your shop PC, or pick an annual or lifetime Windows license.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="bg-[#FAFAF9] border border-[#E5E7EB] rounded-xl p-5 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="font-mono text-xs text-slate-500">14-Day Full Evaluation</div>
+              <h3 class="text-lg font-semibold text-slate-900">Free Trial</h3>
+              <div class="py-2 border-y border-[#E5E7EB] font-mono">
+                <span class="text-xl font-semibold text-slate-900">Rs 0</span>
+                <span class="text-xs text-slate-500"> / For 14 Days</span>
+              </div>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li>&check; 100% Offline Windows POS</li>
+                <li>&check; Up to 500 Products</li>
+                <li>&check; 1 PC / 1 User</li>
+                <li>&check; Digital Khata &amp; Billing</li>
+                <li>&check; Local Backup</li>
+              </ul>
+            </div>
+            <a href="/contact" class="block text-center py-2 px-3 rounded-lg bg-white border border-[#E5E7EB] text-slate-900 font-semibold text-xs">Download Free Trial</a>
+          </div>
+          <div class="bg-[#FAFAF9] border border-[#E5E7EB] rounded-xl p-5 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="font-mono text-xs text-slate-500">For Small Retail Shops</div>
+              <h3 class="text-lg font-semibold text-slate-900">Starter Yearly</h3>
+              <div class="py-2 border-y border-[#E5E7EB] font-mono">
+                <span class="text-xl font-semibold text-slate-900">Rs 15,000</span>
+                <span class="text-xs text-slate-500"> / year</span>
+              </div>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li>&check; 100% Offline Windows POS</li>
+                <li>&check; Unlimited Products &amp; Bills</li>
+                <li>&check; 1 PC / 2 Users</li>
+                <li>&check; Digital Khata + WhatsApp</li>
+                <li>&check; 1 Year Updates &amp; Support</li>
+              </ul>
+            </div>
+            <a href="/contact" class="block text-center py-2 px-3 rounded-lg bg-white border border-[#E5E7EB] text-slate-900 font-semibold text-xs">Start Yearly Plan</a>
+          </div>
+          <div class="bg-white border-2 border-[#C81E1E] rounded-xl p-5 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-mono text-xs text-slate-500">One-Time Payment, Forever Yours</span>
+                <span class="px-2 py-0.5 bg-[#C81E1E] text-white font-mono text-[10px] font-semibold uppercase rounded">MOST POPULAR</span>
+              </div>
+              <h3 class="text-lg font-semibold text-slate-900">Business Lifetime</h3>
+              <div class="py-2 border-y border-[#E5E7EB] font-mono">
+                <span class="text-xl font-semibold text-slate-900">Rs 38,000</span>
+                <span class="text-xs text-slate-500"> / One-Time Key</span>
+              </div>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li>&check; 100% Offline Lifetime License</li>
+                <li>&check; Unlimited Products &amp; Sales</li>
+                <li>&check; 2 PCs (LAN) / 3 Users</li>
+                <li>&check; Pharmacy, Garments &amp; Footwear</li>
+                <li>&check; Free Excel Import + Auto Backup</li>
+              </ul>
+            </div>
+            <a href="/contact" class="block text-center py-2 px-3 rounded-lg bg-[#C81E1E] text-white font-semibold text-xs">Get Lifetime Key</a>
+          </div>
+          <div class="bg-[#FAFAF9] border border-[#E5E7EB] rounded-xl p-5 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="font-mono text-xs text-slate-500">Wholesale, Chains &amp; Factories</div>
+              <h3 class="text-lg font-semibold text-slate-900">Multi-Branch &amp; ERP</h3>
+              <div class="py-2 border-y border-[#E5E7EB] font-mono">
+                <span class="text-xl font-semibold text-slate-900">Custom</span>
+                <span class="text-xs text-slate-500"> / Tailored Quote</span>
+              </div>
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li>&check; Offline + Local Branch Sync</li>
+                <li>&check; Unlimited Counters &amp; Branches</li>
+                <li>&check; Manufacturing BOM &amp; Export</li>
+                <li>&check; FBR Tier-1 POS Integration</li>
+                <li>&check; Dedicated On-Site Onboarding</li>
+              </ul>
+            </div>
+            <a href="/contact" class="block text-center py-2 px-3 rounded-lg bg-white border border-[#E5E7EB] text-slate-900 font-semibold text-xs">Book Free Demo</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 mt-6">
+        <h2 class="text-xl font-bold text-white">POS Hardware &amp; Printer Maintenance Guides</h2>
+        <ul class="space-y-2 text-sm text-teal-400">
+          <li>&bull; <a href="/blog/heavy-duty-laser-printer-repair-daska-road-sialkot-factories" class="hover:underline">HP &amp; Canon Laser Printer Fuser Repair on Daska Road, Sialkot</a></li>
+          <li>&bull; <a href="/blog/dell-latitude-hp-elitebook-type-c-charging-repair-sialkot" class="hover:underline">Dell Latitude &amp; HP EliteBook Type-C Charging IC Repair in Sialkot</a></li>
+        </ul>
+      </div>
+    `
   }
 ];
 
-subServices.forEach((ss) => {
+subServices.forEach((ss: any) => {
   pages.push({
     route: ss.route,
     title: ss.title,
     description: ss.description,
     canonical: `${DOMAIN}/${ss.route}`,
     heading: ss.heading,
+    schemaType: ss.schemaType,
+    schemaJson: ss.schemaJson,
     breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Services', url: '/services' }, { name: ss.heading, url: `/${ss.route}` }],
     bodyHtml: `
       <div class="space-y-6 text-slate-300">
@@ -398,13 +581,15 @@ subServices.forEach((ss) => {
 
         <h2 class="text-2xl font-bold text-white mt-8 mb-4">Key Deliverables</h2>
         <ul class="space-y-3">
-          ${ss.features.map(f => `
+          ${ss.features.map((f: string) => `
             <li class="flex items-start gap-3 p-4 rounded-xl bg-slate-900 border border-slate-800">
               <span class="text-teal-400 font-bold">&check;</span>
               <span class="text-sm font-medium text-slate-200">${escapeHtml(f)}</span>
             </li>
           `).join('')}
         </ul>
+
+        ${ss.extraHtml || ''}
 
         <div class="p-6 rounded-2xl bg-slate-900/80 border border-teal-500/30 mt-8">
           <h3 class="text-xl font-bold text-white mb-2">Got a question? Call us.</h3>
@@ -468,19 +653,19 @@ pages.push({
 const shopCategoryPages = [
   {
     route: 'shop/laptops',
-    title: 'Certified Business Laptops in Sialkot | EVONIX Hardware Store',
+    title: 'Business Laptops in Sialkot | Evonix',
     description: 'Certified Grade-A business laptops (Dell Latitude, Lenovo ThinkPad, HP EliteBook) tested with 90-day warranty in Sialkot.',
     heading: 'Business Laptops in Sialkot',
   },
   {
     route: 'shop/printers',
-    title: 'POS Thermal Receipt & Barcode Printers in Sialkot | EVONIX',
+    title: 'Thermal Receipt & Barcode Printers | Evonix',
     description: 'Heavy-duty 80mm ESC/POS thermal receipt printers and 4x6 direct thermal barcode label printers for retail and exporters in Sialkot.',
     heading: 'Thermal Receipt & Barcode Printers',
   },
   {
     route: 'shop/pos-terminals',
-    title: 'All-in-One Touchscreen POS Billing Machines | EVONIX Sialkot',
+    title: 'Touchscreen POS Billing Machines | Evonix',
     description: 'Commercial touchscreen POS terminals, heavy cash drawers, and high-speed barcode scanners with on-site setup in Sialkot.',
     heading: 'Touchscreen POS Terminals & Billing Machines',
   }
@@ -506,6 +691,14 @@ shopCategoryPages.forEach((sc) => {
       <div class="space-y-6 text-slate-300">
         <p class="text-base sm:text-lg text-slate-200">${escapeHtml(sc.description)}</p>
 
+        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+          <h2 class="text-lg font-bold text-white">IT Hardware &amp; Repair Guides</h2>
+          <ul class="space-y-2 text-sm text-teal-400">
+            <li>&bull; <a href="/blog/heavy-duty-laser-printer-repair-daska-road-sialkot-factories" class="hover:underline">HP &amp; Canon Laser Printer Fuser Repair on Daska Road, Sialkot</a></li>
+            <li>&bull; <a href="/blog/dell-latitude-hp-elitebook-type-c-charging-repair-sialkot" class="hover:underline">Dell Latitude &amp; HP EliteBook Type-C Charging IC Repair in Sialkot</a></li>
+          </ul>
+        </div>
+
         <div class="p-6 rounded-2xl bg-slate-900 border border-teal-500/30">
           <h3 class="text-xl font-bold text-white mb-2">Got a question? Call us.</h3>
           <p class="text-sm text-slate-300 mb-4">We reply in 2 hours with stock availability and doorstep delivery.</p>
@@ -524,7 +717,7 @@ shopCategoryPages.forEach((sc) => {
 // ==========================================
 pages.push({
   route: 'locations/sialkot/pos-hardware',
-  title: 'POS Hardware & Thermal Receipt Printers in Sialkot | Same-Day Dispatch',
+  title: 'POS Hardware & Thermal Printers Sialkot | Evonix',
   description: 'Buy 80mm & 58mm thermal receipt printers, wireless barcode scanners, and touch POS systems in Sialkot. 1-year warranty, on-site testing, and instant COD.',
   canonical: `${DOMAIN}/locations/sialkot/pos-hardware`,
   schemaType: 'ComputerStore',
@@ -927,6 +1120,14 @@ pages.push({
           <span>Hours: Mon–Sat 9:00 AM – 8:00 PM</span>
         </div>
       </div>
+
+      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 mt-6">
+        <h2 class="text-lg font-bold text-white">Hardware &amp; Printer Repair Field Guides</h2>
+        <ul class="space-y-2 text-sm text-teal-400">
+          <li>&bull; <a href="/blog/heavy-duty-laser-printer-repair-daska-road-sialkot-factories" class="hover:underline">HP &amp; Canon Laser Printer Fuser Repair on Daska Road, Sialkot</a></li>
+          <li>&bull; <a href="/blog/dell-latitude-hp-elitebook-type-c-charging-repair-sialkot" class="hover:underline">Dell Latitude &amp; HP EliteBook Type-C Charging IC Repair in Sialkot</a></li>
+        </ul>
+      </div>
     </div>
   `
 });
@@ -936,7 +1137,7 @@ pages.push({
 // ==========================================
 pages.push({
   route: 'tools',
-  title: 'Free E-Commerce, Export & Trade Calculators | EVONIX Technologies',
+  title: 'Free Business & Export Tools | Evonix',
   description: '100% free enterprise workstation portal for online sellers, exporters, and manufacturers. 26 browser tools with zero signup and complete client privacy.',
   canonical: `${DOMAIN}/tools`,
   heading: 'Free E-Commerce, Export & Trade Calculators',
@@ -972,7 +1173,7 @@ pages.push({
 // Alias: /tool -> /tools
 pages.push({
   route: 'tool',
-  title: 'Free E-Commerce, Export & Trade Calculators | EVONIX Technologies',
+  title: 'Free Business & Export Tools | Evonix',
   description: '100% free enterprise workstation portal for online sellers, exporters, and manufacturers.',
   canonical: `${DOMAIN}/tools`,
   heading: 'Free E-Commerce, Export & Trade Calculators',
@@ -986,7 +1187,7 @@ pages.push({
 Object.values(toolsRegistry).forEach((tool) => {
   pages.push({
     route: `tools/${tool.slug}`,
-    title: tool.metaTitle.includes('EVONIX') ? tool.metaTitle : (tool.metaTitle || tool.name),
+    title: formatConciseTitle(tool.metaTitle || tool.name),
     description: tool.metaDescription,
     canonical: `${DOMAIN}/tools/${tool.slug}`,
     heading: tool.h1 || tool.name,
@@ -1335,7 +1536,7 @@ Object.values(toolsRegistry).forEach((tool) => {
 // Micro Invoice Generator Canonical Page
 pages.push({
   route: 'tools/micro-invoice-generator',
-  title: 'Global Micro-Invoice Generator & Code128 Barcode Maker | EVONIX',
+  title: 'Micro-Invoice & Barcode Generator | Evonix',
   description: 'Free client-side zero-database micro-invoice generator with Code128 vector barcode and multi-currency formatting for Pakistani exporters.',
   canonical: `${DOMAIN}/tools/micro-invoice-generator`,
   heading: 'Global Micro-Invoice Generator & Code128 Studio',
@@ -1357,8 +1558,8 @@ pages.push({
 // Portfolio
 pages.push({
   route: 'portfolio',
-  title: 'Client Deployments & Case Studies (Dubai & Pakistan) | EVONIX',
-  description: 'Review our proven track record of e-commerce platforms, corporate portals, and retail software deployed for clients across Dubai and Sialkot.',
+  title: 'Client Portfolio & Case Studies | Evonix',
+  description: 'Proven web development, industrial ERP, and multi-branch POS deployments delivered for exporters and retail brands across UAE and Pakistan.',
   canonical: `${DOMAIN}/portfolio`,
   heading: 'Enterprise Portfolio & Deployments',
   subheading: 'Proven Deployments in Dubai & Sialkot',
@@ -1396,13 +1597,22 @@ pages.push({
           </div>
         `).join('')}
       </div>
+
+      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 mt-8">
+        <h2 class="text-xl font-bold text-white">B2B Web Architecture &amp; Export SEO Guides</h2>
+        <ul class="space-y-2 text-sm text-teal-400">
+          <li>&bull; <a href="/blog/high-performance-landing-pages-structure-speed-seo" class="hover:underline">High-Performance Landing Pages: Structure, Speed &amp; SEO</a></li>
+          <li>&bull; <a href="/blog/essential-elements-high-converting-b2b-portfolio-website" class="hover:underline">Essential Elements of a High-Converting B2B Portfolio Website</a></li>
+          <li>&bull; <a href="/blog/export-seo-ranking-first-page-google-daska-road-sialkot" class="hover:underline">Export SEO Blueprint for Daska Road Sialkot Factories</a></li>
+        </ul>
+      </div>
     </div>
   `
 });
 
 pages.push({
   route: 'portfolio/websites',
-  title: 'Corporate & Export Website Case Studies | EVONIX Sialkot',
+  title: 'Export Website Case Studies | Evonix',
   description: 'Review our completed web development deployments for export manufacturers and multinational clients.',
   canonical: `${DOMAIN}/portfolio/websites`,
   heading: 'Corporate & Export Website Deployments',
@@ -1420,13 +1630,21 @@ pages.push({
           </div>
         `).join('')}
       </div>
+      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+        <h2 class="text-lg font-bold text-white">Recommended Web &amp; Export SEO Playbooks</h2>
+        <ul class="space-y-2 text-sm text-teal-400">
+          <li>&bull; <a href="/blog/high-performance-landing-pages-structure-speed-seo" class="hover:underline">High-Performance Landing Pages: Structure, Speed &amp; SEO</a></li>
+          <li>&bull; <a href="/blog/essential-elements-high-converting-b2b-portfolio-website" class="hover:underline">Essential Elements of a High-Converting B2B Portfolio Website</a></li>
+          <li>&bull; <a href="/blog/export-seo-ranking-first-page-google-daska-road-sialkot" class="hover:underline">Export SEO: Ranking #1 on Google for Daska Road Exporters</a></li>
+        </ul>
+      </div>
     </div>
   `
 });
 
 pages.push({
   route: 'portfolio/software',
-  title: 'Custom POS & ERP Software Case Studies | EVONIX Sialkot',
+  title: 'Custom POS & ERP Case Studies | Evonix',
   description: 'View live enterprise retail and factory ERP deployments engineered with offline-first synchronization.',
   canonical: `${DOMAIN}/portfolio/software`,
   heading: 'Custom POS & ERP Deployments',
@@ -1471,8 +1689,8 @@ pages.push({
 
 pages.push({
   route: 'sialkot-export-erp',
-  title: 'Sialkot Export Industry ERP & Factory Systems | EVONIX',
-  description: 'Export-grade ERP software for sports goods, surgical instruments, and leather apparel manufacturers in Sialkot. Complete batch traceability and WeBOC EDI customs sync.',
+  title: 'Sialkot Export ERP Software | Evonix',
+  description: 'Custom manufacturing ERP for Sialkot surgical, leather, and sportswear exporters featuring job-card tracking, packing lists, and WeBOC billing.',
   canonical: `${DOMAIN}/sialkot-export-erp`,
   heading: 'Sialkot Export Factory ERP & WeBOC Cloud Billing Suite',
   subheading: 'Engineered specifically for surgical forging, leather garment, and sports apparel exporters across Sialkot.',
@@ -1535,6 +1753,15 @@ pages.push({
             <p class="text-slate-400 leading-relaxed">Standard deployments take 14 to 28 days including database setup, master item coding, staff workstation training, and on-site engineering supervision.</p>
           </div>
         </div>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+        <h2 class="text-lg font-bold text-white">Recommended Export SEO &amp; Web Guides</h2>
+        <ul class="space-y-2 text-sm text-teal-400">
+          <li>&bull; <a href="/blog/export-seo-ranking-first-page-google-daska-road-sialkot" class="hover:underline">Export SEO Blueprint: Ranking Daska Road Exporters #1 on Google</a></li>
+          <li>&bull; <a href="/blog/essential-elements-high-converting-b2b-portfolio-website" class="hover:underline">Essential Elements of a High-Converting B2B Portfolio Website</a></li>
+          <li>&bull; <a href="/blog/high-performance-landing-pages-structure-speed-seo" class="hover:underline">High-Performance Landing Pages: Structure, Speed &amp; SEO</a></li>
+        </ul>
       </div>
 
       <div class="p-6 rounded-2xl bg-slate-900 border border-teal-500/30 space-y-2">
@@ -1618,7 +1845,7 @@ flatCalculatorRedirects.forEach((item) => {
 
 pages.push({
   route: 'ai-tools-name-for-travel-itinerary',
-  title: 'Tools Required for Artificial Intelligence: 10 Best AI Tools Name for Travel Itinerary [2026 Tested]',
+  title: '10 Best AI Travel Itinerary Tools | Evonix',
   description: 'What are the best AI tools for travel planning in 2026? Find top 10 AI tools name, tools required for AI trip planning, flights & vacation planning + FREE tool.',
   canonical: `${DOMAIN}/ai-tools-name-for-travel-itinerary`,
   schemaType: 'Article',
@@ -1851,7 +2078,7 @@ pages.push({
 
 pages.push({
   route: 'tools/ai-trip-planner',
-  title: 'Free AI Trip Planner & Itinerary Generator | EVONIX',
+  title: 'Free AI Trip Itinerary Planner | Evonix',
   description: 'Free AI travel itinerary generator. Enter your destination, budget, and days to generate an instant day-wise vacation schedule with food spots & costs.',
   canonical: `${DOMAIN}/tools/ai-trip-planner`,
   heading: 'Free AI Trip Planner & Travel Schedule Engine',
@@ -1928,7 +2155,7 @@ pages.push({
 
 pages.push({
   route: 'installation-guide',
-  title: 'PWA Web App Installation Guide (Desktop & Mobile) | evonix',
+  title: 'PWA Offline App Setup Guide | Evonix',
   description: 'How to install and run evonix enterprise web apps and offline tools natively on Windows, macOS, Android, and iOS without an app store.',
   canonical: `${DOMAIN}/installation-guide`,
   heading: 'Enterprise Web App & Offline Tool Installation Guide',
@@ -1965,7 +2192,7 @@ pages.push({
 // Policies
 pages.push({
   route: 'privacy-policy',
-  title: 'Privacy Policy | EVONIX Technologies Sialkot',
+  title: 'Privacy Policy | Evonix Technologies',
   description: 'Official privacy policy and data governance practices of EVONIX Technologies, including Google AdSense and third-party advertising disclosures.',
   canonical: `${DOMAIN}/privacy-policy`,
   heading: 'Privacy Policy & Data Safety Declaration',
@@ -2021,7 +2248,7 @@ pages.push({
 
 pages.push({
   route: 'disclaimer',
-  title: 'Financial & E-Commerce Fee Disclaimer | EVONIX Technologies',
+  title: 'Financial & Fee Disclaimer | Evonix',
   description: 'Official financial and e-commerce calculator disclaimer for EVONIX Technologies tools.',
   canonical: `${DOMAIN}/disclaimer`,
   heading: 'Financial & E-Commerce Fee Disclaimer',
@@ -2071,7 +2298,7 @@ pages.push({
 
 pages.push({
   route: 'terms-and-conditions',
-  title: 'Terms and Conditions | EVONIX Technologies Sialkot',
+  title: 'Terms and Conditions | Evonix',
   description: 'Standard terms of service, software delivery milestones, and repair agreements for EVONIX Technologies.',
   canonical: `${DOMAIN}/terms-and-conditions`,
   heading: 'Terms and Conditions',
@@ -2081,7 +2308,7 @@ pages.push({
 
 pages.push({
   route: 'warranty-policy',
-  title: 'Hardware & Service Warranty Policy | EVONIX Technologies',
+  title: 'Hardware Warranty Policy | Evonix',
   description: 'Official warranty policy covering hardware repairs, POS terminal components, and on-site servicing by EVONIX in Sialkot.',
   canonical: `${DOMAIN}/warranty-policy`,
   heading: 'Hardware & Service Warranty Policy',
@@ -2089,10 +2316,30 @@ pages.push({
   bodyHtml: `<div class="space-y-4 text-slate-300"><p>Comprehensive warranty coverage on motherboard repairs, thermal components, and touch POS terminals.</p><p class="text-sm">Warranty &amp; RMA Support Email: <a href="mailto:support@evonixtec.com" class="text-teal-400 font-bold hover:underline">support@evonixtec.com</a></p></div>`
 });
 
+pages.push({
+  route: 'mobile-policy',
+  title: 'Mobile & Play Store Policy | Evonix',
+  description: 'Official mobile application usage, client-side processing, and Play Store compliance policy for Evonix Technologies tools.',
+  canonical: `${DOMAIN}/mobile-policy`,
+  heading: 'Mobile & App Store Compliance Policy',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Mobile Policy', url: '/mobile-policy' }],
+  bodyHtml: `<div class="space-y-4 text-slate-300"><p>Evonix utility tools process calculations locally on your device without collecting personal files, contacts, or payment data.</p><p class="text-sm">Support Desk: <a href="mailto:support@evonixtec.com" class="text-teal-400 font-bold hover:underline">support@evonixtec.com</a></p></div>`
+});
+
+pages.push({
+  route: 'data-safety',
+  title: 'Data Safety Declaration | Evonix',
+  description: 'Client-side zero-cloud data safety declaration for Evonix business tools, POS systems, and web utilities.',
+  canonical: `${DOMAIN}/data-safety`,
+  heading: 'Data Safety & Zero-Cloud Declaration',
+  breadcrumb: [{ name: 'Home', url: '/' }, { name: 'Data Safety', url: '/data-safety' }],
+  bodyHtml: `<div class="space-y-4 text-slate-300"><p>All calculators, invoice generators, and diagnostic checks run strictly on your device with zero external data transmission.</p><p class="text-sm">Privacy Inquiries: <a href="mailto:privacy@evonixtec.com" class="text-teal-400 font-bold hover:underline">privacy@evonixtec.com</a></p></div>`
+});
+
 // Locations
 pages.push({
   route: 'locations',
-  title: 'Regional Industrial Hubs (Daska, Sambrial, Wazirabad) | EVONIX',
+  title: 'Regional Hubs: Daska & Wazirabad | Evonix',
   description: 'Direct on-site IT dispatch and hardware repair support across Daska, Sambrial Dry Port, and Wazirabad industrial zones.',
   canonical: `${DOMAIN}/locations`,
   heading: 'Regional Industrial Hubs & On-Site Support',
@@ -2123,7 +2370,7 @@ citySlugs.forEach((city) => {
   const cityData = LOCAL_CITIES[city];
   pages.push({
     route: `locations/${city}`,
-    title: `${cityData.name} IT Services & Enterprise Software | EVONIX`,
+    title: `${cityData.name} IT Services & Software | Evonix`,
     description: `Rapid 30-45 minute on-site IT support and software engineering for businesses in ${cityData.name}.`,
     canonical: `${DOMAIN}/locations/${city}`,
     heading: `${cityData.name} IT Services & Industrial Support`,
@@ -2233,7 +2480,7 @@ citySlugs.forEach((city) => {
     const cluster = getClusterData(city, svc);
     pages.push({
       route: `locations/${city}/${svc}`,
-      title: `${serviceData.name} in ${cityData.name} | EVONIX`,
+      title: formatConciseTitle(`${serviceData.name} in ${cityData.name}`),
       description: `${serviceData.summary} Expert on-site engineering team serving ${cityData.name}.`,
       canonical: `${DOMAIN}/locations/${city}/${svc}`,
       heading: `${serviceData.name} in ${cityData.name}`,
@@ -2316,8 +2563,8 @@ citySlugs.forEach((city) => {
 // Guides & Blogs Hub
 pages.push({
   route: 'guides',
-  title: 'Tech Blogs, Hardware Guides & Field Case Studies | EVONIX Sialkot',
-  description: 'Read 90+ engineering blogs, hardware repair tutorials, POS setup guides, and IT insights by EVONIX in Sialkot.',
+  title: 'Retail & Technical Guides | Evonix',
+  description: 'Practical technical guides by Evonix engineers covering offline POS management, Sialkot factory ERPs, thermal printers, and retail workflows.',
   canonical: `${DOMAIN}/guides`,
   heading: 'Tech Blogs, Hardware Guides & Case Studies',
   subheading: '90+ Technical Articles by Dubai-Certified Engineers in Sialkot',
@@ -2356,7 +2603,7 @@ ALL_BLOGS.forEach((blog) => {
 
   pages.push({
     route: `blog/${blog.slug}`,
-    title: `${blog.title} | EVONIX Tech Guide`,
+    title: formatConciseTitle(blog.title),
     description: blog.excerpt || blog.title,
     canonical: `${DOMAIN}/blog/${blog.slug}`,
     heading: blog.title,
@@ -2425,7 +2672,7 @@ ALL_BLOGS.forEach((blog) => {
 // Standalone Promotional Campaign (Strictly noindex, nofollow)
 pages.push({
   route: 'starter',
-  title: 'November Business Web Starter Pack | Evonix Technologies',
+  title: 'Business Web Starter Pack | Evonix',
   description: 'Limited November business web design offer for Pakistani businesses and exporters.',
   canonical: `${DOMAIN}/starter`,
   heading: 'November Business Web Starter Pack',
@@ -2495,7 +2742,7 @@ ALL_BLOGS.forEach((b) => {
   ['blogs', 'guides', 'guidelines'].forEach((prefix) => {
     pages.push({
       route: `${prefix}/${b.slug}`,
-      title: `${b.title} | EVONIX Tech Guide`,
+      title: formatConciseTitle(b.title),
       description: b.excerpt || b.title,
       canonical: `${DOMAIN}/blog/${b.slug}`,
       heading: b.title,

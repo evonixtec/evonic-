@@ -385,9 +385,9 @@ Estimated Duty Payable: $${estimatedValues.estimatedDuty} USD ${
                 <Globe className="w-3.5 h-3.5 text-red-600" />
                 <span>Sialkot Direct Exporters &amp; E-Commerce</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-black text-[#1E1E1E] tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-black text-[#1E1E1E] tracking-tight">
                 Global HS Code &amp; Custom Duty Lookup Engine
-              </h1>
+              </h2>
               <p className="text-xs sm:text-sm text-slate-600 leading-[1.55] max-w-2xl">
                 Quickly find export commodity codes and estimate customs tariffs for USA, EU, UK, and UAE.
               </p>

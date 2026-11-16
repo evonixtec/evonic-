@@ -168,9 +168,9 @@ export default function ShopifyFeeCalculator() {
               <Store className="w-3.5 h-3.5 text-[#0071e3]" />
               <span>Shopify Merchant Suite • 2026 Billing Engine</span>
             </div>
-            <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#1d1d1f]">
+            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#1d1d1f]">
               Shopify Fee Calculator: Calculate Shopify Fees &amp; Profit
-            </h1>
+            </h2>
             <p className="text-xs sm:text-sm text-[#86868b] leading-relaxed max-w-2xl">
               Shopify levies monthly subscription + gateway + third-party fees. Our shopify fee calculator helps DTC brands map real profits after all deductions. Supports Shopify Payments, Stripe, PayPal.
             </p>

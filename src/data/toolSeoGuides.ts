@@ -1,33 +1,33 @@
-// High-Resolution Generated Tool UI Mockup Visuals (JPEG & WebP)
-import invoiceMockup from '../assets/images/invoice_generator_mockup_1791635145434.jpg';
+// High-Resolution Generated Tool UI Mockup Visuals (WebP)
 import invoiceMockupWebp from '../assets/images/invoice_generator_mockup_1791635145434.webp';
+const invoiceMockup = invoiceMockupWebp;
 
-import ecomMockup from '../assets/images/ecom_calculator_mockup_1791635166292.jpg';
 import ecomMockupWebp from '../assets/images/ecom_calculator_mockup_1791635166292.webp';
+const ecomMockup = ecomMockupWebp;
 
-import cbmMockup from '../assets/images/cbm_cargo_mockup_1791635193504.jpg';
 import cbmMockupWebp from '../assets/images/cbm_cargo_mockup_1791635193504.webp';
+const cbmMockup = cbmMockupWebp;
 
-import devRatesMockup from '../assets/images/dev_rates_mockup_1791635232968.jpg';
 import devRatesMockupWebp from '../assets/images/dev_rates_mockup_1791635232968.webp';
+const devRatesMockup = devRatesMockupWebp;
 
-import aiVisMockup from '../assets/images/ai_vis_mockup_1791635271095.jpg';
 import aiVisMockupWebp from '../assets/images/ai_vis_mockup_1791635271095.webp';
+const aiVisMockup = aiVisMockupWebp;
 
-import barcodeMockup from '../assets/images/barcode_studio_mockup_1791635317504.jpg';
 import barcodeMockupWebp from '../assets/images/barcode_studio_mockup_1791635317504.webp';
+const barcodeMockup = barcodeMockupWebp;
 
-import liveRmaMockup from '../assets/images/live_rma_mockup_1791635366930.jpg';
 import liveRmaMockupWebp from '../assets/images/live_rma_mockup_1791635366930.webp';
+const liveRmaMockup = liveRmaMockupWebp;
 
-import printerDiagMockup from '../assets/images/printer_diag_mockup_1791635961966.jpg';
 import printerDiagMockupWebp from '../assets/images/printer_diag_mockup_1791635961966.webp';
+const printerDiagMockup = printerDiagMockupWebp;
 
-import factoryNetMockup from '../assets/images/factory_net_mockup_1791636034905.jpg';
 import factoryNetMockupWebp from '../assets/images/factory_net_mockup_1791636034905.webp';
+const factoryNetMockup = factoryNetMockupWebp;
 
-import tripPlannerMockup from '../assets/images/Ai Trip Planner.jpg';
 import tripPlannerMockupWebp from '../assets/images/Ai Trip Planner.webp';
+const tripPlannerMockup = tripPlannerMockupWebp;
 
 export interface ToolFaqItem {
   question: string;

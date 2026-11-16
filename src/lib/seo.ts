@@ -1,5 +1,5 @@
 import { NavPageId } from '../components/Navbar';
-import { BlogPost } from '../data/blogs';
+import type { BlogPost } from '../data/blogs/types';
 
 export interface PageMetadata {
   title: string;
@@ -1364,6 +1364,17 @@ export const SIALKOT_PAGE_SEO: Record<NavPageId, PageMetadata> = {
       'barcode scanner sialkot',
     ],
   },
+
+  'not-found': {
+    title: 'Page Not Found | Evonix',
+    description: 'The requested page could not be found on Evonix Technologies. Return to our software services, POS pricing, export ERP, or free business tools.',
+    canonicalUrl: `${BASE_URL}/`,
+    ogTitle: 'Page Not Found | Evonix',
+    ogDescription: 'Page not found on Evonix Technologies.',
+    ogType: 'website',
+    ogImage: DEFAULT_OG_IMAGE,
+    keywords: ['evonix technologies', 'page not found'],
+  },
 };
 
 /**
@@ -1906,6 +1917,8 @@ export function applyPageSEO(
         canonicalUrl = `${BASE_URL}/tools/schema-generator`;
       } else if (rawPath === '/hs-code-lookup' || rawPath === '/hex-code-lookup' || rawPath === '/tools/hex-code-lookup') {
         canonicalUrl = `${BASE_URL}/tools/hs-code-lookup`;
+      } else if (pageId === 'not-found') {
+        canonicalUrl = `${BASE_URL}/`;
       } else {
         canonicalUrl = `${BASE_URL}${rawPath === '/' ? '/' : rawPath}`;
       }
@@ -1918,7 +1931,7 @@ export function applyPageSEO(
   // Primary Meta & Robots Directives
   updateMetaTag('name', 'description', meta.description);
   updateMetaTag('name', 'keywords', meta.keywords.join(', '));
-  if (pageId === 'starter') {
+  if (pageId === 'starter' || pageId === 'not-found') {
     updateMetaTag('name', 'robots', 'noindex, nofollow');
     updateMetaTag('name', 'googlebot', 'noindex, nofollow');
     updateMetaTag('name', 'bingbot', 'noindex, nofollow');
@@ -1971,7 +1984,7 @@ export function applyPageSEO(
   updateSubpageStructuredData(structuredData);
 
   // Ping IndexNow search engine protocol for public pages and tools
-  if (pageId !== 'admin') {
+  if (pageId !== 'admin' && pageId !== 'not-found') {
     pingIndexNow(canonicalUrl).catch(() => {});
   }
 }

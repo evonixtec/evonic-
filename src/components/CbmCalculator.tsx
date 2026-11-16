@@ -38,7 +38,7 @@ export default function CbmCalculator() {
             </span>
             <span className="text-xs text-[#86868b] font-mono">Air &amp; Sea Metric</span>
           </div>
-          <h1 className="apple-tool-title mt-2">B2B Industrial CBM &amp; Freight Engine</h1>
+          <h2 className="apple-tool-title mt-2">B2B Industrial CBM &amp; Freight Engine</h2>
           <p className="apple-tool-subtitle">Compute Cubic Meters (CBM), air courier volumetric weights, and 20ft / 40ft High Cube container stuffing capacity.</p>
         </div>
 

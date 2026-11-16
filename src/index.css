@@ -23,7 +23,12 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  p, li, blockquote, dd, dt, article p, .prose p, .blog-content p, .product-desc {
+  p, li, blockquote, dd, dt {
+    text-align: left;
+    line-height: 1.6;
+  }
+
+  article p, .prose p, .prose li, .blog-content p, .product-desc {
     text-align: left;
     line-height: 1.6;
     color: #374151;
@@ -31,7 +36,6 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-sans);
-    color: #111827;
     letter-spacing: -0.025em;
     text-wrap: balance;
   }

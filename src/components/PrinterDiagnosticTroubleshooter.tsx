@@ -32,7 +32,7 @@ export const PrinterDiagnosticTroubleshooter: React.FC<PrinterDiagnosticTroubles
             <Printer className="w-3.5 h-3.5 text-[#0071e3]" />
             <span>Hardware Lab Diagnostics</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#1d1d1f]">Thermal Receipt Printer Diagnostic Engine</h1>
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#1d1d1f]">Thermal Receipt Printer Diagnostic Engine</h2>
           <p className="text-xs sm:text-sm text-[#86868b]">Component-level troubleshooting for 80mm ESC/POS thermal printers, paper jams, and cutter motors.</p>
         </div>
 

@@ -154,9 +154,9 @@ export default function AiVisibilityChecker({ onOpenQuote }: AiVisibilityChecker
             </span>
           </div>
 
-          <h1 className="apple-tool-title text-2xl sm:text-3xl lg:text-4xl">
+          <h2 className="apple-tool-title text-2xl sm:text-3xl lg:text-4xl">
             Website E-E-A-T &amp; AI Visibility Checker
-          </h1>
+          </h2>
 
           <p className="apple-tool-subtitle max-w-2xl mx-auto text-sm sm:text-base">
             Audit your domain's readiness for Google AI Overviews, ChatGPT, Claude, and Perplexity. Evaluate brand entity node connectivity, TLS security footprints, and structured citation indexes with zero database latency.

@@ -963,9 +963,9 @@ export const GlobalInvoiceHub: React.FC = () => {
               </div>
 
               {/* Exact H1 requested by user */}
-              <h1 className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight leading-snug">
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight leading-snug">
                 Free Global Micro-Invoice Generator - No Signup, 150+ Currencies, Instant PDF
-              </h1>
+              </h2>
 
               {/* Exact 2 lines requested by user highlighting the viral privacy trend */}
               <div className="p-3.5 rounded-2xl bg-slate-900/90 border border-emerald-500/25 text-slate-300 text-xs sm:text-sm space-y-1.5">

@@ -28,7 +28,7 @@ import { ProductDetailModal } from './ProductDetailModal';
 import { HyperlocalHeroBannerSlider } from './HyperlocalHeroBannerSlider';
 
 interface HyperlocalLandingPageProps {
-  onNavigatePage?: (page: string) => void;
+  onNavigatePage?: (page: string, subTarget?: string) => void;
   onOpenQuote?: (title: string) => void;
 }
 
@@ -915,6 +915,67 @@ export const HyperlocalLandingPage: React.FC<HyperlocalLandingPageProps> = ({
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* HARDWARE & PRINTER REPAIR GUIDES (INTERNAL SEO LINKS) */}
+      <section className="py-10 border-t border-slate-800 bg-slate-950/80">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <h2 className="text-lg font-bold text-white">
+              IT Hardware &amp; Printer Repair Field Guides
+            </h2>
+            <a
+              href="/guides"
+              onClick={(e) => {
+                if (onNavigatePage) {
+                  e.preventDefault();
+                  onNavigatePage('guides');
+                }
+              }}
+              className="text-xs font-semibold text-emerald-400 hover:underline"
+            >
+              View All Technical Guides &rarr;
+            </a>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a
+              href="/blog/heavy-duty-laser-printer-repair-daska-road-sialkot-factories"
+              onClick={(e) => {
+                if (onNavigatePage) {
+                  e.preventDefault();
+                  onNavigatePage('guides', 'blog/heavy-duty-laser-printer-repair-daska-road-sialkot-factories');
+                }
+              }}
+              className="p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-emerald-500/60 transition-colors block space-y-1.5"
+            >
+              <span className="text-[11px] font-mono text-emerald-400">Printer Repair Guide</span>
+              <h3 className="text-sm font-bold text-white leading-snug">
+                HP &amp; Canon Laser Printer Fuser Repair on Daska Road, Sialkot
+              </h3>
+              <p className="text-xs text-slate-400">
+                Dust protection and preventive maintenance for busy factory printers.
+              </p>
+            </a>
+            <a
+              href="/blog/dell-latitude-hp-elitebook-type-c-charging-repair-sialkot"
+              onClick={(e) => {
+                if (onNavigatePage) {
+                  e.preventDefault();
+                  onNavigatePage('guides', 'blog/dell-latitude-hp-elitebook-type-c-charging-repair-sialkot');
+                }
+              }}
+              className="p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-emerald-500/60 transition-colors block space-y-1.5"
+            >
+              <span className="text-[11px] font-mono text-emerald-400">Laptop Repair Guide</span>
+              <h3 className="text-sm font-bold text-white leading-snug">
+                Dell Latitude &amp; HP EliteBook Type-C Charging IC Repair
+              </h3>
+              <p className="text-xs text-slate-400">
+                Chip-level USB-C power diagnostic at our Kotli Behram bench lab.
+              </p>
+            </a>
           </div>
         </div>
       </section>

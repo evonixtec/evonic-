@@ -422,9 +422,9 @@ Calculated via EVONIX Technologies: https://www.evonixtec.com/amazon-fba-fee-cal
                 <Package className="w-3.5 h-3.5" />
                 <span>2026 Amazon FBA Fee Schedule</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900">
                 Amazon FBA Fee Calculator 2026 - Profit, Referral, Fulfillment + Fuel Surcharge
-              </h1>
+              </h2>
               <p className="text-sm text-slate-600 leading-relaxed max-w-2xl">
                 2026 ke latest Amazon fee schedule ke mutabiq. Q4 Peak Season (Oct 15, 2026 - Jan 14, 2027) aur Fuel Surcharge 3.5% included hai.
               </p>

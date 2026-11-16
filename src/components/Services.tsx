@@ -226,11 +226,12 @@ const IMPLEMENTATION_SERVICES: {
 export interface ServicesProps {
   onSelectService?: (id: string) => void;
   onSelectServiceForQuote?: (serviceType?: string) => void;
-  onNavigatePage?: (page: any) => void;
+  onNavigatePage?: (page: any, subTarget?: string) => void;
 }
 
 export const Services: React.FC<ServicesProps> = ({
   onSelectServiceForQuote,
+  onNavigatePage,
 }) => {
   return (
     <div className="bg-white text-slate-900">
@@ -415,6 +416,35 @@ export const Services: React.FC<ServicesProps> = ({
                   </p>
                 </div>
 
+                {svc.title === 'POS & Retail Hardware' && (
+                  <div className="pt-3 mt-3 border-t border-[#E5E7EB]/70 space-y-1.5 text-xs">
+                    <a
+                      href="/blog/heavy-duty-laser-printer-repair-daska-road-sialkot-factories"
+                      onClick={(e) => {
+                        if (onNavigatePage) {
+                          e.preventDefault();
+                          onNavigatePage('guides', 'blog/heavy-duty-laser-printer-repair-daska-road-sialkot-factories');
+                        }
+                      }}
+                      className="block text-slate-700 hover:text-[#C81E1E] font-medium transition-colors"
+                    >
+                      Guide: Laser Printer Fuser Repair (Sialkot) &rarr;
+                    </a>
+                    <a
+                      href="/blog/dell-latitude-hp-elitebook-type-c-charging-repair-sialkot"
+                      onClick={(e) => {
+                        if (onNavigatePage) {
+                          e.preventDefault();
+                          onNavigatePage('guides', 'blog/dell-latitude-hp-elitebook-type-c-charging-repair-sialkot');
+                        }
+                      }}
+                      className="block text-slate-700 hover:text-[#C81E1E] font-medium transition-colors"
+                    >
+                      Guide: Laptop Type-C Charging IC Repair &rarr;
+                    </a>
+                  </div>
+                )}
+
                 {onSelectServiceForQuote && (
                   <div className="pt-4 mt-5 border-t border-[#E5E7EB]">
                     <button
@@ -496,22 +526,194 @@ export const Services: React.FC<ServicesProps> = ({
                   </div>
                 </div>
 
-                <div className="pt-5 mt-5 border-t border-[#E5E7EB] flex flex-wrap items-center justify-between gap-3">
-                  <span className="font-mono text-[11px] text-slate-500">
-                    {service.techStack.join(' · ')}
-                  </span>
-                  {onSelectServiceForQuote && (
-                    <button
-                      type="button"
-                      onClick={() => onSelectServiceForQuote(service.title)}
-                      className="text-xs font-semibold text-[#C81E1E] hover:text-[#A6171E] cursor-pointer whitespace-nowrap"
-                    >
-                      Request Scope
-                    </button>
+                <div className="pt-5 mt-5 border-t border-[#E5E7EB] space-y-3">
+                  {service.id === 'web-dev' && (
+                    <div className="space-y-1.5 text-xs pb-2 border-b border-[#E5E7EB]/70">
+                      <div className="font-semibold text-slate-500">
+                        Recommended Web &amp; Export SEO Guides
+                      </div>
+                      <a
+                        href="/blog/high-performance-landing-pages-structure-speed-seo"
+                        onClick={(e) => {
+                          if (onNavigatePage) {
+                            e.preventDefault();
+                            onNavigatePage('guides', 'blog/high-performance-landing-pages-structure-speed-seo');
+                          }
+                        }}
+                        className="block text-slate-800 hover:text-[#C81E1E] font-medium transition-colors"
+                      >
+                        High-Performance Landing Pages: Speed &amp; SEO Structure &rarr;
+                      </a>
+                      <a
+                        href="/blog/essential-elements-high-converting-b2b-portfolio-website"
+                        onClick={(e) => {
+                          if (onNavigatePage) {
+                            e.preventDefault();
+                            onNavigatePage('guides', 'blog/essential-elements-high-converting-b2b-portfolio-website');
+                          }
+                        }}
+                        className="block text-slate-800 hover:text-[#C81E1E] font-medium transition-colors"
+                      >
+                        Essential Elements of a High-Converting B2B Portfolio Website &rarr;
+                      </a>
+                      <a
+                        href="/blog/export-seo-ranking-first-page-google-daska-road-sialkot"
+                        onClick={(e) => {
+                          if (onNavigatePage) {
+                            e.preventDefault();
+                            onNavigatePage('guides', 'blog/export-seo-ranking-first-page-google-daska-road-sialkot');
+                          }
+                        }}
+                        className="block text-slate-800 hover:text-[#C81E1E] font-medium transition-colors"
+                      >
+                        Export SEO Blueprint for Daska Road Factories &rarr;
+                      </a>
+                    </div>
                   )}
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <span className="font-mono text-[11px] text-slate-500">
+                      {service.techStack.join(' · ')}
+                    </span>
+                    {onSelectServiceForQuote && (
+                      <button
+                        type="button"
+                        onClick={() => onSelectServiceForQuote(service.title)}
+                        className="text-xs font-semibold text-[#C81E1E] hover:text-[#A6171E] cursor-pointer whitespace-nowrap"
+                      >
+                        Request Scope
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* 04 · Web, SEO & Hardware Repair Engineering Guides (Direct Internal Links) */}
+          <div className="bg-white rounded-xl border border-[#E5E7EB] p-6 sm:p-8 text-left space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b border-[#E5E7EB]">
+              <div className="space-y-1">
+                <p className="text-xs font-semibold text-[#C81E1E]">
+                  04 · Engineering &amp; Repair Field Notes
+                </p>
+                <h3 className="text-xl sm:text-2xl font-semibold text-slate-900 tracking-tight">
+                  Web Architecture, Export SEO &amp; Hardware Repair Guides
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600">
+                  Read practical implementation playbooks written by our web engineers and Sialkot lab technicians.
+                </p>
+              </div>
+              <a
+                href="/guides"
+                onClick={(e) => {
+                  if (onNavigatePage) {
+                    e.preventDefault();
+                    onNavigatePage('guides');
+                  }
+                }}
+                className="text-xs font-semibold text-[#C81E1E] hover:text-[#A6171E] whitespace-nowrap inline-flex items-center gap-1"
+              >
+                <span>View All Guides</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <a
+                href="/blog/high-performance-landing-pages-structure-speed-seo"
+                onClick={(e) => {
+                  if (onNavigatePage) {
+                    e.preventDefault();
+                    onNavigatePage('guides', 'blog/high-performance-landing-pages-structure-speed-seo');
+                  }
+                }}
+                className="p-4 rounded-xl bg-[#FAFAF9] border border-[#E5E7EB] hover:border-[#C81E1E] transition-colors block space-y-1.5"
+              >
+                <span className="font-mono text-[11px] text-[#C81E1E]">Web &amp; SEO</span>
+                <h4 className="text-sm font-semibold text-slate-900 leading-snug">
+                  High-Performance Landing Pages: Structure, Speed &amp; SEO
+                </h4>
+                <p className="text-xs text-slate-600">
+                  Clean layout structure, sub-second loading speed, and technical schema setup.
+                </p>
+              </a>
+
+              <a
+                href="/blog/essential-elements-high-converting-b2b-portfolio-website"
+                onClick={(e) => {
+                  if (onNavigatePage) {
+                    e.preventDefault();
+                    onNavigatePage('guides', 'blog/essential-elements-high-converting-b2b-portfolio-website');
+                  }
+                }}
+                className="p-4 rounded-xl bg-[#FAFAF9] border border-[#E5E7EB] hover:border-[#C81E1E] transition-colors block space-y-1.5"
+              >
+                <span className="font-mono text-[11px] text-[#C81E1E]">Web &amp; B2B</span>
+                <h4 className="text-sm font-semibold text-slate-900 leading-snug">
+                  Essential Elements of a High-Converting B2B Portfolio Website
+                </h4>
+                <p className="text-xs text-slate-600">
+                  Trust signals, factory proof pages, and fast inquiry flows for export buyers.
+                </p>
+              </a>
+
+              <a
+                href="/blog/export-seo-ranking-first-page-google-daska-road-sialkot"
+                onClick={(e) => {
+                  if (onNavigatePage) {
+                    e.preventDefault();
+                    onNavigatePage('guides', 'blog/export-seo-ranking-first-page-google-daska-road-sialkot');
+                  }
+                }}
+                className="p-4 rounded-xl bg-[#FAFAF9] border border-[#E5E7EB] hover:border-[#C81E1E] transition-colors block space-y-1.5"
+              >
+                <span className="font-mono text-[11px] text-[#C81E1E]">Export SEO</span>
+                <h4 className="text-sm font-semibold text-slate-900 leading-snug">
+                  Export SEO: Ranking #1 on Google for Daska Road Exporters
+                </h4>
+                <p className="text-xs text-slate-600">
+                  How Sialkot manufacturers win high-intent buyers in the US and Europe.
+                </p>
+              </a>
+
+              <a
+                href="/blog/heavy-duty-laser-printer-repair-daska-road-sialkot-factories"
+                onClick={(e) => {
+                  if (onNavigatePage) {
+                    e.preventDefault();
+                    onNavigatePage('guides', 'blog/heavy-duty-laser-printer-repair-daska-road-sialkot-factories');
+                  }
+                }}
+                className="p-4 rounded-xl bg-[#FAFAF9] border border-[#E5E7EB] hover:border-[#C81E1E] transition-colors block space-y-1.5"
+              >
+                <span className="font-mono text-[11px] text-[#C81E1E]">IT Hardware Repair</span>
+                <h4 className="text-sm font-semibold text-slate-900 leading-snug">
+                  Heavy-Duty Laser Printer Fuser Repair on Daska Road, Sialkot
+                </h4>
+                <p className="text-xs text-slate-600">
+                  Prevent industrial dust fuser jams and paper feed errors in busy factories.
+                </p>
+              </a>
+
+              <a
+                href="/blog/dell-latitude-hp-elitebook-type-c-charging-repair-sialkot"
+                onClick={(e) => {
+                  if (onNavigatePage) {
+                    e.preventDefault();
+                    onNavigatePage('guides', 'blog/dell-latitude-hp-elitebook-type-c-charging-repair-sialkot');
+                  }
+                }}
+                className="p-4 rounded-xl bg-[#FAFAF9] border border-[#E5E7EB] hover:border-[#C81E1E] transition-colors block space-y-1.5"
+              >
+                <span className="font-mono text-[11px] text-[#C81E1E]">IT Hardware Repair</span>
+                <h4 className="text-sm font-semibold text-slate-900 leading-snug">
+                  Dell Latitude &amp; HP EliteBook Type-C Charging IC Repair
+                </h4>
+                <p className="text-xs text-slate-600">
+                  Bench diagnostic and motherboard micro-soldering steps for USB-C power faults.
+                </p>
+              </a>
+            </div>
           </div>
 
           {/* UAE & Cross-Border B2B FAQ Block (Updated for 2026/2027) */}

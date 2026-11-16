@@ -13,14 +13,12 @@ import { VideoBackground } from './components/common/VideoBackground';
 import { COMPANY_INFO } from './data/content';
 import { initAntiCopyShield, initializeConsoleShield } from './lib/security';
 import { applyPageSEO } from './lib/seo';
-import { ToolWorkspaceHeader } from './components/common/ToolWorkspaceHeader';
 import { MobileBottomNav } from './components/MobileBottomNav';
 import { PWAInstallBanner } from './components/PWAInstallBanner';
 import { LocalCity, ClusterService, LOCAL_CITIES, CLUSTER_SERVICES } from './data/localClusters';
 import { MessageSquare, Phone, ArrowUp, ArrowRight, Search, Sparkles, MapPin, Wrench, ShieldCheck, CheckCircle2, FileText, Barcode, Printer, Boxes, SlidersHorizontal, Calculator, Clock, Wifi, Globe, Code, FileCheck } from 'lucide-react';
 import { isToolPage } from './lib/toolUtils';
 import { isToolsSubdomain, isStoreSubdomain, getMainAgencyDomainUrl, getToolsDomainUrl, getStoreDomainUrl } from './lib/domainUtils';
-import { ToolDynamicPage } from './components/tools/ToolDynamicPage';
 import { resolveToolSlug, ToolMetadata } from './data/toolsRegistry';
 
 // Statically imported home sections for instant render and zero dynamic import fetch failures
@@ -28,8 +26,10 @@ import { HomeServicesPreview } from './components/home/HomeServicesPreview';
 import { HomePortfolioPreview } from './components/home/HomePortfolioPreview';
 import { HomeJourneyGateway } from './components/home/HomeJourneyGateway';
 import { HomeToolsStoreSection } from './components/home/HomeToolsStoreSection';
-import { EvonixHisaabProSection } from './components/EvonixHisaabProSection';
 import FAQ from './components/FAQ';
+const ToolDynamicPage = lazy(() => import('./components/tools/ToolDynamicPage').then(m => ({ default: m.ToolDynamicPage })));
+const EvonixHisaabProSection = lazy(() => import('./components/EvonixHisaabProSection').then(m => ({ default: m.EvonixHisaabProSection })));
+const NotFoundPage = lazy(() => import('./components/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
 const GoogleReviewsSection = lazy(() => import('./components/GoogleReviewsSection').then(m => ({ default: m.GoogleReviewsSection })));
 const WhyChooseUs = lazy(() => import('./components/WhyChooseUs').then(m => ({ default: m.WhyChooseUs })));
 const Testimonials = lazy(() => import('./components/Testimonials').then(m => ({ default: m.Testimonials })));
@@ -609,7 +609,43 @@ export default function App() {
       return 'admin';
     }
 
-    return 'home';
+    if (
+      path === 'home' ||
+      path === 'index' ||
+      path === 'privacy-policy' ||
+      path === 'privacy' ||
+      path === 'app-privacy-policy' ||
+      path === 'google-privacy' ||
+      path === 'privacy-policy-tools' ||
+      path === 'terms-and-conditions' ||
+      path === 'terms' ||
+      path === 'terms-of-service' ||
+      path === 'eula' ||
+      path === 'app-terms' ||
+      path === 'warranty-policy' ||
+      path === 'warranty' ||
+      path === 'refund' ||
+      path === 'refund-policy' ||
+      path === 'returns' ||
+      path === 'cancellation-policy' ||
+      path === 'mobile-policy' ||
+      path === 'play-store-policy' ||
+      path === 'google-play-policy' ||
+      path === 'app-policy' ||
+      path === 'android-policy' ||
+      path === 'data-safety' ||
+      path === 'safety-matrix' ||
+      path === 'tools-safety' ||
+      path === 'tool-data-safety' ||
+      path === 'disclaimer' ||
+      path === 'fee-disclaimer' ||
+      path === 'financial-disclaimer' ||
+      path === 'calculator-disclaimer'
+    ) {
+      return 'home';
+    }
+
+    return 'not-found';
   };
 
   // Read initial page from clean URL pathname (with hash backward compatibility)
@@ -882,6 +918,8 @@ export default function App() {
       cleanPath = '/locations/sialkot/pos-hardware';
     } else if (page === 'guidelines') {
       cleanPath = '/guidelines';
+    } else if (page === 'guides' && subTarget && subTarget.startsWith('blog/')) {
+      cleanPath = `/${subTarget}`;
     } else if (page === 'locations' && subTarget) {
       cleanPath = `/locations/${subTarget}`;
       setClusterParams({ city: subTarget as any, service: 'it-consultancy' });
@@ -895,12 +933,16 @@ export default function App() {
       window.history.replaceState({ page, subTarget }, '', cleanPath);
     }
 
+    if (page === 'guides' && subTarget && subTarget.startsWith('blog/')) {
+      window.dispatchEvent(new Event('evonix-blog-route'));
+    }
+
     // Ensure sub-route SEO updates even when page id stays 'services'
     applyPageSEO(page as NavPageId);
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    if (subTarget) {
+    if (subTarget && !subTarget.startsWith('blog/')) {
       setTimeout(() => {
         const el = document.getElementById(subTarget);
         if (el) {
@@ -1262,13 +1304,13 @@ export default function App() {
                     id="software-pos"
                     asMainPage
                     onOpenQuote={handleOpenQuote}
-                    onNavigatePage={(page) => navigateToPage(page as NavPageId)}
+                    onNavigatePage={(page, subTarget) => navigateToPage(page as NavPageId, subTarget)}
                   />
 
                   {/* Full Business Solutions & Technical Services */}
                   <Services
                     onSelectServiceForQuote={handleOpenQuote}
-                    onNavigatePage={(page) => navigateToPage(page as NavPageId)}
+                    onNavigatePage={(page, subTarget) => navigateToPage(page as NavPageId, subTarget)}
                   />
                 </>
               ) : (
@@ -1287,7 +1329,7 @@ export default function App() {
                   {/* Full Detailed Services Section */}
                   <Services
                     onSelectServiceForQuote={handleOpenQuote}
-                    onNavigatePage={(page) => navigateToPage(page as NavPageId)}
+                    onNavigatePage={(page, subTarget) => navigateToPage(page as NavPageId, subTarget)}
                   />
 
                   {/* Complete Offline Retail & Business POS / Evonix Hisaab Pro Landing Section */}
@@ -1295,7 +1337,7 @@ export default function App() {
                     id="software-pos"
                     asMainPage={false}
                     onOpenQuote={handleOpenQuote}
-                    onNavigatePage={(page) => navigateToPage(page as NavPageId)}
+                    onNavigatePage={(page, subTarget) => navigateToPage(page as NavPageId, subTarget)}
                   />
                 </>
               )}
@@ -1402,6 +1444,7 @@ export default function App() {
               onRequestPrivateMeeting={() =>
                 handleOpenQuote('Confidential NDA Case Study Presentation')
               }
+              onNavigatePage={(page, subTarget) => navigateToPage(page as NavPageId, subTarget)}
             />
 
             {/* Testimonials */}
@@ -1657,6 +1700,17 @@ export default function App() {
           <GuidelinesPage
             onNavigatePage={(page, subTarget) => navigateToPage(page as NavPageId, subTarget)}
             onOpenQuote={handleOpenQuote}
+          />
+        )}
+
+        {/* ========================================================
+            PAGE 404: DEDICATED NOT FOUND VIEW (NO SOFT-404 HOMEPAGE)
+           ======================================================== */}
+        {currentPage === 'not-found' && (
+          <NotFoundPage
+            onNavigatePage={navigateToPage}
+            onOpenQuote={handleOpenQuote}
+            onOpenSearch={() => setIsSearchOpen(true)}
           />
         )}
 

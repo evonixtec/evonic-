@@ -32,7 +32,7 @@ export interface EvonixHisaabProSectionProps {
   id?: string;
   asMainPage?: boolean;
   onOpenQuote: (serviceType?: string) => void;
-  onNavigatePage?: (page: any) => void;
+  onNavigatePage?: (page: any, subTarget?: string) => void;
 }
 
 interface CoreCapability {
@@ -453,68 +453,72 @@ interface PricingPlan {
 const PRICING_PLANS: PricingPlan[] = [
   {
     id: 'trial',
-    tier: 'Free Trial / Starter Evaluation',
+    tier: 'Free Trial',
     subtitle: '14-Day Full Evaluation',
     priceLabel: 'Rs 0',
-    priceNote: '14-Day Local Trial',
+    priceNote: 'For 14 Days',
     description:
-      'Test full offline POS, barcode billing, inventory, and Khata on your own shop PC before committing.',
+      'Test full offline POS billing, product search, and Digital Khata on your own shop PC before buying.',
     features: [
-      'Full offline POS & barcode billing',
-      'Multi-unit inventory & stock alerts',
-      'Digital Khata & daily net profit view',
-      'Install directly on Windows 10/11 PC',
+      '100% Offline Windows POS',
+      'Up to 500 Products',
+      '1 PC / 1 User',
+      'Digital Khata & Billing',
+      'Local Backup',
     ],
-    ctaLabel: 'Start 14-Day Evaluation',
+    ctaLabel: 'Download Free Trial',
   },
   {
-    id: 'single-shop',
-    tier: 'Single Shop Pro',
-    subtitle: '1 Counter / Local PC',
-    priceLabel: 'Custom / Affordable Plan',
-    priceNote: 'One-Time / Offline License',
+    id: 'starter-yearly',
+    tier: 'Starter Yearly',
+    subtitle: 'For Small Retail Shops',
+    priceLabel: 'Rs 15,000',
+    priceNote: 'year',
     description:
-      'Unlimited products, unlimited offline sales, Digital Khata + WhatsApp reminders, daily net profit reports, and silent auto-backups.',
+      'Built for daily Kiryana, cosmetic, and mobile shop counters needing unlimited billing and WhatsApp reminders.',
     features: [
-      'Unlimited products & offline sales',
-      'Digital Khata + WhatsApp reminders',
-      'Daily Galla & net profit reports',
-      'Silent daily USB & local backups',
+      '100% Offline Windows POS',
+      'Unlimited Products & Bills',
+      '1 PC / 2 Users',
+      'Digital Khata + WhatsApp',
+      '1 Year Updates & Support',
+    ],
+    ctaLabel: 'Start Yearly Plan',
+  },
+  {
+    id: 'business-lifetime',
+    tier: 'Business Lifetime',
+    subtitle: 'One-Time Payment, Forever Yours',
+    priceLabel: 'Rs 38,000',
+    priceNote: 'One-Time Key',
+    description:
+      'Own your Windows license outright with multi-PC counter networking, specialized industry modules, and free Excel setup.',
+    features: [
+      '100% Offline Lifetime License',
+      'Unlimited Products & Sales',
+      '2 PCs (LAN) / 3 Users',
+      'Pharmacy, Garments & Footwear',
+      'Free Excel Import + Auto Backup',
     ],
     featured: true,
-    ctaLabel: 'Get Single Shop Quote',
+    ctaLabel: 'Get Lifetime Key',
   },
   {
-    id: 'multi-branch',
-    tier: 'Multi-Counter / Multi-Branch Edition',
-    subtitle: '3–10 Counters / Branches',
-    priceLabel: 'Custom Plan',
-    priceNote: 'LAN + Multi-Branch Sync',
+    id: 'multi-branch-erp',
+    tier: 'Multi-Branch & ERP',
+    subtitle: 'Wholesale, Chains & Factories',
+    priceLabel: 'Custom',
+    priceNote: 'Tailored Quote',
     description:
-      'Up to 3–10 counters/branches, inter-branch stock transfers, centralized profit reporting, and priority setup support.',
+      'Unlimited counters, local branch sync, factory manufacturing BOM, FBR Tier-1 setup, and on-site staff training.',
     features: [
-      'Up to 3–10 counters or branches',
-      'Inter-branch stock transfer ledgers',
-      'Centralized consolidated profit report',
-      'Priority onboarding & staff setup',
+      'Offline + Local Branch Sync',
+      'Unlimited Counters & Branches',
+      'Manufacturing BOM & Export',
+      'FBR Tier-1 POS Integration',
+      'Dedicated On-Site Onboarding',
     ],
-    ctaLabel: 'Request Multi-Branch Plan',
-  },
-  {
-    id: 'enterprise',
-    tier: 'Enterprise & Custom ERP',
-    subtitle: 'Unlimited Counters & APIs',
-    priceLabel: 'Custom Quote',
-    priceNote: 'Dedicated Onboarding',
-    description:
-      'Unlimited counters, custom workflows, FBR Tier-1 integration, API exports, and dedicated on-site/remote onboarding.',
-    features: [
-      'Unlimited counters & custom workflows',
-      'FBR Tier-1 POS digital invoicing',
-      'Accounting & ERP API exports',
-      'Dedicated on-site or remote onboarding',
-    ],
-    ctaLabel: 'Book Enterprise Consultation',
+    ctaLabel: 'Book Free Demo',
   },
 ];
 
@@ -1391,25 +1395,34 @@ export const EvonixHisaabProSection: React.FC<EvonixHisaabProSectionProps> = ({
             {PRICING_PLANS.map((plan) => (
               <div
                 key={plan.id}
-                className={`bg-[#FAFAF9] rounded-xl p-6 flex flex-col justify-between border ${
-                  plan.featured ? 'border-[#C81E1E] bg-white' : 'border-[#E5E7EB]'
+                className={`relative rounded-xl p-6 flex flex-col justify-between transition-colors ${
+                  plan.featured
+                    ? 'bg-white border-2 border-[#C81E1E]'
+                    : 'bg-[#FAFAF9] border border-[#E5E7EB]'
                 }`}
               >
                 <div className="space-y-4">
-                  <div className="space-y-1">
-                    <div className="font-mono text-xs text-slate-500 tabular-nums">
-                      {plan.subtitle}
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="font-mono text-xs text-slate-500 tabular-nums">
+                        {plan.subtitle}
+                      </div>
+                      {plan.featured && (
+                        <span className="inline-block px-2 py-0.5 bg-[#C81E1E] text-white font-mono text-[10px] font-semibold tracking-wider uppercase rounded">
+                          MOST POPULAR
+                        </span>
+                      )}
                     </div>
                     <h3 className="text-lg font-semibold text-slate-900 leading-snug">
                       {plan.tier}
                     </h3>
                   </div>
 
-                  <div className="py-3 border-y border-[#E5E7EB] space-y-0.5">
+                  <div className="py-3 border-y border-[#E5E7EB] flex items-baseline justify-between gap-2 flex-wrap">
                     <div className="font-mono text-2xl font-semibold text-slate-900 tabular-nums">
                       {plan.priceLabel}
                     </div>
-                    <div className="font-mono text-xs text-slate-500">{plan.priceNote}</div>
+                    <div className="font-mono text-xs text-slate-500">/ {plan.priceNote}</div>
                   </div>
 
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">

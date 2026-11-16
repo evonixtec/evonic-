@@ -83,9 +83,9 @@ export const UsDutyNexusEstimator: React.FC = () => {
               </span>
               <span className="text-xs text-[#86868b] font-mono">19 U.S.C. &sect; 1321 (Section 321)</span>
             </div>
-            <h1 className="apple-tool-title mt-2">
+            <h2 className="apple-tool-title mt-2">
               US Customs Duty &amp; Section 321 De Minimis Calculator
-            </h1>
+            </h2>
             <p className="apple-tool-subtitle">
               Calculate US Customs tariffs, verify duty-free clearance under the $800 Section 321 rule, and estimate landed costs for US corporate buyers.
             </p>

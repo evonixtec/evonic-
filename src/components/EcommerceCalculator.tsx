@@ -36,7 +36,7 @@ export default function EcommerceCalculator() {
             </span>
             <span className="text-xs text-[#86868b] font-mono">COD &amp; Return Profit Simulator</span>
           </div>
-          <h1 className="apple-tool-title mt-2">E-Commerce Margin &amp; COD Simulator</h1>
+          <h2 className="apple-tool-title mt-2">E-Commerce Margin &amp; COD Simulator</h2>
           <p className="apple-tool-subtitle">Simulate Pakistani and international e-commerce cash flows with real courier fees, return losses, and advertising ROAS.</p>
         </div>
 

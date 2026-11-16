@@ -156,74 +156,74 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
           {/* Column 2: Core Services */}
           <nav className="lg:col-span-2 space-y-3" aria-label="Footer Core Services Navigation">
             <h3 className="text-xs font-semibold text-white flex items-center gap-1.5">
-              <Wrench className="w-3.5 h-3.5 text-slate-400" />
+              <Wrench className="w-3.5 h-3.5 text-slate-300" />
               <span>Core Services</span>
             </h3>
-            <ul className="space-y-2 text-slate-300">
-              <li>
+            <ul className="space-y-2 text-slate-200">
+              <li className="text-slate-200">
                 <a
                   href="/services"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('services');
                   }}
-                  className="hover:text-white transition-colors text-left cursor-pointer block"
+                  className="text-slate-200 hover:text-white transition-colors text-left cursor-pointer block"
                 >
                   Software Services
                 </a>
               </li>
-              <li>
+              <li className="text-white">
                 <a
                   href="/services/software-pos"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('services', 'software-pos');
                   }}
-                  className="hover:text-white transition-colors text-left cursor-pointer block font-medium text-white"
+                  className="text-white hover:text-red-300 transition-colors text-left cursor-pointer block font-medium"
                 >
                   POS Pricing
                 </a>
               </li>
-              <li>
+              <li className="text-white">
                 <a
                   href="/sialkot-export-erp"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('sialkot-export-erp');
                   }}
-                  className="hover:text-white transition-colors text-left cursor-pointer block font-medium text-white"
+                  className="text-white hover:text-red-300 transition-colors text-left cursor-pointer block font-medium"
                 >
                   Export ERP
                 </a>
               </li>
-              <li>
+              <li className="text-slate-200">
                 <a
                   href="/tools"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('tools');
                   }}
-                  className="hover:text-white transition-colors text-left cursor-pointer block"
+                  className="text-slate-200 hover:text-white transition-colors text-left cursor-pointer block"
                 >
                   Business Tools
                 </a>
               </li>
-              <li>
+              <li className="text-slate-200">
                 <a
                   href={getStoreDomainUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors text-left block"
+                  className="text-slate-200 hover:text-white transition-colors text-left block"
                 >
                   Hardware &amp; POS Store
                 </a>
               </li>
-              <li>
+              <li className="text-slate-200">
                 <a
                   href={getStoreDomainUrl('/services/doorstep-support')}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors text-left block"
+                  className="text-slate-200 hover:text-white transition-colors text-left block"
                 >
                   Doorstep Support
                 </a>
@@ -234,114 +234,114 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
           {/* Column 3: Web Tools Hub */}
           <nav className="lg:col-span-2 space-y-3" aria-label="Footer Business Tools Navigation">
             <h3 className="text-xs font-semibold text-white flex items-center gap-1.5">
-              <Cpu className="w-3.5 h-3.5 text-slate-400" />
+              <Cpu className="w-3.5 h-3.5 text-slate-300" />
               <span>Web Tools Hub</span>
             </h3>
-            <ul className="space-y-2 text-slate-300">
-              <li>
+            <ul className="space-y-2 text-slate-200">
+              <li className="text-slate-200">
                 <a
                   href="/tools/etsy-fee-calculator"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('etsy-fee-calculator');
                   }}
-                  className="hover:text-white transition-colors text-left cursor-pointer block"
+                  className="text-slate-200 hover:text-white transition-colors text-left cursor-pointer block"
                 >
                   Etsy Fee &amp; Profit Calculator
                 </a>
               </li>
-              <li>
+              <li className="text-slate-200">
                 <a
                   href="/tools/ebay-fee-calculator"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('ebay-fee-calculator');
                   }}
-                  className="hover:text-white transition-colors text-left cursor-pointer block"
+                  className="text-slate-200 hover:text-white transition-colors text-left cursor-pointer block"
                 >
                   eBay Fee &amp; Profit Builder
                 </a>
               </li>
-              <li>
+              <li className="text-slate-200">
                 <a
                   href="/tools/invoice-generator"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('invoice');
                   }}
-                  className="hover:text-white transition-colors text-left cursor-pointer block"
+                  className="text-slate-200 hover:text-white transition-colors text-left cursor-pointer block"
                 >
                   Micro-Invoice Generator
                 </a>
               </li>
-              <li>
+              <li className="text-slate-200">
                 <a
                   href="/ai-tools-name-for-travel-itinerary"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('ai-travel-tools');
                   }}
-                  className="hover:text-white transition-colors text-left cursor-pointer block"
+                  className="text-slate-200 hover:text-white transition-colors text-left cursor-pointer block"
                 >
                   10 Best AI Travel Tools
                 </a>
               </li>
-              <li>
+              <li className="text-slate-200">
                 <a
                   href="/tools/ai-trip-planner"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('ai-trip-planner');
                   }}
-                  className="hover:text-white transition-colors text-left cursor-pointer block"
+                  className="text-slate-200 hover:text-white transition-colors text-left cursor-pointer block"
                 >
                   AI Trip Planner Engine
                 </a>
               </li>
-              <li>
+              <li className="text-slate-200">
                 <a
                   href="/tools/factory-network-tester"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('factory-network-tester');
                   }}
-                  className="hover:text-white transition-colors text-left cursor-pointer block"
+                  className="text-slate-200 hover:text-white transition-colors text-left cursor-pointer block"
                 >
                   Factory Network Tester
                 </a>
               </li>
-              <li>
+              <li className="text-slate-200">
                 <a
                   href="/tools/ecommerce-calculator"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('ecommerce-calculator');
                   }}
-                  className="hover:text-white transition-colors text-left cursor-pointer block"
+                  className="text-slate-200 hover:text-white transition-colors text-left cursor-pointer block"
                 >
                   E-Commerce Margin Calc
                 </a>
               </li>
-              <li>
+              <li className="text-slate-200">
                 <a
                   href="/tools/export-barcode-studio"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('export-barcode-studio');
                   }}
-                  className="hover:text-white transition-colors text-left cursor-pointer block"
+                  className="text-slate-200 hover:text-white transition-colors text-left cursor-pointer block"
                 >
                   Export Barcode Studio
                 </a>
               </li>
-              <li>
+              <li className="text-slate-200">
                 <a
                   href="/tools/schema-generator"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('schema-generator');
                   }}
-                  className="hover:text-white transition-colors text-left cursor-pointer block"
+                  className="text-slate-200 hover:text-white transition-colors text-left cursor-pointer block"
                 >
                   JSON-LD Schema Generator
                 </a>
@@ -353,42 +353,42 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
           <nav className="lg:col-span-2 space-y-4" aria-label="Footer Portfolio and Guides Navigation">
             <div className="space-y-2">
               <h3 className="text-xs font-semibold text-white flex items-center gap-1.5">
-                <Briefcase className="w-3.5 h-3.5 text-slate-400" />
+                <Briefcase className="w-3.5 h-3.5 text-slate-300" />
                 <span>Client Portfolio</span>
               </h3>
-              <ul className="space-y-1.5 text-slate-300">
-                <li>
+              <ul className="space-y-1.5 text-slate-200">
+                <li className="text-white">
                   <a
                     href="/portfolio"
                     onClick={(e) => {
                       e.preventDefault();
                       onNavigate('portfolio');
                     }}
-                    className="hover:text-white transition-colors text-left cursor-pointer block font-medium text-white"
+                    className="text-white hover:text-red-300 transition-colors text-left cursor-pointer block font-medium"
                   >
                     Client Portfolio
                   </a>
                 </li>
-                <li>
+                <li className="text-slate-200">
                   <a
                     href="/portfolio"
                     onClick={(e) => {
                       e.preventDefault();
                       onNavigate('portfolio');
                     }}
-                    className="hover:text-white transition-colors text-left cursor-pointer block"
+                    className="text-slate-200 hover:text-white transition-colors text-left cursor-pointer block"
                   >
                     Dubai Web Deployments
                   </a>
                 </li>
-                <li>
+                <li className="text-slate-200">
                   <a
                     href="/services/software-pos"
                     onClick={(e) => {
                       e.preventDefault();
                       onNavigate('services', 'software-pos');
                     }}
-                    className="hover:text-white transition-colors text-left cursor-pointer block"
+                    className="text-slate-200 hover:text-white transition-colors text-left cursor-pointer block"
                   >
                     Offline POS Software
                   </a>
@@ -398,32 +398,92 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote, onOpenP
 
             <div className="space-y-2 pt-3 border-t border-white/10">
               <h3 className="text-xs font-semibold text-white flex items-center gap-1.5">
-                <BookOpen className="w-3.5 h-3.5 text-slate-400" />
+                <BookOpen className="w-3.5 h-3.5 text-slate-300" />
                 <span>Technical Guides</span>
               </h3>
-              <ul className="space-y-1.5 text-slate-300">
-                <li>
+              <ul className="space-y-1.5 text-slate-200">
+                <li className="text-white">
                   <a
                     href="/guides"
                     onClick={(e) => {
                       e.preventDefault();
                       onNavigate('guides');
                     }}
-                    className="hover:text-white transition-colors text-left cursor-pointer block font-medium text-white"
+                    className="text-white hover:text-red-300 transition-colors text-left cursor-pointer block font-medium"
                   >
                     Retail Guides
                   </a>
                 </li>
-                <li>
+                <li className="text-[#ffffff]">
                   <a
                     href="/guidelines"
                     onClick={(e) => {
                       e.preventDefault();
                       onNavigate('guidelines');
                     }}
-                    className="hover:text-white transition-colors text-left cursor-pointer block"
+                    className="text-[#ffffff] hover:text-red-300 transition-colors text-left cursor-pointer block"
                   >
                     IT Guidelines
+                  </a>
+                </li>
+                <li className="text-slate-200">
+                  <a
+                    href="/blog/high-performance-landing-pages-structure-speed-seo"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate('guides', 'blog/high-performance-landing-pages-structure-speed-seo');
+                    }}
+                    className="text-slate-200 hover:text-white transition-colors text-left cursor-pointer block"
+                  >
+                    Landing Page Speed &amp; SEO
+                  </a>
+                </li>
+                <li className="text-slate-200">
+                  <a
+                    href="/blog/essential-elements-high-converting-b2b-portfolio-website"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate('guides', 'blog/essential-elements-high-converting-b2b-portfolio-website');
+                    }}
+                    className="text-slate-200 hover:text-white transition-colors text-left cursor-pointer block"
+                  >
+                    B2B Portfolio Essentials
+                  </a>
+                </li>
+                <li className="text-slate-200">
+                  <a
+                    href="/blog/export-seo-ranking-first-page-google-daska-road-sialkot"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate('guides', 'blog/export-seo-ranking-first-page-google-daska-road-sialkot');
+                    }}
+                    className="text-slate-200 hover:text-white transition-colors text-left cursor-pointer block"
+                  >
+                    Sialkot Export SEO Guide
+                  </a>
+                </li>
+                <li className="text-slate-200">
+                  <a
+                    href="/blog/heavy-duty-laser-printer-repair-daska-road-sialkot-factories"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate('guides', 'blog/heavy-duty-laser-printer-repair-daska-road-sialkot-factories');
+                    }}
+                    className="text-slate-200 hover:text-white transition-colors text-left cursor-pointer block"
+                  >
+                    Factory Laser Printer Repair
+                  </a>
+                </li>
+                <li className="text-slate-200">
+                  <a
+                    href="/blog/dell-latitude-hp-elitebook-type-c-charging-repair-sialkot"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate('guides', 'blog/dell-latitude-hp-elitebook-type-c-charging-repair-sialkot');
+                    }}
+                    className="text-slate-200 hover:text-white transition-colors text-left cursor-pointer block"
+                  >
+                    Laptop Type-C IC Repair
                   </a>
                 </li>
               </ul>

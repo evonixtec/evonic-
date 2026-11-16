@@ -320,9 +320,9 @@ Please confirm stock and doorstep delivery time in Sialkot.`;
             <span>Dubai Direct Import • 100+ Hardware Items in Sialkot</span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#1E1E1E] tracking-tight text-left">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#1E1E1E] tracking-tight text-left">
             Hardware, Laptops &amp; Equipment Store
-          </h1>
+          </h2>
 
           <p className="text-slate-600 text-sm sm:text-base leading-[1.55] text-left">
             All prices in Pakistani Rupees (PKR). We stock certified business laptops, tower desktops, high-speed printers, RAM, and SSD upgrades with written warranties in Sialkot.
@@ -1067,6 +1067,27 @@ Please confirm stock and doorstep delivery time in Sialkot.`;
               <p className="text-xs text-slate-600 leading-[1.55] text-left">
                 Yes! Our on-site technicians deliver and configure all hardware directly at your retail store, warehouse, or factory on Paris Road, Cantt, Daska Road, Sambrial, Wazirabad Road, and Small Industrial Estate Sialkot with full hands-on staff demonstration.
               </p>
+            </div>
+          </div>
+
+          {/* IT Hardware & Bench Repair Guides */}
+          <div className="mt-8 p-6 bg-white border border-slate-200 rounded-[20px] text-left max-w-4xl space-y-3">
+            <h4 className="font-bold text-[#1E1E1E] text-sm">
+              Hardware Maintenance &amp; Bench Repair Guides
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <a
+                href="https://www.evonixtec.com/blog/heavy-duty-laser-printer-repair-daska-road-sialkot-factories"
+                className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-red-500 text-slate-800 font-semibold block transition-colors"
+              >
+                HP &amp; Canon Laser Printer Fuser Repair in Sialkot &rarr;
+              </a>
+              <a
+                href="https://www.evonixtec.com/blog/dell-latitude-hp-elitebook-type-c-charging-repair-sialkot"
+                className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-red-500 text-slate-800 font-semibold block transition-colors"
+              >
+                Dell Latitude &amp; HP EliteBook Type-C Charging IC Repair &rarr;
+              </a>
             </div>
           </div>
 

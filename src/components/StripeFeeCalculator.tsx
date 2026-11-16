@@ -177,9 +177,9 @@ export default function StripeFeeCalculator() {
               <CreditCard className="w-3.5 h-3.5 text-[#0071e3]" />
               <span>Stripe Gateway Utility • Forward &amp; Reverse Calculation</span>
             </div>
-            <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#1d1d1f]">
+            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#1d1d1f]">
               Stripe Fee Calculator: Calculate Stripe Transaction Fees
-            </h1>
+            </h2>
             <p className="text-xs sm:text-sm text-[#86868b] leading-relaxed max-w-2xl">
               Stripe charges 2.9% + 30¢ US domestic, different international. Our stripe fee calculator maps exact deduction and net payout with forward and reverse computation.
             </p>

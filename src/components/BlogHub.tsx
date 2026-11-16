@@ -136,9 +136,11 @@ export const BlogHub: React.FC<BlogHubProps> = ({
     checkBlogRoute();
     window.addEventListener('popstate', checkBlogRoute);
     window.addEventListener('hashchange', checkBlogRoute);
+    window.addEventListener('evonix-blog-route', checkBlogRoute);
     return () => {
       window.removeEventListener('popstate', checkBlogRoute);
       window.removeEventListener('hashchange', checkBlogRoute);
+      window.removeEventListener('evonix-blog-route', checkBlogRoute);
     };
   }, []);
 
